@@ -61,10 +61,10 @@
           <ul class="nav navbar-nav">
             <li class="divider-vertical"></li>
             
-                <li><a href="http://www.mantidproject.org">Home</a></li>
-                <li><a href="http://download.mantidproject.org">Download</a></li>
-                <li><a href="http://docs.mantidproject.org/nightly/">Documentation</a></li>
-                <li><a href="http://www.mantidproject.org/Contact">Contact Us</a></li>
+                <li><a href="https://www.mantidproject.org">Home</a></li>
+                <li><a href="https://download.mantidproject.org">Download</a></li>
+                <li><a href="https://docs.mantidproject.org">Documentation</a></li>
+                <li><a href="https://www.mantidproject.org/contact">Contact Us</a></li>
             
             
               
@@ -129,13 +129,23 @@ There are other mouse and key board controls, which are listed at the bottom of 
 <p>The control panel of the instrument view has four tabs: <code class="docutils literal notranslate"><span class="pre">Render</span></code>, <code class="docutils literal notranslate"><span class="pre">Pick</span></code>, <code class="docutils literal notranslate"><span class="pre">Mask</span></code>, and <code class="docutils literal notranslate"><span class="pre">Instrument</span></code>.</p>
 </section>
 <section id="render-tab">
-<h2>Render Tab<a class="headerlink" href="#render-tab" title="Permalink to this heading">¶</a></h2>
+<span id="instrumentviewer-render-tab"></span><h2>Render Tab<a class="headerlink" href="#render-tab" title="Permalink to this heading">¶</a></h2>
 <p>The Render tab contains controls for managing the on-screen appearance of the instrument and collected data.
 The top-most combo-box control allows the user to select the way the instrument is projected onto the screen.
 The default setting is <code class="docutils literal notranslate"><span class="pre">Full</span> <span class="pre">3D</span></code> which gives a 3D view of the instrument in an orthogonal projection.
 The other options are unwrapped views, which project the instrument onto a curved surface and unwrap it onto the view.
-There is a choice between cylinders and spheres.
-The unwrapped (or flat) views allow zooming by selecting a rectangular region with the mouse (left click and drag).
+There is a choice between cylinders and spheres or a side by side view.</p>
+<p>The side by side view identifies flat banks of detectors in the instrument definition by looking for the following component types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RectangularDetector</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StructuredDetector</span></code></p></li>
+<li><p>any component with a set of children or grandchildren having the <code class="docutils literal notranslate"><span class="pre">outline</span></code> attribute set to <code class="docutils literal notranslate"><span class="pre">yes</span></code>. This is interpreted as a bank of tubes</p></li>
+<li><p>any component with detector children arranged in a flat surface</p></li>
+</ul>
+<p>Each flat bank is then rotated about one of its corners until the bank surface is parallel to the xy plane and a parallel projection is then made of all the banks onto the xy plane. Finally the banks are spread out to remove any overlap between their projected positions.
+The spread is applied by fixing the largest bank and moving all other banks away from it until there are no overlaps.
+The bank centres in the side by side view can be overridden using the &lt;side-by-side-view-location&gt; tag in the <a class="reference internal" href="../concepts/InstrumentDefinitionFile.html#side-by-side-view-location"><span class="std std-ref">instrument definition file</span></a>.</p>
+<p>The unwrapped (or flat) views allow zooming by selecting a rectangular region with the mouse (left click and drag).
 Right-clicking resets the zoom, which shows the entire instrument.</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../_images/RenderTab.png"><img alt="../_images/RenderTab.png" src="../_images/RenderTab.png" style="width: 635px;" /></a>

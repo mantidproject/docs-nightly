@@ -125,8 +125,7 @@
 </li>
 <li><p><a class="reference internal" href="#properties" id="id4">Properties</a></p></li>
 <li><p><a class="reference internal" href="#description" id="id5">Description</a></p></li>
-<li><p><a class="reference internal" href="#usage" id="id6">Usage</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id7">Source</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id6">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
@@ -187,72 +186,21 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This algorithm is deprecated as of 2022-11-30</p>
+</div>
 </section>
 <section id="description">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
-<p><strong>This algorithm is deprecated as of 2022-11-30</strong></p>
 <p>This workflow algorithm is to export a MatrixWorkspace to a GSAS data file,
 which is close enough to the GSAS file generated from VULCAN’s V-drive.</p>
 <p>V-drive uses a different bin other than Mantid does.
 Besides, IDL’s rebin algorithm is different from Mantid’s.</p>
-</section>
-<section id="usage">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
-<p><strong>Example - Save GSAS file in V-drive style:</strong></p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-
-<span class="c1"># load data and create header</span>
-<span class="n">dataws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;focussed.nxs&quot;</span><span class="p">)</span>
-<span class="n">dataws</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
-<span class="n">dataws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">dataws</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">&quot;TOF&quot;</span><span class="p">,</span> <span class="n">EMode</span><span class="o">=</span><span class="s2">&quot;Elastic&quot;</span><span class="p">,</span> <span class="n">AlignBins</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;testvulcan.gda&quot;</span>
-<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="n">file_name</span><span class="p">)</span>
-
-<span class="c1"># create binning table</span>
-<span class="n">ref_bin_table</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">(</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ref_bin_table&#39;</span><span class="p">)</span>
-<span class="n">ref_bin_table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;indexes&#39;</span><span class="p">)</span>
-<span class="n">ref_bin_table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;params&#39;</span><span class="p">)</span>
-
-<span class="n">ref_bin_table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="s1">&#39;0, 2, 4&#39;</span><span class="p">,</span> <span class="s1">&#39;1000, -0.001, 20000&#39;</span><span class="p">])</span>
-<span class="n">ref_bin_table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="s1">&#39;1, 3, 5&#39;</span><span class="p">,</span> <span class="s1">&#39;2000, -0.002, 30000&#39;</span><span class="p">])</span>
-
-<span class="n">gsaws</span> <span class="o">=</span> <span class="n">SaveVulcanGSS</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">dataws</span><span class="p">,</span> <span class="n">BinningTable</span><span class="o">=</span><span class="s2">&quot;ref_bin_table&quot;</span><span class="p">,</span> <span class="n">GSSFilename</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">IPTS</span><span class="o">=</span><span class="mi">1234</span><span class="p">,</span> <span class="n">GSSParmFileName</span><span class="o">=</span><span class="s2">&quot;mock.prm&quot;</span><span class="p">)</span>
-
-<span class="n">gfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
-<span class="n">lines</span> <span class="o">=</span> <span class="n">gfile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-<span class="n">gfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[GSAS File Start]&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;... ...&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[GSAS File Start]
-Test
-Instrument parameter file: mock.prm
-#IPTS: 1234
-#binned by: Mantid
-#GSAS file name: testvulcan.gda
-#GSAS IPARM file: mock.prm
-#Pulsestart:    0
-#Pulsestop:     0
-#
-# Total flight path 19.3695m, tth 9.14421deg, DIFC 780.587
-# Data for spectrum :0
-BANK 2 2997 2997 SLOG 1000.5 19987.7 0.0010000 0 FXYE
-                1000.5                 520.0                 22.80
-                1001.5                 516.7                 22.73
-                1002.5                 515.2                 22.70
-... ...
-</pre></div>
-</div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Workflow/Diffraction/DataHandling.html">Workflow\Diffraction\DataHandling</a> | <a class="reference external" href="categories/Deprecated.html">Deprecated</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
 <p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b8f805b2e400168b3a67343c6b560f0cdcea99a0/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/SaveVulcanGSS.py">SaveVulcanGSS.py</a></p>
 </section>
 </section>

@@ -52,7 +52,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>6.5</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>6.6</b></span>
       </div>
 
       
@@ -278,11 +278,15 @@ use the following syntax:</p>
 <p>The three peaks now have all different widths. The first peak (index 0) keeps the default value.</p>
 <a class="reference internal image-reference" href="../../_images/CrystalFieldSpectrum2.png"><img alt="../../_images/CrystalFieldSpectrum2.png" src="../../_images/CrystalFieldSpectrum2.png" style="height: 300px;" /></a>
 <p>If called without arguments <cite>getSpectrum()</cite> determines automatically the range and number of the <cite>x</cite>-points. To have more control
-of how the spectrum is calculated a list (or numpy array) of x-values can be provided as a first argument to <cite>getSpectrum</cite>.
+of how the spectrum is calculated either a list (or numpy array) of x-values or a keyword argument using <cite>x_range</cite> with a tuple
+containing the range for the x values can be provided as a first argument to <cite>getSpectrum</cite>.
 Alternatively, the x-values can be taken from a workspace:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use a list for x-values</span>
-<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="n">sp</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Use a tuple for x range</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span>
 
 <span class="c1"># Use the first spectrum of a workspace</span>
 <span class="n">sp</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>

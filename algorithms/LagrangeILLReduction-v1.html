@@ -52,7 +52,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>6.5</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>6.6</b></span>
       </div>
 
       
@@ -110,7 +110,7 @@
 <section id="lagrangeillreduction-v1">
 <span id="algm-lagrangeillreduction"></span><span id="algm-lagrangeillreduction-v1"></span><h1>LagrangeILLReduction v1<a class="headerlink" href="#lagrangeillreduction-v1" title="Permalink to this heading">¶</a></h1>
 <figure class="align-right" id="id1">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/LagrangeILLReduction-v1_dlg.png"><img alt="../_images/LagrangeILLReduction-v1_dlg.png" class="screenshot" src="../_images/LagrangeILLReduction-v1_dlg.png" style="width: 331px;" /></a>
+<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/LagrangeILLReduction-v1_dlg.png"><img alt="../_images/LagrangeILLReduction-v1_dlg.png" class="screenshot" src="../_images/LagrangeILLReduction-v1_dlg.png" style="width: 305px;" /></a>
 <figcaption>
 <p><span class="caption-text"><strong>LagrangeILLReduction</strong> dialog.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
@@ -145,13 +145,13 @@
 <td><p>Input</p></td>
 <td><p>list of str lists</p></td>
 <td><p><em>Mandatory</em></p></td>
-<td><p>Sample run(s).</p></td>
+<td><p>Sample run(s). Allowed values: [‘’, ‘.nxs’]</p></td>
 </tr>
 <tr class="row-odd"><td><p>ContainerRuns</p></td>
 <td><p>Input</p></td>
 <td><p>list of str lists</p></td>
 <td></td>
-<td><p>Container run(s) (empty cell)</p></td>
+<td><p>Container run(s) (empty cell). Allowed values: [‘’, ‘.nxs’]</p></td>
 </tr>
 <tr class="row-even"><td><p>CorrectionFile</p></td>
 <td><p>Input</p></td>
@@ -183,6 +183,12 @@
 <td><p>False</p></td>
 <td><p>Convert axis unit to energy in wave number (cm-1)</p></td>
 </tr>
+<tr class="row-odd"><td><p>NexusInput</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td><p>Whether the input data contains NeXus files.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -194,13 +200,15 @@ if needed. Reduction consists of multiplying the data by the correction factor f
 the empty cell from the raw data.</p>
 <p>The X-axis of the result data can be offset by the incident energy using <cite>UseIncidentEnergy</cite>, and be converted to wave
 number instead of the default energy using <cite>ConvertToWaveNumber</cite>.</p>
-<p>All the files in each field are merged together in a single curve, with very close points being removed to avoid
-interpolation artifacts.</p>
+<p>All the files in each field are merged together in a single curve, with very close points (less than 10 umeV apart)
+being removed to avoid interpolation artifacts.</p>
 <p>Since the binning can be different between the raw data, the empty cell and the correction file, values are interpolated
 through numpy to provide matching values.</p>
 <p>Note that for simplicity reasons, this algorithm is taking care of the loading and formatting of the ASCII data itself,
-and no separate loader exists for Lagrange data. Raw data can be checked by not filling any reduction parameter in this
-algorithm.</p>
+and no separate loader exists for ASCII Lagrange data. Raw data can be checked by not filling any reduction parameter in this
+algorithm. There exist a loader for NeXus Lagrange data: <span class="xref std std-ref">LoadILLLagrange</span>, which allows to inspect the raw data.</p>
+<p>The reduction can be performed when the input contains only ASCII or only NeXus files, mixing is not supported. The workflow
+will automatically choose which way to load the input data. The reduction with either type of input gives the same result.</p>
 </section>
 <section id="usage">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
@@ -270,7 +278,7 @@ algorithm.</p>
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b8f805b2e400168b3a67343c6b560f0cdcea99a0/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/LagrangeILLReduction.py">LagrangeILLReduction.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b37778cec0dd3d39dbd0516723760c1e6746c354/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/LagrangeILLReduction.py">LagrangeILLReduction.py</a></p>
 </section>
 </section>
 

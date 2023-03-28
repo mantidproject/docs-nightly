@@ -123,98 +123,91 @@ In order to better understand experimental outputs, one can compare with results
 initial guess for the structure of interest.
 The initial guess should be as close as possible to an experimental structure, and is usually derived from elastic X-ray and/or neutron scattering measurements.
 Then the structure parameters are locally optimised within DFT, finding the nearest structure that minimises the DFT energy.
-At this point, there should be no net force on the atoms.
-For this “relaxed” structure the dynamical matrix is calculated, either by finite displacements or perturbation theory.
-The dynamical matrix is related to the Hessian (the second derivative of the system Hamiltonian with respect to atomic displacements) by a Fourier transform:
-the eigenvectors obtained from diagonalisation of this matrix are atomic displacements
-and the eigenvalues are the squared frequencies of the corresponding movements.
-These vibrational <em>modes</em> are related to the <em>fundamental</em> vibrational excitations of the system;
-using this displacement and frequency information one can calculate theoretical <span class="math notranslate nohighlight">\(S(\mathbf{Q}, \omega)\)</span>.
-In Abins this is calculated for each atom separately,
+At this point, there should be no net force on the atoms.</p>
+<p>For this “relaxed” structure the dynamical matrix is calculated at a set of phonon wavevectors <span class="math notranslate nohighlight">\(\mathbf{k}\)</span>, and converted to a set of physical frequencies and displacements that contribute to the dynamics of the material.
+The dynamical matrix is related by a Fourier transform (at the given <span class="math notranslate nohighlight">\(\mathbf{k}\)</span>-points) to the Hessian of the system – the second derivative of the system Hamiltonian with respect to atomic displacements.
+While it is possible to calculate the dynamical matrix at arbitrary <span class="math notranslate nohighlight">\(\mathbf{k}\)</span>-points by perturbation theory,
+it is typical to compute these on a regular grid or, equivalently, compute the Hessian up to some real-space supercell of the crystal structure.
+This model allows an inexpensive “Fourier interpolation” of frequencies and displacements at arbitrary <span class="math notranslate nohighlight">\(\mathbf{k}\)</span>-points, as long as the supercell size is sufficient to contain the relevant atomic interactions.</p>
+<p>Solution of the dynamical matrix vibrational at each sampled wavevector <span class="math notranslate nohighlight">\(\mathbf{k}\)</span> produces a set of <em>modes</em>, which are related to the <em>fundamental</em> vibrational excitations of the system. <span class="math notranslate nohighlight">\(\mathbf{k}\)</span> corresponds to a neutron momentum transfer <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>,
+with eigenvalues related to the energy transfer <span class="math notranslate nohighlight">\(\omega\)</span> and eigenvectors related to atomic displacements.
+By inserting this second-order model into the response-function theory of neutron scattering we can calculate <span class="math notranslate nohighlight">\(S(\mathbf{Q}, \omega)\)</span> within the harmonic approximation.</p>
+<p>Some further simplifications are made in order to account for powder-averaging and higher-order excitations at reasonable computational cost: the method current implemented in Abins is a</p>
+<ul class="simple">
+<li><p>DOS-like</p></li>
+<li><p>almost-isotropic</p></li>
+<li><p>incoherent approximation</p></li>
+<li><p>with simplified high-order terms.</p></li>
+</ul>
+<p>The incoherent approximation allows each atom to be calculated separately,
 then the total spectrum is obtained as a sum over all atomic contributions.</p>
+<p>This method is well-established for molecular spectroscopy; studies of inorganic crystals, on the other hand, tend to calculate the coherent scattering and neglect multi-phonon terms.</p>
 </section>
 <section id="working-equations">
 <h2>Working equations<a class="headerlink" href="#working-equations" title="Permalink to this heading">¶</a></h2>
-<section id="powder">
-<h3>Powder<a class="headerlink" href="#powder" title="Permalink to this heading">¶</a></h3>
 <img alt="../_images/s_powder_scheme.png" class="align-center" src="../_images/s_powder_scheme.png" />
+<p>The vibrational part of the structure factor <span class="math notranslate nohighlight">\(S(\mathbf{Q}, \omega)\)</span> is related by a Fourier transform to the intermediate scattering function <span class="math notranslate nohighlight">\(F(\mathbf{Q}, t) = \frac{1}{N} \sum_{i,i^\prime} \left&lt; \exp[i \mathbf{Q} (\mathbf{r}_i(t) - \mathbf{r}_i^\prime(0))] \right&gt;\)</span>. This is a double-sum over atom pairs <span class="math notranslate nohighlight">\(i, i^\prime\)</span> in a thermally-averaged correlation function.</p>
+<p>Solving this for a quantum harmonic oscillator, making the incoherent approximation and a Taylor expansion of the exponential term allows the double-sum over atoms to be separated into a sum over atoms <span class="math notranslate nohighlight">\(i\)</span>, vibrational mode indices <span class="math notranslate nohighlight">\(\nu\)</span> and quantum orders <span class="math notranslate nohighlight">\(n\)</span>. These intensities may be computed independently:</p>
+<p><span class="math notranslate nohighlight">\(S_i(\mathbf{Q}, n\omega_{\nu}) = \sigma_i \frac{[\mathbf{Q Q : B}_{\nu,i} \left&lt;n + 1\right&gt;]^{n}}{n!} \exp(-\mathbf{Q Q : A}_i)\)</span></p>
+<p>in which <span class="math notranslate nohighlight">\(\sigma_i\)</span> is an atomic cross-section while <span class="math notranslate nohighlight">\(\mathbf{B_{\nu,i}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{A}_i\)</span> are <span class="math notranslate nohighlight">\(3 \times 3\)</span> quadratic dispacement tensors of individual phonon modes and the overall atomic dispacements, respectively.
+In Einstein notation the contraction of two 2–D tensors <span class="math notranslate nohighlight">\(\mathbf{A}:\mathbf{B}\)</span> is <span class="math notranslate nohighlight">\(\mathbf{A}_{ij}\mathbf{B}_{ij}\)</span>.</p>
+<p>Similar expressions are formed for combination modes in which <span class="math notranslate nohighlight">\(n\omega\)</span> becomes <span class="math notranslate nohighlight">\(\sum^n \omega_\nu\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}_{\nu,i}^{n}\)</span> is replaced by <span class="math notranslate nohighlight">\(\prod_\nu^n \mathbf{B}_{\nu,i}\)</span>.</p>
+<p>The displacement tensors can be obtained from the calculated phonon eigenvectors <span class="math notranslate nohighlight">\({\mathbf{c}}\)</span>: <span class="math notranslate nohighlight">\(\mathbf{B_{\nu_i}}\)</span> is mode-dependent and thermally-occupied in the expression above by <span class="math notranslate nohighlight">\(\left&lt;n+1\right&gt;\)</span> Bose statistics while <span class="math notranslate nohighlight">\(\mathbf{A}_i\)</span> is a property of each atom site and includes occupation <span class="math notranslate nohighlight">\(\left&lt;2n+1\right&gt;\)</span>: at low temperature both terms reduce to 1.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{B}_{\nu,i} = \mathbf{c}_{\nu,i} \mathbf{c}_{\nu,i}^\intercal \frac{\hbar}{2 M_i \omega_\nu}\)</span></p>
+<p><span class="math notranslate nohighlight">\(A_i = \sum_i \mathbf{B}_{\omega,i} \left&lt;2n + 1\right&gt;\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{c}_{i, \nu}\)</span>  – normalised eigenvector for atom <span class="math notranslate nohighlight">\(i\)</span> in mode <span class="math notranslate nohighlight">\(\nu\)</span> and <span class="math notranslate nohighlight">\(M_i\)</span> is the mass of atom <span class="math notranslate nohighlight">\(i\)</span>. For the rest of this document, we define <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> to include the Bose factor <span class="math notranslate nohighlight">\(\left&lt;n+1\right&gt;\)</span>.</p>
 <p>In DFT studies of solid materials, the simulation region is generally a finite unit cell with periodic boundary conditions.
-This models an infinite perfect crystal;
-in order to compare such calculations with powder experiments, orientational averaging should be considered.
-Usually a semi-empirical model is applied <a class="footnote-reference brackets" href="#howard1983" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><sup>,</sup> <a class="footnote-reference brackets" href="#howard1983b" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>:</p>
-<p><span class="math notranslate nohighlight">\(S^j (\mathbf{Q},\omega_i) = S^j (Q,\omega_i) = \frac{Q^2 \mathrm{Tr}B_{\omega_i}}{3} exp\left(-Q^2 \alpha^j_{\omega_i} coth^2\left(\frac{\hbar \omega_i}{2 k_B T}\right)  \right)\sigma^j\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(A\)</span> are tensors created from atomic displacements in the following way:</p>
-<p><span class="math notranslate nohighlight">\(B^j_{\omega_i} = c^j_{\omega_i}(c^{j}_{\omega_i})^T M^j  \frac{C_1}{\omega_i}\)</span></p>
-<p><span class="math notranslate nohighlight">\(A^j = \sum_i B^j_{\omega_i}\)</span></p>
-<p>with</p>
-<p><span class="math notranslate nohighlight">\(Q\)</span> – momentum transfer due to neutron scattering.  The momentum transfer <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> is a technically a vector. However, the powder averaging of :math: <cite>S</cite> allows it to be represented as a scalar.</p>
-<p><span class="math notranslate nohighlight">\(\alpha^j_{\omega_i}\)</span> – semi-empirical parameter calculated as: <span class="math notranslate nohighlight">\(\alpha^j_{\omega_i} = \frac{1}{5} \left \lbrace \mathrm{Tr} A^j  + \frac{2 B^j_{\omega_i}: A^j}{\mathrm{Tr} B^j_{\omega_i}} \right\rbrace\)</span></p>
-<p><span class="math notranslate nohighlight">\(\mathrm{Tr}\)</span> – trace operation</p>
-<p><span class="math notranslate nohighlight">\(:\)</span> –  tensor contraction operation</p>
-<p><span class="math notranslate nohighlight">\(j\)</span> – indicates <span class="math notranslate nohighlight">\(j\)</span>-th atoms</p>
-<p><span class="math notranslate nohighlight">\(i\)</span> – indicates <span class="math notranslate nohighlight">\(i\)</span>-th energy transition</p>
-<p><span class="math notranslate nohighlight">\(\omega_i\)</span> – frequency for <span class="math notranslate nohighlight">\(i\)</span>-th transition in <span class="math notranslate nohighlight">\(cm^{-1}\)</span> (called also mode or fundamental)</p>
-<p><span class="math notranslate nohighlight">\(c^j_{\omega_i}\)</span>  – atomic displacement for <span class="math notranslate nohighlight">\(j\)</span>-th atom and <span class="math notranslate nohighlight">\(i\)</span>-th frequency in atomic units</p>
-<p><span class="math notranslate nohighlight">\(M_j\)</span> – mass of <span class="math notranslate nohighlight">\(j\)</span>-th atom in atomic units</p>
-<p><span class="math notranslate nohighlight">\(C_1\)</span> –  <span class="math notranslate nohighlight">\(\hbar / (4 / \pi)\)</span> expressed in spectroscopic units</p>
-<p><span class="math notranslate nohighlight">\(k_B\)</span> – Boltzmann constant</p>
-<p><span class="math notranslate nohighlight">\(T\)</span> – temperature in K</p>
-<p><span class="math notranslate nohighlight">\(\sigma_j\)</span> – cross-section for <span class="math notranslate nohighlight">\(j\)</span>-th atom</p>
-<p>The formula above covers the <em>first-order quantum events</em> – specifically the transitions <span class="math notranslate nohighlight">\(0 \rightarrow 1\)</span> for each phonon.
-The <span class="math notranslate nohighlight">\(1 \rightarrow 0\)</span> events (i.e. energy <em>to</em> the scattered neutron) would be infrequent at experimental conditions and are neglected.
-In order to reconstruct the full spectrum one has to also consider higher-order quantum events.
-For second-order quantum events one should not only
-consider transitions <span class="math notranslate nohighlight">\(0 \rightarrow 2\)</span>, but also simultaneous transitions <span class="math notranslate nohighlight">\(0 \rightarrow 1\)</span>, <span class="math notranslate nohighlight">\(0 \rightarrow 1'\)</span> for different phonons.
-Within the harmonic approximation all second-order transitions form the following set: <span class="math notranslate nohighlight">\(\lbrace \omega_1 +
-\omega_1, \omega_1 + \omega_2, \omega_1 + \omega_3, \ldots, \omega_p + \omega_p \rbrace\)</span>.
-The cardinality of this set is <span class="math notranslate nohighlight">\(p^2\)</span>, where <span class="math notranslate nohighlight">\(p\)</span> is a number of fundamentals.
-In practice one can reduce this number by taking into consideration a realistic energy window
-and neglecting those <span class="math notranslate nohighlight">\(\omega_{ij}=\omega_i + \omega_j\)</span> for which <span class="math notranslate nohighlight">\(S(Q, \omega_i)\)</span> or <span class="math notranslate nohighlight">\(S(Q, \omega_j)\)</span> is negligible.
-Within the harmonic approximation each phonon is treated as independent harmonic quantum oscillator.  The formula for <span class="math notranslate nohighlight">\(S(Q, \omega_{ik})\)</span> is as follows <a class="footnote-reference brackets" href="#mitchell" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>:</p>
-<p><span class="math notranslate nohighlight">\(S^j(Q, \omega_{ik}) = \frac{Q^4}{15  C}\left( \mathrm{Tr}B^j_{\omega_i}\mathrm{Tr}B^j_{\omega_k} + B^j_{\omega_i}:B^j_{\omega_k} + B^j_{\omega_k}:B^j_{\omega_i} \right) exp\left(-Q^2 \beta^j coth^2\left(\frac{\hbar \omega_{ik}}{2 k_B T} \right) \right)\sigma^j\)</span></p>
+This models an infinite perfect crystal; in order to compare such calculations with powder experiments, orientational averaging should be considered.
+In Abins, the “almost-isotropic approximation” is applied to the spherical integration over reciprocal space, replacing the vector <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> with a scalar <span class="math notranslate nohighlight">\(Q\)</span> <a class="footnote-reference brackets" href="#howard1983" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><sup>,</sup> <a class="footnote-reference brackets" href="#howard1983b" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>:</p>
+<p><span class="math notranslate nohighlight">\(S_i (Q,\omega_\nu) = \sigma_i \frac{Q^2 \mathrm{Tr}\mathbf{B}_{\nu,i}}{3} \exp\left(-Q^2 \alpha_{\nu,i} \right)\)</span></p>
 <p>where</p>
-<p><span class="math notranslate nohighlight">\(\beta^j = A^j / 3\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(C\)</span> is a constant: if <span class="math notranslate nohighlight">\(i=j\)</span> then <span class="math notranslate nohighlight">\(C=2\)</span>, otherwise <span class="math notranslate nohighlight">\(C=1\)</span>.</p>
-<p>Similarly, one can define the contribution for the third quantum order events (<span class="math notranslate nohighlight">\(0 \rightarrow 3\)</span>, simultaneous  <span class="math notranslate nohighlight">\(0 \rightarrow 1\)</span>, <span class="math notranslate nohighlight">\(0 \rightarrow 1'\)</span>, <span class="math notranslate nohighlight">\(0 \rightarrow 1''\)</span> for different oscillators, etc.) <a class="footnote-reference brackets" href="#mitchell" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>:</p>
-<p><span class="math notranslate nohighlight">\(S^j(Q, \omega_{ikl}) = \frac{9Q^6}{543}\left( \mathrm{Tr}B^j_{\omega_i} \mathrm{Tr}B^j_{\omega_k} \mathrm{Tr}B^j_{\omega_l}  \right)  exp\left(-Q^2 \beta^j coth^2\left(\frac{\hbar \omega_{ikl}}{2 k_B T}\right) \right)\sigma^j\)</span>.</p>
-<p>Usually in order to reconstruct the experimental spectrum it is sufficient to include contributions up to the fourth order (<span class="math notranslate nohighlight">\(0 \rightarrow 4\)</span> , simultaneous <span class="math notranslate nohighlight">\(0 \rightarrow 1\)</span>, <span class="math notranslate nohighlight">\(0 \rightarrow 1'\)</span>, <span class="math notranslate nohighlight">\(0 \rightarrow 1''\)</span>, <span class="math notranslate nohighlight">\(0 \rightarrow 1'''\)</span> for different oscillators, etc.)</p>
-<p><span class="math notranslate nohighlight">\(S^j(Q, \omega_{iklm}) = \frac{27Q^8}{9850}\left( \mathrm{Tr}B^j_{\omega_i} \mathrm{Tr}B^j_{\omega_k} \mathrm{Tr}B^j_{\omega_l}\mathrm{Tr}B^j_{\omega_m}  \right) exp\left(-Q^2 \beta^j coth^2\left(\frac{\hbar \omega_{iklm}}{2 k_B T}\right) \right)\sigma^j\)</span>. <a class="footnote-reference brackets" href="#mitchell" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p>
-<p>In the same way as for the second quantum order events, one can reduce the number of energy transitions by imposing the appropriate energy window and neglecting small <span class="math notranslate nohighlight">\(S\)</span>.</p>
-<p>After evaluating the above equations one obtains the discrete <span class="math notranslate nohighlight">\(S\)</span> for each quantum order and for each atom: <span class="math notranslate nohighlight">\(S_\mathrm{discrete}\)</span>.
-In order to compare these functions with an experimental spectrum one has to convolve them with experimental resolution</p>
-<p><span class="math notranslate nohighlight">\(S_\mathrm{theory}^{nj}(Q, \omega) = S_\mathrm{discrete}^{nj}(Q, \omega) * f(\omega)\)</span></p>
-<p>where:</p>
-<p><span class="math notranslate nohighlight">\(j\)</span> – indicates <span class="math notranslate nohighlight">\(j\)</span>-th atoms</p>
-<p><span class="math notranslate nohighlight">\(n\)</span> – indicates <span class="math notranslate nohighlight">\(n\)</span>-order event</p>
-<p><span class="math notranslate nohighlight">\(f(\omega)\)</span> – is a resolution function</p>
-<p><span class="math notranslate nohighlight">\(S_\mathrm{theory}\)</span> – is <em>theoretical</em> <span class="math notranslate nohighlight">\(S\)</span> to be compared with experimental results.</p>
-<p>For <a class="reference external" href="http://www.isis.stfc.ac.uk/instruments/tosca/tosca4715.html">TOSCA</a>  and TOSCA-like instruments <span class="math notranslate nohighlight">\(f(\omega)\)</span> has the following form:</p>
-<p><span class="math notranslate nohighlight">\(f(\omega)=1.0 / \sqrt{\sigma(\omega)  \pi}  \exp(-(\omega)^2  / \sigma(\omega))\)</span></p>
-<p>where:</p>
-<p><span class="math notranslate nohighlight">\(\sigma(\omega) = A  \omega^2  + B  \omega + C\)</span></p>
-<p>with <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(C\)</span> as constants.</p>
-<p>Moreover, in case of TOSCA and TOSCA-like instruments, the length of momentum transfer depends on frequency (<em>indirect geometry spectrometer</em>).
-The formula for <span class="math notranslate nohighlight">\(Q^2\)</span> is as follows:</p>
-<p><span class="math notranslate nohighlight">\(Q^2(\omega)=k^2_i(\omega) + k^2_f - 2  \sqrt{k^2_i(\omega)  k^2_f} cos(\theta)\)</span></p>
-<p>where:</p>
-<p><span class="math notranslate nohighlight">\(k^2_i(\omega)=(\omega + E_{final})  \hbar/ (4  \pi)\)</span> expressed in the spectroscopic units</p>
-<p><span class="math notranslate nohighlight">\(k^2_f=E_{final}  \hbar/(4 \pi)\)</span></p>
-<p>with</p>
-<p><span class="math notranslate nohighlight">\(E_{final}\)</span> – being the final energy on the crystal analyser in <span class="math notranslate nohighlight">\(cm^{-1}\)</span> and</p>
-<p><span class="math notranslate nohighlight">\(\theta\)</span> – is the crystal analyser angle in radians. (TOSCA has two angles to consider, corresponding to the forward- and back-scattering detectors).</p>
+<p><span class="math notranslate nohighlight">\(\alpha_{\nu,i} = \frac{1}{5} \left \lbrace \mathrm{Tr} \mathbf{A}_i  + \frac{2 \mathbf{B}^{\omega_\nu,i}: \mathbf{A}_i}{\mathrm{Tr} \mathbf{B}^{\omega_\nu,i}} \right\rbrace\)</span></p>
+<p>Where <span class="math notranslate nohighlight">\(\mathrm{Tr}\)</span> denotes the “trace”.
+In this case, <span class="math notranslate nohighlight">\(\mathbf{A}:\mathbf{B}\)</span> becomes equivalent to <span class="math notranslate nohighlight">\(\mathrm{Tr}(\mathbf{A}\cdot\mathbf{B})\)</span> due to the symmetry of the quadratic displacement tensors.</p>
+<p>Note that the exponential term is no longer a “pure” Debye–Waller factor, as some mode-dependence is introduced by the powder-averaging.
+We have also conflated the phonon mode indices and their original wavevector <span class="math notranslate nohighlight">\(\mathbf{k}\)</span> into a single index <span class="math notranslate nohighlight">\(\nu\)</span>; this is a “DOS-like approximation” in which we assume that the reciprocal lattice spacing is small relative to the observed <span class="math notranslate nohighlight">\(Q\)</span>, and so spherical averaging will approximate an even sampling of the Brillouin zone.</p>
+<p>The formula above covers the <em>first-order quantum events</em> – the transitions <span class="math notranslate nohighlight">\(0 \rightarrow 1\)</span> for each phonon.
+The <span class="math notranslate nohighlight">\(1 \rightarrow 0\)</span> events (i.e. energy <em>to</em> the scattered neutron) are currently neglected, as the contribution vanishes at low temperature.
+The powder-averaging derivations are more complex for higher-order quantum events.
+At second order some exponential terms are neglected, and isotropic Debye-Waller factor is used without any mode-dependence <a class="footnote-reference brackets" href="#mitchell" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.</p>
+<p><span class="math notranslate nohighlight">\(S_i^{n=2}(Q, \omega_\nu + \omega_{\nu^{\prime}}) = \frac{Q^4}{15  C}\left( \mathrm{Tr}\mathbf{B}_{i,\nu}\mathrm{Tr}\mathbf{B}_{i,\nu^\prime} + \mathbf{B}_{i,\nu}:\mathbf{B}_{i,\nu^\prime} + \mathbf{B}_{i,\nu^\prime}:\mathbf{B}_{i,\nu} \right) \exp\left(-Q^2 \mathbf{A}_i / 3 \right)\sigma_i\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(C = \begin{cases} 2  &amp; \textrm{if $\nu=\nu^\prime$} \\ 1 &amp; \textrm{otherwise} \end{cases}\)</span></p>
+<p>For higher-order events we can further simplify with a fully isotropic approximation <span class="math notranslate nohighlight">\(\mathbf{Q Q}:\mathbf{B} \approx Q^2 \mathrm{Tr}\mathbf{B} / 3\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(S_i^n(Q, \omega_\nu + \omega_{\nu^{\prime}} + \cdots) = \frac{Q^{2n}}{n!} \left[\prod_\nu^n \frac{\mathrm{Tr}\mathbf{B}_{i,\nu}}{3} \right] \exp\left(-Q^2 \frac{\mathrm{Tr}\mathbf{A}_i}{3} \right) \sigma_i\)</span></p>
+<p>While a significant simplification, this allows the “combinatorial explosion” of phonon-mode combinations to be avoided. The mode-by-mode terms are combined into an energy spectrum</p>
+<p><span class="math notranslate nohighlight">\(S_i^n(Q, \omega) = \sum_{(\nu, \nu^\prime, \cdots)\in \mathrm{fundamentals}} S_i(Q, \omega_\nu + \omega_{\nu^\prime} + \cdots) \delta(\omega - [\omega_\nu + \omega_{\nu^\prime} + \cdots])\)</span></p>
+<p>in which we identify a recursive term <span class="math notranslate nohighlight">\(s_i\)</span></p>
+<p><span class="math notranslate nohighlight">\(S_i^n(Q, \omega) =  \frac{\sigma_i}{n!}s_i^n(Q, \omega) \exp\left(-Q^2 \mathbf{A}_i / 3 \right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(s_i^n(Q, \omega) = Q^{2n} \sum_{(\nu, \nu^\prime, \cdots)\in \mathrm{fundamentals}} \left[\prod_{\nu = \nu, \nu^\prime, \cdots} \frac{\mathrm{Tr}\mathbf{B}_{i,\nu}}{3} \right] \delta(\omega - [\omega_\nu + \omega_{\nu^\prime} + \cdots])\)</span></p>
+<p><span class="math notranslate nohighlight">\(s_i^n(Q, \omega) = \sum_{\nu\in \mathrm{fundamentals}} \frac{Q^2\mathrm{Tr}\mathbf{B}_{i,\nu}}{3} \delta(\omega - \omega_\nu) * s_i^{n-1}(Q, \omega)\)</span></p>
+<p>By performing the convolution (<span class="math notranslate nohighlight">\(*\)</span>) operations on a numerical grid it is possible to reach <span class="math notranslate nohighlight">\(n=10\)</span> without computing an infeasible <span class="math notranslate nohighlight">\((3N_\mathrm{atoms} N_\mathbf{k})^{10}\)</span> intensity values.</p>
 </section>
+<section id="resolution">
+<h2>Resolution<a class="headerlink" href="#resolution" title="Permalink to this heading">¶</a></h2>
+<p>After evaluating the above equations one obtains the discrete <span class="math notranslate nohighlight">\(S\)</span> for each quantum order and for each atom: <span class="math notranslate nohighlight">\(S_\mathrm{discrete}\)</span>.
+In order to compare these functions with an experimental spectrum one has to convolve them with experimental resolution <span class="math notranslate nohighlight">\(f(\omega)\)</span></p>
+<p><span class="math notranslate nohighlight">\(S_{i,\mathrm{theory}}^{n}(Q, \omega) = S_{i,\mathrm{discrete}}^{n}(Q, \omega) * f(\omega)\)</span></p>
+<p>For <a class="reference external" href="http://www.isis.stfc.ac.uk/instruments/tosca/tosca4715.html">TOSCA</a>  and TOSCA-like instruments <span class="math notranslate nohighlight">\(f(\omega)\)</span> is treated as a Gaussian function with energy-dependent width <span class="math notranslate nohighlight">\(\sigma(\omega)\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(f(\omega)=\frac{\exp(-(\omega)^2  / \sigma(\omega))}{\sqrt{\sigma(\omega)  \pi}}\)</span></p>
+<p>The application of an energy-dependent resolution function is not trivial. For efficiency Abins uses an approximate scheme <a class="reference internal" href="AbinsInterpolatedBroadening.html#abinsinterpolatedbroadening"><span class="std std-ref">documented here</span></a>.</p>
+</section>
+<section id="energy-q-relations">
+<h2>Energy-Q relations<a class="headerlink" href="#energy-q-relations" title="Permalink to this heading">¶</a></h2>
+<p>Although we are nominally measuring the property <span class="math notranslate nohighlight">\(S(\mathbf{Q}, \omega)\)</span> or <span class="math notranslate nohighlight">\(S(Q, \omega)\)</span>, in time-of-flight neutron spectrometers, <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> and <span class="math notranslate nohighlight">\(\omega\)</span> are not independent. <a class="reference internal" href="../algorithms/Abins-v1.html#algm-abins"><span class="std std-ref">Abins</span></a> calculates 1-D <span class="math notranslate nohighlight">\(S(\omega)\)</span> spectra in which the corresponding value(s) of <span class="math notranslate nohighlight">\(Q\)</span> are implicitly determined by the instrument design and settings. <a class="reference internal" href="../algorithms/Abins2D-v1.html#algm-abins2d"><span class="std std-ref">Abins2D</span></a> models multi-detector instruments that generate a more complete 2-D map but there are still kinematic constraints on the measurement region. The <a class="reference internal" href="../interfaces/utility/QE%20Coverage.html#qe-coverage"><span class="std std-ref">QE Coverage</span></a> interface can be used to explore and plot these <span class="math notranslate nohighlight">\(\omega\)</span>–<span class="math notranslate nohighlight">\(Q\)</span> relations.</p>
 </section>
 <section id="current-implementation">
 <h2>Current implementation<a class="headerlink" href="#current-implementation" title="Permalink to this heading">¶</a></h2>
-<p>Calculation of theoretical <span class="math notranslate nohighlight">\(S\)</span> from <em>ab initio</em> results is implemented in <a class="reference internal" href="../algorithms/Abins-v1.html#algm-abins"><span class="std std-ref">Abins</span></a>. At the moment Abins supports phonon outputs from the
-<a class="reference external" href="http://www.castep.org/">CASTEP</a>, <a class="reference external" href="http://www.crystal.unito.it/index.php">CRYSTAL</a>, Gaussian and DMOL3 <em>ab initio</em> codes.
-The Gamma-point frequencies are used and phonon bands are assumed to be flat throughout the Brillouin zone; this assumption is primarily applicable for incoherent scattering in molecular crystals.
-Instrument parameters are included for
-<a class="reference external" href="http://www.isis.stfc.ac.uk/instruments/tosca/tosca4715.html">TOSCA</a> and should be useful for TOSCA-like instruments.</p>
+<p>Calculation of theoretical <span class="math notranslate nohighlight">\(S\)</span> from <em>ab initio</em> results is implemented in <a class="reference internal" href="../algorithms/Abins-v1.html#algm-abins"><span class="std std-ref">Abins</span></a> and <a class="reference internal" href="../algorithms/Abins2D-v1.html#algm-abins2d"><span class="std std-ref">Abins</span></a>. At the moment Abins supports phonon outputs from the <em>ab initio</em> codes
+<a class="reference external" href="http://www.castep.org/">CASTEP</a>, <a class="reference external" href="http://www.crystal.unito.it/index.php">CRYSTAL</a>, Gaussian, DMOL3 and VASP, as well as force constants computed with <a class="reference external" href="https://phonopy.github.io/phonopy/index.html">Phonopy</a>.</p>
+<p>Due to the “DOS-like approximation” bands are assumed to be flat throughout the Brillouin zone.
+While only the incoherent scattering spectrum is calculated, coherent weights may be included to make an “incoherent approximation” to the full spectrum.
+The method implemented in Abins is primarily applicable for incoherent scattering in molecular crystals.</p>
+<p>Instrument models are included for <a class="reference external" href="http://www.isis.stfc.ac.uk/instruments/tosca/tosca4715.html">TOSCA</a>, <a class="reference external" href="https://www.ill.eu/users/instruments/instruments-list/in1-taslagrange/description/instrument-layout">LAGRANGE</a> and <a class="reference external" href="https://www.ill.eu/users/instruments/instruments-list/panther/description/instrument-layout">PANTHER</a> using parameterised fits for the resolution function <span class="math notranslate nohighlight">\(\sigma(\omega)\)</span>.
+Instruments <a class="reference external" href="https://www.isis.stfc.ac.uk/Pages/maps.aspx">MAPS</a>, <a class="reference external" href="https://www.isis.stfc.ac.uk/Pages/mari.aspx">MARI</a> and <a class="reference external" href="https://www.isis.stfc.ac.uk/Pages/merlin.aspx">MERLIN</a> use <a class="reference internal" href="../interfaces/direct/PyChop.html#pychop"><span class="std std-ref">PyChop</span></a> to obtain values for a polynomial fit.</p>
 </section>
 <section id="citing-abins">
 <h2>Citing Abins<a class="headerlink" href="#citing-abins" title="Permalink to this heading">¶</a></h2>
-<p>If Abins is used as part of your data analysis routines, please cite the relevant reference <a class="footnote-reference brackets" href="#dymkowski2018" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>.</p>
+<p>If Abins is used as part of your data analysis routines, please cite the relevant reference <a class="footnote-reference brackets" href="#dymkowski2018" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>.</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
@@ -238,14 +231,13 @@ Instrument parameters are included for
 </ol>
 </aside>
 <aside class="footnote brackets" id="mitchell" role="note">
-<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id4">1</a>,<a role="doc-backlink" href="#id5">2</a>,<a role="doc-backlink" href="#id6">3</a>)</span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
 <ol class="upperalpha simple" start="16">
 <li><p>C H Mitchell, S. F. Parker, A. J. Ramirez-Cuesta, J. Tomkinson, <em>Vibrational Spectroscopy with Neutrons With Applications in Chemistry, Biology, Materials Science and Catalysis</em>, ISBN: 978-981-256-013-1</p></li>
 </ol>
 </aside>
 <aside class="footnote brackets" id="dymkowski2018" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">5</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">5</a><span class="fn-bracket">]</span></span>
 <ol class="upperalpha simple" start="11">
 <li><p>Dymkowski, S. F. Parker, F. Fernandez-Alonso and S. Mukhopadhyay,  “AbINS: The modern software for INS interpretation” , Physica B, doi:10.1016/j.physb.2018.02.034 (2018).</p></li>
 </ol>

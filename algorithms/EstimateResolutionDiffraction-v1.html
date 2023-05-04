@@ -110,7 +110,7 @@
 <section id="estimateresolutiondiffraction-v1">
 <span id="algm-estimateresolutiondiffraction"></span><span id="algm-estimateresolutiondiffraction-v1"></span><h1>EstimateResolutionDiffraction v1<a class="headerlink" href="#estimateresolutiondiffraction-v1" title="Permalink to this heading">¶</a></h1>
 <figure class="align-right" id="id1">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/EstimateResolutionDiffraction-v1_dlg.png"><img alt="../_images/EstimateResolutionDiffraction-v1_dlg.png" class="screenshot" src="../_images/EstimateResolutionDiffraction-v1_dlg.png" style="width: 360px;" /></a>
+<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/EstimateResolutionDiffraction-v1_dlg.png"><img alt="../_images/EstimateResolutionDiffraction-v1_dlg.png" class="screenshot" src="../_images/EstimateResolutionDiffraction-v1_dlg.png" style="width: 300px;" /></a>
 <figcaption>
 <p><span class="caption-text"><strong>EstimateResolutionDiffraction</strong> dialog.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
@@ -176,18 +176,36 @@
 <td><p>Name of the output workspace containing delta(d)/d of each detector/spectrum</p></td>
 </tr>
 <tr class="row-odd"><td><p>DeltaTOF</p></td>
-<td><p>Input</p></td>
+<td><p>Output</p></td>
 <td><p>number</p></td>
-<td><p><em>Mandatory</em></p></td>
+<td></td>
 <td><p>DeltaT as the resolution of TOF with unit microsecond</p></td>
 </tr>
-<tr class="row-even"><td><p>Wavelength</p></td>
+<tr class="row-even"><td><p>DeltaTOFOverTOF</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>DeltaT/T as the full term in the equation</p></td>
+</tr>
+<tr class="row-odd"><td><p>SourceDeltaL</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p>0</p></td>
+<td><p>Uncertainty in the path length due to the source in unit of meters</p></td>
+</tr>
+<tr class="row-even"><td><p>SourceDeltaTheta</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p>0</p></td>
+<td><p>Uncertainty in angle due to the source in unit of radians</p></td>
+</tr>
+<tr class="row-odd"><td><p>Wavelength</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Wavelength setting in Angstroms. This overrides what is in the dataset.</p></td>
 </tr>
-<tr class="row-odd"><td><p>PartialResolutionWorkspaces</p></td>
+<tr class="row-even"><td><p>PartialResolutionWorkspaces</p></td>
 <td><p>Output</p></td>
 <td><p>WorkspaceGroup</p></td>
 <td><p><em>Mandatory</em></p></td>
@@ -215,11 +233,16 @@ detector.</p>
 \[\frac{\Delta d}{d} = \sqrt{\left(\frac{\Delta T}{T}\right)^2 + \left(\frac{\Delta L}{L}\right)^2 + \left(\Delta\theta\cdot\cot(\theta)\right)^2}\]</div>
 <p>where,</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\Delta T\)</span> is the time resolution from moderator</p></li>
-<li><p><span class="math notranslate nohighlight">\(\Delta\theta\)</span> is the coverage of the detector, and can be
-approximated from the square root of the solid angle of the detector
-to sample</p></li>
-<li><p><span class="math notranslate nohighlight">\(L\)</span> is the flight path of the neutron from source to detector</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta T\)</span> is the time resolution, or pulse width, generally from moderator dimensions.
+If supplied through <code class="docutils literal notranslate"><span class="pre">DeltaTOF</span></code> parameter, the center wavelength is used to calculate the center time-of-flight.
+Alternatively, one can specify <code class="docutils literal notranslate"><span class="pre">DeltaTOFOverTOF</span></code>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta\theta\)</span> is the uncertainty in angle due to the source size and coverage of the detector.
+The former is supplied through the <code class="docutils literal notranslate"><span class="pre">SourceDeltaTheta</span></code> parameter.
+The latter can be approximated from the square root of the solid angle of the detector to sample or is taken from the <code class="docutils literal notranslate"><span class="pre">DivergenceWorkspace</span></code></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta L\)</span> is the uncertainty in the flight path due to the source position and detector position.
+The former can be supplied through the <code class="docutils literal notranslate"><span class="pre">SourceDeltaL</span></code> parameter.
+The latter is calculated from the detector pixel dimensions.</p></li>
+<li><p><span class="math notranslate nohighlight">\(L\)</span> is the total flight path of the neutron from source-to-sample (L1) and sample to detector (L2)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\theta\)</span> is half the Bragg angle <span class="math notranslate nohighlight">\(2 \theta\)</span>, or half of the angle from the downstream beam</p></li>
 </ul>
 <p>The optional <code class="docutils literal notranslate"><span class="pre">DivergenceWorkspace</span></code> specifies the values of
@@ -278,8 +301,8 @@ Estimated resolution of detector of spectrum 999 =  0.00354849176520
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id11" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/28b2a6a097a06680c0325529aed2d98a3d7e922c/Framework/Algorithms/inc/MantidAlgorithms/EstimateResolutionDiffraction.h">EstimateResolutionDiffraction.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/28b2a6a097a06680c0325529aed2d98a3d7e922c/Framework/Algorithms/src/EstimateResolutionDiffraction.cpp">EstimateResolutionDiffraction.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6f87840b808523ae15aeacf0dbf3424eb24240eb/Framework/Algorithms/inc/MantidAlgorithms/EstimateResolutionDiffraction.h">EstimateResolutionDiffraction.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6f87840b808523ae15aeacf0dbf3424eb24240eb/Framework/Algorithms/src/EstimateResolutionDiffraction.cpp">EstimateResolutionDiffraction.cpp</a></p>
 </section>
 </section>
 

@@ -120,18 +120,18 @@ inherits from <a class="reference internal" href="../../../../concepts/TableWork
 <p>A SplittersWorkspace object has 3 columns, <code class="docutils literal notranslate"><span class="pre">start</span></code> with type as
 <code class="docutils literal notranslate"><span class="pre">int64</span></code>, <code class="docutils literal notranslate"><span class="pre">stop</span></code> with type as <code class="docutils literal notranslate"><span class="pre">int64</span></code> and <code class="docutils literal notranslate"><span class="pre">workspacegroup</span></code> as
 <code class="docutils literal notranslate"><span class="pre">int</span></code>.  Column <code class="docutils literal notranslate"><span class="pre">start</span></code> is to record the starting absolute time
-(DateTime reference!) of a TimeSplitter.  Column <code class="docutils literal notranslate"><span class="pre">stop</span></code> is to record
-the stopping absolute time of a <a class="reference internal" href="#splittinginterval"><span class="std std-ref">Splitting Interval</span></a>.  Column
-<code class="docutils literal notranslate"><span class="pre">workspacegroup</span></code> is to record what workspace should the events fall
-into the time period defined by <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">stop</span></code>.</p>
+of a <a class="reference internal" href="#splittinginterval"><span class="std std-ref">Splitting Interval</span></a>. Column <code class="docutils literal notranslate"><span class="pre">stop</span></code> is to record the stopping
+absolute time of a <a class="reference internal" href="#splittinginterval"><span class="std std-ref">Splitting Interval</span></a>. Both starting and stopping
+time must be in nanoseconds and be relative to <a class="reference internal" href="../kernel/DateAndTime.html#mantid.kernel.DateAndTime" title="mantid.kernel.DateAndTime"><code class="xref py py-class docutils literal notranslate"><span class="pre">GPS</span> <span class="pre">epoch</span></code></a>
+Column <code class="docutils literal notranslate"><span class="pre">workspacegroup</span></code> is to record the index of a workspace which will get
+the events that fall into the time interval defined by <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">stop</span></code>.</p>
 <section id="splitting-interval">
 <span id="splittinginterval"></span><h2>Splitting Interval<a class="headerlink" href="#splitting-interval" title="Permalink to this heading">¶</a></h2>
 <p>SplittingInterval is a class to store and process the event splitting
 information. It stores and returns the starting and stopping time of a
-time-splitter. Each SplitterInterval will have an ‘index’. The ‘index’
-(starting from zero) denotes which workspace to which any neutron
-event falls into its time interval will be copied. An ‘index’ of -1 to
-not filter the events.</p>
+time-splitter as well as an ‘index’. The ‘index’ (0-based) denotes which
+workspace will get the events that fall into the [start,stop) time interval.
+An ‘index’ of -1 means that events in a given time interval will be “unfiltered”.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="mantid.api.ISplittersWorkspace">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mantid.api.</span></span><span class="sig-name descname"><span class="pre">ISplittersWorkspace</span></span><a class="headerlink" href="#mantid.api.ISplittersWorkspace" title="Permalink to this definition">¶</a></dt>

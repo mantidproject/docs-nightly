@@ -906,20 +906,10 @@ several slices of a specified duration. If the total duration does not divide ev
 slice duration, then the last slice will be shorter than the others. For example, given a run
 of duration 100 seconds, specifying slices of duration 30 seconds will produce slices with
 ranges of <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">-</span> <span class="pre">30</span></code>, <code class="docutils literal notranslate"><span class="pre">30</span> <span class="pre">-</span> <span class="pre">60</span></code>, <code class="docutils literal notranslate"><span class="pre">60</span> <span class="pre">-</span> <span class="pre">90</span></code> and <code class="docutils literal notranslate"><span class="pre">90</span> <span class="pre">-</span> <span class="pre">100</span></code> seconds respectively.</p></li>
-<li><p><strong>Custom</strong> - This takes a list if comma-separated numbers that indicate the start and end of
-each time slice. There are different possibilities:</p>
-<ul>
-<li><p>If a single number is provided, e.g. <code class="docutils literal notranslate"><span class="pre">100</span></code>, the interface will extract a single slice
-starting at the start of the run, and ending at <code class="docutils literal notranslate"><span class="pre">100</span></code> seconds.</p></li>
-<li><p>If two numbers are provided, e.g. <code class="docutils literal notranslate"><span class="pre">100,</span> <span class="pre">200</span></code>, the interface will extract a single slice
-starting <code class="docutils literal notranslate"><span class="pre">100</span></code> seconds after the start of the run and stopping at 200 seconds after the
-start of the run.</p></li>
-<li><p>If more than two numbers are provided, e.g. <code class="docutils literal notranslate"><span class="pre">100,</span> <span class="pre">200,</span> <span class="pre">300</span></code>, the interface will extract two
-slices, the first one starting at <code class="docutils literal notranslate"><span class="pre">100</span></code> seconds after the start of the run and ending at
-<code class="docutils literal notranslate"><span class="pre">200</span></code> seconds after the start of the run, and the second one starting at <code class="docutils literal notranslate"><span class="pre">200</span></code> seconds
-and ending at <code class="docutils literal notranslate"><span class="pre">300</span></code> seconds.</p></li>
-</ul>
-</li>
+<li><p><strong>Custom</strong> - This takes a list of comma-separated numbers, giving a sequence of intervals
+that is applied repeatedly to slice the entire run. For example, given a run of duration 100
+seconds, specifying custom slicing of <code class="docutils literal notranslate"><span class="pre">10,</span> <span class="pre">20,</span> <span class="pre">30</span></code> will produce slices with ranges of
+<code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">-</span> <span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">-</span> <span class="pre">30</span></code>, <code class="docutils literal notranslate"><span class="pre">30</span> <span class="pre">-</span> <span class="pre">60</span></code>, <code class="docutils literal notranslate"><span class="pre">60</span> <span class="pre">-</span> <span class="pre">70</span></code>, <code class="docutils literal notranslate"><span class="pre">70</span> <span class="pre">-</span> <span class="pre">90</span></code> and <code class="docutils literal notranslate"><span class="pre">90</span> <span class="pre">-</span> <span class="pre">100</span></code> seconds.</p></li>
 <li><p><strong>LogValue</strong> - This takes a single value which is the log value interval, and also the log name
 which is the name of the log we wish to filter the run for. For example, given a run and entries
 of <code class="docutils literal notranslate"><span class="pre">100</span></code> and <code class="docutils literal notranslate"><span class="pre">proton_charge</span></code> for slicing values and log name respectively, we would

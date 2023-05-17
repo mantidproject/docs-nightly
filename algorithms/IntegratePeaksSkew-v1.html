@@ -164,7 +164,7 @@
 <td><p>Input</p></td>
 <td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
 <td><p><em>Mandatory</em></p></td>
-<td><p>A MatrixWorkspace to integrate (x-axis must be TOF).</p></td>
+<td><p>A MatrixWorkspace to integrate (x-axis must be TOF or d-Spacing).</p></td>
 </tr>
 <tr class="row-odd"><td><p>PeaksWorkspace</p></td>
 <td><p>Input</p></td>
@@ -213,6 +213,18 @@
 <td><p>number</p></td>
 <td><p>4</p></td>
 <td><p>Initial TOF window is NFWHM x FWHM of the BackToBackExponential peak at that position</p></td>
+</tr>
+<tr class="row-odd"><td><p>OptimiseXWindowSize</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td><p>If True the size of the xWindow will be optimised to maximise I/Sigma. If False the xwindow will be translated to maximise I/sigma in region +/- 2(initial_xwindow)</p></td>
+</tr>
+<tr class="row-even"><td><p>ThresholdIoverSigma</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p>0</p></td>
+<td><p>Threshold I/sigma before optimising x window size.</p></td>
 </tr>
 <tr class="row-odd"><td><p>OptimiseMask</p></td>
 <td><p>Input</p></td>
@@ -323,20 +335,21 @@ instruments <a class="footnote-reference brackets" href="#id5" id="id1" role="do
 data <a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, however it has been noted that skew methods typically underestimate the intensity of weak reflections
 (due to premature termination of the seed growth) - a systematic effect that is expected to be worse for 3D Bragg peaks.</p>
 <p>In order to improve the performance and more accurately integrate weak reflections a different approach is used here:
-data are integrated over an initial TOF window in order to maximise the signal-to-noise and then a 2D peak mask is
-determined to find the detectors contributing to the peak; data in these detectors are then focused (and a
+data are integrated over an initial TOF (or d-spacing) window in order to maximise the signal-to-noise and then a 2D
+peak mask is determined to find the detectors contributing to the peak; data in these detectors are then focused (and a
 background subtracted) before applying the same method to identify the bins that contribute to the peak in the focused
-spectrum. The full TOF extent of the peak is determined by maximising <span class="math notranslate nohighlight">\(I/\sigma\)</span> (similar to integration methods
-for step-scans with monochromatic x-rays <a class="footnote-reference brackets" href="#id7" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>) starting from a seed of bins identified using the skew method.
-The user can then optionally use the optimal TOF extent to repeat the procedure to find the detectors contributing to
-the peak.</p>
+spectrum. The full TOF (or d-spacing) extent of the peak is determined by maximising <span class="math notranslate nohighlight">\(I/\sigma\)</span> (similar to
+integration methods for step-scans with monochromatic x-rays <a class="footnote-reference brackets" href="#id7" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>) starting from a seed of bins identified using the
+skew method. The user can then optionally use the optimal TOF  (or d-spacing)  extent to repeat the procedure to find
+the detectors contributing to the peak.</p>
 <p>Technically this algorithm does not use the seed-skew algorithm to grow an initial seed, rather non-background points
 are found by minimising the skew of the background, subsequently nearest-neighbour connected regions are found in the
 non-background points and a single region is assigned to the peak (by proximity to the expected peak position).</p>
 <p>Note this algorithm can apply the Lorentz correction to the integrated intensity if <code class="docutils literal notranslate"><span class="pre">LorentzCorrection=True</span></code>.</p>
 <p>For each peak the algorithm proceeds as follows:</p>
 <ol class="arabic">
-<li><p>Calculates an initial TOF window evaluating a resolution function of the form</p>
+<li><p>Calculates an initial TOF (or d-spacing) window evaluating a resolution function for the fractional width
+(which is the same for TOF and d-spacing) of the form</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[\frac{dTOF}{TOF} = \sqrt{(\cot(\theta)d\theta)^2 + \left(\frac{dt_0}{t_0}\right)^2 + \left(\frac{dL}{L}\right)^2}\]</div>
@@ -456,7 +469,7 @@ centre.</p>
 <span class="n">IntegratePeaksSkew</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;SXD23767&#39;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;SingleCrystalPeakTable&#39;</span><span class="p">,</span>
     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;out&#39;</span><span class="p">,</span> <span class="n">OutputFile</span><span class="o">=</span><span class="s2">&quot;out.pdf&quot;</span><span class="p">,</span>
     <span class="n">UseNearestPeak</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">IntegrateIfOnEdge</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">NVacanciesMax</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">NPixPerVacancyMin</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">BackScatteringTOFResolution</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">ThetaWidth</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">UpdatePeakPosition</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">BackScatteringTOFResolution</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">ThetaWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">UpdatePeakPosition</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -481,7 +494,7 @@ centre.</p>
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id22" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/bf48605a3796a48550ae28f8a13fee1211a6f33c/Framework/PythonInterface/plugins/algorithms/IntegratePeaksSkew.py">IntegratePeaksSkew.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/84df25372b4d3732a102afb5f3a37e1e5a0bde3d/Framework/PythonInterface/plugins/algorithms/IntegratePeaksSkew.py">IntegratePeaksSkew.py</a></p>
 </section>
 </section>
 

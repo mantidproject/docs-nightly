@@ -306,27 +306,16 @@
 </section>
 <section id="description">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
-<p>This algorithm is able to generate event splitters according to user’s
-requirement for filtering events. The generated time splitters are
-stored either in a <a class="reference internal" href="../api/python/mantid/api/ISplittersWorkspace.html#splittersworkspace"><span class="std std-ref">Splitters Workspace</span></a> or a
-<a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a>. Both of them will be used by
-algorithm <a class="reference internal" href="FilterEvents-v1.html#algm-filterevents"><span class="std std-ref">FilterEvents</span></a>
-to filter events from an
-<a class="reference internal" href="../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspace</span></a>.</p>
-<p>This algorithm is designed as a general-purposed event splitter
-generator. Combined with <a class="reference internal" href="FilterEvents-v1.html#algm-filterevents"><span class="std std-ref">FilterEvents</span></a>,
-it will replace</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="FilterByTime-v1.html#algm-filterbytime"><span class="std std-ref">FilterByTime</span></a></p></li>
-<li><p><a class="reference internal" href="FilterByLogValue-v1.html#algm-filterbylogvalue"><span class="std std-ref">FilterByLogValue</span></a></p></li>
-</ul>
-<p>Moreover, the time resolution of these two algorithms is microseconds,
-i.e., the wall time of an (neutron) event. While the original
-<a class="reference internal" href="FilterByTime-v1.html#algm-filterbytime"><span class="std std-ref">FilterByTime</span></a>
-and
-<a class="reference internal" href="FilterByLogValue-v1.html#algm-filterbylogvalue"><span class="std std-ref">FilterByLogValue</span></a>
-are of the resolution of pulse time. It is also enhanced to process the fast
-frequency sample logs, which can be even faster than chopper frequencies.</p>
+<p>This algorithm is able to generate event splitting according to user’s requirements.
+The generated time splitters are stored either in a <a class="reference internal" href="../api/python/mantid/api/ISplittersWorkspace.html#splittersworkspace"><span class="std std-ref">Splitters Workspace</span></a> or a <a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a>.
+Either can be used by algorithm <a class="reference internal" href="FilterEvents-v1.html#algm-filterevents"><span class="std std-ref">FilterEvents</span></a>
+to filter an <a class="reference internal" href="../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspace</span></a>.</p>
+<p>This algorithm is designed as a general-purposed method for generating event splitting.
+The time resolution of this two algorithms is microseconds,
+i.e., the absolute time of the (neutron) event including time-of-flight.
+In contrast, <a class="reference internal" href="FilterByTime-v1.html#algm-filterbytime"><span class="std std-ref">FilterByTime</span></a> and
+<a class="reference internal" href="FilterByLogValue-v1.html#algm-filterbylogvalue"><span class="std std-ref">FilterByLogValue</span></a> only consider the pulse time.
+The extra time resolution is necessary to process the fast frequency sample logs, which can be faster than chopper frequencies.</p>
 <section id="input-workspace">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Input Workspace</a><a class="headerlink" href="#input-workspace" title="Permalink to this heading">¶</a></h3>
 <p>This algorithm mainly uses the information retrieved from sample logs to create
@@ -625,8 +614,8 @@ Number of rows in second TableWorkspace = 9
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id25" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/84df25372b4d3732a102afb5f3a37e1e5a0bde3d/Framework/Algorithms/inc/MantidAlgorithms/GenerateEventsFilter.h">GenerateEventsFilter.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/84df25372b4d3732a102afb5f3a37e1e5a0bde3d/Framework/Algorithms/src/GenerateEventsFilter.cpp">GenerateEventsFilter.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/f720e215c3a37835d5ed436d44bb25d158d638f8/Framework/Algorithms/inc/MantidAlgorithms/GenerateEventsFilter.h">GenerateEventsFilter.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/f720e215c3a37835d5ed436d44bb25d158d638f8/Framework/Algorithms/src/GenerateEventsFilter.cpp">GenerateEventsFilter.cpp</a></p>
 </section>
 </section>
 

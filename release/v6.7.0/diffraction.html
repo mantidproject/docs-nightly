@@ -139,12 +139,16 @@
 <section id="new-features">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">New features</a><a class="headerlink" href="#new-features" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>It is now possible to provide more than one detector height range in <span class="xref std std-ref">algm-ILLPowderDetectorScan</span></p></li>
-<li><p>InitialMask and FinalMask properties of <span class="xref std std-ref">algm-ILLPowderDetectorScan</span> have been removed</p></li>
+<li><p>It is now possible to provide more than one detector height range in <a class="reference internal" href="../../algorithms/PowderILLDetectorScan-v1.html#algm-powderilldetectorscan"><span class="std std-ref">PowderILLDetectorScan</span></a></p></li>
+<li><p>InitialMask and FinalMask properties of <a class="reference internal" href="../../algorithms/PowderILLDetectorScan-v1.html#algm-powderilldetectorscan"><span class="std std-ref">PowderILLDetectorScan</span></a> have been removed</p></li>
 <li><p>OSIRIS scripts now uses focus function instead of run_diffraction_focusing function to perform the focusing</p></li>
 <li><p>create_vanadium function is added to the OSIRIS object which should be called before the focus function to create the vanadium runs</p></li>
+<li><p>Additional, optional, source terms added to the <a class="reference internal" href="../../algorithms/EstimateResolutionDiffraction-v1.html#algm-estimateresolutiondiffraction"><span class="std std-ref">EstimateResolutionDiffraction</span></a>. For instruments with small detector pixels (e.g. SNAP), the size of the source is the overwhelming contributor to the resolution calculation.</p></li>
+<li><p>For ILL/D2B instrument, only calibrated data are loaded from the nexus file.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/EstimateResolutionDiffraction-v1.html#algm-estimateresolutiondiffraction"><span class="std std-ref">EstimateResolutionDiffraction</span></a> will average the resolution from summed pixels</p></li>
 <li><p>the ISIS powder diffraction scripts are now able to support per detector Vanadium normalisation. This has been enabled on the POLARIS instrument only so far</p></li>
 <li><p>It is now possible to mask out detectors in the absorption and multiple scattering calculation <a class="reference internal" href="../../algorithms/AbsorptionCorrection-v1.html#algm-absorptioncorrection"><span class="std std-ref">AbsorptionCorrection</span></a>, <a class="reference internal" href="../../algorithms/PaalmanPingsAbsorptionCorrection-v1.html#algm-paalmanpingsabsorptioncorrection"><span class="std std-ref">PaalmanPingsAbsorptionCorrection</span></a>, <a class="reference internal" href="../../algorithms/MultipleScatteringCorrection-v1.html#algm-multiplescatteringcorrection"><span class="std std-ref">MultipleScatteringCorrection</span></a></p></li>
+<li><p>Improvements to PEARL powder reduction output file and directory naming (.gss files and TOF and d-spacing .xye files are now in separate directories)</p></li>
 </ul>
 </section>
 <section id="bugfixes">
@@ -161,6 +165,8 @@
 <ul class="simple">
 <li><p>It is now possible to load and plot multiple phases in the GSASII tab.</p></li>
 <li><p>Check peak-window signal-to-noise ratio before attempting to fit a diffraction peak in <a class="reference internal" href="../../algorithms/FitPeaks-v1.html#algm-fitpeaks"><span class="std std-ref">FitPeaks</span></a></p></li>
+<li><p>The GSASII tab outputs the sample logs attached to the relevant focused data, as specified in the Engineering
+Diffraction settings. This behaves in the same way as before for the fitting tab.</p></li>
 </ul>
 </section>
 <section id="id2">

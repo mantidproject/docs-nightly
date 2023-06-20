@@ -180,14 +180,38 @@
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p>For powder samples, with no texture, the scattering consists only of
 rings. This algorithm reads a workspace and an angle step, then
-generates a grouping file (.xml) and an optional par file (.par), by grouping
-detectors in intervals i*step to (i+1)*step. The par file is required
+generates a grouping file (.xml or .nxs) and an optional par file (.par),
+by grouping detectors in one of several methods:</p>
+<ul class="simple">
+<li><p>Divide ring into circular sectors labeled i*step to (i+1)*step (see note below).
+The original and default behavior.</p></li>
+<li><p>Divide sphere into spherical sectors, similarly to above but including azimuthal angles (see note below).
+Use NumberByAngle set to true and specify AzimuthalStep and AzimuthalStart.</p></li>
+<li><p>Divide ring into circular sectors labeled in order, from large 2theta to low 2theta.
+Use NumberByAngle set to false and specify only AngleStep (or set AzimuthalStep to its default at 360).</p></li>
+<li><p>Divide ring into circular sectors labeled in order, splitting left/right sides from large 2theta to low 2theta.
+One side is labeled first, then the other.
+Use NumberByAngle set to false, specify AngleStep, and specify AzimuthalStep as anything other than 360.</p></li>
+</ul>
+<p>The par file is required
 for saving in the NXSPE format, since Mantid does not correctly
 calculate the angles for detector groups. It will contain
 average distances to the detector groups, and average scattering angles.
 The x and y extents in the par file are radians(step)*distance and
-0.01, and are not supposed to be accurate.</p>
+0.01, and are not supposed to be accurate.  A par file can only be saved using the original default labeling scheme.</p>
 <p>The grouping file (.xml) can be used with <a class="reference internal" href="GroupDetectors-v2.html#algm-groupdetectors"><span class="std std-ref">GroupDetectors</span></a> to perform the grouping.</p>
+<p><strong>Note</strong></p>
+<p>The default behavior of this algorithm presents a conflict with the conventions used for
+<cite>GroupingWorkspace</cite>.  In the default labeling, low angels (from 0 to step) would be given
+the group label of 0.  However, <cite>GroupingWorkspace</cite> and algorithms calling it ignore groups
+with the label of 0, treating this as invalid data.  To enable the use of a <cite>GroupingWorkspace</cite>
+to hold the grouping data, the labels created by the ring and spherical sector methods are
+increased by 1 inside the <cite>GroupingWorkspace</cite>, so that no group is labeled 0.
+However, to maintain consistent behavior with previous code, when saved to an XML file
+all group IDs are decreased by 1, so that group ID of 0 appears.  This means that ifor this case
+the group IDs from the <cite>GroupingWorkspace</cite> will be 1 higher than the group IDs in the output XML file.
+This is the simplest way to create consistency with two conflicting conventions, without modifying
+old behavior.</p>
 </section>
 <section id="usage">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
@@ -204,9 +228,10 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 
 <span class="c1">#load some file</span>
 <span class="n">ws</span><span class="o">=</span><span class="n">Load</span><span class="p">(</span><span class="s2">&quot;CNCS_7860&quot;</span><span class="p">)</span>
+<span class="n">gws</span> <span class="o">=</span> <span class="s2">&quot;a_nice_name_for_grouping_workspace&quot;</span>
 
 <span class="c1">#generate the files</span>
-<span class="n">GenerateGroupingPowder</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">outputFilename</span><span class="p">)</span>
+<span class="n">GenerateGroupingPowder</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">outputFilename</span><span class="p">,</span> <span class="n">GroupingWorkspace</span><span class="o">=</span><span class="n">gws</span><span class="p">)</span>
 
 <span class="c1">#check that it works</span>
 <span class="kn">import</span> <span class="nn">os.path</span>
@@ -232,8 +257,8 @@ The grouped workspace has 14 histograms
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/17682f649efc37cc0763e5bb0943aaf25d64dd75/Framework/DataHandling/inc/MantidDataHandling/GenerateGroupingPowder.h">GenerateGroupingPowder.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/17682f649efc37cc0763e5bb0943aaf25d64dd75/Framework/DataHandling/src/GenerateGroupingPowder.cpp">GenerateGroupingPowder.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a239c0e279a85ef726c0e007caa84af0a7c09398/Framework/DataHandling/inc/MantidDataHandling/GenerateGroupingPowder.h">GenerateGroupingPowder.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a239c0e279a85ef726c0e007caa84af0a7c09398/Framework/DataHandling/src/GenerateGroupingPowder.cpp">GenerateGroupingPowder.cpp</a></p>
 </section>
 </section>
 

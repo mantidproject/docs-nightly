@@ -113,24 +113,22 @@
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="workspace-validators">
 <span id="id1"></span><h1>Workspace Validators<a class="headerlink" href="#workspace-validators" title="Permalink to this heading">¶</a></h1>
-<p>As with the basic types (int, float, etc.) there are some special validators for
-checking input workspaces.</p>
+<p>As with the basic types (int, float, etc.) there are some special validators for checking input workspaces.</p>
 <p>Those currently available are:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../../../api/python/mantid/api/WorkspaceUnitValidator.html#mantid-api-workspaceunitvalidator"><span class="std std-ref">WorkspaceUnitValidator</span></a> - Checks that the workspace unit
+<li><p><a class="reference internal" href="../../../api/python/mantid/api/WorkspaceUnitValidator.html#mantid.api.WorkspaceUnitValidator" title="mantid.api.WorkspaceUnitValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkspaceUnitValidator</span></code></a> - Checks that the workspace unit
 matches a given value. Code to create: <code class="docutils literal notranslate"><span class="pre">WorkspaceUnitValidator(&quot;UnitName&quot;)</span></code></p></li>
-<li><p><a class="reference internal" href="../../../api/python/mantid/api/HistogramValidator.html#mantid-api-histogramvalidator"><span class="std std-ref">HistogramValidator</span></a> - Checks if the workspace is a
+<li><p><a class="reference internal" href="../../../api/python/mantid/api/HistogramValidator.html#mantid.api.HistogramValidator" title="mantid.api.HistogramValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">HistogramValidator</span></code></a> - Checks if the workspace is a
 histogram. Code to create: <code class="docutils literal notranslate"><span class="pre">HistogramValidator(True/False)</span></code></p></li>
-<li><p><a class="reference internal" href="../../../api/python/mantid/api/CommonBinsValidator.html#mantid-api-commonbinsvalidator"><span class="std std-ref">CommonBinsValidator</span></a> - Checks that if bins in the first and
+<li><p><a class="reference internal" href="../../../api/python/mantid/api/CommonBinsValidator.html#mantid.api.CommonBinsValidator" title="mantid.api.CommonBinsValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommonBinsValidator</span></code></a> - Checks that if bins in the first and
 last spectrum are the same, i.e. a tentative check that the workspace’s
 spectra have common bins. Code to create: <code class="docutils literal notranslate"><span class="pre">CommonBinsValidator()</span></code></p></li>
-<li><p><a class="reference internal" href="../../../api/python/mantid/api/RawCountValidator.html#mantid-api-rawcountvalidator"><span class="std std-ref">RawCountValidator</span></a> - Checks if the workspace contains raw
+<li><p><a class="reference internal" href="../../../api/python/mantid/api/RawCountValidator.html#mantid.api.RawCountValidator" title="mantid.api.RawCountValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">RawCountValidator</span></code></a> - Checks if the workspace contains raw
 counts. Code to create: <code class="docutils literal notranslate"><span class="pre">RawCountsValidator(True/False)</span></code></p></li>
-<li><p><a class="reference internal" href="../../../api/python/mantid/api/InstrumentValidator.html#mantid-api-instrumentvalidator"><span class="std std-ref">InstrumentValidator</span></a> - Checks if the input workspace has a
+<li><p><a class="reference internal" href="../../../api/python/mantid/api/InstrumentValidator.html#mantid.api.InstrumentValidator" title="mantid.api.InstrumentValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstrumentValidator</span></code></a> - Checks if the input workspace has a
 defined instrument. Code to create: <code class="docutils literal notranslate"><span class="pre">InstrumentValidator()</span></code></p></li>
 </ul>
-<p>To use a specific one pass the created validator as the validator argument
-of the <code class="docutils literal notranslate"><span class="pre">declareProperty</span></code> function, e.g.</p>
+<p>To use a specific one pass the created validator as the validator argument of the <code class="docutils literal notranslate"><span class="pre">declareProperty</span></code> function, e.g.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1"># Requires the input workspace to have x-axis units of Wavelength</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">WorkspaceProperty</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;InputWorkspace&quot;</span><span class="p">,</span>

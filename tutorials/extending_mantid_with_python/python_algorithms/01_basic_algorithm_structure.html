@@ -113,64 +113,56 @@
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="basic-algorithm-structure">
 <span id="id1"></span><h1>Basic Algorithm Structure<a class="headerlink" href="#basic-algorithm-structure" title="Permalink to this heading">¶</a></h1>
-<p>Each Python algorithm within Mantid must contain a few elements in order for
-it to be recognised as an algorithm.</p>
+<p>Each Python algorithm within Mantid must contain a few elements in order for it to be recognised as an algorithm.</p>
 <p>The basic layout should look like:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Declare properties</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Run the algorithm</span>
-        <span class="k">pass</span>
-
-<span class="c1"># Register algorithm with Mantid</span>
-<span class="n">AlgorithmFactory</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">HelloWorld</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="n">AlgorithmFactory</span><span class="p">,</span> <span class="n">PythonAlgorithm</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span> <span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span>     <span class="k">def</span> <span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos"> 6</span>         <span class="c1"># Declare properties</span>
+<span class="linenos"> 7</span>         <span class="k">pass</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>     <span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">10</span>         <span class="c1"># Run the algorithm</span>
+<span class="linenos">11</span>         <span class="k">pass</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span> <span class="c1"># Register algorithm with Mantid</span>
+<span class="linenos">14</span> <span class="n">AlgorithmFactory</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">HelloWorld</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The super class is <code class="docutils literal notranslate"><span class="pre">PythonAlgorithm</span></code>, which provides a hook to allow Mantid
-to interact with it without knowing about it beforehand.</p>
-<p>The functions <code class="docutils literal notranslate"><span class="pre">PyInit</span></code> and <code class="docutils literal notranslate"><span class="pre">PyExec</span></code> are called by the framework to setup
-properties and run the algorithm respectively and must be included.</p>
-<p>The final line, which should be outside the class definition, registers the
-new algorithm class with Mantid.</p>
-<p>Each algorithm needs to belong to a category, by default a Python algorithm
-belongs to the “PythonAlgorithms”, but Mantid will emit a warning on
-registration if you leave it using the default value. To change this include
-the <code class="docutils literal notranslate"><span class="pre">category()</span></code> function in the definition, i.e.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s1">&#39;MyTools&#39;</span>
-
-   <span class="c1"># The rest is the same as above</span>
+<p>The super class is <code class="docutils literal notranslate"><span class="pre">PythonAlgorithm</span></code> (alias to <a class="reference internal" href="../../../api/python/mantid/api/Algorithm.html#mantid.api.Algorithm" title="mantid.api.Algorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Algorithm</span></code></a>), which provides a hook to allow Mantid to interact with it without knowing about it beforehand.</p>
+<p>The functions <code class="docutils literal notranslate"><span class="pre">PyInit</span></code> and <code class="docutils literal notranslate"><span class="pre">PyExec</span></code> are called by the framework to setup properties and run the algorithm respectively and must be included.</p>
+<p>The final line, which should be outside the class definition, registers the new algorithm class with Mantid’s <a class="reference internal" href="../../../api/python/mantid/api/AlgorithmFactoryImpl.html#mantid.api.AlgorithmFactoryImpl" title="mantid.api.AlgorithmFactoryImpl"><code class="xref py py-class docutils literal notranslate"><span class="pre">AlgorithmFactory</span></code></a>.</p>
+<p>Each algorithm needs to belong to a category.
+By default a Python algorithm belongs to the “PythonAlgorithms”,
+but Mantid will emit a warning on registration if you leave it using the default value.
+To change this include the <code class="docutils literal notranslate"><span class="pre">category()</span></code> function in the definition, i.e.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="n">AlgorithmFactory</span><span class="p">,</span> <span class="n">PythonAlgorithm</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span> <span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span>     <span class="k">def</span> <span class="nf">category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">6</span>         <span class="k">return</span> <span class="s1">&#39;MyTools&#39;</span>
+<span class="linenos">7</span>
+<span class="linenos">8</span>    <span class="c1"># The rest is the same as above</span>
 </pre></div>
 </div>
-<p>Subcategories can be defined using a <strong>“\\\\”</strong> (you need two <strong>\\</strong>’s as the first is
-the escape character) to separate the categories. You can also state that
-your algorithm should appear in multiple categories by separating them with
+<p>Subcategories can be defined using a <strong>“\\\\”</strong> (you need two <strong>\\</strong>’s as the first is the escape character) to separate the categories.
+You can also state that your algorithm should appear in multiple categories by separating them with
 a semi-colon <strong>“;”</strong>.</p>
-<p>i.e. The following code defines that the algorithm should be stored in
-Useful-&gt;Tools and MyTools.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s1">&#39;Useful</span><span class="se">\\</span><span class="s1">Tools;MyTools&#39;</span>
-
-    <span class="c1"># The rest is the same as above</span>
+<p>i.e. The following code defines that the algorithm should be stored in Useful-&gt;Tools and MyTools.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="n">AlgorithmFactory</span><span class="p">,</span> <span class="n">PythonAlgorithm</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span> <span class="k">class</span> <span class="nc">HelloWorld</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span>     <span class="k">def</span> <span class="nf">category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">6</span>         <span class="k">return</span> <span class="s1">&#39;Useful</span><span class="se">\\</span><span class="s1">Tools;MyTools&#39;</span>
+<span class="linenos">7</span>
+<span class="linenos">8</span>     <span class="c1"># The rest is the same as above</span>
 </pre></div>
 </div>
+<p>You are highly encouraged to stay to the list of <a class="reference internal" href="../../../algorithms/index.html#algorithms-list"><span class="std std-ref">existing categories</span></a>.</p>
 </section>
 
 

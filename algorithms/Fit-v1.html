@@ -1094,6 +1094,53 @@ reduced chi-squared (since v6.3). The scaling of the covariance matrix in <cite>
 <figure class="align-default">
 <img alt="../_images/ScipyCurveFit_Mantid_comparison_LinearFit.png" src="../_images/ScipyCurveFit_Mantid_comparison_LinearFit.png" />
 </figure>
+<p><strong>Example - Fit two data sets that has nan or infinite values:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># create data</span>
+<span class="n">xData</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+
+<span class="n">yData</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xData</span><span class="p">:</span>
+    <span class="n">yData</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="n">yData2</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xData</span><span class="p">:</span>
+    <span class="n">yData2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+
+<span class="n">yData</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">yData2</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+<span class="n">eData</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">xData</span><span class="p">)</span>
+<span class="n">eData2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">xData</span><span class="p">)</span>
+
+<span class="c1"># create workspaces</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">xData</span><span class="p">,</span><span class="n">yData</span><span class="p">,</span> <span class="n">eData</span><span class="p">)</span>
+<span class="n">input2</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">xData</span><span class="p">,</span><span class="n">yData2</span><span class="p">,</span> <span class="n">eData2</span><span class="p">)</span>
+
+<span class="c1"># create function</span>
+<span class="n">myFunc</span><span class="o">=</span><span class="s1">&#39;;name=FlatBackground,$domains=i,A0=0&#39;</span>
+<span class="n">multiFunc</span><span class="o">=</span><span class="s1">&#39;composite=MultiDomainFunction,NumDeriv=1&#39;</span><span class="o">+</span><span class="n">myFunc</span><span class="o">+</span><span class="n">myFunc</span><span class="o">+</span><span class="s2">&quot;;&quot;</span>
+
+<span class="c1"># do fit</span>
+<span class="n">fit_output</span> <span class="o">=</span> <span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="n">multiFunc</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="nb">input</span><span class="p">,</span> <span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> \
+                <span class="n">InputWorkspace_1</span><span class="o">=</span><span class="n">input2</span><span class="p">,</span> <span class="n">WorkspaceIndex_1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> \
+                <span class="n">StartX</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">EndX</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">StartX_1</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">EndX_1</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span><span class="n">Output</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span>
+                <span class="n">IgnoreInvalidData</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">paramTable</span> <span class="o">=</span> <span class="n">fit_output</span><span class="o">.</span><span class="n">OutputParameters</span>  <span class="c1"># table containing the optimal fit parameters</span>
+
+<span class="c1"># print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Constant 1: </span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Constant 2: </span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Constant 1: 2.00
+Constant 2: 5.00
+</pre></div>
+</div>
 </section>
 <section id="references">
 <h2><a class="toc-backref" href="#id27" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
@@ -1102,8 +1149,8 @@ reduced chi-squared (since v6.3). The scaling of the covariance matrix in <cite>
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id28" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/9e0edc0932be895114f28614ecb7231b2cbbe4fb/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/Fit.h">Fit.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/9e0edc0932be895114f28614ecb7231b2cbbe4fb/Framework/CurveFitting/src/Algorithms/Fit.cpp">Fit.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c7d4d55d719739e9e2f029ee88c62f9991f2d577/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/Fit.h">Fit.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c7d4d55d719739e9e2f029ee88c62f9991f2d577/Framework/CurveFitting/src/Algorithms/Fit.cpp">Fit.cpp</a></p>
 </section>
 </section>
 

@@ -115,18 +115,14 @@
 <span id="id1"></span><h1>Algorithms And Workspaces<a class="headerlink" href="#algorithms-and-workspaces" title="Permalink to this heading">¶</a></h1>
 <section id="declaring-workspace-properties">
 <h2>Declaring Workspace Properties<a class="headerlink" href="#declaring-workspace-properties" title="Permalink to this heading">¶</a></h2>
-<p>Workspaces are the main source of data for input and most algorithms output
-another data workspace. Workspace properties are required in order to either
-provide input data for an algorithm or store data at the end of execution.
-Mantid has a variety of different workspace types, for example
-<a class="reference internal" href="../../../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">Matrix Workspace</span></a>, <a class="reference internal" href="../../../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">Event Workspace</span></a> or <a class="reference internal" href="../../../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">Table Workspaces</span></a>.
+<p>Workspaces are the main source of data for input and most algorithms output another data workspace.
+Workspace properties are required in order to either provide input data for an algorithm or store data at the end of execution.
+Mantid has a variety of different workspace types, for example <a class="reference internal" href="../../../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a>, <a class="reference internal" href="../../../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspace</span></a> or <a class="reference internal" href="../../../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a>.
 A generic Workspace type also exists which can refer to any of these.</p>
-<p>Declaring input workspace properties restricts the types of workspace that
-will be accepted when a user wants to pass a workspace into the algorithm.
-The example below declares a <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> which means that any
-workspace type will be accepted as input.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="o">*</span>
+<p>Declaring input workspace properties restricts the types of workspace that will be accepted when a user wants to pass a workspace into the algorithm.
+The example below declares a <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> which means that any workspace type will be accepted as input.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="n">Direction</span>
+<span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="n">WorkspaceProperty</span>
 
 <span class="k">class</span> <span class="nc">WorkspaceProperties</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
 
@@ -143,15 +139,11 @@ workspace type will be accepted as input.</p>
 </section>
 <section id="other-workspace-types">
 <h2>Other Workspace Types<a class="headerlink" href="#other-workspace-types" title="Permalink to this heading">¶</a></h2>
-<p>As discussed above there are many different types of workspace. The above
-declarations allow any workspace type to be passed in to an algorithm. It
-is possible to restrict the type that can be accepted, for example to
-disallow table workspace types, by simply using a different class in the
-<code class="docutils literal notranslate"><span class="pre">self.declareProperty</span></code> method.</p>
+<p>As discussed above there are many different types of workspace.
+The above declarations allow any workspace type to be passed in to an algorithm.
+It is possible to restrict the type that can be accepted, for example to disallow table workspace types, by simply using a different class in the <code class="docutils literal notranslate"><span class="pre">self.declareProperty</span></code> method.</p>
 <p>As an example, consider the definition above using <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code>.
-If we wanted to restrict the type to a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code> type then we
-can simply replace <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> with
-<code class="docutils literal notranslate"><span class="pre">MatrixWorkspaceProperty</span></code></p>
+If we wanted to restrict the type to a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code> type then we can simply replace <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> with <code class="docutils literal notranslate"><span class="pre">MatrixWorkspaceProperty</span></code></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -167,14 +159,15 @@ can simply replace <code class="docutils literal notranslate"><span class="pre">
         <span class="k">pass</span>
 </pre></div>
 </div>
-<p>Any workspace passed as input to this algorithm must now be of type
-<code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code>.</p>
-<p>The currently available types of property are:</p>
+<p>Any workspace passed as input to this algorithm must now be of type <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code>.
+In general, using a specific workspace type reduces users passing an invalid input workspace.</p>
+<p>Some of the currently available types of property are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MatrixWorkspaceProperty</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ITableWorkspaceProperty</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">IPeaksWorkspaceProperty</span></code></p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/api/WorkspaceProperty.html#mantid.api.WorkspaceProperty" title="mantid.api.WorkspaceProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code></a> for specifying <a class="reference internal" href="../../../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/api/MatrixWorkspaceProperty.html#mantid.api.MatrixWorkspaceProperty" title="mantid.api.MatrixWorkspaceProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">MatrixWorkspaceProperty</span></code></a> for specifying <a class="reference internal" href="../../../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a> as input or output</p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/api/IEventWorkspaceProperty.html#mantid.api.IEventWorkspaceProperty" title="mantid.api.IEventWorkspaceProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">IEventWorkspaceProperty</span></code></a> for specifying <a class="reference internal" href="../../../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspace</span></a></p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/api/IPeaksWorkspaceProperty.html#mantid.api.IPeaksWorkspaceProperty" title="mantid.api.IPeaksWorkspaceProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">IPeaksWorkspaceProperty</span></code></a> for specifying <a class="reference internal" href="../../../concepts/PeaksWorkspace.html#peaksworkspace"><span class="std std-ref">PeaksWorkspace</span></a></p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/api/ITableWorkspaceProperty.html#mantid.api.ITableWorkspaceProperty" title="mantid.api.ITableWorkspaceProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">ITableWorkspaceProperty</span></code></a> for specifying <a class="reference internal" href="../../../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a></p></li>
 </ul>
 </section>
 </section>

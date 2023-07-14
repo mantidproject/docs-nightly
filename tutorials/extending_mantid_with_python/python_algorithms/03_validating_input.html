@@ -113,50 +113,42 @@
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="validating-input">
 <span id="id1"></span><h1>Validating Input<a class="headerlink" href="#validating-input" title="Permalink to this heading">¶</a></h1>
-<p>By default there is no validation performed for input properties so any
-default value will be accepted by the algorithm.</p>
-<p>Property validation can be added using the <code class="docutils literal notranslate"><span class="pre">validator</span></code> keyword within
-the <code class="docutils literal notranslate"><span class="pre">declareProperty</span></code> method. The validation is performed by an object
-and due to the restrictions placed on us by <code class="docutils literal notranslate"><span class="pre">C++</span></code> we must know the type
-and pick the appropriate class for the job.</p>
+<p>By default there is no validation performed for input properties so any default value will be accepted by the algorithm.</p>
+<p>Property validation can be added using the <code class="docutils literal notranslate"><span class="pre">validator</span></code> keyword within the <code class="docutils literal notranslate"><span class="pre">declareProperty</span></code> method.
+The validation is performed by an object and due to the restrictions placed on us by <code class="docutils literal notranslate"><span class="pre">C++</span></code> we must know the type and pick the appropriate class for the job.</p>
 <p>For the basic python types (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>) the following
 validators are defined:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/IntBoundedValidator.html#mantid-kernel-intboundedvalidator"><span class="std std-ref">IntBoundedValidator</span></a> - Restricts an integer to be
-bounded by either lower, upper or both limits</p></li>
-<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/IntMandatoryValidator.html#mantid-kernel-intmandatoryvalidator"><span class="std std-ref">IntMandatoryValidator</span></a> - Requires a value for the
-int property</p></li>
-<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/IntListValidator.html#mantid-kernel-intlistvalidator"><span class="std std-ref">IntListValidator</span></a> - The value must be one of a given
-list of integers</p></li>
-<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/FloatBoundedValidator.html#mantid-kernel-floatboundedvalidator"><span class="std std-ref">FloatBoundedValidator</span></a> - Restricts a float to be
-bounded by by either lower, upper or both limits</p></li>
-<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/FloatMandatoryValidator.html#mantid-kernel-floatmandatoryvalidator"><span class="std std-ref">FloatMandatoryValidator</span></a> - Requires a value for
-the float property</p></li>
-<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/StringMandatoryValidator.html#mantid-kernel-stringmandatoryvalidator"><span class="std std-ref">StringMandatoryValidator</span></a> - Requires a value for
-the string property</p></li>
-<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/StringListValidator.html#mantid-kernel-stringlistvalidator"><span class="std std-ref">StringListValidator</span></a> - The value must be one of a
-given list of strings</p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/IntBoundedValidator.html#mantid.kernel.IntBoundedValidator" title="mantid.kernel.IntBoundedValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntBoundedValidator</span></code></a> - Restricts an integer to be bounded by either lower, upper or both limits</p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/IntMandatoryValidator.html#mantid.kernel.IntMandatoryValidator" title="mantid.kernel.IntMandatoryValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntMandatoryValidator</span></code></a> - Requires a value for the int property</p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/IntListValidator.html#mantid.kernel.IntListValidator" title="mantid.kernel.IntListValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntListValidator</span></code></a> - The value must be one of a given list of integers</p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/FloatBoundedValidator.html#mantid.kernel.FloatBoundedValidator" title="mantid.kernel.FloatBoundedValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">FloatBoundedValidator</span></code></a> - Restricts a float to be bounded by by either lower, upper or both limits</p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/FloatMandatoryValidator.html#mantid.kernel.FloatMandatoryValidator" title="mantid.kernel.FloatMandatoryValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">FloatMandatoryValidator</span></code></a> - Requires a value for the float property</p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/StringMandatoryValidator.html#mantid.kernel.StringMandatoryValidator" title="mantid.kernel.StringMandatoryValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">StringMandatoryValidator</span></code></a> - Requires a value for the string property</p></li>
+<li><p><a class="reference internal" href="../../../api/python/mantid/kernel/StringListValidator.html#mantid.kernel.StringListValidator" title="mantid.kernel.StringListValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">StringListValidator</span></code></a> - The value must be one of a given list of strings</p></li>
 </ul>
-<p>To use a validator, create it with the appropriate code as discussed above
-and pass it as the validator argument of <code class="docutils literal notranslate"><span class="pre">declareProperty</span></code> e.g.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="c1"># Force the value to be positive or zero</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s2">&quot;Parameter&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">FloatBoundedValidator</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<p>To use a validator, create it with the appropriate code as discussed above and pass it as the validator argument of <code class="docutils literal notranslate"><span class="pre">declareProperty</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="n">FloatBoundedValidator</span><span class="p">,</span> <span class="n">StringListValidator</span><span class="p">,</span> <span class="n">StringMandatoryValidator</span>
 
-<span class="c1"># Require the user to provide a non-empty string as input</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s2">&quot;Prefix&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">StringMandatoryValidator</span><span class="p">())</span>
+<span class="o">...</span>
 
-<span class="c1"># Require the property to have one of the listed values</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s2">&quot;ProcessOption&quot;</span><span class="p">,</span><span class="s2">&quot;Full&quot;</span><span class="p">,</span>
-                     <span class="n">StringListValidator</span><span class="p">([</span><span class="s2">&quot;Full&quot;</span><span class="p">,</span> <span class="s2">&quot;QuickEstimate&quot;</span><span class="p">]))</span>
+<span class="k">def</span> <span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># Force the value to be positive or zero</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s2">&quot;Parameter&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">FloatBoundedValidator</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="c1"># Require the user to provide a non-empty string as input</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s2">&quot;Prefix&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">StringMandatoryValidator</span><span class="p">())</span>
+
+    <span class="c1"># Require the property to have one of the listed values</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s2">&quot;ProcessOption&quot;</span><span class="p">,</span><span class="s2">&quot;Full&quot;</span><span class="p">,</span>
+                         <span class="n">StringListValidator</span><span class="p">([</span><span class="s2">&quot;Full&quot;</span><span class="p">,</span> <span class="s2">&quot;QuickEstimate&quot;</span><span class="p">]))</span>
 </pre></div>
 </div>
-<p>Validation can also be done when executing the algorithm by raising an
-exception if the value is invalid.</p>
+<p>Validation can also be done when executing the algorithm by raising an exception if the value is invalid.</p>
 <p>It should be preferred to validate in <code class="docutils literal notranslate"><span class="pre">PyInit</span></code> if possible as:</p>
 <ol class="arabic simple">
-<li><p>The execution section can assume the values are valid.</p></li>
-<li><p>The GUI can flag up errors sooner.</p></li>
+<li><p>The execution section can assume the values are valid</p></li>
+<li><p>The GUI can flag up errors sooner before the execute phase of the algorithm occurs</p></li>
 </ol>
 </section>
 

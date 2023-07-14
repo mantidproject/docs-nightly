@@ -113,28 +113,21 @@
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="logging">
 <span id="id1"></span><h1>Logging<a class="headerlink" href="#logging" title="Permalink to this heading">¶</a></h1>
-<p>In Mantid, logging can be used to issue messages that appear in a variety of
-places depending on the running environment. For example, in MantidWorkbench
-the Messages Box is used to display log messages to users and everything
-is also logged to a file.</p>
-<p>The level of detail is controlled by right-clicking on the Messages Box in
-MantidWorkbench and selecting “log level”. Alternatively it can be controlled
-by the <strong>logging.loggers.root.level</strong> key in the <em>Mantid.user.properties</em>
-file. There are several levels of logging available, ordered in terms of
-increasing priority:</p>
+<p>In Mantid, logging can be used to issue messages that appear in a variety of places depending on the running environment.
+For example, in MantidWorkbench the Messages Box is used to display log messages to users and everything is also logged to a file.</p>
+<p>The level of detail is controlled by right-clicking on the Messages Box in MantidWorkbench and selecting “log level”.
+Alternatively it can be controlled by the <strong>logging.loggers.root.level</strong> key in the <a class="reference internal" href="../../../concepts/PropertiesFile.html#properties-file"><span class="std std-ref">properties file</span></a>.
+There are several levels of logging available, ordered in terms of increasing priority:</p>
 <ul class="simple">
 <li><p>Debug</p></li>
-<li><p>Information</p></li>
-<li><p>Notice</p></li>
+<li><p>Information - algorithm properteries are automatically logged at this level</p></li>
+<li><p>Notice - default level for users</p></li>
 <li><p>Warning</p></li>
-<li><p>Error</p></li>
+<li><p>Error - consider throwing an exception instead</p></li>
 </ul>
-<p>Any log message that is sent at a priority level above or equal to the value
-set in the properties file will appear in the appropriate location, i.e.
-Messages Box, log file.</p>
-<p>Within a Python algorithm the log can be accessed using <code class="docutils literal notranslate"><span class="pre">self.log()</span></code>. To
-post a message, simply choose a priority level and call a function that has
-that name with the message as an argument, i.e.</p>
+<p>Any log message that is sent at a priority level above or equal to the value set in the properties file will appear in the appropriate location, i.e. Messages Box, log file.</p>
+<p>Within a Python algorithm the log can be accessed using <code class="docutils literal notranslate"><span class="pre">self.log()</span></code> which is a configured instance of the <a class="reference internal" href="../../../api/python/mantid/kernel/Logger.html#mantid.kernel.Logger" title="mantid.kernel.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a>.
+To post a message, simply choose a priority level and call a function that has that name with the message as an argument</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;Inputvalue&quot;</span><span class="p">)</span>
 
@@ -142,10 +135,8 @@ that name with the message as an argument, i.e.</p>
                            <span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Avoid excessive logging as it is an expensive operation, i.e. try to avoid
-posting a log message at every iteration through a loop as it can slow the
-algorithm down dramatically. Instead build the message up as the loop is
-traversed and call the logging function once, e.g.</p>
+<p>Avoid excessive logging as it is an expensive operation, i.e. try to avoid posting a log message at every iteration through a loop as it can slow the algorithm down dramatically.
+Instead build the message up as the loop is traversed and call the logging function once</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;LoopLimit&#39;</span><span class="p">)</span>
     <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
@@ -159,6 +150,8 @@ traversed and call the logging function once, e.g.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">()</span><span class="o">.</span><span class="n">information</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>The logger only has ability to log strings.
+Therefore, construct your log messages as strings using <a class="reference external" href="https://docs.python.org/3/library/string.html">string formatting</a>.</p>
 </section>
 
 

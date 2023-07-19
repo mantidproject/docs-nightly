@@ -139,6 +139,8 @@
 <section id="new-features">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">New features</a><a class="headerlink" href="#new-features" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Add the ability for <a class="reference internal" href="../../algorithms/CombineDiffCal-v1.html#algm-combinediffcal"><span class="std std-ref">CombineDiffCal</span></a> to have a partial <code class="docutils literal notranslate"><span class="pre">GroupedCalibration</span></code> workspace.
+Detectors that do not appear in the <code class="docutils literal notranslate"><span class="pre">GroupedCalibration</span></code> have calibration constants copied directly from the <code class="docutils literal notranslate"><span class="pre">PixelCalibration</span></code> workspace without change.</p></li>
 <li><p>Expose the <code class="docutils literal notranslate"><span class="pre">HighBackground</span></code> option from <a class="reference internal" href="../../algorithms/FitPeaks-v1.html#algm-fitpeaks"><span class="std std-ref">FitPeaks</span></a> in <a class="reference internal" href="../../algorithms/PDCalibration-v1.html#algm-pdcalibration"><span class="std std-ref">PDCalibration</span></a></p></li>
 <li><p>Add parameters, <code class="docutils literal notranslate"><span class="pre">LogAllowList</span></code> and <code class="docutils literal notranslate"><span class="pre">LogBlockList</span></code>, to <a class="reference internal" href="../../algorithms/AlignAndFocusPowderFromFiles-v1.html#algm-alignandfocuspowderfromfiles"><span class="std std-ref">AlignAndFocusPowderFromFiles</span></a> and <a class="reference internal" href="../../algorithms/SNSPowderReduction-v1.html#algm-snspowderreduction"><span class="std std-ref">SNSPowderReduction</span></a> so users can select which logs are actually needed. The default is to block chopper logs in SNSPowderReduction</p></li>
 </ul>
@@ -146,6 +148,10 @@
 <section id="bugfixes">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Fixed bug in absolute unit normalisation in ISIS powder reduction where the vanadium workspace shape was used instead of the sample.</p></li>
+<li><p>Raise errors in absolute normalisation due to lack of sample/vanadium shape and material in ISIS powder reduction</p></li>
+<li><p>Raise an error in POLARIS (ISIS) powder reduction script if user tries to creta a vanadium workspace without correcting for absorption and multiple scattering.</p></li>
+<li><p>Exposed <code class="docutils literal notranslate"><span class="pre">MSEvents`</span> <span class="pre">parameter</span> <span class="pre">of</span> <span class="pre">:ref:`MayersSampleCorrection</span> <span class="pre">&lt;algm-MayersSampleCorrection&gt;`</span> <span class="pre">to</span> <span class="pre">users</span> <span class="pre">of</span> <span class="pre">ISIS</span> <span class="pre">powder</span> <span class="pre">reduction</span> <span class="pre">scripts</span> <span class="pre">(parameter</span> <span class="pre">``mayers_mult_scat_events</span></code> in the instrument settings).</p></li>
 <li><p>Fix the little issue with the documentation testing for the powder diffraction calibration.</p></li>
 </ul>
 </section>

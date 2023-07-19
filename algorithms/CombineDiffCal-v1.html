@@ -121,7 +121,9 @@
 <li><p><a class="reference internal" href="#summary" id="id2">Summary</a></p></li>
 <li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
 <li><p><a class="reference internal" href="#description" id="id4">Description</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id5">Source</a></p></li>
+<li><p><a class="reference internal" href="#input-arguments" id="id5">Input arguments</a></p></li>
+<li><p><a class="reference internal" href="#how-values-are-combined" id="id6">How values are combined</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id7">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
@@ -144,19 +146,19 @@
 <td><p>Input</p></td>
 <td><p><a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a></p></td>
 <td><p><em>Mandatory</em></p></td>
-<td><p>OffsetsWorkspace generated from cross-correlation. This is the source of DIFCpixel.</p></td>
+<td><p>DiffCal TableWorkspace that will be updated. This is often generated from cross-correlation. These are the “prev” values in the documentation.</p></td>
 </tr>
 <tr class="row-odd"><td><p>GroupedCalibration</p></td>
 <td><p>Input</p></td>
 <td><p><a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a></p></td>
 <td><p><em>Mandatory</em></p></td>
-<td><p>DiffCal table generated from calibrating grouped spectra. This is the source of DIFCgroup.</p></td>
+<td><p>DiffCal table generated from calibrating grouped spectra. This is the “DIFCpd” value in the documentation.</p></td>
 </tr>
 <tr class="row-even"><td><p>CalibrationWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
 <td><p><em>Mandatory</em></p></td>
-<td><p>Workspace where conversion from d-spacing to time-of-flight for each spectrum is determined from. This is the source of DIFCarb.</p></td>
+<td><p>Workspace where conversion from d-spacing to time-of-flight for each spectrum is determined from. This is the “DIFCarb” value in the documentation.</p></td>
 </tr>
 <tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
@@ -176,12 +178,40 @@
 <section id="description">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p>This algorithm combines pixel calibration results (<span class="math notranslate nohighlight">\(prev\)</span> subscript below) from the <code class="docutils literal notranslate"><span class="pre">PixelCalibration</span></code> workspace with the calibration of focussed data from <a class="reference internal" href="PDCalibration-v1.html#algm-pdcalibration-v1"><span class="std std-ref">PDCalibration</span></a> (<span class="math notranslate nohighlight">\(pd\)</span> subscript below).
-The <span class="math notranslate nohighlight">\(arb\)</span> subscript below denotes values found in the <code class="docutils literal notranslate"><span class="pre">CalibrationWorkspace</span></code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">GroupedCalibration</span></code> table is assumed to not have <span class="math notranslate nohighlight">\(DIFA\)</span> or <span class="math notranslate nohighlight">\(TZERO\)</span> set.
-It is also assumed to have calibration values for <strong>all</strong> detector pixels.</p>
+The <span class="math notranslate nohighlight">\(arb\)</span> subscript below denotes values found in the <code class="docutils literal notranslate"><span class="pre">CalibrationWorkspace</span></code>.
+This is part of the larger workflow for <a class="reference internal" href="../concepts/calibration/PowderDiffractionCalibration.html#powder-diffraction-calibration"><span class="std std-ref">powder diffraction calibration</span></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">GroupedCalibration</span></code> table is assumed to not have <span class="math notranslate nohighlight">\(DIFA\)</span> or <span class="math notranslate nohighlight">\(TZERO\)</span> set.</p>
 </div>
+</section>
+<section id="input-arguments">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Input arguments</a><a class="headerlink" href="#input-arguments" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PixelCalibration</span></code> is the previous calibration result</p>
+<ul>
+<li><p>Has values for each detector pixel</p></li>
+<li><p>Provides <span class="math notranslate nohighlight">\(DIFC_{prev}\)</span>, <span class="math notranslate nohighlight">\(DIFA_{prev}\)</span>, and <span class="math notranslate nohighlight">\(TZERO_{prev}\)</span></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GroupedCalibration</span></code></p>
+<ul>
+<li><p>Has values for each detector pixel, but the values are generally the same within a focused group</p></li>
+<li><p>Provides <span class="math notranslate nohighlight">\(DIFC_{pd}\)</span></p></li>
+<li><p>Is the <code class="docutils literal notranslate"><span class="pre">OutputCalibrationTable</span></code> from previous <a class="reference internal" href="PDCalibration-v1.html#algm-pdcalibration"><span class="std std-ref">PDCalibration</span></a> execution</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CalibrationWorkspace</span></code></p>
+<ul>
+<li><p>Has values for each spectrum which are grouped pixels</p></li>
+<li><p>Provides <span class="math notranslate nohighlight">\(DIFC_{arb}\)</span></p></li>
+<li><p>Is the <code class="docutils literal notranslate"><span class="pre">InputWorkspace</span></code> from previous <a class="reference internal" href="PDCalibration-v1.html#algm-pdcalibration"><span class="std std-ref">PDCalibration</span></a> execution</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-values-are-combined">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">How values are combined</a><a class="headerlink" href="#how-values-are-combined" title="Permalink to this heading">¶</a></h2>
 <p>The effective calibration values are calculated using the following equations</p>
 <div class="math notranslate nohighlight">
 \[DIFC_{eff} = \frac{DIFC_{pd}}{DIFC_{arb}} * DIFC_{prev}\]</div>
@@ -196,9 +226,9 @@ The value of <span class="math notranslate nohighlight">\(TZERO\)</span> is unch
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Diffraction/Utility.html">Diffraction\Utility</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c7d4d55d719739e9e2f029ee88c62f9991f2d577/Framework/Algorithms/inc/MantidAlgorithms/CombineDiffCal.h">CombineDiffCal.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c7d4d55d719739e9e2f029ee88c62f9991f2d577/Framework/Algorithms/src/CombineDiffCal.cpp">CombineDiffCal.cpp</a></p>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a25fabd82339aecc10428e24683ed146424f0f21/Framework/Algorithms/inc/MantidAlgorithms/CombineDiffCal.h">CombineDiffCal.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a25fabd82339aecc10428e24683ed146424f0f21/Framework/Algorithms/src/CombineDiffCal.cpp">CombineDiffCal.cpp</a></p>
 </section>
 </section>
 

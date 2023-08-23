@@ -7,5 +7,5 @@ data = Load('MUSR00015189.nxs')
 data = mtd['data_1'] # Extract individual workspace from group
 
 fig, ax = plt.subplots(subplot_kw={'projection':'mantid3d'})
-ax.plot_surface(data)
+ax.plot_surface(data, cmap='viridis')
 #plt.show()

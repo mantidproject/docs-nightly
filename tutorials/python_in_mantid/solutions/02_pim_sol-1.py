@@ -3,7 +3,7 @@ from mantid.simpleapi import *
 import matplotlib.pyplot as plt
 import numpy as np
 
-_164198 = Load('164198')
+_164198 = Load('164198.nxs')
 
 fig, axes = plt.subplots(edgecolor='#ffffff', num='164198-1', subplot_kw={'projection': 'mantid'})
 axes.plot(_164198, color='#2ca02c', label='164198: spec 100', linewidth=1.0, specNum=100, zorder=2.1)

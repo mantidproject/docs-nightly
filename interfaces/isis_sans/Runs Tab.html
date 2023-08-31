@@ -239,18 +239,53 @@ with those set in the specified user file</p></td>
 <strong>WavelengthMin</strong>, <strong>WavelengthMax</strong>, <strong>EventSlices</strong> (see <a class="reference internal" href="Settings%20Tab.html#isis-sans-settings-tab-ref"><span class="std std-ref">Settings</span></a>
 for details), <strong>BackgroundWorkspace</strong>, and <strong>ScaleFactor</strong> can be set (see below).</p></td>
 </tr>
+<tr class="row-odd"><td><p><strong>Background Workspace</strong></p></td>
+<td><p>This column allows the user to provide a workspace for scaled background subtraction
+(see below).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Scale Factor</strong></p></td>
+<td><p>Scale factor to be used for scaled background subtraction (see below).</p></td>
+</tr>
 </tbody>
 </table>
 <section id="scaled-background-subtraction">
 <span id="isis-sans-scaled-background-ref"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">Scaled Background Subtraction</a><a class="headerlink" href="#scaled-background-subtraction" title="Permalink to this heading">¶</a></h3>
-<p>By setting <strong>both</strong> <code class="docutils literal notranslate"><span class="pre">BackgroundWorkspace</span></code> and <code class="docutils literal notranslate"><span class="pre">ScaleFactor</span></code> in the options a Scaled Background Subtraction will be
+<p>Additional hidden columns can be shown on the table by checking the <code class="docutils literal notranslate"><span class="pre">Scaled</span> <span class="pre">Background</span> <span class="pre">Subtraction</span></code> checkbox above
+the table on the right hand side.</p>
+<p>By setting <strong>both</strong> <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code> and <code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">Factor</span></code> a Scaled Background Subtraction will be
 performed. Giving these values will perform a background subtraction where the <code class="docutils literal notranslate"><span class="pre">BackgroundWorkspace</span></code> (representing a
 reduced solution run) will be multiplied by the <code class="docutils literal notranslate"><span class="pre">ScaleFactor</span></code> and then subtracted from the reduced HAB, LAB, or Merged
 main output workspace. It is then saved to the ADS or to a file (based on the save options below) in addition to the
-normal reduction output.</p>
-<p>The reduction will fail if only one of these values is set. Or, if the reduction mode is set to “All”. This is because
-there is no way to determine if the workspace given as the <code class="docutils literal notranslate"><span class="pre">BackgroundWorkspace</span></code> is for the HAB or LAB, and so uses
-the value from the User File, therefore assuming that both reductions have used the same one.</p>
+normal reduction output. The subtracted workspace will have the same name as the normal output workspace with <code class="docutils literal notranslate"><span class="pre">_bgsub</span></code>
+appended to its name.</p>
+<p><strong>Note:</strong> The background subtraction workspace will be subtracted <strong>in addition</strong> to the normal subtraction
+performed when values are given in the Can columns. If you only wish to subtract the scaled background, leave the can
+cells blank.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>Given Values: Sample (Scatter, Transmission, and Direct), and Can (Scatter, Transmission, and Direct)</p>
+<ul>
+<li><p>OutputName = Sample - Can</p></li>
+</ul>
+</li>
+<li><p>Given Values: Sample (Scatter, Transmission, and Direct), Can (Scatter, Transmission, and Direct), and  Scaled
+Background Workspace</p>
+<ul>
+<li><p>OutputName = Sample - Can</p></li>
+<li><p>OutputName_bgsub = Sample - Can - (Background Workspace * Scale Factor)</p></li>
+</ul>
+</li>
+<li><p>Given Values: Sample (Scatter, Transmission, and Direct) and Scaled Background Workspace</p>
+<ul>
+<li><p>OutputName = Sample</p></li>
+<li><p>OutputName_bgsub = Sample - (Background Workspace * Scale Factor)</p></li>
+</ul>
+</li>
+</ul>
+<p>The reduction will fail if only one of <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code> and <code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">Factor</span></code> is set. Or, if the reduction mode
+is set to “All”. This is because there is no way to determine if the workspace given as the <code class="docutils literal notranslate"><span class="pre">BackgroundWorkspace</span></code> is
+for the HAB or LAB, and so uses the value from the User File, therefore assuming that both reductions have used the same
+one.</p>
 </section>
 </section>
 <section id="save-options">

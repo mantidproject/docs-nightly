@@ -225,13 +225,13 @@
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
-<td><p>List of peak centers to fit against.</p></td>
+<td><p>List of peak centers to use as initial guess for fit.</p></td>
 </tr>
 <tr class="row-odd"><td><p>PeakCentersWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
 <td></td>
-<td><p>MatrixWorkspace containing peak centers</p></td>
+<td><p>MatrixWorkspace containing referent peak centers for each spectrum, defined at the same workspace indices.</p></td>
 </tr>
 <tr class="row-even"><td><p>PeakFunction</p></td>
 <td><p>Input</p></td>
@@ -249,13 +249,13 @@
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
-<td><p>List of left boundaries of the peak fitting window corresponding to PeakCenters.</p></td>
+<td><p>List of boundaries of the peak fitting window corresponding to PeakCenters.</p></td>
 </tr>
 <tr class="row-odd"><td><p>FitPeakWindowWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
 <td></td>
-<td><p>MatrixWorkspace for of peak windows</p></td>
+<td><p>MatrixWorkspace containing peak windows for each peak center in each spectrum, defined at the same workspace indices.</p></td>
 </tr>
 <tr class="row-even"><td><p>PeakWidthPercent</p></td>
 <td><p>Input</p></td>
@@ -464,9 +464,10 @@ height and position will be overwritten by observed values.</p>
 <ul class="simple">
 <li><p>A <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a></p>
 <ul>
-<li><p>Number of spectra shall be the same as the number of spectra of the workspace containing peaks to fit for.  Or the number of spectra is the same as the number of spectra of the input workspace.</p></li>
-<li><p>X value is the index of the peak.</p></li>
-<li><p>Y value is the position of the peaks to fit.</p></li>
+<li><p>At each workspace index, a “spectrum” in the form of predicted peak centers is defined.</p></li>
+<li><p>The workspace index for each spectrum corresponds to the workspace index in the input workspace.</p></li>
+<li><p>X value is position in d-spacing of each reference peak.</p></li>
+<li><p>Y value is unused.</p></li>
 <li><p>Peak centers are stored in <code class="docutils literal notranslate"><span class="pre">m_peakCenterWorkspace</span></code>.</p></li>
 <li><p>Spectra can be a subset of all spectra because <code class="docutils literal notranslate"><span class="pre">FitPeaks</span></code> can work on partial spectra.</p></li>
 </ul>
@@ -487,23 +488,18 @@ height and position will be overwritten by observed values.</p>
 <li><p>FitWindowBoundaryList</p></li>
 <li><p>FitPeakWindowWorkspace</p></li>
 </ul>
-<p>If FitWindows is defined, then a peak’s range to fit (i.e., x-min and
+<p>If either of these is defined, then a peak’s range to fit (i.e., x-min and
 x-max) is confined by this window.</p>
-<p>If FitWindows is defined, starting peak centres are NOT user’s input,
-but found by highest value within peak window. (Is this correct???)</p>
-<p>Further down the road, here are the fitting setup that can be affected.</p>
-<ul class="simple">
-<li><p>Peak positions are uniform among all spectra</p>
-<ul>
-<li><p>Peak window information will be retrieved from <strong>m_peakWindowVector</strong></p></li>
-</ul>
-</li>
-<li><p>Peak positions are different among spectra.</p>
-<ul>
-<li><p>Peak windown information will be retrieved from <strong>m_peakWindowWorkspace</strong></p></li>
-</ul>
-</li>
-</ul>
+<p>The fit windows must correspond to a peak center.  For each peak center, the window list must
+have a lower and upper bound, meaning each window list must be twice as long as the corresponding center list.</p>
+<p>If the windows are specified using FitWindowBoundaryList, then the same set of windows will
+be used on all spectra to be fit in the workspace.
+In this case window information will be retrieved from <strong>FitWindowBoundaryList</strong>.
+If the windows are specified using FitPeakWindowWorkspace, then at each workspace index to be fit, the x-values
+must define a list of fit windows to use.
+In this case window information will be retried from <strong>FitPeakWindowWorkspace</strong>.
+If neither is given, but the input workspace is in d-spacing, then instrument resolutions will be used to estimate
+the peak widths, instead.</p>
 </section>
 <section id="tolerance-on-fitting-peaks-positions">
 <h3><a class="toc-backref" href="#id18" role="doc-backlink">Tolerance on Fitting Peaks Positions</a><a class="headerlink" href="#tolerance-on-fitting-peaks-positions" title="Permalink to this heading">¶</a></h3>
@@ -564,7 +560,7 @@ but found by highest value within peak window. (Is this correct???)</p>
 <p><em>Estimate-peak-range</em> requires inputs including expected peak center, fit window and estimated right and left FWHM.
 It will output the left and right boundary of the peak such that the background can be fit by excluding the peak.</p>
 <ol class="arabic simple">
-<li><p>Peak range is defined as <span class="math notranslate nohighlight">\(x_0 \pm 6 \cdot w\)</span>, where <em>w</em> is half of FWHM for either left or right half of peak.</p></li>
+<li><p>Peak range is defined as <span class="math notranslate nohighlight">\(x_0 \pm 3 \cdot FWHM\)</span>, for either left or right half of peak.</p></li>
 <li><p>Check the number of background points out of peak range at the left and right side respectively.
 It is required to have at least 3 background points at either side, i.e., <span class="math notranslate nohighlight">\(min(3, \frac{i_{x0} - i_{min}}{6})\)</span> for left side.</p></li>
 </ol>
@@ -607,7 +603,8 @@ Therefore, <code class="docutils literal notranslate"><span class="pre">FitPeaks
 <h4><a class="toc-backref" href="#id33" role="doc-backlink">OutputWorkspace</a><a class="headerlink" href="#outputworkspace" title="Permalink to this heading">¶</a></h4>
 <p>It is a <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> containing the peak positions expected and fitted.</p>
 <ul class="simple">
-<li><p>The output workspace has <em>N</em> spectra corresponding to the spectra that are specified by user via <code class="docutils literal notranslate"><span class="pre">MinimumWorkspaceIndex</span></code> and <code class="docutils literal notranslate"><span class="pre">MaximumWorkspaceIndex</span></code>.</p></li>
+<li><p>The output workspace has <em>N</em> spectra corresponding to the spectra that are specified by user via <code class="docutils literal notranslate"><span class="pre">StartWorkspaceIndex</span></code> and <code class="docutils literal notranslate"><span class="pre">StopWorkspaceIndex</span></code>.</p></li>
+<li><p>These spectra are in order from 0 to <em>N</em>.</p></li>
 <li><p>If there are <em>m</em> peaks that are required to fit for, then each spectrum in the output workspace has <em>m</em> data points.</p></li>
 <li><p>In each spectrum, <em>x(i)</em> is the expected position of <em>i-th</em> peak; <em>y(i)</em> is the fitted position of <em>i-th</em> peak; and <em>e(i)</em> is the cost from fitting.</p></li>
 <li><p>There are several cases that the fitting could fail.  A negative peak position <em>y(i)</em> combined with <em>e(i)</em> equal to <em>DBL_MAX</em> denote such failure.</p></li>
@@ -766,8 +763,8 @@ Expected @ 1.076  Fitted @ 1.075
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id40" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a0021cd2f68f5999e2179cf108475bf30032b98e/Framework/Algorithms/inc/MantidAlgorithms/FitPeaks.h">FitPeaks.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a0021cd2f68f5999e2179cf108475bf30032b98e/Framework/Algorithms/src/FitPeaks.cpp">FitPeaks.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a3796aac1d657c0acc420a20a4f172f6a64ae7a8/Framework/Algorithms/inc/MantidAlgorithms/FitPeaks.h">FitPeaks.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a3796aac1d657c0acc420a20a4f172f6a64ae7a8/Framework/Algorithms/src/FitPeaks.cpp">FitPeaks.cpp</a></p>
 </section>
 </section>
 

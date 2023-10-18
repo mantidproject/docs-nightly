@@ -790,35 +790,31 @@ Sample transmission is 0.963
 </pre></div>
 </div>
 <p><strong>Example - full treatment of a single crystal sample</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="n">vanadium_mass</span> <span class="o">=</span> <span class="mf">8.535</span>
- <span class="n">sample_formula_mass</span> <span class="o">=</span> <span class="mf">137.33</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">+</span> <span class="mf">54.93</span> <span class="o">+</span> <span class="mf">127.6</span> <span class="o">+</span> <span class="mf">15.999</span> <span class="o">*</span> <span class="mf">6.0</span>
- <span class="n">sample_mass</span> <span class="o">=</span> <span class="mf">7.83</span>
- <span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="n">vanadium_mass</span><span class="p">,</span> <span class="s1">&#39;FormulaUnits&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="mf">50.942</span><span class="p">}</span>
- <span class="n">sample_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="n">sample_mass</span><span class="p">,</span> <span class="s1">&#39;FormulaUnits&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="n">sample_formula_mass</span><span class="p">,</span>
-                          <span class="s1">&#39;KiXAngle&#39;</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">,</span> <span class="s1">&#39;OmegaShift&#39;</span><span class="p">:</span> <span class="mf">52.5</span><span class="p">}</span>
- <span class="n">calibration_file</span> <span class="o">=</span> <span class="s2">&quot;D7_YIG_calibration.xml&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vanadium_mass</span> <span class="o">=</span> <span class="mf">8.535</span>
+<span class="n">sample_formula_mass</span> <span class="o">=</span> <span class="mf">137.33</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">+</span> <span class="mf">54.93</span> <span class="o">+</span> <span class="mf">127.6</span> <span class="o">+</span> <span class="mf">15.999</span> <span class="o">*</span> <span class="mf">6.0</span>
+<span class="n">sample_mass</span> <span class="o">=</span> <span class="mf">7.83</span>
+<span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="n">vanadium_mass</span><span class="p">,</span> <span class="s1">&#39;FormulaUnits&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="mf">50.942</span><span class="p">}</span>
+<span class="n">sample_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="n">sample_mass</span><span class="p">,</span> <span class="s1">&#39;FormulaUnits&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="n">sample_formula_mass</span><span class="p">,</span>
+                     <span class="s1">&#39;KiXAngle&#39;</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">,</span> <span class="s1">&#39;OmegaShift&#39;</span><span class="p">:</span> <span class="mf">52.5</span><span class="p">}</span>
+<span class="n">calibration_file</span> <span class="o">=</span> <span class="s2">&quot;D7_YIG_calibration.xml&quot;</span>
 
- <span class="c1"># Empty container for quartz and vanadium</span>
- <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-     <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;450747:450748&#39;</span><span class="p">,</span>
-         <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;container_ws&#39;</span><span class="p">,</span>
-         <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span>
-<span class="p">)</span>
+<span class="c1"># Empty container for quartz and vanadium</span>
+<span class="n">PolDiffILLReduction</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;450747:450748&#39;</span><span class="p">,</span>
+                    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;container_ws&#39;</span><span class="p">,</span>
+                    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span><span class="p">)</span>
 
 <span class="c1"># Empty container for bank position 1 (bt1), tth=79.5</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
     <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;397406:397407&#39;</span><span class="p">,</span>
     <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;AveragePol&#39;</span><span class="p">,</span>
     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;container_bt1_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span>
-<span class="p">)</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span><span class="p">)</span>
 <span class="c1"># empty container for bt2, tth=75</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
     <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;397397:397398&#39;</span><span class="p">,</span>
     <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;AveragePol&#39;</span><span class="p">,</span>
     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;container_bt2_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span>
-<span class="p">)</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span><span class="p">)</span>
 
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
     <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;450769:450770&#39;</span><span class="p">,</span>
@@ -826,8 +822,7 @@ Sample transmission is 0.963
     <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;container_ws&#39;</span><span class="p">,</span>
     <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;0.9&#39;</span><span class="p">,</span>
     <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;AveragePol&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Quartz&#39;</span>
-<span class="p">)</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Quartz&#39;</span><span class="p">)</span>
 
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
     <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;450835:450836&#39;</span><span class="p">,</span>
@@ -841,8 +836,7 @@ Sample transmission is 0.963
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">vanadium_dictionary</span><span class="p">,</span>
     <span class="n">AbsoluteNormalisation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">calibration_file</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span>
-<span class="p">)</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span><span class="p">)</span>
 
 <span class="c1"># bank position 1, tth=79.5</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
@@ -856,8 +850,7 @@ Sample transmission is 0.963
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sample_dictionary</span><span class="p">,</span>
     <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;SingleCrystal&#39;</span><span class="p">,</span>
     <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">calibration_file</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span>
-<span class="p">)</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span><span class="p">)</span>
 <span class="c1"># bank position 2, tth=75</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
     <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;400287:400288&#39;</span><span class="p">,</span>
@@ -870,8 +863,7 @@ Sample transmission is 0.963
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sample_dictionary</span><span class="p">,</span>
     <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;SingleCrystal&#39;</span><span class="p">,</span>
     <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">calibration_file</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span>
-<span class="p">)</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span><span class="p">)</span>
 <span class="n">appended_ws</span> <span class="o">=</span> <span class="s1">&#39;appended_ws&#39;</span>
 <span class="n">AppendSpectra</span><span class="p">(</span><span class="n">InputWorkspace1</span><span class="o">=</span><span class="s1">&#39;bt1&#39;</span><span class="p">,</span> <span class="n">InputWorkspace2</span><span class="o">=</span><span class="s1">&#39;bt2&#39;</span><span class="p">,</span>
 <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">appended_ws</span><span class="p">)</span>
@@ -966,7 +958,7 @@ Sample transmission is 0.963
              <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span><span class="p">,</span>
              <span class="n">FrameOverlapCorrection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
              <span class="n">DetectorEnergyEfficiencyCorrection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-             <span class="n">ConvertToEnergy</span><span class="o">=</span><span class="kc">True</span>
+             <span class="n">ConvertToEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
              <span class="n">ClearCache</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 </pre></div>
@@ -988,7 +980,7 @@ Journal of Applied Crystallography <strong>42</strong> (2009) 69-84
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id24" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c47df2f79f849a035909b362d2d8a8a2780c5aac/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/PolDiffILLReduction.py">PolDiffILLReduction.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/05c27bc88c14e198627997449afbc1e6dd420c2d/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/PolDiffILLReduction.py">PolDiffILLReduction.py</a></p>
 </section>
 </section>
 

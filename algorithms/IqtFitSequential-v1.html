@@ -322,9 +322,9 @@
 <p><strong>Example - Running IqtFitSequential on an reduced workspace.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Load in iqt data</span>
 <span class="n">input_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;iris26176_graphite002_iqt.nxs&#39;</span><span class="p">)</span>
-<span class="n">function</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;name=LinearBackground,A0=0.027668,A1=0,ties=(A1=0);</span>
-             <span class="n">name</span><span class="o">=</span><span class="n">UserFunction</span><span class="p">,</span><span class="n">Formula</span><span class="o">=</span><span class="n">Intensity</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">Tau</span><span class="p">)</span><span class="o">^</span><span class="n">Beta</span><span class="p">),</span><span class="n">Intensity</span><span class="o">=</span><span class="mf">0.972332</span><span class="p">,</span><span class="n">Tau</span><span class="o">=</span><span class="mf">0.0247558</span><span class="p">,</span><span class="n">Beta</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-             <span class="n">ties</span><span class="o">=</span><span class="p">(</span><span class="n">f1</span><span class="o">.</span><span class="n">Intensity</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">f0</span><span class="o">.</span><span class="n">A0</span><span class="p">)</span><span class="s1">&#39;</span>
+<span class="n">function</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;name=LinearBackground,A0=0.027668,A1=0,ties=(A1=0);&#39;</span> \
+             <span class="s1">&#39;name=UserFunction,Formula=Intensity*exp(-(x/Tau)^Beta),Intensity=0.972332,Tau=0.0247558,Beta=1;&#39;</span> \
+             <span class="s1">&#39;ties=(f1.Intensity=1-f0.A0)&#39;</span>
 
 <span class="c1">#run IqtFitSequential</span>
 <span class="n">result</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">fit_group</span> <span class="o">=</span> <span class="n">IqtFitSequential</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">input_ws</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="p">,</span>
@@ -335,8 +335,8 @@
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c47df2f79f849a035909b362d2d8a8a2780c5aac/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/IqtFit.h">IqtFit.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c47df2f79f849a035909b362d2d8a8a2780c5aac/Framework/CurveFitting/src/Algorithms/IqtFit.cpp">IqtFit.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/05c27bc88c14e198627997449afbc1e6dd420c2d/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/IqtFit.h">IqtFit.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/05c27bc88c14e198627997449afbc1e6dd420c2d/Framework/CurveFitting/src/Algorithms/IqtFit.cpp">IqtFit.cpp</a></p>
 </section>
 </section>
 

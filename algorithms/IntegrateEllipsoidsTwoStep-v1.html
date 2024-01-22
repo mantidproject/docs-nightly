@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>IntegrateEllipsoidsTwoStep v1</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,45 +106,39 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="integrateellipsoidstwostep-v1">
-<span id="algm-integrateellipsoidstwostep"></span><span id="algm-integrateellipsoidstwostep-v1"></span><h1>IntegrateEllipsoidsTwoStep v1<a class="headerlink" href="#integrateellipsoidstwostep-v1" title="Permalink to this heading">¶</a></h1>
-<figure class="align-right" id="id1">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/IntegrateEllipsoidsTwoStep-v1_dlg.png"><img alt="../_images/IntegrateEllipsoidsTwoStep-v1_dlg.png" class="screenshot" src="../_images/IntegrateEllipsoidsTwoStep-v1_dlg.png" style="width: 341px;" /></a>
-<figcaption>
-<p><span class="caption-text"><strong>IntegrateEllipsoidsTwoStep</strong> dialog.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<span id="algm-integrateellipsoidstwostep"></span><span id="algm-integrateellipsoidstwostep-v1"></span><h1>IntegrateEllipsoidsTwoStep v1<a class="headerlink" href="#integrateellipsoidstwostep-v1" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id3">Summary</a></p>
+<li><p><a class="reference internal" href="#summary" id="id2">Summary</a></p>
 <ul>
-<li><p><a class="reference internal" href="#see-also" id="id4">See Also</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id3">See Also</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#properties" id="id5">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id6">Description</a></p>
+<li><p><a class="reference internal" href="#properties" id="id4">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id5">Description</a></p>
 <ul>
-<li><p><a class="reference internal" href="#overview-and-similar-algorithms" id="id7">Overview and similar algorithms</a></p></li>
-<li><p><a class="reference internal" href="#explanation-of-inputs" id="id8">Explanation of Inputs</a></p></li>
-<li><p><a class="reference internal" href="#detailed-algorithm-description" id="id9">Detailed Algorithm Description</a></p></li>
-<li><p><a class="reference internal" href="#integrateifonedge-false-option" id="id10">IntegrateIfOnEdge=False option</a></p></li>
-<li><p><a class="reference internal" href="#sigma-from-the-background" id="id11">Sigma from the background</a></p></li>
+<li><p><a class="reference internal" href="#overview-and-similar-algorithms" id="id6">Overview and similar algorithms</a></p></li>
+<li><p><a class="reference internal" href="#explanation-of-inputs" id="id7">Explanation of Inputs</a></p></li>
+<li><p><a class="reference internal" href="#detailed-algorithm-description" id="id8">Detailed Algorithm Description</a></p></li>
+<li><p><a class="reference internal" href="#integrateifonedge-false-option" id="id9">IntegrateIfOnEdge=False option</a></p></li>
+<li><p><a class="reference internal" href="#sigma-from-the-background" id="id10">Sigma from the background</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#usage" id="id12">Usage</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id13">Source</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id11">Usage</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id12">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Integrate Single Crystal Diffraction Bragg peaks using 3D ellipsoids.</p>
 <section id="see-also">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="IntegrateEllipsoids-v3.html#algm-integrateellipsoids"><span class="std std-ref">IntegrateEllipsoids</span></a></p>
 </section>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -245,9 +237,9 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <section id="overview-and-similar-algorithms">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Overview and similar algorithms</a><a class="headerlink" href="#overview-and-similar-algorithms" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Overview and similar algorithms</a><a class="headerlink" href="#overview-and-similar-algorithms" title="Link to this heading">¶</a></h3>
 <p>This algorithm will integrate disjoint single crystal Bragg peaks by
 summing the number of raw or weighted events in a 3D ellipsoidal peak region in
 reciprocal space (See <em>IntegrateInHKL</em> option for integrating in HKL)
@@ -295,7 +287,7 @@ multidetectors.” <em>Journal of Applied Crystallography</em> 21.5 (1988): 471-
 </div></blockquote>
 </section>
 <section id="explanation-of-inputs">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Explanation of Inputs</a><a class="headerlink" href="#explanation-of-inputs" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Explanation of Inputs</a><a class="headerlink" href="#explanation-of-inputs" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>The event data to be integrated is obtained from an ordinary
 <a class="reference internal" href="../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspace</span></a>
@@ -318,10 +310,10 @@ background. As the size of the <em>RegionRadius</em> increases, the ellipsoids
 will become more spherical and less well adapted to the actual shape
 of the peak.</p></li>
 </ul>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id1">
 <img alt="IntegrateEllipsoids.png" src="../_images/IntegrateEllipsoids.png" />
 <figcaption>
-<p><span class="caption-text">IntegrateEllipsoidsTwoStep algorithm regions map.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">IntegrateEllipsoidsTwoStep algorithm regions map.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -367,7 +359,7 @@ intensities.</p></li>
 </ul>
 </section>
 <section id="detailed-algorithm-description">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Detailed Algorithm Description</a><a class="headerlink" href="#detailed-algorithm-description" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Detailed Algorithm Description</a><a class="headerlink" href="#detailed-algorithm-description" title="Link to this heading">¶</a></h3>
 <p>This algorithm will integrate a list of indexed single-crystal diffraction peaks
 from a <em>PeaksWorkspace</em>, using events from an ( <a class="reference internal" href="../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspace</span></a> ).  The indexed peaks are first used to determine a <a class="reference internal" href="../concepts/Lattice.html#lattice"><span class="std std-ref">UB matrix</span></a>.
 The inverse of that <a class="reference internal" href="../concepts/Lattice.html#lattice"><span class="std std-ref">UB matrix</span></a> is then used to form lists of events that are
@@ -432,7 +424,7 @@ fraction of a unit contour contained within the total integration contour of the
 strong peak is used to weight the integrated intensity for the weak peak.</p>
 </section>
 <section id="integrateifonedge-false-option">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">IntegrateIfOnEdge=False option</a><a class="headerlink" href="#integrateifonedge-false-option" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">IntegrateIfOnEdge=False option</a><a class="headerlink" href="#integrateifonedge-false-option" title="Link to this heading">¶</a></h3>
 <p>Edges for each bank or pack of tubes of the instrument are defined by masking
 the edges in the PeaksWorkspace instrument.  e.g. For CORELLI, tubes 1 and 16,
 and pixels 0 and 255.  Q in the lab frame for every peak is calculated, call it
@@ -456,7 +448,7 @@ the background events are scaled by estimating the volume of the ellipsoid on
 the detector.</p>
 </section>
 <section id="sigma-from-the-background">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Sigma from the background</a><a class="headerlink" href="#sigma-from-the-background" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Sigma from the background</a><a class="headerlink" href="#sigma-from-the-background" title="Link to this heading">¶</a></h3>
 <p>The sigma from the background could be too small because the background contains
 events from other peaks. In an effort to reduce this, all the background events
 are sorted and the top 1% are removed. Note that this behaviour is optional and
@@ -465,13 +457,13 @@ It is enabled by default.</p>
 </section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p><strong>Example - IntegrateEllipsoids:</strong></p>
 <p>User should provide their own event nexus file instead of <strong>TOPAZ_3132_event.nxs</strong>
 used within this example. The original <strong>TOPAZ_3132_event.nxs</strong> file is
 available in <a class="reference external" href="https://github.com/mantidproject/systemtests/tree/master/Data/TOPAZ_3132_event.nxs">Mantid system tests repository</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">print_tableWS</span><span class="p">(</span><span class="n">pTWS</span><span class="p">,</span><span class="n">nRows</span><span class="p">):</span>
-<span class="linenos"> 2</span>    <span class="sd">&#39;&#39;&#39; Method to print part of the table workspace &#39;&#39;&#39;</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="sd">&#39;&#39;&#39; Method to print part of the table workspace &#39;&#39;&#39;</span>
 <span class="linenos"> 3</span>    <span class="n">tab_names</span><span class="o">=</span><span class="n">pTWS</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 <span class="linenos"> 4</span>    <span class="n">row</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 <span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tab_names</span><span class="p">:</span>
@@ -527,9 +519,9 @@ available in <a class="reference external" href="https://github.com/mantidprojec
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Crystal/Integration.html">Crystal\Integration</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/MDAlgorithms/inc/MantidMDAlgorithms/IntegrateEllipsoidsTwoStep.h">IntegrateEllipsoidsTwoStep.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/MDAlgorithms/src/IntegrateEllipsoidsTwoStep.cpp">IntegrateEllipsoidsTwoStep.cpp</a></p>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/MDAlgorithms/inc/MantidMDAlgorithms/IntegrateEllipsoidsTwoStep.h">IntegrateEllipsoidsTwoStep.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/MDAlgorithms/src/IntegrateEllipsoidsTwoStep.cpp">IntegrateEllipsoidsTwoStep.cpp</a></p>
 </section>
 </section>
 

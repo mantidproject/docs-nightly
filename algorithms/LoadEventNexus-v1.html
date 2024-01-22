@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>LoadEventNexus v1</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="LoadEventPreNexus v2" href="LoadEventPreNexus-v2.html" />
-    <link rel="prev" title="LoadEventAndCompress v1" href="LoadEventAndCompress-v1.html" />
+    <link rel="prev" title="Description" href="LoadEventAsWorkspace2D-v1.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,49 +106,43 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="loadeventnexus-v1">
-<span id="algm-loadeventnexus"></span><span id="algm-loadeventnexus-v1"></span><h1>LoadEventNexus v1<a class="headerlink" href="#loadeventnexus-v1" title="Permalink to this heading">¶</a></h1>
-<figure class="align-right" id="id1">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/LoadEventNexus-v1_dlg.png"><img alt="../_images/LoadEventNexus-v1_dlg.png" class="screenshot" src="../_images/LoadEventNexus-v1_dlg.png" style="width: 341px;" /></a>
-<figcaption>
-<p><span class="caption-text"><strong>LoadEventNexus</strong> dialog.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<span id="algm-loadeventnexus"></span><span id="algm-loadeventnexus-v1"></span><h1>LoadEventNexus v1<a class="headerlink" href="#loadeventnexus-v1" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id2">Summary</a></p>
+<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p>
 <ul>
-<li><p><a class="reference internal" href="#see-also" id="id3">See Also</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id2">See Also</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#properties" id="id4">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id5">Description</a></p>
+<li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id4">Description</a></p>
 <ul>
-<li><p><a class="reference internal" href="#child-algorithms-used" id="id6">Child algorithms used</a></p></li>
-<li><p><a class="reference internal" href="#optional-properties" id="id7">Optional properties</a></p></li>
-<li><p><a class="reference internal" href="#veto-pulses" id="id8">Veto Pulses</a></p></li>
-<li><p><a class="reference internal" href="#data-loaded-from-nexus-file" id="id9">Data Loaded from Nexus File</a></p></li>
-<li><p><a class="reference internal" href="#invalid-period-logs-error" id="id10">Invalid Period Logs Error</a></p>
+<li><p><a class="reference internal" href="#child-algorithms-used" id="id5">Child algorithms used</a></p></li>
+<li><p><a class="reference internal" href="#optional-properties" id="id6">Optional properties</a></p></li>
+<li><p><a class="reference internal" href="#veto-pulses" id="id7">Veto Pulses</a></p></li>
+<li><p><a class="reference internal" href="#data-loaded-from-nexus-file" id="id8">Data Loaded from Nexus File</a></p></li>
+<li><p><a class="reference internal" href="#invalid-period-logs-error" id="id9">Invalid Period Logs Error</a></p>
 <ul>
-<li><p><a class="reference internal" href="#sample-object" id="id11">Sample Object</a></p></li>
+<li><p><a class="reference internal" href="#sample-object" id="id10">Sample Object</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#usage" id="id12">Usage</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id13">Source</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id11">Usage</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id12">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Loads an Event NeXus file and stores as an EventWorkspace. Optionally, you can filter out events falling outside a range of times-of-flight and/or a time interval.</p>
 <section id="see-also">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="LoadISISNexus-v2.html#algm-loadisisnexus"><span class="std std-ref">LoadISISNexus</span></a>, <a class="reference internal" href="LoadEventAndCompress-v1.html#algm-loadeventandcompress"><span class="std std-ref">LoadEventAndCompress</span></a></p>
 </section>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -345,7 +337,7 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>The LoadEventNeXus algorithm loads data from an EventNexus file into an
 <a class="reference internal" href="../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspace</span></a>. The histogram bin
 boundaries depend on the setting of NumberOfBins, which by default will be the whole range of time of flight able to hold all events (in all
@@ -353,7 +345,7 @@ pixels) split into NumberOfBins linear bins, and will have their <a class="refer
 Since it is an <a class="reference internal" href="../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspace</span></a>, it can be rebinned
 to finer bins with no loss of data.</p>
 <section id="child-algorithms-used">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Child algorithms used</a><a class="headerlink" href="#child-algorithms-used" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Child algorithms used</a><a class="headerlink" href="#child-algorithms-used" title="Link to this heading">¶</a></h3>
 <p><strong>Sample logs</strong>, such as motor positions or e.g. temperature vs time, are
 also loaded using <a class="reference internal" href="LoadNexusLogs-v1.html#algm-loadnexuslogs"><span class="std std-ref">LoadNexusLogs</span></a>.</p>
 <p><strong>Monitors</strong> are loaded using <a class="reference internal" href="LoadNexusMonitors-v2.html#algm-loadnexusmonitors"><span class="std std-ref">LoadNexusMonitors</span></a>.</p>
@@ -370,7 +362,7 @@ using <a class="reference internal" href="LoadIDFFromNexus-v1.html#algm-loadidff
 <a class="reference internal" href="LoadInstrument-v1.html#algm-loadinstrument"><span class="std std-ref">LoadInstrument</span></a></p>
 </section>
 <section id="optional-properties">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Optional properties</a><a class="headerlink" href="#optional-properties" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Optional properties</a><a class="headerlink" href="#optional-properties" title="Link to this heading">¶</a></h3>
 <p>If desired, you can filter out the events at the time of loading, by
 specifying minimum and maximum time-of-flight values. This can speed up
 loading and reduce memory requirements if you are only interested in a
@@ -394,13 +386,13 @@ by the speed-up in avoid re-allocating, so the net result is smaller
 memory footprint and approximately the same loading time.</p>
 </section>
 <section id="veto-pulses">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Veto Pulses</a><a class="headerlink" href="#veto-pulses" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Veto Pulses</a><a class="headerlink" href="#veto-pulses" title="Link to this heading">¶</a></h3>
 <p>Veto pulses can be filtered out in a separate step using
 <a class="reference internal" href="FilterByLogValue-v1.html#algm-filterbylogvalue"><span class="std std-ref">FilterByLogValue v1</span></a>:</p>
 <p><code class="docutils literal notranslate"><span class="pre">FilterByLogValue(InputWorkspace=&quot;ws&quot;, OutputWorkspace=&quot;ws&quot;, LogName=&quot;veto_pulse_time&quot;, PulseFilter=&quot;1&quot;)</span></code></p>
 </section>
 <section id="data-loaded-from-nexus-file">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Data Loaded from Nexus File</a><a class="headerlink" href="#data-loaded-from-nexus-file" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Data Loaded from Nexus File</a><a class="headerlink" href="#data-loaded-from-nexus-file" title="Link to this heading">¶</a></h3>
 <p>If <cite>LoadAllLogs</cite> is checked, all the logs in the Nexus files will be loaded directly in the sample logs as they are.
 The <cite>LoadLogs</cite> flag will be ignored.
 If only <cite>LoadLogs</cite> is checked, only a subset of the logs will be processed and loaded, in the manner described afterward.</p>
@@ -457,7 +449,7 @@ else sample not loaded</p></td>
 </table>
 </section>
 <section id="invalid-period-logs-error">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Invalid Period Logs Error</a><a class="headerlink" href="#invalid-period-logs-error" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Invalid Period Logs Error</a><a class="headerlink" href="#invalid-period-logs-error" title="Link to this heading">¶</a></h3>
 <p>There is an issue specific to ISIS, particularly on long runs, where noise on data collection instruments can change the period
 of the data. This can cause the period associated with certain data points to exceed the total number of periods we expect.</p>
 <p>LoadEventNeXus compares the total number of periods we expect, which can be found in the <strong>periods/number</strong> attribute of the run,
@@ -468,7 +460,7 @@ in the script repository, <em>user/TomTitcombe/correct_period_logs.py</em>, whic
 <p>If you expect more than 1 periods, there is currently no solution script available through Mantid. You should contact the Mantid team to discuss
 the problem and possible solutions.</p>
 <section id="sample-object">
-<h4><a class="toc-backref" href="#id11" role="doc-backlink">Sample Object</a><a class="headerlink" href="#sample-object" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">Sample Object</a><a class="headerlink" href="#sample-object" title="Link to this heading">¶</a></h4>
 <p>If <code class="docutils literal notranslate"><span class="pre">isis_vms_compat</span></code> exists,
 then the following sample properties are read from it:</p>
 <table class="docutils align-default">
@@ -497,7 +489,7 @@ then the following sample properties are read from it:</p>
 </section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To run these usage examples please first download the
@@ -506,7 +498,7 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - Load SNS/ISIS event Nexus file:</strong></p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load SNS HYS event dataset</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load SNS HYS event dataset</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">LoadEventNexus</span><span class="p">(</span><span class="s1">&#39;HYS_11092_event.nxs&#39;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of histograms (spectra) is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
@@ -517,7 +509,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </pre></div>
 </div>
 <p><strong>Example - Load event nexus file with time filtering:</strong></p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load SNS CNCS event dataset between 1 and 2 minutes</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load SNS CNCS event dataset between 1 and 2 minutes</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">LoadEventNexus</span><span class="p">(</span><span class="s1">&#39;CNCS_7860_event.nxs&#39;</span><span class="p">,</span> <span class="n">FilterByTimeStart</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">FilterByTimeStop</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of events: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
@@ -530,9 +522,9 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/DataHandling/Nexus.html">DataHandling\Nexus</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/DataHandling/inc/MantidDataHandling/LoadEventNexus.h">LoadEventNexus.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/DataHandling/src/LoadEventNexus.cpp">LoadEventNexus.cpp</a></p>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/DataHandling/inc/MantidDataHandling/LoadEventNexus.h">LoadEventNexus.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/DataHandling/src/LoadEventNexus.cpp">LoadEventNexus.cpp</a></p>
 </section>
 </section>
 
@@ -549,7 +541,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
           
             
   <li>
-    <a href="LoadEventAndCompress-v1.html" title="Previous Chapter: LoadEventAndCompress v1"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; LoadEventAndC...</span>
+    <a href="LoadEventAsWorkspace2D-v1.html" title="Previous Chapter: Description"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Description</span>
     </a>
   </li>
   <li>

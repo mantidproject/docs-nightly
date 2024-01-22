@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>EstimateFitParameters v1</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,43 +106,37 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="estimatefitparameters-v1">
-<span id="algm-estimatefitparameters"></span><span id="algm-estimatefitparameters-v1"></span><h1>EstimateFitParameters v1<a class="headerlink" href="#estimatefitparameters-v1" title="Permalink to this heading">¶</a></h1>
-<figure class="align-right" id="id1">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/EstimateFitParameters-v1_dlg.png"><img alt="../_images/EstimateFitParameters-v1_dlg.png" class="screenshot" src="../_images/EstimateFitParameters-v1_dlg.png" style="width: 341px;" /></a>
-<figcaption>
-<p><span class="caption-text"><strong>EstimateFitParameters</strong> dialog.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<span id="algm-estimatefitparameters"></span><span id="algm-estimatefitparameters-v1"></span><h1>EstimateFitParameters v1<a class="headerlink" href="#estimatefitparameters-v1" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id2">Summary</a></p>
+<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p>
 <ul>
-<li><p><a class="reference internal" href="#see-also" id="id3">See Also</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id2">See Also</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#properties" id="id4">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id5">Description</a></p>
+<li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id4">Description</a></p>
 <ul>
-<li><p><a class="reference internal" href="#monte-carlo" id="id6">Monte Carlo</a></p></li>
-<li><p><a class="reference internal" href="#cross-entropy" id="id7">Cross Entropy</a></p></li>
-<li><p><a class="reference internal" href="#finding-bad-parameters" id="id8">Finding Bad Parameters</a></p></li>
+<li><p><a class="reference internal" href="#monte-carlo" id="id5">Monte Carlo</a></p></li>
+<li><p><a class="reference internal" href="#cross-entropy" id="id6">Cross Entropy</a></p></li>
+<li><p><a class="reference internal" href="#finding-bad-parameters" id="id7">Finding Bad Parameters</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#usage" id="id9">Usage</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id10">Source</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id8">Usage</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id9">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Estimate parameters of a fitting function using a Monte Carlo algorithm.</p>
 <section id="see-also">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="Fit-v1.html#algm-fit"><span class="std std-ref">Fit</span></a>, <a class="reference internal" href="EstimatePeakErrors-v1.html#algm-estimatepeakerrors"><span class="std std-ref">EstimatePeakErrors</span></a></p>
 </section>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -261,7 +253,7 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This algorithm uses a Monte Carlo - type approach to estimate initial values of function parameters
 before passing the function to <a class="reference internal" href="Fit-v1.html#algm-fit"><span class="std std-ref">Fit v1</span></a> algorithm.
 The user needs to provide the search intervals for each parameters that requires estimation.
@@ -278,7 +270,7 @@ respectively such that the cost function is the smallest.</p>
 </div>
 <p>The algorithm uses one of the two strategies (set via <cite>Type</cite> property): “Monte Carlo” and “Cross Entropy”.</p>
 <section id="monte-carlo">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Monte Carlo</a><a class="headerlink" href="#monte-carlo" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Monte Carlo</a><a class="headerlink" href="#monte-carlo" title="Link to this heading">¶</a></h3>
 <p>In this strategy a number (defined by <cite>NSamples</cite> property) of parameter sets are generated and the one that
 gives the smallest cost function is considered the winner. These best parameters are set to <cite>Function</cite>
 property (it has the <cite>InOut</cite> direction).</p>
@@ -290,7 +282,7 @@ have the parameter sets with the smallest cost fnction values. Below is an examp
 </figure>
 </section>
 <section id="cross-entropy">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Cross Entropy</a><a class="headerlink" href="#cross-entropy" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Cross Entropy</a><a class="headerlink" href="#cross-entropy" title="Link to this heading">¶</a></h3>
 <p>This strategy iteratively tries to narrow down the search space using statistics from a previous iteration.</p>
 <p>The steps of the algorithm:</p>
 <ol class="arabic simple">
@@ -302,16 +294,16 @@ have the parameter sets with the smallest cost fnction values. Below is an examp
 </ol>
 </section>
 <section id="finding-bad-parameters">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Finding Bad Parameters</a><a class="headerlink" href="#finding-bad-parameters" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Finding Bad Parameters</a><a class="headerlink" href="#finding-bad-parameters" title="Link to this heading">¶</a></h3>
 <p>It may happen that some of the parameters cannot be determined from the data set in the <cite>InputWorkspace</cite>. If this is the case <a class="reference internal" href="Fit-v1.html#algm-fit"><span class="std std-ref">Fit v1</span></a> may diverge
 or fail with an error. To try and find such parameters set <cite>FixBadParameters</cite> to <cite>true</cite>.
 If the algorithm decides that some of the parameters may cause problems it will fix them.</p>
 </section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p><strong>Example 1.</strong></p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a data set. It is a BackToBackExponential.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a data set. It is a BackToBackExponential.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">8.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span>  <span class="mf">1.6</span><span class="p">,</span>  <span class="mf">2.6</span><span class="p">,</span>  <span class="mf">3.6</span><span class="p">,</span>  <span class="mf">4.6</span><span class="p">,</span>  <span class="mf">5.6</span><span class="p">,</span>  <span class="mf">6.6</span><span class="p">,</span>  <span class="mf">7.6</span><span class="p">,</span>  <span class="mf">8.5</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.899424685451e-06</span><span class="p">,</span> <span class="mf">0.0007065291085075</span><span class="p">,</span> <span class="mf">0.03312893859911</span><span class="p">,</span>
         <span class="mf">0.6260554060356</span><span class="p">,</span>    <span class="mf">4.961949842664</span><span class="p">,</span>     <span class="mf">17.4766663495</span><span class="p">,</span>
@@ -359,7 +351,7 @@ If the algorithm decides that some of the parameters may cause problems it will 
 </pre></div>
 </div>
 <p><strong>Example 2.</strong></p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a data set. It is a Gaussian.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a data set. It is a Gaussian.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">8.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span>  <span class="mf">1.6</span><span class="p">,</span>  <span class="mf">2.6</span><span class="p">,</span>  <span class="mf">3.6</span><span class="p">,</span>  <span class="mf">4.6</span><span class="p">,</span>  <span class="mf">5.6</span><span class="p">,</span>  <span class="mf">6.6</span><span class="p">,</span>  <span class="mf">7.6</span><span class="p">,</span>  <span class="mf">8.5</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.18295779512548e-08</span><span class="p">,</span> <span class="mf">1.13372713874796e-06</span><span class="p">,</span> <span class="mf">3.57128496416351e-05</span><span class="p">,</span>
     <span class="mf">0.000682328052756376</span><span class="p">,</span> <span class="mf">0.00790705405159343</span><span class="p">,</span> <span class="mf">0.0555762126114831</span><span class="p">,</span>
@@ -415,9 +407,9 @@ If the algorithm decides that some of the parameters may cause problems it will 
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Optimization.html">Optimization</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/EstimateFitParameters.h">EstimateFitParameters.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/CurveFitting/src/Algorithms/EstimateFitParameters.cpp">EstimateFitParameters.cpp</a></p>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/EstimateFitParameters.h">EstimateFitParameters.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/CurveFitting/src/Algorithms/EstimateFitParameters.cpp">EstimateFitParameters.cpp</a></p>
 </section>
 </section>
 

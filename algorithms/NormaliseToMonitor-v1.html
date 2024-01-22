@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>NormaliseToMonitor v1</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,45 +106,39 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="normalisetomonitor-v1">
-<span id="algm-normalisetomonitor"></span><span id="algm-normalisetomonitor-v1"></span><h1>NormaliseToMonitor v1<a class="headerlink" href="#normalisetomonitor-v1" title="Permalink to this heading">¶</a></h1>
-<figure class="align-right" id="id1">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/NormaliseToMonitor-v1_dlg.png"><img alt="../_images/NormaliseToMonitor-v1_dlg.png" class="screenshot" src="../_images/NormaliseToMonitor-v1_dlg.png" style="width: 284px;" /></a>
-<figcaption>
-<p><span class="caption-text"><strong>NormaliseToMonitor</strong> dialog.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<span id="algm-normalisetomonitor"></span><span id="algm-normalisetomonitor-v1"></span><h1>NormaliseToMonitor v1<a class="headerlink" href="#normalisetomonitor-v1" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id2">Summary</a></p>
+<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p>
 <ul>
-<li><p><a class="reference internal" href="#see-also" id="id3">See Also</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id2">See Also</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#properties" id="id4">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id5">Description</a></p>
+<li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id4">Description</a></p>
 <ul>
-<li><p><a class="reference internal" href="#bin-by-bin-mode" id="id6">Bin-by-bin mode</a></p></li>
-<li><p><a class="reference internal" href="#normalisation-by-integrated-count-mode" id="id7">Normalisation by integrated count mode</a></p></li>
-<li><p><a class="reference internal" href="#restrictions-on-the-input-workspace" id="id8">Restrictions on the input workspace</a></p></li>
-<li><p><a class="reference internal" href="#detector-scan-workspaces" id="id9">Detector Scan Workspaces</a></p></li>
-<li><p><a class="reference internal" href="#child-algorithms-used" id="id10">Child Algorithms used</a></p></li>
+<li><p><a class="reference internal" href="#bin-by-bin-mode" id="id5">Bin-by-bin mode</a></p></li>
+<li><p><a class="reference internal" href="#normalisation-by-integrated-count-mode" id="id6">Normalisation by integrated count mode</a></p></li>
+<li><p><a class="reference internal" href="#restrictions-on-the-input-workspace" id="id7">Restrictions on the input workspace</a></p></li>
+<li><p><a class="reference internal" href="#detector-scan-workspaces" id="id8">Detector Scan Workspaces</a></p></li>
+<li><p><a class="reference internal" href="#child-algorithms-used" id="id9">Child Algorithms used</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#usage" id="id11">Usage</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id12">Source</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id10">Usage</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id11">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Normalizes a 2D workspace by a specified spectrum, spectrum, described by a monitor ID or spectrun provided in a separate worskspace.</p>
 <section id="see-also">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="Divide-v1.html#algm-divide"><span class="std std-ref">Divide</span></a></p>
 </section>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -221,9 +213,9 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <section id="bin-by-bin-mode">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Bin-by-bin mode</a><a class="headerlink" href="#bin-by-bin-mode" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Bin-by-bin mode</a><a class="headerlink" href="#bin-by-bin-mode" title="Link to this heading">¶</a></h3>
 <p>In this, the default scenario, each spectrum in the workspace is
 normalised on a bin-by-bin basis by the monitor spectrum given. The
 error on the monitor spectrum is taken into account. The normalisation
@@ -249,7 +241,7 @@ with the issue:</p>
 </ul>
 </section>
 <section id="normalisation-by-integrated-count-mode">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Normalisation by integrated count mode</a><a class="headerlink" href="#normalisation-by-integrated-count-mode" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Normalisation by integrated count mode</a><a class="headerlink" href="#normalisation-by-integrated-count-mode" title="Link to this heading">¶</a></h3>
 <p>This mode is used if one or both of the relevant ‘IntegrationRange’
 optional parameters are set. If either is set to a value outside the
 workspace range, then it will be reset to the frame minimum or maximum,
@@ -260,19 +252,19 @@ place, meaning that the output values in the output workspace are
 technically dimensionless.</p>
 </section>
 <section id="restrictions-on-the-input-workspace">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Restrictions on the input workspace</a><a class="headerlink" href="#restrictions-on-the-input-workspace" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Restrictions on the input workspace</a><a class="headerlink" href="#restrictions-on-the-input-workspace" title="Link to this heading">¶</a></h3>
 <p>The data must be histogram, non-distribution data. The exception to the histogram requirement is for workspaces that contain point data with
 a single count per spectrum. In this case the normalisation is performed by dividing every spectrum by the monitor counts, taking into
 account the error on the monitor counts.</p>
 </section>
 <section id="detector-scan-workspaces">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Detector Scan Workspaces</a><a class="headerlink" href="#detector-scan-workspaces" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Detector Scan Workspaces</a><a class="headerlink" href="#detector-scan-workspaces" title="Link to this heading">¶</a></h3>
 <p>Workspaces that have scanning detectors are supported by this algorithm, both for bin-by-bin mode and normlisation by integrated
 count. The only option for specifying the monitor is by ‘MonitorID’, attempting to use ‘MonitorSpectrum’ or MonitorWorkspaceIndex’
 will throw an error. In this case the ‘NormFactorWS’ output will contain a monitor spectrum for each time index.</p>
 </section>
 <section id="child-algorithms-used">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Child Algorithms used</a><a class="headerlink" href="#child-algorithms-used" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Child Algorithms used</a><a class="headerlink" href="#child-algorithms-used" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="ExtractSpectra-v1.html#algm-extractspectra"><span class="std std-ref">ExtractSpectra v1</span></a> algorithm is used
 to pull out the monitor spectrum if it’s part of the InputWorkspace or
 MonitorWorkspace. For the ‘integrated range’ option, the
@@ -281,7 +273,7 @@ spectrum.</p>
 </section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To run these usage examples please first download the
@@ -290,7 +282,7 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - Normalise to Monitor ID=1</strong></p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span><span class="n">Load</span><span class="p">(</span><span class="s1">&#39;IRS26173.raw&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span><span class="n">Load</span><span class="p">(</span><span class="s1">&#39;IRS26173.raw&#39;</span><span class="p">)</span>
 
 <span class="n">wsN</span> <span class="o">=</span> <span class="n">NormaliseToMonitor</span><span class="p">(</span> <span class="n">ws</span><span class="p">,</span> <span class="n">MonitorID</span><span class="o">=</span><span class="mi">1</span> <span class="p">)</span>
 
@@ -315,9 +307,9 @@ Selected data 1.485135, 0.741801
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/CorrectionFunctions/NormalisationCorrections.html">CorrectionFunctions\NormalisationCorrections</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/Algorithms/inc/MantidAlgorithms/NormaliseToMonitor.h">NormaliseToMonitor.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/Algorithms/src/NormaliseToMonitor.cpp">NormaliseToMonitor.cpp</a></p>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/Algorithms/inc/MantidAlgorithms/NormaliseToMonitor.h">NormaliseToMonitor.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/Algorithms/src/NormaliseToMonitor.cpp">NormaliseToMonitor.cpp</a></p>
 </section>
 </section>
 

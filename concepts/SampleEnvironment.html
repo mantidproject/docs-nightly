@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Sample Environment</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,12 +106,12 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="sample-environment">
-<span id="sampleenvironment"></span><h1>Sample Environment<a class="headerlink" href="#sample-environment" title="Permalink to this heading">¶</a></h1>
+<span id="sampleenvironment"></span><h1>Sample Environment<a class="headerlink" href="#sample-environment" title="Link to this heading">¶</a></h1>
 <p>A sample environment defines the container + components used to hold a sample
 during a run. This page details the process of a sample environment within
 Mantid.</p>
 <section id="specification">
-<h2>Specification<a class="headerlink" href="#specification" title="Permalink to this heading">¶</a></h2>
+<h2>Specification<a class="headerlink" href="#specification" title="Link to this heading">¶</a></h2>
 <p>A sample environment is defined by:</p>
 <ul class="simple">
 <li><p>one or more available containers, each with a defined <a class="reference internal" href="HowToDefineGeometricShape.html#howtodefinegeometricshape"><span class="std std-ref">geometry</span></a> and <a class="reference internal" href="Materials.html#materials"><span class="std std-ref">composition</span></a></p></li>
@@ -129,7 +127,7 @@ it can contain a reference to a CAD file in .3mf format that contains all the re
 information about the environment components</p>
 </section>
 <section id="xml-definition-file-explicit-definition">
-<h2>XML Definition File - Explicit Definition<a class="headerlink" href="#xml-definition-file-explicit-definition" title="Permalink to this heading">¶</a></h2>
+<h2>XML Definition File - Explicit Definition<a class="headerlink" href="#xml-definition-file-explicit-definition" title="Link to this heading">¶</a></h2>
 <p>An environment definition is contained within a file using XML syntax.</p>
 <p>Multiple containers can be specified in the definition. The correct container for a run
 must be chosen by the user at the time the environment is attached to a
@@ -139,25 +137,25 @@ workspace with the <code class="docutils literal notranslate"><span class="pre">
 defined by a CSG geometry and some components
 defined in a separate STL mesh file.</p>
 <section id="csg-geometry">
-<h3>CSG geometry<a class="headerlink" href="#csg-geometry" title="Permalink to this heading">¶</a></h3>
+<h3>CSG geometry<a class="headerlink" href="#csg-geometry" title="Link to this heading">¶</a></h3>
 <p>A minimal structure with a single container defined using CSG geometry would have the following form:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- Filename: CRYO-01.xml --&gt;</span>
 <span class="nt">&lt;environmentspec&gt;</span>
-  <span class="nt">&lt;materials&gt;</span>
-    <span class="nt">&lt;material</span> <span class="na">id=</span><span class="s">&quot;vanadium&quot;</span> <span class="na">formula=</span><span class="s">&quot;V&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/materials&gt;</span>
-  <span class="nt">&lt;components&gt;</span>
-    <span class="nt">&lt;containers&gt;</span>
-      <span class="nt">&lt;container</span> <span class="na">id=</span><span class="s">&quot;10mm&quot;</span> <span class="na">material=</span><span class="s">&quot;vanadium&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;geometry&gt;</span>
-        <span class="cm">&lt;!-- geometry of container --&gt;</span>
-        <span class="nt">&lt;/geometry&gt;</span>
-        <span class="nt">&lt;samplegeometry&gt;</span>
-        <span class="cm">&lt;!-- geometry of sample --&gt;</span>
-        <span class="nt">&lt;/samplegeometry&gt;</span>
-      <span class="nt">&lt;/container&gt;</span>
-    <span class="nt">&lt;/containers&gt;</span>
-  <span class="nt">&lt;/components&gt;</span>
+<span class="w">  </span><span class="nt">&lt;materials&gt;</span>
+<span class="w">    </span><span class="nt">&lt;material</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;vanadium&quot;</span><span class="w"> </span><span class="na">formula=</span><span class="s">&quot;V&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/materials&gt;</span>
+<span class="w">  </span><span class="nt">&lt;components&gt;</span>
+<span class="w">    </span><span class="nt">&lt;containers&gt;</span>
+<span class="w">      </span><span class="nt">&lt;container</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;10mm&quot;</span><span class="w"> </span><span class="na">material=</span><span class="s">&quot;vanadium&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- geometry of container --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;samplegeometry&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- geometry of sample --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/samplegeometry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/container&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/containers&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/components&gt;</span>
 <span class="nt">&lt;/environmentspec&gt;</span>
 </pre></div>
 </div>
@@ -167,23 +165,23 @@ used in the instrument definition files to define detector shapes. See
 CSG shapes can be plotted in Mantid, see <a class="reference internal" href="../plotting/MeshPlotHelp.html#mesh-plots"><span class="std std-ref">3D Mesh Plots for Sample Shapes</span></a>.</p>
 </section>
 <section id="mesh-files-stl">
-<h3>Mesh files - STL<a class="headerlink" href="#mesh-files-stl" title="Permalink to this heading">¶</a></h3>
+<h3>Mesh files - STL<a class="headerlink" href="#mesh-files-stl" title="Link to this heading">¶</a></h3>
 <p>The container and sample geometry can alternatively be defined using a mesh description by
 specifying an .stl file as follows.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;environmentspec&gt;</span>
-  <span class="nt">&lt;materials&gt;</span>
-    <span class="nt">&lt;material</span> <span class="na">id=</span><span class="s">&quot;vanadium&quot;</span> <span class="na">formula=</span><span class="s">&quot;V&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/materials&gt;</span>
-  <span class="nt">&lt;components&gt;</span>
-    <span class="nt">&lt;containers&gt;</span>
-      <span class="nt">&lt;container</span> <span class="na">id=</span><span class="s">&quot;10mm&quot;</span> <span class="na">material=</span><span class="s">&quot;vanadium&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;stlfile</span> <span class="na">filename=</span><span class="s">&quot;container.stl&quot;</span> <span class="na">scale=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/stlfile&gt;</span>
-        <span class="nt">&lt;samplestlfile</span> <span class="na">filename=</span><span class="s">&quot;sample.stl&quot;</span> <span class="na">scale=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/samplestlfile&gt;</span>
-      <span class="nt">&lt;/container&gt;</span>
-    <span class="nt">&lt;/containers&gt;</span>
-  <span class="nt">&lt;/components&gt;</span>
+<span class="w">  </span><span class="nt">&lt;materials&gt;</span>
+<span class="w">    </span><span class="nt">&lt;material</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;vanadium&quot;</span><span class="w"> </span><span class="na">formula=</span><span class="s">&quot;V&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/materials&gt;</span>
+<span class="w">  </span><span class="nt">&lt;components&gt;</span>
+<span class="w">    </span><span class="nt">&lt;containers&gt;</span>
+<span class="w">      </span><span class="nt">&lt;container</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;10mm&quot;</span><span class="w"> </span><span class="na">material=</span><span class="s">&quot;vanadium&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;stlfile</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;container.stl&quot;</span><span class="w"> </span><span class="na">scale=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/stlfile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;samplestlfile</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;sample.stl&quot;</span><span class="w"> </span><span class="na">scale=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/samplestlfile&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/container&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/containers&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/components&gt;</span>
 <span class="nt">&lt;/environmentspec&gt;</span>
 </pre></div>
 </div>
@@ -203,7 +201,7 @@ There are also various free software tools available that can view and edit .stl
 </ul>
 </section>
 <section id="materials">
-<h3>Materials<a class="headerlink" href="#materials" title="Permalink to this heading">¶</a></h3>
+<h3>Materials<a class="headerlink" href="#materials" title="Link to this heading">¶</a></h3>
 <p>Each component is assigned a material, which defines properties such as the
 number density and neutron scattering cross sections, amongst other things.
 All materials defined for an environment must be defined within the <code class="highlight docutils literal notranslate"><span class="pre">&lt;materials&gt;</span></code>
@@ -235,33 +233,33 @@ following places (in order):</p>
 </section>
 </section>
 <section id="non-container-components">
-<h2>Non-container Components<a class="headerlink" href="#non-container-components" title="Permalink to this heading">¶</a></h2>
+<h2>Non-container Components<a class="headerlink" href="#non-container-components" title="Link to this heading">¶</a></h2>
 <p>A given setup may have other components within the beam that must be included. These
 container be included using the <code class="highlight docutils literal notranslate"><span class="pre">component</span></code> tag rather than the <code class="highlight docutils literal notranslate"><span class="pre">container</span></code> tag. For
 example, a heat shield container be added to the above definition like so:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- Filename: CRYO-01.xml --&gt;</span>
 <span class="nt">&lt;environmentspec&gt;</span>
-  <span class="nt">&lt;materials&gt;</span>
-    <span class="nt">&lt;material</span> <span class="na">id=</span><span class="s">&quot;vanadium&quot;</span> <span class="na">formula=</span><span class="s">&quot;V&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;material</span> <span class="na">id=</span><span class="s">&quot;aluminium&quot;</span> <span class="na">formula=</span><span class="s">&quot;Al&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/materials&gt;</span>
-  <span class="nt">&lt;components&gt;</span>
-   <span class="nt">&lt;containers&gt;</span>
-    <span class="nt">&lt;container</span> <span class="na">id=</span><span class="s">&quot;10mm&quot;</span> <span class="na">material=</span><span class="s">&quot;vanadium&quot;</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;geometry&gt;</span>
-      <span class="cm">&lt;!-- geometry of container --&gt;</span>
-     <span class="nt">&lt;/geometry&gt;</span>
-     <span class="nt">&lt;samplegeometry&gt;</span>
-      <span class="cm">&lt;!-- geometry of sample --&gt;</span>
-     <span class="nt">&lt;/samplegeometry&gt;</span>
-    <span class="nt">&lt;/container&gt;</span>
-   <span class="nt">&lt;/containers&gt;</span>
-   <span class="nt">&lt;component</span> <span class="na">id=</span><span class="s">&quot;heat-shield&quot;</span> <span class="na">material=</span><span class="s">&quot;aluminium&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;geometry&gt;</span>
-     <span class="cm">&lt;!-- geometry of shield--&gt;</span>
-    <span class="nt">&lt;/geometry&gt;</span>
-   <span class="nt">&lt;/component&gt;</span>
-  <span class="nt">&lt;/components&gt;</span>
+<span class="w">  </span><span class="nt">&lt;materials&gt;</span>
+<span class="w">    </span><span class="nt">&lt;material</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;vanadium&quot;</span><span class="w"> </span><span class="na">formula=</span><span class="s">&quot;V&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;material</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;aluminium&quot;</span><span class="w"> </span><span class="na">formula=</span><span class="s">&quot;Al&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/materials&gt;</span>
+<span class="w">  </span><span class="nt">&lt;components&gt;</span>
+<span class="w">   </span><span class="nt">&lt;containers&gt;</span>
+<span class="w">    </span><span class="nt">&lt;container</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;10mm&quot;</span><span class="w"> </span><span class="na">material=</span><span class="s">&quot;vanadium&quot;</span><span class="nt">&gt;</span>
+<span class="w">     </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- geometry of container --&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">     </span><span class="nt">&lt;samplegeometry&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- geometry of sample --&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/samplegeometry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/container&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/containers&gt;</span>
+<span class="w">   </span><span class="nt">&lt;component</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;heat-shield&quot;</span><span class="w"> </span><span class="na">material=</span><span class="s">&quot;aluminium&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">     </span><span class="cm">&lt;!-- geometry of shield--&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/component&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/components&gt;</span>
 <span class="nt">&lt;/environmentspec&gt;</span>
 </pre></div>
 </div>
@@ -271,26 +269,26 @@ the <code class="highlight docutils literal notranslate"><span class="pre">conta
 <p>The non-container components can also be defined using mesh geometry by specifying stl file names</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- Filename: CRYO-01.xml --&gt;</span>
 <span class="nt">&lt;environmentspec&gt;</span>
-  <span class="nt">&lt;materials&gt;</span>
-    <span class="nt">&lt;material</span> <span class="na">id=</span><span class="s">&quot;vanadium&quot;</span> <span class="na">formula=</span><span class="s">&quot;V&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;material</span> <span class="na">id=</span><span class="s">&quot;aluminium&quot;</span> <span class="na">formula=</span><span class="s">&quot;Al&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/materials&gt;</span>
-  <span class="nt">&lt;components&gt;</span>
-    <span class="nt">&lt;containers&gt;</span>
-      <span class="nt">&lt;container</span> <span class="na">id=</span><span class="s">&quot;10mm&quot;</span> <span class="na">material=</span><span class="s">&quot;vanadium&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;stlfile</span> <span class="na">filename=</span><span class="s">&quot;container.stl&quot;</span> <span class="na">scale=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/stlfile&gt;</span>
-        <span class="nt">&lt;samplestlfile</span> <span class="na">filename=</span><span class="s">&quot;sample.stl&quot;</span> <span class="na">scale=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/samplestlfile&gt;</span>
-      <span class="nt">&lt;/container&gt;</span>
-    <span class="nt">&lt;/containers&gt;</span>
-    <span class="nt">&lt;component</span> <span class="na">id=</span><span class="s">&quot;heat-shield&quot;</span> <span class="na">material=</span><span class="s">&quot;aluminium&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;stlfile</span> <span class="na">filename=</span><span class="s">&quot;heat-shield.stl&quot;</span> <span class="na">scale=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;translation</span> <span class="na">vector=</span><span class="s">&quot;0,0,1.40384&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;rotation</span> <span class="na">ydegrees=</span><span class="s">&quot;180&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;/stlfile&gt;</span>
-    <span class="nt">&lt;/component&gt;</span>
-  <span class="nt">&lt;/components&gt;</span>
+<span class="w">  </span><span class="nt">&lt;materials&gt;</span>
+<span class="w">    </span><span class="nt">&lt;material</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;vanadium&quot;</span><span class="w"> </span><span class="na">formula=</span><span class="s">&quot;V&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;material</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;aluminium&quot;</span><span class="w"> </span><span class="na">formula=</span><span class="s">&quot;Al&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/materials&gt;</span>
+<span class="w">  </span><span class="nt">&lt;components&gt;</span>
+<span class="w">    </span><span class="nt">&lt;containers&gt;</span>
+<span class="w">      </span><span class="nt">&lt;container</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;10mm&quot;</span><span class="w"> </span><span class="na">material=</span><span class="s">&quot;vanadium&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;stlfile</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;container.stl&quot;</span><span class="w"> </span><span class="na">scale=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/stlfile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;samplestlfile</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;sample.stl&quot;</span><span class="w"> </span><span class="na">scale=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/samplestlfile&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/container&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/containers&gt;</span>
+<span class="w">    </span><span class="nt">&lt;component</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;heat-shield&quot;</span><span class="w"> </span><span class="na">material=</span><span class="s">&quot;aluminium&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;stlfile</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;heat-shield.stl&quot;</span><span class="w"> </span><span class="na">scale=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;translation</span><span class="w"> </span><span class="na">vector=</span><span class="s">&quot;0,0,1.40384&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rotation</span><span class="w"> </span><span class="na">ydegrees=</span><span class="s">&quot;180&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/stlfile&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/component&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/components&gt;</span>
 <span class="nt">&lt;/environmentspec&gt;</span>
 </pre></div>
 </div>
@@ -301,7 +299,7 @@ The rotation tag has available attributes xdegrees, ydegrees, zdegrees which all
 in degrees.</p>
 </section>
 <section id="xml-definition-file-3mf-definition">
-<h2>XML Definition File - 3MF Definition<a class="headerlink" href="#xml-definition-file-3mf-definition" title="Permalink to this heading">¶</a></h2>
+<h2>XML Definition File - 3MF Definition<a class="headerlink" href="#xml-definition-file-3mf-definition" title="Link to this heading">¶</a></h2>
 <p>The .3mf file format is a 3D printing format that allows multiple meshes with their relative orientations to be stored in a single file along with information on the scale
 used for vertex coordinates and metadata about the material properties. Further details on the format are available here:</p>
 <p><a class="reference external" href="https://3mf.io/">https://3mf.io/</a></p>
@@ -310,7 +308,7 @@ of supplying the full details as described above.</p>
 <p>The following xml example shows this type of reference:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- Filename: 3MFExample.xml --&gt;</span>
 <span class="nt">&lt;environmentspec&gt;</span>
-  <span class="nt">&lt;fullspecification</span> <span class="na">filename=</span><span class="s">&quot;Assembled.3mf&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;fullspecification</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;Assembled.3mf&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/environmentspec&gt;</span>
 </pre></div>
 </div>

@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>LeBailFit v1</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,45 +106,39 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="lebailfit-v1">
-<span id="algm-lebailfit"></span><span id="algm-lebailfit-v1"></span><h1>LeBailFit v1<a class="headerlink" href="#lebailfit-v1" title="Permalink to this heading">¶</a></h1>
-<figure class="align-right" id="id1">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/LeBailFit-v1_dlg.png"><img alt="../_images/LeBailFit-v1_dlg.png" class="screenshot" src="../_images/LeBailFit-v1_dlg.png" style="width: 341px;" /></a>
-<figcaption>
-<p><span class="caption-text"><strong>LeBailFit</strong> dialog.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<span id="algm-lebailfit"></span><span id="algm-lebailfit-v1"></span><h1>LeBailFit v1<a class="headerlink" href="#lebailfit-v1" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id2">Summary</a></p>
+<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p>
 <ul>
-<li><p><a class="reference internal" href="#see-also" id="id3">See Also</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id2">See Also</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#properties" id="id4">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id5">Description</a></p>
+<li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id4">Description</a></p>
 <ul>
-<li><p><a class="reference internal" href="#peak-profile-function-for-fit" id="id6">Peak profile function for fit</a></p></li>
-<li><p><a class="reference internal" href="#back-to-back-exponential-convoluted-with-pseudo-voigt" id="id7">Back to back exponential convoluted with pseudo-voigt</a></p></li>
-<li><p><a class="reference internal" href="#thermal-neutron-back-to-back-exponential-convoluted-with-pseudo-voigt" id="id8">Thermal neutron back to back exponential convoluted with pseudo-voigt</a></p></li>
-<li><p><a class="reference internal" href="#optimization" id="id9">Optimization</a></p></li>
-<li><p><a class="reference internal" href="#supported-functionalities" id="id10">Supported functionalities</a></p></li>
-<li><p><a class="reference internal" href="#further-information" id="id11">Further Information</a></p></li>
+<li><p><a class="reference internal" href="#peak-profile-function-for-fit" id="id5">Peak profile function for fit</a></p></li>
+<li><p><a class="reference internal" href="#back-to-back-exponential-convoluted-with-pseudo-voigt" id="id6">Back to back exponential convoluted with pseudo-voigt</a></p></li>
+<li><p><a class="reference internal" href="#thermal-neutron-back-to-back-exponential-convoluted-with-pseudo-voigt" id="id7">Thermal neutron back to back exponential convoluted with pseudo-voigt</a></p></li>
+<li><p><a class="reference internal" href="#optimization" id="id8">Optimization</a></p></li>
+<li><p><a class="reference internal" href="#supported-functionalities" id="id9">Supported functionalities</a></p></li>
+<li><p><a class="reference internal" href="#further-information" id="id10">Further Information</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#source" id="id12">Source</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id11">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Do LeBail Fit to a spectrum of powder diffraction data.</p>
 <section id="see-also">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="CreateLeBailFitInput-v1.html#algm-createlebailfitinput"><span class="std std-ref">CreateLeBailFitInput</span></a>, <a class="reference internal" href="FitPowderDiffPeaks-v1.html#algm-fitpowderdiffpeaks"><span class="std std-ref">FitPowderDiffPeaks</span></a></p>
 </section>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -329,16 +321,16 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This algorithm performs <a class="reference internal" href="../concepts/LeBailFit.html#le-bail-fit"><span class="std std-ref">Le Bail fit</span></a> to powder
 diffraction data, and also supports pattern calculation. This
 algorithm will refine a specified set of the powder instrumental
 profile parameters with a previous refined background model.</p>
 <section id="peak-profile-function-for-fit">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Peak profile function for fit</a><a class="headerlink" href="#peak-profile-function-for-fit" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Peak profile function for fit</a><a class="headerlink" href="#peak-profile-function-for-fit" title="Link to this heading">¶</a></h3>
 </section>
 <section id="back-to-back-exponential-convoluted-with-pseudo-voigt">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Back to back exponential convoluted with pseudo-voigt</a><a class="headerlink" href="#back-to-back-exponential-convoluted-with-pseudo-voigt" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Back to back exponential convoluted with pseudo-voigt</a><a class="headerlink" href="#back-to-back-exponential-convoluted-with-pseudo-voigt" title="Link to this heading">¶</a></h3>
 <p>Here is the list of the peak profile function supported by this
 algorithm.</p>
 <ul class="simple">
@@ -352,7 +344,7 @@ algorithm.</p>
 </ul>
 </section>
 <section id="thermal-neutron-back-to-back-exponential-convoluted-with-pseudo-voigt">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Thermal neutron back to back exponential convoluted with pseudo-voigt</a><a class="headerlink" href="#thermal-neutron-back-to-back-exponential-convoluted-with-pseudo-voigt" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Thermal neutron back to back exponential convoluted with pseudo-voigt</a><a class="headerlink" href="#thermal-neutron-back-to-back-exponential-convoluted-with-pseudo-voigt" title="Link to this heading">¶</a></h3>
 <p>Here is the list of the peak profile function supported by this
 algorithm.</p>
 <ul class="simple">
@@ -368,13 +360,13 @@ Alph0t, Alph1t, Beta0t, Beta1t</p></li>
 </ul>
 </section>
 <section id="optimization">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Optimization</a><a class="headerlink" href="#optimization" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Optimization</a><a class="headerlink" href="#optimization" title="Link to this heading">¶</a></h3>
 <p><em>LeBailFit</em> supports a tailored simulated annealing optimizer (using
 Monte Carlo random walk algorithm). In future, regular minimizes in GSL
 library might be supported.</p>
 </section>
 <section id="supported-functionalities">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Supported functionalities</a><a class="headerlink" href="#supported-functionalities" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Supported functionalities</a><a class="headerlink" href="#supported-functionalities" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">* LeBailFit: fit profile parameters by Le bail algorithm;</span></code></div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">* Calculation: pattern calculation by Le bail algorithm;</span></code></div>
@@ -383,15 +375,15 @@ library might be supported.</p>
 </div>
 </section>
 <section id="further-information">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Further Information</a><a class="headerlink" href="#further-information" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Further Information</a><a class="headerlink" href="#further-information" title="Link to this heading">¶</a></h3>
 <p>See <a class="reference internal" href="../concepts/LeBailFit.html#le-bail-fit"><span class="std std-ref">Le Bail fit concept page</span></a>.</p>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Diffraction/Fitting.html">Diffraction\Fitting</a></p>
 </section>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/LeBailFit.h">LeBailFit.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/CurveFitting/src/Algorithms/LeBailFit.cpp">LeBailFit.cpp</a></p>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/LeBailFit.h">LeBailFit.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/CurveFitting/src/Algorithms/LeBailFit.cpp">LeBailFit.cpp</a></p>
 </section>
 </section>
 

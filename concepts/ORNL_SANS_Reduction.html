@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Reduction for ORNL SANS</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,7 +106,7 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="reduction-for-ornl-sans">
-<span id="id1"></span><h1>Reduction for ORNL SANS<a class="headerlink" href="#reduction-for-ornl-sans" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>Reduction for ORNL SANS<a class="headerlink" href="#reduction-for-ornl-sans" title="Link to this heading">¶</a></h1>
 <p>This document explains how to use Mantid to perform reduction of ORNL SANS data.
 Information about the underlying Mantid algorithms involved can be found in the
 <a class="reference internal" href="../algorithms/SANSReduction-v1.html#algm-sansreduction"><span class="std std-ref">SANSReduction</span></a> algorithm documentation.
@@ -137,7 +135,7 @@ For HFIR reduction specifically, you can also see the <a class="reference intern
 </ul>
 </div></blockquote>
 <section id="reduction-script">
-<span id="id2"></span><h2>Reduction script<a class="headerlink" href="#reduction-script" title="Permalink to this heading">¶</a></h2>
+<span id="id2"></span><h2>Reduction script<a class="headerlink" href="#reduction-script" title="Link to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mantid</span>
 <span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">reduction_workflow.instruments.sans.hfir_command_interface</span> <span class="kn">import</span> <span class="o">*</span>
@@ -172,10 +170,10 @@ Once this has been done, only the name of the data files need to be supplied to 
 The <code class="docutils literal notranslate"><span class="pre">Reduce()</span></code> command tell the reducer to start the reduction process. Since this command does the actual execution, it needs to be the last command in the reduction script.</p>
 </section>
 <section id="reduction-commands">
-<span id="id3"></span><h2>Reduction commands<a class="headerlink" href="#reduction-commands" title="Permalink to this heading">¶</a></h2>
+<span id="id3"></span><h2>Reduction commands<a class="headerlink" href="#reduction-commands" title="Link to this heading">¶</a></h2>
 <p>The following is a list of reduction commands to apply corrections to the data and produce <span class="math notranslate nohighlight">\(I(Q)\)</span>.</p>
 <section id="instrument-selection">
-<span id="id4"></span><h3>Instrument Selection<a class="headerlink" href="#instrument-selection" title="Permalink to this heading">¶</a></h3>
+<span id="id4"></span><h3>Instrument Selection<a class="headerlink" href="#instrument-selection" title="Link to this heading">¶</a></h3>
 <p>Since each instrument has its own configuration parameters, the first command called is the name of the instrument.</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">GPSANS()</span></code></dt><dd><p>Sets up the GPSANS reduction options.</p>
@@ -187,7 +185,7 @@ The <code class="docutils literal notranslate"><span class="pre">Reduce()</span>
 </dl>
 </section>
 <section id="beam-center">
-<span id="id5"></span><h3>Beam Center<a class="headerlink" href="#beam-center" title="Permalink to this heading">¶</a></h3>
+<span id="id5"></span><h3>Beam Center<a class="headerlink" href="#beam-center" title="Link to this heading">¶</a></h3>
 <p>Options for finding the beam center</p>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">SetBeamCenter(x,y)</span></code></dt><dd><p>Sets the beam center location to be used, in pixel coordinates.</p>
@@ -207,7 +205,7 @@ The <code class="docutils literal notranslate"><span class="pre">Reduce()</span>
 </dl>
 </section>
 <section id="normalization-options">
-<span id="id6"></span><h3>Normalization options<a class="headerlink" href="#normalization-options" title="Permalink to this heading">¶</a></h3>
+<span id="id6"></span><h3>Normalization options<a class="headerlink" href="#normalization-options" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">TimeNormalization()</span></code></dt><dd><p>Tells the reducer to normalize the data to counting time.</p>
 </dd>
@@ -218,7 +216,7 @@ The <code class="docutils literal notranslate"><span class="pre">Reduce()</span>
 </dl>
 </section>
 <section id="absolute-normalization">
-<span id="id7"></span><h3>Absolute Normalization<a class="headerlink" href="#absolute-normalization" title="Permalink to this heading">¶</a></h3>
+<span id="id7"></span><h3>Absolute Normalization<a class="headerlink" href="#absolute-normalization" title="Link to this heading">¶</a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">SetAbsoluteScale(factor=1.0)</span></code></dt><dd><p>Sets a multiplicative scale factor to obtain I(Q) in absolute scale.</p>
 </dd>
@@ -236,7 +234,7 @@ The <code class="docutils literal notranslate"><span class="pre">Reduce()</span>
 </dl>
 </section>
 <section id="dark-current-subtraction">
-<span id="id8"></span><h3>Dark current subtraction<a class="headerlink" href="#dark-current-subtraction" title="Permalink to this heading">¶</a></h3>
+<span id="id8"></span><h3>Dark current subtraction<a class="headerlink" href="#dark-current-subtraction" title="Link to this heading">¶</a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">NoDarkCurrent()</span></code></dt><dd><p>Lets the reducer know that no dark current should be subtracted.</p>
 </dd>
@@ -249,7 +247,7 @@ The <code class="docutils literal notranslate"><span class="pre">Reduce()</span>
 </dl>
 </section>
 <section id="pixel-masking">
-<span id="id9"></span><h3>Pixel masking<a class="headerlink" href="#pixel-masking" title="Permalink to this heading">¶</a></h3>
+<span id="id9"></span><h3>Pixel masking<a class="headerlink" href="#pixel-masking" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">Mask(nx_low=0,</span> <span class="pre">nx_high=0,</span> <span class="pre">ny_low=0,</span> <span class="pre">ny_high=0,</span> <span class="pre">component_name=None)</span></code></dt><dd><p>A band of pixels on each side of the detector is masked according to the input parameters.
 By default this is done only for the main detector (See IDF tag ‘detector-name’). For Biosans one can specify ‘component_name=”wing_detector”’.</p>
@@ -265,7 +263,7 @@ By default this is done only for the main detector (See IDF tag ‘detector-name
 </dl>
 </section>
 <section id="sensitivity-correction">
-<span id="id10"></span><h3>Sensitivity correction<a class="headerlink" href="#sensitivity-correction" title="Permalink to this heading">¶</a></h3>
+<span id="id10"></span><h3>Sensitivity correction<a class="headerlink" href="#sensitivity-correction" title="Link to this heading">¶</a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">SensitivityCorrection(flood_data,</span> <span class="pre">min_sensitivity=0.5,</span> <span class="pre">max_sensitivity=1.5,</span> <span class="pre">dark_current=None,</span> <span class="pre">use_sample_dc=False)</span></code></dt><dd><p>The relative detector efficiency is computed the following way</p>
 <blockquote>
@@ -292,7 +290,7 @@ The sample data is then corrected by dividing the intensity in each pixels by th
 </dl>
 </section>
 <section id="solid-angle-correction">
-<span id="id11"></span><h3>Solid angle correction<a class="headerlink" href="#solid-angle-correction" title="Permalink to this heading">¶</a></h3>
+<span id="id11"></span><h3>Solid angle correction<a class="headerlink" href="#solid-angle-correction" title="Link to this heading">¶</a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">SolidAngle(detector_tubes=False,</span> <span class="pre">detector_wing=False)</span></code></dt><dd><p>Tells the reducer to apply the solid angle correction. The solid angle correction is applied as follows:</p>
 <blockquote>
@@ -316,7 +314,7 @@ The sample data is then corrected by dividing the intensity in each pixels by th
 </dl>
 </section>
 <section id="transmission-correction">
-<span id="id12"></span><h3>Transmission correction<a class="headerlink" href="#transmission-correction" title="Permalink to this heading">¶</a></h3>
+<span id="id12"></span><h3>Transmission correction<a class="headerlink" href="#transmission-correction" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">SetTransmission(trans,</span> <span class="pre">error)</span></code></dt><dd><p>[<strong>HFIR only</strong>] Sets the sample transmission. For each detector pixel, the transmission correction is applied as follows:</p>
 </dd>
@@ -353,7 +351,7 @@ The sample data is then corrected by dividing the intensity in each pixels by th
 </dl>
 </section>
 <section id="background-subtraction">
-<span id="id13"></span><h3>Background subtraction<a class="headerlink" href="#background-subtraction" title="Permalink to this heading">¶</a></h3>
+<span id="id13"></span><h3>Background subtraction<a class="headerlink" href="#background-subtraction" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">Background(datafile)</span></code></dt><dd><p>The same reduction steps that are applied to the sample data are applied to the background data set. Those are the dark current subtraction, the data normalization, applying the detector mask, the sensitivity correction, the solid angle correction and the transmission correction. Although the same sensitivity correction is used for both sample and background, the background transmission is calculated separately from the sample transmission. Once all those reduction steps are applied to the background data set, the resulting background is subtracted from the sample data.</p>
 </dd>
@@ -378,7 +376,7 @@ The sample data is then corrected by dividing the intensity in each pixels by th
 </dl>
 </section>
 <section id="i-q-calculation">
-<span id="id14"></span><h3>I(Q) calculation<a class="headerlink" href="#i-q-calculation" title="Permalink to this heading">¶</a></h3>
+<span id="id14"></span><h3>I(Q) calculation<a class="headerlink" href="#i-q-calculation" title="Link to this heading">¶</a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">AzimuthalAverage(binning=None,</span> <span class="pre">suffix=&quot;_Iq&quot;,</span> <span class="pre">error_weighting=False,</span> <span class="pre">n_bins=100,</span> <span class="pre">n_subpix=1,</span> <span class="pre">log_binning=False,</span> <span class="pre">align_log_with_decades=False)</span></code></dt><dd><p>Sets the options for azimuthal averaging. The binning parameter sets the binning of the output I(q) distribution in the following format: <span class="math notranslate nohighlight">\(Q_{min}, \Delta Q, Q_{max}\)</span> (the binning will be found automatically if the <code class="docutils literal notranslate"><span class="pre">binning</span></code> parameter is not supplied). When letting the binning be calculated automatically, setting <code class="docutils literal notranslate"><span class="pre">log_binning=True</span></code> will tell the reducer to find the best log binning. Setting <code class="docutils literal notranslate"><span class="pre">align_log_with_decades=True</span></code> will ensure that <code class="docutils literal notranslate"><span class="pre">q</span></code> points fall on decades. The <code class="docutils literal notranslate"><span class="pre">suffix</span></code> parameter sets the suffix appended to the I(q) workspace name. If <code class="docutils literal notranslate"><span class="pre">error_weighting</span></code> is set to True, the pixel counts will be weighted by a function of the error when computing I(q) (see below).</p>
 <p>The binning of the output <em>I(Q)</em> distribution is defined by the user.
@@ -406,7 +404,7 @@ Each pixel is divided in <span class="math notranslate nohighlight">\(N_{sub} \t
 </dl>
 </section>
 <section id="wedge-calculation">
-<span id="id15"></span><h3>Wedge calculation<a class="headerlink" href="#wedge-calculation" title="Permalink to this heading">¶</a></h3>
+<span id="id15"></span><h3>Wedge calculation<a class="headerlink" href="#wedge-calculation" title="Link to this heading">¶</a></h3>
 <p>Wedge calculation is done as part of the azimuthal averaging algorithm. The image below shows how the wedges are defined. A wedge includes both the forward and backward direction relative to the beam center. Any number of wedges can be used. They will be uniformly distributed around <span class="math notranslate nohighlight">\(2\pi\)</span>. Each wedge is computed independently, so overlapping wedges are possible. As shown on the figure below, the angular offset is definited with respect to the x-axis.</p>
 <figure class="align-right" style="width: 10cm">
 <img alt="Wedge definition." src="../_images/SANS_wedge_definition.png" />
@@ -422,7 +420,7 @@ Each pixel is divided in <span class="math notranslate nohighlight">\(N_{sub} \t
 </dl>
 </section>
 <section id="data-stitching">
-<span id="id16"></span><h3>Data Stitching<a class="headerlink" href="#data-stitching" title="Permalink to this heading">¶</a></h3>
+<span id="id16"></span><h3>Data Stitching<a class="headerlink" href="#data-stitching" title="Link to this heading">¶</a></h3>
 <p>Data stitching can be done using the SANS reduction UI, or by calling the underlying command directly. The stitching process lets you pick an overlap region that will be used to scale data sets to each other. For any number of input data sets, the data sets are scaled to the first set in the input series. The second set is scaled to the first set, then the third set is scaled to the modified second set. The process continues in pairs until all the data sets are rescaled.</p>
 <p>In the process of scaling two data sets, all the points of the lower Q set with a Q value lower than the higher bound of the overlap region are kept. All the points of the higher Q set with a Q value higher than the lower bound of the overlap region are kept (see image). All data points in the overlap region are kept.</p>
 <figure class="align-right" style="width: 10cm">
@@ -442,7 +440,7 @@ Each pixel is divided in <span class="math notranslate nohighlight">\(N_{sub} \t
 </dl>
 </section>
 <section id="general-commands">
-<span id="id17"></span><h3>General commands<a class="headerlink" href="#general-commands" title="Permalink to this heading">¶</a></h3>
+<span id="id17"></span><h3>General commands<a class="headerlink" href="#general-commands" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">DataPath(path)</span></code></dt><dd><p>Sets the directory containing all data files.</p>
 </dd>

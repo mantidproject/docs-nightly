@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>MaxEnt v1</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,44 +106,38 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="maxent-v1">
-<span id="algm-maxent"></span><span id="algm-maxent-v1"></span><h1>MaxEnt v1<a class="headerlink" href="#maxent-v1" title="Permalink to this heading">¶</a></h1>
-<figure class="align-right" id="id1">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/MaxEnt-v1_dlg.png"><img alt="../_images/MaxEnt-v1_dlg.png" class="screenshot" src="../_images/MaxEnt-v1_dlg.png" style="width: 341px;" /></a>
-<figcaption>
-<p><span class="caption-text"><strong>MaxEnt</strong> dialog.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<span id="algm-maxent"></span><span id="algm-maxent-v1"></span><h1>MaxEnt v1<a class="headerlink" href="#maxent-v1" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id6">Summary</a></p>
+<li><p><a class="reference internal" href="#summary" id="id5">Summary</a></p>
 <ul>
-<li><p><a class="reference internal" href="#see-also" id="id7">See Also</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id6">See Also</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#properties" id="id8">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id9">Description</a></p></li>
-<li><p><a class="reference internal" href="#output-workspaces" id="id10">Output Workspaces</a></p></li>
-<li><p><a class="reference internal" href="#usage" id="id11">Usage</a></p></li>
-<li><p><a class="reference internal" href="#positive-images" id="id12">Positive Images</a></p></li>
-<li><p><a class="reference internal" href="#complex-images" id="id13">Complex Images</a></p></li>
-<li><p><a class="reference internal" href="#complex-data" id="id14">Complex Data</a></p></li>
-<li><p><a class="reference internal" href="#increasing-the-number-of-points-in-the-image" id="id15">Increasing the number of points in the image</a></p></li>
-<li><p><a class="reference internal" href="#adjusting-the-reconstructed-data" id="id16">Adjusting the Reconstructed Data</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id17">References</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id18">Source</a></p></li>
+<li><p><a class="reference internal" href="#properties" id="id7">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id8">Description</a></p></li>
+<li><p><a class="reference internal" href="#output-workspaces" id="id9">Output Workspaces</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id10">Usage</a></p></li>
+<li><p><a class="reference internal" href="#positive-images" id="id11">Positive Images</a></p></li>
+<li><p><a class="reference internal" href="#complex-images" id="id12">Complex Images</a></p></li>
+<li><p><a class="reference internal" href="#complex-data" id="id13">Complex Data</a></p></li>
+<li><p><a class="reference internal" href="#increasing-the-number-of-points-in-the-image" id="id14">Increasing the number of points in the image</a></p></li>
+<li><p><a class="reference internal" href="#adjusting-the-reconstructed-data" id="id15">Adjusting the Reconstructed Data</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id16">References</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id17">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Runs Maximum Entropy method on every spectrum of an input workspace. It currently works for the case where data and image are related by a 1D Fourier transform.</p>
 <section id="see-also">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="ExtractFFTSpectrum-v1.html#algm-extractfftspectrum"><span class="std std-ref">ExtractFFTSpectrum</span></a>, <a class="reference internal" href="FFT-v1.html#algm-fft"><span class="std std-ref">FFT</span></a>, <a class="reference internal" href="FFTDerivative-v1.html#algm-fftderivative"><span class="std std-ref">FFTDerivative</span></a>, <a class="reference internal" href="RealFFT-v1.html#algm-realfft"><span class="std std-ref">RealFFT</span></a>, <a class="reference internal" href="SassenaFFT-v1.html#algm-sassenafft"><span class="std std-ref">SassenaFFT</span></a>, <a class="reference internal" href="FFTSmooth-v2.html#algm-fftsmooth"><span class="std std-ref">FFTSmooth</span></a></p>
 </section>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -280,7 +272,7 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>The maximum entropy method (MEM) is used as a signal processing technique for reconstructing
 images from noisy data. It selects a single
 image from the many images which fit the data with the same value of the statistic,
@@ -341,7 +333,7 @@ then the reconstructed data is adjusted to</p>
 \[d_{m,k} = \frac{l_{m,k}}{N} \sum_{j=0}^{N-1} x_j e^{i 2\pi m j / N} + c_{m,k}\]</div>
 </section>
 <section id="output-workspaces">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Output Workspaces</a><a class="headerlink" href="#output-workspaces" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Output Workspaces</a><a class="headerlink" href="#output-workspaces" title="Link to this heading">¶</a></h2>
 <p>There are four output workspaces: <em>ReconstructedImage</em> and <em>ReconstructedData</em> contain the image and
 calculated data respectively, and <em>EvolChi</em> and <em>EvolAngle</em> record the algorithm’s evolution.
 <em>ReconstructedData</em> can be used to check that the calculated data approaches the experimental,
@@ -368,8 +360,8 @@ a true maximum entropy solution satisfying the conditions above. In this way, th
 the output workspaces whether the algorithm was evolving towards the correct solution or not.
 On the other hand, the user must always check the validity of the solution by inspecting <em>EvolChi</em> and <em>EvolAngle</em>,
 whose values will be set to zero once the true maximum entropy solution is found.</p>
-<table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Table 1. Output workspaces for a real input workspace with M histograms and N bins, taking J iterations.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Table 1. Output workspaces for a real input workspace with M histograms and N bins, taking J iterations.</span><a class="headerlink" href="#id1" title="Link to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Workspace</p></th>
 <th class="head"><p>Number of histograms</p></th>
@@ -400,8 +392,8 @@ whose values will be set to zero once the true maximum entropy solution is found
 </tr>
 </tbody>
 </table>
-<table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Table 2. Output workspaces for a complex input workspace with 2M histograms and N bins, taking J iterations.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Table 2. Output workspaces for a complex input workspace with 2M histograms and N bins, taking J iterations.</span><a class="headerlink" href="#id2" title="Link to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Workspace</p></th>
 <th class="head"><p>Number of histograms</p></th>
@@ -434,7 +426,7 @@ whose values will be set to zero once the true maximum entropy solution is found
 </table>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p>Some of the usage examples use usage data files.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -447,7 +439,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <p>In the example below, a workspace containing five Fourier coefficients is created and
 used as input to <a class="reference internal" href="#algm-maxent"><span class="std std-ref">MaxEnt v1</span></a>. In the figure we show the original and reconstructed data (left),
 and the reconstructed image, i.e. Fourier transform (right).</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an empty workspace</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an empty workspace</span>
 <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">E</span> <span class="o">=</span> <span class="p">[]</span>
@@ -492,7 +484,7 @@ Number of iterations: ...
 <p>In this example, <a class="reference internal" href="#algm-maxent"><span class="std std-ref">MaxEnt v1</span></a> is run on a pre-analyzed muon dataset. The corresponding figure shows
 the original and reconstructed data (left), and the real part of the image obtained with <a class="reference internal" href="#algm-maxent"><span class="std std-ref">MaxEnt v1</span></a>
 and <a class="reference internal" href="FFT-v1.html#algm-fft"><span class="std std-ref">FFT v1</span></a> (right).</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;MUSR00022725.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;MUSR00022725&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;MUSR00022725.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;MUSR00022725&#39;</span><span class="p">)</span>
 <span class="n">CropWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;MUSR00022725&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;MUSR00022725&#39;</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">0.11</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">1.6</span><span class="p">,</span> <span class="n">EndWorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">RemoveExpDecay</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;MUSR00022725&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;MUSR00022725&#39;</span><span class="p">)</span>
 <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;MUSR00022725&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;MUSR00022725&#39;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;0.016&#39;</span><span class="p">)</span>
@@ -534,7 +526,7 @@ Number of iterations: ...
 <p>Next, <a class="reference internal" href="#algm-maxent"><span class="std std-ref">MaxEnt v1</span></a> is run on a different muon dataset. The figure shows
 the original and reconstructed data (left), the real part of the image (middle)
 and its imaginary part (right).</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;EMU00020884.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;EMU00020884&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;EMU00020884.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;EMU00020884&#39;</span><span class="p">)</span>
 <span class="n">CropWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;EMU00020884&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;EMU00020884&#39;</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">0.17</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">4.5</span><span class="p">,</span> <span class="n">EndWorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">RemoveExpDecay</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;EMU00020884&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;EMU00020884&#39;</span><span class="p">)</span>
 <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;EMU00020884&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;EMU00020884&#39;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;0.016&#39;</span><span class="p">)</span>
@@ -567,7 +559,7 @@ Number of iterations: ...
 <p>Finally, we show an example where a complex signal is analyzed. In this case, the input workspace contains two spectra corresponding to the
 real and imaginary part of the same signal. The figure shows
 the original and reconstructed data (left), and the reconstructed image (right).</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span><span class="p">,</span> <span class="n">seed</span>
 <span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1"># Create a test workspace</span>
@@ -604,7 +596,7 @@ Number of iterations: ...
 </figure>
 </section>
 <section id="positive-images">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Positive Images</a><a class="headerlink" href="#positive-images" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Positive Images</a><a class="headerlink" href="#positive-images" title="Link to this heading">¶</a></h2>
 <p>The algorithm allows users to restrict the reconstructed image to positive values only. This behaviour can be
 selected by setting the input property <em>PositiveImage</em> to true. In this case, the entropy is defined by the
 expression:</p>
@@ -615,7 +607,7 @@ In the example below both modes are compared. As the input is a complex signal w
 i.e. positive,
 both modes should produce the same results (note that the maximum entropy constant <em>A</em> typically needs to be set to smaller values for positive
 image in order to obtain smooth results).</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span><span class="p">,</span> <span class="n">seed</span>
 <span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1"># Create a test workspace</span>
@@ -655,7 +647,7 @@ Number of iterations: ...
 </figure>
 </section>
 <section id="complex-images">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Complex Images</a><a class="headerlink" href="#complex-images" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Complex Images</a><a class="headerlink" href="#complex-images" title="Link to this heading">¶</a></h2>
 <p>By default the input property <em>ComplexImage</em> is set to <em>True</em> and the algorithm will assume complex images for the calculations.
 This means that the set of numbers <span class="math notranslate nohighlight">\(\{x_j\}\)</span> that form the image will have a real and an imaginary part, and both components will be
 considered to evaluate the entropy, <span class="math notranslate nohighlight">\(S\left(x_j\right)\)</span>, and its derivative, <span class="math notranslate nohighlight">\(\nabla S\left(x_j\right)\)</span>. This effectively means
@@ -665,13 +657,13 @@ about the image is available, as trying to reconstruct images that are inherentl
 from converging. If the image is known to be real this property can be safely set to <em>False</em>.</p>
 </section>
 <section id="complex-data">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">Complex Data</a><a class="headerlink" href="#complex-data" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Complex Data</a><a class="headerlink" href="#complex-data" title="Link to this heading">¶</a></h2>
 <p>If the input property <em>ComplexData</em> is set to <em>True</em>, the algorithm will assume complex data for the calculations with all the
 real parts listed before all the imaginary parts. This means that if you have workspaces where the imaginary part immediately
 follow the real part, such workspaces cannot be combined by using the <a class="reference internal" href="AppendSpectra-v1.html#algm-appendspectra"><span class="std std-ref">AppendSpectra v1</span></a> algorithm because the resulting
 output will not order the real and imaginary parts corrected as needed for this algorithm. The following usage example
 shows how to combine two workspaces with complex data.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span><span class="p">,</span> <span class="n">seed</span>
 <span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1"># Create complex data for a workspace</span>
@@ -731,7 +723,7 @@ Number of iterations dataset2 combined: ...
 </div>
 </section>
 <section id="increasing-the-number-of-points-in-the-image">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Increasing the number of points in the image</a><a class="headerlink" href="#increasing-the-number-of-points-in-the-image" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Increasing the number of points in the image</a><a class="headerlink" href="#increasing-the-number-of-points-in-the-image" title="Link to this heading">¶</a></h2>
 <p>The algorithm has an input property, <em>ResolutionFactor</em>, that allows to increase the number of points in the reconstructed image. This is
 at present done by extending the range (and therefore the number of points) in the reconstructed data. The number of reconstructed
 points can be increased by any integer factor, but note that this will slow down the algorithm and you may need to increase the number of
@@ -739,7 +731,7 @@ maxent iterations so that the algorithm is able to converge to a solution.</p>
 <p>An example script where the density of points is increased by a factor of 2 can be found below. Note that when a factor of 2 is used,
 the reconstructed data is twice the size of the original (experimental) data. Also shown is how ChiTargetOverN property may be varied away
 from the default 1.0; the dataset contains 270 data points and here set to be slightly higher at 300/270.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;EMU00020884.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;EMU00020884.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">)</span>
 <span class="n">CropWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">0.17</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">4.5</span><span class="p">,</span> <span class="n">EndWorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">RemoveExpDecay</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;0.016&#39;</span><span class="p">)</span>
@@ -764,7 +756,7 @@ Number of iterations: ...
 </figure>
 <p>In the next example, we increased the density of points by factors of 10, 20 and 40. We show the reconstructed image (left) and
 a zoom into the region <span class="math notranslate nohighlight">\(0.82 &lt; x &lt; 1.44\)</span> and <span class="math notranslate nohighlight">\(-0.187 &lt; y &lt; 0.004\)</span>.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;EMU00020884.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;EMU00020884.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">)</span>
 <span class="n">CropWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">0.17</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">4.5</span><span class="p">,</span> <span class="n">EndWorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">RemoveExpDecay</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;0.016&#39;</span><span class="p">)</span>
@@ -791,12 +783,12 @@ Number of iterations: ...
 </figure>
 </section>
 <section id="adjusting-the-reconstructed-data">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">Adjusting the Reconstructed Data</a><a class="headerlink" href="#adjusting-the-reconstructed-data" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Adjusting the Reconstructed Data</a><a class="headerlink" href="#adjusting-the-reconstructed-data" title="Link to this heading">¶</a></h2>
 <p>The reconstructed data can be adjusted by multiplying by the <em>DataLinearAdj</em> property and then adding the <em>DataConstAdj</em> property.
 Each of these properties is a workspace with complex Y values, just like complex input workspaces. Each Y value is then applied to
 the corresponding Y values in the reconstructed data at each iteration.</p>
 <p>These usage examples merely demonstrate how to use the adjustments and are not realistic use cases.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span><span class="p">,</span> <span class="n">seed</span>
 
 <span class="c1"># Construct workspace (cosine + noise) over 3 spectra</span>
@@ -876,18 +868,18 @@ Number of iterations of second spectrum: 37
 Number of iterations of third spectrum: 70
 </pre></div>
 </div>
-<figure class="align-center" id="id4">
+<figure class="align-center" id="id3">
 <img alt="../_images/MaxEntAdjust.png" src="../_images/MaxEntAdjust.png" />
 <figcaption>
 <p><span class="caption-text">The first plot shows the reconstructed data and the second plot the corresponding image.
 The first three spectra plotted are the real parts of the 3 spectra
-and the other three spectra are the imaginary parts.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+and the other three spectra are the imaginary parts.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>This can also be done with the spectra of the data effectively concatenated and converted into a single image.
 The reconstructed data is then obtained by converting the image back to data, copying for each spectrum and applying the adjustments.</p>
 <p>This is done by setting the <em>PerSpectrumImage</em> property to <em>false</em>.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span><span class="p">,</span> <span class="n">seed</span>
 
 <span class="c1"># Construct workspace (real cosine + complex noise) over 3 spectra</span>
@@ -973,26 +965,26 @@ Reconstruction at 10 of third spectrum: 0.481
 Reconstruction at 15 of third spectrum: 0.163
 </pre></div>
 </div>
-<figure class="align-center" id="id5">
+<figure class="align-center" id="id4">
 <img alt="../_images/MaxEntAdjustTogether.png" src="../_images/MaxEntAdjustTogether.png" />
 <figcaption>
 <p><span class="caption-text">The first plot shows the reconstructed data and the second plot the corresponding image.
 In the data, the first three spectra plotted are the real parts of the 3 spectra
 and the other three spectra are the imaginary parts.
-In the image, the first spectrum is the real part and the second spectrum is the imaginary part.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+In the image, the first spectrum is the real part and the second spectrum is the imaginary part.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <p>[1] Anders Johannes Markvardsen, (2000). Polarised neutron diffraction measurements of PrBa2Cu3O6+x and the Bayesian statistical analysis of such data. DPhil. University of Oxford (<a class="reference external" href="http://ora.ox.ac.uk/objects/uuid:bef0c991-4e1c-4b07-952a-a0fe7e4943f7">http://ora.ox.ac.uk/objects/uuid:bef0c991-4e1c-4b07-952a-a0fe7e4943f7</a>)</p>
 <p>[2] Skilling &amp; Bryan, (1984). Maximum entropy image reconstruction: general algorithm. Mon. Not. R. astr. Soc. 211, 111-124.</p>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Arithmetic/FFT.html">Arithmetic\FFT</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id18" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/Algorithms/inc/MantidAlgorithms/MaxEnt.h">MaxEnt.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/Algorithms/src/MaxEnt.cpp">MaxEnt.cpp</a></p>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/Algorithms/inc/MantidAlgorithms/MaxEnt.h">MaxEnt.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/Algorithms/src/MaxEnt.cpp">MaxEnt.cpp</a></p>
 </section>
 </section>
 

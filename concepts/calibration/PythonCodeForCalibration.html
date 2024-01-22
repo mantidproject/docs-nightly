@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Python Code For Calibration</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -110,14 +108,14 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="python-code-for-calibration">
-<span id="id1"></span><h1>Python Code For Calibration<a class="headerlink" href="#python-code-for-calibration" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>Python Code For Calibration<a class="headerlink" href="#python-code-for-calibration" title="Link to this heading">¶</a></h1>
 <p>The interaction with the calibration tools inside mantid is done through
 the
 <a class="reference external" href="https://github.com/mantidproject/mantid/blob/master/scripts/Calibration/tube.py">tube.py</a>
 file for which you can find an extensive documentation
 <a class="reference internal" href="../../techniques/Calibration.html#api-calibration"><span class="std std-ref">here</span></a>.</p>
 <section id="calibrate-function">
-<h2>Calibrate function<a class="headerlink" href="#calibrate-function" title="Permalink to this heading">¶</a></h2>
+<h2>Calibrate function<a class="headerlink" href="#calibrate-function" title="Link to this heading">¶</a></h2>
 <p>Inside the python Console, all you need is to import the tube module.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tube</span>
 </pre></div>
@@ -136,7 +134,7 @@ parameters as well. The minimum set of parameters required are:</p>
 <li><p>The shape of the known points (funcForm). Currently, we accept two shapes identified as 1 for <a class="reference internal" href="../../fitting/fitfunctions/Gaussian.html#func-gaussian"><span class="std std-ref">Gaussian</span></a> and 2 for Edges.</p></li>
 </ul>
 <section id="parameter-workspace">
-<h3>Parameter: Workspace<a class="headerlink" href="#parameter-workspace" title="Permalink to this heading">¶</a></h3>
+<h3>Parameter: Workspace<a class="headerlink" href="#parameter-workspace" title="Link to this heading">¶</a></h3>
 <p>Below, it shows an example of a workspace:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">wsToCalibrate</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;MAP14919&#39;</span><span class="p">)</span>
 <span class="n">wsToCalibrate</span> <span class="o">=</span> <span class="n">Integration</span><span class="p">(</span><span class="n">wsToCalibrate</span><span class="p">)</span>
@@ -146,7 +144,7 @@ parameters as well. The minimum set of parameters required are:</p>
 </div>
 </section>
 <section id="parameter-tubeset">
-<h3>Parameter: tubeSet<a class="headerlink" href="#parameter-tubeset" title="Permalink to this heading">¶</a></h3>
+<h3>Parameter: tubeSet<a class="headerlink" href="#parameter-tubeset" title="Link to this heading">¶</a></h3>
 <p>The second step is to define what are the tubes to be calibrated
 (<strong>tubeSet</strong>). This parameter accepts the following inputs:</p>
 <ul class="simple">
@@ -161,7 +159,7 @@ parameters as well. The minimum set of parameters required are:</p>
 </div>
 </section>
 <section id="parameter-knownpositions-and-funcform">
-<h3>Parameter: knownPositions and funcForm<a class="headerlink" href="#parameter-knownpositions-and-funcform" title="Permalink to this heading">¶</a></h3>
+<h3>Parameter: knownPositions and funcForm<a class="headerlink" href="#parameter-knownpositions-and-funcform" title="Link to this heading">¶</a></h3>
 <p>The third step is to provide the positions of the special points of the
 calibrated experiment along the tube. The important factor is that these
 positions must obey the following agreement:</p>
@@ -182,7 +180,7 @@ and finally, a final edge. These 5 points were measured and the result was:</p>
 </div>
 </section>
 <section id="execution-of-calibrate-function">
-<h3>Execution of calibrate function<a class="headerlink" href="#execution-of-calibrate-function" title="Permalink to this heading">¶</a></h3>
+<h3>Execution of calibrate function<a class="headerlink" href="#execution-of-calibrate-function" title="Link to this heading">¶</a></h3>
 <p>The calibrate function returns a Calibration Table that will be used to
 calibrate the instrument, providing, for each detector, its correct
 position.</p>
@@ -197,7 +195,7 @@ those detectors.</p>
 </div>
 </section>
 <section id="options">
-<h3>Options<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h3>
+<h3>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h3>
 <p>A more extensive description of the options is found at <a class="reference internal" href="../../techniques/Calibration.html#api-calibration"><span class="std std-ref">here</span></a>.</p>
 <p>A set of optional parameters are available for the <strong>calibrate</strong>
 function for the sake of flexibility, to improve results.</p>
@@ -221,9 +219,9 @@ are the position for the peaks for each tube.</p>
 </section>
 </section>
 <section id="some-python-scripts-for-analyzing-the-calibration">
-<h2>Some Python scripts for analyzing the calibration<a class="headerlink" href="#some-python-scripts-for-analyzing-the-calibration" title="Permalink to this heading">¶</a></h2>
+<h2>Some Python scripts for analyzing the calibration<a class="headerlink" href="#some-python-scripts-for-analyzing-the-calibration" title="Link to this heading">¶</a></h2>
 <section id="saving-the-detector-positions-to-text-file">
-<h3>Saving the Detector Positions to Text File<a class="headerlink" href="#saving-the-detector-positions-to-text-file" title="Permalink to this heading">¶</a></h3>
+<h3>Saving the Detector Positions to Text File<a class="headerlink" href="#saving-the-detector-positions-to-text-file" title="Link to this heading">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">savePositions2TxtFileFromCalibTable</span><span class="p">(</span><span class="n">calibTable</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
   <span class="n">tofile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
   <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">calibTable</span><span class="p">:</span>
@@ -241,7 +239,7 @@ are the position for the peaks for each tube.</p>
 </div>
 </section>
 <section id="loading-detector-positions-from-text-file">
-<h3>Loading Detector Positions From Text File<a class="headerlink" href="#loading-detector-positions-from-text-file" title="Permalink to this heading">¶</a></h3>
+<h3>Loading Detector Positions From Text File<a class="headerlink" href="#loading-detector-positions-from-text-file" title="Link to this heading">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="k">def</span> <span class="nf">getDetPositionsFromFile</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
   <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>

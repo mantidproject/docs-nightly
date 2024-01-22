@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Ab initio calculation of dynamical structure factor (S)</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,9 +106,9 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="ab-initio-calculation-of-dynamical-structure-factor-s">
-<span id="dynamicalstructurefactorfromabinitio"></span><h1>Ab initio calculation of dynamical structure factor (S)<a class="headerlink" href="#ab-initio-calculation-of-dynamical-structure-factor-s" title="Permalink to this heading">¶</a></h1>
+<span id="dynamicalstructurefactorfromabinitio"></span><h1>Ab initio calculation of dynamical structure factor (S)<a class="headerlink" href="#ab-initio-calculation-of-dynamical-structure-factor-s" title="Link to this heading">¶</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>The purpose of this document is to explain the link between theoretical and experimental <span class="math notranslate nohighlight">\(S(\mathbf{Q}, \omega)\)</span> and to
 describe in general how the theoretical <span class="math notranslate nohighlight">\(S\)</span> is calculated from from <em>ab initio</em> data by plugins in Mantid.</p>
 <p>During an inelastic neutron scattering experiment, a sample is exposed to neutron flux and a response is recorded in the form of dynamical structure factor, <span class="math notranslate nohighlight">\(S(\mathbf{Q}, \omega)\)</span>.
@@ -144,7 +142,7 @@ then the total spectrum is obtained as a sum over all atomic contributions.</p>
 <p>This method is well-established for molecular spectroscopy; studies of inorganic crystals, on the other hand, tend to calculate the coherent scattering and neglect multi-phonon terms.</p>
 </section>
 <section id="working-equations">
-<h2>Working equations<a class="headerlink" href="#working-equations" title="Permalink to this heading">¶</a></h2>
+<h2>Working equations<a class="headerlink" href="#working-equations" title="Link to this heading">¶</a></h2>
 <img alt="../_images/s_powder_scheme.png" class="align-center" src="../_images/s_powder_scheme.png" />
 <p>The vibrational part of the structure factor <span class="math notranslate nohighlight">\(S(\mathbf{Q}, \omega)\)</span> is related by a Fourier transform to the intermediate scattering function <span class="math notranslate nohighlight">\(F(\mathbf{Q}, t) = \frac{1}{N} \sum_{i,i^\prime} \left&lt; \exp[i \mathbf{Q} (\mathbf{r}_i(t) - \mathbf{r}_i^\prime(0))] \right&gt;\)</span>. This is a double-sum over atom pairs <span class="math notranslate nohighlight">\(i, i^\prime\)</span> in a thermally-averaged correlation function.</p>
 <p>Solving this for a quantum harmonic oscillator, making the incoherent approximation and a Taylor expansion of the exponential term allows the double-sum over atoms to be separated into a sum over atoms <span class="math notranslate nohighlight">\(i\)</span>, vibrational mode indices <span class="math notranslate nohighlight">\(\nu\)</span> and quantum orders <span class="math notranslate nohighlight">\(n\)</span>. These intensities may be computed independently:</p>
@@ -183,7 +181,7 @@ At second order some exponential terms are neglected, and isotropic Debye-Waller
 <p>By performing the convolution (<span class="math notranslate nohighlight">\(*\)</span>) operations on a numerical grid it is possible to reach <span class="math notranslate nohighlight">\(n=10\)</span> without computing an infeasible <span class="math notranslate nohighlight">\((3N_\mathrm{atoms} N_\mathbf{k})^{10}\)</span> intensity values.</p>
 </section>
 <section id="resolution">
-<h2>Resolution<a class="headerlink" href="#resolution" title="Permalink to this heading">¶</a></h2>
+<h2>Resolution<a class="headerlink" href="#resolution" title="Link to this heading">¶</a></h2>
 <p>After evaluating the above equations one obtains the discrete <span class="math notranslate nohighlight">\(S\)</span> for each quantum order and for each atom: <span class="math notranslate nohighlight">\(S_\mathrm{discrete}\)</span>.
 In order to compare these functions with an experimental spectrum one has to convolve them with experimental resolution <span class="math notranslate nohighlight">\(f(\omega)\)</span></p>
 <p><span class="math notranslate nohighlight">\(S_{i,\mathrm{theory}}^{n}(Q, \omega) = S_{i,\mathrm{discrete}}^{n}(Q, \omega) * f(\omega)\)</span></p>
@@ -192,11 +190,11 @@ In order to compare these functions with an experimental spectrum one has to con
 <p>The application of an energy-dependent resolution function is not trivial. For efficiency Abins uses an approximate scheme <a class="reference internal" href="AbinsInterpolatedBroadening.html#abinsinterpolatedbroadening"><span class="std std-ref">documented here</span></a>.</p>
 </section>
 <section id="energy-q-relations">
-<h2>Energy-Q relations<a class="headerlink" href="#energy-q-relations" title="Permalink to this heading">¶</a></h2>
+<h2>Energy-Q relations<a class="headerlink" href="#energy-q-relations" title="Link to this heading">¶</a></h2>
 <p>Although we are nominally measuring the property <span class="math notranslate nohighlight">\(S(\mathbf{Q}, \omega)\)</span> or <span class="math notranslate nohighlight">\(S(Q, \omega)\)</span>, in time-of-flight neutron spectrometers, <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> and <span class="math notranslate nohighlight">\(\omega\)</span> are not independent. <a class="reference internal" href="../algorithms/Abins-v1.html#algm-abins"><span class="std std-ref">Abins</span></a> calculates 1-D <span class="math notranslate nohighlight">\(S(\omega)\)</span> spectra in which the corresponding value(s) of <span class="math notranslate nohighlight">\(Q\)</span> are implicitly determined by the instrument design and settings. <a class="reference internal" href="../algorithms/Abins2D-v1.html#algm-abins2d"><span class="std std-ref">Abins2D</span></a> models multi-detector instruments that generate a more complete 2-D map but there are still kinematic constraints on the measurement region. The <a class="reference internal" href="../interfaces/utility/QE%20Coverage.html#qe-coverage"><span class="std std-ref">QE Coverage</span></a> interface can be used to explore and plot these <span class="math notranslate nohighlight">\(\omega\)</span>–<span class="math notranslate nohighlight">\(Q\)</span> relations.</p>
 </section>
 <section id="current-implementation">
-<h2>Current implementation<a class="headerlink" href="#current-implementation" title="Permalink to this heading">¶</a></h2>
+<h2>Current implementation<a class="headerlink" href="#current-implementation" title="Link to this heading">¶</a></h2>
 <p>Calculation of theoretical <span class="math notranslate nohighlight">\(S\)</span> from <em>ab initio</em> results is implemented in <a class="reference internal" href="../algorithms/Abins-v1.html#algm-abins"><span class="std std-ref">Abins</span></a> and <a class="reference internal" href="../algorithms/Abins2D-v1.html#algm-abins2d"><span class="std std-ref">Abins</span></a>. At the moment Abins supports phonon outputs from the <em>ab initio</em> codes
 <a class="reference external" href="http://www.castep.org/">CASTEP</a>, <a class="reference external" href="http://www.crystal.unito.it/index.php">CRYSTAL</a>, Gaussian, DMOL3 and VASP, as well as force constants computed with <a class="reference external" href="https://phonopy.github.io/phonopy/index.html">Phonopy</a>.</p>
 <p>Due to the “DOS-like approximation” bands are assumed to be flat throughout the Brillouin zone.
@@ -206,37 +204,37 @@ The method implemented in Abins is primarily applicable for incoherent scatterin
 Instruments <a class="reference external" href="https://www.isis.stfc.ac.uk/Pages/maps.aspx">MAPS</a>, <a class="reference external" href="https://www.isis.stfc.ac.uk/Pages/mari.aspx">MARI</a> and <a class="reference external" href="https://www.isis.stfc.ac.uk/Pages/merlin.aspx">MERLIN</a> use <a class="reference internal" href="../interfaces/direct/PyChop.html#pychop"><span class="std std-ref">PyChop</span></a> to obtain values for a polynomial fit.</p>
 </section>
 <section id="citing-abins">
-<h2>Citing Abins<a class="headerlink" href="#citing-abins" title="Permalink to this heading">¶</a></h2>
+<h2>Citing Abins<a class="headerlink" href="#citing-abins" title="Link to this heading">¶</a></h2>
 <p>If Abins is used as part of your data analysis routines, please cite the relevant reference <a class="footnote-reference brackets" href="#dymkowski2018" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="kohn1964" role="note">
+<aside class="footnote brackets" id="kohn1964" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <ol class="upperalpha simple" start="23">
 <li><p>Kohn et al., <em>Inhomogeneous Electron Gas</em>, Phys. Rev. B {bf 136}, 864 (1964).</p></li>
 </ol>
 </aside>
-<aside class="footnote brackets" id="howard1983" role="note">
+<aside class="footnote brackets" id="howard1983" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
 <ol class="upperalpha simple" start="10">
 <li><p>Howard, B.C. Boland, J. Tomkinson, <em>Intensities in inelastic neutron scattering spectra: a test of recent theory</em>, Chem. Phys. 77 (1983).</p></li>
 </ol>
 </aside>
-<aside class="footnote brackets" id="howard1983b" role="note">
+<aside class="footnote brackets" id="howard1983b" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
 <ol class="upperalpha simple" start="10">
 <li><p>Howard and J. Tomkinson, <em>An analytical method for the calculation of the relative intensities of bending and stretching modes in inelastic neutron scattering spectra</em>, Chem. Phys. Letters 98 (1983).</p></li>
 </ol>
 </aside>
-<aside class="footnote brackets" id="mitchell" role="note">
+<aside class="footnote brackets" id="mitchell" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
 <ol class="upperalpha simple" start="16">
 <li><p>C H Mitchell, S. F. Parker, A. J. Ramirez-Cuesta, J. Tomkinson, <em>Vibrational Spectroscopy with Neutrons With Applications in Chemistry, Biology, Materials Science and Catalysis</em>, ISBN: 978-981-256-013-1</p></li>
 </ol>
 </aside>
-<aside class="footnote brackets" id="dymkowski2018" role="note">
+<aside class="footnote brackets" id="dymkowski2018" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">5</a><span class="fn-bracket">]</span></span>
 <ol class="upperalpha simple" start="11">
 <li><p>Dymkowski, S. F. Parker, F. Fernandez-Alonso and S. Mukhopadhyay,  “AbINS: The modern software for INS interpretation” , Physica B, doi:10.1016/j.physb.2018.02.034 (2018).</p></li>

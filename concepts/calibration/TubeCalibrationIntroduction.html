@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Tube Calibration Introduction</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -110,19 +108,19 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="tube-calibration-introduction">
-<span id="id1"></span><h1>Tube Calibration Introduction<a class="headerlink" href="#tube-calibration-introduction" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>Tube Calibration Introduction<a class="headerlink" href="#tube-calibration-introduction" title="Link to this heading">¶</a></h1>
 <p>This page is about the python code supporting tube calibration. The
 files are found in the <strong>scripts/Calibration/</strong> folder of the Mantid
 install directory.</p>
 </section>
 <section id="introduction-to-calibration">
-<h1>Introduction to Calibration<a class="headerlink" href="#introduction-to-calibration" title="Permalink to this heading">¶</a></h1>
+<h1>Introduction to Calibration<a class="headerlink" href="#introduction-to-calibration" title="Link to this heading">¶</a></h1>
 <p>Some instruments use tubes. Each tube acts as set of detectors along a
 line.</p>
 <figure class="align-default" id="id2">
 <img alt="../../_images/Tubes_and_detectors.png" src="../../_images/Tubes_and_detectors.png" />
 <figcaption>
-<p><span class="caption-text">Illustration of a tube with its detectors</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Illustration of a tube with its detectors</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The exact position of each detector in a tube depends on the electronics
@@ -145,7 +143,7 @@ connected up to form straight lines.</p>
 <figure class="align-default" id="id3">
 <img alt="Acquired Data in two tubes not calibrated" src="../../_images/CalibrationAcquiredDataInTwoTubes.png" />
 <figcaption>
-<p><span class="caption-text">Acquired Data in two tubes not calibrated</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Acquired Data in two tubes not calibrated</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Below is the plot of the integration counts in a single tube. The x-axis
@@ -154,7 +152,7 @@ shows pixels (detector numbers, where the detectors are numbered 0 to
 <figure class="align-default" id="id4">
 <img alt="Plot of the acquired Data in a single tube" src="../../_images/CalibrationAcquiredDataTube.png" />
 <figcaption>
-<p><span class="caption-text">Plot of the acquired Data in a single tube</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Plot of the acquired Data in a single tube</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>So, it is the aim of the calibration to define the positions of the
@@ -168,7 +166,7 @@ detectors, so that, the calibrated data will really show straight lines.</p>
 <p>From now on, the calibration will be explained considering only peaks.
 For edges the operation are similar.</p>
 <section id="peak-position-estimation">
-<span id="tubecalibintro-peak-pos-estimation"></span><h2>Peak position estimation<a class="headerlink" href="#peak-position-estimation" title="Permalink to this heading">¶</a></h2>
+<span id="tubecalibintro-peak-pos-estimation"></span><h2>Peak position estimation<a class="headerlink" href="#peak-position-estimation" title="Link to this heading">¶</a></h2>
 <p>The first necessary operation to do is to find the position where the
 peak of acquisition should be in each tube. Currently, this is done
 through fitting the peak to a combination of a linear background and a
@@ -186,7 +184,7 @@ peaks in each tube. For example, for the picture above, nine points will
 be found as peaks positions.</p>
 </section>
 <section id="find-the-correct-position-along-the-tube">
-<h2>Find the correct position along the tube<a class="headerlink" href="#find-the-correct-position-along-the-tube" title="Permalink to this heading">¶</a></h2>
+<h2>Find the correct position along the tube<a class="headerlink" href="#find-the-correct-position-along-the-tube" title="Link to this heading">¶</a></h2>
 <p>In the introduction, it was said that the bin or strips are placed at
 known positions. These known positions in the calibration framework are
 used to construct the <strong>IdealTube</strong>, the tube where the peaks occur at
@@ -231,7 +229,7 @@ values from the equation <span class="math notranslate nohighlight">\(y = ax^2+b
 IdealTube while <span class="math notranslate nohighlight">\(l'\)</span> is the length of the tube in the 3D space.</p>
 </section>
 <section id="apply-the-correction-to-the-detectors">
-<h2>Apply the correction to the detectors<a class="headerlink" href="#apply-the-correction-to-the-detectors" title="Permalink to this heading">¶</a></h2>
+<h2>Apply the correction to the detectors<a class="headerlink" href="#apply-the-correction-to-the-detectors" title="Link to this heading">¶</a></h2>
 <p>After having the defined position for the detectors, these positions are
 applied to the instrument.</p>
 <p><strong>Category</strong>: <a class="reference external" href="../categories/Calibration.html">Calibration</a></p>

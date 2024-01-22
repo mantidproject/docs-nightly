@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Error Propagation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,11 +106,11 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="error-propagation">
-<span id="id1"></span><h1>Error Propagation<a class="headerlink" href="#error-propagation" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>Error Propagation<a class="headerlink" href="#error-propagation" title="Link to this heading">¶</a></h1>
 <p>The purpose of this document is to explain how Mantid deals with error
 propagation and how it is used in its algorithms.</p>
 <section id="theory">
-<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this heading">¶</a></h2>
+<h2>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h2>
 <p>In order to deal with error propagation, Mantid treats errors as Gaussian
 probabilities (also known as a bell curve or normal probabilities) and each
 observation as independent. Meaning that if <span class="math notranslate nohighlight">\(X = 100 \pm 1\)</span> then it is still
@@ -121,7 +119,7 @@ or <span class="math notranslate nohighlight">\(99\)</span>, and a value of <spa
 these values.</p>
 </section>
 <section id="plus-and-minus-algorithm">
-<h2>Plus and Minus Algorithm<a class="headerlink" href="#plus-and-minus-algorithm" title="Permalink to this heading">¶</a></h2>
+<h2>Plus and Minus Algorithm<a class="headerlink" href="#plus-and-minus-algorithm" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="../algorithms/Plus-v1.html#algm-plus"><span class="std std-ref">Plus v1</span></a> algorithm adds two datasets together, propagating the
 uncertainties. Mantid calculates the result of <span class="math notranslate nohighlight">\(X_1 + X_2\)</span> as</p>
 <p><span class="math notranslate nohighlight">\(X = X_1 + X_2\)</span></p>
@@ -138,7 +136,7 @@ Then for this algorithm:</p>
 <p><span class="math notranslate nohighlight">\(\sigma_X = \sqrt{ \left( \sigma_{X_1} \right)^2 + \left( \sigma_{X_2} \right)^2 }\)</span>.</p>
 </section>
 <section id="multiply-and-divide-algorithm">
-<h2>Multiply and Divide Algorithm<a class="headerlink" href="#multiply-and-divide-algorithm" title="Permalink to this heading">¶</a></h2>
+<h2>Multiply and Divide Algorithm<a class="headerlink" href="#multiply-and-divide-algorithm" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="../algorithms/Multiply-v1.html#algm-multiply"><span class="std std-ref">Multiply v1</span></a> and <a class="reference internal" href="../algorithms/Divide-v1.html#algm-divide"><span class="std std-ref">Divide v1</span></a> algorithms propagate the uncertainties according
 to (see also <a class="reference external" href="http://en.wikipedia.org/wiki/Propagation_of_uncertainty">here</a>):</p>
 <p><span class="math notranslate nohighlight">\(\sigma_X = \left|X\right| \sqrt{ \left( \frac{\sigma_{X_1}}{X_1} \right)^2 + \left( \frac{\sigma_{X_2}}{X_2} \right)^2 }\)</span>,</p>

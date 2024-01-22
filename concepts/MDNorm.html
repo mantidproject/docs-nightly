@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Multi dimensional neutron scattering data normalization</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,16 +106,16 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="multi-dimensional-neutron-scattering-data-normalization">
-<span id="mdnorm"></span><h1>Multi dimensional neutron scattering data normalization<a class="headerlink" href="#multi-dimensional-neutron-scattering-data-normalization" title="Permalink to this heading">¶</a></h1>
+<span id="mdnorm"></span><h1>Multi dimensional neutron scattering data normalization<a class="headerlink" href="#multi-dimensional-neutron-scattering-data-normalization" title="Link to this heading">¶</a></h1>
 <section id="introduction-to-normalization">
-<h2>Introduction to normalization<a class="headerlink" href="#introduction-to-normalization" title="Permalink to this heading">¶</a></h2>
+<h2>Introduction to normalization<a class="headerlink" href="#introduction-to-normalization" title="Link to this heading">¶</a></h2>
 <p>In any experiment, a measurement consists of a raw quantity of interest and
 a statistical significance of the measurement itself.
 For neutron diffraction, the differential scattering cross section at some
 point <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> in the reciprocal space, measured with a single
 detector with a solid angle <span class="math notranslate nohighlight">\(d \Omega\)</span>, is given by:</p>
 <div class="math notranslate nohighlight" id="equation-crosssectionsingdet">
-<span class="eqno">(1)<a class="headerlink" href="#equation-crosssectionsingdet" title="Permalink to this equation">¶</a></span>\[\frac{d\sigma}{d\Omega}=\frac{N}{\Phi \times d\Omega}\]</div>
+<span class="eqno">(1)<a class="headerlink" href="#equation-crosssectionsingdet" title="Link to this equation">¶</a></span>\[\frac{d\sigma}{d\Omega}=\frac{N}{\Phi \times d\Omega}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of scattered neutrons in a small volume
 <span class="math notranslate nohighlight">\(d \mathbf{Q}\)</span> around <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>, and <span class="math notranslate nohighlight">\(\Phi\)</span> is
 the time integrated incident flux that contribute to the scattering in the given
@@ -127,14 +125,14 @@ is the statistical significance, or norm.</p>
 scattering in the <span class="math notranslate nohighlight">\(d \mathbf{Q}\)</span> volume, one needs to add together the raw
 data, add together the norms, and then divide</p>
 <div class="math notranslate nohighlight" id="equation-crosssectionmultidet">
-<span class="eqno">(2)<a class="headerlink" href="#equation-crosssectionmultidet" title="Permalink to this equation">¶</a></span>\[\frac{d\sigma}{d\Omega}=\frac{\sum_i N_i}{\sum_i \Phi_i \times d\Omega_i}\]</div>
+<span class="eqno">(2)<a class="headerlink" href="#equation-crosssectionmultidet" title="Link to this equation">¶</a></span>\[\frac{d\sigma}{d\Omega}=\frac{\sum_i N_i}{\sum_i \Phi_i \times d\Omega_i}\]</div>
 <p>The summation index <span class="math notranslate nohighlight">\(i\)</span> represents every detector and sample orientation
 or repeated measurement that contribute to the scattering in the desired region
 of the reciprocal space.
 In a similar fashion, for inelastic scattering, the double
 differential cross section must be written as:</p>
 <div class="math notranslate nohighlight" id="equation-crosssectioninelastic">
-<span class="eqno">(3)<a class="headerlink" href="#equation-crosssectioninelastic" title="Permalink to this equation">¶</a></span>\[\frac{d^2 \sigma}{dE d\Omega}=\frac{\sum_i N_i}{\sum_i \Phi_i \times d\Omega_i \times dE_i}\]</div>
+<span class="eqno">(3)<a class="headerlink" href="#equation-crosssectioninelastic" title="Link to this equation">¶</a></span>\[\frac{d^2 \sigma}{dE d\Omega}=\frac{\sum_i N_i}{\sum_i \Phi_i \times d\Omega_i \times dE_i}\]</div>
 <p>What this means is that, in the triple axes type
 of measurements for example, where we have a single detector (solid
 angle <span class="math notranslate nohighlight">\(d \Omega_i\)</span> is a constant), we should not
@@ -143,7 +141,7 @@ count is a proxy for the incident flux. We should instead
 add raw data together, add monitors together, and only then divide.</p>
 </section>
 <section id="detector-trajectories-in-reciprocal-space-for-single-crystal-experiments">
-<h2>Detector trajectories in reciprocal space for single crystal experiments<a class="headerlink" href="#detector-trajectories-in-reciprocal-space-for-single-crystal-experiments" title="Permalink to this heading">¶</a></h2>
+<h2>Detector trajectories in reciprocal space for single crystal experiments<a class="headerlink" href="#detector-trajectories-in-reciprocal-space-for-single-crystal-experiments" title="Link to this heading">¶</a></h2>
 <p>For direct geometry inelastic scattering, for any given experiment, all the incident
 flux <span class="math notranslate nohighlight">\(\Phi_i\)</span>  contributes to the scattering, and it is just a number.
 For diffraction and indirect geometry inelastic experiments one has to
@@ -160,7 +158,7 @@ in the sample frame by the rotation of the sample goniometer. This is further re
 the crystallographic <span class="math notranslate nohighlight">\(HKL\)</span> frame by the <span class="math notranslate nohighlight">\(UB\)</span> matrix. In Mantid notation
 this can be written as</p>
 <div class="math notranslate nohighlight" id="equation-masterequation">
-<span class="eqno">(4)<a class="headerlink" href="#equation-masterequation" title="Permalink to this equation">¶</a></span>\[\begin{split}\left(\begin{array}{r}
+<span class="eqno">(4)<a class="headerlink" href="#equation-masterequation" title="Link to this equation">¶</a></span>\[\begin{split}\left(\begin{array}{r}
     -k_F \sin(\theta) \cos(\phi)\\
     -k_F \sin(\theta) \sin(\phi)\\
     k_I - k_F \cos(\theta)
@@ -186,7 +184,7 @@ space are simply straight lines, parametrized by <span class="math notranslate n
 If we calculate what the <span class="math notranslate nohighlight">\(H, K, L\)</span> coordinates are for two points, say at
 <span class="math notranslate nohighlight">\(k_{min}\)</span> and <span class="math notranslate nohighlight">\(k_{max}\)</span>, we can then write:</p>
 <div class="math notranslate nohighlight" id="equation-proportionality">
-<span class="eqno">(5)<a class="headerlink" href="#equation-proportionality" title="Permalink to this equation">¶</a></span>\[\frac{H-H_{min}}{H_{max}-H_{min}}=\frac{K-K_{min}}{K_{max}-K_{min}}=
+<span class="eqno">(5)<a class="headerlink" href="#equation-proportionality" title="Link to this equation">¶</a></span>\[\frac{H-H_{min}}{H_{max}-H_{min}}=\frac{K-K_{min}}{K_{max}-K_{min}}=
 \frac{L-L_{min}}{L_{max}-L_{min}}=\frac{k-k_{min}}{k_{max}-k_{min}}\]</div>
 <p>Thus, if we know for example that we want to calculate the intersection of
 the trajectory with a plane at <span class="math notranslate nohighlight">\(H=H_i\)</span>, we can just plug in <span class="math notranslate nohighlight">\(H_i\)</span>
@@ -211,7 +209,7 @@ box in <span class="math notranslate nohighlight">\(HKL\)</span> space.</p>
 the documentation for each particular implementation.</p>
 </section>
 <section id="symmetrization">
-<h2>Symmetrization<a class="headerlink" href="#symmetrization" title="Permalink to this heading">¶</a></h2>
+<h2>Symmetrization<a class="headerlink" href="#symmetrization" title="Link to this heading">¶</a></h2>
 <p>To improve statistics in a certain region, one can use data from
 different regions of the reciprocal space that are related by the
 symmetry of the physics in the material that is being studied.
@@ -221,7 +219,7 @@ trajectories (apply to <span class="math notranslate nohighlight">\(H, K, L\)</s
 at <span class="math notranslate nohighlight">\(k_{min}\)</span> and <span class="math notranslate nohighlight">\(k_{max}\)</span>) and recalculate the normalization.</p>
 </section>
 <section id="current-implementation">
-<h2>Current implementation<a class="headerlink" href="#current-implementation" title="Permalink to this heading">¶</a></h2>
+<h2>Current implementation<a class="headerlink" href="#current-implementation" title="Link to this heading">¶</a></h2>
 <p>As of release 3.3, the normalization can be calculated for single crystal
 diffraction (<a class="reference internal" href="../algorithms/MDNormSCD-v1.html#algm-mdnormscd"><span class="std std-ref">MDNormSCD</span></a>)
 and single crystal direct geometry inelastic scattering
@@ -229,7 +227,7 @@ and single crystal direct geometry inelastic scattering
 These were merged into a single one, <a class="reference internal" href="../algorithms/MDNorm-v1.html#algm-mdnorm"><span class="std std-ref">MDNorm</span></a> with more functionality,
 in release 4.0.</p>
 <section id="references">
-<h3>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h3>
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h3>
 <p>The source for how this calculation can be found in</p>
 <ol class="arabic simple">
 <li><p>A.T. Savici, M. A. Gigg, O. Arnold, R. Tolchenov, R.E. Whitfield, S. E. Hahn, W. Zhou,  and I. A. Zaliznyak <em>Efficient data reduction for time-of-flight neutron scattering experiments on single crystals</em>, J. Appl. Cryst. <strong>55.6</strong>, 1514-1527 (2022) doi: <a class="reference external" href="https://doi.org/10.1107/S1600576722009645">10.1107/S1600576722009645</a></p></li>

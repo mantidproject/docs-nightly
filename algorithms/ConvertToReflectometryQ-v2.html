@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ConvertToReflectometryQ v2</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,54 +106,48 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="converttoreflectometryq-v2">
-<span id="algm-converttoreflectometryq"></span><span id="algm-converttoreflectometryq-v2"></span><h1>ConvertToReflectometryQ v2<a class="headerlink" href="#converttoreflectometryq-v2" title="Permalink to this heading">¶</a></h1>
-<figure class="align-right" id="id1">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/ConvertToReflectometryQ-v2_dlg.png"><img alt="../_images/ConvertToReflectometryQ-v2_dlg.png" class="screenshot" src="../_images/ConvertToReflectometryQ-v2_dlg.png" style="width: 341px;" /></a>
-<figcaption>
-<p><span class="caption-text"><strong>ConvertToReflectometryQ</strong> dialog.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<span id="algm-converttoreflectometryq"></span><span id="algm-converttoreflectometryq-v2"></span><h1>ConvertToReflectometryQ v2<a class="headerlink" href="#converttoreflectometryq-v2" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id2">Summary</a></p>
+<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p>
 <ul>
-<li><p><a class="reference internal" href="#see-also" id="id3">See Also</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id2">See Also</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#properties" id="id4">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id5">Description</a></p>
+<li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id4">Description</a></p>
 <ul>
-<li><p><a class="reference internal" href="#prerequisites" id="id6">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#transformations" id="id7">Transformations</a></p></li>
-<li><p><a class="reference internal" href="#after-transformation" id="id8">After Transformation</a></p></li>
-<li><p><a class="reference internal" href="#binning-methods" id="id9">Binning Methods</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites" id="id5">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#transformations" id="id6">Transformations</a></p></li>
+<li><p><a class="reference internal" href="#after-transformation" id="id7">After Transformation</a></p></li>
+<li><p><a class="reference internal" href="#binning-methods" id="id8">Binning Methods</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#usage" id="id10">Usage</a></p>
+<li><p><a class="reference internal" href="#usage" id="id9">Usage</a></p>
 <ul>
-<li><p><a class="reference internal" href="#normalised-polygon-transformation" id="id11">Normalised Polygon Transformation</a></p>
+<li><p><a class="reference internal" href="#normalised-polygon-transformation" id="id10">Normalised Polygon Transformation</a></p>
 <ul>
-<li><p><a class="reference internal" href="#plot-of-the-signedtheta-vs-wavelength-workspace" id="id12">Plot of the SignedTheta vs Wavelength workspace:</a></p></li>
+<li><p><a class="reference internal" href="#plot-of-the-signedtheta-vs-wavelength-workspace" id="id11">Plot of the SignedTheta vs Wavelength workspace:</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#patch-plot-with-dumped-vertexes" id="id13">Patch Plot with Dumped Vertexes</a></p></li>
-<li><p><a class="reference internal" href="#patch-plots-from-other-transformations" id="id14">Patch plots from other transformations</a></p></li>
+<li><p><a class="reference internal" href="#patch-plot-with-dumped-vertexes" id="id12">Patch Plot with Dumped Vertexes</a></p></li>
+<li><p><a class="reference internal" href="#patch-plots-from-other-transformations" id="id13">Patch plots from other transformations</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#source" id="id15">Source</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id14">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Transforms from real-space to Q or momentum space for reflectometry workspaces</p>
 <section id="see-also">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="ConvertUnits-v1.html#algm-convertunits"><span class="std std-ref">ConvertUnits</span></a>, <a class="reference internal" href="ReflectometryMomentumTransfer-v1.html#algm-reflectometrymomentumtransfer"><span class="std std-ref">ReflectometryMomentumTransfer</span></a></p>
 </section>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -260,7 +252,7 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This algorithm transforms an input workspace in wavelength to <span class="math notranslate nohighlight">\(Q_{x}, Q_{z}\)</span>
 or momentum space for reflectometry workspaces. Prior to the transformation, the
 algorithm corrects the detector position to an angle <span class="math notranslate nohighlight">\(\theta_f\)</span>, where
@@ -272,7 +264,7 @@ otherwise, no correction is done, and detectors are assumed to be at <span class
 <p>This version of the algorithm takes <span class="math notranslate nohighlight">\(\theta_f\)</span> from <span class="math notranslate nohighlight">\(2\theta - \theta_i\)</span>,
 whereas version 2 takes <span class="math notranslate nohighlight">\(\theta_f\)</span> from <span class="math notranslate nohighlight">\(2\theta\)</span>.</p>
 <section id="prerequisites">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h3>
 <p>The workspace spectrum axis should be converted to signed_theta using
 <a class="reference internal" href="ConvertSpectrumAxis-v2.html#algm-convertspectrumaxis"><span class="std std-ref">ConvertSpectrumAxis v2</span></a> and the x axis should be
 converted to Wavelength using <a class="reference internal" href="ConvertUnits-v1.html#algm-convertunits"><span class="std std-ref">ConvertUnits v1</span></a> before
@@ -292,7 +284,7 @@ that can be used to create a patch plot of results before any 2D fractional rebi
 </ul>
 </section>
 <section id="transformations">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Transformations</a><a class="headerlink" href="#transformations" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Transformations</a><a class="headerlink" href="#transformations" title="Link to this heading">¶</a></h3>
 <p>Output workspaces are always 2D MD Histogram workspaces, but the
 algorithm will perform one of three possible transformations.</p>
 <ul class="simple">
@@ -308,13 +300,13 @@ interchangeable.</p></li>
 <p><span class="math notranslate nohighlight">\(K_f = \frac{2\pi}{\lambda}sin\theta_f\)</span></p>
 </section>
 <section id="after-transformation">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">After Transformation</a><a class="headerlink" href="#after-transformation" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">After Transformation</a><a class="headerlink" href="#after-transformation" title="Link to this heading">¶</a></h3>
 <p>You will usually want to rebin using <a class="reference internal" href="BinMD-v1.html#algm-binmd"><span class="std std-ref">BinMD v1</span></a> or
 <a class="reference internal" href="SliceMD-v1.html#algm-slicemd"><span class="std std-ref">SliceMD v1</span></a> after transformation because the output workspaces
 are not regularly binned.</p>
 </section>
 <section id="binning-methods">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Binning Methods</a><a class="headerlink" href="#binning-methods" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Binning Methods</a><a class="headerlink" href="#binning-methods" title="Link to this heading">¶</a></h3>
 <p>The <em>Method</em> property allows the binning method used when applying the
 coordinate transformations to be selected. The default method,
 <em>Centre</em>, takes center point of each input bin, and locates the
@@ -327,11 +319,11 @@ overlap with the input bin. The normalised polygon approach gives better accurac
 </section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <section id="normalised-polygon-transformation">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Normalised Polygon Transformation</a><a class="headerlink" href="#normalised-polygon-transformation" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Normalised Polygon Transformation</a><a class="headerlink" href="#normalised-polygon-transformation" title="Link to this heading">¶</a></h3>
 <p><strong>Example - Normalised Polygon transformation</strong></p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">workspace_name</span> <span class="o">=</span> <span class="s2">&quot;POLREF4699&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workspace_name</span> <span class="o">=</span> <span class="s2">&quot;POLREF4699&quot;</span>
 <span class="n">workspace_nexus_file</span> <span class="o">=</span> <span class="n">workspace_name</span> <span class="o">+</span> <span class="s2">&quot;.nxs&quot;</span>
 
 <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">workspace_nexus_file</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">workspace_name</span><span class="p">)</span>
@@ -376,7 +368,7 @@ Pz_i + Pz_f Pz_i - Pz_f
 </pre></div>
 </div>
 <section id="plot-of-the-signedtheta-vs-wavelength-workspace">
-<h4><a class="toc-backref" href="#id12" role="doc-backlink">Plot of the SignedTheta vs Wavelength workspace:</a><a class="headerlink" href="#plot-of-the-signedtheta-vs-wavelength-workspace" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Plot of the SignedTheta vs Wavelength workspace:</a><a class="headerlink" href="#plot-of-the-signedtheta-vs-wavelength-workspace" title="Link to this heading">¶</a></h4>
 <p>Before the ConvertToReflectometryQ algorithm is executed in the usage example above, the plot of the ‘SignedTheta_vs_Wavelength’ workspace should resemble this plot:</p>
 <figure class="align-default">
 <img alt="plot of Signed theta vs lambda." src="../_images/SignedThetaVSlam_plot.png" />
@@ -384,7 +376,7 @@ Pz_i + Pz_f Pz_i - Pz_f
 </section>
 </section>
 <section id="patch-plot-with-dumped-vertexes">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Patch Plot with Dumped Vertexes</a><a class="headerlink" href="#patch-plot-with-dumped-vertexes" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Patch Plot with Dumped Vertexes</a><a class="headerlink" href="#patch-plot-with-dumped-vertexes" title="Link to this heading">¶</a></h3>
 <p>ConvertToReflectometryQ has the functionality to produce a table of vertexes before they are
 fitted to a normalised polygon. The plotting of these vertexes results in a patch plot that can be
 achieved by running the algorithm below.</p>
@@ -445,7 +437,7 @@ achieved by running the algorithm below.</p>
 </figure>
 </section>
 <section id="patch-plots-from-other-transformations">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Patch plots from other transformations</a><a class="headerlink" href="#patch-plots-from-other-transformations" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Patch plots from other transformations</a><a class="headerlink" href="#patch-plots-from-other-transformations" title="Link to this heading">¶</a></h3>
 <p>Patch plots can also be produced using the other Transformations <span class="math notranslate nohighlight">\(K_i, K_f\)</span> and <span class="math notranslate nohighlight">\(P_i-P_f, P_i+P_f\)</span></p>
 <p><strong>Patch plot for KiKf Transformation:</strong></p>
 <figure class="align-default">
@@ -459,9 +451,9 @@ achieved by running the algorithm below.</p>
 </section>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/Reflectometry/inc/MantidReflectometry/ConvertToReflectometryQ2.h">ConvertToReflectometryQ2.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/Reflectometry/src/ConvertToReflectometryQ2.cpp">ConvertToReflectometryQ2.cpp</a></p>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/Reflectometry/inc/MantidReflectometry/ConvertToReflectometryQ2.h">ConvertToReflectometryQ2.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/Reflectometry/src/ConvertToReflectometryQ2.cpp">ConvertToReflectometryQ2.cpp</a></p>
 </section>
 </section>
 

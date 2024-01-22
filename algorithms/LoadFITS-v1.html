@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>LoadFITS v1</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,47 +106,41 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="loadfits-v1">
-<span id="algm-loadfits"></span><span id="algm-loadfits-v1"></span><h1>LoadFITS v1<a class="headerlink" href="#loadfits-v1" title="Permalink to this heading">¶</a></h1>
-<figure class="align-right" id="id1">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/LoadFITS-v1_dlg.png"><img alt="../_images/LoadFITS-v1_dlg.png" class="screenshot" src="../_images/LoadFITS-v1_dlg.png" style="width: 364px;" /></a>
-<figcaption>
-<p><span class="caption-text"><strong>LoadFITS</strong> dialog.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<span id="algm-loadfits"></span><span id="algm-loadfits-v1"></span><h1>LoadFITS v1<a class="headerlink" href="#loadfits-v1" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id2">Summary</a></p>
+<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p>
 <ul>
-<li><p><a class="reference internal" href="#see-also" id="id3">See Also</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id2">See Also</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#properties" id="id4">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id5">Description</a></p>
+<li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id4">Description</a></p>
 <ul>
-<li><p><a class="reference internal" href="#fits-header-entries" id="id6">FITS header entries</a></p></li>
-<li><p><a class="reference internal" href="#child-algorithms-used" id="id7">Child algorithms used</a></p></li>
+<li><p><a class="reference internal" href="#fits-header-entries" id="id5">FITS header entries</a></p></li>
+<li><p><a class="reference internal" href="#child-algorithms-used" id="id6">Child algorithms used</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#usage" id="id8">Usage</a></p>
+<li><p><a class="reference internal" href="#usage" id="id7">Usage</a></p>
 <ul>
-<li><p><a class="reference internal" href="#example-1-loading-one-spectrum-per-image-row" id="id9">Example 1: loading one spectrum per image row</a></p></li>
-<li><p><a class="reference internal" href="#example-2-loading-one-spectrum-per-pixel" id="id10">Example 2: loading one spectrum per pixel</a></p></li>
+<li><p><a class="reference internal" href="#example-1-loading-one-spectrum-per-image-row" id="id8">Example 1: loading one spectrum per image row</a></p></li>
+<li><p><a class="reference internal" href="#example-2-loading-one-spectrum-per-pixel" id="id9">Example 2: loading one spectrum per pixel</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#source" id="id11">Source</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id10">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Load FITS files into workspaces of type Workspace2D.</p>
 <section id="see-also">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="Load-v1.html#algm-load"><span class="std std-ref">Load</span></a>, <a class="reference internal" href="SaveFITS-v1.html#algm-savefits"><span class="std std-ref">SaveFITS</span></a></p>
 </section>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -205,7 +197,7 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>Load FITS files, which typically contain images, into a
 <a class="reference internal" href="../concepts/WorkspaceGroup.html#workspacegroup"><span class="std std-ref">WorkspaceGroup</span></a>. FITS stands for Flexible Image
 Transport System, see <a class="reference external" href="http://en.wikipedia.org/wiki/FITS">http://en.wikipedia.org/wiki/FITS</a>. A new
@@ -242,7 +234,7 @@ far, the algorithm has been tested with files produced by the cameras
 used for the IMAT instrument at ISIS, and Starlight Xpress CCD cameras
 used for calibration of other instruments at ISIS.</p>
 <section id="fits-header-entries">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">FITS header entries</a><a class="headerlink" href="#fits-header-entries" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">FITS header entries</a><a class="headerlink" href="#fits-header-entries" title="Link to this heading">¶</a></h3>
 <p>At a very minimum, the standard header entries SIMPLE, BITPIX, NAXIS,
 NAXIS1, and NAXIS2 must be present in the file.</p>
 <p>This algorithm interprets extension headers defined for the IMAT
@@ -252,7 +244,7 @@ and/or functionality related to additional headers might be added in
 this algorithm.</p>
 </section>
 <section id="child-algorithms-used">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Child algorithms used</a><a class="headerlink" href="#child-algorithms-used" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Child algorithms used</a><a class="headerlink" href="#child-algorithms-used" title="Link to this heading">¶</a></h3>
 <p>This algorithm uses one child algorithm:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="LoadInstrument-v1.html#algm-loadinstrument"><span class="std std-ref">LoadInstrument v1</span></a>, which looks for a description of the
@@ -263,10 +255,10 @@ corresponding to the same instrument.</p></li>
 </section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <section id="example-1-loading-one-spectrum-per-image-row">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Example 1: loading one spectrum per image row</a><a class="headerlink" href="#example-1-loading-one-spectrum-per-image-row" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">ws_name</span> <span class="o">=</span> <span class="s1">&#39;FITSimgs&#39;</span>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Example 1: loading one spectrum per image row</a><a class="headerlink" href="#example-1-loading-one-spectrum-per-image-row" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws_name</span> <span class="o">=</span> <span class="s1">&#39;FITSimgs&#39;</span>
 <span class="n">wsg</span> <span class="o">=</span> <span class="n">LoadFITS</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;FITS_small_01.fits&#39;</span><span class="p">,</span> <span class="n">LoadAsRectImg</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">ws_name</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">wsg</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
@@ -297,8 +289,8 @@ Number of spectra in the output workspace: 512
 </div>
 </section>
 <section id="example-2-loading-one-spectrum-per-pixel">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Example 2: loading one spectrum per pixel</a><a class="headerlink" href="#example-2-loading-one-spectrum-per-pixel" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">ws_name</span> <span class="o">=</span> <span class="s1">&#39;FITSws&#39;</span>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Example 2: loading one spectrum per pixel</a><a class="headerlink" href="#example-2-loading-one-spectrum-per-pixel" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws_name</span> <span class="o">=</span> <span class="s1">&#39;FITSws&#39;</span>
 <span class="n">wsg</span> <span class="o">=</span> <span class="n">LoadFITS</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;FITS_small_01.fits&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">ws_name</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">wsg</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
@@ -331,9 +323,9 @@ Number of spectra in the output workspace: 262144
 </section>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/DataHandling/inc/MantidDataHandling/LoadFITS.h">LoadFITS.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/DataHandling/src/LoadFITS.cpp">LoadFITS.cpp</a></p>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/DataHandling/inc/MantidDataHandling/LoadFITS.h">LoadFITS.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/DataHandling/src/LoadFITS.cpp">LoadFITS.cpp</a></p>
 </section>
 </section>
 

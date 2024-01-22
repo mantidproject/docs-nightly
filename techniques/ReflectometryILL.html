@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Data reduction for reflectometry instruments at the ILL</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,7 +106,7 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="data-reduction-for-reflectometry-instruments-at-the-ill">
-<span id="reflectometryill"></span><h1>Data reduction for reflectometry instruments at the ILL<a class="headerlink" href="#data-reduction-for-reflectometry-instruments-at-the-ill" title="Permalink to this heading">¶</a></h1>
+<span id="reflectometryill"></span><h1>Data reduction for reflectometry instruments at the ILL<a class="headerlink" href="#data-reduction-for-reflectometry-instruments-at-the-ill" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of contents</p>
 <ul class="simple">
@@ -160,7 +158,7 @@
 <p>This document tries to give an overview on how the algorithms work together via Python examples. Please refer to the algorithm documentation for details of each individual algorithm.</p>
 <p>A description of the usage of the algorithms for the D17 and FIGARO data reduction is presented along with several possible workflows, depending on summation type, the source of the angle (detector, sample, user-defined), and whether the neutrons are polarized.</p>
 <section id="reduction-basics">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Reduction basics</a><a class="headerlink" href="#reduction-basics" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Reduction basics</a><a class="headerlink" href="#reduction-basics" title="Link to this heading">¶</a></h2>
 <p>A very basic data reduction would include a direct and a reflected beam measurement of the sample at one angle position, follow the following steps:</p>
 <ol class="arabic simple">
 <li><p>Preprocessing of direct and reflected beams in <a class="reference internal" href="../algorithms/ReflectometryILLPreprocess-v1.html#algm-reflectometryillpreprocess"><span class="std std-ref">ReflectometryILLPreProcess</span></a></p></li>
@@ -177,7 +175,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 </section>
 <section id="loading-and-initial-fitting">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Loading and initial fitting</a><a class="headerlink" href="#loading-and-initial-fitting" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Loading and initial fitting</a><a class="headerlink" href="#loading-and-initial-fitting" title="Link to this heading">¶</a></h2>
 <p>The first step of working with reflectometry data is to separately load direct and reflected beams via dedicated loader, <a class="reference internal" href="../algorithms/LoadILLReflectometry-v1.html#algm-loadillreflectometry"><span class="std std-ref">LoadILLReflectometry</span></a>.
 The loader handles the creation of appropriately sized workspace with the relevant instrument, filling it with data loaded from raw NeXus file, and adding all the metadata available.
 The proper position and orientation of the instrument in 3D space is ensured by rotating the instrument such that the centre of the reflectometry peak <span class="math notranslate nohighlight">\(2\theta\)</span> falls at 0.0.
@@ -185,7 +183,7 @@ The position of the reflectometry peak can be provided by the user via <cite>For
 the TOF dimension is integrated over. In case of reflected beam, and either sample or user angle options, the reflectometry peak is not placed as 0.0, but at the angle provided
 via <cite>BraggAngle</cite> property. This rotation takes place in either in horizontal or vertical plane, depending on the instrument, D17 and FIGARO, respectively.</p>
 <p><strong>Example - Loading reflectometry data</strong></p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span>
    <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;317369&#39;</span><span class="p">,</span>
    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;direct_beam_ws&#39;</span><span class="p">,</span>
    <span class="n">Measurement</span><span class="o">=</span><span class="s1">&#39;DirectBeam&#39;</span><span class="p">,</span>
@@ -203,7 +201,7 @@ Min/max of TOF: -470.036, 56529.964
 </div>
 </section>
 <section id="preprocessing">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Preprocessing</a><a class="headerlink" href="#preprocessing" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Preprocessing</a><a class="headerlink" href="#preprocessing" title="Link to this heading">¶</a></h2>
 <p>This algorithm is the first step in the ILL reflectometry reduction workflow. It:</p>
 <ol class="arabic simple">
 <li><p>loads data from disk by using <a class="reference internal" href="../algorithms/LoadAndMerge-v1.html#algm-loadandmerge"><span class="std std-ref">LoadAndMerge</span></a> (<a class="reference internal" href="../algorithms/LoadILLReflectometry-v1.html#algm-loadillreflectometry"><span class="std std-ref">LoadILLReflectometry</span></a>, <a class="reference internal" href="../algorithms/MergeRuns-v1.html#algm-mergeruns"><span class="std std-ref">MergeRuns</span></a>)</p></li>
@@ -221,7 +219,7 @@ Min/max of TOF: -470.036, 56529.964
 <p>The option <em>Slit Normalisation AUTO</em> will select the slit normalisation depending on the instrument: for D17 and FIGARO, the slit normalisation will be turned on and off, respectively.</p>
 <p>The workflow diagram below gives an overview of the algorithm for direct and reflected beam preprocessing respectively:</p>
 <img alt="../_images/ReflectometryILLPreprocessDirect-v1_wkflw.svg" src="../_images/ReflectometryILLPreprocessDirect-v1_wkflw.svg" /><img alt="../_images/ReflectometryILLPreprocessReflected-v1_wkflw.svg" src="../_images/ReflectometryILLPreprocessReflected-v1_wkflw.svg" /><section id="measurement">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Measurement</a><a class="headerlink" href="#measurement" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Measurement</a><a class="headerlink" href="#measurement" title="Link to this heading">¶</a></h3>
 <p>This tag defines whether the runs need to be processed as direct or reflected beams.
 In both cases the fractional foreground centre is fitted.
 For direct beam, the detector is rotated such that the foreground centre corresponds exactly to zero scattering angle.
@@ -233,7 +231,7 @@ For reflected beam there are three possibilities, depending on the <strong>Angle
 </ol>
 </section>
 <section id="foreground-and-backgrounds">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Foreground and backgrounds</a><a class="headerlink" href="#foreground-and-backgrounds" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Foreground and backgrounds</a><a class="headerlink" href="#foreground-and-backgrounds" title="Link to this heading">¶</a></h3>
 <p>Foreground is a set of pixels intensities of which will be summed in <a class="reference internal" href="../algorithms/ReflectometryILLSumForeground-v1.html#algm-reflectometryillsumforeground"><span class="std std-ref">ReflectometryILLSumForeground</span></a>. However, foreground needs to be defined already in this algorithm as the information is needed for the background pixels. The foreground pixel information is stored in the sample logs of <em>OutputWorkspace</em> under the entries starting with <code class="docutils literal notranslate"><span class="pre">foreground.</span></code>.</p>
 <p>Background, on the other hand, is a set of pixels which are be used for average (default), fitted constant or linear background by <a class="reference internal" href="../algorithms/CalculatePolynomialBackground-v1.html#algm-calculatepolynomialbackground"><span class="std std-ref">CalculatePolynomialBackground</span></a>.</p>
 <p>The foreground pixels are defined by the foreground centre and <em>ForegroundHalfWidth</em> property. In normal use cases, the foreground center (workspace index) is taken from the fitting in <a class="reference internal" href="../algorithms/LoadILLReflectometry-v1.html#algm-loadillreflectometry"><span class="std std-ref">LoadILLReflectometry</span></a>. Fractional values are rounded to nearest integer.</p>
@@ -242,7 +240,7 @@ For reflected beam there are three possibilities, depending on the <strong>Angle
 <p><em>LowAngleBkgWidth</em> and <em>HighAngleBkgWidth</em> define the number of the background fitting pixels at low and high <span class="math notranslate nohighlight">\(\theta\)</span>. Either one or both widths can be defined. The distance between the background pixels and the foreground can in turn be given by <em>LowAngleBkgOffset</em> and <em>HighAngleBkgOffset</em>.</p>
 </section>
 <section id="gravity-correction">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Gravity correction</a><a class="headerlink" href="#gravity-correction" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Gravity correction</a><a class="headerlink" href="#gravity-correction" title="Link to this heading">¶</a></h3>
 <p>Gravity correction is relevant for data reduction at FIGARO. Its execution is steered by a switch: <cite>CorrectGravity</cite>. Gravity correction approach follows the algorithm described
 in Ref. <a class="footnote-reference brackets" href="#gutfreund" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, where both the wavelength and reflection angles are corrected for the neutron drop due to gravity. This approach assumes no significant change to the neutron speed.</p>
 <p>In practice, this correction had to be split in two steps. Both the new wavelength axis and the corrected reflected angle distribution are calculated during the preprocessing, both
@@ -252,17 +250,17 @@ was dictated by the Mantid architecture but is mathematically equivalent and doe
 </section>
 </section>
 <section id="summing-foreground">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Summing foreground</a><a class="headerlink" href="#summing-foreground" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Summing foreground</a><a class="headerlink" href="#summing-foreground" title="Link to this heading">¶</a></h2>
 <p>The default summation type is incoherent (sum along constant <span class="math notranslate nohighlight">\(\lambda\)</span>), where the reflectivity curve is calculated by dividing the summed foreground of the reflected beam by the summed foreground of the direct beam. For coherent summing, first the reflected beam data is divided by the direct beam data in 2D, then the ratio is summed along the lines of the constant <span class="math notranslate nohighlight">\(Q_{z}\)</span>.</p>
 </section>
 <section id="polarisation-correction">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">Polarisation correction</a><a class="headerlink" href="#polarisation-correction" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Polarisation correction</a><a class="headerlink" href="#polarisation-correction" title="Link to this heading">¶</a></h2>
 <p>The polarisation correction is handled by <a class="reference internal" href="../algorithms/ReflectometryILLPolarizationCor-v1.html#algm-reflectometryillpolarizationcor"><span class="std std-ref">ReflectometryILLPolarizationCor</span></a> algorithm. This algorithm is an ILL-specific wrapper around <a class="reference internal" href="../algorithms/PolarizationEfficiencyCor-v1.html#algm-polarizationefficiencycor"><span class="std std-ref">PolarizationEffiencyCor</span></a>. It is typically run in reflectometry reduction workflow, namely the workflow in the <a class="reference internal" href="../algorithms/ReflectometryILLAutoProcess-v1.html#algm-reflectometryillautoprocess"><span class="std std-ref">ReflectometryILLAutoProcess</span></a> algorithm, between <a class="reference internal" href="../algorithms/ReflectometryILLSumForeground-v1.html#algm-reflectometryillsumforeground"><span class="std std-ref">ReflectometryILLSumForeground</span></a> and <a class="reference internal" href="../algorithms/ReflectometryILLConvertToQ-v1.html#algm-reflectometryillconverttoq"><span class="std std-ref">ReflectometryILLConvertToQ</span></a>.</p>
 <p>The algorithm accepts a list of workspace names as <em>InputWorkspaces</em>. Thus, the workspaces have to be accessible from the analysis data service. One to four workspaces can be named. If only a single workspace is given, it is treated as the direct beam. The algorithm loads the polarization efficiencies from <em>EfficiencyFile</em>. This file should be in the ILL format readable by <a class="reference internal" href="../algorithms/LoadILLPolarizationFactors-v1.html#algm-loadillpolarizationfactors"><span class="std std-ref">LoadILLPolarizationFactors</span></a>.</p>
 <p>The first workspace in <em>InputWorkspaces</em> is picked as a reference. The instrument configuration is extracted from the sample logs of this workspace. Further, this workspace is used as <em>WavelengthReference</em> for <a class="reference internal" href="../algorithms/LoadILLPolarizationFactors-v1.html#algm-loadillpolarizationfactors"><span class="std std-ref">LoadILLPolarizationFactors</span></a>. To make sure the wavelength axes of all workspaces are consistent comply, they are run through <a class="reference internal" href="../algorithms/RebinToWorkspace-v1.html#algm-rebintoworkspace"><span class="std std-ref">RebinToWorkspace</span></a>, with workspaces being matched to the reference.</p>
 <p>Finally, the algorithm extracts the flipper configurations from the input workspaces, reorders the workspaces accordingly and calls <a class="reference internal" href="../algorithms/PolarizationEfficiencyCor-v1.html#algm-polarizationefficiencycor"><span class="std std-ref">PolarizationEffiencyCor</span></a>. The output is a workspace group returned by <a class="reference internal" href="../algorithms/PolarizationEfficiencyCor-v1.html#algm-polarizationefficiencycor"><span class="std std-ref">PolarizationEffiencyCor</span></a>, containing workspaces corrected for polarization efficiency and ready for further processing and conversion to momentum exchange.</p>
 <section id="workflow-diagram-and-working-example">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Workflow diagram and working example</a><a class="headerlink" href="#workflow-diagram-and-working-example" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Workflow diagram and working example</a><a class="headerlink" href="#workflow-diagram-and-working-example" title="Link to this heading">¶</a></h3>
 <p>Below is the relevant workflow diagram describing polarization correction workflow..</p>
 <img alt="../_images/ReflectometryILLPolarizationCor-v1_wkflw.svg" src="../_images/ReflectometryILLPolarizationCor-v1_wkflw.svg" /><div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -272,7 +270,7 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - analyzerless corrections</strong></p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use same foreground and background settings for direct and reflected</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use same foreground and background settings for direct and reflected</span>
 <span class="c1"># beams.</span>
 <span class="c1"># Python dictionaries can be passed to algorithms as &#39;keyword arguments&#39;.</span>
 <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
@@ -385,19 +383,19 @@ X unit: Wavelength
 </section>
 </section>
 <section id="conversion-to-momentum-exchange">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Conversion to momentum exchange</a><a class="headerlink" href="#conversion-to-momentum-exchange" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Conversion to momentum exchange</a><a class="headerlink" href="#conversion-to-momentum-exchange" title="Link to this heading">¶</a></h2>
 <p>This algorithm is the last step in the reflectometry reduction workflow. Its main purpose is to convert reflectivity workspaces from wavelength to momentum transfer. This is achieved by <a class="reference internal" href="../algorithms/ReflectometryMomentumTransfer-v1.html#algm-reflectometrymomentumtransfer"><span class="std std-ref">ReflectometryMomentumTransfer</span></a>, which also computes the <span class="math notranslate nohighlight">\(Q_{z}\)</span> resolution. Further, histogrammed <em>InputWorkspace</em> is converted to point data by <a class="reference internal" href="../algorithms/ConvertToPointData-v1.html#algm-converttopointdata"><span class="std std-ref">ConvertToPointData</span></a> and, optionally, the points are grouped according to the <span class="math notranslate nohighlight">\(Q_{z}\)</span> resolution.</p>
 <p>If the instrument is FIGARO, and <em>ThetaCorrection</em> is defined, the second step of the gravity correction is performed, where the gravity-corrected reflection angle is taken into account, and the X-axis transformed to momentum exchange replaces the X-axis of the <em>OutputWorkspace</em>.</p>
 <p>The diagram below shows the workflow of this algorithm:</p>
 <img alt="../_images/ReflectometryILLConvertToQ-v1_wkflw.svg" src="../_images/ReflectometryILLConvertToQ-v1_wkflw.svg" /><p>The algorithm expects to find a <code class="docutils literal notranslate"><span class="pre">foreground.summation_type</span></code> entry in the <em>InputWorkspace</em>’s sample logs containing either <code class="docutils literal notranslate"><span class="pre">SumInLambda</span></code> or <code class="docutils literal notranslate"><span class="pre">SumInQ</span></code>. This entry should be defined when processing was done in the <a class="reference internal" href="../algorithms/ReflectometryILLAutoProcess-v1.html#algm-reflectometryillautoprocess"><span class="std std-ref">ReflectometryILLAutoProcess</span></a> algorithm, as it is automatically added to the workspace in <a class="reference internal" href="../algorithms/ReflectometryILLSumForeground-v1.html#algm-reflectometryillsumforeground"><span class="std std-ref">ReflectometryILLSumForeground</span></a>.</p>
 </section>
 <section id="full-data-reduction-examples">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Full data reduction examples</a><a class="headerlink" href="#full-data-reduction-examples" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Full data reduction examples</a><a class="headerlink" href="#full-data-reduction-examples" title="Link to this heading">¶</a></h2>
 <p>Below there is a number of full reduction examples utilizing <a class="reference internal" href="../algorithms/ReflectometryILLAutoProcess-v1.html#algm-reflectometryillautoprocess"><span class="std std-ref">ReflectometryILLAutoProcess</span></a> algorithm to handle the workflows.</p>
 <section id="d17-sample-angle-incoherent-summation">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">D17 sample angle, incoherent summation</a><a class="headerlink" href="#d17-sample-angle-incoherent-summation" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">D17 sample angle, incoherent summation</a><a class="headerlink" href="#d17-sample-angle-incoherent-summation" title="Link to this heading">¶</a></h3>
 <p>The example below shows a silicon oxide reduction with coherent summation at two different angular positions (detector-defined) of a quartz sample measured by D17 instrument in the cycle 192.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reduction based on data from cycle 192, internalUse, silicon oxide sample</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># reduction based on data from cycle 192, internalUse, silicon oxide sample</span>
 <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;SiO2&#39;</span>
 <span class="n">directBeams</span> <span class="o">=</span> <span class="s1">&#39;541838,541839&#39;</span>
 <span class="n">reflectedBeams</span> <span class="o">=</span> <span class="s1">&#39;541853,541854&#39;</span>
@@ -439,9 +437,9 @@ X unit: MomentumTransfer
 </div>
 </section>
 <section id="d17-user-angle-incoherent-summation">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">D17 user angle, incoherent summation</a><a class="headerlink" href="#d17-user-angle-incoherent-summation" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">D17 user angle, incoherent summation</a><a class="headerlink" href="#d17-user-angle-incoherent-summation" title="Link to this heading">¶</a></h3>
 <p>The example below shows a quartz reduction with incoherent summation at four different angular positions (user-defined) of a quartz sample measured by D17 instrument in the cycle 213.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reduction based on data from cycle 213, internalUse, quartz sample</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># reduction based on data from cycle 213, internalUse, quartz sample</span>
 <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;D17_Quartz_213&#39;</span>
 <span class="n">direct_beams</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;676978&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">reflected_beams</span> <span class="o">=</span> <span class="s1">&#39;676979,676980,676981+676982,676983+676985&#39;</span>
@@ -483,10 +481,10 @@ X unit: MomentumTransfer
 </div>
 </section>
 <section id="figaro-detector-angle-gravity-correction">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">FIGARO detector angle, gravity correction</a><a class="headerlink" href="#figaro-detector-angle-gravity-correction" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">FIGARO detector angle, gravity correction</a><a class="headerlink" href="#figaro-detector-angle-gravity-correction" title="Link to this heading">¶</a></h3>
 <p>In this example, FIGARO data from cycle 212, exp_EASY-952 at two separate angular positions is reduced according to the workflow described in previous sections.
 This reduction includes the gravity correction, which is set explicitly via <cite>CorrectGravity</cite> property.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reduction based on data from cycle 212, exp_EASY-952</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># reduction based on data from cycle 212, exp_EASY-952</span>
 <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Cell_d2O&#39;</span>
 <span class="n">runs</span> <span class="o">=</span> <span class="s1">&#39;743465,743466&#39;</span>
 <span class="n">direct_run</span> <span class="o">=</span> <span class="s1">&#39;732252+732254,732255&#39;</span>
@@ -533,9 +531,9 @@ X unit: MomentumTransfer
 </div>
 </section>
 <section id="references">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h3>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="gutfreund" role="note">
+<aside class="footnote brackets" id="gutfreund" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>Gutfreund P., Saerbeck T., Gonzalez M., Pellegrini E., Dewhurst C., Cubitt R.
 <em>Towards generalized data reduction on a chopper-based time-of-flight neutron reflectometer</em>,

@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>PolarizationCorrectionWildes v1</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,37 +106,31 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="polarizationcorrectionwildes-v1">
-<span id="algm-polarizationcorrectionwildes"></span><span id="algm-polarizationcorrectionwildes-v1"></span><h1>PolarizationCorrectionWildes v1<a class="headerlink" href="#polarizationcorrectionwildes-v1" title="Permalink to this heading">¶</a></h1>
-<figure class="align-right" id="id5">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/PolarizationCorrectionWildes-v1_dlg.png"><img alt="../_images/PolarizationCorrectionWildes-v1_dlg.png" class="screenshot" src="../_images/PolarizationCorrectionWildes-v1_dlg.png" style="width: 468px;" /></a>
-<figcaption>
-<p><span class="caption-text"><strong>PolarizationCorrectionWildes</strong> dialog.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<span id="algm-polarizationcorrectionwildes"></span><span id="algm-polarizationcorrectionwildes-v1"></span><h1>PolarizationCorrectionWildes v1<a class="headerlink" href="#polarizationcorrectionwildes-v1" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id6">Summary</a></p></li>
-<li><p><a class="reference internal" href="#properties" id="id7">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id8">Description</a></p>
+<li><p><a class="reference internal" href="#summary" id="id5">Summary</a></p></li>
+<li><p><a class="reference internal" href="#properties" id="id6">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id7">Description</a></p>
 <ul>
-<li><p><a class="reference internal" href="#flipper-configurations" id="id9">Flipper configurations</a></p></li>
-<li><p><a class="reference internal" href="#output" id="id10">Output</a></p></li>
-<li><p><a class="reference internal" href="#efficiency-factors" id="id11">Efficiency factors</a></p></li>
-<li><p><a class="reference internal" href="#error-propagation" id="id12">Error propagation</a></p></li>
+<li><p><a class="reference internal" href="#flipper-configurations" id="id8">Flipper configurations</a></p></li>
+<li><p><a class="reference internal" href="#output" id="id9">Output</a></p></li>
+<li><p><a class="reference internal" href="#efficiency-factors" id="id10">Efficiency factors</a></p></li>
+<li><p><a class="reference internal" href="#error-propagation" id="id11">Error propagation</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#usage" id="id13">Usage</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id14">References</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id15">Source</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id12">Usage</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id13">References</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id14">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Corrects a group of polarization analysis workspaces for polarizer and analyzer efficiencies.</p>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -177,7 +169,7 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This algorithm corrects for non-ideal instrument component efficiencies in a polarization analysis experiment by following the procedure and conventions introduced by Wildes <a class="footnote-reference brackets" href="#wildes" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. In the full polarization analysis case it solves the corrected count rates <span class="math notranslate nohighlight">\(\Sigma^{++}\)</span>, <span class="math notranslate nohighlight">\(\Sigma^{+-}\)</span>, <span class="math notranslate nohighlight">\(\Sigma^{-+}\)</span> and <span class="math notranslate nohighlight">\(\Sigma^{--}\)</span> from the equation</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{bmatrix}
@@ -195,7 +187,7 @@ I^{11}
 \end{bmatrix},\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(I^{jk}\)</span> are the experimental count rates for flipper configuration <span class="math notranslate nohighlight">\(jk\)</span> and <span class="math notranslate nohighlight">\(\bm{M}\)</span> is the four-by-four correction matrix as defined by equations (4) in <a class="footnote-reference brackets" href="#wildes" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 <section id="flipper-configurations">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Flipper configurations</a><a class="headerlink" href="#flipper-configurations" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Flipper configurations</a><a class="headerlink" href="#flipper-configurations" title="Link to this heading">¶</a></h3>
 <p><em>InputWorkspaces</em> is a list containing one to four workspace names (X unit: wavelength) corresponding to the instrument configurations given as <em>Flippers</em>. Supported configurations are:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">'00,</span> <span class="pre">01,</span> <span class="pre">10,</span> <span class="pre">11'</span></code></dt><dd><p>Full polarization corrections. Four input workspaces are required. They should be in the input group in the following order: both flippers off, analyzer flipper on, polarizer flipper on, both flippers on.</p>
@@ -211,11 +203,11 @@ I^{11}
 </dl>
 </section>
 <section id="output">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Output</a><a class="headerlink" href="#output" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Output</a><a class="headerlink" href="#output" title="Link to this heading">¶</a></h3>
 <p>The algorithm’s output is a group workspace containing the corrected workspaces. The names of each corrected workspace is prefixed by <code class="docutils literal notranslate"><span class="pre">_++</span></code>, <code class="docutils literal notranslate"><span class="pre">_+-</span></code>, <code class="docutils literal notranslate"><span class="pre">_-+</span></code> or <code class="docutils literal notranslate"><span class="pre">_--</span></code> depending on which <span class="math notranslate nohighlight">\(\Sigma^{mn}\)</span> they correspond to.</p>
 </section>
 <section id="efficiency-factors">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Efficiency factors</a><a class="headerlink" href="#efficiency-factors" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Efficiency factors</a><a class="headerlink" href="#efficiency-factors" title="Link to this heading">¶</a></h3>
 <p>The <em>Efficiencies</em> input property expects to get a workspace with the following properties:</p>
 <ul class="simple">
 <li><p>Contains four histograms, each labeled by their vertical axis as <code class="docutils literal notranslate"><span class="pre">P1</span></code>, <code class="docutils literal notranslate"><span class="pre">P2</span></code>, <code class="docutils literal notranslate"><span class="pre">F1</span></code>, <code class="docutils literal notranslate"><span class="pre">F2</span></code>. Other histograms (if present) are ignored.</p></li>
@@ -228,7 +220,7 @@ I^{11}
 </div>
 </section>
 <section id="error-propagation">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">Error propagation</a><a class="headerlink" href="#error-propagation" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Error propagation</a><a class="headerlink" href="#error-propagation" title="Link to this heading">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Errors are calculated as per Wildes <a class="footnote-reference brackets" href="#wildes" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, except for the numerically solved intensity in <code class="docutils literal notranslate"><span class="pre">'00,</span> <span class="pre">01,</span> <span class="pre">11'</span></code> and <code class="docutils literal notranslate"><span class="pre">'00,</span> <span class="pre">10,</span> <span class="pre">11'</span></code> flipper configurations in which case the uncertainties of <span class="math notranslate nohighlight">\(\Sigma^{+-}\)</span> or <span class="math notranslate nohighlight">\(\Sigma^{-+}\)</span> are set to zero.</p>
@@ -236,7 +228,7 @@ I^{11}
 </section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To run these usage examples please first download the
@@ -245,7 +237,7 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - PolarizationEfficiencyCor</strong></p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">LoadILLReflectometry</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LoadILLReflectometry</span><span class="p">(</span>
     <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;ILL/D17/317370.nxs&#39;</span><span class="p">,</span>
     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;direct_beam&#39;</span><span class="p">,</span>
     <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;TimeOfFlight&#39;</span><span class="p">)</span>
@@ -313,9 +305,9 @@ Ratio of corrected and original &#39;down&#39; intensity at 15A: 10.38
 </div>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="wildes" role="note">
+<aside class="footnote brackets" id="wildes" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>,<a role="doc-backlink" href="#id3">3</a>,<a role="doc-backlink" href="#id4">4</a>)</span>
 <p>A. R. Wildes, <em>Neutron News</em>, <strong>17</strong> 17 (2006)
@@ -325,9 +317,9 @@ Ratio of corrected and original &#39;down&#39; intensity at 15A: 10.38
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Reflectometry.html">Reflectometry</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/Algorithms/inc/MantidAlgorithms/PolarizationCorrectionWildes.h">PolarizationCorrectionWildes.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/Algorithms/src/PolarizationCorrectionWildes.cpp">PolarizationCorrectionWildes.cpp</a></p>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/Algorithms/inc/MantidAlgorithms/PolarizationCorrectionWildes.h">PolarizationCorrectionWildes.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/Algorithms/src/PolarizationCorrectionWildes.cpp">PolarizationCorrectionWildes.cpp</a></p>
 </section>
 </section>
 

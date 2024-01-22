@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>QE Coverage</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,7 +106,7 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="qe-coverage">
-<span id="id1"></span><h1>QE Coverage<a class="headerlink" href="#qe-coverage" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>QE Coverage<a class="headerlink" href="#qe-coverage" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
@@ -120,23 +118,24 @@
 <a class="reference internal image-reference" href="../../_images/QECoverage.png"><img alt="QECoverage.png" src="../../_images/QECoverage.png" style="width: 455px;" /></a>
 </figure>
 <section id="overview">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>QECoverage is a small planning tool to allow inelastic neutron scattering users
 to determine graphically the momentum / energy transfer limits for a given
 spectrometer and fixed energy.</p>
 </section>
 <section id="options">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Options</a><a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Options</a><a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
 <p>To use, select the geometry (direct or indirect) and instrument from the tabs
 and drop-down menu. For direct geometry spectrometers, an incident energy (Ei)
 in meV must be given; for indirect geometry machines, the final energies are
-fixed at a few values which must be selected from the drop-down menu. (Negative
-values of Ei are treated as positive - the program only uses the magnitude of Ei).</p>
+fixed at a few values which must be selected from the drop-down menu. Only positive
+values of Ei are permitted. Several Q-E trajectories can be plotted simultaneously
+by providing several Ei values separated by commas.</p>
 <p>To overplot the calculated Q-E trajectories, set the “Plot Over” check box.</p>
 <p>The plot range is from Emin to Ei for direct, and from -Ef to Emax for indirect
 geometry spectrometers, and Emin and Emax may be inputted in the appropriate text
-box. If this box is left empty, Emin=-Ei (Emax=Ef) is set automatically for
-direct (indirect) geometry.</p>
+box. If the input for Emin is invalid or bigger than min(Ei), then Emin is
+automatically set to Emin = -max(Ei)/2 for direct (indirect) geometry.</p>
 <p>You can choose to create a 1D Mantid workspace for latter plotting using the
 “Create Workspace” check box.</p>
 <p>In addition, for HYSPEC, where the detector bank can be rotated, an additional

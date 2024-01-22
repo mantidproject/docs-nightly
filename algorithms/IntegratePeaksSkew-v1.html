@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>IntegratePeaksSkew v1</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=c26d7f48"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="IntegratePeaksUsingClusters v1" href="IntegratePeaksUsingClusters-v1.html" />
-    <link rel="prev" title="IntegratePeaksProfileFitting v1" href="IntegratePeaksProfileFitting-v1.html" />
+    <link rel="prev" title="IntegratePeaksShoeboxTOF v1" href="IntegratePeaksShoeboxTOF-v1.html" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -50,7 +48,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.mantidproject.org"><img src="../_static/Mantid_Logo_Transparent.png">
+        <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
         <span class="navbar-text navbar-version pull-left"><b>6.8</b></span>
       </div>
@@ -108,48 +106,42 @@
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="integratepeaksskew-v1">
-<span id="algm-integratepeaksskew"></span><span id="algm-integratepeaksskew-v1"></span><h1>IntegratePeaksSkew v1<a class="headerlink" href="#integratepeaksskew-v1" title="Permalink to this heading">¶</a></h1>
-<figure class="align-right" id="id8">
-<span id="index-0"></span><a class="screenshot reference internal image-reference" href="../_images/IntegratePeaksSkew-v1_dlg.png"><img alt="../_images/IntegratePeaksSkew-v1_dlg.png" class="screenshot" src="../_images/IntegratePeaksSkew-v1_dlg.png" style="width: 341px;" /></a>
-<figcaption>
-<p><span class="caption-text"><strong>IntegratePeaksSkew</strong> dialog.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<span id="algm-integratepeaksskew"></span><span id="algm-integratepeaksskew-v1"></span><h1>IntegratePeaksSkew v1<a class="headerlink" href="#integratepeaksskew-v1" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id9">Summary</a></p>
+<li><p><a class="reference internal" href="#summary" id="id8">Summary</a></p>
 <ul>
-<li><p><a class="reference internal" href="#see-also" id="id10">See Also</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id9">See Also</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#properties" id="id11">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id12">Description</a></p></li>
-<li><p><a class="reference internal" href="#assumptions-about-the-instrument" id="id13">Assumptions about the instrument</a></p></li>
-<li><p><a class="reference internal" href="#peak-mask-validation" id="id14">Peak mask validation</a></p>
+<li><p><a class="reference internal" href="#properties" id="id10">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id11">Description</a></p></li>
+<li><p><a class="reference internal" href="#assumptions-about-the-instrument" id="id12">Assumptions about the instrument</a></p></li>
+<li><p><a class="reference internal" href="#peak-mask-validation" id="id13">Peak mask validation</a></p>
 <ul>
-<li><p><a class="reference internal" href="#integration-of-peaks-on-the-edge-of-a-detector" id="id15">Integration of peaks on the edge of a detector</a></p></li>
-<li><p><a class="reference internal" href="#vacancies" id="id16">Vacancies</a></p></li>
-<li><p><a class="reference internal" href="#peak-size-and-shape" id="id17">Peak size and shape</a></p></li>
+<li><p><a class="reference internal" href="#integration-of-peaks-on-the-edge-of-a-detector" id="id14">Integration of peaks on the edge of a detector</a></p></li>
+<li><p><a class="reference internal" href="#vacancies" id="id15">Vacancies</a></p></li>
+<li><p><a class="reference internal" href="#peak-size-and-shape" id="id16">Peak size and shape</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#finding-nearby-peaks" id="id18">Finding nearby peaks</a></p></li>
-<li><p><a class="reference internal" href="#plotting" id="id19">Plotting</a></p></li>
-<li><p><a class="reference internal" href="#useage" id="id20">Useage</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id21">References</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id22">Source</a></p></li>
+<li><p><a class="reference internal" href="#finding-nearby-peaks" id="id17">Finding nearby peaks</a></p></li>
+<li><p><a class="reference internal" href="#plotting" id="id18">Plotting</a></p></li>
+<li><p><a class="reference internal" href="#useage" id="id19">Useage</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id20">References</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id21">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Integrates single-crystal peaks in a MatrixWorkspace by identifying the peak pixels in a window on the detector by minimising the skew of the points in the background. The TOF extent of the peak is determined by maximising I/<span class="math notranslate nohighlight">\(\sigma\)</span> for the peak pixels identified using the skew method.</p>
 <section id="see-also">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="IntegratePeaksMD-v2.html#algm-integratepeaksmd"><span class="std std-ref">IntegratePeaksMD</span></a>, <a class="reference internal" href="IntegrateEllipsoids-v3.html#algm-integrateellipsoids"><span class="std std-ref">IntegrateEllipsoids</span></a></p>
 </section>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -326,7 +318,7 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>IntegratePeaksSkew is an algorithm that integrates single-crystal Bragg peaks in a <a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a>
 by identifying the detectors and bins that contribute to a peak by minimising the skew (third moment) of the points in
 the background.</p>
@@ -380,7 +372,7 @@ contributing to the peak.</p></li>
 </ol>
 </section>
 <section id="assumptions-about-the-instrument">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Assumptions about the instrument</a><a class="headerlink" href="#assumptions-about-the-instrument" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Assumptions about the instrument</a><a class="headerlink" href="#assumptions-about-the-instrument" title="Link to this heading">¶</a></h2>
 <p>This algorithm supports instruments with detector banks of two types: <a class="reference internal" href="../concepts/RectangularDetector.html#rectangulardetector"><span class="std std-ref">RectangularDetector</span></a>
 (e.g. SXD, TOPAZ) and a more generic type <code class="docutils literal notranslate"><span class="pre">CompAssembly</span></code> (e.g WISH) - for which the behaviour of the algorithm is
 slightly different.</p>
@@ -400,15 +392,15 @@ WISH instrument):</p>
 </ol>
 </section>
 <section id="peak-mask-validation">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">Peak mask validation</a><a class="headerlink" href="#peak-mask-validation" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Peak mask validation</a><a class="headerlink" href="#peak-mask-validation" title="Link to this heading">¶</a></h2>
 <p>The algorithm includes several parameters that allow the peak mask (detectors contributing to the peak) to be
 validated before advancing to step 5.</p>
 <section id="integration-of-peaks-on-the-edge-of-a-detector">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Integration of peaks on the edge of a detector</a><a class="headerlink" href="#integration-of-peaks-on-the-edge-of-a-detector" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Integration of peaks on the edge of a detector</a><a class="headerlink" href="#integration-of-peaks-on-the-edge-of-a-detector" title="Link to this heading">¶</a></h3>
 <p>To integrate peaks for which the peak mask includes pixels on the edge of the detector bank set <code class="docutils literal notranslate"><span class="pre">IntegrateIfOnEdge=True</span></code>.</p>
 </section>
 <section id="vacancies">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">Vacancies</a><a class="headerlink" href="#vacancies" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Vacancies</a><a class="headerlink" href="#vacancies" title="Link to this heading">¶</a></h3>
 <p>Defined as regions of background pixels entirely enclosed within the peak mask - examples of vacancies are shown below.
 If more than <code class="docutils literal notranslate"><span class="pre">NVacanciesMax</span></code> vacancies are found with a number of pixels greater than or equal to
 <code class="docutils literal notranslate"><span class="pre">NPixPerVacancyMin</span></code> then the peak is not integrated.</p>
@@ -417,7 +409,7 @@ If more than <code class="docutils literal notranslate"><span class="pre">NVacan
 </figure>
 </section>
 <section id="peak-size-and-shape">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">Peak size and shape</a><a class="headerlink" href="#peak-size-and-shape" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Peak size and shape</a><a class="headerlink" href="#peak-size-and-shape" title="Link to this heading">¶</a></h3>
 <p>The minimum number of pixels allowed for a peak is set using the parameter <code class="docutils literal notranslate"><span class="pre">NPixMin</span></code>.</p>
 <p>Limits on the peak size can be set with parameters <code class="docutils literal notranslate"><span class="pre">NColMax</span></code> and <code class="docutils literal notranslate"><span class="pre">NRowMax</span></code> which are upper limits on <code class="docutils literal notranslate"><span class="pre">NCol</span></code> and
 <code class="docutils literal notranslate"><span class="pre">NRow</span></code>, the number of columns and rows in the bounding box of the peak mask (as labelled in the image above).</p>
@@ -426,7 +418,7 @@ the mask divided by the area of the bounding box.</p>
 </section>
 </section>
 <section id="finding-nearby-peaks">
-<h2><a class="toc-backref" href="#id18" role="doc-backlink">Finding nearby peaks</a><a class="headerlink" href="#finding-nearby-peaks" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Finding nearby peaks</a><a class="headerlink" href="#finding-nearby-peaks" title="Link to this heading">¶</a></h2>
 <p>If the parameter <code class="docutils literal notranslate"><span class="pre">UseNearest=True</span></code> then the peak will be integrated using a mask that contains the nearest
 contiguous region of nearest-neighbour connected detectors not contributing to the background), even if the detector ID
 of the peak corresponds to a background detector (as identified in step 3).</p>
@@ -435,7 +427,7 @@ maxiumum integrated intensity over the TOF window which maximises <span class="m
 with the TOF of the maximum in the focused spectrum.</p>
 </section>
 <section id="plotting">
-<h2><a class="toc-backref" href="#id19" role="doc-backlink">Plotting</a><a class="headerlink" href="#plotting" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Plotting</a><a class="headerlink" href="#plotting" title="Link to this heading">¶</a></h2>
 <p>Optionally the user can ask for a pdf to be saved to <code class="docutils literal notranslate"><span class="pre">OutputFile</span></code>. For each peak the file contains a 2D colorfill plot
 showing the peak mask and the data integrated over the TOF window that maximises <span class="math notranslate nohighlight">\(I/\sigma\)</span>, and the
 focused, background subtracted spectra with vertical lines to mark the initial and optimal TOF window and the peak
@@ -446,7 +438,7 @@ centre.</p>
 </figure>
 </section>
 <section id="useage">
-<h2><a class="toc-backref" href="#id20" role="doc-backlink">Useage</a><a class="headerlink" href="#useage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Useage</a><a class="headerlink" href="#useage" title="Link to this heading">¶</a></h2>
 <p><strong>Example:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -474,18 +466,18 @@ centre.</p>
 </div>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id21" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id5" role="note">
+<aside class="footnote brackets" id="id5" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
 <p>Bolotovsky, R., White, M. A., Darovsky, A. &amp; Coppens, P. (1995). J. Appl. Cryst. 28, 86–95.</p>
 </aside>
-<aside class="footnote brackets" id="id6" role="note">
+<aside class="footnote brackets" id="id6" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
 <p>Peters, J. (2003) J. Appl. Cryst. 36.6, 1475-1479.</p>
 </aside>
-<aside class="footnote brackets" id="id7" role="note">
+<aside class="footnote brackets" id="id7" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
 <p>Lehmann, M. T., &amp; Larsen, F. K. (1974). Acta Crystallogr. A. 30(4), 580-584.</p>
 </aside>
@@ -493,8 +485,8 @@ centre.</p>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Diffraction/Reduction.html">Diffraction\Reduction</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id22" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c3d606b7669241044f63d5130c97fda5efea10c/Framework/PythonInterface/plugins/algorithms/IntegratePeaksSkew.py">IntegratePeaksSkew.py</a></p>
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1a55ecb88861d2378313b531b8d586dff2237e3e/Framework/PythonInterface/plugins/algorithms/IntegratePeaksSkew.py">IntegratePeaksSkew.py</a></p>
 </section>
 </section>
 
@@ -511,7 +503,7 @@ centre.</p>
           
             
   <li>
-    <a href="IntegratePeaksProfileFitting-v1.html" title="Previous Chapter: IntegratePeaksProfileFitting v1"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; IntegratePeak...</span>
+    <a href="IntegratePeaksShoeboxTOF-v1.html" title="Previous Chapter: IntegratePeaksShoeboxTOF v1"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; IntegratePeak...</span>
     </a>
   </li>
   <li>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=83da6bc4"></script>
+    <script src="../_static/documentation_options.js?v=3d1f82e7"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -437,12 +437,13 @@ These Colormaps can be registered and remain for the current session, but need t
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span><span class="p">,</span> <span class="n">LinearSegmentedColormap</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colormaps</span>
 
 <span class="n">Cmap_Name</span> <span class="o">=</span> <span class="s1">&#39;Beach&#39;</span> <span class="c1"># Colormap name</span>
-<span class="n">Loaded_Cmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;C:\Path</span><span class="se">\t</span><span class="s2">o\File\Filename.txt&quot;</span><span class="p">)</span>
+<span class="n">Loaded_Cmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;/Path/to/file/Filename.txt&quot;</span><span class="p">)</span>
 <span class="c1"># Register the Loaded Colormap</span>
 <span class="n">Listed_CustomCmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">Loaded_Cmap</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">Cmap_Name</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">Cmap_Name</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span> <span class="n">Listed_CustomCmap</span><span class="p">)</span>
+<span class="n">colormaps</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">Cmap_Name</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span> <span class="n">Listed_CustomCmap</span><span class="p">)</span>
 
 <span class="c1"># Create and register the reverse colormap</span>
 <span class="n">Res</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Loaded_Cmap</span><span class="p">)</span>
@@ -452,7 +453,7 @@ These Colormaps can be registered and remain for the current session, but need t
       <span class="n">Reverse</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Loaded_Cmap</span><span class="p">[</span><span class="n">Res</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)][</span><span class="n">j</span><span class="p">]</span>
 
 <span class="n">Listed_CustomCmap_r</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">Reverse</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="n">Cmap_Name</span> <span class="o">+</span> <span class="s1">&#39;_r&#39;</span><span class="p">)</span> <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="n">Cmap_Name</span> <span class="o">+</span> <span class="s1">&#39;_r&#39;</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span> <span class="n">Listed_CustomCmap_r</span><span class="p">)</span>
+<span class="n">colormaps</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="n">Cmap_Name</span> <span class="o">+</span> <span class="s1">&#39;_r&#39;</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span> <span class="n">Listed_CustomCmap_r</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -462,6 +463,7 @@ These Colormaps can be registered and remain for the current session, but need t
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span><span class="p">,</span> <span class="n">LinearSegmentedColormap</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colormaps</span>
 
 <span class="n">Cmap_Name</span> <span class="o">=</span> <span class="s1">&#39;Beach&#39;</span>
 <span class="n">Loaded_Cmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;/Path/to/file/Beach.txt&quot;</span><span class="p">)</span>
@@ -488,7 +490,7 @@ These Colormaps can be registered and remain for the current session, but need t
 
 <span class="c1"># Register the Loaded Colormap</span>
 <span class="n">Listed_CustomCmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">Cmap</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">Cmap_Name</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">Cmap_Name</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span> <span class="n">Listed_CustomCmap</span><span class="p">)</span>
+<span class="n">colormaps</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">Cmap_Name</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span> <span class="n">Listed_CustomCmap</span><span class="p">)</span>
 
 <span class="c1"># Create and register the reverse colormap</span>
 <span class="n">Reverse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Res</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
@@ -497,7 +499,7 @@ These Colormaps can be registered and remain for the current session, but need t
       <span class="n">Reverse</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Cmap</span><span class="p">[</span><span class="n">Res</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)][</span><span class="n">j</span><span class="p">]</span>
 
 <span class="n">Listed_CustomCmap_r</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">Reverse</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="n">Cmap_Name</span> <span class="o">+</span> <span class="s1">&#39;_r&#39;</span><span class="p">)</span> <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="n">Cmap_Name</span> <span class="o">+</span> <span class="s1">&#39;_r&#39;</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span> <span class="n">Listed_CustomCmap_r</span><span class="p">)</span>
+<span class="n">colormaps</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="n">Cmap_Name</span> <span class="o">+</span> <span class="s1">&#39;_r&#39;</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span> <span class="n">Listed_CustomCmap_r</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -507,6 +509,7 @@ These Colormaps can be registered and remain for the current session, but need t
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span><span class="p">,</span> <span class="n">LinearSegmentedColormap</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colormaps</span>
 
 <span class="n">Cmap_Name</span> <span class="o">=</span> <span class="s1">&#39;Beach&#39;</span> <span class="c1"># Colormap name</span>
 <span class="n">Res</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># Resolution of your Colormap (number of steps in colormap)</span>
@@ -533,7 +536,7 @@ These Colormaps can be registered and remain for the current session, but need t
 <span class="c1">#np.savetxt(&quot;C:\Path\to\File\Filename.txt&quot;,Cmap) #uncomment to save to file</span>
 
 <span class="n">Listed_CustomCmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">Cmap</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">Cmap_Name</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="n">Cmap_Name</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="n">Listed_CustomCmap</span><span class="p">)</span>
+<span class="n">colormaps</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="n">Cmap_Name</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="n">Listed_CustomCmap</span><span class="p">)</span>
 
 <span class="c1"># Create and register the reverse colormap</span>
 <span class="n">Reverse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Res</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
@@ -542,7 +545,7 @@ These Colormaps can be registered and remain for the current session, but need t
       <span class="n">Reverse</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Cmap</span><span class="p">[</span><span class="n">Res</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)][</span><span class="n">j</span><span class="p">]</span>
 
 <span class="n">Listed_CustomCmap_r</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">Reverse</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="n">Cmap_Name</span> <span class="o">+</span> <span class="s1">&#39;_r&#39;</span><span class="p">)</span> <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="n">Cmap_Name</span> <span class="o">+</span> <span class="s1">&#39;_r&#39;</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span> <span class="n">Listed_CustomCmap_r</span><span class="p">)</span>
+<span class="n">colormaps</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="n">Cmap_Name</span> <span class="o">+</span> <span class="s1">&#39;_r&#39;</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span> <span class="n">Listed_CustomCmap_r</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now the Custom Colormap has been registered, right-click on a workspace and produce a colorfill plot. In Figure Options (Gear Icon in Plot Figure), under the Images Tab, you can use the drop down-menu to select the new Colormap, and use the check-box to select its Reverse!</p>

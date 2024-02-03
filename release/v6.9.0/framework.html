@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=3d1f82e7"></script>
+    <script src="../../_static/documentation_options.js?v=439416e4"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -150,31 +150,31 @@
 <section id="new-features">
 <h3><a class="toc-backref" href="#id10" role="doc-backlink">New features</a><a class="headerlink" href="#new-features" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p><a class="reference internal" href="../../algorithms/RebinRagged-v2.html#algm-rebinragged"><span class="std std-ref">RebinRagged</span></a> has been converted from a python algorithm to a c++ algorithm. This should improve the performance of the algorithm. You can still use the Python version of <a class="reference internal" href="../../algorithms/RebinRagged-v1.html#algm-rebinragged-v1"><span class="std std-ref">RebinRagged</span></a> by adding the option <code class="docutils literal notranslate"><span class="pre">Version=1</span></code>.</p></li>
+<li><p>A new method was added the histogram Event data without sorting the events first, which the <a class="reference internal" href="../../algorithms/Rebin-v1.html#algm-rebin"><span class="std std-ref">Rebin</span></a> algorithm now uses when <code class="docutils literal notranslate"><span class="pre">PreserveEvents=False</span></code>, giving a performance improvement.</p></li>
+<li><p>Add support for fine-grained gitHub access tokens for authenticated calls. Can be set via <code class="docutils literal notranslate"><span class="pre">network.github.api_token</span></code> in Mantid.user.properties.</p></li>
 <li><p>Add a new option (AppendYAxisLabels) to <a class="reference internal" href="../../algorithms/AppendSpectra-v1.html#algm-appendspectra"><span class="std std-ref">AppendSpectra</span></a> to append y-axis values from input workspaces to the output workspace</p></li>
 <li><p>Added the option to change the number of points used in the <cite>SolidAngle</cite> algorithm when triangulating a cylinder, which is what happens for tube detectors. The new argument is called <cite>NumberOfCylinderSlices</cite> and will default to <cite>10</cite>, which is the current number of slices used.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">OutputWorkspace</span></code> for the <a class="reference internal" href="../../algorithms/GroupWorkspaces-v1.html#algm-groupworkspaces"><span class="std std-ref">GroupWorkspaces</span></a> algorithm is now allowed to be the same name as one of the <code class="docutils literal notranslate"><span class="pre">InputWorkspaces</span></code>. In this case, the new group workspace will supplant the old workspace, and <code class="docutils literal notranslate"><span class="pre">_1</span></code> will be appended to the name of the old workspace.</p></li>
 <li><p>Improve the error messages when calling Algorithms with either missing arguments or invalid arguments. The type of the exceptions is changed from <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> to <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> to be more consistent with python itself.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">OutputWorkspace</span></code> for the <a class="reference internal" href="../../algorithms/GroupWorkspaces-v1.html#algm-groupworkspaces"><span class="std std-ref">GroupWorkspaces</span></a> algorithm is now allowed to be the same name as one of the <code class="docutils literal notranslate"><span class="pre">InputWorkspaces</span></code>. In this case, the new group workspace will supplant the old workspace, and <code class="docutils literal notranslate"><span class="pre">_1</span></code> will be appended to the name of the old workspace.</p></li>
 <li><p>When the <cite>StoreInADS</cite> algorithm property is False, it is now optional to provide a value for <cite>OutputWorkspace</cite>.</p></li>
-<li><p><a class="reference internal" href="../../algorithms/RebinRagged-v2.html#algm-rebinragged"><span class="std std-ref">RebinRagged</span></a> has been converted from a python algorithm to a c++ algorithm. This should improve the performance of the algorithm. You can still use the Python version of <a class="reference internal" href="../../algorithms/RebinRagged-v1.html#algm-rebinragged-v1"><span class="std std-ref">RebinRagged</span></a> by adding the option <code class="docutils literal notranslate"><span class="pre">Version=1</span></code>.</p></li>
-<li><p>Add support for fine-grained gitHub access tokens for authenticated calls. Can be set via <code class="docutils literal notranslate"><span class="pre">network.github.api_token</span></code> in Mantid.user.properties.</p></li>
-<li><p>A new method was added the histogram Event data without sorting the events first, which the <a class="reference internal" href="../../algorithms/Rebin-v1.html#algm-rebin"><span class="std std-ref">Rebin</span></a> algorithm now uses when <code class="docutils literal notranslate"><span class="pre">PreserveEvents=False</span></code>, giving a performance improvement.</p></li>
 </ul>
 </section>
 <section id="bugfixes">
 <h3><a class="toc-backref" href="#id11" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Added warning message when <code class="docutils literal notranslate"><span class="pre">ConvertUnits</span></code> or <code class="docutils literal notranslate"><span class="pre">ConvertAxisByFormula</span></code> fails to do the conversion for certain detectors. Previously the warning was an information message.</p></li>
-<li><p>Add missing import line in BayesStretch for checking installed packages on pip.</p></li>
-<li><p>Fix miscalculated Debye-Waller factor in <a class="reference internal" href="../../algorithms/ComputeIncoherentDOS-v1.html#algm-computeincoherentdos"><span class="std std-ref">ComputeIncoherentDos</span></a></p></li>
-<li><p>Algorithm DSFinterp, which is not registered because of a missing dependency, has been marked for deprecation.</p></li>
-<li><p>Performance of <a class="reference internal" href="../../algorithms/FilterEvents-v1.html#algm-filterevents"><span class="std std-ref">FilterEvents</span></a> algorithm has been significantly improved for a use case with fast changing logs.
-The REF_M_40380 was acquired with a 10 kHz trigger (on/off). It has 1.3 M events and 30 M splitters. The execution time of <a class="reference internal" href="../../algorithms/MRFilterCrossSections-v1.html#algm-mrfiltercrosssections"><span class="std std-ref">MRFilterCrossSections</span></a>
-on this data set has been reduced from 50+ hours to 3 minutes.</p></li>
-<li><p>Fixes a bug in the <a class="reference internal" href="../../algorithms/Integration-v1.html#algm-integration"><span class="std std-ref">Integration</span></a> algorithm caused by division by 0 when normalizing.</p></li>
-<li><p>Improve parameter validation to check for the case of the bin width being too large when specifying bins in the Sample Transmision Calculator.</p></li>
 <li><p>Fixed potential error if algorithms are still running in the background when a python script finishes.</p></li>
 <li><p>Fixed an issue in <a class="reference internal" href="../../algorithms/BayesQuasi2-v1.html#algm-bayesquasi2"><span class="std std-ref">Quasi</span></a> where when using the QSE option the algorithm won’t accept red files as resolution files</p></li>
 <li><p>Sped up the <cite>LoadAscii</cite> algorithm by at least one order of magnitude.</p></li>
+<li><p>Performance of <a class="reference internal" href="../../algorithms/FilterEvents-v1.html#algm-filterevents"><span class="std std-ref">FilterEvents</span></a> algorithm has been significantly improved for a use case with fast changing logs.
+The REF_M_40380 was acquired with a 10 kHz trigger (on/off). It has 1.3 M events and 30 M splitters. The execution time of <a class="reference internal" href="../../algorithms/MRFilterCrossSections-v1.html#algm-mrfiltercrosssections"><span class="std std-ref">MRFilterCrossSections</span></a>
+on this data set has been reduced from 50+ hours to 3 minutes.</p></li>
+<li><p>Add missing import line in BayesStretch for checking installed packages on pip.</p></li>
+<li><p>Improve parameter validation to check for the case of the bin width being too large when specifying bins in the Sample Transmision Calculator.</p></li>
+<li><p>Fixes a bug in the <a class="reference internal" href="../../algorithms/Integration-v1.html#algm-integration"><span class="std std-ref">Integration</span></a> algorithm caused by division by 0 when normalizing.</p></li>
+<li><p>Fix miscalculated Debye-Waller factor in <a class="reference internal" href="../../algorithms/ComputeIncoherentDOS-v1.html#algm-computeincoherentdos"><span class="std std-ref">ComputeIncoherentDos</span></a></p></li>
+<li><p>Algorithm DSFinterp, which is not registered because of a missing dependency, has been marked for deprecation.</p></li>
 </ul>
 </section>
 </section>
@@ -212,14 +212,14 @@ on this data set has been reduced from 50+ hours to 3 minutes.</p></li>
 <section id="id5">
 <h3><a class="toc-backref" href="#id19" role="doc-backlink">New features</a><a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>New pytest fixtures that can be used in other projects to make testing with mantid more convenient and intuitive. <a class="reference internal" href="../../api/python/mantid/fixtures.html#pytest-fixtures"><span class="std std-ref">Usage</span></a></p></li>
 <li><p>New algorithm available, <a class="reference internal" href="../../algorithms/HFIRGoniometerIndependentBackground-v1.html#algm-hfirgoniometerindependentbackground"><span class="std std-ref">HFIRGoniometerIndependentBackground</span></a>, used to generate background workspace from a 3 dimensional MDHistoWorkspace</p></li>
 <li><p><a class="reference internal" href="../../algorithms/ConvertWANDSCDtoQ-v1.html#algm-convertwandscdtoq"><span class="std std-ref">ConvertWANDSCDtoQ</span></a> now accepts a background MDHistoWorkspace to be converted and subtracted from the input workspace.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/ConvertWANDSCDtoQ-v1.html#algm-convertwandscdtoq"><span class="std std-ref">ConvertWANDSCDtoQ</span></a> can now perform Symmetry Operations from a provided SpaceGroup, PointGroup or list of Symmetry Operations.</p></li>
-<li><p><a class="reference internal" href="../../api/python/mantid/kernel/AmendConfig.html#amend-config"><span class="std std-ref">amend_config</span></a> is a new context manager available that allows you to temporarily change <a class="reference internal" href="../../concepts/PropertiesFile.html#properties-file"><span class="std std-ref">Mantid User Properties</span></a> in a safe and efficient way.</p></li>
 <li><p>added custom matplotlib backend for PyCharm to the backend cast function</p></li>
-<li><p>New pytest fixtures that can be used in other projects to make testing with mantid more convenient and intuitive. <a class="reference internal" href="../../api/python/mantid/fixtures.html#pytest-fixtures"><span class="std std-ref">Usage</span></a></p></li>
-<li><p><cite>unique_name</cite> and <cite>unique_hidden_name</cite> now available as part of <a class="reference internal" href="../../api/python/mantid/api/AnalysisDataServiceImpl.html#mantid-api-analysisdataserviceimpl"><span class="std std-ref">AnalysisDataServiceImpl</span></a> to assist in creating unique names for workspaces that avoid collision.</p></li>
+<li><p><a class="reference internal" href="../../api/python/mantid/kernel/AmendConfig.html#amend-config"><span class="std std-ref">amend_config</span></a> is a new context manager available that allows you to temporarily change <a class="reference internal" href="../../concepts/PropertiesFile.html#properties-file"><span class="std std-ref">Mantid User Properties</span></a> in a safe and efficient way.</p></li>
 <li><p>New function <a class="reference internal" href="../../api/python/mantid/testing/assert_almost_equal.html#mantid-testing-assert-almost-equal"><span class="std std-ref">assert_almost_equal</span></a> to make testing equality between workspaces more convenient.</p></li>
+<li><p><cite>unique_name</cite> and <cite>unique_hidden_name</cite> now available as part of <a class="reference internal" href="../../api/python/mantid/api/AnalysisDataServiceImpl.html#mantid-api-analysisdataserviceimpl"><span class="std std-ref">AnalysisDataServiceImpl</span></a> to assist in creating unique names for workspaces that avoid collision.</p></li>
 </ul>
 </section>
 <section id="id6">

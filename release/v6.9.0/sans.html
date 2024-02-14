@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=c2e402cc"></script>
+    <script src="../../_static/documentation_options.js?v=37db7945"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -126,8 +126,11 @@ output files when a <a class="reference internal" href="../../interfaces/isis_sa
 selected based on the <code class="docutils literal notranslate"><span class="pre">selected_detector</span></code> setting from the TOML file or <code class="docutils literal notranslate"><span class="pre">Reduction</span> <span class="pre">Mode</span></code> setting on the GUI.</p></li>
 <li><p>Switching between a custom output file and an automatically-generated one can now be performed using the
 <code class="docutils literal notranslate"><span class="pre">Enter</span> <span class="pre">Custom</span> <span class="pre">Filename</span></code> checkbox on the <a class="reference internal" href="../../interfaces/isis_sans/Sum%20Runs.html#isis-sans-sum-runs-tab-ref"><span class="std std-ref">Sum Runs tab</span></a> in the
-<a class="reference internal" href="../../interfaces/isis_sans/ISIS%20SANS.html#isis-sans-interface-contents"><span class="std std-ref">ISIS SANS GUI</span></a></p></li>
-<li><p>The <a class="reference internal" href="../../algorithms/SANSTubeCalibration-v1.html#algm-sanstubecalibration"><span class="std std-ref">SANSTubeCalibration v1</span></a> algorithm now takes a filepath to optionally save out the list of calibrated tubes that exceed the cvalue threshold. Additionally, the cvalues workspace in the Workspaces list is now suffixed with the detector name. The algorithm has also been changed to allow a directory to be specified for saving the integrated input workspaces, rather than simply saving to the user’s default Mantid save directory.</p></li>
+<a class="reference internal" href="../../interfaces/isis_sans/ISIS%20SANS.html#isis-sans-interface-contents"><span class="std std-ref">ISIS SANS GUI</span></a>.</p></li>
+<li><p>The <a class="reference internal" href="../../algorithms/SANSTubeCalibration-v1.html#algm-sanstubecalibration"><span class="std std-ref">SANSTubeCalibration v1</span></a> algorithm now takes a filepath to optionally save out the list of calibrated tubes
+that exceed the <code class="docutils literal notranslate"><span class="pre">CValueThreshold</span></code>. Additionally, the <code class="docutils literal notranslate"><span class="pre">cvalues</span></code> workspace in the Workspaces list is now suffixed
+with the detector name. The algorithm has also been changed to allow a directory to be specified for saving the
+integrated input workspaces, rather than simply saving to the user’s default Mantid save directory.</p></li>
 <li><p>To improve clarity of metadata, <a class="reference internal" href="../../algorithms/SaveCanSAS1D-v2.html#algm-savecansas1d"><span class="std std-ref">SaveCanSAS1D v2</span></a> and <a class="reference internal" href="../../algorithms/SaveNXcanSAS-v1.html#algm-savenxcansas"><span class="std std-ref">SaveNXcanSAS v1</span></a> will now save the aperture
 shape as <code class="docutils literal notranslate"><span class="pre">Unknown</span></code> if it is not explicitly given in the algorithm parameters.</p></li>
 </ul>
@@ -140,12 +143,18 @@ shape as <code class="docutils literal notranslate"><span class="pre">Unknown</s
 <li><p>The option to save an output file using <a class="reference internal" href="../../algorithms/SaveCanSAS1D-v2.html#algm-savecansas1d"><span class="std std-ref">SaveCanSAS1D v2</span></a> has now been disabled if the reduction mode is set to
 2D on the <a class="reference internal" href="../../interfaces/isis_sans/Runs%20Tab.html#isis-sans-runs-tab-ref"><span class="std std-ref">Runs Tab</span></a>. While the algorithm is able to handle 2D data without crashing, the output
 file it produces is not meaningful.</p></li>
+</ul>
+<img alt="../../_images/ISIS_SANS_2D_disable_SaveCanSAS1D.png" class="align-center" src="../../_images/ISIS_SANS_2D_disable_SaveCanSAS1D.png" />
+<ul class="simple">
 <li><p>The <a class="reference internal" href="../../interfaces/isis_sans/Runs%20Tab.html#isis-sans-runs-tab-ref"><span class="std std-ref">Runs Tab</span></a> will now return to its default output options when the reduction mode is switched
 between 1D and 2D.</p></li>
 <li><p>Background Subtracted (<code class="docutils literal notranslate"><span class="pre">_bgsub</span></code>) workspaces are now correctly deleted when <code class="docutils literal notranslate"><span class="pre">File</span></code> is selected as the save
-location in the ISIS SANS GUI.</p></li>
-<li><p>Fixes a crash when a sample run cannot be found in the Mask tab of the <a class="reference internal" href="../../interfaces/isis_sans/Settings%20Tab.html#isis-sans-settings-tab-ref"><span class="std std-ref">Settings</span></a>.</p></li>
-<li><p>The Beam Centre Finder’s bank selector has been simplified to remove unneeded checkboxes.</p></li>
+location in the <a class="reference internal" href="../../interfaces/isis_sans/ISIS%20SANS.html#isis-sans-interface-contents"><span class="std std-ref">ISIS SANS GUI</span></a>.</p></li>
+<li><p>Fixed a crash when a sample run cannot be found in the Mask tab of the <a class="reference internal" href="../../interfaces/isis_sans/Settings%20Tab.html#isis-sans-settings-tab-ref"><span class="std std-ref">Settings</span></a>.</p></li>
+<li><p>The <a class="reference internal" href="../../interfaces/isis_sans/Beam%20Centre%20Tab.html#isis-sans-beam-centre-tab-ref"><span class="std std-ref">Beam Centre Finder’s</span></a> bank selector has been simplified to remove unneeded checkboxes.</p></li>
+</ul>
+<img alt="../../_images/ISIS_SANS_beam_centre_finder.png" class="align-center" src="../../_images/ISIS_SANS_beam_centre_finder.png" />
+<ul class="simple">
 <li><p>When the instrument is set to LARMOR, the Beam Centre Finder’s position labels now indicate that the given values
 should be in meters (m).</p></li>
 <li><p>Beam shape &amp; size, sample thickness, and detector information is now correctly saved by <a class="reference internal" href="../../algorithms/SaveCanSAS1D-v2.html#algm-savecansas1d"><span class="std std-ref">SaveCanSAS1D v2</span></a>

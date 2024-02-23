@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=a3318128"></script>
+    <script src="../_static/documentation_options.js?v=773eaad6"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -199,49 +199,8 @@
 of spectrum number/<strong>energy transfer</strong>
 to the intensity as a function of <strong>momentum transfer</strong> <span class="math notranslate nohighlight">\(Q\)</span>
 and <strong>energy transfer</strong> <span class="math notranslate nohighlight">\(\Delta E\)</span>.</p>
-<figure class="align-center">
-<img alt="../_images/RebinnedOutputStep1.png" src="../_images/RebinnedOutputStep1.png" />
-</figure>
-<p>As shown in the figure, the input grid (pink-shaded parallelopiped,
-aligned in scattering angle and energy transfer) is not parallel to the
-output grid (square grid, aligned in <span class="math notranslate nohighlight">\(Q\)</span> and energy). This means
-that the output bins will only ever partially overlap the input data. To
-account for this, the signal <span class="math notranslate nohighlight">\(Y\)</span> and errors <span class="math notranslate nohighlight">\(E\)</span> in the new
-bins are calculated as:</p>
-<div class="math notranslate nohighlight">
-\[Y^{\mathrm{new}} = \sum_i Y^{\mathrm{old}}_i F_i\]</div>
-<div class="math notranslate nohighlight">
-\[E^{\mathrm{new}} = \sqrt{\sum_i (E^{\mathrm{old}}_i)^2 F_i}\]</div>
-<p>In addition to weighting the signal and error values, the total
-fractional weights:</p>
-<div class="math notranslate nohighlight">
-\[F^{\mathrm{new}} = \sum_i F_i\]</div>
-<p>are also stored in the output of this algorithm which is a new workspace
-type: <strong>RebinnedOutput</strong>. To see why this is needed, consider rebinning
-the output on a larger grid:</p>
-<figure class="align-center">
-<img alt="../_images/RebinnedOutputStep2.png" src="../_images/RebinnedOutputStep2.png" />
-</figure>
-<p>If the fractional weights are not chained as shown, then the area
-shaded in a lighter blue under <span class="math notranslate nohighlight">\(A_1\)</span> (where originally there was
-no data) would be included in the weights, which would be an
-overestimate of the actual weights, leading to an overestimate of the
-signal and error.</p>
-<p>Finally, if there is a bin in the output grid which only has a very
-small overlap with the input grid (for example at the edges of the
-detector coverage), the fractional weight <span class="math notranslate nohighlight">\(F\)</span> of this bin, and
-hence its signal <span class="math notranslate nohighlight">\(Y\)</span> and error <span class="math notranslate nohighlight">\(E\)</span> would be very small
-compared to its neighbours. Thus, for display purposes, the actual
-signal and errors stored in a RebinnedOutput are renomalised by the
-weights:</p>
-<div class="math notranslate nohighlight">
-\[Y^{\mathrm{display}} = Y^{\mathrm{new}} / F^{\mathrm{new}}\]</div>
-<div class="math notranslate nohighlight">
-\[E^{\mathrm{display}} = E^{\mathrm{new}} / F^{\mathrm{new}}\]</div>
-<p>at the end of the algorithm. The biggest consequence of this method is
-that in places where there are no counts (<span class="math notranslate nohighlight">\(Y=0\)</span>) and no acceptance
-(no fractional areas, <span class="math notranslate nohighlight">\(F=0\)</span>), <span class="math notranslate nohighlight">\(Y/F=\)</span><strong>nan</strong>-s will
-result.</p>
+<p>The details of the Normalised Polygon technique for rebinning are given in
+<a class="reference internal" href="../concepts/FractionalRebinning.html#fractionalrebinning"><span class="std std-ref">FractionalRebinning</span></a>.</p>
 <p>The algorithm operates in <em>non-PSD mode</em> by default. This means that the
 scattering angle <span class="math notranslate nohighlight">\(2\theta\)</span> range covered by a detector is calculated for
 each detector individually. For grouped detectors, it is the minimum and
@@ -294,8 +253,8 @@ the summed weights, producing a <strong>Workspace2D</strong> rather than a
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5e80c4a3831fe2050482e5c1f351aa227312b057/Framework/Algorithms/inc/MantidAlgorithms/SofQWNormalisedPolygon.h">SofQWNormalisedPolygon.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5e80c4a3831fe2050482e5c1f351aa227312b057/Framework/Algorithms/src/SofQWNormalisedPolygon.cpp">SofQWNormalisedPolygon.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e7895bfe0bd2b6cd41c8ceada231d3fb6a3cb13f/Framework/Algorithms/inc/MantidAlgorithms/SofQWNormalisedPolygon.h">SofQWNormalisedPolygon.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e7895bfe0bd2b6cd41c8ceada231d3fb6a3cb13f/Framework/Algorithms/src/SofQWNormalisedPolygon.cpp">SofQWNormalisedPolygon.cpp</a></p>
 </section>
 </section>
 

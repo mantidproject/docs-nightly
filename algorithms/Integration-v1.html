@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=a3318128"></script>
+    <script src="../_static/documentation_options.js?v=773eaad6"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -276,21 +276,12 @@ these now represent counts (not counts per <span class="math notranslate nohighl
 </section>
 <section id="fractional-rebinning">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">Fractional Rebinning</a><a class="headerlink" href="#fractional-rebinning" title="Link to this heading">¶</a></h3>
-<p>Some algorithms, such as <a class="reference internal" href="SofQWNormalisedPolygon-v1.html#algm-sofqwnormalisedpolygon"><span class="std std-ref">SofQWNormalisedPolygon</span></a>
-or <a class="reference internal" href="ConvertToReflectometryQ-v2.html#algm-converttoreflectometryq"><span class="std std-ref">ConvertToReflectometryQ</span></a>, create a special type of
-<a class="reference internal" href="../concepts/Workspace2D.html#workspace2d"><span class="std std-ref">Workspace2D</span></a> called a <code class="docutils literal notranslate"><span class="pre">RebinnedOutput</span></code> workspace in which
-each bin contains both a value and the fractional overlap area of the this bin over
-that of the original data. There is more discussion of this in the
-<a class="reference internal" href="SofQWNormalisedPolygon-v1.html#algm-sofqwnormalisedpolygon"><span class="std std-ref">SofQWNormalisedPolygon</span></a> documentation.</p>
-<p>This algorithm calculates the integrated counts per spectra of a <code class="docutils literal notranslate"><span class="pre">RebinnedOutput</span></code>
-workspace as follows:</p>
-<div class="math notranslate nohighlight">
-\[I = \left. \sum_i Y_i F_i \middle/ \left(\frac{1}{n} \sum_i F_i \right) \right.\]</div>
-<p>where <span class="math notranslate nohighlight">\(Y_i\)</span> and <span class="math notranslate nohighlight">\(F_i\)</span> are the values and fractions for the <span class="math notranslate nohighlight">\(i^{\mathrm{th}}\)</span>
-bin and the sum runs from <code class="docutils literal notranslate"><span class="pre">RangeLower</span></code> to <code class="docutils literal notranslate"><span class="pre">RangeUpper</span></code>. <span class="math notranslate nohighlight">\(n\)</span> is the number
-of bins (or fractional bins if <code class="docutils literal notranslate"><span class="pre">IncludePartialBins=True</span></code>) in the range which is not <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.
-The <span class="math notranslate nohighlight">\(1/n\)</span> factor is needed so that the integral is correctly normalised compared to
-the case when there is no fractional bins, where all <span class="math notranslate nohighlight">\(F_i = 1\)</span>.</p>
+<p>Some algorithms create a special type of <a class="reference internal" href="../concepts/Workspace2D.html#workspace2d"><span class="std std-ref">Workspace2D</span></a> called a <code class="docutils literal notranslate"><span class="pre">RebinnedOutput</span></code> workspace,
+in which each bin contains both a value and the fractional overlap area of this bin over
+that of the original data. There is more discussion of this in the <a class="reference internal" href="../concepts/FractionalRebinning.html#fractionalrebinning"><span class="std std-ref">FractionalRebinning</span></a>
+concepts page.</p>
+<p>The Integration algorithm differs for <strong>RebinnedOutput</strong> workspaces, please consult the
+page <a class="reference internal" href="../concepts/FractionalRebinning.html#fractionalrebinning"><span class="std std-ref">FractionalRebinning</span></a> for more information.</p>
 </section>
 </section>
 <section id="usage">
@@ -376,8 +367,8 @@ Intensity of the last peak: ...
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5e80c4a3831fe2050482e5c1f351aa227312b057/Framework/Algorithms/inc/MantidAlgorithms/Integration.h">Integration.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5e80c4a3831fe2050482e5c1f351aa227312b057/Framework/Algorithms/src/Integration.cpp">Integration.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e7895bfe0bd2b6cd41c8ceada231d3fb6a3cb13f/Framework/Algorithms/inc/MantidAlgorithms/Integration.h">Integration.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e7895bfe0bd2b6cd41c8ceada231d3fb6a3cb13f/Framework/Algorithms/src/Integration.cpp">Integration.cpp</a></p>
 </section>
 </section>
 

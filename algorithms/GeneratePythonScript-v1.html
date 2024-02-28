@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=fbdd4b63"></script>
+    <script src="../_static/documentation_options.js?v=36e36498"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -208,6 +208,12 @@
 <td><p>False</p></td>
 <td><p>Whether execCount should be appended to the end of the built string</p></td>
 </tr>
+<tr class="row-odd"><td><p>ExcludeHeader</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>Whether the header comments should be excluded from the beginning of the built string</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -216,11 +222,13 @@
 <p>Retrieves the algorithm history of the workspace and saves it to a
 Python script file or Python variable.</p>
 <p>A time range can be specified which will restrict the algorithms in
-the scrit to those which were executed between the given times,
-if no end time was specified then algorithms from the start time up
+the script to those which were executed between the given times.
+If no end time was specified then algorithms from the start time up
 to the current time will be included in the generated script.</p>
 <p>Start and end times are given in ISO8601 format: YYYY-MM-DD HH:mm:ss,
 for example 3:25 PM on July the 4th 2014 would be 2014-07-04 15:25:00.</p>
+<p>The generated script includes a few lines of header comments at the top.
+The <code class="docutils literal notranslate"><span class="pre">ExcludeHeader</span></code> parameter can be used to optionally exclude these.</p>
 </section>
 <section id="usage">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
@@ -312,8 +320,8 @@ RenameWorkspace(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;MyTestWorkspac
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/29e47299aca1143860f15da1c9fe0d9f3a278364/Framework/Algorithms/inc/MantidAlgorithms/GeneratePythonScript.h">GeneratePythonScript.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/29e47299aca1143860f15da1c9fe0d9f3a278364/Framework/Algorithms/src/GeneratePythonScript.cpp">GeneratePythonScript.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/7ac074a793745b7c1af75be3062a0b3d64ac1643/Framework/Algorithms/inc/MantidAlgorithms/GeneratePythonScript.h">GeneratePythonScript.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/7ac074a793745b7c1af75be3062a0b3d64ac1643/Framework/Algorithms/src/GeneratePythonScript.cpp">GeneratePythonScript.cpp</a></p>
 </section>
 </section>
 

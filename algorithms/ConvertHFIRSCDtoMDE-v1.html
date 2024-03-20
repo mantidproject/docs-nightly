@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=fda78420"></script>
+    <script src="../_static/documentation_options.js?v=3096cc66"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -153,43 +153,49 @@
 <td><p><em>Mandatory</em></p></td>
 <td><p>Wavelength</p></td>
 </tr>
-<tr class="row-even"><td><p>MinValues</p></td>
+<tr class="row-even"><td><p>LorentzCorrection</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>Correct the weights of events or signals and errors transformed into reciprocal space by multiplying them by the Lorentz multiplier:  <span class="math notranslate nohighlight">\(sin(2\theta)cos(\phi)/\lambda^3\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>MinValues</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td><p>-10,-10,-10</p></td>
 <td><p>It has to be 3 comma separated values, one for each dimension in q_sample.Values smaller then specified here will not be added to workspace.</p></td>
 </tr>
-<tr class="row-odd"><td><p>MaxValues</p></td>
+<tr class="row-even"><td><p>MaxValues</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td><p>10,10,10</p></td>
 <td><p>A list of the same size and the same units as MinValues list. Values higher or equal to the specified by this list will be ignored</p></td>
 </tr>
-<tr class="row-even"><td><p>SplitInto</p></td>
+<tr class="row-odd"><td><p>SplitInto</p></td>
 <td><p>Input</p></td>
 <td><p>int list</p></td>
 <td><p>5</p></td>
 <td><p>A comma separated list of into how many sub-grid elements each dimension should split; or just one to split into the same number for all dimensions. Default 5.</p></td>
 </tr>
-<tr class="row-odd"><td><p>SplitThreshold</p></td>
+<tr class="row-even"><td><p>SplitThreshold</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>1000</p></td>
 <td><p>How many events in a box before it should be split. Default 1000.</p></td>
 </tr>
-<tr class="row-even"><td><p>MaxRecursionDepth</p></td>
+<tr class="row-odd"><td><p>MaxRecursionDepth</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>20</p></td>
 <td><p>How many levels of box splitting recursion are allowed. The smallest box will have each side length <span class="math notranslate nohighlight">\(l = (extents) / (SplitInto^{MaxRecursionDepth}).\)</span> Default 20.</p></td>
 </tr>
-<tr class="row-odd"><td><p>ObliquityParallaxCoefficient</p></td>
+<tr class="row-even"><td><p>ObliquityParallaxCoefficient</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>1</p></td>
 <td><p>Geometrical correction for shift in vertical beam position due to wide beam.</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputWorkspace</p></td>
+<tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDEventWorkspace</span></a></p></td>
 <td><p><em>Mandatory</em></p></td>
@@ -209,6 +215,7 @@ output Q sample space, then the UB can be found and used to then
 convert to HKL using <a class="reference internal" href="ConvertWANDSCDtoQ-v1.html#algm-convertwandscdtoq"><span class="std std-ref">ConvertWANDSCDtoQ v1</span></a>
 . <a class="reference internal" href="IntegratePeaksMD-v2.html#algm-integratepeaksmd"><span class="std std-ref">IntegratePeaksMD v2</span></a> will also work on the output of this
 algorithm.</p>
+<p>There is an option to apply the LorentzCorrection using the formula <span class="math notranslate nohighlight">\(|\sin(2\theta)\cos(\phi)|/\lambda^3\)</span>. This helps lower the sloping background at low <span class="math notranslate nohighlight">\(Q\)</span>.</p>
 </section>
 <section id="usage">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
@@ -227,8 +234,8 @@ algorithm.</p>
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4761e8efee520c6e75d7aea3ce7ca230d3d451d6/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertHFIRSCDtoMDE.h">ConvertHFIRSCDtoMDE.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4761e8efee520c6e75d7aea3ce7ca230d3d451d6/Framework/MDAlgorithms/src/ConvertHFIRSCDtoMDE.cpp">ConvertHFIRSCDtoMDE.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1d722ac311187af24192a00c3516d0777190de39/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertHFIRSCDtoMDE.h">ConvertHFIRSCDtoMDE.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1d722ac311187af24192a00c3516d0777190de39/Framework/MDAlgorithms/src/ConvertHFIRSCDtoMDE.cpp">ConvertHFIRSCDtoMDE.cpp</a></p>
 </section>
 </section>
 

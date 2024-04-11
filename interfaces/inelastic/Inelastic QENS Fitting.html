@@ -5,13 +5,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>QENS Fitting</title>
+    <title>Inelastic QENS Fitting</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=c4ca856d"></script>
+    <script src="../../_static/documentation_options.js?v=f1bb1036"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -93,7 +93,7 @@
         
         
           
-            <li class="nav-item nav-item-this"><a href="">QENS Fitting</a></li>
+            <li class="nav-item nav-item-this"><a href="">Inelastic QENS Fitting</a></li>
           
         
       </ul>
@@ -105,59 +105,33 @@
     <div class="body col-md-12 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
-<section id="qens-fitting">
-<span id="qens-fitting-ref"></span><h1>QENS Fitting<a class="headerlink" href="#qens-fitting" title="Link to this heading">¶</a></h1>
-<nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#input" id="id2">Input</a></p></li>
-<li><p><a class="reference internal" href="#sequential-and-simultaneous-fits" id="id3">Sequential and Simultaneous fits</a></p></li>
-<li><p><a class="reference internal" href="#fit-function" id="id4">Fit Function</a></p></li>
-<li><p><a class="reference internal" href="#settings" id="id5">Settings</a></p></li>
-<li><p><a class="reference internal" href="#preview-plots" id="id6">Preview Plots</a></p></li>
-<li><p><a class="reference internal" href="#output" id="id7">Output</a></p>
-<ul>
-<li><p><a class="reference internal" href="#msd-fit" id="id8">MSD Fit</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#msd-fit-example-workflow" id="id9">MSD Fit Example Workflow</a></p>
-<ul>
-<li><p><a class="reference internal" href="#i-q-t-fit" id="id10">I(Q, t) Fit</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#i-q-t-fit-example-workflow" id="id11">I(Q, t) Fit Example Workflow</a></p>
-<ul>
-<li><p><a class="reference internal" href="#conv-fit" id="id12">Conv Fit</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#conv-fit-options" id="id13">Conv Fit Options</a></p></li>
-<li><p><a class="reference internal" href="#convfit-example-workflow" id="id14">ConvFit Example Workflow</a></p></li>
-<li><p><a class="reference internal" href="#theory" id="id15">Theory</a></p></li>
-<li><p><a class="reference internal" href="#convfit-fitting-model" id="id16">ConvFit fitting model</a></p>
-<ul>
-<li><p><a class="reference internal" href="#f-q-fit" id="id17">F(Q) Fit</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#f-q-fit-example-workflow" id="id18">F(Q) Fit Example Workflow</a></p>
-<ul>
-<li><p><a class="reference internal" href="#bayesian-fabada-minimizer" id="id19">Bayesian (FABADA minimizer)</a></p></li>
-</ul>
-</li>
-</ul>
-</nav>
-<figure class="align-center">
-<a class="reference internal image-reference" href="../../_images/ConvFitFull.png"><img alt="../../_images/ConvFitFull.png" src="../../_images/ConvFitFull.png" style="height: 400px;" /></a>
-</figure>
-<p>There are four QENS fitting interfaces:</p>
+<section id="inelastic-qens-fitting">
+<span id="interface-inelastic-qens-fitting"></span><h1>Inelastic QENS Fitting<a class="headerlink" href="#inelastic-qens-fitting" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>The Inelastic QENS Fitting interface is a collection of tools within Mantid
+for analysing reduced data from indirect geometry spectrometers, such as IRIS and
+OSIRIS and data from direct geometry spectrometer LET. Note that this interface
+used to be called the Inelastic Data Analysis interface, but has been renamed.</p>
+<p>The majority of the functions used within this interface can be used with both
+reduced files (<em>_red.nxs</em>) and workspaces (<em>_red</em>) created using the Indirect Data
+Reduction interface or using <span class="math notranslate nohighlight">\(S(Q, \omega)\)</span> files (<em>_sqw.nxs</em>) and
+workspaces (<em>_sqw</em>) created using either the Indirect Data Reduction interface or
+taken from a bespoke algorithm or auto reduction.</p>
+</section>
+<section id="qens-fitting-tabs">
+<h2>QENS Fitting tabs<a class="headerlink" href="#qens-fitting-tabs" title="Link to this heading">¶</a></h2>
+<p>There are four QENS Fitting interfaces that share a common layout and features:</p>
 <ul class="simple">
 <li><p>MSD Fit</p></li>
 <li><p>I(Q,t) Fit,</p></li>
 <li><p>Conv Fit</p></li>
 <li><p>F(Q)</p></li>
 </ul>
-<p>These fitting interfaces share common features, with a few unique options in each.</p>
+<p>Each tab also has a few unique options. These interfaces do not support GroupWorkspaces
+as input.</p>
 <section id="input">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Input</a><a class="headerlink" href="#input" title="Link to this heading">¶</a></h2>
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading">¶</a></h3>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../../_images/ConvFitDataSelection.png"><img alt="../../_images/ConvFitDataSelection.png" src="../../_images/ConvFitDataSelection.png" style="height: 200px;" /></a>
 </figure>
@@ -170,7 +144,7 @@ selected. Above the preview plots there is a drop-down menu with which can be us
 will be shown in the plots.</p>
 </section>
 <section id="sequential-and-simultaneous-fits">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Sequential and Simultaneous fits</a><a class="headerlink" href="#sequential-and-simultaneous-fits" title="Link to this heading">¶</a></h2>
+<h3>Sequential and Simultaneous fits<a class="headerlink" href="#sequential-and-simultaneous-fits" title="Link to this heading">¶</a></h3>
 <p>There are options to fit your selected spectra either Sequentially or Simultaneously.</p>
 <p>A <a class="reference internal" href="../../algorithms/IqtFitSequential-v1.html#algm-iqtfitsequential"><span class="std std-ref">sequential fit</span></a> will fit each spectra one after another. By default this will use the end values of one fit as the starting values of the next. This behaviour can be toggled
 using the sequential/individual option.</p>
@@ -179,7 +153,7 @@ parameters which are expected to be constant across the data range can be tied a
 fitted with better statistics and hence reduced errors.</p>
 </section>
 <section id="fit-function">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Fit Function</a><a class="headerlink" href="#fit-function" title="Link to this heading">¶</a></h2>
+<h3>Fit Function<a class="headerlink" href="#fit-function" title="Link to this heading">¶</a></h3>
 <figure class="align-left">
 <a class="reference internal image-reference" href="../../_images/ConvFitFunctionSelection.png"><img alt="../../_images/ConvFitFunctionSelection.png" src="../../_images/ConvFitFunctionSelection.png" style="height: 300px;" /></a>
 </figure>
@@ -195,7 +169,7 @@ using the available options under ‘Constrain’.</p>
 spectrum.</p>
 </section>
 <section id="settings">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Settings</a><a class="headerlink" href="#settings" title="Link to this heading">¶</a></h2>
+<h3>Settings<a class="headerlink" href="#settings" title="Link to this heading">¶</a></h3>
 <p>The bottom half of the Fit Function section contains a table of settings which control what sort of fit is done. These are:</p>
 <dl class="simple">
 <dt>Fitting</dt><dd><p>Controls whether to do a sequential or simultaneous fit.</p>
@@ -215,7 +189,7 @@ spectrum.</p>
 </dl>
 </section>
 <section id="preview-plots">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Preview Plots</a><a class="headerlink" href="#preview-plots" title="Link to this heading">¶</a></h2>
+<h3>Preview Plots<a class="headerlink" href="#preview-plots" title="Link to this heading">¶</a></h3>
 <figure class="align-left">
 <a class="reference internal image-reference" href="../../_images/ConvFitPlotPreview.png"><img alt="../../_images/ConvFitPlotPreview.png" src="../../_images/ConvFitPlotPreview.png" style="height: 300px;" /></a>
 </figure>
@@ -231,7 +205,7 @@ a separate plotting window.</p>
 <p>The ‘Plot Guess’ check-box can be used to enable/disable the guess curve in the top preview plot.</p>
 </section>
 <section id="output">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Output</a><a class="headerlink" href="#output" title="Link to this heading">¶</a></h2>
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading">¶</a></h3>
 <p>The results of the fit may be plotted and saved under the ‘Output’ section of the fitting interfaces.</p>
 <p>Next to the ‘Plot’ label, you can select a parameter to plot and then click ‘Plot’ to plot it with error
 bars across the fit spectra (if multiple data-sets have been used, a separate plot will be produced for each data-set).
@@ -243,8 +217,28 @@ from a single fit using the ‘Edit Result’ option.
 Clicking the ‘Edit Result’ button will allow you to modify the data within your <em>_Results</em> workspace using the results
 produced from a fit to a single spectrum. See the algorithm <a class="reference internal" href="../../algorithms/IndirectReplaceFitResult-v1.html#algm-indirectreplacefitresult"><span class="std std-ref">IndirectReplaceFitResult</span></a>.</p>
 <p>Clicking the ‘Save Result’ button will save the result of the fit to your default save location.</p>
+</section>
+<section id="action-buttons">
+<h3>Action Buttons<a class="headerlink" href="#action-buttons" title="Link to this heading">¶</a></h3>
+<p>There are several buttons on the bottom left of every tab in the interface. These are:</p>
+<dl class="simple">
+<dt>Settings</dt><dd><p>Opens the <a class="reference internal" href="../indirect/Indirect%20Settings.html#inelastic-interface-settings"><span class="std std-ref">Settings</span></a> GUI which allows you to
+customize the settings for the Indirect interfaces.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>?</dt><dd><p>Opens this help page.</p>
+</dd>
+<dt>Py</dt><dd><p>Exports a Python script which will replicate the processing done by the current tab.</p>
+</dd>
+<dt>Manage Directories</dt><dd><p>Opens the Manage Directories dialog allowing you to change your search directories
+and default save directory and enable/disable data archive search.</p>
+</dd>
+</dl>
+</section>
+</section>
 <section id="msd-fit">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">MSD Fit</a><a class="headerlink" href="#msd-fit" title="Link to this heading">¶</a></h3>
+<h2>MSD Fit<a class="headerlink" href="#msd-fit" title="Link to this heading">¶</a></h2>
 <p>Given either a saved NeXus file, or workspace generated using the Elwin tab, this
 tab fits <span class="math notranslate nohighlight">\(intensity\)</span> vs. <span class="math notranslate nohighlight">\(Q\)</span> with one of three functions for each
 run specified to give the Mean Square Displacement (MSD). It then plots the MSD
@@ -267,12 +261,10 @@ and the clicking run.</p>
 (towards infinity) beta. The <a class="reference internal" href="../../fitting/fitfunctions/MsdYi.html#func-msdyi"><span class="std std-ref">Yi Model</span></a> [2] reduces to a <a class="reference internal" href="../../fitting/fitfunctions/MsdGauss.html#func-msdgauss"><span class="std std-ref">Gaussian</span></a> at sigma
 equal to zero.</p>
 <figure class="align-default">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Analysis_tabMSD_widget.png"><img alt="../../_images/Data_Analysis_tabMSD_widget.png" class="screenshot" src="../../_images/Data_Analysis_tabMSD_widget.png" style="width: 450px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/QENS_Fitting_tabMSD_widget.png"><img alt="../../_images/QENS_Fitting_tabMSD_widget.png" class="screenshot" src="../../_images/QENS_Fitting_tabMSD_widget.png" style="width: 450px;" /></a>
 </figure>
-</section>
-</section>
 <section id="msd-fit-example-workflow">
-<span id="msdfit-example-workflow"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">MSD Fit Example Workflow</a><a class="headerlink" href="#msd-fit-example-workflow" title="Link to this heading">¶</a></h2>
+<span id="msdfit-example-workflow"></span><h3>MSD Fit Example Workflow<a class="headerlink" href="#msd-fit-example-workflow" title="Link to this heading">¶</a></h3>
 <p>The MSD Fit tab operates on <code class="docutils literal notranslate"><span class="pre">_eq</span></code> files. The files used in this workflow are produced on the Elwin
 tab as seen in the <a class="reference internal" href="Inelastic%20Data%20Manipulation.html#elwin-example-workflow"><span class="std std-ref">Elwin Example Workflow</span></a>.</p>
 <ol class="arabic simple">
@@ -298,20 +290,20 @@ Do not click this for the purposes of this demonstration.</p></li>
 <li><p>In the <strong>Output</strong> section, select the <strong>Msd</strong> parameter and then click <strong>Plot</strong>. This plots the
 Msd parameter which can be found within the _Results group workspace.</p></li>
 </ol>
+</section>
+</section>
 <section id="i-q-t-fit">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">I(Q, t) Fit</a><a class="headerlink" href="#i-q-t-fit" title="Link to this heading">¶</a></h3>
+<h2>I(Q, t) Fit<a class="headerlink" href="#i-q-t-fit" title="Link to this heading">¶</a></h2>
 <p>I(Q, t) Fit provides a simplified interface for controlling various fitting
 functions (see the <a class="reference internal" href="../../algorithms/Fit-v1.html#algm-fit"><span class="std std-ref">Fit</span></a> algorithm for more info). The functions
 are also available via the fit wizard.</p>
 <p>The fit types available for use in IqtFit are <a class="reference internal" href="../../fitting/fitfunctions/ExpDecay.html#func-expdecay"><span class="std std-ref">Exponentials</span></a> and
 <a class="reference internal" href="../../fitting/fitfunctions/StretchExp.html#func-stretchexp"><span class="std std-ref">Stretched Exponential</span></a>.</p>
 <figure class="align-default">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Analysis_tabIqtFit_widget.png"><img alt="../../_images/Data_Analysis_tabIqtFit_widget.png" class="screenshot" src="../../_images/Data_Analysis_tabIqtFit_widget.png" style="width: 450px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/QENS_Fitting_tabIqtFit_widget.png"><img alt="../../_images/QENS_Fitting_tabIqtFit_widget.png" class="screenshot" src="../../_images/QENS_Fitting_tabIqtFit_widget.png" style="width: 450px;" /></a>
 </figure>
-</section>
-</section>
 <section id="i-q-t-fit-example-workflow">
-<span id="iqtfit-example-workflow"></span><h2><a class="toc-backref" href="#id11" role="doc-backlink">I(Q, t) Fit Example Workflow</a><a class="headerlink" href="#i-q-t-fit-example-workflow" title="Link to this heading">¶</a></h2>
+<span id="iqtfit-example-workflow"></span><h3>I(Q, t) Fit Example Workflow<a class="headerlink" href="#i-q-t-fit-example-workflow" title="Link to this heading">¶</a></h3>
 <p>The I(Q, t) Fit tab operates on <code class="docutils literal notranslate"><span class="pre">_iqt</span></code> files. The files used in this workflow are produced on the
 I(Q, t) tab as seen in the <a class="reference internal" href="Inelastic%20Data%20Manipulation.html#iqt-example-workflow"><span class="std std-ref">I(Q, t) Example Workflow</span></a>.</p>
 <ol class="arabic simple">
@@ -335,8 +327,10 @@ in (1) with the fit result found in (2). See the <a class="reference internal" h
 algorithm for more details. Note that the output workspace is inserted into the group workspace in which
 (1) is found.</p></li>
 </ol>
+</section>
+</section>
 <section id="conv-fit">
-<span id="convfit"></span><h3><a class="toc-backref" href="#id12" role="doc-backlink">Conv Fit</a><a class="headerlink" href="#conv-fit" title="Link to this heading">¶</a></h3>
+<span id="convfit"></span><h2>Conv Fit<a class="headerlink" href="#conv-fit" title="Link to this heading">¶</a></h2>
 <p>ConvFit provides a simplified interface for controlling
 various fitting functions (see the <a class="reference internal" href="../../algorithms/Fit-v1.html#algm-fit"><span class="std std-ref">Fit</span></a> algorithm for more
 info). The functions are also available via the fit wizard.</p>
@@ -353,12 +347,10 @@ preview plot.</p>
 <a class="reference internal" href="../../fitting/fitfunctions/InelasticDiffRotDiscreteCircle.html#func-inelasticdiffrotdiscretecircle"><span class="std std-ref">InelasticDiffRotDiscreteCircle</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/ElasticDiffSphere.html#func-elasticdiffsphere"><span class="std std-ref">ElasticDiffSphere</span></a>,
 <a class="reference internal" href="../../fitting/fitfunctions/ElasticDiffRotDiscreteCircle.html#func-elasticdiffrotdiscretecircle"><span class="std std-ref">ElasticDiffRotDiscreteCircle</span></a> and <a class="reference internal" href="../../fitting/fitfunctions/StretchedExpFT.html#func-stretchedexpft"><span class="std std-ref">StretchedExpFT</span></a>.</p>
 <figure class="align-default">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Analysis_tabConvFit_widget.png"><img alt="../../_images/Data_Analysis_tabConvFit_widget.png" class="screenshot" src="../../_images/Data_Analysis_tabConvFit_widget.png" style="width: 450px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/QENS_Fitting_tabConvFit_widget.png"><img alt="../../_images/QENS_Fitting_tabConvFit_widget.png" class="screenshot" src="../../_images/QENS_Fitting_tabConvFit_widget.png" style="width: 450px;" /></a>
 </figure>
-</section>
-</section>
 <section id="conv-fit-options">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Conv Fit Options</a><a class="headerlink" href="#conv-fit-options" title="Link to this heading">¶</a></h2>
+<h3>Conv Fit Options<a class="headerlink" href="#conv-fit-options" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt>Sample</dt><dd><p>Either a reduced file (<em>_red.nxs</em>) or workspace (<em>_red</em>) or an <span class="math notranslate nohighlight">\(S(Q,
 \omega)\)</span> file (<em>_sqw.nxs</em>, <em>_sqw.dave</em>) or workspace (<em>_sqw</em>).</p>
@@ -371,7 +363,7 @@ a warning will be provided to the user when loading the data.</p>
 </dl>
 </section>
 <section id="convfit-example-workflow">
-<span id="id1"></span><h2><a class="toc-backref" href="#id14" role="doc-backlink">ConvFit Example Workflow</a><a class="headerlink" href="#convfit-example-workflow" title="Link to this heading">¶</a></h2>
+<span id="id1"></span><h3>ConvFit Example Workflow<a class="headerlink" href="#convfit-example-workflow" title="Link to this heading">¶</a></h3>
 <p>The Conv Fit tab allows <code class="docutils literal notranslate"><span class="pre">_red</span></code> and <code class="docutils literal notranslate"><span class="pre">_sqw</span></code> for its sample file, and allows <code class="docutils literal notranslate"><span class="pre">_red</span></code>, <code class="docutils literal notranslate"><span class="pre">_sqw</span></code> and
 <code class="docutils literal notranslate"><span class="pre">_res</span></code> for the resolution file. The sample file used in this workflow can be produced using the run
 number 26176 on the <a class="reference internal" href="../indirect/Indirect%20Data%20Reduction.html#interface-indirect-data-reduction"><span class="std std-ref">Indirect Data Reduction</span></a> interface in the ISIS
@@ -398,11 +390,11 @@ the <a class="reference internal" href="#fqfit-example-workflow"><span class="st
 </ol>
 </section>
 <section id="theory">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Theory</a><a class="headerlink" href="#theory" title="Link to this heading">¶</a></h2>
+<h3>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h3>
 <p>For more on the theory of Conv Fit see the <a class="reference internal" href="../../concepts/ConvFit.html#convfitconcept"><span class="std std-ref">Conv Fit</span></a> concept page.</p>
 </section>
 <section id="convfit-fitting-model">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">ConvFit fitting model</a><a class="headerlink" href="#convfit-fitting-model" title="Link to this heading">¶</a></h2>
+<h3>ConvFit fitting model<a class="headerlink" href="#convfit-fitting-model" title="Link to this heading">¶</a></h3>
 <p>The model used to perform fitting in ConvFit is described in the following tree, note that
 everything under the Model section is optional and determined by the <em>Fit Type</em>
 and <em>Use Delta Function</em> options in the interface.</p>
@@ -468,8 +460,10 @@ and <em>Use Delta Function</em> options in the interface.</p>
 <p>The Temperature Correction is a <a class="reference internal" href="../../fitting/fitfunctions/UserFunction.html#func-userfunction"><span class="std std-ref">UserFunction</span></a> with the
 formula <span class="math notranslate nohighlight">\(((x * 11.606) / T) / (1 - exp(-((x * 11.606) / T)))\)</span> where
 <span class="math notranslate nohighlight">\(T\)</span> is the temperature in Kelvin.</p>
+</section>
+</section>
 <section id="f-q-fit">
-<span id="fqfit"></span><h3><a class="toc-backref" href="#id17" role="doc-backlink">F(Q) Fit</a><a class="headerlink" href="#f-q-fit" title="Link to this heading">¶</a></h3>
+<span id="fqfit"></span><h2>F(Q) Fit<a class="headerlink" href="#f-q-fit" title="Link to this heading">¶</a></h2>
 <p>One of the models used to interpret diffusion is that of jump diffusion in which
 it is assumed that an atom remains at a given site for a time <span class="math notranslate nohighlight">\(\tau\)</span>; and
 then moves rapidly, that is, in a time negligible compared to <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
@@ -480,12 +474,10 @@ EISF. This is done by means of the
 <a class="reference internal" href="../../fitting/fitfunctions/FickDiffusion.html#func-fickdiffusion"><span class="std std-ref">FickDiffusion</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/TeixeiraWater.html#func-teixeirawater"><span class="std std-ref">TeixeiraWater</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/EISFDiffCylinder.html#func-eisfdiffcylinder"><span class="std std-ref">EISFDiffCylinder</span></a>,
 <a class="reference internal" href="../../fitting/fitfunctions/EISFDiffSphere.html#func-eisfdiffsphere"><span class="std std-ref">EISFDiffSphere</span></a> and <a class="reference internal" href="../../fitting/fitfunctions/EISFDiffSphereAlkyl.html#func-eisfdiffspherealkyl"><span class="std std-ref">EISFDiffSphereAlkyl</span></a>.</p>
 <figure class="align-default">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Analysis_tabJumpFit_widget.png"><img alt="../../_images/Data_Analysis_tabJumpFit_widget.png" class="screenshot" src="../../_images/Data_Analysis_tabJumpFit_widget.png" style="width: 450px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/QENS_Fitting_tabJumpFit_widget.png"><img alt="../../_images/QENS_Fitting_tabJumpFit_widget.png" class="screenshot" src="../../_images/QENS_Fitting_tabJumpFit_widget.png" style="width: 450px;" /></a>
 </figure>
-</section>
-</section>
 <section id="f-q-fit-example-workflow">
-<span id="fqfit-example-workflow"></span><h2><a class="toc-backref" href="#id18" role="doc-backlink">F(Q) Fit Example Workflow</a><a class="headerlink" href="#f-q-fit-example-workflow" title="Link to this heading">¶</a></h2>
+<span id="fqfit-example-workflow"></span><h3>F(Q) Fit Example Workflow<a class="headerlink" href="#f-q-fit-example-workflow" title="Link to this heading">¶</a></h3>
 <p>The F(Q) Fit tab operates on <code class="docutils literal notranslate"><span class="pre">_result</span></code> files which can be produced on the ConvFit tab.  The
 sample file used in this workflow is produced on the Conv Fit tab as seen in the
 <a class="reference internal" href="#convfit-example-workflow"><span class="std std-ref">ConvFit Example Workflow</span></a>.</p>
@@ -504,9 +496,11 @@ fit.</p></li>
 <li><p>In the <strong>Output</strong> section, you can choose which parameter you want to plot. In this case the plotting
 option is disabled as the output workspace ending in _Result only has one data point to plot.</p></li>
 </ol>
+</section>
+</section>
 <section id="bayesian-fabada-minimizer">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink">Bayesian (FABADA minimizer)</a><a class="headerlink" href="#bayesian-fabada-minimizer" title="Link to this heading">¶</a></h3>
-<p>There is the option to perform Bayesian data analysis on the I(Q, t) Fit ConvFit
+<h2>Bayesian (FABADA minimizer)<a class="headerlink" href="#bayesian-fabada-minimizer" title="Link to this heading">¶</a></h2>
+<p>There is the option to perform Bayesian analysis on the I(Q, t) Fit and ConvFit
 tabs on this interface by using the <a class="reference internal" href="../../concepts/FABADA.html#fabada"><span class="std std-ref">FABADA</span></a> fitting minimizer, however in
 order to to use this you will need to use better starting parameters than the
 defaults provided by the interface.</p>
@@ -537,9 +531,7 @@ then it is possible to plot this PDF data using the output options at the bottom
 <li><p>Peters &amp; Kneller, Journal of Chemical Physics, 139, 165102 (2013)</p></li>
 <li><p>Yi et al, J Phys Chem B 116, 5028 (2012)</p></li>
 </ol>
-<p><a class="reference internal" href="Inelastic%20Data%20Analysis.html#interface-inelastic-data-analysis"><span class="std std-ref">Inelastic Data Analysis</span></a></p>
 <p><strong>Categories</strong>: <a class="reference external" href="../ILL/categories/Interfaces.html">Interfaces</a> | <a class="reference external" href="../../algorithms/categories/Inelastic.html">Inelastic</a></p>
-</section>
 </section>
 </section>
 

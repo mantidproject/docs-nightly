@@ -1,23 +1,34 @@
-.. _QENS-fitting-ref:
+﻿.. _interface-inelastic-qens-fitting:
 
-QENS Fitting
-============
+Inelastic QENS Fitting
+======================
 
-.. contents:: Table of Contents
-  :local:
+Overview
+--------
 
-.. figure::  ../../images/ConvFitFull.png
-   :height: 400px
-   :align: center
+The Inelastic QENS Fitting interface is a collection of tools within Mantid
+for analysing reduced data from indirect geometry spectrometers, such as IRIS and
+OSIRIS and data from direct geometry spectrometer LET. Note that this interface
+used to be called the Inelastic Data Analysis interface, but has been renamed.
 
-There are four QENS fitting interfaces:
+The majority of the functions used within this interface can be used with both
+reduced files (*_red.nxs*) and workspaces (*_red*) created using the Indirect Data
+Reduction interface or using :math:`S(Q, \omega)` files (*_sqw.nxs*) and
+workspaces (*_sqw*) created using either the Indirect Data Reduction interface or
+taken from a bespoke algorithm or auto reduction.
+
+QENS Fitting tabs
+-----------------
+
+There are four QENS Fitting interfaces that share a common layout and features:
 
 * MSD Fit
 * I(Q,t) Fit,
 * Conv Fit
 * F(Q)
 
-These fitting interfaces share common features, with a few unique options in each.
+Each tab also has a few unique options. These interfaces do not support GroupWorkspaces
+as input.
 
 Input
 ~~~~~
@@ -133,6 +144,25 @@ produced from a fit to a single spectrum. See the algorithm :ref:`IndirectReplac
 
 Clicking the 'Save Result' button will save the result of the fit to your default save location.
 
+Action Buttons
+~~~~~~~~~~~~~~
+
+There are several buttons on the bottom left of every tab in the interface. These are:
+
+Settings
+  Opens the :ref:`Settings <inelastic-interface-settings>` GUI which allows you to
+  customize the settings for the Indirect interfaces.
+
+?
+  Opens this help page.
+
+Py
+  Exports a Python script which will replicate the processing done by the current tab.
+
+Manage Directories
+  Opens the Manage Directories dialog allowing you to change your search directories
+  and default save directory and enable/disable data archive search.
+
 MSD Fit
 -------
 
@@ -162,7 +192,7 @@ The :ref:`Peters model <func-MsdPeters>` [1] reduces to a :ref:`Gaussian <func-M
 (towards infinity) beta. The :ref:`Yi Model <func-MsdYi>` [2] reduces to a :ref:`Gaussian <func-MsdGauss>` at sigma
 equal to zero.
 
-.. interface:: Data Analysis
+.. interface:: QENS Fitting
   :width: 450
   :widget: tabMSD
 
@@ -212,7 +242,7 @@ are also available via the fit wizard.
 The fit types available for use in IqtFit are :ref:`Exponentials <func-ExpDecay>` and
 :ref:`Stretched Exponential <func-StretchExp>`.
 
-.. interface:: Data Analysis
+.. interface:: QENS Fitting
   :width: 450
   :widget: tabIqtFit
 
@@ -274,7 +304,7 @@ The fit types available in ConvFit are One :ref:`Lorentzian <func-Lorentzian>`, 
 :ref:`InelasticDiffRotDiscreteCircle <func-InelasticDiffRotDiscreteCircle>`, :ref:`ElasticDiffSphere <func-ElasticDiffSphere>`,
 :ref:`ElasticDiffRotDiscreteCircle <func-ElasticDiffRotDiscreteCircle>` and :ref:`StretchedExpFT <func-StretchedExpFT>`.
 
-.. interface:: Data Analysis
+.. interface:: QENS Fitting
   :width: 450
   :widget: tabConvFit
 
@@ -411,7 +441,7 @@ The fit types available in F(Q)Fit are :ref:`ChudleyElliot <func-ChudleyElliot>`
 :ref:`FickDiffusion <func-FickDiffusion>`, :ref:`TeixeiraWater <func-TeixeiraWater>`, :ref:`EISFDiffCylinder <func-EISFDiffCylinder>`,
 :ref:`EISFDiffSphere <func-EISFDiffSphere>` and :ref:`EISFDiffSphereAlkyl <func-EISFDiffSphereAlkyl>`.
 
-.. interface:: Data Analysis
+.. interface:: QENS Fitting
   :width: 450
   :widget: tabJumpFit
 
@@ -445,7 +475,7 @@ sample file used in this workflow is produced on the Conv Fit tab as seen in the
 Bayesian (FABADA minimizer)
 ---------------------------
 
-There is the option to perform Bayesian data analysis on the I(Q, t) Fit ConvFit
+There is the option to perform Bayesian analysis on the I(Q, t) Fit and ConvFit
 tabs on this interface by using the :ref:`FABADA` fitting minimizer, however in
 order to to use this you will need to use better starting parameters than the
 defaults provided by the interface.
@@ -481,7 +511,5 @@ then it is possible to plot this PDF data using the output options at the bottom
 
 1. Peters & Kneller, Journal of Chemical Physics, 139, 165102 (2013)
 2. Yi et al, J Phys Chem B 116, 5028 (2012)
-
-:ref:`Inelastic Data Analysis <interface-inelastic-data-analysis>`
 
 .. categories:: Interfaces Inelastic

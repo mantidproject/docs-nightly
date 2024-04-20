@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=28f37f54"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/documentation_options.js?v=95faac40"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -102,7 +102,43 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">GenerateGroupingPowder v1</a><ul>
+<li><a class="reference internal" href="#summary">Summary</a><ul>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#properties">Properties</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#source">Source</a></li>
+</ul>
+</li>
+</ul>
+
+  <li>
+    <a href="GenerateGoniometerIndependentBackground-v1.html" title="Previous Chapter: GenerateGoniometerIndependentBackground v1"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; GenerateGonio...</span>
+    </a>
+  </li>
+  <li>
+    <a href="GenerateGroupingSNSInelastic-v1.html" title="Next Chapter: GenerateGroupingSNSInelastic v1"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">GenerateGroup... &raquo;</span>
+    </a>
+  </li>
+<div id="sourcelink">
+  <a href="../_sources/algorithms/GenerateGroupingPowder-v1.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="generategroupingpowder-v1">
@@ -150,7 +186,7 @@
 <tr class="row-odd"><td><p>GroupingWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p>GroupingWorkspace</p></td>
-<td><p><em>Mandatory</em></p></td>
+<td></td>
 <td><p>The grouping workspace created</p></td>
 </tr>
 <tr class="row-even"><td><p>AngleStep</p></td>
@@ -250,7 +286,35 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 
 <span class="c1">#load some file</span>
 <span class="n">ws</span><span class="o">=</span><span class="n">Load</span><span class="p">(</span><span class="s2">&quot;CNCS_7860&quot;</span><span class="p">)</span>
-<span class="n">gws</span> <span class="o">=</span> <span class="s2">&quot;a_nice_name_for_grouping_workspace&quot;</span>
+
+<span class="c1">#generate the files</span>
+<span class="n">GenerateGroupingPowder</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">outputFilename</span><span class="p">)</span>
+
+<span class="c1">#check that it works</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="k">if</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">outputFilename</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found file powder.xml&quot;</span><span class="p">)</span>
+<span class="k">if</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">mantid</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;powder.par&quot;</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found file powder.par&quot;</span><span class="p">)</span>
+<span class="n">wsg</span><span class="o">=</span><span class="n">GroupDetectors</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">outputFilename</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The grouped workspace has </span><span class="si">{}</span><span class="s2"> histograms&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsg</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Found file powder.xml
+Found file powder.par
+The grouped workspace has 14 histograms
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Similarly, one could specify the grouping workspace:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create some grouping file</span>
+<span class="kn">import</span> <span class="nn">mantid</span>
+<span class="n">outputFilename</span><span class="o">=</span><span class="n">mantid</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;powder.xml&quot;</span>
+
+<span class="c1">#load some file</span>
+<span class="n">ws</span><span class="o">=</span><span class="n">Load</span><span class="p">(</span><span class="s2">&quot;CNCS_7860&quot;</span><span class="p">)</span>
+<span class="n">gws</span><span class="o">=</span> <span class="s2">&quot;a_nice_name_for_grouping_workspace&quot;</span>
 
 <span class="c1">#generate the files</span>
 <span class="n">GenerateGroupingPowder</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">outputFilename</span><span class="p">,</span> <span class="n">GroupingWorkspace</span><span class="o">=</span><span class="n">gws</span><span class="p">)</span>
@@ -279,8 +343,8 @@ The grouped workspace has 14 histograms
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/bf78abaacd83f048618a4ad232d95766c9bce4c1/Framework/DataHandling/inc/MantidDataHandling/GenerateGroupingPowder.h">GenerateGroupingPowder.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/bf78abaacd83f048618a4ad232d95766c9bce4c1/Framework/DataHandling/src/GenerateGroupingPowder.cpp">GenerateGroupingPowder.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0dcb5c49de11d555c8fba30f15d97d40cb456166/Framework/DataHandling/inc/MantidDataHandling/GenerateGroupingPowder.h">GenerateGroupingPowder.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0dcb5c49de11d555c8fba30f15d97d40cb456166/Framework/DataHandling/src/GenerateGroupingPowder.cpp">GenerateGroupingPowder.cpp</a></p>
 </section>
 </section>
 

@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=28f37f54"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/documentation_options.js?v=95faac40"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -102,7 +102,54 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Instrument Viewer Widget</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#instrument-view-pane">Instrument View Pane</a></li>
+<li><a class="reference internal" href="#render-tab">Render Tab</a></li>
+<li><a class="reference internal" href="#pick-tab">Pick Tab</a><ul>
+<li><a class="reference internal" href="#single-detector-selection">Single detector selection</a></li>
+<li><a class="reference internal" href="#tube-selection">Tube Selection</a></li>
+<li><a class="reference internal" href="#create-a-single-crystal-peak-list">Create a Single Crystal Peak List</a></li>
+<li><a class="reference internal" href="#single-crystal-peak-eraser">Single Crystal Peak Eraser</a></li>
+<li><a class="reference internal" href="#peak-comparison-tool">Peak Comparison Tool</a></li>
+<li><a class="reference internal" href="#peak-alignment-tool">Peak Alignment Tool</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#draw-tab">Draw Tab</a><ul>
+<li><a class="reference internal" href="#using-the-drawn-shapes">Using the Drawn Shapes</a></li>
+<li><a class="reference internal" href="#bin-masking">Bin Masking</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#instrument-tab">Instrument Tab</a></li>
+<li><a class="reference internal" href="#python-control">Python Control</a></li>
+</ul>
+</li>
+</ul>
+
+  <li>
+    <a href="algorithmtoolbox.html" title="Previous Chapter: Algorithm Toolbox"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Algorithm Toolbox</span>
+    </a>
+  </li>
+  <li>
+    <a href="ipythonconsole.html" title="Next Chapter: IPython Console"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">IPython Console &raquo;</span>
+    </a>
+  </li>
+<div id="sourcelink">
+  <a href="../_sources/workbench/instrumentviewer.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="instrument-viewer-widget">
@@ -120,7 +167,8 @@ The instrument view also allows users to see close-ups of any component.</p>
 <p>The instrument view window can be obtained by right clicking on the workspace of interest and selecting <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Instrument</span></code>.
 A 2D projection of the detector arrangement will be visible with each detector pixel color coded depending on the integrated number of counts in its corresponding spectrum, as in the image below.</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="../_images/Overview.png"><img alt="../_images/Overview.png" src="../_images/Overview.png" style="width: 635px;" /></a>
+<a class="reference internal image-reference" href="../_images/Overview.png"><img alt="../_images/Overview.png" src="../_images/Overview.png" style="width: 635px;" />
+</a>
 </figure>
 <p>It is possible to alter the view of the instrument by holding down either mouse button and moving (dragging) it within the window.
 There are other mouse and key board controls, which are listed at the bottom of the instrument view window.</p>
@@ -146,13 +194,15 @@ The bank centres in the side by side view can be overridden using the &lt;side-b
 <p>The unwrapped (or flat) views allow zooming by selecting a rectangular region with the mouse (left click and drag).
 Right-clicking resets the zoom, which shows the entire instrument.</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="../_images/RenderTab.png"><img alt="../_images/RenderTab.png" src="../_images/RenderTab.png" style="width: 635px;" /></a>
+<a class="reference internal image-reference" href="../_images/RenderTab.png"><img alt="../_images/RenderTab.png" src="../_images/RenderTab.png" style="width: 635px;" />
+</a>
 </figure>
 <p>The next control is <code class="docutils literal notranslate"><span class="pre">Axis</span> <span class="pre">View</span></code>, visible only in the 3D mode, which resets the view so that the instrument is fully visible and the specified axis is perpendicular to the screen.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Display</span> <span class="pre">Settings</span></code> button controls the appearance of the instrument in the view.
 The <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">OpenGL</span></code> option toggles between two display modes of a flat view: one that uses OpenGL to render the instrument and one that doesn’t.</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="../_images/DisplaySettings1.png"><img alt="../_images/DisplaySettings1.png" src="../_images/DisplaySettings1.png" style="width: 635px;" /></a>
+<a class="reference internal image-reference" href="../_images/DisplaySettings1.png"><img alt="../_images/DisplaySettings1.png" src="../_images/DisplaySettings1.png" style="width: 635px;" />
+</a>
 </figure>
 <p>This option can be useful if the instrument is viewed over a slow network connection, for example.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">image</span></code> button allows the image to be save into a file.</p>
@@ -176,7 +226,8 @@ The text box below the tool bar shows textual information about selected detecto
 <li><p>The units of the X vector in the underlying workspace.</p></li>
 </ul>
 <figure class="align-center">
-<a class="reference internal image-reference" href="../_images/PickTab.png"><img alt="../_images/PickTab.png" src="../_images/PickTab.png" style="width: 635px;" /></a>
+<a class="reference internal image-reference" href="../_images/PickTab.png"><img alt="../_images/PickTab.png" src="../_images/PickTab.png" style="width: 635px;" />
+</a>
 </figure>
 <section id="single-detector-selection">
 <h3>Single detector selection<a class="headerlink" href="#single-detector-selection" title="Link to this heading">¶</a></h3>
@@ -237,7 +288,8 @@ will be highlighted by green circles. The information box will contain the in-pl
 <p>The Draw tab contains tools for creating and editing geometrical shapes, which can be used for selecting regions of interest (ROI) or for masking or grouping detectors.
 The tab contains a smaller toolbar, a shape property browser, and a set of buttons to create shapes.</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="../_images/DrawTab.png"><img alt="../_images/DrawTab.png" src="../_images/DrawTab.png" style="width: 635px;" /></a>
+<a class="reference internal image-reference" href="../_images/DrawTab.png"><img alt="../_images/DrawTab.png" src="../_images/DrawTab.png" style="width: 635px;" />
+</a>
 </figure>
 <p>Masks are created by using six tools:</p>
 <ul class="simple">

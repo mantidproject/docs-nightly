@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
-    <script src="../../../../_static/documentation_options.js?v=28f37f54"></script>
-    <script src="../../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../../_static/documentation_options.js?v=95faac40"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
@@ -106,7 +106,107 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mantid.plots</span></code></a><ul>
+<li><a class="reference internal" href="#types-of-functions">Types of functions</a></li>
+<li><a class="reference internal" href="#available-functions">Available Functions</a><ul>
+<li><a class="reference internal" href="#when-using-mantid-projection">When using <code class="docutils literal notranslate"><span class="pre">mantid</span></code> projection</a><ul>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes"><code class="docutils literal notranslate"><span class="pre">MantidAxes</span></code></a><ul>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes.contour"><code class="docutils literal notranslate"><span class="pre">MantidAxes.contour()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes.contourf"><code class="docutils literal notranslate"><span class="pre">MantidAxes.contourf()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes.errorbar"><code class="docutils literal notranslate"><span class="pre">MantidAxes.errorbar()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes.pcolor"><code class="docutils literal notranslate"><span class="pre">MantidAxes.pcolor()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes.pcolorfast"><code class="docutils literal notranslate"><span class="pre">MantidAxes.pcolorfast()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes.pcolormesh"><code class="docutils literal notranslate"><span class="pre">MantidAxes.pcolormesh()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes.plot"><code class="docutils literal notranslate"><span class="pre">MantidAxes.plot()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes.scatter"><code class="docutils literal notranslate"><span class="pre">MantidAxes.scatter()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes.tripcolor"><code class="docutils literal notranslate"><span class="pre">MantidAxes.tripcolor()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes.tricontour"><code class="docutils literal notranslate"><span class="pre">MantidAxes.tricontour()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes.tricontourf"><code class="docutils literal notranslate"><span class="pre">MantidAxes.tricontourf()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#when-using-mantid3d-projection">When using <code class="docutils literal notranslate"><span class="pre">mantid3d</span></code> projection</a><ul>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes3D"><code class="docutils literal notranslate"><span class="pre">MantidAxes3D</span></code></a><ul>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes3D.contour"><code class="docutils literal notranslate"><span class="pre">MantidAxes3D.contour()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes3D.contourf"><code class="docutils literal notranslate"><span class="pre">MantidAxes3D.contourf()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes3D.plot"><code class="docutils literal notranslate"><span class="pre">MantidAxes3D.plot()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes3D.plot_surface"><code class="docutils literal notranslate"><span class="pre">MantidAxes3D.plot_surface()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes3D.plot_wireframe"><code class="docutils literal notranslate"><span class="pre">MantidAxes3D.plot_wireframe()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.MantidAxes3D.scatter"><code class="docutils literal notranslate"><span class="pre">MantidAxes3D.scatter()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mantid.plots.axesfunctions">Functions to use when <strong>mantid</strong> projection is not available</a><ul>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions.contour"><code class="docutils literal notranslate"><span class="pre">contour()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions.contourf"><code class="docutils literal notranslate"><span class="pre">contourf()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions.errorbar"><code class="docutils literal notranslate"><span class="pre">errorbar()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions.pcolor"><code class="docutils literal notranslate"><span class="pre">pcolor()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions.pcolorfast"><code class="docutils literal notranslate"><span class="pre">pcolorfast()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions.pcolormesh"><code class="docutils literal notranslate"><span class="pre">pcolormesh()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions.scatter"><code class="docutils literal notranslate"><span class="pre">scatter()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions.tricontour"><code class="docutils literal notranslate"><span class="pre">tricontour()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions.tricontourf"><code class="docutils literal notranslate"><span class="pre">tricontourf()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions.tripcolor"><code class="docutils literal notranslate"><span class="pre">tripcolor()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mantid.plots.axesfunctions3D">Functions to use when <strong>mantid3d</strong> projection is not available</a><ul>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions3D.contour"><code class="docutils literal notranslate"><span class="pre">contour()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions3D.contourf"><code class="docutils literal notranslate"><span class="pre">contourf()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions3D.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions3D.plot_surface"><code class="docutils literal notranslate"><span class="pre">plot_surface()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions3D.plot_wireframe"><code class="docutils literal notranslate"><span class="pre">plot_wireframe()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.axesfunctions3D.scatter"><code class="docutils literal notranslate"><span class="pre">scatter()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mantid.plots.datafunctions">Helper functions</a><ul>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.boundaries_from_points"><code class="docutils literal notranslate"><span class="pre">boundaries_from_points()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.get_axes_labels"><code class="docutils literal notranslate"><span class="pre">get_axes_labels()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.get_distribution"><code class="docutils literal notranslate"><span class="pre">get_distribution()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.get_matrix_2d_data"><code class="docutils literal notranslate"><span class="pre">get_matrix_2d_data()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.get_md_data"><code class="docutils literal notranslate"><span class="pre">get_md_data()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.get_md_data1d"><code class="docutils literal notranslate"><span class="pre">get_md_data1d()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.get_md_data2d_bin_bounds"><code class="docutils literal notranslate"><span class="pre">get_md_data2d_bin_bounds()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.get_md_data2d_bin_centers"><code class="docutils literal notranslate"><span class="pre">get_md_data2d_bin_centers()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.get_normalization"><code class="docutils literal notranslate"><span class="pre">get_normalization()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.get_spectrum"><code class="docutils literal notranslate"><span class="pre">get_spectrum()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.get_uneven_data"><code class="docutils literal notranslate"><span class="pre">get_uneven_data()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.get_wksp_index_dist_and_label"><code class="docutils literal notranslate"><span class="pre">get_wksp_index_dist_and_label()</span></code></a></li>
+<li><a class="reference internal" href="#mantid.plots.datafunctions.points_from_boundaries"><code class="docutils literal notranslate"><span class="pre">points_from_boundaries()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <li>
+    <a href="../api/WorkspaceUnitValidator.html" title="Previous Chapter: WorkspaceUnitValidator"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; WorkspaceUnit...</span>
+    </a>
+  </li>
+  <li>
+    <a href="../utils/index.html" title="Next Chapter: mantid.utils"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">mantid.utils &raquo;</span>
+    </a>
+  </li>
+<div id="sourcelink">
+  <a href="../../../../_sources/api/python/mantid/plots/index.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="mantid-plots">
@@ -1326,7 +1426,7 @@ Some of them are latex formatted already.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>workspace</strong> – <a class="reference internal" href="../api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-class docutils literal notranslate"><span class="pre">mantid.api.MatrixWorkspace</span></code></a> or <a class="reference internal" href="../api/IMDHistoWorkspace.html#mantid.api.IMDHistoWorkspace" title="mantid.api.IMDHistoWorkspace"><code class="xref py py-class docutils literal notranslate"><span class="pre">mantid.api.IMDHistoWorkspace</span></code></a></p></li>
-<li><p><strong>indices</strong> – </p></li>
+<li><p><strong>indices</strong></p></li>
 <li><p><strong>normalize_by_bin_width</strong> – bool: Plotting workspace normalized by bin width</p></li>
 <li><p><strong>use_latex</strong> – bool: return y-unit label in Latex form</p></li>
 </ul>

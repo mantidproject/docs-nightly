@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=28f37f54"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/documentation_options.js?v=95faac40"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -102,7 +102,78 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Indirect Data Reduction</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a><ul>
+<li><a class="reference internal" href="#instrument-options">Instrument Options</a></li>
+<li><a class="reference internal" href="#action-buttons">Action Buttons</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#isis-ill-energy-transfer">ISIS/ILL Energy Transfer</a><ul>
+<li><a class="reference internal" href="#isis-energy-transfer">ISIS Energy Transfer</a><ul>
+<li><a class="reference internal" href="#isis-energy-transfer-options">ISIS Energy Transfer Options</a></li>
+<li><a class="reference internal" href="#isis-energy-transfer-example-workflow">ISIS Energy Transfer Example Workflow</a></li>
+<li><a class="reference internal" href="#grouping">Grouping</a></li>
+<li><a class="reference internal" href="#rebinning">Rebinning</a></li>
+<li><a class="reference internal" href="#a-note-on-masked-detectors">A note on Masked Detectors</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ill-energy-transfer">ILL Energy Transfer</a><ul>
+<li><a class="reference internal" href="#reduction-type">Reduction Type</a></li>
+<li><a class="reference internal" href="#common-options">Common Options</a></li>
+<li><a class="reference internal" href="#qens-only-options">QENS-only Options</a></li>
+<li><a class="reference internal" href="#fws-only-options">FWS-only Options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#isis-calibration">ISIS Calibration</a><ul>
+<li><a class="reference internal" href="#isis-calibration-options">ISIS Calibration Options</a><ul>
+<li><a class="reference internal" href="#calibration">Calibration</a></li>
+<li><a class="reference internal" href="#resolution">Resolution</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#isis-calibration-example-workflow">ISIS Calibration Example Workflow</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#isis-diagnostics">ISIS Diagnostics</a><ul>
+<li><a class="reference internal" href="#isis-diagnostics-options">ISIS Diagnostics Options</a></li>
+<li><a class="reference internal" href="#isis-diagnostics-example-workflow">ISIS Diagnostics Example Workflow</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transmission">Transmission</a><ul>
+<li><a class="reference internal" href="#transmission-options">Transmission Options</a></li>
+<li><a class="reference internal" href="#transmission-example-workflow">Transmission Example Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <li>
+    <a href="../ILL/Simple%20Scan%20Viewer.html" title="Previous Chapter: SimpleScanViewer Interface"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; SimpleScanVie...</span>
+    </a>
+  </li>
+  <li>
+    <a href="Indirect%20Diffraction.html" title="Next Chapter: Indirect Diffraction"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Indirect Diffraction &raquo;</span>
+    </a>
+  </li>
+<div id="sourcelink">
+  <a href="../../_sources/interfaces/indirect/Indirect Data Reduction.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="indirect-data-reduction">
@@ -172,7 +243,8 @@ Inelastic QENS Fitting and Bayes Fitting interfaces.</p>
 facility such that only tabs that will work with data from the facility are
 shown, this page describes all the tabs which can possibly be shown.</p>
 <figure class="align-right">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_interface.png"><img alt="../../_images/Data_Reduction_interface.png" class="screenshot" src="../../_images/Data_Reduction_interface.png" style="width: 750px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_interface.png"><img alt="../../_images/Data_Reduction_interface.png" class="screenshot" src="../../_images/Data_Reduction_interface.png" style="width: 750px;" />
+</a>
 </figure>
 <section id="instrument-options">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">Instrument Options</a><a class="headerlink" href="#instrument-options" title="Link to this heading">¶</a></h3>
@@ -219,7 +291,8 @@ can be found below.</p>
 <p>This tab provides you with the functionality to convert the raw data from the experiment run into
 units of <span class="math notranslate nohighlight">\(\Delta E\)</span>. See the algorithm <a class="reference internal" href="../../algorithms/ISISIndirectEnergyTransfer-v1.html#algm-isisindirectenergytransfer"><span class="std std-ref">ISISIndirectEnergyTransfer</span></a>.</p>
 <figure class="align-default">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_tabISISEnergyTransfer_widget.png"><img alt="../../_images/Data_Reduction_tabISISEnergyTransfer_widget.png" class="screenshot" src="../../_images/Data_Reduction_tabISISEnergyTransfer_widget.png" style="width: 500px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_tabISISEnergyTransfer_widget.png"><img alt="../../_images/Data_Reduction_tabISISEnergyTransfer_widget.png" class="screenshot" src="../../_images/Data_Reduction_tabISISEnergyTransfer_widget.png" style="width: 500px;" />
+</a>
 </figure>
 <section id="isis-energy-transfer-options">
 <h4><a class="toc-backref" href="#id10" role="doc-backlink">ISIS Energy Transfer Options</a><a class="headerlink" href="#isis-energy-transfer-options" title="Link to this heading">¶</a></h4>
@@ -339,7 +412,8 @@ in the sections below.</p>
 </dd>
 </dl>
 <figure class="align-default">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_pgSingleRebin_widget.png"><img alt="../../_images/Data_Reduction_pgSingleRebin_widget.png" class="screenshot" src="../../_images/Data_Reduction_pgSingleRebin_widget.png" style="width: 241px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_pgSingleRebin_widget.png"><img alt="../../_images/Data_Reduction_pgSingleRebin_widget.png" class="screenshot" src="../../_images/Data_Reduction_pgSingleRebin_widget.png" style="width: 241px;" />
+</a>
 </figure>
 <dl class="simple">
 <dt>Multiple</dt><dd><p>In this mode multiple binning ranges can be defined using the rebin string syntax
@@ -347,7 +421,8 @@ used by the <a class="reference internal" href="../../algorithms/Rebin-v1.html#a
 </dd>
 </dl>
 <figure class="align-default">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_pgMultipleRebin_widget.png"><img alt="../../_images/Data_Reduction_pgMultipleRebin_widget.png" class="screenshot" src="../../_images/Data_Reduction_pgMultipleRebin_widget.png" style="width: 640px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_pgMultipleRebin_widget.png"><img alt="../../_images/Data_Reduction_pgMultipleRebin_widget.png" class="screenshot" src="../../_images/Data_Reduction_pgMultipleRebin_widget.png" style="width: 640px;" />
+</a>
 </figure>
 </section>
 <section id="a-note-on-masked-detectors">
@@ -382,7 +457,8 @@ would therefore be 13, 53, 54, 55 and 56.</p>
 <p>This tab handles the reduction of data from the IN16B instrument and will appear when the default facility is set to be
 the ILL. See the algorithm <a class="reference internal" href="../../algorithms/IndirectILLEnergyTransfer-v1.html#algm-indirectillenergytransfer"><span class="std std-ref">IndirectILLEnergyTransfer</span></a>.</p>
 <figure class="align-default">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_tabILLEnergyTransfer_widget.png"><img alt="../../_images/Data_Reduction_tabILLEnergyTransfer_widget.png" class="screenshot" src="../../_images/Data_Reduction_tabILLEnergyTransfer_widget.png" style="width: 650px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_tabILLEnergyTransfer_widget.png"><img alt="../../_images/Data_Reduction_tabILLEnergyTransfer_widget.png" class="screenshot" src="../../_images/Data_Reduction_tabILLEnergyTransfer_widget.png" style="width: 650px;" />
+</a>
 </figure>
 <section id="reduction-type">
 <h4><a class="toc-backref" href="#id16" role="doc-backlink">Reduction Type</a><a class="headerlink" href="#reduction-type" title="Link to this heading">¶</a></h4>
@@ -458,7 +534,8 @@ If interpolation is requested, x-axis will be sorted automatically.</p>
 <p>This tab gives you the ability to create Calibration and Resolution files, and is only available when the default facility is set to ISIS.</p>
 <p>The calibration file is normalised to an average of 1.</p>
 <figure class="align-default">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_tabISISCalibration_widget.png"><img alt="../../_images/Data_Reduction_tabISISCalibration_widget.png" class="screenshot" src="../../_images/Data_Reduction_tabISISCalibration_widget.png" style="width: 500px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_tabISISCalibration_widget.png"><img alt="../../_images/Data_Reduction_tabISISCalibration_widget.png" class="screenshot" src="../../_images/Data_Reduction_tabISISCalibration_widget.png" style="width: 500px;" />
+</a>
 </figure>
 <section id="isis-calibration-options">
 <h3><a class="toc-backref" href="#id21" role="doc-backlink">ISIS Calibration Options</a><a class="headerlink" href="#isis-calibration-options" title="Link to this heading">¶</a></h3>
@@ -556,7 +633,8 @@ in _res and _calib. The _res file is used in the <a class="reference internal" h
 time of flight range, and is equivalent to the Slice functionality found in
 MODES. It is only available when the default facility is set to ISIS.</p>
 <figure class="align-default">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_tabISISDiagnostics_widget.png"><img alt="../../_images/Data_Reduction_tabISISDiagnostics_widget.png" class="screenshot" src="../../_images/Data_Reduction_tabISISDiagnostics_widget.png" style="width: 500px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_tabISISDiagnostics_widget.png"><img alt="../../_images/Data_Reduction_tabISISDiagnostics_widget.png" class="screenshot" src="../../_images/Data_Reduction_tabISISDiagnostics_widget.png" style="width: 500px;" />
+</a>
 </figure>
 <section id="isis-diagnostics-options">
 <h3><a class="toc-backref" href="#id27" role="doc-backlink">ISIS Diagnostics Options</a><a class="headerlink" href="#isis-diagnostics-options" title="Link to this heading">¶</a></h3>
@@ -624,7 +702,8 @@ incident monitor over the common wavelength range. The sample is then divided by
 the background/container to give the sample transmission as a function of
 wavelength.</p>
 <figure class="align-default">
-<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_tabTransmission_widget.png"><img alt="../../_images/Data_Reduction_tabTransmission_widget.png" class="screenshot" src="../../_images/Data_Reduction_tabTransmission_widget.png" style="width: 500px;" /></a>
+<a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_tabTransmission_widget.png"><img alt="../../_images/Data_Reduction_tabTransmission_widget.png" class="screenshot" src="../../_images/Data_Reduction_tabTransmission_widget.png" style="width: 500px;" />
+</a>
 </figure>
 <section id="transmission-options">
 <h3><a class="toc-backref" href="#id30" role="doc-backlink">Transmission Options</a><a class="headerlink" href="#transmission-options" title="Link to this heading">¶</a></h3>

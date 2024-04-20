@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=28f37f54"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/documentation_options.js?v=95faac40"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -102,7 +102,70 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">HFIR Single Crystal Reduction Interface</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#introduction-of-tabs">Introduction of Tabs</a></li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a><ul>
+<li><a class="reference internal" href="#set-up-reduction">Set up reduction</a></li>
+<li><a class="reference internal" href="#experiment-overview">Experiment overview</a></li>
+<li><a class="reference internal" href="#workflow-to-calculate-and-refine-ub-matrix">Workflow to calculate and refine UB matrix</a></li>
+<li><a class="reference internal" href="#workflow-to-merge-measurements-in-scan">Workflow to merge measurements in scan</a></li>
+<li><a class="reference internal" href="#workflow-to-calculate-peak-intensity-of-a-single-measurement-scan">Workflow to calculate peak intensity of a single measurement scan</a></li>
+<li><a class="reference internal" href="#peak-integration-with-automatic-background-subtraction-by-approximation">Peak Integration with automatic background subtraction by approximation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ub-matrix-calculation-and-refinement">UB Matrix Calculation and Refinement</a><ul>
+<li><a class="reference internal" href="#converting-spice-ub-matrix-to-mantid-ub-matrix">Converting SPICE UB matrix to Mantid UB matrix</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#peak-integration">Peak Integration</a><ul>
+<li><a class="reference internal" href="#normalization">Normalization</a></li>
+<li><a class="reference internal" href="#region-of-interest">Region of interest</a></li>
+<li><a class="reference internal" href="#integration-algorithm-1-simple-counts-summation">Integration algorithm 1: simple counts summation</a><ul>
+<li><a class="reference internal" href="#estimating-background">Estimating background</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#integration-algorithm-2-simple-counts-summation-with-fitted-background">Integration algorithm 2: simple counts summation with fitted background</a></li>
+<li><a class="reference internal" href="#integration-algorithm-3-calculate-intensity-from-fitted-model">Integration algorithm 3: calculate intensity from fitted model</a><ul>
+<li><a class="reference internal" href="#issue">Issue</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-peak-integration-algorithms-in-consideration">Other peak integration algorithms in consideration</a><ul>
+<li><a class="reference internal" href="#peak-integration-with-automatic-background-subtraction-by-integrateellipsoids">Peak Integration with automatic background subtraction by IntegrateEllipsoids</a></li>
+<li><a class="reference internal" href="#integrating-a-peak-in-cuboid-in-q-space">Integrating a peak in cuboid in Q-space</a></li>
+<li><a class="reference internal" href="#id1">Estimating background</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <li>
+    <a href="Engineering%20Diffraction.html" title="Previous Chapter: Engineering Diffraction"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Engineering D...</span>
+    </a>
+  </li>
+  <li>
+    <a href="SCD%20Event%20Data%20Reduction.html" title="Next Chapter: SCD Event Data Reduction interface(MantidEV)"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">SCD Event Dat... &raquo;</span>
+    </a>
+  </li>
+<div id="sourcelink">
+  <a href="../../_sources/interfaces/diffraction/HFIR Single Crystal Reduction.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="hfir-single-crystal-reduction-interface">

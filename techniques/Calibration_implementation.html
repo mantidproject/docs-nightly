@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=28f37f54"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/documentation_options.js?v=95faac40"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -104,7 +104,79 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Calibration Implementation Details</a><ul>
+<li><a class="reference internal" href="#tube_calib.constructIdealTubeFromRealTube"><code class="docutils literal notranslate"><span class="pre">constructIdealTubeFromRealTube()</span></code></a></li>
+<li><a class="reference internal" href="#tube_calib.correct_tube"><code class="docutils literal notranslate"><span class="pre">correct_tube()</span></code></a></li>
+<li><a class="reference internal" href="#tube_calib.correct_tube_to_ideal_tube"><code class="docutils literal notranslate"><span class="pre">correct_tube_to_ideal_tube()</span></code></a></li>
+<li><a class="reference internal" href="#tube_calib.create_tube_calibration_ws_by_ws_index_list"><code class="docutils literal notranslate"><span class="pre">create_tube_calibration_ws_by_ws_index_list()</span></code></a></li>
+<li><a class="reference internal" href="#tube_calib.getCalibratedPixelPositions"><code class="docutils literal notranslate"><span class="pre">getCalibratedPixelPositions()</span></code></a></li>
+<li><a class="reference internal" href="#tube_calib.getCalibration"><code class="docutils literal notranslate"><span class="pre">getCalibration()</span></code></a></li>
+<li><a class="reference internal" href="#tube_calib.getCalibrationFromPeakFile"><code class="docutils literal notranslate"><span class="pre">getCalibrationFromPeakFile()</span></code></a></li>
+<li><a class="reference internal" href="#tube_calib.getPoints"><code class="docutils literal notranslate"><span class="pre">getPoints()</span></code></a></li>
+<li><a class="reference internal" href="#tube_calib.get_ideal_tube_from_n_slits"><code class="docutils literal notranslate"><span class="pre">get_ideal_tube_from_n_slits()</span></code></a></li>
+<li><a class="reference internal" href="#tube_calib.read_peak_file"><code class="docutils literal notranslate"><span class="pre">read_peak_file()</span></code></a></li>
+<li><a class="reference internal" href="#tubespec">TubeSpec</a><ul>
+<li><a class="reference internal" href="#tube_spec.TubeSpec"><code class="docutils literal notranslate"><span class="pre">TubeSpec</span></code></a><ul>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.getComponent"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getComponent()</span></code></a></li>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.getComponents"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getComponents()</span></code></a></li>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.getDetectorInfoFromTube"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getDetectorInfoFromTube()</span></code></a></li>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.getNumTubes"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getNumTubes()</span></code></a></li>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.getTube"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getTube()</span></code></a></li>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.getTubeByString"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getTubeByString()</span></code></a></li>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.getTubeLength"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getTubeLength()</span></code></a></li>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.getTubeName"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getTubeName()</span></code></a></li>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.isTube"><code class="docutils literal notranslate"><span class="pre">TubeSpec.isTube()</span></code></a></li>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.searchForTubes"><code class="docutils literal notranslate"><span class="pre">TubeSpec.searchForTubes()</span></code></a></li>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.setTubeSpecByString"><code class="docutils literal notranslate"><span class="pre">TubeSpec.setTubeSpecByString()</span></code></a></li>
+<li><a class="reference internal" href="#tube_spec.TubeSpec.setTubeSpecByStringArray"><code class="docutils literal notranslate"><span class="pre">TubeSpec.setTubeSpecByStringArray()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tubecalibfitparams">TubeCalibFitParams</a><ul>
+<li><a class="reference internal" href="#tube_calib_fit_params.TubeCalibFitParams"><code class="docutils literal notranslate"><span class="pre">TubeCalibFitParams</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#idealtube">IdealTube</a><ul>
+<li><a class="reference internal" href="#ideal_tube.IdealTube"><code class="docutils literal notranslate"><span class="pre">IdealTube</span></code></a><ul>
+<li><a class="reference internal" href="#ideal_tube.IdealTube.constructTubeFor3PointsMethod"><code class="docutils literal notranslate"><span class="pre">IdealTube.constructTubeFor3PointsMethod()</span></code></a></li>
+<li><a class="reference internal" href="#ideal_tube.IdealTube.getArray"><code class="docutils literal notranslate"><span class="pre">IdealTube.getArray()</span></code></a></li>
+<li><a class="reference internal" href="#ideal_tube.IdealTube.getFunctionalForms"><code class="docutils literal notranslate"><span class="pre">IdealTube.getFunctionalForms()</span></code></a></li>
+<li><a class="reference internal" href="#ideal_tube.IdealTube.setArray"><code class="docutils literal notranslate"><span class="pre">IdealTube.setArray()</span></code></a></li>
+<li><a class="reference internal" href="#ideal_tube.IdealTube.setForm"><code class="docutils literal notranslate"><span class="pre">IdealTube.setForm()</span></code></a></li>
+<li><a class="reference internal" href="#ideal_tube.IdealTube.setPositionsAndForm"><code class="docutils literal notranslate"><span class="pre">IdealTube.setPositionsAndForm()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <li>
+    <a href="Calibration.html" title="Previous Chapter: Calibration"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Calibration</span>
+    </a>
+  </li>
+  <li>
+    <a href="CreateBackToBackParameters.html" title="Next Chapter: Create Back To Back Parameters"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Create Back T... &raquo;</span>
+    </a>
+  </li>
+<div id="sourcelink">
+  <a href="../_sources/techniques/Calibration_implementation.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="module-tube_calib">

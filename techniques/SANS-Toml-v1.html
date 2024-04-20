@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=28f37f54"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/documentation_options.js?v=95faac40"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -102,7 +102,123 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">SANS TOML Files</a><ul>
+<li><a class="reference internal" href="#general-notes">General Notes</a></li>
+<li><a class="reference internal" href="#format-changes">Format Changes</a><ul>
+<li><a class="reference internal" href="#v0-mantid-6-3-to-v1-mantid-6-4">V0 (Mantid 6.3+) to V1 (Mantid 6.4+)</a></li>
+<li><a class="reference internal" href="#v0-mantid-6-1-x-to-v0-mantid-6-3">V0 (Mantid 6.1.x) to V0 (Mantid 6.3+)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#new-fields">New Fields</a><ul>
+<li><a class="reference internal" href="#toml-file-version">toml_file_version</a></li>
+<li><a class="reference internal" href="#metadata">Metadata</a></li>
+<li><a class="reference internal" href="#instrument">Instrument</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conversion-from-legacy-user-files">Conversion From Legacy User Files</a><ul>
+<li><a class="reference internal" href="#layout">Layout</a></li>
+<li><a class="reference internal" href="#tips-for-converting">Tips for converting</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#legacy-command-set">Legacy Command Set</a><ul>
+<li><a class="reference internal" href="#back-mon-times-t1-t2">BACK/MON/TIMES t1 t2</a></li>
+<li><a class="reference internal" href="#back-m-n-times-t1-t2">BACK/M[n]/TIMES t1 t2</a></li>
+<li><a class="reference internal" href="#compatibility-on">COMPATIBILITY ON</a></li>
+<li><a class="reference internal" href="#det-corr-front-rear-x-y-z-xtilt-ytilt-ztilt-rot-side-radius-n">DET/CORR [FRONT][REAR] [X][Y][Z] [XTILT][YTILT][ZTILT] [ROT] [SIDE] [RADIUS] n</a></li>
+<li><a class="reference internal" href="#det-rear-front-merged-both">DET/[REAR][FRONT][MERGED][BOTH]</a></li>
+<li><a class="reference internal" href="#det-rescale-n">DET/RESCALE n</a></li>
+<li><a class="reference internal" href="#det-rescale-fit-q1-q2">DET/RESCALE/FIT [q1 q2]</a></li>
+<li><a class="reference internal" href="#det-shift-y">DET/SHIFT y</a></li>
+<li><a class="reference internal" href="#det-shift-fit-q1-q2">DET/SHIFT/FIT [q1 q2]</a></li>
+<li><a class="reference internal" href="#det-overlap-q1-q2">DET/OVERLAP q1 q2</a></li>
+<li><a class="reference internal" href="#fit-centre-t1-t2">FIT/CENTRE t1 t2</a></li>
+<li><a class="reference internal" href="#fit-mid-hab-file-script-txt">FIT/MID[/HAB]/FILE=script.txt</a></li>
+<li><a class="reference internal" href="#fit-monitor-t1-t2">FIT/MONITOR t1 t2</a></li>
+<li><a class="reference internal" href="#fit-trans-clear-off">FIT/TRANS[/CLEAR][/OFF]</a></li>
+<li><a class="reference internal" href="#fit-trans-sample-can-linear-ylog-polynomialn-w1-w2">FIT/TRANS[[/SAMPLE][/CAN]][/LINEAR][/YLOG][/POLYNOMIALn] [w1 w2]</a></li>
+<li><a class="reference internal" href="#gravity-on-off">GRAVITY[/ON/OFF]</a></li>
+<li><a class="reference internal" href="#gravity-lextra-x">GRAVITY/LEXTRA x</a></li>
+<li><a class="reference internal" href="#l-eventstime-binning-string">L/EVENTSTIME binning_string</a></li>
+<li><a class="reference internal" href="#l-phi-nomirror-a-b">L/PHI[/NOMIRROR] a b</a></li>
+<li><a class="reference internal" href="#l-q-binning-string">L/Q binning_string</a></li>
+<li><a class="reference internal" href="#l-q-rcut-r">L/Q/RCUT r</a></li>
+<li><a class="reference internal" href="#l-q-wcut-w">L/Q/WCUT w</a></li>
+<li><a class="reference internal" href="#l-qxy-binning-string">L/QXY binning_string</a></li>
+<li><a class="reference internal" href="#l-r-r1-r2-rstep">L/R r1 r2 [rstep]</a></li>
+<li><a class="reference internal" href="#l-sp">L/SP</a></li>
+<li><a class="reference internal" href="#l-wav-binning-string">L/WAV binning_string</a></li>
+<li><a class="reference internal" href="#mask-clear-time">MASK/CLEAR[/TIME]</a></li>
+<li><a class="reference internal" href="#maskfile-mask-file-list">MASKFILE=mask_file_list</a></li>
+<li><a class="reference internal" href="#mask-front-rear-hn">MASK[/FRONT][/REAR] Hn</a></li>
+<li><a class="reference internal" href="#mask-front-rear-hn-hm">MASK[/FRONT][/REAR] Hn&gt;Hm</a></li>
+<li><a class="reference internal" href="#mask-front-rear-vn">MASK[/FRONT][/REAR] Vn</a></li>
+<li><a class="reference internal" href="#mask-front-rear-vn-vm">MASK[/FRONT][/REAR] Vn&gt;Vm</a></li>
+<li><a class="reference internal" href="#mask-x1-x2-y1-y2">MASK x1 x2 y1 y2</a></li>
+<li><a class="reference internal" href="#mask-line-a-b">MASK/LINE a b</a></li>
+<li><a class="reference internal" href="#mask-line-a-b-c-d">MASK/LINE a b c d</a></li>
+<li><a class="reference internal" href="#mask-sn">MASK Sn</a></li>
+<li><a class="reference internal" href="#mask-t-t1-t2">MASK/T t1 t2</a></li>
+<li><a class="reference internal" href="#mon-direct-front-hab-filename">MON/DIRECT[/FRONT][/HAB]=filename</a></li>
+<li><a class="reference internal" href="#mon-flat-front-rear-filename">MON/FLAT[/FRONT][/REAR]=filename</a></li>
+<li><a class="reference internal" href="#mon-habeff-a">MON/HABEFF=a</a></li>
+<li><a class="reference internal" href="#mon-habpath-on-off">MON/HABPATH[/ON][/OFF]</a></li>
+<li><a class="reference internal" href="#mon-length-z-s">MON/LENGTH=z s</a></li>
+<li><a class="reference internal" href="#mon-spectrum-n">MON/SPECTRUM=n</a></li>
+<li><a class="reference internal" href="#mon-interpolate">MON [/INTERPOLATE]</a></li>
+<li><a class="reference internal" href="#mon-trans-spectrum-n">MON/TRANS/SPECTRUM=n</a></li>
+<li><a class="reference internal" href="#mon-trans-interpolate">MON/TRANS[/INTERPOLATE]</a></li>
+<li><a class="reference internal" href="#print-string">PRINT string</a></li>
+<li><a class="reference internal" href="#qresol-on-off">QRESOL[/ON][/OFF]</a></li>
+<li><a class="reference internal" href="#qresol-moderator-filename">QRESOL/MODERATOR=filename</a></li>
+<li><a class="reference internal" href="#qresol-deltar-dr">QRESOL/DELTAR=dr</a></li>
+<li><a class="reference internal" href="#qresol-a1-x">QRESOL/A1=x</a></li>
+<li><a class="reference internal" href="#qresol-a2-x">QRESOL/A2=x</a></li>
+<li><a class="reference internal" href="#qresol-h1-x1-w1-y1-h2-x2-w2-y2">QRESOL[/H1=x1][/W1=y1][/H2=x2][/W2=y2]</a></li>
+<li><a class="reference internal" href="#qresol-lcollim-z">QRESOL/LCOLLIM=z</a></li>
+<li><a class="reference internal" href="#sample-offset-z">SAMPLE/OFFSET z</a></li>
+<li><a class="reference internal" href="#sample-path-on-off">SAMPLE/PATH[/ON][/OFF]</a></li>
+<li><a class="reference internal" href="#set-centre-a-b">SET CENTRE a b</a></li>
+<li><a class="reference internal" href="#set-centre-main-hab-a-b-c-d">SET CENTRE[/MAIN][/HAB] a b [c d]</a></li>
+<li><a class="reference internal" href="#set-scales-a-b-c-d-e">SET SCALES a b c d e</a></li>
+<li><a class="reference internal" href="#set-notables-bank-a-b-c-d-e">SET[/NOTABLES] BANK a b c d e</a></li>
+<li><a class="reference internal" href="#set-xcor-ycor-on-off-clear">SET[/XCOR][/YCOR][/ON][/OFF][/CLEAR]</a></li>
+<li><a class="reference internal" href="#set-notables-xcor-ycor-filename">SET[/NOTABLES][/XCOR][/YCOR]=filename</a></li>
+<li><a class="reference internal" href="#trans-mask-filename">TRANS/MASK=filename</a></li>
+<li><a class="reference internal" href="#trans-radius-r">TRANS/RADIUS=r</a></li>
+<li><a class="reference internal" href="#trans-roi-filename">TRANS/ROI=filename</a></li>
+<li><a class="reference internal" href="#trans-transpec-s">TRANS/TRANSPEC=s</a></li>
+<li><a class="reference internal" href="#trans-transpec-s-shift-dz">TRANS/TRANSPEC=s/SHIFT=dz</a></li>
+<li><a class="reference internal" href="#tubecalibfile-filename">TUBECALIBFILE=filename</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <li>
+    <a href="ReflectometryILL.html" title="Previous Chapter: Data reduction for reflectometry instruments at the ILL"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Data reductio...</span>
+    </a>
+  </li>
+  <li>
+    <a href="ScriptingSANSReductions.html" title="Next Chapter: Scripting SANS Reductions"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Scripting SAN... &raquo;</span>
+    </a>
+  </li>
+<div id="sourcelink">
+  <a href="../_sources/techniques/SANS-Toml-v1.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="sans-toml-files">

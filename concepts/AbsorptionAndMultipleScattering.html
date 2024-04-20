@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=28f37f54"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/documentation_options.js?v=95faac40"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -102,7 +102,76 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Absorption and Multiple Scattering Corrections</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#total-cross-section-sigma-t">Total cross section (<span class="math notranslate nohighlight">\(\sigma_t\)</span>)</a></li>
+<li><a class="reference internal" href="#scattering-cross-section-sigma-s">Scattering cross section (<span class="math notranslate nohighlight">\(\sigma_s\)</span> )</a></li>
+<li><a class="reference internal" href="#absorption-cross-section-sigma-a">Absorption cross section (<span class="math notranslate nohighlight">\(\sigma_a\)</span>)</a></li>
+<li><a class="reference internal" href="#attenuation-length-mu">Attenuation Length (<span class="math notranslate nohighlight">\(\mu\)</span>)</a></li>
+<li><a class="reference internal" href="#techniques-for-calculating-corrections">Techniques for Calculating Corrections</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#absorption">Absorption</a><ul>
+<li><a class="reference internal" href="#id6">Introduction</a></li>
+<li><a class="reference internal" href="#basic-sample-absorption-theory">Basic Sample Absorption Theory</a></li>
+<li><a class="reference internal" href="#partial-absorption-correction-factors-paalman-and-pings-formalism">Partial Absorption Correction Factors: Paalman and Pings Formalism</a></li>
+<li><a class="reference internal" href="#general-notes">General Notes</a><ul>
+<li><a class="reference internal" href="#integration-methods">Integration Methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#legends-for-absorption-correction-algorithms-in-mantid-table">Legends for Absorption Correction Algorithms in Mantid Table</a></li>
+<li><a class="reference internal" href="#absorption-correction-algorithms-in-mantid-table">Absorption Correction Algorithms in Mantid Table</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#multiple-scattering">Multiple Scattering</a><ul>
+<li><a class="reference internal" href="#id18">Introduction</a></li>
+<li><a class="reference internal" href="#theory">Theory</a></li>
+<li><a class="reference internal" href="#assumptions">Assumptions</a><ul>
+<li><a class="reference internal" href="#elastic-scattering">Elastic Scattering</a></li>
+<li><a class="reference internal" href="#isotropic-scattering">Isotropic Scattering</a></li>
+<li><a class="reference internal" href="#elastic-isotropic-scattering">Elastic + Isotropic Scattering</a></li>
+<li><a class="reference internal" href="#constant-ratio-for-frac-i-n-i-n-1-delta">Constant Ratio for  <span class="math notranslate nohighlight">\(\frac{I_n}{I_{n-1}} = \Delta\)</span></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id25">General Notes</a><ul>
+<li><a class="reference internal" href="#analytical-methods">Analytical Methods</a></li>
+<li><a class="reference internal" href="#monte-carlo-methods">Monte Carlo Methods</a></li>
+<li><a class="reference internal" href="#small-angle-scattering">Small Angle Scattering</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#legends-for-multiple-scattering-correction-algorithms-in-mantid-table">Legends for Multiple Scattering Correction Algorithms in Mantid Table</a></li>
+<li><a class="reference internal" href="#multiple-scattering-correction-algorithms-in-mantid-table">Multiple Scattering Correction Algorithms in Mantid Table</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <li>
+    <a href="AbinsInterpolatedBroadening.html" title="Previous Chapter: Abins: Fast approximate broadening with “interpolate”"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Abins: Fast a...</span>
+    </a>
+  </li>
+  <li>
+    <a href="Algorithm.html" title="Next Chapter: Algorithm"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Algorithm &raquo;</span>
+    </a>
+  </li>
+<div id="sourcelink">
+  <a href="../_sources/concepts/AbsorptionAndMultipleScattering.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="absorption-and-multiple-scattering-corrections">

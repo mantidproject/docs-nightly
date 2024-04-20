@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-    <script src="../../../_static/documentation_options.js?v=28f37f54"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/documentation_options.js?v=95faac40"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -106,7 +106,47 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">What is a Bin?, What is a Workspace? and the Power of Rebin</a><ul>
+<li><a class="reference internal" href="#workspace2d">Workspace2D</a><ul>
+<li><a class="reference internal" href="#correct-binning">Correct Binning</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#event-workspaces">Event Workspaces</a><ul>
+<li><a class="reference internal" href="#binning-of-event-workspaces">Binning of Event Workspaces</a></li>
+<li><a class="reference internal" href="#performance">Performance</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-of-workspace-usage">Example of Workspace usage</a></li>
+<li><a class="reference internal" href="#tableworkspaces">TableWorkspaces</a></li>
+<li><a class="reference internal" href="#other-workspace-types">Other Workspace Types</a></li>
+</ul>
+</li>
+</ul>
+
+  <li>
+    <a href="02_algorithms.html" title="Previous Chapter: Algorithms"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Algorithms</span>
+    </a>
+  </li>
+  <li>
+    <a href="04_algorithm_histories.html" title="Next Chapter: Algorithm Histories"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Algorithm Histories &raquo;</span>
+    </a>
+  </li>
+<div id="sourcelink">
+  <a href="../../../_sources/tutorials/mantid_basic_course/algorithms_workspaces_and_histories/03_workspaces.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="what-is-a-bin-what-is-a-workspace-and-the-power-of-rebin">
@@ -125,7 +165,8 @@ containing 1 or more spectra.</p>
 <p>A <a class="reference internal" href="../../../concepts/Workspace2D.html#workspace2d"><span class="std std-ref">Workspace2D</span></a> is histogrammed data, with one or more spectra. For each spectrum X, Y (counts) and E
 (error) data is stored.</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="../../../_images/MBC_Workspace2D.png"><img alt="Workspace2D" src="../../../_images/MBC_Workspace2D.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/MBC_Workspace2D.png"><img alt="Workspace2D" src="../../../_images/MBC_Workspace2D.png" style="width: 600px;" />
+</a>
 </figure>
 <p>When the Matrix table of a Workspace is displayed (via right-click &gt; “Show Data”):
 - Each row is a different Spectra.
@@ -148,7 +189,8 @@ between different spectra! A Colorfill plot of ragged data looks poor and often 
 </ol>
 <p>( You may need to alter the max value of the colorbar to around 300 by double-click on the right of the colorbar)</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="../../../_images/MBC_Ragged.png"><img alt="Ragged" src="../../../_images/MBC_Ragged.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/MBC_Ragged.png"><img alt="Ragged" src="../../../_images/MBC_Ragged.png" style="width: 600px;" />
+</a>
 </figure>
 <ol class="arabic simple" start="4">
 <li><p>Execute the <strong>Rebin</strong> Algorithm on <em>ws_lambda</em> setting <strong>Params</strong> to <em>0.5</em> (setting the width of each bin to 0.5  Å) and
@@ -156,7 +198,8 @@ between different spectra! A Colorfill plot of ragged data looks poor and often 
 achieved! :-)</p></li>
 </ol>
 <figure class="align-center">
-<a class="reference internal image-reference" href="../../../_images/MBC_Rebinned.png"><img alt="Rebinned" src="../../../_images/MBC_Rebinned.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/MBC_Rebinned.png"><img alt="Rebinned" src="../../../_images/MBC_Rebinned.png" style="width: 600px;" />
+</a>
 </figure>
 <p>As you can see <strong>Rebin</strong> is a very useful Algorithm for fixing ragged workspaces.
 Another important use of rebinning is prior to point-by-point normalisation (e.g. correcting for incident flux and detector efficiency) by normalising to a vanadium run). This is something that may be handled for you if executing an algorithm such as <a class="reference internal" href="../../../algorithms/NormaliseToMonitor-v1.html#algm-normalisetomonitor"><span class="std std-ref">NormaliseToMonitor v1</span></a>.</p>
@@ -178,7 +221,8 @@ the detector</p>
 <section id="binning-of-event-workspaces">
 <h3>Binning of Event Workspaces<a class="headerlink" href="#binning-of-event-workspaces" title="Link to this heading">¶</a></h3>
 <figure class="align-center">
-<a class="reference internal image-reference" href="../../../_images/Binning_example.png"><img alt="Binning_example.png" src="../../../_images/Binning_example.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/Binning_example.png"><img alt="Binning_example.png" src="../../../_images/Binning_example.png" style="width: 500px;" />
+</a>
 </figure>
 <p>This extra information that Event Data has over Workspace2D (histogram) data
 means that rebinning is simply moving the Bin edges and summing the number of Counts
@@ -209,10 +253,12 @@ and so if bins were split they would be split more “correctly”.</p>
 </ol>
 <p><strong>Keep these workspace open for the next page.</strong></p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="../../../_images/Rebin_example.png"><img alt="Rebin_example.png" src="../../../_images/Rebin_example.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/Rebin_example.png"><img alt="Rebin_example.png" src="../../../_images/Rebin_example.png" style="width: 800px;" />
+</a>
 </figure>
 <figure class="align-right">
-<a class="reference internal image-reference" href="../../../_images/peaksworkspace.png"><img alt="PeaksWorkspace" src="../../../_images/peaksworkspace.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/peaksworkspace.png"><img alt="PeaksWorkspace" src="../../../_images/peaksworkspace.png" style="width: 600px;" />
+</a>
 </figure>
 </section>
 <section id="tableworkspaces">

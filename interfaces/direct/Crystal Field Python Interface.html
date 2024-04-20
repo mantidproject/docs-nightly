@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=28f37f54"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/documentation_options.js?v=95faac40"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -102,7 +102,66 @@
 
 <div class="container">
   <div class="row">
-    <div class="body col-md-12 content" role="main">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Crystal Field Python Interface</a><ul>
+<li><a class="reference internal" href="#setting-up-crystal-field-parameters">Setting up crystal field parameters</a></li>
+<li><a class="reference internal" href="#calculating-the-eigensystem">Calculating the Eigensystem</a></li>
+<li><a class="reference internal" href="#calculating-a-spectrum">Calculating a Spectrum</a></li>
+<li><a class="reference internal" href="#plotting">Plotting</a></li>
+<li><a class="reference internal" href="#adding-a-background">Adding a Background</a></li>
+<li><a class="reference internal" href="#setting-ties-and-constraints">Setting Ties and Constraints</a></li>
+<li><a class="reference internal" href="#adding-an-external-or-molecular-field">Adding an External or Molecular Field</a></li>
+<li><a class="reference internal" href="#setting-resolution-model">Setting Resolution Model</a></li>
+<li><a class="reference internal" href="#defining-multiple-spectra">Defining Multiple Spectra</a></li>
+<li><a class="reference internal" href="#fitting">Fitting</a><ul>
+<li><a class="reference internal" href="#two-step-fitting">Two step fitting</a></li>
+<li><a class="reference internal" href="#gofit-fitting">GOFit fitting</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#multiple-ions">Multiple Ions</a></li>
+<li><a class="reference internal" href="#intensity-scaling">Intensity Scaling</a><ul>
+<li><a class="reference internal" href="#single-ions-fitted-to-a-single-spectrum">Single ions fitted to a single spectrum</a></li>
+<li><a class="reference internal" href="#single-ions-fitted-to-multiple-spectra">Single ions fitted to multiple spectra</a></li>
+<li><a class="reference internal" href="#intensity-scaling-for-multiple-ions">Intensity scaling for multiple ions</a></li>
+<li><a class="reference internal" href="#multiple-ions-fitted-to-a-single-spectrum">Multiple ions fitted to a single spectrum</a></li>
+<li><a class="reference internal" href="#multiple-ions-fitted-to-multiple-spectra">Multiple ions fitted to multiple spectra</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#finding-initial-parameters">Finding Initial Parameters</a><ul>
+<li><a class="reference internal" href="#using-a-monte-carlo-estimation-method">Using a Monte Carlo estimation method</a></li>
+<li><a class="reference internal" href="#using-the-point-charge-model">Using the point charge model</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#calculating-physical-properties">Calculating Physical Properties</a></li>
+<li><a class="reference internal" href="#fitting-physical-properties">Fitting Physical Properties</a></li>
+<li><a class="reference internal" href="#simultaneous-fitting-of-physical-properties-and-inelastic-neutron-spectra">Simultaneous Fitting of Physical Properties and Inelastic Neutron Spectra</a></li>
+</ul>
+</li>
+</ul>
+
+  <li>
+    <a href="ALFView.html" title="Previous Chapter: ALFView"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; ALFView</span>
+    </a>
+  </li>
+  <li>
+    <a href="DGS%20Planner.html" title="Next Chapter: DGS Planner"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">DGS Planner &raquo;</span>
+    </a>
+  </li>
+<div id="sourcelink">
+  <a href="../../_sources/interfaces/direct/Crystal Field Python Interface.rst.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="crystal-field-python-interface">
@@ -272,7 +331,8 @@ of <cite>Lorentzian</cite> is assumed. To set a different shape use the <cite>Pe
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/CrystalFieldSpectrum1.png"><img alt="../../_images/CrystalFieldSpectrum1.png" src="../../_images/CrystalFieldSpectrum1.png" style="height: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/CrystalFieldSpectrum1.png"><img alt="../../_images/CrystalFieldSpectrum1.png" src="../../_images/CrystalFieldSpectrum1.png" style="height: 300px;" />
+</a>
 <p>It is possible to change parameters of individual peaks separately. Note though that only the shape parameters can be changed,
 the peak centre and the integrated intensity are defined by the crystal field parameters. To change the width of a peak
 use the following syntax:</p>
@@ -286,7 +346,8 @@ use the following syntax:</p>
 </pre></div>
 </div>
 <p>The three peaks now have all different widths. The first peak (index 0) keeps the default value.</p>
-<a class="reference internal image-reference" href="../../_images/CrystalFieldSpectrum2.png"><img alt="../../_images/CrystalFieldSpectrum2.png" src="../../_images/CrystalFieldSpectrum2.png" style="height: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/CrystalFieldSpectrum2.png"><img alt="../../_images/CrystalFieldSpectrum2.png" src="../../_images/CrystalFieldSpectrum2.png" style="height: 300px;" />
+</a>
 <p>If called without arguments <cite>getSpectrum()</cite> determines automatically the range and number of the <cite>x</cite>-points. To have more control
 of how the spectrum is calculated either a list (or numpy array) of x-values or a keyword argument using <cite>x_range</cite> with a tuple
 containing the range for the x values can be provided as a first argument to <cite>getSpectrum</cite>.

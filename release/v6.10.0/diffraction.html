@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=f8b2614a"></script>
+    <script src="../../_static/documentation_options.js?v=cf44b0bb"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -104,50 +104,7 @@
 
 <div class="container">
   <div class="row">
-      <div class="col-md-3">
-        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
-<li><a class="reference internal" href="#">Diffraction Changes</a><ul>
-<li><a class="reference internal" href="#powder-diffraction">Powder Diffraction</a><ul>
-<li><a class="reference internal" href="#new-features">New features</a></li>
-<li><a class="reference internal" href="#bugfixes">Bugfixes</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#engineering-diffraction">Engineering Diffraction</a><ul>
-<li><a class="reference internal" href="#id1">New features</a></li>
-<li><a class="reference internal" href="#id2">Bugfixes</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#single-crystal-diffraction">Single Crystal Diffraction</a><ul>
-<li><a class="reference internal" href="#id3">New features</a></li>
-<li><a class="reference internal" href="#id4">Bugfixes</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  <li>
-    <a href="index.html" title="Previous Chapter: Mantid 6.10.0 Release Notes"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Mantid 6.10.0...</span>
-    </a>
-  </li>
-  <li>
-    <a href="direct_geometry.html" title="Next Chapter: Direct Geometry Changes"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Direct Geomet... &raquo;</span>
-    </a>
-  </li>
-<div id="sourcelink">
-  <a href="../../_sources/release/v6.10.0/diffraction.rst.txt"
-     rel="nofollow">Source</a>
-</div>
-<form action="../../search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
-        </div>
-      </div>
-    <div class="body col-md-9 content" role="main">
+    <div class="body col-md-12 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="diffraction-changes">
@@ -196,6 +153,7 @@
 <section id="id1">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">New features</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>GSAS-II tab of <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> now supports all lattice parameters being overridden (previously was assumed cubic)</p></li>
 <li><p>Added functionality to call FindPeaksConvolve algorithm with good default values for ENGIN-X from the fitproperty browser in the Engineering UI <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#ui-engineering-fitting"><span class="std std-ref">Fitting tab</span></a> resulting to add peaks found in the range specified with the sliders on the X axis.</p></li>
 </ul>
 </section>
@@ -204,6 +162,9 @@
 <ul class="simple">
 <li><p>Avoid overwriting Blank primary log setting in Engineering diffractions <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> fitting tab <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#ui-engineering-fitting"><span class="std std-ref">Fitting tab</span></a> when doing a sequential fit.</p></li>
 <li><p>Avoid loading non existing spectra in the <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#ui-engineering-fitting"><span class="std std-ref">Fitting tab</span></a> when doing a fit following an ADS clear.</p></li>
+<li><p>GSAS-II tab of <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> uses <a class="reference internal" href="../../algorithms/LoadCIF-v1.html#algm-loadcif"><span class="std std-ref">LoadCIF</span></a> to load phase files which fixes a bug reading the lattice parameters from .cif files with multiple loop blocks with elements with <code class="docutils literal notranslate"><span class="pre">_atom*</span></code> prefix.</p></li>
+<li><p>Fixed bug in GSAS-II tab of <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> where lattice overridden in all phases provided (now only the first phase file lattice is overridden).</p></li>
+<li><p>Fixed bug in GSAS-II tab of <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> where Pawley reflections from all phases were added to each individual phase.</p></li>
 </ul>
 </section>
 </section>

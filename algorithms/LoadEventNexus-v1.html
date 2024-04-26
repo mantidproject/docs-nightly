@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=f8b2614a"></script>
+    <script src="../_static/documentation_options.js?v=cf44b0bb"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -102,53 +102,7 @@
 
 <div class="container">
   <div class="row">
-      <div class="col-md-3">
-        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
-<li><a class="reference internal" href="#">LoadEventNexus v1</a><ul>
-<li><a class="reference internal" href="#summary">Summary</a><ul>
-<li><a class="reference internal" href="#see-also">See Also</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#properties">Properties</a></li>
-<li><a class="reference internal" href="#description">Description</a><ul>
-<li><a class="reference internal" href="#child-algorithms-used">Child algorithms used</a></li>
-<li><a class="reference internal" href="#optional-properties">Optional properties</a></li>
-<li><a class="reference internal" href="#veto-pulses">Veto Pulses</a></li>
-<li><a class="reference internal" href="#data-loaded-from-nexus-file">Data Loaded from Nexus File</a></li>
-<li><a class="reference internal" href="#invalid-period-logs-error">Invalid Period Logs Error</a><ul>
-<li><a class="reference internal" href="#sample-object">Sample Object</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#usage">Usage</a></li>
-<li><a class="reference internal" href="#source">Source</a></li>
-</ul>
-</li>
-</ul>
-
-  <li>
-    <a href="LoadEventAsWorkspace2D-v1.html" title="Previous Chapter: LoadEventAsWorkspace2D v1"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; LoadEventAsWo...</span>
-    </a>
-  </li>
-  <li>
-    <a href="LoadEventPreNexus-v2.html" title="Next Chapter: LoadEventPreNexus v2"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">LoadEventPreNexus v2 &raquo;</span>
-    </a>
-  </li>
-<div id="sourcelink">
-  <a href="../_sources/algorithms/LoadEventNexus-v1.rst.txt"
-     rel="nofollow">Source</a>
-</div>
-<form action="../search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
-        </div>
-      </div>
-    <div class="body col-md-9 content" role="main">
+    <div class="body col-md-12 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
 <section id="loadeventnexus-v1">
@@ -166,17 +120,18 @@
 <ul>
 <li><p><a class="reference internal" href="#child-algorithms-used" id="id5">Child algorithms used</a></p></li>
 <li><p><a class="reference internal" href="#optional-properties" id="id6">Optional properties</a></p></li>
-<li><p><a class="reference internal" href="#veto-pulses" id="id7">Veto Pulses</a></p></li>
-<li><p><a class="reference internal" href="#data-loaded-from-nexus-file" id="id8">Data Loaded from Nexus File</a></p></li>
-<li><p><a class="reference internal" href="#invalid-period-logs-error" id="id9">Invalid Period Logs Error</a></p>
+<li><p><a class="reference internal" href="#event-compression" id="id7">Event Compression</a></p></li>
+<li><p><a class="reference internal" href="#veto-pulses" id="id8">Veto Pulses</a></p></li>
+<li><p><a class="reference internal" href="#data-loaded-from-nexus-file" id="id9">Data Loaded from Nexus File</a></p></li>
+<li><p><a class="reference internal" href="#invalid-period-logs-error" id="id10">Invalid Period Logs Error</a></p>
 <ul>
-<li><p><a class="reference internal" href="#sample-object" id="id10">Sample Object</a></p></li>
+<li><p><a class="reference internal" href="#sample-object" id="id11">Sample Object</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#usage" id="id11">Usage</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id12">Source</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id12">Usage</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id13">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
@@ -262,118 +217,124 @@
 <tr class="row-even"><td><p>CompressTolerance</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
-<td><p>-1</p></td>
-<td><p>Run CompressEvents while loading (optional, leave blank or negative to not do). This specified the tolerance to use (in microseconds) when compressing.</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>CompressEvents while loading (optional, default: off). This specified the tolerance to use (in microseconds) when compressing where positive is linear tolerance, negative is logorithmic tolerance, and zero indicates that time-of-flight must be identical to compress.</p></td>
 </tr>
-<tr class="row-odd"><td><p>ChunkNumber</p></td>
+<tr class="row-odd"><td><p>CompressBinningMode</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p>Default</p></td>
+<td><p>Optional. Binning behavior can be specified in the usual way through sign of binwidth and other properties (‘Default’); or can be set to one of the allowed binning modes. This will override all other specification or default behavior. Allowed values: [‘Default’, ‘Linear’, ‘Logarithmic’]</p></td>
+</tr>
+<tr class="row-even"><td><p>ChunkNumber</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>If loading the file by sections (‘chunks’), this is the section number of this execution of the algorithm.</p></td>
 </tr>
-<tr class="row-even"><td><p>TotalChunks</p></td>
+<tr class="row-odd"><td><p>TotalChunks</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>If loading the file by sections (‘chunks’), this is the total number of sections.</p></td>
 </tr>
-<tr class="row-odd"><td><p>LoadMonitors</p></td>
+<tr class="row-even"><td><p>LoadMonitors</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>Load the monitors from the file (optional, default False).</p></td>
 </tr>
-<tr class="row-even"><td><p>MonitorsLoadOnly</p></td>
+<tr class="row-odd"><td><p>MonitorsLoadOnly</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>If multiple repesentations exist, which one to load. Default is to load the one that is present. Allowed values: [‘’, ‘Events’, ‘Histogram’]</p></td>
 </tr>
-<tr class="row-odd"><td><p>FilterMonByTofMin</p></td>
+<tr class="row-even"><td><p>FilterMonByTofMin</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Optional: To exclude events from monitors that do not fall within a range of times-of-flight. This is the minimum accepted value in microseconds.</p></td>
 </tr>
-<tr class="row-even"><td><p>FilterMonByTofMax</p></td>
+<tr class="row-odd"><td><p>FilterMonByTofMax</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Optional: To exclude events from monitors that do not fall within a range of times-of-flight. This is the maximum accepted value in microseconds.</p></td>
 </tr>
-<tr class="row-odd"><td><p>FilterMonByTimeStart</p></td>
+<tr class="row-even"><td><p>FilterMonByTimeStart</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Optional: To only include events from monitors after the provided start time, in seconds (relative to the start of the run).</p></td>
 </tr>
-<tr class="row-even"><td><p>FilterMonByTimeStop</p></td>
+<tr class="row-odd"><td><p>FilterMonByTimeStop</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Optional: To only include events from monitors before the provided stop time, in seconds (relative to the start of the run).</p></td>
 </tr>
-<tr class="row-odd"><td><p>SpectrumMin</p></td>
+<tr class="row-even"><td><p>SpectrumMin</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>The number of the first spectrum to read.</p></td>
 </tr>
-<tr class="row-even"><td><p>SpectrumMax</p></td>
+<tr class="row-odd"><td><p>SpectrumMax</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>The number of the last spectrum to read.</p></td>
 </tr>
-<tr class="row-odd"><td><p>SpectrumList</p></td>
+<tr class="row-even"><td><p>SpectrumList</p></td>
 <td><p>Input</p></td>
 <td><p>int list</p></td>
 <td></td>
 <td><p>A comma-separated list of individual spectra to read.</p></td>
 </tr>
-<tr class="row-even"><td><p>MetaDataOnly</p></td>
+<tr class="row-odd"><td><p>MetaDataOnly</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>If true, only the meta data and sample logs will be loaded.</p></td>
 </tr>
-<tr class="row-odd"><td><p>LoadLogs</p></td>
+<tr class="row-even"><td><p>LoadLogs</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>Load only the Sample/DAS logs from the file (default True).</p></td>
 </tr>
-<tr class="row-even"><td><p>LoadAllLogs</p></td>
+<tr class="row-odd"><td><p>LoadAllLogs</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>Load all the logs from the nxs, without checking or processing them; if checked, LoadLogs will be ignored; use with caution</p></td>
 </tr>
-<tr class="row-odd"><td><p>LoadType</p></td>
+<tr class="row-even"><td><p>LoadType</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>Default</p></td>
 <td><p>Set type of loader. 2 options {Default, Multiproceess},’Multiprocess’ should work faster for big files and it is experimental, available only in Linux. Allowed values: [‘Default’, ‘Multiprocess (experimental)’]</p></td>
 </tr>
-<tr class="row-even"><td><p>LoadNexusInstrumentXML</p></td>
+<tr class="row-odd"><td><p>LoadNexusInstrumentXML</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>Reads the embedded Instrument XML from the NeXus file (optional, default True).</p></td>
 </tr>
-<tr class="row-odd"><td><p>NumberOfBins</p></td>
+<tr class="row-even"><td><p>NumberOfBins</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>500</p></td>
 <td><p>The number of bins intially defined. Use Rebin to change the binning later.  If there is no data loaded, or you select meta data only you will only get 1 bin.</p></td>
 </tr>
-<tr class="row-even"><td><p>AllowList</p></td>
+<tr class="row-odd"><td><p>AllowList</p></td>
 <td><p>Input</p></td>
 <td><p>str list</p></td>
 <td></td>
 <td><p>If specified, only these logs will be loaded from the file (each separated by a space).</p></td>
 </tr>
-<tr class="row-odd"><td><p>BlockList</p></td>
+<tr class="row-even"><td><p>BlockList</p></td>
 <td><p>Input</p></td>
 <td><p>str list</p></td>
 <td></td>
@@ -431,14 +392,28 @@ The pre-counting step takes some time but that is normally compensated
 by the speed-up in avoid re-allocating, so the net result is smaller
 memory footprint and approximately the same loading time.</p>
 </section>
+<section id="event-compression">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Event Compression</a><a class="headerlink" href="#event-compression" title="Link to this heading">¶</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">CompressTolerance</span></code> is set, the data loaded will be compressed while creating the individual weighted events.
+The compression will accumulate events to create a weighted event with no time and cannot be further filtered afterwards.
+This parameter is interpreted to be linear tolerance when positive, and logorithmic tolerance when negative.
+When <code class="docutils literal notranslate"><span class="pre">CompressBinningMode</span></code> is specified, the <code class="docutils literal notranslate"><span class="pre">CompressTolerance</span></code> is modified be linear or logarithmic.
+This mode does take longer than running <code class="docutils literal notranslate"><span class="pre">LoadEventNexus</span></code> without compression,
+but reduces the overall memory used during algorithm execution, and memory used by the resulting workspace.
+For files that do not have many events, this does not necessarily have an effect other than slowing down loading.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The workspace created by <code class="docutils literal notranslate"><span class="pre">LoadEventNexus</span></code> with compression are different from those created by <code class="docutils literal notranslate"><span class="pre">LoadEventNexus</span></code> without compression then <code class="docutils literal notranslate"><span class="pre">CompressedEvents</span></code>. The histogram representation will be near identical if the tolerence is selected appropriately.</p>
+</div>
+</section>
 <section id="veto-pulses">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Veto Pulses</a><a class="headerlink" href="#veto-pulses" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Veto Pulses</a><a class="headerlink" href="#veto-pulses" title="Link to this heading">¶</a></h3>
 <p>Veto pulses can be filtered out in a separate step using
 <a class="reference internal" href="FilterByLogValue-v1.html#algm-filterbylogvalue"><span class="std std-ref">FilterByLogValue v1</span></a>:</p>
 <p><code class="docutils literal notranslate"><span class="pre">FilterByLogValue(InputWorkspace=&quot;ws&quot;, OutputWorkspace=&quot;ws&quot;, LogName=&quot;veto_pulse_time&quot;, PulseFilter=&quot;1&quot;)</span></code></p>
 </section>
 <section id="data-loaded-from-nexus-file">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Data Loaded from Nexus File</a><a class="headerlink" href="#data-loaded-from-nexus-file" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Data Loaded from Nexus File</a><a class="headerlink" href="#data-loaded-from-nexus-file" title="Link to this heading">¶</a></h3>
 <p>If <cite>LoadAllLogs</cite> is checked, all the logs in the Nexus files will be loaded directly in the sample logs as they are.
 The <cite>LoadLogs</cite> flag will be ignored.
 If only <cite>LoadLogs</cite> is checked, only a subset of the logs will be processed and loaded, in the manner described afterward.</p>
@@ -495,7 +470,7 @@ else sample not loaded</p></td>
 </table>
 </section>
 <section id="invalid-period-logs-error">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Invalid Period Logs Error</a><a class="headerlink" href="#invalid-period-logs-error" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Invalid Period Logs Error</a><a class="headerlink" href="#invalid-period-logs-error" title="Link to this heading">¶</a></h3>
 <p>There is an issue specific to ISIS, particularly on long runs, where noise on data collection instruments can change the period
 of the data. This can cause the period associated with certain data points to exceed the total number of periods we expect.</p>
 <p>LoadEventNeXus compares the total number of periods we expect, which can be found in the <strong>periods/number</strong> attribute of the run,
@@ -506,7 +481,7 @@ in the script repository, <em>user/TomTitcombe/correct_period_logs.py</em>, whic
 <p>If you expect more than 1 periods, there is currently no solution script available through Mantid. You should contact the Mantid team to discuss
 the problem and possible solutions.</p>
 <section id="sample-object">
-<h4><a class="toc-backref" href="#id10" role="doc-backlink">Sample Object</a><a class="headerlink" href="#sample-object" title="Link to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Sample Object</a><a class="headerlink" href="#sample-object" title="Link to this heading">¶</a></h4>
 <p>If <code class="docutils literal notranslate"><span class="pre">isis_vms_compat</span></code> exists,
 then the following sample properties are read from it:</p>
 <table class="docutils align-default">
@@ -535,7 +510,7 @@ then the following sample properties are read from it:</p>
 </section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To run these usage examples please first download the
@@ -568,9 +543,9 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/DataHandling/Nexus.html">DataHandling\Nexus</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c5fa926dfc13beba8b8137a8e2d6eaee8b99f15b/Framework/DataHandling/inc/MantidDataHandling/LoadEventNexus.h">LoadEventNexus.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c5fa926dfc13beba8b8137a8e2d6eaee8b99f15b/Framework/DataHandling/src/LoadEventNexus.cpp">LoadEventNexus.cpp</a></p>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e7e3a542d6329f9cb38c3c84e598a0176cd5b79a/Framework/DataHandling/inc/MantidDataHandling/LoadEventNexus.h">LoadEventNexus.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e7e3a542d6329f9cb38c3c84e598a0176cd5b79a/Framework/DataHandling/src/LoadEventNexus.cpp">LoadEventNexus.cpp</a></p>
 </section>
 </section>
 

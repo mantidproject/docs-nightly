@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=ab82f54b"></script>
+    <script src="../_static/documentation_options.js?v=443a21cf"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -158,8 +158,8 @@ combined in a script with mantid algorithms in the usual way.</p>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;SXD33335.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;SXD33335&#39;</span><span class="p">)</span>
 
 <span class="c1"># find peaks using SXD static method - determines peak threshold from</span>
-<span class="c1"># the standard deviation of the intensity distribution</span>
-<span class="n">peaks_ws</span> <span class="o">=</span> <span class="n">SXD</span><span class="o">.</span><span class="n">find_sx_peaks</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">nstd</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="c1"># the ratio of local variance over mean</span>
+<span class="n">peaks_ws</span> <span class="o">=</span> <span class="n">SXD</span><span class="o">.</span><span class="n">find_sx_peaks</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ThresholdVarianceOverMean</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
 <span class="n">SXD</span><span class="o">.</span><span class="n">remove_duplicate_peaks_by_qlab</span><span class="p">(</span><span class="n">peaks_ws</span><span class="p">,</span> <span class="n">q_tol</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
 
 <span class="c1"># find a UB</span>

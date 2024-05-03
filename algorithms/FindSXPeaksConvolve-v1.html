@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=ab82f54b"></script>
+    <script src="../_static/documentation_options.js?v=443a21cf"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -110,27 +110,28 @@
 <nav class="contents local" id="table-of-contents">
 <span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p>
+<li><p><a class="reference internal" href="#summary" id="id3">Summary</a></p>
 <ul>
-<li><p><a class="reference internal" href="#see-also" id="id2">See Also</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id4">See Also</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id4">Description</a></p></li>
-<li><p><a class="reference internal" href="#usage" id="id5">Usage</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id6">Source</a></p></li>
+<li><p><a class="reference internal" href="#properties" id="id5">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id6">Description</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id7">Usage</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id8">References</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id9">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Find single-crystal Bragg peaks in MatrixWorkspaces for instruments comprising rectangular detctors (such as SXD at ISIS).</p>
 <section id="see-also">
-<h3><a class="toc-backref" href="#id2" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="FindSXPeaks-v1.html#algm-findsxpeaks"><span class="std std-ref">FindSXPeaks</span></a></p>
 </section>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -195,14 +196,34 @@
 <td><p>0.125</p></td>
 <td><p>Minimum peak size as a fraction of the kernel size.</p></td>
 </tr>
+<tr class="row-odd"><td><p>PeakFindingStrategy</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p>IOverSigma</p></td>
+<td><p>PeakFindingStrategy=IOverSigma will find peaks by integrating data using a shoebox kernel and looking for peaks with I/sigma &gt; ThresholdIoverSigma. PeakFindingStrategy=VarianceOverMean will look for peaks with local variance/mean &gt; ThresholdVarianceOverMean. Allowed values: [‘VarianceOverMean’, ‘IOverSigma’]</p></td>
+</tr>
+<tr class="row-even"><td><p>ThresholdVarianceOverMean</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p>3</p></td>
+<td><p>Threshold value for variance/mean used to identify peaks.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This is an algorithm to find single-crystal Bragg peaks in a <a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a> with detector
-banks of type <a class="reference internal" href="../concepts/RectangularDetector.html#rectangulardetector"><span class="std std-ref">RectangularDetector</span></a> (e.g. SXD, TOPAZ) by integrating the data using a
-convolution with a shoebox kernel.</p>
+banks of type <a class="reference internal" href="../concepts/RectangularDetector.html#rectangulardetector"><span class="std std-ref">RectangularDetector</span></a> (e.g. SXD, TOPAZ).</p>
+<p>There are two peak finding strategies set by <code class="docutils literal notranslate"><span class="pre">PeakFindingStrategy</span></code>:</p>
+<ol class="loweralpha simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PeakFindingStrategy=&quot;IOverSigma&quot;</span></code> - by integrating the data by convolution with a shoebox kernel and looking for
+regions with statistically significant I/sigma (larger than <code class="docutils literal notranslate"><span class="pre">ThresholdIoverSigma</span></code>). Note a valid peak would be
+expected to have intensity/sigma &gt; 3 and stronger peaks will have a larger intensity/sigma.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PeakFindingStrategy=&quot;VarianceOverMean&quot;</span></code> - by looking for regions with ratio of variance/mean larger than
+<code class="docutils literal notranslate"><span class="pre">ThresholdVarianceOverMean</span></code> - note for a poisson distributed counts with a constant count-rate the ratio is
+expected to be 1. This peak finding criterion taken from DIALS <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
+</ol>
 <p>The size of the kernel is defined in the input to the algorithm and should match the approximate extent of a typical peak.
 The size on the detector is governed by <code class="docutils literal notranslate"><span class="pre">NRows</span></code> and <code class="docutils literal notranslate"><span class="pre">NCols</span></code> which are in units of pixels.
 The size of the kernel along the TOF dimension can be specified in one of two ways:</p>
@@ -214,16 +235,15 @@ middle of the spectrum.</p></li>
 </ol>
 <p>Note to use method 2, back-to-back exponential coefficients must be defined in the Parameters.xml file for the
 instrument.</p>
-<p>The integration requires a background shell with negative weights, such that the total kernel size is increased by a
-factor 1.25 along each dimension (such that there are approximately the same number of elements in the kernel and the
-background shell). The integral of the kernel and background shell together is zero.</p>
+<p>The shoebox integration (for <code class="docutils literal notranslate"><span class="pre">PeakFindingStrategy=&quot;IOverSigma&quot;</span></code>) requires a background shell with negative weights,
+such that the total kernel size is increased by a factor 1.25 along each dimension (such that there are approximately
+the same number of elements in the kernel and the background shell). The integral of the kernel and background shell
+together is zero.</p>
 <p>The integrated intensity is evaluated by convolution of the signal array with the kernel and the square of the error on
 the integrated intensity is determined by convolution of the squared error array with the squared value of the kernel.</p>
-<p>The threshold for peak detection is given by <code class="docutils literal notranslate"><span class="pre">ThresholdIoverSigma</span></code> which is the cutoff ratio of intensity/sigma (i.e.
-a valid peak would be expected to have intensity/sigma &gt; 3). Stronger peaks will have a larger intensity/sigma.</p>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p><strong>Example - FindSXPeaksConvolve</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -237,11 +257,20 @@ a valid peak would be expected to have intensity/sigma &gt; 3). Stronger peaks w
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Found 261 peaks
 </pre></div>
 </div>
+</section>
+<section id="references">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Winter, G., et al.  Acta Crystallographica Section D: Structural Biology 74.2 (2018): 85-97.</p>
+</aside>
+</aside>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Diffraction/Reduction.html">Diffraction\Reduction</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c3ea43e4605f6898b84bd95c1196ccd8035364b1/Framework/PythonInterface/plugins/algorithms/FindSXPeaksConvolve.py">FindSXPeaksConvolve.py</a></p>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e83fb81ba83414e7114899d6409550f1ef8f47fa/Framework/PythonInterface/plugins/algorithms/FindSXPeaksConvolve.py">FindSXPeaksConvolve.py</a></p>
 </section>
 </section>
 

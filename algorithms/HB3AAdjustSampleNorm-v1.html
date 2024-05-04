@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=443a21cf"></script>
+    <script src="../_static/documentation_options.js?v=f6a482e2"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -118,7 +118,8 @@
 <li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
 <li><p><a class="reference internal" href="#description" id="id4">Description</a></p></li>
 <li><p><a class="reference internal" href="#normalisation" id="id5">Normalisation</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id6">Source</a></p></li>
+<li><p><a class="reference internal" href="#grouping" id="id6">Grouping</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id7">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
@@ -237,7 +238,13 @@
 <td><p>-8.02,8.02,401</p></td>
 <td><p>Binning parameters for the 2nd dimension. Enter it as acomma-separated list of values with theformat: ‘minimum,maximum,number_of_bins’.</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputWorkspace</p></td>
+<tr class="row-even"><td><p>Grouping</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p>None</p></td>
+<td><p>Group pixels (shared by input and normalization). Allowed values: [‘None’, ‘2x2’, ‘4x4’]</p></td>
+</tr>
+<tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></td>
 <td><p><em>Mandatory</em></p></td>
@@ -273,12 +280,17 @@ using when converting to Q-sample and allows the comparison of peak
 intensities found with <a class="reference internal" href="IntegratePeaksMD-v2.html#algm-integratepeaksmd"><span class="std std-ref">IntegratePeaksMD</span></a>
 to be directly compared between scans measured with different step
 sizes.</p>
+</section>
+<section id="grouping">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Grouping</a><a class="headerlink" href="#grouping" title="Link to this heading">¶</a></h2>
+<p>A grouping option is available group pixels by either 2x2 or 4x4 which reduces memory
+usage and improves the performance of subsequent reduction steps. The default is the original detetor pixelation.</p>
 <p>See <a class="reference internal" href="HB3AIntegratePeaks-v1.html#algm-hb3aintegratepeaks"><span class="std std-ref">HB3AIntegratePeaks</span></a> for complete examples of the HB3A workflow.</p>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Crystal/Corrections.html">Crystal\Corrections</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e83fb81ba83414e7114899d6409550f1ef8f47fa/Framework/PythonInterface/plugins/algorithms/HB3AAdjustSampleNorm.py">HB3AAdjustSampleNorm.py</a></p>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/20c5d6191d5f14594d7aeda042367c5f4d2949f3/Framework/PythonInterface/plugins/algorithms/HB3AAdjustSampleNorm.py">HB3AAdjustSampleNorm.py</a></p>
 </section>
 </section>
 

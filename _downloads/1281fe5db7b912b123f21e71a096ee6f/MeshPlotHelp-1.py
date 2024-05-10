@@ -57,4 +57,4 @@ source = ws.getInstrument().getSource().getPos()
 sample = ws.getInstrument().getSample().getPos() - source
 arrow(axes, sample, origin=(0,0,-0.04))
 axes.view_init(vertical_axis='y', elev=30, azim=-135)
-plt.show()
+fig.show()

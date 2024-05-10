@@ -20,4 +20,4 @@ axes.set_ylabel('Spectrum')
 axes.set_xlim([5.0, 19992.0])
 axes.set_ylim([0.5, 922.5])
 
-plt.show()
+fig.show()

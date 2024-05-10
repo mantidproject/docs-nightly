@@ -26,4 +26,4 @@ axes[1][1].set_xlabel('Time-of-flight ($\\mu s$)')
 axes[1][1].set_ylabel('Counts ($\\mu s$)$^{-1}$')
 legend = axes[1][1].legend(fontsize=8.0) #.set_draggable(True).legend # uncomment to set the legend draggable
 
-plt.show()
+fig.show()

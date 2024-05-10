@@ -15,4 +15,5 @@ axes.set_title('SANSLOQCan2D.nxs')
 cbar=fig.colorbar(c)
 cbar.set_label('Counts ($\mu s$)$^{-1}$') #add text to colorbar
 fig.tight_layout()
-plt.show()
+
+fig.show()

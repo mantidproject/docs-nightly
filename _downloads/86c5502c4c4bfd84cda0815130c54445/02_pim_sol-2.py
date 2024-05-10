@@ -28,7 +28,7 @@ axes.set_xlim([2.405, 4.5])
 axes.set_yscale('log')
 axes.legend() #.draggable()
 
-#plt.show()
+#fig.show()
 
 # NOTE: This script could be improved further with adding comments,
 # and extracting and logging values for filename and binning params,

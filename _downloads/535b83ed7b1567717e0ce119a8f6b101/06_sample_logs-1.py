@@ -52,5 +52,5 @@ axes[2][0].set_title('Sample Log Temperature: Low')
 axes[2][0].set_xlim(temp_x_limit)
 axes[2][0].set_ylim(temp_y_limit)
 
-plt.tight_layout()
-plt.show()
+fig.tight_layout()
+fig.show()

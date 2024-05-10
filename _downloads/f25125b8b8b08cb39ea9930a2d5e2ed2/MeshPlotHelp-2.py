@@ -68,4 +68,4 @@ for i in range(3): # plot reciprocal_lattice with '--' dashed linestyle
    arrow(axes, reciprocal_lattice[:,i], color = colors[i], linestyle = '--')
 
 axes.view_init(vertical_axis='y', elev=27, azim=50)
-plt.show()
+fig.show()

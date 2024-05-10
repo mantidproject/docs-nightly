@@ -42,4 +42,4 @@ for val in (ws,ws1):
     axes.set_mesh_axes_equal(mesh)
     axes.view_init(elev=20, azim=80)
 
-    plt.show()
+    fig.show()

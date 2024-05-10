@@ -57,4 +57,4 @@ axes.text(8,7.2,9.65, "DEPTH", color='black', fontsize=12)
 axes.text(10.5,11.5,11, "WIDTH", color='b', fontsize=12)
 axes.text(11,9.5,9, "HEIGHT", color='purple', fontsize=12)
 
-plt.show()
+fig.show()

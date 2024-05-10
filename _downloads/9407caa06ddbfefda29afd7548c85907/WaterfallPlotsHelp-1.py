@@ -33,4 +33,4 @@ ax.set_waterfall_fill(True, colour="#00d1ff")
 # Update the offsets
 ax.update_waterfall(x_offset=10, y_offset=30)
 
-plt.show()
+fig.show()

@@ -28,7 +28,7 @@ plt.title("Peak Evolution", fontsize=20)
 
 # Add a legend with the chosen labels and show the plot
 axes.legend()
-#plt.show() #uncomment to show the plot
+#fig.show() #uncomment to show the plot
 
 # Note with the Direct Matplotlib method,
 # there are many more options for formatting the plot

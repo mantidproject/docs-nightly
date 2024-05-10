@@ -54,4 +54,4 @@ for i in range(4):
 axes.scatter(0,0,0, color='b')
 axes.text(0,0.1,-0.15, "ORIGIN", color='b', fontsize=12)
 
-plt.show()
+fig.show()

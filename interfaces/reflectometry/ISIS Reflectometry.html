@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=f6a482e2"></script>
+    <script src="../../_static/documentation_options.js?v=d74016f8"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -163,7 +163,7 @@
 </ul>
 </li>
 <li><p><a class="reference internal" href="#reduction-preview-tab" id="id48">Reduction Preview Tab</a></p></li>
-<li><p><a class="reference internal" href="#save-ascii-tab" id="id49">Save ASCII Tab</a></p></li>
+<li><p><a class="reference internal" href="#save-tab" id="id49">Save Tab</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#troubleshooting" id="id50">Troubleshooting</a></p>
@@ -325,7 +325,7 @@ plots the stitched output for the selected group(s)
 <h3><a class="toc-backref" href="#id25" role="doc-backlink">Batches</a><a class="headerlink" href="#batches" title="Link to this heading">¶</a></h3>
 <p>The main window contains one or more “Batches”, which are shown as vertical
 tabs on the left. Each Batch contains a group of settings tabs (Runs, Event
-Handling, Experiment, Instrument and Save ASCII). Together, these provide all
+Handling, Experiment, Instrument and Save). Together, these provide all
 of the settings for a particular reduction.</p>
 <figure class="align-center" id="id5">
 <a class="screenshot reference internal image-reference" href="../../_images/batches.png"><img alt="Batch tabs on the ISIS Reflectometry interface" class="screenshot" src="../../_images/batches.png" style="width: 700px;" />
@@ -1033,16 +1033,17 @@ a <strong>batch reduction</strong> or saved to a batch file.</p></li>
 exactly the <strong>same reduction</strong> as a normal batch reduction, aside from the regions of interest that you have overridden
 using the graphical selection tool.</p>
 </section>
-<section id="save-ascii-tab">
-<span id="refl-save-ascii"></span><h3><a class="toc-backref" href="#id49" role="doc-backlink">Save ASCII Tab</a><a class="headerlink" href="#save-ascii-tab" title="Link to this heading">¶</a></h3>
-<p>The <strong>Save ASCII</strong> tab allows for processed workspaces to be saved in specific
-ASCII formats. The filenames are saved in the form [Prefix][Workspace Name].[ext].
-See <a class="reference internal" href="../../algorithms/SaveReflectometryAscii-v1.html#algm-savereflectometryascii"><span class="std std-ref">SaveReflectometryAscii v1</span></a> for a description of the formats.</p>
+<section id="save-tab">
+<span id="refl-save"></span><span id="refl-save-ascii"></span><h3><a class="toc-backref" href="#id49" role="doc-backlink">Save Tab</a><a class="headerlink" href="#save-tab" title="Link to this heading">¶</a></h3>
+<p>The <strong>Save</strong> tab allows for processed workspaces to be saved in specific
+formats. The filenames are saved in the form [Prefix][Workspace Name].[ext].
+See <a class="reference internal" href="../../algorithms/SaveReflectometryAscii-v1.html#algm-savereflectometryascii"><span class="std std-ref">SaveReflectometryAscii v1</span></a> and <a class="reference internal" href="../../algorithms/SaveISISReflectometryORSO-v1.html#algm-saveisisreflectometryorso"><span class="std std-ref">SaveISISReflectometryORSO v1</span></a>
+for a description of the supported formats.</p>
 <figure class="align-center" id="id17">
-<a class="screenshot reference internal image-reference" href="../../_images/save_tab.png"><img alt="The save ASCII tab" class="screenshot" src="../../_images/save_tab.png" style="width: 800px;" />
+<a class="screenshot reference internal image-reference" href="../../_images/save_tab.png"><img alt="The save tab" class="screenshot" src="../../_images/save_tab.png" style="width: 800px;" />
 </a>
 <figcaption>
-<p><span class="caption-text"><em>The save ASCII tab</em></span><a class="headerlink" href="#id17" title="Link to this image">¶</a></p>
+<p><span class="caption-text"><em>The save tab</em></span><a class="headerlink" href="#id17" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <table class="docutils align-default">
@@ -1093,22 +1094,42 @@ to contain multiple parameter notes.</p></td>
 </tr>
 <tr class="row-even"><td><p>File format</p></td>
 <td><p>This dialog can save to ANSTO, ILL cosmos, 3-column,
-and a customisable format. It doesn’t save from
-the main interface’s table, but from workspaces
-loaded into mantid. All algorithms are also
-available as save algorithms from mantid itself.</p></td>
+ORSO Ascii, ORSO Nexus and a customisable format. It
+doesn’t save from the main interface’s table, but
+from workspaces loaded into mantid. All algorithms
+are also available as save algorithms from mantid
+itself.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Custom Format Options</p></td>
 <td><p>When saving in ‘Custom’ this section allows you
 to specify if you want a Header and/or Q Resolution
 column as well as specifying the delimiter.</p></td>
 </tr>
-<tr class="row-even"><td><p>Automatic Save</p></td>
+<tr class="row-even"><td><p>ORSO Format Options</p></td>
+<td><p>You can save into either the ORSO Ascii or ORSO Nexus
+format. For either format, you can specify whether to
+include a Q Resolution column. You can also use the
+<code class="docutils literal notranslate"><span class="pre">Additional</span> <span class="pre">columns</span> <span class="pre">(includes</span> <span class="pre">Q</span> <span class="pre">resolution)</span></code>
+option to request Q Resolution, Lambda, dLambda,
+Theta and dTheta columns (this is selected by
+default).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Automatic Save</p></td>
 <td><p>Automatically save the main output workspace for
 groups in the runs table. Note that the stitched
 group output will be saved if there is one or, for
 a single-row group, the <code class="docutils literal notranslate"><span class="pre">IvsQ_binned</span></code> row output
-will be saved instead.</p></td>
+will be saved instead.
+Use the <code class="docutils literal notranslate"><span class="pre">Include</span> <span class="pre">individual</span> <span class="pre">row</span> <span class="pre">outputs</span> <span class="pre">for</span> <span class="pre">groups</span></code>
+option to also save the individual row outputs for a
+stitched group.
+When the reduction completes, if there are multiple
+workspaces to save automatically then the
+<code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">multiple</span> <span class="pre">datasets</span> <span class="pre">to</span> <span class="pre">a</span> <span class="pre">single</span> <span class="pre">file</span></code> option
+can be used to save them all into a single file.
+This option is only available when auto-saving into
+one of the ORSO formats, where it is selected by
+default.</p></td>
 </tr>
 </tbody>
 </table>

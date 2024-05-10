@@ -44,4 +44,5 @@ ax3d[1].plot_wireframe(data, color='darkmagenta')
 ax3d[0].set_title("Surface")
 ax3d[1].set_title("Wireframe")
 
-#plt.show()# uncomment to show the plots
+#figC.show()# uncomment to show the plots
+#fig3d.show()

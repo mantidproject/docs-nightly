@@ -14,4 +14,4 @@ fig, ax = plt.subplots(subplot_kw={'projection':'mantid'})
 c = ax.pcolormesh(sqw, cmap='plasma', norm=LogNorm())
 cbar=fig.colorbar(c)
 cbar.set_label('Intensity (arb. units)') #add text to colorbar
-#plt.show()
+#fig.show()

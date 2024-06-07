@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=0924231f"></script>
+    <script src="../../_static/documentation_options.js?v=9d7da5df"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -125,20 +125,23 @@
 <section id="new-features">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">New Features</a><a class="headerlink" href="#new-features" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Added sample logs for multiple run reductions in <a class="reference internal" href="../../algorithms/ISISIndirectEnergyTransfer-v1.html#algm-isisindirectenergytransfer"><span class="std std-ref">ISISIndirectEnergyTransfer</span></a>. <cite>run_number</cite> log stores the run numbers used in the reduction, separated by commas. <cite>multi_run_reduction</cite> log informs about the reduction done on chopped runs or regular runs.</p></li>
-<li><p>Added string with first and last run numbers in the reduced output workspace used with multiple runs in <a class="reference internal" href="../../algorithms/ISISIndirectEnergyTransfer-v1.html#algm-isisindirectenergytransfer"><span class="std std-ref">ISISIndirectEnergyTransfer</span></a>.</p></li>
-<li><p>Added the ability to use <cite>File</cite> detector grouping from the <a class="reference internal" href="../../interfaces/indirect/Indirect%20Diffraction.html#interface-indirect-diffraction"><span class="std std-ref">Indirect Diffraction interface</span></a> for all instruments.</p></li>
-<li><p>Added the ability to use <cite>Custom</cite> detector grouping from the <a class="reference internal" href="../../interfaces/indirect/Indirect%20Diffraction.html#interface-indirect-diffraction"><span class="std std-ref">Indirect Diffraction interface</span></a> for all instruments.</p></li>
-<li><p>Added the ability to use <cite>Groups</cite> detector grouping from the <a class="reference internal" href="../../interfaces/indirect/Indirect%20Diffraction.html#interface-indirect-diffraction"><span class="std std-ref">Indirect Diffraction interface</span></a> for all instruments.</p></li>
+<li><p>Algorithm <a class="reference internal" href="../../algorithms/ISISIndirectEnergyTransfer-v1.html#algm-isisindirectenergytransfer"><span class="std std-ref">ISISIndirectEnergyTransfer v1</span></a> now has sample logs for multiple run reductions. The <code class="docutils literal notranslate"><span class="pre">run_number</span></code> log stores the run numbers used in the reduction, separated by commas. The <code class="docutils literal notranslate"><span class="pre">multi_run_reduction</span></code> log informs about the reduction done on chopped runs or regular runs.</p></li>
+<li><p>Reduced output workspace of algorithm <a class="reference internal" href="../../algorithms/ISISIndirectEnergyTransfer-v1.html#algm-isisindirectenergytransfer"><span class="std std-ref">ISISIndirectEnergyTransfer v1</span></a> with multiple runs now has string with first and last run numbers.</p></li>
+<li><p><a class="reference internal" href="../../interfaces/indirect/Indirect%20Diffraction.html#interface-indirect-diffraction"><span class="std std-ref">Indirect Diffraction</span></a> interface now supports <code class="docutils literal notranslate"><span class="pre">File</span></code>, <code class="docutils literal notranslate"><span class="pre">Custom</span></code> and <code class="docutils literal notranslate"><span class="pre">Groups</span></code> detector grouping for all instruments.</p></li>
 </ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/indirect-diffraction-interface.png"><img alt="../../_images/indirect-diffraction-interface.png" src="../../_images/indirect-diffraction-interface.png" style="width: 800px;" />
+</a>
+</figure>
 </section>
 <section id="bugfixes">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Fixed a bug where the EFixed when switching to the ‘graphite’ analyser would not be updated on the <a class="reference internal" href="../../interfaces/indirect/Indirect%20Data%20Reduction.html#interface-indirect-data-reduction"><span class="std std-ref">Indirect Data Reduction</span></a> interface.</p></li>
-<li><p>Fixed an out-of-range error when running a <a class="reference internal" href="../../interfaces/indirect/Indirect%20Data%20Reduction.html#interface-indirect-data-reduction"><span class="std std-ref">Indirect Data Reduction</span></a> on old TOSCA data.</p></li>
-<li><p>Fixed a bug where the wrong spectrum would be masked out for old TOSCA data. Masking detectors in the <a class="reference internal" href="../../algorithms/ISISIndirectEnergyTransfer-v1.html#algm-isisindirectenergytransfer"><span class="std std-ref">ISISIndirectEnergyTransfer</span></a> algorithm was using workspace indices, which assume spectra do not shift in position after the mask is calculated, however this was not the case. Spectra indices are now used for masking detectors.</p></li>
-<li><p>Fixed an error on the <a class="reference internal" href="../../interfaces/indirect/Indirect%20Data%20Reduction.html#isisenergytransfer"><span class="std std-ref">ISIS Energy Transfer tab</span></a> caused by providing a number of detector groups which is larger than the number of spectra in a reduction.</p></li>
+<li><p><a class="reference internal" href="../../interfaces/indirect/Indirect%20Data%20Reduction.html#interface-indirect-data-reduction"><span class="std std-ref">Indirect Data Reduction</span></a> on old TOSCA data no longer throws out-of-range error.</p></li>
+<li><p>Masking detectors in the <a class="reference internal" href="../../algorithms/ISISIndirectEnergyTransfer-v1.html#algm-isisindirectenergytransfer"><span class="std std-ref">ISISIndirectEnergyTransfer v1</span></a> no longer masks the wrong spectum on old TOSCA data.
+The algorithm now uses spectra indices instead of workspace indices, accounting for shifts in the position of spectra after the mask is calculated.</p></li>
+<li><p><a class="reference internal" href="../../interfaces/indirect/Indirect%20Data%20Reduction.html#isisenergytransfer"><span class="std std-ref">ISIS Energy Transfer tab</span></a> no longer throws an error when providing a number of detector groups which is larger than the number of spectra in a reduction.</p></li>
+<li><p><a class="reference internal" href="../../interfaces/indirect/Indirect%20Data%20Reduction.html#interface-indirect-data-reduction"><span class="std std-ref">Indirect Data Reduction</span></a> interface now updates <code class="docutils literal notranslate"><span class="pre">EFixed</span></code> when switching to the <code class="docutils literal notranslate"><span class="pre">graphite</span></code> analyser.</p></li>
 </ul>
 </section>
 <section id="algorithms">
@@ -146,17 +149,14 @@
 <section id="id1">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">New features</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>Added the ability to specify a custom ‘GroupingString’ property to the <a class="reference internal" href="../../algorithms/ISISIndirectDiffractionReduction-v1.html#algm-isisindirectdiffractionreduction"><span class="std std-ref">ISISIndirectDiffractionReduction</span></a> and <a class="reference internal" href="../../algorithms/OSIRISDiffractionReduction-v1.html#algm-osirisdiffractionreduction"><span class="std std-ref">OSIRISDiffractionReduction</span></a> algorithms to be used for the grouping of detectors.</p></li>
-<li><p>Added the ability to specify a ‘GroupingFile’ property to the <a class="reference internal" href="../../algorithms/ISISIndirectDiffractionReduction-v1.html#algm-isisindirectdiffractionreduction"><span class="std std-ref">ISISIndirectDiffractionReduction</span></a> and <a class="reference internal" href="../../algorithms/OSIRISDiffractionReduction-v1.html#algm-osirisdiffractionreduction"><span class="std std-ref">OSIRISDiffractionReduction</span></a> algorithms to be used for the grouping of detectors.</p></li>
-<li><p>Added the ability to specify a ‘NGroups’ property to the <a class="reference internal" href="../../algorithms/ISISIndirectDiffractionReduction-v1.html#algm-isisindirectdiffractionreduction"><span class="std std-ref">ISISIndirectDiffractionReduction</span></a> and <a class="reference internal" href="../../algorithms/OSIRISDiffractionReduction-v1.html#algm-osirisdiffractionreduction"><span class="std std-ref">OSIRISDiffractionReduction</span></a> algorithms to be used for the grouping of detectors.</p></li>
-<li><p>Added the ability to specify a ‘NGroups’ property to the <a class="reference internal" href="../../algorithms/ISISIndirectEnergyTransfer-v1.html#algm-isisindirectenergytransfer"><span class="std std-ref">ISISIndirectEnergyTransfer</span></a> algorithm to be used for grouping detectors into a specified number of groups.</p></li>
-<li><p>The <a class="reference internal" href="../../algorithms/SaveAscii-v1.html#algm-saveascii-v1"><span class="std std-ref">SaveAscii v1</span></a> algorithm can now be found in the algorithm list using the <code class="docutils literal notranslate"><span class="pre">SaveAsciiTOSCA</span></code> alias.</p></li>
+<li><p>Algorithms <a class="reference internal" href="../../algorithms/ISISIndirectDiffractionReduction-v1.html#algm-isisindirectdiffractionreduction"><span class="std std-ref">ISISIndirectDiffractionReduction v1</span></a> and <a class="reference internal" href="../../algorithms/OSIRISDiffractionReduction-v1.html#algm-osirisdiffractionreduction"><span class="std std-ref">OSIRISDiffractionReduction v1</span></a> now support custom properties <code class="docutils literal notranslate"><span class="pre">GroupingString</span></code>, <code class="docutils literal notranslate"><span class="pre">GroupingFile</span></code> and <code class="docutils literal notranslate"><span class="pre">NGroups</span></code> to be used for the grouping of detectors.</p></li>
+<li><p>Algorithm <a class="reference internal" href="../../algorithms/SaveAscii-v1.html#algm-saveascii-v1"><span class="std std-ref">SaveAscii v1</span></a> algorithm can now be found in the algorithm list using the <code class="docutils literal notranslate"><span class="pre">SaveAsciiTOSCA</span></code> alias.</p></li>
 </ul>
 </section>
 <section id="id2">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>Fixed a bug in <a class="reference internal" href="../../algorithms/ISISIndirectDiffractionReduction-v1.html#algm-isisindirectdiffractionreduction"><span class="std std-ref">ISISIndirectDiffractionReduction v1</span></a> where the vanadium files were not being calibrated when a calibration file was provided for OSIRIS diffspec mode.</p></li>
+<li><p>Algorithm <a class="reference internal" href="../../algorithms/ISISIndirectDiffractionReduction-v1.html#algm-isisindirectdiffractionreduction"><span class="std std-ref">ISISIndirectDiffractionReduction v1</span></a> now calibrates vanadium files when a calibration file is not provided for OSIRIS diffspec mode.</p></li>
 </ul>
 <p><a class="reference internal" href="index.html#v6-10-0"><span class="std std-ref">Release 6.10.0</span></a></p>
 </section>

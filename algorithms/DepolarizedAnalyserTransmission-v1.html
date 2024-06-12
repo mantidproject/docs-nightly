@@ -110,19 +110,20 @@
 <nav class="contents local" id="table-of-contents">
 <span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p></li>
-<li><p><a class="reference internal" href="#properties" id="id2">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id3">Description</a></p></li>
-<li><p><a class="reference internal" href="#usage" id="id4">Usage</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id5">Source</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id3">Summary</a></p></li>
+<li><p><a class="reference internal" href="#properties" id="id4">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id5">Description</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id6">Usage</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id7">References</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id8">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Calculate the transmission rate through a depolarized He3 cell.</p>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -197,38 +198,56 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
-<p>Takes a pair of normalised, single-spectra workspaces representing a depolarized helium cell and the empty cell. It will
-then determine the empty cell transmission value, <code class="docutils literal notranslate"><span class="pre">T_E</span></code>, and the cell path length multiplied by the gas pressure
-<code class="docutils literal notranslate"><span class="pre">pxd</span></code> by using an exponential fit. The parameters table is then output for use in later calculations. Optionally, the
-calculated fit curve and a non-normalised version of the covariance matrix can also be output to check the quality of
-the fit. See <a class="reference internal" href="Fit-v1.html#algm-fit"><span class="std std-ref">Fit v1</span></a> for more details.</p>
-<p>A polarised He<sub>3</sub> cell decays over time. At the end of its life, it will be fully depolarized and a run is
-created to find the depolarized transmission rate through the helium. This allows for more effective efficiency
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>Takes a pair of monitor-normalised, single-spectra workspaces representing a depolarized helium cell and the empty cell to
+calculate the transmission of the depolarized cell, as described by Wildes <a class="footnote-reference brackets" href="#wildes" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> and by Krycka et al. <a class="footnote-reference brackets" href="#krycka" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<div class="math notranslate nohighlight">
+\[T(\lambda) = T_E(\lambda) * exp(-\mu) = T_E(\lambda) * exp(-0.0733 * p * d * \lambda)\]</div>
+<p>We first normalise the depolarised workspace <span class="math notranslate nohighlight">\(T(\lambda)\)</span> by the empty cell workspace <span class="math notranslate nohighlight">\(T_E(\lambda)\)</span>,
+accounting for the neutrons lost to the glass cell and only considering the helium inside:</p>
+<div class="math notranslate nohighlight">
+\[\frac{T(\lambda)}{T_E(\lambda)} = exp(-\mu) = exp(-0.0733 * p * d * \lambda)\]</div>
+<p>We can then determine the cell path length multiplied by the gas pressure <span class="math notranslate nohighlight">\(p * d\)</span> by using an exponential fit to
+the curve of <span class="math notranslate nohighlight">\(exp(-0.0733 * p * d * \lambda)\)</span>. The parameters table is then output, allowing for <span class="math notranslate nohighlight">\(p * d\)</span>
+(<code class="docutils literal notranslate"><span class="pre">PxD</span></code>) to be used in further corrections. Optionally, the calculated fit curves can also be output. See
+<a class="reference internal" href="Fit-v1.html#algm-fit"><span class="std std-ref">Fit v1</span></a> for more details.</p>
+<p>A polarised He<sub>3</sub> cell decays over time. At the end of its life, the cell is be actively depolarized and a run
+is created to find the depolarized transmission rate through the helium. This allows for more effective efficiency
 corrections.</p>
-<p>When depolarized, <span class="math notranslate nohighlight">\(P_{He} = 0\)</span>, therefore the transmission can be determined using
-<span class="math notranslate nohighlight">\(T(\lambda) = T_E(\lambda) * exp(-\mu) = T_E(\lambda) * exp(-0.0733 * p * d * \lambda)\)</span>. We can then use this
-equation, after normalising the <code class="docutils literal notranslate"><span class="pre">DepolarizedWorkspace</span></code> by the <code class="docutils literal notranslate"><span class="pre">EmptyCellWorkspace</span></code>, to perform a fit to determine
-our <span class="math notranslate nohighlight">\(T_E\)</span> (<code class="docutils literal notranslate"><span class="pre">T_E</span></code>) and <span class="math notranslate nohighlight">\(p * d\)</span> (<code class="docutils literal notranslate"><span class="pre">pxd</span></code>) values.</p>
+<p>When depolarized, <span class="math notranslate nohighlight">\(P_{He} = 0\)</span>, allowing the transmission to be be determined using the above equations.</p>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p><strong>Example - Calculate Transmission</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create example workspaces.</span>
-<span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;mt&#39;</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span> <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="s1">&#39;name=UserFunction, Formula=1.465e-07*exp(0.0733*4.76*x)&#39;</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;wavelength&#39;</span><span class="p">,</span> <span class="n">NumMonitors</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">16.5</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;dep&#39;</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span> <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="s1">&#39;name=UserFunction, Formula=0.0121*exp(-0.0733*10.226*x)&#39;</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;wavelength&#39;</span><span class="p">,</span> <span class="n">NumMonitors</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">16.5</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;mt&#39;</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span> <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="s1">&#39;name=LinearBackground, A0=-0.112, A1=-0.004397&#39;</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;wavelength&#39;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">16.5</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;dep&#39;</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span> <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="s1">&#39;name=ExpDecay, Height=0.1239, Lifetime=1.338&#39;</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;wavelength&#39;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">16.5</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
 <span class="n">output</span> <span class="o">=</span> <span class="n">DepolarizedAnalyserTransmission</span><span class="p">(</span><span class="s2">&quot;dep&quot;</span><span class="p">,</span> <span class="s2">&quot;mt&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PXD Value = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;T_E Value = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
+</section>
+<section id="references">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="wildes" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>A. R. Wildes, <em>Neutron News</em>, <strong>17</strong> 17 (2006)
+<a class="reference external" href="https://doi.org/10.1080/10448630600668738">doi: 10.1080/10448630600668738</a></p>
+</aside>
+<aside class="footnote brackets" id="krycka" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>K. Krycka et al., <em>J. Appl. Crystallogr.</em>, <strong>45</strong> (2012)
+<a class="reference external" href="https://doi.org/10.1107/S0021889812003445">doi: 10.1107/S0021889812003445</a></p>
+</aside>
+</aside>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/SANS/PolarizationCorrections.html">SANS\PolarizationCorrections</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
 <p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/afb82e5cff4a5d91f3885ac47122406a7cdb061c/Framework/Algorithms/inc/MantidAlgorithms/PolarizationCorrections/DepolarizedAnalyserTransmission.h">DepolarizedAnalyserTransmission.h</a></p>
 <p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/afb82e5cff4a5d91f3885ac47122406a7cdb061c/Framework/Algorithms/src/PolarizationCorrections/DepolarizedAnalyserTransmission.cpp">DepolarizedAnalyserTransmission.cpp</a></p>
 </section>

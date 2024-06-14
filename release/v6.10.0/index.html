@@ -108,7 +108,7 @@
 <section id="mantid-6-10-0-release-notes">
 <span id="v6-10-0"></span><h1>Mantid 6.10.0 Release Notes<a class="headerlink" href="#mantid-6-10-0-release-notes" title="Link to this heading">¶</a></h1>
 <figure class="align-right">
-<a class="screenshot reference internal image-reference" href="../../_images/ImageNotFound.png"><img alt="../../_images/ImageNotFound.png" class="screenshot" src="../../_images/ImageNotFound.png" style="width: 385px;" />
+<a class="screenshot reference internal image-reference" href="../../_images/IntegratePeaks1DProfile_OutputFile1.png"><img alt="../../_images/IntegratePeaks1DProfile_OutputFile1.png" class="screenshot" src="../../_images/IntegratePeaks1DProfile_OutputFile1.png" style="width: 385px;" />
 </a>
 </figure>
 <nav class="contents local" id="table-of-contents">
@@ -119,12 +119,38 @@
 <li><p><a class="reference internal" href="#full-change-listings" id="id3">Full Change Listings</a></p></li>
 </ul>
 </nav>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This release is still under construction. The changes can be found in the nightly builds on the <a class="reference external" href="https://download.mantidproject.org">download page</a>.</p>
-</div>
 <p>We are proud to announce version 6.10.0 of Mantid.</p>
-<p><strong>TODO: Add paragraph summarizing big changes</strong></p>
+<p>In this release, we changed the way files are loaded into Mantid:
+On ISIS Data Analysis as a Service Platform (IDAaaS), loading files will look
+into the instrument data cache path <code class="docutils literal notranslate"><span class="pre">/data/instrument</span></code>
+first before looking for the file on the data archive.
+This change will speed up loading raw data files on IDAaaS, especially
+for users who do not have access to the data archive or users whose
+instrument data is not reliably accessed from the archive.
+Other important highlights include:</p>
+<ul class="simple">
+<li><p>New algorithm <a class="reference internal" href="../../algorithms/IntegratePeaks1DProfile-v1.html#algm-integratepeaks1dprofile"><span class="std std-ref">IntegratePeaks1DProfile v1</span></a> to integrate single-crystal
+Bragg peaks in a workspace with an x-unit of TOF adapted from an algorithm in
+SXD2001 by Gutmann, M. J. (2005).</p></li>
+<li><p>New algorithms for supporting the polarised SANS data reduction:
+<a class="reference internal" href="../../algorithms/DepolarizedAnalyserTransmission-v1.html#algm-depolarizedanalysertransmission"><span class="std std-ref">DepolarizedAnalyserTransmission v1</span></a>, <a class="reference internal" href="../../algorithms/FlipperEfficiency-v1.html#algm-flipperefficiency"><span class="std std-ref">FlipperEfficiency v1</span></a>
+and <a class="reference internal" href="../../algorithms/HeliumAnalyserEfficiency-v1.html#algm-heliumanalyserefficiency"><span class="std std-ref">HeliumAnalyserEfficiency v1</span></a>.</p></li>
+<li><p>Improvements to the way Mantid handles event compression. The algorithm
+<a class="reference internal" href="../../algorithms/CompressEvents-v1.html#algm-compressevents"><span class="std std-ref">CompressEvents v1</span></a> now has the ability to combine events together in
+logarithmically increasing size groups.
+<a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a> when specifying the
+<code class="docutils literal notranslate"><span class="pre">CompressTolerance</span></code> was re-implemented (the execution time of
+<code class="docutils literal notranslate"><span class="pre">LoadEventNexus</span></code> is generally longer, but workflows using
+<code class="docutils literal notranslate"><span class="pre">CompressEvents</span></code> generally run faster).</p></li>
+<li><p>New option to find peaks using the ratio of variance/mean in
+<a class="reference internal" href="../../algorithms/FindSXPeaksConvolve-v1.html#algm-findsxpeaksconvolve"><span class="std std-ref">FindSXPeaksConvolve v1</span></a> - this is a peak finding criterion used in
+DIALS software (Winter, G., et al. Acta Crystallographica Section D,
+Structural Biology 74.2 (2018): 85-97).</p></li>
+<li><p>New detector grouping options on the <a class="reference internal" href="../../interfaces/indirect/Indirect%20Diffraction.html#interface-indirect-diffraction"><span class="std std-ref">Indirect Diffraction</span></a> interface
+(including <code class="docutils literal notranslate"><span class="pre">All</span></code>, <code class="docutils literal notranslate"><span class="pre">Groups</span></code>, <code class="docutils literal notranslate"><span class="pre">Custom</span></code> and <code class="docutils literal notranslate"><span class="pre">File</span></code> options).</p></li>
+<li><p>New way to easily load multiple files into <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#elwin"><span class="std std-ref">Elwin Tab</span></a> of
+<a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#interface-inelastic-data-processor"><span class="std std-ref">Data Processor Interface</span></a>.</p></li>
+</ul>
 <p>These are just some of the many improvements in this release, so please take a
 look at the release notes, which are filled with details of the
 important changes and improvements in many areas. The development team

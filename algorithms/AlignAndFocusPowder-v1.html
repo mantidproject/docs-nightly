@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=b114cb03"></script>
+    <script src="../_static/documentation_options.js?v=84e1e891"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -288,7 +288,7 @@
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>1e-05</p></td>
-<td><p>Compress events (in microseconds) within this tolerance. (Default 1e-5)</p></td>
+<td><p>Compress events (in microseconds) within this tolerance. (Default 1e-5). If negative then do logorithmic compression.</p></td>
 </tr>
 <tr class="row-even"><td><p>CompressWallClockTolerance</p></td>
 <td><p>Input</p></td>
@@ -302,73 +302,79 @@
 <td></td>
 <td><p>An ISO formatted date/time string specifying the timestamp for starting filtering. Ignored if WallClockTolerance is not specified. Default is start of run</p></td>
 </tr>
-<tr class="row-even"><td><p>LorentzCorrection</p></td>
+<tr class="row-even"><td><p>CompressBinningMode</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p>Default</p></td>
+<td><p>Optional.  Binning behavior can be specified in the usual way through sign of tolerance (‘Default’); or can be set to one of the allowed binning modes.  Allowed values: [‘Default’, ‘Linear’, ‘Logarithmic’]</p></td>
+</tr>
+<tr class="row-odd"><td><p>LorentzCorrection</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>Multiply each spectrum by sin(theta) where theta is half of the Bragg angle</p></td>
 </tr>
-<tr class="row-odd"><td><p>UnwrapRef</p></td>
+<tr class="row-even"><td><p>UnwrapRef</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
 <td><p>Reference total flight path for frame unwrapping. Zero skips the correction</p></td>
 </tr>
-<tr class="row-even"><td><p>LowResRef</p></td>
+<tr class="row-odd"><td><p>LowResRef</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
 <td><p>Reference DIFC for resolution removal. Zero skips the correction</p></td>
 </tr>
-<tr class="row-odd"><td><p>CropWavelengthMin</p></td>
+<tr class="row-even"><td><p>CropWavelengthMin</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
 <td><p>Crop the data at this minimum wavelength. Overrides LowResRef.</p></td>
 </tr>
-<tr class="row-even"><td><p>CropWavelengthMax</p></td>
+<tr class="row-odd"><td><p>CropWavelengthMax</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Crop the data at this maximum wavelength. Forces use of CropWavelengthMin.</p></td>
 </tr>
-<tr class="row-odd"><td><p>PrimaryFlightPath</p></td>
+<tr class="row-even"><td><p>PrimaryFlightPath</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>-1</p></td>
 <td><p>If positive, focus positions are changed.  (Default -1)</p></td>
 </tr>
-<tr class="row-even"><td><p>SpectrumIDs</p></td>
+<tr class="row-odd"><td><p>SpectrumIDs</p></td>
 <td><p>Input</p></td>
 <td><p>int list</p></td>
 <td></td>
 <td><p>Optional: Spectrum Nos (note that it is not detector ID or workspace indices).</p></td>
 </tr>
-<tr class="row-odd"><td><p>L2</p></td>
+<tr class="row-even"><td><p>L2</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Optional: Secondary flight (L2) paths for each detector</p></td>
 </tr>
-<tr class="row-even"><td><p>Polar</p></td>
+<tr class="row-odd"><td><p>Polar</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Optional: Polar angles (two thetas) for detectors</p></td>
 </tr>
-<tr class="row-odd"><td><p>Azimuthal</p></td>
+<tr class="row-even"><td><p>Azimuthal</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Azimuthal angles (out-of-plain) for detectors</p></td>
 </tr>
-<tr class="row-even"><td><p>LowResSpectrumOffset</p></td>
+<tr class="row-odd"><td><p>LowResSpectrumOffset</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>-1</p></td>
 <td><p>Offset on spectrum No of low resolution spectra from high resolution one. If negative, then all the low resolution TOF will not be processed.  Otherwise, low resolution TOF will be stored in an additional set of spectra. If offset is equal to 0, then the low resolution will have same spectrum Nos as the normal ones.  Otherwise, the low resolution spectra will have spectrum IDs offset from normal ones.</p></td>
 </tr>
-<tr class="row-odd"><td><p>ReductionProperties</p></td>
+<tr class="row-even"><td><p>ReductionProperties</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>__powdereduction</p></td>
@@ -446,8 +452,8 @@ and
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/2831ac12acab354fa578840a115b52bb47ab287e/Framework/WorkflowAlgorithms/inc/MantidWorkflowAlgorithms/AlignAndFocusPowder.h">AlignAndFocusPowder.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/2831ac12acab354fa578840a115b52bb47ab287e/Framework/WorkflowAlgorithms/src/AlignAndFocusPowder.cpp">AlignAndFocusPowder.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5f28c72c78c87db2dbd8869e0c2c9b4b41750b79/Framework/WorkflowAlgorithms/inc/MantidWorkflowAlgorithms/AlignAndFocusPowder.h">AlignAndFocusPowder.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5f28c72c78c87db2dbd8869e0c2c9b4b41750b79/Framework/WorkflowAlgorithms/src/AlignAndFocusPowder.cpp">AlignAndFocusPowder.cpp</a></p>
 </section>
 </section>
 

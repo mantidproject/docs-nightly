@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=b114cb03"></script>
+    <script src="../_static/documentation_options.js?v=84e1e891"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -196,145 +196,151 @@
 <td><p><em>Optional</em></p></td>
 <td><p>Optional: To only include events before the provided stop time, in seconds (relative to the start of the run).</p></td>
 </tr>
-<tr class="row-odd"><td><p>BankName</p></td>
+<tr class="row-odd"><td><p>FilterBadPulsesLowerCutoff</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>Optional: To filter bad pulses set the Lower Cutoff percentage to use.</p></td>
+</tr>
+<tr class="row-even"><td><p>BankName</p></td>
 <td><p>Input</p></td>
 <td><p>str list</p></td>
 <td></td>
 <td><p>Optional: To only include events from one bank. Any bank whose name does not match the given string will have no events.</p></td>
 </tr>
-<tr class="row-even"><td><p>SingleBankPixelsOnly</p></td>
+<tr class="row-odd"><td><p>SingleBankPixelsOnly</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>Optional: Only applies if you specified a single bank to load with BankName. Only pixels in the specified bank will be created if true; all of the instrument’s pixels will be created otherwise.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Precount</p></td>
+<tr class="row-even"><td><p>Precount</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>Pre-count the number of events in each pixel before allocating memory (optional, default True). This can significantly reduce memory use and memory fragmentation; it may also speed up loading.</p></td>
 </tr>
-<tr class="row-even"><td><p>CompressTolerance</p></td>
+<tr class="row-odd"><td><p>CompressTolerance</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>CompressEvents while loading (optional, default: off). This specified the tolerance to use (in microseconds) when compressing where positive is linear tolerance, negative is logorithmic tolerance, and zero indicates that time-of-flight must be identical to compress.</p></td>
 </tr>
-<tr class="row-odd"><td><p>CompressBinningMode</p></td>
+<tr class="row-even"><td><p>CompressBinningMode</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>Default</p></td>
 <td><p>Optional. Binning behavior can be specified in the usual way through sign of binwidth and other properties (‘Default’); or can be set to one of the allowed binning modes. This will override all other specification or default behavior. Allowed values: [‘Default’, ‘Linear’, ‘Logarithmic’]</p></td>
 </tr>
-<tr class="row-even"><td><p>ChunkNumber</p></td>
+<tr class="row-odd"><td><p>ChunkNumber</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>If loading the file by sections (‘chunks’), this is the section number of this execution of the algorithm.</p></td>
 </tr>
-<tr class="row-odd"><td><p>TotalChunks</p></td>
+<tr class="row-even"><td><p>TotalChunks</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>If loading the file by sections (‘chunks’), this is the total number of sections.</p></td>
 </tr>
-<tr class="row-even"><td><p>LoadMonitors</p></td>
+<tr class="row-odd"><td><p>LoadMonitors</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>Load the monitors from the file (optional, default False).</p></td>
 </tr>
-<tr class="row-odd"><td><p>MonitorsLoadOnly</p></td>
+<tr class="row-even"><td><p>MonitorsLoadOnly</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>If multiple repesentations exist, which one to load. Default is to load the one that is present. Allowed values: [‘’, ‘Events’, ‘Histogram’]</p></td>
 </tr>
-<tr class="row-even"><td><p>FilterMonByTofMin</p></td>
+<tr class="row-odd"><td><p>FilterMonByTofMin</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Optional: To exclude events from monitors that do not fall within a range of times-of-flight. This is the minimum accepted value in microseconds.</p></td>
 </tr>
-<tr class="row-odd"><td><p>FilterMonByTofMax</p></td>
+<tr class="row-even"><td><p>FilterMonByTofMax</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Optional: To exclude events from monitors that do not fall within a range of times-of-flight. This is the maximum accepted value in microseconds.</p></td>
 </tr>
-<tr class="row-even"><td><p>FilterMonByTimeStart</p></td>
+<tr class="row-odd"><td><p>FilterMonByTimeStart</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Optional: To only include events from monitors after the provided start time, in seconds (relative to the start of the run).</p></td>
 </tr>
-<tr class="row-odd"><td><p>FilterMonByTimeStop</p></td>
+<tr class="row-even"><td><p>FilterMonByTimeStop</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Optional: To only include events from monitors before the provided stop time, in seconds (relative to the start of the run).</p></td>
 </tr>
-<tr class="row-even"><td><p>SpectrumMin</p></td>
+<tr class="row-odd"><td><p>SpectrumMin</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>The number of the first spectrum to read.</p></td>
 </tr>
-<tr class="row-odd"><td><p>SpectrumMax</p></td>
+<tr class="row-even"><td><p>SpectrumMax</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>The number of the last spectrum to read.</p></td>
 </tr>
-<tr class="row-even"><td><p>SpectrumList</p></td>
+<tr class="row-odd"><td><p>SpectrumList</p></td>
 <td><p>Input</p></td>
 <td><p>int list</p></td>
 <td></td>
 <td><p>A comma-separated list of individual spectra to read.</p></td>
 </tr>
-<tr class="row-odd"><td><p>MetaDataOnly</p></td>
+<tr class="row-even"><td><p>MetaDataOnly</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>If true, only the meta data and sample logs will be loaded.</p></td>
 </tr>
-<tr class="row-even"><td><p>LoadLogs</p></td>
+<tr class="row-odd"><td><p>LoadLogs</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>Load only the Sample/DAS logs from the file (default True).</p></td>
 </tr>
-<tr class="row-odd"><td><p>LoadAllLogs</p></td>
+<tr class="row-even"><td><p>LoadAllLogs</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>Load all the logs from the nxs, without checking or processing them; if checked, LoadLogs will be ignored; use with caution</p></td>
 </tr>
-<tr class="row-even"><td><p>LoadType</p></td>
+<tr class="row-odd"><td><p>LoadType</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>Default</p></td>
 <td><p>Set type of loader. 2 options {Default, Multiproceess},’Multiprocess’ should work faster for big files and it is experimental, available only in Linux. Allowed values: [‘Default’, ‘Multiprocess (experimental)’]</p></td>
 </tr>
-<tr class="row-odd"><td><p>LoadNexusInstrumentXML</p></td>
+<tr class="row-even"><td><p>LoadNexusInstrumentXML</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>Reads the embedded Instrument XML from the NeXus file (optional, default True).</p></td>
 </tr>
-<tr class="row-even"><td><p>NumberOfBins</p></td>
+<tr class="row-odd"><td><p>NumberOfBins</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>500</p></td>
 <td><p>The number of bins intially defined. Use Rebin to change the binning later.  If there is no data loaded, or you select meta data only you will only get 1 bin.</p></td>
 </tr>
-<tr class="row-odd"><td><p>AllowList</p></td>
+<tr class="row-even"><td><p>AllowList</p></td>
 <td><p>Input</p></td>
 <td><p>str list</p></td>
 <td></td>
 <td><p>If specified, only these logs will be loaded from the file (each separated by a space).</p></td>
 </tr>
-<tr class="row-even"><td><p>BlockList</p></td>
+<tr class="row-odd"><td><p>BlockList</p></td>
 <td><p>Input</p></td>
 <td><p>str list</p></td>
 <td></td>
@@ -544,8 +550,8 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id13" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/2831ac12acab354fa578840a115b52bb47ab287e/Framework/DataHandling/inc/MantidDataHandling/LoadEventNexus.h">LoadEventNexus.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/2831ac12acab354fa578840a115b52bb47ab287e/Framework/DataHandling/src/LoadEventNexus.cpp">LoadEventNexus.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5f28c72c78c87db2dbd8869e0c2c9b4b41750b79/Framework/DataHandling/inc/MantidDataHandling/LoadEventNexus.h">LoadEventNexus.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5f28c72c78c87db2dbd8869e0c2c9b4b41750b79/Framework/DataHandling/src/LoadEventNexus.cpp">LoadEventNexus.cpp</a></p>
 </section>
 </section>
 

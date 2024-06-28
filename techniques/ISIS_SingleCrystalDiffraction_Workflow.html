@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=5d712707"></script>
+    <script src="../_static/documentation_options.js?v=81651bf1"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -50,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>6.9</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>6.10</b></span>
       </div>
 
       
@@ -178,7 +178,7 @@ combined in a script with mantid algorithms in the usual way.</p>
 The updated positions are stored in an .xml file, the path to the file is returned by <cite>calibrate_sxd_panels</cite>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sxd</span> <span class="o">=</span> <span class="n">SXD</span><span class="p">()</span>
 <span class="n">wsname</span> <span class="o">=</span> <span class="n">sxd</span><span class="o">.</span><span class="n">load_run</span><span class="p">(</span><span class="mi">32863</span><span class="p">)</span>
-<span class="n">peaks_ws</span> <span class="o">=</span> <span class="n">sxd</span><span class="o">.</span><span class="n">find_sx_peaks</span><span class="p">(</span><span class="n">wsname</span><span class="p">,</span>  <span class="n">nstd</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">peaks_ws</span> <span class="o">=</span> <span class="n">sxd</span><span class="o">.</span><span class="n">find_sx_peaks</span><span class="p">(</span><span class="n">wsname</span><span class="p">)</span>
 <span class="n">sxd</span><span class="o">.</span><span class="n">remove_peaks_on_detector_edge</span><span class="p">(</span><span class="n">peaks_ws</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># initial UB</span>
@@ -252,7 +252,7 @@ The goniometer angles are provided later.</p>
 
 <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">runs</span><span class="p">:</span>
     <span class="n">ws</span> <span class="o">=</span> <span class="n">sxd</span><span class="o">.</span><span class="n">get_ws</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
-    <span class="n">peaks</span> <span class="o">=</span> <span class="n">sxd</span><span class="o">.</span><span class="n">find_sx_peaks</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">nstd</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">sxd</span><span class="o">.</span><span class="n">find_sx_peaks</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
     <span class="n">sxd</span><span class="o">.</span><span class="n">remove_peaks_on_detector_edge</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">sxd</span><span class="o">.</span><span class="n">set_peaks</span><span class="p">(</span><span class="n">run</span><span class="p">,</span> <span class="n">peaks</span><span class="p">)</span>
 <span class="c1"># find UB with consistent indexing across runs</span>
@@ -281,10 +281,12 @@ The goniometer angles are provided later.</p>
 <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">runs</span><span class="p">:</span>
     <span class="n">skew_args</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">skew_args</span><span class="p">,</span> <span class="s1">&#39;OutputFile&#39;</span><span class="p">:</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">run</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">peak_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">_int.pdf&quot;</span><span class="p">)}</span>
     <span class="n">sxd</span><span class="o">.</span><span class="n">integrate_data</span><span class="p">(</span><span class="n">integration_type</span><span class="p">,</span> <span class="n">peak_type</span><span class="p">,</span> <span class="n">run</span><span class="o">=</span><span class="n">run</span><span class="p">,</span> <span class="o">**</span><span class="n">skew_args</span><span class="p">)</span>
+    <span class="n">sxd</span><span class="o">.</span><span class="n">remove_non_integrated_peaks</span><span class="p">(</span><span class="n">sxd</span><span class="o">.</span><span class="n">get_peaks</span><span class="p">(</span><span class="n">run</span><span class="p">,</span> <span class="n">peak_type</span><span class="p">,</span> <span class="n">integration_type</span><span class="p">))</span>
+    <span class="n">sxd</span><span class="o">.</span><span class="n">calc_absorption_weighted_path_lengths</span><span class="p">(</span><span class="n">peak_type</span><span class="p">,</span> <span class="n">integration_type</span><span class="p">,</span> <span class="n">run</span><span class="o">=</span><span class="n">run</span><span class="p">,</span> <span class="n">ApplyCorrection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">sxd</span><span class="o">.</span><span class="n">save_peak_table</span><span class="p">(</span><span class="n">run</span><span class="p">,</span> <span class="n">peak_type</span><span class="p">,</span> <span class="n">integration_type</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">save_format</span><span class="o">=</span><span class="s1">&#39;SHELX&#39;</span><span class="p">)</span>
 
 <span class="c1"># save combined table</span>
-<span class="n">sxd</span><span class="o">.</span><span class="n">save_all_peaks</span><span class="p">(</span><span class="n">peak_type</span><span class="p">,</span> <span class="n">integration_type</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">save_format</span><span class="o">=</span><span class="n">fmt</span><span class="p">)</span>
+<span class="n">sxd</span><span class="o">.</span><span class="n">save_all_peaks</span><span class="p">(</span><span class="n">peak_type</span><span class="p">,</span> <span class="n">integration_type</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">save_format</span><span class="o">=</span><span class="s1">&#39;SHELX&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -309,7 +311,7 @@ involves saving the data with a different file extension e.g. <code class="docut
 <span class="n">WishSX</span><span class="o">.</span><span class="n">mask_detector_edges</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">nedge</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">ntubes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">wsMD</span> <span class="o">=</span> <span class="n">WishSX</span><span class="o">.</span><span class="n">convert_ws_to_MD</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;Q (lab frame)&quot;</span><span class="p">)</span>
 <span class="c1"># find peaks and integrate</span>
-<span class="n">peaks</span> <span class="o">=</span> <span class="n">WishSX</span><span class="o">.</span><span class="n">find_sx_peaks</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">nstd</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">peaks</span> <span class="o">=</span> <span class="n">WishSX</span><span class="o">.</span><span class="n">find_sx_peaks</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
 <span class="n">peaks_int</span> <span class="o">=</span> <span class="n">WishSX</span><span class="p">()</span><span class="o">.</span><span class="n">integrate_peaks_MD_optimal_radius</span><span class="p">(</span><span class="n">wsMD</span><span class="p">,</span> <span class="n">peaks</span><span class="p">,</span> <span class="n">peaks</span><span class="o">+</span><span class="s2">&quot;_int&quot;</span><span class="p">,</span> <span class="n">ws</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="o">**</span><span class="n">intPeaksMDArgs</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -364,7 +366,7 @@ has changed).</p>
     <span class="n">WishSX</span><span class="o">.</span><span class="n">mask_detector_edges</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">nedge</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">ntubes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">wsMD</span> <span class="o">=</span> <span class="n">WishSX</span><span class="o">.</span><span class="n">convert_ws_to_MD</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;Q (lab frame)&quot;</span><span class="p">)</span>
     <span class="c1"># find peaks and integrate</span>
-    <span class="n">peaks</span> <span class="o">=</span> <span class="n">WishSX</span><span class="o">.</span><span class="n">find_sx_peaks</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">nstd</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">WishSX</span><span class="o">.</span><span class="n">find_sx_peaks</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
     <span class="n">peaks_int</span> <span class="o">=</span> <span class="n">WishSX</span><span class="p">()</span><span class="o">.</span><span class="n">integrate_peaks_MD_optimal_radius</span><span class="p">(</span><span class="n">wsMD</span><span class="p">,</span> <span class="n">peaks</span><span class="p">,</span> <span class="n">peaks</span><span class="o">+</span><span class="s2">&quot;_int&quot;</span><span class="p">,</span> <span class="n">ws</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="o">**</span><span class="n">intPeaksMDArgs</span><span class="p">)</span>
     <span class="n">peaks_int</span> <span class="o">=</span> <span class="n">peaks_int</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
     <span class="c1"># filter to get strong peaks only</span>

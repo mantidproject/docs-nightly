@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=12a609c5"></script>
+    <script src="../_static/documentation_options.js?v=efe00353"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -166,7 +166,8 @@
 <li><p>Finally, division of reflected beams workspace by direct measurement and conversion to momentum exchange in <a class="reference internal" href="../algorithms/ReflectometryILLConvertToQ-v1.html#algm-reflectometryillconverttoq"><span class="std std-ref">ReflectometryILLConvertToQ</span></a></p></li>
 </ol>
 <p>This workflow could be also represented as the diagram below.</p>
-<img alt="../_images/ReflectometryILLAutoProcess-v1_wkflw.svg" src="../_images/ReflectometryILLAutoProcess-v1_wkflw.svg" /><div class="admonition note">
+<img alt="../_images/ReflectometryILLAutoProcess-v1_wkflw.svg" src="../_images/ReflectometryILLAutoProcess-v1_wkflw.svg" />
+<div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To run these usage examples please first download the
 <a class="reference external" href="https://sourceforge.net/projects/mantid/files/Sample%20Data/UsageData.zip/download">usage data</a>,
@@ -218,7 +219,9 @@ Min/max of TOF: -470.036, 56529.964
 <p>The <em>OutputWorkspace</em> can be further fed to <a class="reference internal" href="../algorithms/ReflectometryILLSumForeground-v1.html#algm-reflectometryillsumforeground"><span class="std std-ref">ReflectometryILLSumForeground</span></a>.</p>
 <p>The option <em>Slit Normalisation AUTO</em> will select the slit normalisation depending on the instrument: for D17 and FIGARO, the slit normalisation will be turned on and off, respectively.</p>
 <p>The workflow diagram below gives an overview of the algorithm for direct and reflected beam preprocessing respectively:</p>
-<img alt="../_images/ReflectometryILLPreprocessDirect-v1_wkflw.svg" src="../_images/ReflectometryILLPreprocessDirect-v1_wkflw.svg" /><img alt="../_images/ReflectometryILLPreprocessReflected-v1_wkflw.svg" src="../_images/ReflectometryILLPreprocessReflected-v1_wkflw.svg" /><section id="measurement">
+<img alt="../_images/ReflectometryILLPreprocessDirect-v1_wkflw.svg" src="../_images/ReflectometryILLPreprocessDirect-v1_wkflw.svg" />
+<img alt="../_images/ReflectometryILLPreprocessReflected-v1_wkflw.svg" src="../_images/ReflectometryILLPreprocessReflected-v1_wkflw.svg" />
+<section id="measurement">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">Measurement</a><a class="headerlink" href="#measurement" title="Link to this heading">¶</a></h3>
 <p>This tag defines whether the runs need to be processed as direct or reflected beams.
 In both cases the fractional foreground centre is fitted.
@@ -262,7 +265,8 @@ was dictated by the Mantid architecture but is mathematically equivalent and doe
 <section id="workflow-diagram-and-working-example">
 <h3><a class="toc-backref" href="#id11" role="doc-backlink">Workflow diagram and working example</a><a class="headerlink" href="#workflow-diagram-and-working-example" title="Link to this heading">¶</a></h3>
 <p>Below is the relevant workflow diagram describing polarization correction workflow..</p>
-<img alt="../_images/ReflectometryILLPolarizationCor-v1_wkflw.svg" src="../_images/ReflectometryILLPolarizationCor-v1_wkflw.svg" /><div class="admonition note">
+<img alt="../_images/ReflectometryILLPolarizationCor-v1_wkflw.svg" src="../_images/ReflectometryILLPolarizationCor-v1_wkflw.svg" />
+<div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To run these usage examples please first download the
 <a class="reference external" href="https://sourceforge.net/projects/mantid/files/Sample%20Data/UsageData.zip/download">usage data</a>,
@@ -387,7 +391,8 @@ X unit: Wavelength
 <p>This algorithm is the last step in the reflectometry reduction workflow. Its main purpose is to convert reflectivity workspaces from wavelength to momentum transfer. This is achieved by <a class="reference internal" href="../algorithms/ReflectometryMomentumTransfer-v1.html#algm-reflectometrymomentumtransfer"><span class="std std-ref">ReflectometryMomentumTransfer</span></a>, which also computes the <span class="math notranslate nohighlight">\(Q_{z}\)</span> resolution. Further, histogrammed <em>InputWorkspace</em> is converted to point data by <a class="reference internal" href="../algorithms/ConvertToPointData-v1.html#algm-converttopointdata"><span class="std std-ref">ConvertToPointData</span></a> and, optionally, the points are grouped according to the <span class="math notranslate nohighlight">\(Q_{z}\)</span> resolution.</p>
 <p>If the instrument is FIGARO, and <em>ThetaCorrection</em> is defined, the second step of the gravity correction is performed, where the gravity-corrected reflection angle is taken into account, and the X-axis transformed to momentum exchange replaces the X-axis of the <em>OutputWorkspace</em>.</p>
 <p>The diagram below shows the workflow of this algorithm:</p>
-<img alt="../_images/ReflectometryILLConvertToQ-v1_wkflw.svg" src="../_images/ReflectometryILLConvertToQ-v1_wkflw.svg" /><p>The algorithm expects to find a <code class="docutils literal notranslate"><span class="pre">foreground.summation_type</span></code> entry in the <em>InputWorkspace</em>’s sample logs containing either <code class="docutils literal notranslate"><span class="pre">SumInLambda</span></code> or <code class="docutils literal notranslate"><span class="pre">SumInQ</span></code>. This entry should be defined when processing was done in the <a class="reference internal" href="../algorithms/ReflectometryILLAutoProcess-v1.html#algm-reflectometryillautoprocess"><span class="std std-ref">ReflectometryILLAutoProcess</span></a> algorithm, as it is automatically added to the workspace in <a class="reference internal" href="../algorithms/ReflectometryILLSumForeground-v1.html#algm-reflectometryillsumforeground"><span class="std std-ref">ReflectometryILLSumForeground</span></a>.</p>
+<img alt="../_images/ReflectometryILLConvertToQ-v1_wkflw.svg" src="../_images/ReflectometryILLConvertToQ-v1_wkflw.svg" />
+<p>The algorithm expects to find a <code class="docutils literal notranslate"><span class="pre">foreground.summation_type</span></code> entry in the <em>InputWorkspace</em>’s sample logs containing either <code class="docutils literal notranslate"><span class="pre">SumInLambda</span></code> or <code class="docutils literal notranslate"><span class="pre">SumInQ</span></code>. This entry should be defined when processing was done in the <a class="reference internal" href="../algorithms/ReflectometryILLAutoProcess-v1.html#algm-reflectometryillautoprocess"><span class="std std-ref">ReflectometryILLAutoProcess</span></a> algorithm, as it is automatically added to the workspace in <a class="reference internal" href="../algorithms/ReflectometryILLSumForeground-v1.html#algm-reflectometryillsumforeground"><span class="std std-ref">ReflectometryILLSumForeground</span></a>.</p>
 </section>
 <section id="full-data-reduction-examples">
 <h2><a class="toc-backref" href="#id13" role="doc-backlink">Full data reduction examples</a><a class="headerlink" href="#full-data-reduction-examples" title="Link to this heading">¶</a></h2>

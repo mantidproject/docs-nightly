@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=da46905f"></script>
+    <script src="../../_static/documentation_options.js?v=540667fe"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -297,7 +297,7 @@ Msd parameter which can be found within the _Results group workspace.</p></li>
 </section>
 </section>
 <section id="i-q-t">
-<h2>I(Q, t)<a class="headerlink" href="#i-q-t" title="Link to this heading">¶</a></h2>
+<span id="iqtfit"></span><h2>I(Q, t)<a class="headerlink" href="#i-q-t" title="Link to this heading">¶</a></h2>
 <p>I(Q, t) provides a simplified interface for controlling various fitting
 functions (see the <a class="reference internal" href="../../algorithms/Fit-v1.html#algm-fit"><span class="std std-ref">Fit</span></a> algorithm for more info). The functions
 are also available via the fit wizard.</p>
@@ -476,9 +476,34 @@ then moves rapidly, that is, in a time negligible compared to <span class="math 
 <p>This interface can be used for a jump diffusion fit as well as fitting across
 EISF. This is done by means of the
 <a class="reference internal" href="../../algorithms/QENSFitSequential-v1.html#algm-qensfitsequential"><span class="std std-ref">QENSFitSequential</span></a> algorithm.</p>
-<p>The fit types available in Function(Q) are <a class="reference internal" href="../../fitting/fitfunctions/ChudleyElliot.html#func-chudleyelliot"><span class="std std-ref">ChudleyElliot</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/HallRoss.html#func-hall-ross"><span class="std std-ref">HallRoss</span></a>,
-<a class="reference internal" href="../../fitting/fitfunctions/FickDiffusion.html#func-fickdiffusion"><span class="std std-ref">FickDiffusion</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/TeixeiraWater.html#func-teixeirawater"><span class="std std-ref">TeixeiraWater</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/EISFDiffCylinder.html#func-eisfdiffcylinder"><span class="std std-ref">EISFDiffCylinder</span></a>,
-<a class="reference internal" href="../../fitting/fitfunctions/EISFDiffSphere.html#func-eisfdiffsphere"><span class="std std-ref">EISFDiffSphere</span></a> and <a class="reference internal" href="../../fitting/fitfunctions/EISFDiffSphereAlkyl.html#func-eisfdiffspherealkyl"><span class="std std-ref">EISFDiffSphereAlkyl</span></a>.</p>
+<p>This interface can load <span class="math notranslate nohighlight">\(A0\)</span>, <span class="math notranslate nohighlight">\(EISF\)</span>, <span class="math notranslate nohighlight">\(Width\)</span> or <span class="math notranslate nohighlight">\(FWHM\)</span> fitting
+parameters. The fit types available for each of these are listed below:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fit Parameter</p></th>
+<th class="head"><p>Produced on</p></th>
+<th class="head"><p>Available fit types</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A0</p></td>
+<td><p><a class="reference internal" href="#iqtfit"><span class="std std-ref">I(Q, t)</span></a> tab</p></td>
+<td><p><a class="reference internal" href="../../fitting/fitfunctions/EISFDiffCylinder.html#func-eisfdiffcylinder"><span class="std std-ref">EISFDiffCylinder</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/EISFDiffSphere.html#func-eisfdiffsphere"><span class="std std-ref">EISFDiffSphere</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/EISFDiffSphereAlkyl.html#func-eisfdiffspherealkyl"><span class="std std-ref">EISFDiffSphereAlkyl</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>EISF</p></td>
+<td><p><a class="reference internal" href="#convfit"><span class="std std-ref">Convolution</span></a> tab</p></td>
+<td><p><a class="reference internal" href="../../fitting/fitfunctions/EISFDiffCylinder.html#func-eisfdiffcylinder"><span class="std std-ref">EISFDiffCylinder</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/EISFDiffSphere.html#func-eisfdiffsphere"><span class="std std-ref">EISFDiffSphere</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/EISFDiffSphereAlkyl.html#func-eisfdiffspherealkyl"><span class="std std-ref">EISFDiffSphereAlkyl</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Width</p></td>
+<td><p><a class="reference internal" href="#convfit"><span class="std std-ref">Convolution</span></a> tab</p></td>
+<td><p><a class="reference internal" href="../../fitting/fitfunctions/ChudleyElliot.html#func-chudleyelliot"><span class="std std-ref">ChudleyElliot</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/HallRoss.html#func-hall-ross"><span class="std std-ref">HallRoss</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/FickDiffusion.html#func-fickdiffusion"><span class="std std-ref">FickDiffusion</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/TeixeiraWater.html#func-teixeirawater"><span class="std std-ref">TeixeiraWater</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>FWHM</p></td>
+<td><p><a class="reference internal" href="#convfit"><span class="std std-ref">Convolution</span></a> tab</p></td>
+<td><p><a class="reference internal" href="../../fitting/fitfunctions/ChudleyElliot.html#func-chudleyelliot"><span class="std std-ref">ChudleyElliot</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/HallRoss.html#func-hall-ross"><span class="std std-ref">HallRoss</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/FickDiffusion.html#func-fickdiffusion"><span class="std std-ref">FickDiffusion</span></a>, <a class="reference internal" href="../../fitting/fitfunctions/TeixeiraWater.html#func-teixeirawater"><span class="std std-ref">TeixeiraWater</span></a></p></td>
+</tr>
+</tbody>
+</table>
 <figure class="align-default">
 <a class="screenshot reference internal image-reference" href="../../_images/QENS_Fitting_tabFunctionQ_widget.png"><img alt="../../_images/QENS_Fitting_tabFunctionQ_widget.png" class="screenshot" src="../../_images/QENS_Fitting_tabFunctionQ_widget.png" style="width: 450px;" />
 </a>

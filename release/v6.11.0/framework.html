@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=540667fe"></script>
+    <script src="../../_static/documentation_options.js?v=bb28c2e9"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -153,11 +153,14 @@
 <li><p>Implemented an alternative input option <a class="reference internal" href="../../concepts/InstrumentDefinitionFile.html#instrumentdefinitionfile"><span class="std std-ref">Instrument Definition File</span></a> in <a class="reference internal" href="../../algorithms/GenerateGroupingSNSInelastic-v1.html#algm-generategroupingsnsinelastic"><span class="std std-ref">GenerateGroupingSNSInelastic</span></a>, selecting the new <code class="docutils literal notranslate"><span class="pre">InstrumentDefinitionFile</span></code> option in instrument drop down menu will create a new field allowing users selecting older instrument definition files.</p></li>
 <li><p>Implemented the <a class="reference internal" href="../../algorithms/FilterBadPulses-v1.html#algm-filterbadpulses"><span class="std std-ref">FilterBadPulses</span></a> functionality in <a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a>, adding the new <code class="docutils literal notranslate"><span class="pre">FilterBadPulsesLowerCutoff</span></code> parameter.</p></li>
 <li><p>Changed use of <cite>scipy.interpolate.interp2d</cite> in <cite>NMoldyn4Interpolation</cite> to use <cite>scipy.interpolate.RectBivariateSpline</cite>, since <cite>interp2d</cite> has been removed in version 1.14 of <cite>scipy</cite>. See reference documentation here (<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp2d.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp2d.html</a>)</p></li>
+<li><p>New version 2 of <a class="reference internal" href="../../algorithms/GenerateGroupingPowder-v2.html#algm-generategroupingpowder"><span class="std std-ref">GenerateGroupingPowder</span></a> that will save the grouping file with groups starting at 1 instead of 0 to make them consisted with <code class="docutils literal notranslate"><span class="pre">GroupingWorkspace</span></code>. The <code class="docutils literal notranslate"><span class="pre">FileFormat</span></code> parameter has also been removed as it will now be determined from the extension of <code class="docutils literal notranslate"><span class="pre">GroupingFilename</span></code>.</p></li>
 </ul>
 </section>
 <section id="bugfixes">
 <h3><a class="toc-backref" href="#id11" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Fixed an unreliable segmentation fault in the <a class="reference internal" href="../../algorithms/ExtractFFTSpectrum-v1.html#algm-extractfftspectrum"><span class="std std-ref">ExtractFFTSpectrum</span></a> algorithm.</p></li>
+<li><p>The <a class="reference internal" href="../../algorithms/ScaleX-v1.html#algm-scalex"><span class="std std-ref">ScaleX</span></a> algorithm has had a 95% speedup when using the “InstrumentParameter” property.</p></li>
 <li><p>Remove reference to <cite>numpy.distutils</cite> in <cite>IntegratePeaks1DProfile</cite>, since as of NumPy 1.23.0 it is deprecated.</p></li>
 </ul>
 </section>
@@ -196,11 +199,15 @@
 <h2><a class="toc-backref" href="#id21" role="doc-backlink">Dependencies</a><a class="headerlink" href="#dependencies" title="Link to this heading">¶</a></h2>
 <section id="id7">
 <h3><a class="toc-backref" href="#id22" role="doc-backlink">New features</a><a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Updated compiler on Linux to gcc version 12, which should improve performance in some circumstances</p></li>
+</ul>
 </section>
 <section id="id8">
 <h3><a class="toc-backref" href="#id23" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Allow versions of <cite>pycifrw</cite> greater than 4.4.1</p></li>
+<li><p>Add a run constraint to the mantid package to constrain the optional matplotlib dependency to v3.7. Previously it was possible to install any version of matplotlib alongside mantid in a conda environment, but we cannot guarantee compatibility for any version other than 3.7.</p></li>
 </ul>
 </section>
 </section>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=21db33e4"></script>
+    <script src="../../_static/documentation_options.js?v=81f7b854"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -151,11 +151,13 @@
 <section id="new-features">
 <h3><a class="toc-backref" href="#id10" role="doc-backlink">New features</a><a class="headerlink" href="#new-features" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Added a load compression parameter <code class="docutils literal notranslate"><span class="pre">MinSizeCompressOnLoad</span></code> for ref: <a class="reference internal" href="../../algorithms/AlignAndFocusPowderFromFiles-v1.html#algm-alignandfocuspowderfromfiles"><span class="std std-ref">AlignAndFocusPowderFromFiles</span></a>.</p></li>
 <li><p>Implemented an alternative input option <a class="reference internal" href="../../concepts/InstrumentDefinitionFile.html#instrumentdefinitionfile"><span class="std std-ref">Instrument Definition File</span></a> in <a class="reference internal" href="../../algorithms/GenerateGroupingSNSInelastic-v1.html#algm-generategroupingsnsinelastic"><span class="std std-ref">GenerateGroupingSNSInelastic</span></a>, selecting the new <code class="docutils literal notranslate"><span class="pre">InstrumentDefinitionFile</span></code> option in instrument drop down menu will create a new field allowing users selecting older instrument definition files.</p></li>
 <li><p>Implemented the <a class="reference internal" href="../../algorithms/FilterBadPulses-v1.html#algm-filterbadpulses"><span class="std std-ref">FilterBadPulses</span></a> functionality in <a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a>, adding the new <code class="docutils literal notranslate"><span class="pre">FilterBadPulsesLowerCutoff</span></code> parameter.</p></li>
 <li><p>H5 exceptions are now caught with improved error reporting.</p></li>
 <li><p>Improve time-scaling performance of CombineDiffCal, and add extra validations.</p></li>
 <li><p>Changed use of <cite>scipy.interpolate.interp2d</cite> in <cite>NMoldyn4Interpolation</cite> to use <cite>scipy.interpolate.RectBivariateSpline</cite>, since <cite>interp2d</cite> has been removed in version 1.14 of <cite>scipy</cite>. See reference documentation here (<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp2d.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp2d.html</a>)</p></li>
+<li><p>Add support for <a class="reference internal" href="../../concepts/Ragged_Workspace.html#ragged-workspace"><span class="std std-ref">Ragged Workspaces</span></a> to <a class="reference internal" href="../../algorithms/CompareWorkspaces-v1.html#algm-compareworkspaces"><span class="std std-ref">CompareWorkspaces</span></a>.</p></li>
 <li><p>Add support for <a class="reference internal" href="../../concepts/Ragged_Workspace.html#ragged-workspace"><span class="std std-ref">Ragged Workspaces</span></a> to binary operations. <a class="reference internal" href="../../algorithms/Plus-v1.html#algm-plus"><span class="std std-ref">Plus</span></a>, <a class="reference internal" href="../../algorithms/Minus-v1.html#algm-minus"><span class="std std-ref">Minus</span></a>, <a class="reference internal" href="../../algorithms/Divide-v1.html#algm-divide"><span class="std std-ref">Divide</span></a> and <a class="reference internal" href="../../algorithms/Multiply-v1.html#algm-multiply"><span class="std std-ref">Multiply</span></a>.</p></li>
 <li><p>New version 2 of <a class="reference internal" href="../../algorithms/GenerateGroupingPowder-v2.html#algm-generategroupingpowder"><span class="std std-ref">GenerateGroupingPowder</span></a> that will save the grouping file with groups starting at 1 instead of 0 to make them consisted with <code class="docutils literal notranslate"><span class="pre">GroupingWorkspace</span></code>. The <code class="docutils literal notranslate"><span class="pre">FileFormat</span></code> parameter has also been removed as it will now be determined from the extension of <code class="docutils literal notranslate"><span class="pre">GroupingFilename</span></code>.</p></li>
 </ul>
@@ -165,8 +167,10 @@
 <ul class="simple">
 <li><p>Fixed an unreliable segmentation fault in the <a class="reference internal" href="../../algorithms/ExtractFFTSpectrum-v1.html#algm-extractfftspectrum"><span class="std std-ref">ExtractFFTSpectrum</span></a> algorithm.</p></li>
 <li><p>The <a class="reference internal" href="../../algorithms/LoadIsawUB-v1.html#algm-loadisawub"><span class="std std-ref">LoadIsawUB</span></a> algorithm now correctly adds the UB to the first experiment info when the input workspace has more than one.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/SaveNexusProcessed-v1.html#algm-savenexusprocessed"><span class="std std-ref">SaveNexusProcessed</span></a> and <a class="reference internal" href="../../algorithms/LoadNexusProcessed-v2.html#algm-loadnexusprocessed"><span class="std std-ref">LoadNexusProcessed</span></a> has been fixed to correctly work with <a class="reference internal" href="../../concepts/Ragged_Workspace.html#ragged-workspace"><span class="std std-ref">Ragged Workspaces</span></a>.</p></li>
 <li><p>The <a class="reference internal" href="../../algorithms/ScaleX-v1.html#algm-scalex"><span class="std std-ref">ScaleX</span></a> algorithm has had a 95% speedup when using the “InstrumentParameter” property.</p></li>
 <li><p>Remove reference to <cite>numpy.distutils</cite> in <cite>IntegratePeaks1DProfile</cite>, since as of NumPy 1.23.0 it is deprecated.</p></li>
+<li><p>Fixed bug when all sample times are before 01/01/1991</p></li>
 </ul>
 </section>
 <section id="removed">
@@ -212,6 +216,9 @@
 </section>
 <section id="id6">
 <h3><a class="toc-backref" href="#id21" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fixed error in the log about <cite>load_module()</cite> being deprecated in Python 3.12.</p></li>
+</ul>
 </section>
 </section>
 <section id="dependencies">

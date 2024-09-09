@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=899af655"></script>
+    <script src="../../_static/documentation_options.js?v=e55e316f"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -137,6 +137,10 @@
 <li><p>Added tooltips to the run and abort buttons, displaying their functionality and shortcut keys.  Tooltips are displayed when hovering over the relevant buttons.</p></li>
 <li><p>Force Style for QComboBoxes and text, in order to make text visible on OSX dark mode</p></li>
 <li><p>expose <a class="reference internal" href="../../api/python/mantid/kernel/ConfigServiceImpl.html#mantid.kernel.ConfigServiceImpl.remove" title="mantid.kernel.ConfigServiceImpl.remove"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigService::remove()</span></code></a> to python API</p></li>
+<li><p>expose <a class="reference internal" href="../../api/python/mantid/kernel/ConfigServiceImpl.html#mantid.kernel.ConfigServiceImpl.configureLogging" title="mantid.kernel.ConfigServiceImpl.configureLogging"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigService::configureLogging()</span></code></a> to python API</p></li>
+<li><p>expose <a class="reference internal" href="../../api/python/mantid/kernel/ConfigServiceImpl.html#mantid.kernel.ConfigServiceImpl.getLogLevel" title="mantid.kernel.ConfigServiceImpl.getLogLevel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigService::getLogLevel()</span></code></a> to python API</p></li>
+<li><p>fix handling of removed propertyies in <a class="reference internal" href="../../api/python/mantid/kernel/ConfigServiceImpl.html#mantid.kernel.ConfigServiceImpl.saveConfig" title="mantid.kernel.ConfigServiceImpl.saveConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigService::saveConfig()</span></code></a></p></li>
+<li><p>Handled error where parsing malformed XML code in the code editor caused mantid to crash.</p></li>
 <li><p>Clarified <code class="docutils literal notranslate"><span class="pre">Report</span> <span class="pre">Usage</span> <span class="pre">Data</span></code> checkbox on the Workbench About page to explain that usage reporting is required to use the Error Reporter.</p></li>
 </ul>
 </section>
@@ -145,6 +149,7 @@
 <ul class="simple">
 <li><p>Fixed a bug where right-clicking a 3D plot to change the colour bar scale could toggle the zoom tool.</p></li>
 <li><p>Fixed error when plotting a histogram of live data.</p></li>
+<li><p>Creating a script from a workspace’s history, where that history includes algorithms using <cite>StoreInADS=False</cite>, should now create a functioning script.</p></li>
 <li><p>Legend in plots is no longer accidentally picked up by a mouse scroll</p></li>
 <li><p>Fixed issue with dragging text onto the plot: Previously, dragging invalid text onto the plot resulted in unexpected behavior Now, when invalid text is dragged onto the plot, a warning is displayed to the user indicating that the workspace is invalid.</p></li>
 <li><p>Fixed key shortcuts <cite>k</cite> and <cite>l</cite> in mantid plot for quickly switching between <cite>linear</cite> and <cite>log</cite> scales.</p></li>

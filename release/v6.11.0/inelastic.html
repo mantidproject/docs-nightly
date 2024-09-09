@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=899af655"></script>
+    <script src="../../_static/documentation_options.js?v=e55e316f"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -137,11 +137,18 @@
 <section id="bugfixes">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading">¶</a></h2>
 <ul class="simple">
+<li><p>It is possible to see the Spectrum number 0 on the widget plot of the selected preview workspace on <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#elwin"><span class="std std-ref">Elwin interface</span></a></p></li>
+<li><p>Changing the preview spectrum above the plot widget combo box plots the correct spectrum for the selected index  <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#elwin"><span class="std std-ref">Elwin interface</span></a></p></li>
+<li><p>Fixed an ‘index out of range’ error in the <a class="reference internal" href="../../algorithms/BayesQuasi-v1.html#algm-bayesquasi"><span class="std std-ref">BayesQuasi</span></a> algorithm when using a sample with a Numeric Axis.</p></li>
 <li><p>The dialog window for adding data in the  <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#elwin"><span class="std std-ref">Elwin Tab</span></a> of the <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#interface-inelastic-data-processor"><span class="std std-ref">Data Processor Interface</span></a> no longer freezes when adding data.</p></li>
+<li><p>Adding new data to the  <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#elwin"><span class="std std-ref">Elwin data table</span></a> after clearing the Analysis Data Service no longer raises a <em>No data found</em> warning.</p></li>
 <li><p>Fixed a crash on the Quasi tab of the <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Bayes%20Fitting.html#interface-inelastic-bayes-fitting"><span class="std std-ref">Inelastic Bayes Fitting</span></a> interface caused by attempting to load a WorkspaceGroup rather than the expected Workspace2D.</p></li>
 <li><p>Prevented a crash on the Quasi tab of the <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Bayes%20Fitting.html#interface-inelastic-bayes-fitting"><span class="std std-ref">Inelastic Bayes Fitting</span></a> interface caused by clicking <cite>Run</cite> before data has finished loading.</p></li>
+<li><p>Fix a cutoff issue with “Symmetric Energy Range” label in <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#iqt"><span class="std std-ref">Iqt</span></a> tab of the <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#interface-inelastic-data-processor"><span class="std std-ref">Data Processor</span></a> interface.</p></li>
+<li><p>Mantid no longer crashes when trying to plot a preview of the selected workspace on the <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#elwin"><span class="std std-ref">Elwin tab</span></a> after that workspace has been deleted from the ADS.</p></li>
 <li><p>Fixed a bug in the Monte Carlo error calculation on the I(Q, t) tab of the <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#interface-inelastic-data-processor"><span class="std std-ref">Data Processor Interface</span></a> where the first bin had an error of zero.</p></li>
 <li><p>Fix a bug in which sliders didn’t respond to changes in <cite>Emin</cite> and <cite>EMax</cite> properties when changed from the property browser in the <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#inelastic-moments"><span class="std std-ref">Moments</span></a> tab of the <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#interface-inelastic-data-processor"><span class="std std-ref">Data Processor</span></a> interface.</p></li>
+<li><p>If the ADS is cleared from workspaces that are used to run fits on an open <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20QENS%20Fitting.html#interface-inelastic-qens-fitting"><span class="std std-ref">QENS Fitting interface</span></a>, a warning message pops up when clicking on the <cite>Run</cite> button.</p></li>
 <li><p>Fix a freeze in <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#elwin"><span class="std std-ref">Elwin Tab</span></a> of <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#interface-inelastic-data-processor"><span class="std std-ref">Data Processor Interface</span></a> that happens when running the tab.</p></li>
 </ul>
 </section>
@@ -149,6 +156,9 @@
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Algorithms</a><a class="headerlink" href="#algorithms" title="Link to this heading">¶</a></h2>
 <section id="id1">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">New features</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add support for “high-precision” eigenvectors from GAUSSIAN in Abins/Abins2D algorithms. These are activated in GAUSSIAN with the <code class="docutils literal notranslate"><span class="pre">freq(HPModes)</span></code> parameter. In previous Mantid versions the Abins parser would fail to read the resulting files; now the high-precision values will be used.</p></li>
+</ul>
 </section>
 <section id="id2">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>

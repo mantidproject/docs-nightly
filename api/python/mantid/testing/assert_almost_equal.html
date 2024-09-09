@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
-    <script src="../../../../_static/documentation_options.js?v=899af655"></script>
+    <script src="../../../../_static/documentation_options.js?v=e55e316f"></script>
     <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -114,10 +114,12 @@
 <section id="assert-almost-equal">
 <span id="mantid-testing-assert-almost-equal"></span><h1>assert_almost_equal<a class="headerlink" href="#assert-almost-equal" title="Link to this heading">¶</a></h1>
 <p>This is a Python function for testing if two modules are within a tolerance.
-At least <code class="docutils literal notranslate"><span class="pre">rtol</span></code> or <code class="docutils literal notranslate"><span class="pre">atol</span></code> parameters should be specified. Neither being
-specified generates a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> exception. Both being specified runs
-the underlying <a class="reference internal" href="../../../../algorithms/CompareWorkspaces-v1.html#algm-compareworkspaces"><span class="std std-ref">CompareWorkspaces v1</span></a> algorithm
-twice, with relative tolerance being first.</p>
+If <code class="docutils literal notranslate"><span class="pre">rtol</span></code> is specified, will compare using the relative difference.
+If <code class="docutils literal notranslate"><span class="pre">atol</span></code> is specified, will compare using the absolute difference.
+One or both of <code class="docutils literal notranslate"><span class="pre">rtol</span></code> and <code class="docutils literal notranslate"><span class="pre">atol</span></code> may be specified.
+Will run the underlying <a class="reference internal" href="../../../../algorithms/CompareWorkspaces-v1.html#algm-compareworkspaces"><span class="std std-ref">CompareWorkspaces v1</span></a> algorithm for each
+case specified, and fail if any of the comparisons fail.
+If neither <code class="docutils literal notranslate"><span class="pre">rtol</span></code> nor <code class="docutils literal notranslate"><span class="pre">atol</span></code>  is specified, will perform an absolute compatison to within 1.e-10.</p>
 <p id="module-mantid.testing.assert_almost_equal">Raises an assertion error if two workspaces are not within specified tolerance.</p>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
@@ -135,7 +137,9 @@ twice, with relative tolerance being first.</p>
 <dl class="simple">
 <dt>AssertionError</dt><dd><p>If Workspace1 and Workspace2 are not equal up to specified precision</p>
 </dd>
-<dt>ValueError</dt><dd><p>If atol and rtol are both not provided</p>
+<dt>ValueError</dt><dd><p>If atol or rtol are below zero</p>
+</dd>
+<dt>ValueError</dt><dd><p>If kwargs contains keys that cshould instead be set by atol or rtol</p>
 </dd>
 </dl>
 </section>

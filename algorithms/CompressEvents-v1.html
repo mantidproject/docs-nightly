@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=899af655"></script>
+    <script src="../_static/documentation_options.js?v=e55e316f"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -118,13 +118,17 @@
 <li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
 <li><p><a class="reference internal" href="#description" id="id4">Description</a></p>
 <ul>
-<li><p><a class="reference internal" href="#without-pulsetime-resolution" id="id5">Without pulsetime resolution</a></p></li>
-<li><p><a class="reference internal" href="#with-pulsetime-resolution" id="id6">With pulsetime resolution</a></p></li>
-<li><p><a class="reference internal" href="#logarithmic-binning" id="id7">Logarithmic binning</a></p></li>
+<li><p><a class="reference internal" href="#without-pulsetime-resolution" id="id5">Without pulsetime resolution</a></p>
+<ul>
+<li><p><a class="reference internal" href="#compressing-events-without-sorting" id="id6">Compressing events without sorting</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#usage" id="id8">Usage</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id9">Source</a></p></li>
+<li><p><a class="reference internal" href="#with-pulsetime-resolution" id="id7">With pulsetime resolution</a></p></li>
+<li><p><a class="reference internal" href="#logarithmic-binning" id="id8">Logarithmic binning</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#usage" id="id9">Usage</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id10">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
@@ -183,6 +187,12 @@
 <td><p>Default</p></td>
 <td><p>Binning behavior can be specified in the usual way through sign of tolerance and other properties (‘Default’); or can be set to one of the allowed binning modes. This will override all other specification or default behavior. Allowed values: [‘Default’, ‘Linear’, ‘Logarithmic’]</p></td>
 </tr>
+<tr class="row-even"><td><p>SortFirst</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td><p>If false a different method, that will not sort events first, will be used to compress events which is faster when you have a large number of events per compress tolerance</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -215,9 +225,22 @@ microseconds to group events together. In this case, histograms
 with/without compression are identical. If your workspace has undergone
 changes to its X values (unit conversion for example), you have to use
 your best judgement for the Tolerance value.</p>
+<section id="compressing-events-without-sorting">
+<h4><a class="toc-backref" href="#id6" role="doc-backlink">Compressing events without sorting</a><a class="headerlink" href="#compressing-events-without-sorting" title="Link to this heading">¶</a></h4>
+<p>If you set the option <code class="docutils literal notranslate"><span class="pre">SortFirst</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code> then a different
+method to compress events will be used where the events do not need to
+be sorted first. This will be faster when the number of events going
+into a single compressed events is large, so when you have lots of
+events per spectra. This method works by histogramming the events into
+a regular grid that is then converted back into events using the
+weighted average x value.</p>
+<p>This method will not be used if the events are already sorted as that
+will be faster. This option will be ignored when used with
+<code class="docutils literal notranslate"><span class="pre">WallClockTolerance</span></code>.</p>
+</section>
 </section>
 <section id="with-pulsetime-resolution">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">With pulsetime resolution</a><a class="headerlink" href="#with-pulsetime-resolution" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">With pulsetime resolution</a><a class="headerlink" href="#with-pulsetime-resolution" title="Link to this heading">¶</a></h3>
 <p>Similar to the version without pulsetime resolution with a few key differences:</p>
 <ol class="arabic simple">
 <li><p>The <a class="reference internal" href="../api/python/mantid/api/EventType.html#mantid.api.EventType.WEIGHTED" title="mantid.api.EventType.WEIGHTED"><code class="xref py py-obj docutils literal notranslate"><span class="pre">events</span> <span class="pre">are</span> <span class="pre">weighted</span> <span class="pre">with</span> <span class="pre">time</span></code></a>. As a result, one can still run
@@ -240,12 +263,12 @@ format for the <code class="docutils literal notranslate"><span class="pre">Star
 parameter can be left unset.</p>
 </section>
 <section id="logarithmic-binning">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Logarithmic binning</a><a class="headerlink" href="#logarithmic-binning" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Logarithmic binning</a><a class="headerlink" href="#logarithmic-binning" title="Link to this heading">¶</a></h3>
 <p>If you provide a negative tolerance or select <code class="docutils literal notranslate"><span class="pre">Logarithmic</span></code> as the <code class="docutils literal notranslate"><span class="pre">BinningMode</span></code> then the events will be combined together in increase large tolerances starting from the smallest TOF value. This follows the same method as the logarithmic binning of <a class="reference internal" href="Rebin-v1.html#algm-rebin"><span class="std std-ref">Rebin v1</span></a>. This mode will fail if any of the TOF values are negative.</p>
 </section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Event&quot;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
@@ -266,10 +289,10 @@ However it now takes up less memory.
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Events.html">Events</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a64079b4a345c9c98e5c4d62a028c2913bcaed55/Framework/DataHandling/inc/MantidDataHandling/CompressEvents.h">CompressEvents.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a64079b4a345c9c98e5c4d62a028c2913bcaed55/Framework/DataHandling/src/CompressEvents.cpp">CompressEvents.cpp</a></p>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a64079b4a345c9c98e5c4d62a028c2913bcaed55/Testing/SystemTests/tests/framework/CompressEvents.py">CompressEvents.py</a></p>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/394fe6d1540b10b9764e49526fc6329582dfd157/Framework/DataHandling/inc/MantidDataHandling/CompressEvents.h">CompressEvents.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/394fe6d1540b10b9764e49526fc6329582dfd157/Framework/DataHandling/src/CompressEvents.cpp">CompressEvents.cpp</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/394fe6d1540b10b9764e49526fc6329582dfd157/Testing/SystemTests/tests/framework/CompressEvents.py">CompressEvents.py</a></p>
 </section>
 </section>
 

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=e55e316f"></script>
+    <script src="../../_static/documentation_options.js?v=660d7196"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -137,8 +137,10 @@
 <section id="new-features">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">New features</a><a class="headerlink" href="#new-features" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Add a minimum signal-to-sigma post-fitting check to <a class="reference internal" href="../../algorithms/FitPeaks-v1.html#algm-fitpeaks"><span class="std std-ref">FitPeaks</span></a> and <a class="reference internal" href="../../algorithms/PDCalibration-v1.html#algm-pdcalibration"><span class="std std-ref">PDCalibration</span></a>, where peaks with a signal below the provided threshold will be rejected.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/LoadEventAndCompress-v1.html#algm-loadeventandcompress"><span class="std std-ref">LoadEventAndCompress</span></a> has been updated to take advantage of new capability in LoadEventNexus</p></li>
 <li><p>Added option to <a class="reference internal" href="../../algorithms/AlignAndFocusPowder-v1.html#algm-alignandfocuspowder"><span class="std std-ref">AlignAndFocusPowder</span></a> to support logarithmic compression</p></li>
+<li><p>Add option <code class="docutils literal notranslate"><span class="pre">fit_prompt_pulse</span></code> to HRPD (ISIS) reduction to fit and subtract prompt pulse (as opposed to default method of masking of prompt pulse in TOF).</p></li>
 <li><p><a class="reference internal" href="../../algorithms/AlignAndFocusPowderFromFiles-v1.html#algm-alignandfocuspowderfromfiles"><span class="std std-ref">AlignAndFocusPowderFromFiles</span></a> has been updated to take advantage of new capability in <a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a> and <a class="reference internal" href="../../algorithms/AlignAndFocusPowder-v1.html#algm-alignandfocuspowder"><span class="std std-ref">AlignAndFocusPowder</span></a></p></li>
 <li><p><a class="reference internal" href="../../algorithms/SNSPowderReduction-v1.html#algm-snspowderreduction"><span class="std std-ref">SNSPowderReduction</span></a> has been updated to take advantage of new capabilities in <a class="reference internal" href="../../algorithms/AlignAndFocusPowderFromFiles-v1.html#algm-alignandfocuspowderfromfiles"><span class="std std-ref">AlignAndFocusPowderFromFiles</span></a> and <a class="reference internal" href="../../algorithms/AlignAndFocusPowder-v1.html#algm-alignandfocuspowder"><span class="std std-ref">AlignAndFocusPowder</span></a></p></li>
 </ul>
@@ -188,6 +190,7 @@
 <li><p>Improve shoebox position optimisation in <a class="reference internal" href="../../algorithms/IntegratePeaks1DProfile-v1.html#algm-integratepeaks1dprofile"><span class="std std-ref">IntegratePeaks1DProfile</span></a> - would previously be centred on nearby stronger peaks if present.</p></li>
 <li><p>Add method <cite>calc_absorption_weighted_path_lengths</cite> to ISIS single-crystal reduction classes that calculate tbar for each peak (saved in a column of the table) and optionally apply an attenuation correction to the integrated intensity of each peak. By default the correction will be applied if class has property scale_integrated = True)</p></li>
 <li><p>Update to algorithm <a class="reference internal" href="../../algorithms/AddAbsorptionWeightedPathLengths-v1.html#algm-addabsorptionweightedpathlengths"><span class="std std-ref">AddAbsorptionWeightedPathLengths</span></a> that now allows lean peaks to be used. There is also an option to apply the correction.</p></li>
+<li><p>New algorithm <a class="reference internal" href="../../algorithms/RotateSampleShape-v1.html#algm-rotatesampleshape"><span class="std std-ref">RotateSampleShape</span></a> that defines the initial orientation of a sample with respect to the beam and instrument.</p></li>
 </ul>
 </section>
 <section id="id4">

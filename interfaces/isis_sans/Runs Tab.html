@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=75d34291"></script>
+    <script src="../../_static/documentation_options.js?v=c90b7486"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -287,11 +287,18 @@ Background Workspace</p>
 is set to “All”. This is because there is no way to determine if the workspace given as the <code class="docutils literal notranslate"><span class="pre">BackgroundWorkspace</span></code> is
 for the HAB or LAB, and so uses the value from the User File, therefore assuming that both reductions have used the same
 one.</p>
-<p><strong>Using scaled background subtraction with time slicing:</strong></p>
-<p>The specified <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code> will be scaled and subtracted from all sample slices. When time slicing,
-specifying the <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code> using an Output Name (from another row in the runs table) will only work if the
-workspace has been time sliced to match the sample workspace. In this case, specifying by Output Name will result in the
-first time slice from the <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code> being used for all subtractions.</p>
+<p><strong>Using scaled background subtraction when time slicing a sample:</strong></p>
+<p><em>Background workspace not time sliced</em></p>
+<p>The specified <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code> will be scaled and subtracted from all sample slices.
+You must specify the exact name of the <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code>.
+It is currently not supported to specify the <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code> using an Output Name (from another row in the runs table), although we plan to support this in a future version of Mantid.</p>
+<p><em>Background workspace has been time sliced</em></p>
+<p>A single <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code> slice will be scaled and subtracted from all sample slices.
+You can specify the <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code> slice using its full workspace name.
+Alternatively, if the background has been time sliced to match the sample workspace then you can specify the <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code> using an Output Name (from another row in the runs table).
+This will result in the first background slice being scaled and subtracted from each sample slice
+(i.e. for slicing t0_t600, t600_t1200, t1200_t1800, the background slice t0_t600 will be subtracted from each sample slice).</p>
+<p>It is <strong>not</strong> possible to perform a scaled background subtraction where each <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Workspace</span></code> slice is subtracted from its corresponding sample slice.</p>
 </section>
 </section>
 <section id="save-options">

@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=c90b7486"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/documentation_options.js?v=4536fec9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -119,15 +119,16 @@
 <li><p><a class="reference internal" href="#description" id="id4">Description</a></p>
 <ul>
 <li><p><a class="reference internal" href="#for-eventworkspaces" id="id5">For EventWorkspaces</a></p></li>
+<li><p><a class="reference internal" href="#rebin-parameters" id="id6">Rebin parameters</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#usage" id="id6">Usage</a></p></li>
-<li><p><a class="reference internal" href="#previous-versions" id="id7">Previous Versions</a></p>
+<li><p><a class="reference internal" href="#usage" id="id7">Usage</a></p></li>
+<li><p><a class="reference internal" href="#previous-versions" id="id8">Previous Versions</a></p>
 <ul>
-<li><p><a class="reference internal" href="#version-1" id="id8">Version 1</a></p></li>
+<li><p><a class="reference internal" href="#version-1" id="id9">Version 1</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#source" id="id9">Source</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id10">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
@@ -221,9 +222,22 @@ means that you can rebin the resulting spectra to finer bins with no
 loss of data. In fact, it is unnecessary to bin your incoming data at
 all; binning can be performed as the very last step.</p>
 </section>
+<section id="rebin-parameters">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Rebin parameters</a><a class="headerlink" href="#rebin-parameters" title="Link to this heading">¶</a></h3>
+<p>By default <code class="docutils literal notranslate"><span class="pre">DiffractionFocussing</span></code> will use the min and max of each
+spectra and the number of bins in the input workspace to automatically
+determine the output binning. An alternative is to provide the min,
+max and delta for each output spectra similar to
+<a class="reference internal" href="RebinRagged-v2.html#algm-rebinragged"><span class="std std-ref">RebinRagged v2</span></a>. The minimum and maximum values that are
+specified are interpreted as one value per spectrum. If there is only
+one value overall, it is used for all of the spectra. The <code class="docutils literal notranslate"><span class="pre">Delta</span></code>
+parameter is required and can either be a single number which is
+common to all, or one number per spectra. Positive values are
+interpreted as constant step-size. Negative are logarithmic.</p>
+</section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To run these usage examples please first download the
@@ -267,20 +281,39 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 What type is the workspace after focussing: Workspace2D
 </pre></div>
 </div>
+<p><strong>Example - Defining binning parameters:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load HRP dataset</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;HRP39180.RAW&quot;</span><span class="p">)</span>
+
+<span class="c1"># specify groupping file, here using CalFile format</span>
+<span class="n">cal_file</span> <span class="o">=</span> <span class="s2">&quot;hrpd_new_072_01_corr.cal&quot;</span>
+
+<span class="c1"># For HRPD data, perform a unit conversion TOF-&gt;d-spacing, taking into account detector position offsets</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignDetectors</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="n">CalibrationFile</span><span class="o">=</span><span class="n">cal_file</span><span class="p">)</span>
+<span class="c1"># Focus the data with defined binning parameters</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">DiffractionFocussing</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="n">GroupingFileName</span><span class="o">=</span><span class="n">cal_file</span><span class="p">,</span> <span class="n">DMin</span><span class="o">=</span><span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.2</span><span class="p">],</span> <span class="n">DMax</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">4.0</span><span class="p">],</span> <span class="n">Delta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output has </span><span class="si">{</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()</span><span class="si">}</span><span class="s2"> spectra with number of bins </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Output has 3 spectra with number of bins 4, 5 and 18
+</pre></div>
+</div>
 </section>
 <section id="previous-versions">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Previous Versions</a><a class="headerlink" href="#previous-versions" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Previous Versions</a><a class="headerlink" href="#previous-versions" title="Link to this heading">¶</a></h2>
 <section id="version-1">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Version 1</a><a class="headerlink" href="#version-1" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Version 1</a><a class="headerlink" href="#version-1" title="Link to this heading">¶</a></h3>
 <p>Version 1 did not support the use of workspaces to carry grouping
 workspaces and only worked with CalFiles.</p>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Diffraction/Focussing.html">Diffraction\Focussing</a></p>
 </section>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/25060ccc17bbc3bba4ed9c564b9407fa84395513/Framework/Algorithms/inc/MantidAlgorithms/DiffractionFocussing2.h">DiffractionFocussing2.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/25060ccc17bbc3bba4ed9c564b9407fa84395513/Framework/Algorithms/src/DiffractionFocussing2.cpp">DiffractionFocussing2.cpp</a></p>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c581f90f7efa314220c83ad80b7f332baec7a80f/Framework/Algorithms/inc/MantidAlgorithms/DiffractionFocussing2.h">DiffractionFocussing2.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c581f90f7efa314220c83ad80b7f332baec7a80f/Framework/Algorithms/src/DiffractionFocussing2.cpp">DiffractionFocussing2.cpp</a></p>
 </section>
 </section>
 

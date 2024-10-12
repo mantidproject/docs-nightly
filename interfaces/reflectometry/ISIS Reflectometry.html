@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=c90b7486"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/documentation_options.js?v=4536fec9"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -355,12 +355,14 @@ batch to reduce runs in that batch’s processing table.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>New
-Load
-Save</p></td>
-<td><p>Add a new Batch tab
-Load settings for the current Batch tab from a file
-Save settings for the current Batch to a file</p></td>
+<tr class="row-even"><td><p>New</p></td>
+<td><p>Add a new Batch tab</p></td>
+</tr>
+<tr class="row-odd"><td><p>Load</p></td>
+<td><p>Load settings for the current Batch tab from a file</p></td>
+</tr>
+<tr class="row-even"><td><p>Save</p></td>
+<td><p>Save settings for the current Batch to a file</p></td>
 </tr>
 </tbody>
 </table>
@@ -375,10 +377,11 @@ Save settings for the current Batch to a file</p></td>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Slit Calculator
-Options</p></td>
-<td><p>Tool for calculating approximate slit widths
-Tool for controlling warnings and rounding precision</p></td>
+<tr class="row-even"><td><p>Slit Calculator</p></td>
+<td><p>Tool for calculating approximate slit widths</p></td>
+</tr>
+<tr class="row-odd"><td><p>Options</p></td>
+<td><p>Tool for controlling warnings and rounding precision</p></td>
 </tr>
 </tbody>
 </table>
@@ -515,8 +518,8 @@ is useful for discarding noisy data.</p>
 <td><p>Contains the resolution used when rebinning
 output workspaces. If left blank, this is
 calculated for you using the
-NRCalculateSlitResolution algorithm. This value is
-negated so that Logarithmic binning can be
+<a class="reference internal" href="../../algorithms/NRCalculateSlitResolution-v1.html#algm-nrcalculateslitresolution"><span class="std std-ref">NRCalculateSlitResolution</span></a> algorithm.
+This value is negated so that Logarithmic binning can be
 applied for the IvsQ workspace.
 If you desire linear binning then you
 may negate the value in the processing table
@@ -536,8 +539,8 @@ this column.</p>
 <tr class="row-odd"><td><p>Options</p></td>
 <td><p>No</p></td>
 <td><p>Contains options that allow you to override
-ReflectometryReductionOne’s properties. To
-override a property, just use the property’s
+<a class="reference internal" href="../../algorithms/ReflectometryReductionOne-v2.html#algm-reflectometryreductionone"><span class="std std-ref">ReflectometryReductionOne’s</span></a> properties.
+To override a property, just use the property’s
 name as a key, and the desired value as the
 value.
 Options are specified in <code class="docutils literal notranslate"><span class="pre">key=value</span></code> pairs,
@@ -757,7 +760,7 @@ also be excluded from auto processing (see below).</p>
 </section>
 <section id="excluding-and-annotating-runs">
 <h5><a class="toc-backref" href="#id38" role="doc-backlink">Excluding and annotating runs</a><a class="headerlink" href="#excluding-and-annotating-runs" title="Link to this heading">¶</a></h5>
-<p>You may with to exclude certain runs from reduction. This is especially useful
+<p>You may wish to exclude certain runs from the reduction. This is especially useful
 for auto processing (see below). You can mark a run for exclusion by entering a
 reason into the <cite>Exclude</cite> column in the search results table. Double-click the
 cell to edit it and then press Enter or click off the cell when finished. The
@@ -767,7 +770,8 @@ invalid rows. Again, a tooltip will display the reason that it is excluded.</p>
 the <cite>Comments</cite> column. This will not affect the reduction and is simply for
 user convenience.</p>
 <p>To save your annotations in the <cite>Exclude</cite> and <cite>Comments</cite> columns, save the
-whole batch via the <cite>Batch-&gt;Save</cite> menu.</p>
+whole batch via the <cite>Batch-&gt;Save</cite> menu. You can also export the contents of the
+search results table to a CSV file by clicking the <strong>Export</strong> button.</p>
 <p>Note that your annotations will be preserved if you re-run the same search or
 run auto-processing. However, if you change the search settings, then the
 existing search results, including your annotations, will be discarded. If you
@@ -784,7 +788,7 @@ processing of runs for a particular investigation. This works similarly to
 searching for runs by investigation but takes out the manual steps for you. For
 more details on how searching works, see the <cite>Search Interface</cite> section.</p>
 <p>To start autoprocessing, specify the instrument and investigation ID, and
-optionally the cycle name. Then click <cite>Autoprocess</cite> to start autoproessing for
+optionally the cycle name. Then click <cite>Autoprocess</cite> to start autoprocessing for
 this investigation. This will:</p>
 <ul class="simple">
 <li><p>Populate the search results list with runs that are part of the investigation.</p></li>
@@ -984,7 +988,7 @@ tab. Hover over a table cell to see a tooltip describing what the value is for.<
 single run/workspace or a number of runs/workspaces that will be summed before
 processing. Specific spectra of interest can be specified for the input runs
 and separate spectra, if required, can be specified for the transmission runs -
-if the latter are not specified then the <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Spectra</span></code> will also be used for
+if the latter are not specified then the <code class="docutils literal notranslate"><span class="pre">ROI</span></code> will also be used for
 the transmission runs. If both a First and Second tranmission input is
 specified, then they will be stitched using the options specified.</p>
 <figure class="align-center" id="id15">

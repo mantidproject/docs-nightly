@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=4536fec9"></script>
+    <script src="../../_static/documentation_options.js?v=6ce76dac"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -112,71 +112,49 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#general" id="id5">General</a></p>
+<li><p><a class="reference internal" href="#general" id="id2">General</a></p>
 <ul>
-<li><p><a class="reference internal" href="#new-features" id="id6">New features</a></p></li>
-<li><p><a class="reference internal" href="#bugfixes" id="id7">Bugfixes</a></p></li>
+<li><p><a class="reference internal" href="#new-features" id="id3">New features</a></p></li>
+<li><p><a class="reference internal" href="#bugfixes" id="id4">Bugfixes</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#crystalfield" id="id8">CrystalField</a></p>
+<li><p><a class="reference internal" href="#crystalfield" id="id5">CrystalField</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id1" id="id9">New features</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id10">Bugfixes</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#mslice" id="id11">MSlice</a></p>
-<ul>
-<li><p><a class="reference internal" href="#id3" id="id12">New features</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id13">Bugfixes</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id6">Bugfixes</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="general">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">General</a><a class="headerlink" href="#general" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">General</a><a class="headerlink" href="#general" title="Link to this heading">¶</a></h2>
 <section id="new-features">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">New features</a><a class="headerlink" href="#new-features" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">New features</a><a class="headerlink" href="#new-features" title="Link to this heading">¶</a></h3>
 <ul>
-<li><p>SaveNXSPE now stores the run number of the input workspace in the instrument section.</p>
-<p>For Indirect instrument it also saves efixed taken from detector’s crystal analyzer properties.
-If all crystal analyzers have the same energy, single efixed is written
-into NXSPE_info-&gt;fixed_energy as before, while if detectors have different analyzer’s energies,
-array of the energies is written into NXSPE_info-&gt;fixed_energy field of nxspe file.
-Also for Indirect instrument, no “fermi” field is added to the “instrument” folder.</p>
-<p>The algorithm have been also modified so if Ei is provided as the propery value,
-it always overrides the values, retrieved from the workspace.</p>
+<li><p><a class="reference internal" href="../../algorithms/SaveNXSPE-v1.html#algm-savenxspe-v1"><span class="std std-ref">SaveNXSPE</span></a> now stores the run number of the input workspace in the instrument section.</p>
+<p>For Indirect instruments it also saves <code class="docutils literal notranslate"><span class="pre">efixed</span></code>, taken from the detector’s crystal analyzer properties.
+If all crystal analyzers have the same energy, a single <code class="docutils literal notranslate"><span class="pre">efixed</span></code> is written into <code class="docutils literal notranslate"><span class="pre">NXSPE_info-&gt;fixed_energy</span></code> as before,
+while if detectors have different analyzer energies, an array of the energies is written into the <code class="docutils literal notranslate"><span class="pre">NXSPE_info-&gt;fixed_energy</span></code> field of the <code class="docutils literal notranslate"><span class="pre">.nxspe</span></code> file.
+Also for Indirect instruments, no <code class="docutils literal notranslate"><span class="pre">fermi</span></code> field is added to the <code class="docutils literal notranslate"><span class="pre">instrument</span></code> folder.
+The algorithm has also been modified so if <code class="docutils literal notranslate"><span class="pre">Ei</span></code> is provided as the propery value it always overrides the values retrieved from the workspace.</p>
 </li>
 </ul>
 </section>
 <section id="bugfixes">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>Fixed a crash on the <a class="reference internal" href="../../interfaces/direct/ALFView.html#alfview-ref"><span class="std std-ref">ALF View</span></a> when closing the interface while it is loading data.</p></li>
-<li><p>Fixed a crash on ALFView when moving the cursor over the Instrument View while loading data.</p></li>
-<li><p>Random phase values are no longer used on Merlin when using <a class="reference internal" href="../../interfaces/direct/PyChop.html#pychop"><span class="std std-ref">PyChop</span></a> with instrument scientist mode disabled.</p></li>
+<li><p><a class="reference internal" href="../../interfaces/direct/ALFView.html#alfview-ref"><span class="std std-ref">ALFView</span></a> no longer crashs when moving the cursor over the Instrument View while loading data.</p></li>
+<li><p><a class="reference internal" href="../../interfaces/direct/PyChop.html#pychop"><span class="std std-ref">PyChop</span></a> no longer uses random phase values on Merlin when instrument scientist mode disabled.</p></li>
 </ul>
 </section>
 </section>
 <section id="crystalfield">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">CrystalField</a><a class="headerlink" href="#crystalfield" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">CrystalField</a><a class="headerlink" href="#crystalfield" title="Link to this heading">¶</a></h2>
 <section id="id1">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">New features</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
-</section>
-<section id="id2">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>The method <cite>cf.getMagneticMoment()</cite> no longer ignores the <cite>Hmag</cite> field, which is now
 correctly considered in the calculations of the magnetic moment.</p></li>
 </ul>
-</section>
-</section>
-<section id="mslice">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">MSlice</a><a class="headerlink" href="#mslice" title="Link to this heading">¶</a></h2>
-<section id="id3">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">New features</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
-</section>
-<section id="id4">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="index.html#v6-11-0"><span class="std std-ref">Release 6.11.0</span></a></p>
 </section>
 </section>

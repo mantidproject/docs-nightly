@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=4536fec9"></script>
+    <script src="../../_static/documentation_options.js?v=6ce76dac"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -108,7 +108,7 @@
 <section id="mantid-6-11-0-release-notes">
 <span id="v6-11-0"></span><h1>Mantid 6.11.0 Release Notes<a class="headerlink" href="#mantid-6-11-0-release-notes" title="Link to this heading">¶</a></h1>
 <figure class="align-right">
-<a class="screenshot reference internal image-reference" href="../../_images/ImageNotFound.png"><img alt="../../_images/ImageNotFound.png" class="screenshot" src="../../_images/ImageNotFound.png" style="width: 385px;" />
+<a class="screenshot reference internal image-reference" href="../../_images/single-crystal-peak-background-edited.png"><img alt="../../_images/single-crystal-peak-background-edited.png" class="screenshot" src="../../_images/single-crystal-peak-background-edited.png" style="width: 500px;" />
 </a>
 </figure>
 <nav class="contents local" id="table-of-contents">
@@ -124,8 +124,25 @@
 <p>This release is still under construction. The changes can be found in the nightly builds on the <a class="reference external" href="https://download.mantidproject.org">download page</a>.</p>
 </div>
 <p>We are proud to announce version 6.11.0 of Mantid.</p>
-<p><strong>TODO: Add paragraph summarizing big changes</strong></p>
-<p><strong>TODO: Add a note about new mantid-developer metapackage</strong></p>
+<p>In this release we gave extra attention to fixing bugs and improving algorithms (for example by making them run faster or use less memory).
+We also added several new algorithms. These are the highlights for this release:</p>
+<ul class="simple">
+<li><p>For single crystal diffraction, we added a new algorithm <a class="reference internal" href="../../algorithms/FindMultipleUMatrices-v1.html#algm-findmultipleumatrices"><span class="std std-ref">FindMultipleUMatrices</span></a>
+to find multiple UB matrices when given lattice parameters for sample with multiple domains or spurious peaks.</p></li>
+<li><p>Also for single crystal diffraction,  <a class="reference internal" href="../../algorithms/IntegratePeaksSkew-v1.html#algm-integratepeaksskew"><span class="std std-ref">IntegratePeaksSkew</span></a> is better at determining background bins by minimising third-moment (skew).
+This is achieved by forcing skew &gt; 0 (minimum skew we would expect in background).
+This change stops peak mask of <a class="reference internal" href="../../algorithms/IntegratePeaksSkew-v1.html#algm-integratepeaksskew"><span class="std std-ref">IntegratePeaksSkew</span></a> including too many pixels due to small diffuse scattering (seen in the figure above).</p></li>
+<li><p>For powder diffraction, the algorithms
+<a class="reference internal" href="../../algorithms/AlignAndFocusPowder-v1.html#algm-alignandfocuspowder"><span class="std std-ref">AlignAndFocusPowder</span></a>,
+<a class="reference internal" href="../../algorithms/AlignAndFocusPowderFromFiles-v1.html#algm-alignandfocuspowderfromfiles"><span class="std std-ref">AlignAndFocusPowderFromFiles</span></a>,
+<a class="reference internal" href="../../algorithms/SNSPowderReduction-v1.html#algm-snspowderreduction"><span class="std std-ref">SNSPowderReduction</span></a> and
+<a class="reference internal" href="../../algorithms/LoadEventAndCompress-v1.html#algm-loadeventandcompress"><span class="std std-ref">LoadEventAndCompress</span></a>
+were updated to use logarithmic compression, which uses less memory.</p></li>
+<li><p>For reflectometry, we added a new algorithm <a class="reference internal" href="../../algorithms/PolarizationEfficienciesWildes-v1.html#algm-polarizationefficiencieswildes"><span class="std std-ref">PolarizationEfficienciesWildes v1</span></a> has been added for calculating the efficiencies of the polarizing components of an instrument with two flippers.
+This algorithm implements the approach from the A. R. Wildes 2006 paper.</p></li>
+<li><p>For SANS, we added new algorithm <a class="reference internal" href="../../algorithms/PolarizerEfficiency-v1.html#algm-polarizerefficiency-v1"><span class="std std-ref">PolarizerEfficiency</span></a> for calculating the efficiency of a polariser.</p></li>
+<li><p>Mantid developer environments are now created using a new <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> Conda meta-package, hosted on our Conda channel.</p></li>
+</ul>
 <p>These are just some of the many improvements in this release, so please take a
 look at the release notes, which are filled with details of the
 important changes and improvements in many areas. The development team

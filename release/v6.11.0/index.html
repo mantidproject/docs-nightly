@@ -108,7 +108,7 @@
 <section id="mantid-6-11-0-release-notes">
 <span id="v6-11-0"></span><h1>Mantid 6.11.0 Release Notes<a class="headerlink" href="#mantid-6-11-0-release-notes" title="Link to this heading">¶</a></h1>
 <figure class="align-right">
-<a class="screenshot reference internal image-reference" href="../../_images/single-crystal-peak-background-edited.png"><img alt="../../_images/single-crystal-peak-background-edited.png" class="screenshot" src="../../_images/single-crystal-peak-background-edited.png" style="width: 500px;" />
+<a class="screenshot reference internal image-reference" href="../../_images/single-crystal-peak-background-edited.png"><img alt="../../_images/single-crystal-peak-background-edited.png" class="screenshot" src="../../_images/single-crystal-peak-background-edited.png" style="width: 400px;" />
 </a>
 </figure>
 <nav class="contents local" id="table-of-contents">
@@ -119,14 +119,12 @@
 <li><p><a class="reference internal" href="#full-change-listings" id="id3">Full Change Listings</a></p></li>
 </ul>
 </nav>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This release is still under construction. The changes can be found in the nightly builds on the <a class="reference external" href="https://download.mantidproject.org">download page</a>.</p>
-</div>
 <p>We are proud to announce version 6.11.0 of Mantid.</p>
 <p>In this release we gave extra attention to fixing bugs and improving algorithms (for example by making them run faster or use less memory).
 We also added several new algorithms. These are the highlights for this release:</p>
 <ul class="simple">
+<li><p>There is a new <a class="reference internal" href="../../deprecation.html#deprecation-policy"><span class="std std-ref">Deprecation Policy</span></a> for Mantid.
+One of the main changes is that we will deprecate algorithms that have not been used for 3 years or more.</p></li>
 <li><p>For single crystal diffraction, we added a new algorithm <a class="reference internal" href="../../algorithms/FindMultipleUMatrices-v1.html#algm-findmultipleumatrices"><span class="std std-ref">FindMultipleUMatrices</span></a>
 to find multiple UB matrices when given lattice parameters for sample with multiple domains or spurious peaks.</p></li>
 <li><p>Also for single crystal diffraction,  <a class="reference internal" href="../../algorithms/IntegratePeaksSkew-v1.html#algm-integratepeaksskew"><span class="std std-ref">IntegratePeaksSkew</span></a> is better at determining background bins by minimising third-moment (skew).
@@ -138,10 +136,14 @@ This change stops peak mask of <a class="reference internal" href="../../algorit
 <a class="reference internal" href="../../algorithms/SNSPowderReduction-v1.html#algm-snspowderreduction"><span class="std std-ref">SNSPowderReduction</span></a> and
 <a class="reference internal" href="../../algorithms/LoadEventAndCompress-v1.html#algm-loadeventandcompress"><span class="std std-ref">LoadEventAndCompress</span></a>
 were updated to use logarithmic compression, which uses less memory.</p></li>
-<li><p>For reflectometry, we added a new algorithm <a class="reference internal" href="../../algorithms/PolarizationEfficienciesWildes-v1.html#algm-polarizationefficiencieswildes"><span class="std std-ref">PolarizationEfficienciesWildes v1</span></a> has been added for calculating the efficiencies of the polarizing components of an instrument with two flippers.
-This algorithm implements the approach from the A. R. Wildes 2006 paper.</p></li>
+<li><p>For reflectometry, we added a new algorithm <a class="reference internal" href="../../algorithms/PolarizationEfficienciesWildes-v1.html#algm-polarizationefficiencieswildes"><span class="std std-ref">PolarizationEfficienciesWildes v1</span></a> for calculating the efficiencies of the polarizing components of an instrument with two flippers.
+This algorithm implements the approach from the A. R. Wildes 2006 paper <a class="reference external" href="https://doi.org/10.1080/10448630600668738">doi: 10.1080/10448630600668738</a>.</p></li>
 <li><p>For SANS, we added new algorithm <a class="reference internal" href="../../algorithms/PolarizerEfficiency-v1.html#algm-polarizerefficiency-v1"><span class="std std-ref">PolarizerEfficiency</span></a> for calculating the efficiency of a polariser.</p></li>
-<li><p>Mantid developer environments are now created using a new <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> Conda meta-package, hosted on our Conda channel.</p></li>
+<li><p>For Inelastic, renamed tabs of <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20QENS%20Fitting.html#interface-inelastic-qens-fitting"><span class="std std-ref">QENS Fitting</span></a> from <code class="docutils literal notranslate"><span class="pre">MSD</span> <span class="pre">Fit</span></code>, <code class="docutils literal notranslate"><span class="pre">I(Q,t)</span> <span class="pre">Fit</span></code>, <code class="docutils literal notranslate"><span class="pre">ConvFit</span></code> and <code class="docutils literal notranslate"><span class="pre">F(Q)</span></code> to <code class="docutils literal notranslate"><span class="pre">MSD</span></code>, <code class="docutils literal notranslate"><span class="pre">I(Q,t)</span></code>, <code class="docutils literal notranslate"><span class="pre">Convolution</span></code> and <code class="docutils literal notranslate"><span class="pre">Function(Q)</span></code> respectively.</p></li>
+<li><p>For Inelastic, the <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#elwin"><span class="std std-ref">Elwin Tab</span></a> of  <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20Data%20Processor.html#interface-inelastic-data-processor"><span class="std std-ref">Data Processor Interface</span></a> now includes access to the Slice Viewer or 3D Plot from the output plot widget of the output workspaces containing more than 1 histogram.</p></li>
+<li><p>Again for Inelastic, <a class="reference internal" href="../../interfaces/inelastic/Inelastic%20QENS%20Fitting.html#interface-inelastic-qens-fitting"><span class="std std-ref">QENS Fitting Interface</span></a> now allows loading a <code class="docutils literal notranslate"><span class="pre">_Result</span></code> workspace from the <code class="docutils literal notranslate"><span class="pre">I(Q,</span> <span class="pre">t)</span></code> fitting tab into the <code class="docutils literal notranslate"><span class="pre">Function</span> <span class="pre">(Q)</span></code> fitting tab if one of the fit parameters is A0.</p></li>
+<li><p>Finally, for developers, the Mantid developer environments are now created using a new <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> Conda meta-package, hosted on our Conda channel.
+This change does not affect users but greatly simplifies our development process, as package dependencies are now automatically sorted on different operating systems.</p></li>
 </ul>
 <p>These are just some of the many improvements in this release, so please take a
 look at the release notes, which are filled with details of the

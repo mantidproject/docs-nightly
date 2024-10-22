@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
-    <script src="../../../../_static/documentation_options.js?v=5c6d4a5f"></script>
+    <script src="../../../../_static/documentation_options.js?v=8f883fc4"></script>
     <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -120,6 +120,31 @@ Only one of <code class="docutils literal notranslate"><span class="pre">rtol</s
 <code class="docutils literal notranslate"><span class="pre">assert_not_equal</span></code> will run the underlying <a class="reference internal" href="../../../../algorithms/CompareWorkspaces-v1.html#algm-compareworkspaces"><span class="std std-ref">CompareWorkspaces v1</span></a> algorithm for the
 case specified, and fail if the comparison succeeds.
 If neither <code class="docutils literal notranslate"><span class="pre">rtol</span></code> nor <code class="docutils literal notranslate"><span class="pre">atol</span></code>  is specified, will perform an absolute comparison to within 1.e-10.</p>
+<p id="module-mantid.testing.assert_not_equal">Raises an assertion error if two workspaces are equal within specified tolerance.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>Workspace1, Workspace2<span class="classifier">Workspace</span></dt><dd><p>Input workspaces to compare.</p>
+</dd>
+<dt>rtol<span class="classifier">float</span></dt><dd><p>The relative tolerance parameter.</p>
+</dd>
+<dt>atol<span class="classifier">float</span></dt><dd><p>The absolute tolerance parameter.</p>
+</dd>
+<dt>kwargs: dict</dt><dd><p>Other options available to CompareWorkspaces.</p>
+</dd>
+</dl>
+</section>
+<section id="raises">
+<h2>Raises<a class="headerlink" href="#raises" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>AssertionError</dt><dd><p>If Workspace1 and Workspace2 are equal up to specified precision</p>
+</dd>
+<dt>ValueError</dt><dd><p>If atol or rtol are below zero or both are specified.</p>
+</dd>
+<dt>ValueError</dt><dd><p>If kwargs contains keys that should instead be set by atol or rtol</p>
+</dd>
+</dl>
+</section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p><strong>Example - Comparison that passes</strong></p>

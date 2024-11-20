@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=84f7ec8c"></script>
+    <script src="../../_static/documentation_options.js?v=3fa567d5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -139,6 +139,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="../../algorithms/AlignAndFocusPowder-v1.html#algm-alignandfocuspowder-v1"><span class="std std-ref">AlignAndFocusPowder</span></a> has been modified to utilize the new binning parameters added to <a class="reference internal" href="../../algorithms/DiffractionFocussing-v2.html#algm-diffractionfocussing-v2"><span class="std std-ref">DiffractionFocussing</span></a>.</p></li>
 <li><p>The ability to define the output binning of each spectra has been added to <a class="reference internal" href="../../algorithms/DiffractionFocussing-v2.html#algm-diffractionfocussing-v2"><span class="std std-ref">DiffractionFocussing</span></a>.</p></li>
+<li><p>Move <a class="reference external" href="https://github.com/neutrons/pystog">pystog</a> from v0.2.7 to v0.4.7</p></li>
 <li><p>New container type added in for POWGEN instrument and accordingly the <a class="reference internal" href="../../algorithms/SNSPowderReduction-v1.html#algm-snspowderreduction"><span class="std std-ref">SNSPowderReduction</span></a> interface has been updated to accommodate this new container type.</p></li>
 </ul>
 </section>
@@ -162,6 +163,17 @@
 <h2><a class="toc-backref" href="#id11" role="doc-backlink">Single Crystal Diffraction</a><a class="headerlink" href="#single-crystal-diffraction" title="Link to this heading">¶</a></h2>
 <section id="id3">
 <h3><a class="toc-backref" href="#id12" role="doc-backlink">New features</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add option <code class="docutils literal notranslate"><span class="pre">SeparateBatchNumbers</span></code> to <a class="reference internal" href="../../algorithms/SaveReflections-v1.html#algm-savereflections-v1"><span class="std std-ref">SaveReflections</span></a> to write a different batch number/scale factor ID for each run.</p></li>
+<li><p>Small usability improvements to <a class="reference internal" href="../../techniques/ISIS_SingleCrystalDiffraction_Workflow.html#isis-single-crystal-diffraction-ref"><span class="std std-ref">ISIS Single Crystal Diffraction Reduction Classes</span></a>:</p>
+<ul>
+<li><p>Allow users to pass key-word arguments to methods <code class="docutils literal notranslate"><span class="pre">save_peak_table</span></code> and <code class="docutils literal notranslate"><span class="pre">save_all_peaks</span></code> (passed to <a class="reference internal" href="../../algorithms/SaveReflections-v1.html#algm-savereflections-v1"><span class="std std-ref">SaveReflections</span></a>)</p></li>
+<li><p>Make saving of .nxs file of peak tables in above methods optional using argument <code class="docutils literal notranslate"><span class="pre">save_nxs</span></code> (default is True)</p></li>
+<li><p>Check UB filepath exists in method <code class="docutils literal notranslate"><span class="pre">load_isaw_ub</span></code></p></li>
+<li><p>Added option to set min I/Sigma <code class="docutils literal notranslate"><span class="pre">min_intens_over_Sigma</span></code> in method <code class="docutils literal notranslate"><span class="pre">remove_non_integrated_peaks</span></code> (default is 0)</p></li>
+</ul>
+</li>
+</ul>
 </section>
 <section id="id4">
 <h3><a class="toc-backref" href="#id13" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
-    <script src="../../../../_static/documentation_options.js?v=9cdc3b12"></script>
+    <script src="../../../../_static/documentation_options.js?v=be8906ab"></script>
     <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -269,6 +269,30 @@ when giving the projection:</p>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+<section id="matrix-workspace-plotting">
+<h2>Matrix Workspace Plotting<a class="headerlink" href="#matrix-workspace-plotting" title="Link to this heading">¶</a></h2>
+<p>The <cite>setPlotType()</cite> method allows you to define how a workspace should be visualized when plotting. The following plot types are available:</p>
+<ul class="simple">
+<li><p><strong>marker</strong>:
+A scatter plot where data points are displayed as markers without connecting lines. Ideal for visualizing individual data points.</p></li>
+<li><p><strong>plot</strong>:
+A standard line plot that connects data points using lines. This is the default visualization for continuous data.</p></li>
+<li><p><strong>errorbar_x</strong>:
+A plot with error bars in the x-direction only. Uses <cite>dataX</cite> for the x-values, <cite>dataY</cite> for the y-values, and <cite>dataDx</cite> for the x-error values.</p></li>
+<li><p><strong>errorbar_y</strong>:
+A plot with error bars in the y-direction only. Uses <cite>dataX</cite> for the x-values, <cite>dataY</cite> for the y-values, and <cite>dataE</cite> for the y-error values.</p></li>
+<li><p><strong>errorbar_xy</strong>:
+A plot with error bars in both x- and y-directions. Uses <cite>dataX</cite> for the x-values, <cite>dataY</cite> for the y-values, <cite>dataDx</cite> for the x-error values, and <cite>dataE</cite> for the y-error values.</p></li>
+</ul>
+<p>These options can be set using:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workspace</span><span class="o">.</span><span class="n">setPlotType</span><span class="p">(</span><span class="s1">&#39;marker&#39;</span><span class="p">)</span> <span class="c1"># or &#39;plot&#39;, &#39;errorbar_x&#39;, &#39;errorbar_y&#39;, &#39;errorbar_xy&#39;</span>
+<span class="n">workspace</span><span class="o">.</span><span class="n">getPlotType</span><span class="p">()</span> <span class="c1"># returns the current plot type</span>
+</pre></div>
+</div>
+<figure class="align-center">
+<img alt="../../../../_images/mantid_plot_types.png" src="../../../../_images/mantid_plot_types.png" />
+</figure>
+</section>
 <section id="types-of-functions">
 <h2>Types of functions<a class="headerlink" href="#types-of-functions" title="Link to this heading">¶</a></h2>
 <p><strong>Informational</strong></p>

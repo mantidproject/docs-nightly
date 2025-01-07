@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=be8906ab"></script>
+    <script src="../_static/documentation_options.js?v=40bd42f4"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -122,7 +122,7 @@
 <li><p><a class="reference internal" href="#conflict-spectrum-numbers" id="id6">Conflict Spectrum Numbers</a></p></li>
 <li><p><a class="reference internal" href="#restrictions-on-the-input-workspace" id="id7">Restrictions on the input workspace</a></p></li>
 <li><p><a class="reference internal" href="#y-axis-units-and-labels" id="id8">Y axis units and labels</a></p></li>
-<li><p><a class="reference internal" href="#exception" id="id9">Exception</a></p></li>
+<li><p><a class="reference internal" href="#exceptions" id="id9">Exceptions</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#usage" id="id10">Usage</a></p></li>
@@ -178,6 +178,12 @@
 <td><p>string</p></td>
 <td></td>
 <td><p>The unit to set the Y axis to</p></td>
+</tr>
+<tr class="row-odd"><td><p>CheckMatchingBins</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td><p>If true, the algorithm will check that the two input workspaces have matching bins.</p></td>
 </tr>
 </tbody>
 </table>
@@ -239,11 +245,13 @@ y axis unit and label when conjoining workspaces. Changing YAxisUnit updates
 YAxisLabel automatically with the value of YAxisUnit, unless a separate value
 is supplied.</p>
 </section>
-<section id="exception">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Exception</a><a class="headerlink" href="#exception" title="Link to this heading">¶</a></h3>
+<section id="exceptions">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Exceptions</a><a class="headerlink" href="#exceptions" title="Link to this heading">¶</a></h3>
+<p>If property <code class="docutils literal notranslate"><span class="pre">CheckMatchingBins</span></code> is set to true, and the bins in the two input workspaces
+do not match, then an <code class="docutils literal notranslate"><span class="pre">invalid_argument</span></code> exception will be thrown from the <code class="docutils literal notranslate"><span class="pre">exec</span></code> method.</p>
 <p>If property ‘CheckOverlapping’ is set to true, and there are spectra and/or detectors
 are overlapping between two input workspaces,
-then an ‘invalid_argument’ exception will be thrown from function ‘CheckForOverlap’.</p>
+then an ‘invalid_argument’ exception will be thrown from ‘CheckForOverlap’ method.</p>
 </section>
 </section>
 <section id="usage">
@@ -251,7 +259,7 @@ then an ‘invalid_argument’ exception will be thrown from function ‘CheckFo
 <p><strong>ConjoinWorkspaces Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws1</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">Xmax</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of spectra in first workspace = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws1</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">Xmax</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">Xmax</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of spectra in second workspace = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws2</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 <span class="n">ConjoinWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace1</span><span class="o">=</span><span class="n">ws1</span><span class="p">,</span> <span class="n">InputWorkspace2</span><span class="o">=</span><span class="n">ws2</span><span class="p">,</span> <span class="n">CheckOverlapping</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">YAxisUnit</span><span class="o">=</span><span class="s2">&quot;New unit&quot;</span><span class="p">,</span> <span class="n">YAxisLabel</span><span class="o">=</span><span class="s2">&quot;New label&quot;</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;ws1&#39;</span><span class="p">]</span> <span class="c1"># Have to update workspace from ADS, as it is an in-out parameter</span>
@@ -262,8 +270,8 @@ then an ‘invalid_argument’ exception will be thrown from function ‘CheckFo
 </div>
 <p>Output:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Number of spectra in first workspace = 2
-Number of spectra in second workspace = 3
-Number of spectra after ConjoinWorkspaces = 5
+Number of spectra in second workspace = 2
+Number of spectra after ConjoinWorkspaces = 4
 Y unit is New unit
 Y label New label
 </pre></div>
@@ -272,8 +280,8 @@ Y label New label
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id11" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/22bed2110eee1945c2b6a4035bfc81d93e184056/Framework/Algorithms/inc/MantidAlgorithms/ConjoinWorkspaces.h">ConjoinWorkspaces.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/22bed2110eee1945c2b6a4035bfc81d93e184056/Framework/Algorithms/src/ConjoinWorkspaces.cpp">ConjoinWorkspaces.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5bf2d7dfcefdec98747a8e0cede1bf14d25681e6/Framework/Algorithms/inc/MantidAlgorithms/ConjoinWorkspaces.h">ConjoinWorkspaces.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5bf2d7dfcefdec98747a8e0cede1bf14d25681e6/Framework/Algorithms/src/ConjoinWorkspaces.cpp">ConjoinWorkspaces.cpp</a></p>
 </section>
 </section>
 

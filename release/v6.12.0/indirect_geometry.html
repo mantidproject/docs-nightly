@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=be8906ab"></script>
+    <script src="../../_static/documentation_options.js?v=40bd42f4"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -141,6 +141,20 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="../../algorithms/LoadVesuvio-v1.html#algm-loadvesuvio-v1"><span class="std std-ref">LoadVesuvio</span></a> now accepts multiple consecutive runs for the <code class="docutils literal notranslate"><span class="pre">Filename</span></code> property,
 for example <code class="docutils literal notranslate"><span class="pre">43066-43070,</span> <span class="pre">43072-43074</span></code> is the same as running <code class="docutils literal notranslate"><span class="pre">43066-43074</span></code> except the run <code class="docutils literal notranslate"><span class="pre">43071</span></code> will not be included.</p></li>
+<li><p>The identification of isotopes has been improved in Abins/Abins2D.</p>
+<ul>
+<li><p>Previously, a species would only be identified as the standard
+isotopic mixture if the mass is very close to the Mantid reference
+data. In some cases the values used by external phonon calculators
+are significantly different and this could lead to misassignment.
+(e.g. Zn in CASTEP.) Now, Abins will initially choose the _nearest_
+mass option between an isotope and the standard isotopic mixture.</p></li>
+<li><p>Many isotopes lack cross-section data and would lead to NaN
+intensities. Now, if a NaN cross-section is identified Abins
+will either use the standard mixture data (if the mass is within
+0.01) or raise an error.</p></li>
+</ul>
+</li>
 </ul>
 <p><a class="reference internal" href="index.html#v6-12-0"><span class="std std-ref">Release 6.12.0</span></a></p>
 </section>

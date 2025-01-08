@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Algorithms And Workspaces</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-    <script src="../../../_static/documentation_options.js?v=40bd42f4"></script>
+    <script src="../../../_static/documentation_options.js?v=8b83fff7"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -119,18 +119,18 @@ Mantid has a variety of different workspace types, for example <a class="referen
 A generic Workspace type also exists which can refer to any of these.</p>
 <p>Declaring input workspace properties restricts the types of workspace that will be accepted when a user wants to pass a workspace into the algorithm.
 The example below declares a <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> which means that any workspace type will be accepted as input.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="n">Direction</span>
-<span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="n">WorkspaceProperty</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="n">Direction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">WorkspaceProperty</span>
 
-<span class="k">class</span> <span class="nc">WorkspaceProperties</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">WorkspaceProperties</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">WorkspaceProperty</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;InputWorkspace&quot;</span><span class="p">,</span>
                                                <span class="n">defaultValue</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
                                                <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">Input</span><span class="p">),</span>
                                                <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Documentation for this property&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
@@ -142,18 +142,18 @@ The above declarations allow any workspace type to be passed in to an algorithm.
 It is possible to restrict the type that can be accepted, for example to disallow table workspace types, by simply using a different class in the <code class="docutils literal notranslate"><span class="pre">self.declareProperty</span></code> method.</p>
 <p>As an example, consider the definition above using <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code>.
 If we wanted to restrict the type to a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code> type then we can simply replace <code class="docutils literal notranslate"><span class="pre">WorkspaceProperty</span></code> with <code class="docutils literal notranslate"><span class="pre">MatrixWorkspaceProperty</span></code></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
-<span class="k">class</span> <span class="nc">MatrixWorkspaceProperties</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MatrixWorkspaceProperties</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">MatrixWorkspaceProperty</span><span class="p">(</span><span class="s2">&quot;InputWorkspace&quot;</span><span class="p">,</span>
                                                      <span class="s2">&quot;&quot;</span><span class="p">,</span>
                                                      <span class="n">Direction</span><span class="o">.</span><span class="n">Input</span><span class="p">),</span>
                                                      <span class="s2">&quot;Documentation for this property&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
 </pre></div>
 </div>

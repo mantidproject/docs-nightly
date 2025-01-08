@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Exercise 4 Solutions</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-    <script src="../../../_static/documentation_options.js?v=40bd42f4"></script>
+    <script src="../../../_static/documentation_options.js?v=8b83fff7"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -141,18 +141,18 @@ of the proper reduction done for the direct-geometry inelastic instruments.</p>
 <span class="c1">#  - BinParams: -11,0.01,11</span>
 <span class="c1">#  - OutputWorkspace: DeltaE</span>
 
-<span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Class definition</span>
-<span class="k">class</span> <span class="nc">ConvertToEnergy</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ConvertToEnergy</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Examples&quot;</span>
 
-    <span class="k">def</span> <span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># 3 input properties</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">FileProperty</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Filename&quot;</span><span class="p">,</span> <span class="n">defaultValue</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="n">action</span><span class="o">=</span><span class="n">FileAction</span><span class="o">.</span><span class="n">Load</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s2">&quot;TOF data filename&quot;</span><span class="p">)</span>
         <span class="c1"># Setting the default to -1 requires a user to enter a value as it does not satisfy the validator</span>
@@ -162,8 +162,8 @@ of the proper reduction done for the direct-geometry inelastic instruments.</p>
         <span class="c1"># 1 Output property</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">MatrixWorkspaceProperty</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;OutputWorkspace&quot;</span><span class="p">,</span> <span class="n">defaultValue</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">Output</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="n">Load</span><span class="p">,</span> <span class="n">ConvertUnits</span><span class="p">,</span> <span class="n">Rebin</span><span class="p">,</span> <span class="n">DeleteWorkspace</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Load</span><span class="p">,</span> <span class="n">ConvertUnits</span><span class="p">,</span> <span class="n">Rebin</span><span class="p">,</span> <span class="n">DeleteWorkspace</span>
 
         <span class="c1"># Load file to workspace</span>
         <span class="n">_tmpws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s2">&quot;Filename&quot;</span><span class="p">),</span><span class="n">LoadMonitors</span><span class="o">=</span><span class="s2">&quot;Exclude&quot;</span><span class="p">)</span>

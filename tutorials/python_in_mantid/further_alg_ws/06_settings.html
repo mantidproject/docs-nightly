@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Settings</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-    <script src="../../../_static/documentation_options.js?v=40bd42f4"></script>
+    <script src="../../../_static/documentation_options.js?v=8b83fff7"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -124,14 +124,14 @@
 </div>
 <p>where INST_NAME is the name of the default instrument, for example ‘LARMOR’.</p>
 <p>All settings specified in these files are accessible via python through the config object, which can be imported from the mantid module. For example, to access the default instrument:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid</span> <span class="kn">import</span> <span class="n">config</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
 
 <span class="n">default_inst_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;default.instrument&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>The config object behaves like a Python dictionary, where each setting in the properties file is used as a key to obtain its value from the config object.</p>
 <p>The dictionary-like manner can also be used to update settings, e.g.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid</span> <span class="kn">import</span> <span class="n">config</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
 
 <span class="n">config</span><span class="p">[</span><span class="s1">&#39;default.instrument&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;INST_NAME&#39;</span>
 </pre></div>
@@ -140,7 +140,7 @@
 <section id="data-search-directories">
 <h2>Data search directories<a class="headerlink" href="#data-search-directories" title="Link to this heading">¶</a></h2>
 <p>Some keys in the properties are considered special and have their own accessors. For example, the datasearch.directories key is a semi-colon separated list of search directories. This is cumbersome to use as a string and various methods exist to manipulate the search paths more easily</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid</span> <span class="kn">import</span> <span class="n">config</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
 
 <span class="c1"># Get a list of the search paths</span>
 <span class="n">current_paths</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getDataSearchDirs</span><span class="p">()</span>
@@ -168,7 +168,7 @@ a default list of extensions for files considered as data from an instrument;
 the data catalog in use at the facility;
 the archive search plugin used to access the data archive.</p>
 <p>All of these properties can be accessed via Python:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid</span> <span class="kn">import</span> <span class="n">config</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
 
 <span class="n">facility</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getFacility</span><span class="p">(</span><span class="s1">&#39;SNS&#39;</span><span class="p">)</span>  <span class="c1"># or config.getFacility() returns the current default</span>
 <span class="n">inst_info</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">(</span><span class="s1">&#39;CNCS&#39;</span><span class="p">)</span> <span class="c1"># or config.Instrument() returns the current default</span>

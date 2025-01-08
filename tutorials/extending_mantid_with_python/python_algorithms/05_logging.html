@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Logging</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-    <script src="../../../_static/documentation_options.js?v=40bd42f4"></script>
+    <script src="../../../_static/documentation_options.js?v=8b83fff7"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -126,7 +126,7 @@ There are several levels of logging available, ordered in terms of increasing pr
 <p>Any log message that is sent at a priority level above or equal to the value set in the properties file will appear in the appropriate location, i.e. Messages Box, log file.</p>
 <p>Within a Python algorithm the log can be accessed using <code class="docutils literal notranslate"><span class="pre">self.log()</span></code> which is a configured instance of the <a class="reference internal" href="../../../api/python/mantid/kernel/Logger.html#mantid.kernel.Logger" title="mantid.kernel.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a>.
 To post a message, simply choose a priority level and call a function that has that name with the message as an argument</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;Inputvalue&quot;</span><span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">()</span><span class="o">.</span><span class="n">information</span><span class="p">(</span><span class="s2">&quot;The cube of the input value &quot;</span> <span class="o">+</span>
@@ -135,7 +135,7 @@ To post a message, simply choose a priority level and call a function that has t
 </div>
 <p>Avoid excessive logging as it is an expensive operation, i.e. try to avoid posting a log message at every iteration through a loop as it can slow the algorithm down dramatically.
 Instead build the message up as the loop is traversed and call the logging function once</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;LoopLimit&#39;</span><span class="p">)</span>
     <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>

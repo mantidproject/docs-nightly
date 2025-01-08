@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Main Algorithm Body</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-    <script src="../../../_static/documentation_options.js?v=40bd42f4"></script>
+    <script src="../../../_static/documentation_options.js?v=8b83fff7"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -113,14 +113,14 @@
 <span id="id1"></span><h1>Main Algorithm Body<a class="headerlink" href="#main-algorithm-body" title="Link to this heading">¶</a></h1>
 <p>After the properties have been created within the <code class="docutils literal notranslate"><span class="pre">PyInit</span></code> function it is time to turn attention to what the algorithm does with its inputs, i.e. what happens when we execute it.</p>
 <p>In order to define what happens when the algorithm is executed we must write another function called <code class="docutils literal notranslate"><span class="pre">PyExec</span></code>, whose definition takes only <code class="docutils literal notranslate"><span class="pre">self</span></code> as an input.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1"># Code to run algorithm</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
 <p>Inside <code class="docutils literal notranslate"><span class="pre">PyExec</span></code> you can write any python code that is necessary to run your desired processing.
 It can of course call Mantid python functions but you can also run any python code you like</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
         <span class="nb">sum</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -135,12 +135,12 @@ See <a class="reference internal" href="../../../api/python/mantid/kernel/Proper
 The actual value of the property is retrieved with <code class="docutils literal notranslate"><span class="pre">.value</span></code> and is returned as an appropriate type.</p>
 <p>For example, to parameterize the loop above, instead of the hard-coded 100,
 we could define an input parameter, <code class="docutils literal notranslate"><span class="pre">NIterations</span></code>, which will be used to constrain the loop:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="linenos"> 2</span>    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s2">&quot;NIterations&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span>
 <span class="linenos"> 3</span>                         <span class="n">IntBoundedValidator</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
 <span class="linenos"> 4</span>                         <span class="s2">&quot;The number of iterations of the loop to perform (default=100)&quot;</span><span class="p">)</span>
 <span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos"> 6</span><span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="linenos"> 7</span>    <span class="n">nloops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;NIterations&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 <span class="linenos"> 8</span>    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="linenos"> 9</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nloops</span><span class="p">):</span>
@@ -155,7 +155,7 @@ we could define an input parameter, <code class="docutils literal notranslate"><
 We do this by using output properties so that they can be used in a generic manner, without knowing what needs to be returned.</p>
 <p>Output properties are declared in a similar manner to input properties, with the exception that their direction is <code class="docutils literal notranslate"><span class="pre">Direction.Output</span></code>.
 As an example, we could extend the code above to output the final sum like so:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span> <span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="linenos"> 2</span>    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;NIterations&quot;</span><span class="p">,</span> <span class="n">defaultValue</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
 <span class="linenos"> 3</span>                         <span class="n">validator</span><span class="o">=</span><span class="n">IntBoundedValidator</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
 <span class="linenos"> 4</span>                         <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;The number of iterations of the loop to perform (default=100)&quot;</span><span class="p">)</span>
@@ -163,7 +163,7 @@ As an example, we could extend the code above to output the final sum like so:</
 <span class="linenos"> 6</span>                         <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Outputs the sum of the n iterations&quot;</span><span class="p">,</span>
 <span class="linenos"> 7</span>                         <span class="n">direction</span> <span class="o">=</span> <span class="n">Direction</span><span class="o">.</span><span class="n">Output</span><span class="p">)</span>
 <span class="linenos"> 8</span>
-<span class="linenos"> 9</span><span class="k">def</span> <span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos"> 9</span><span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="linenos">10</span>    <span class="n">nloops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;NIterations&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 <span class="linenos">11</span>    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="linenos">12</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nloops</span><span class="p">):</span>

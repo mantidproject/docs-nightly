@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Attributes</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-    <script src="../../../_static/documentation_options.js?v=40bd42f4"></script>
+    <script src="../../../_static/documentation_options.js?v=8b83fff7"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -119,9 +119,9 @@ types: int, float, string, boolean.</p>
 <p>Attributes should be declared along with the parameters within the <code class="docutils literal notranslate"><span class="pre">init</span></code>
 function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remember to choose either IFunction1D or IPeakFunction</span>
-<span class="k">class</span> <span class="nc">Example1DFunction</span><span class="p">(</span><span class="n">IFunction1D</span><span class="p">):</span> <span class="c1"># or IPeakFunction</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Example1DFunction</span><span class="p">(</span><span class="n">IFunction1D</span><span class="p">):</span> <span class="c1"># or IPeakFunction</span>
 
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 
@@ -133,15 +133,15 @@ to store it locally once after it has been set by the user. A method called
 <code class="docutils literal notranslate"><span class="pre">setAttributeValue</span></code> is defined by the super class and is called
 automatically by the framework when a user sets an attribute.</p>
 <p>If defined in your class then you can use it to set a python attribute on your object, e.g.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Example1DFunction</span><span class="p">(</span><span class="n">IFunction1D</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Example1DFunction</span><span class="p">(</span><span class="n">IFunction1D</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">declareAttribute</span><span class="p">(</span><span class="s2">&quot;NLoops&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">setAttributeValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setAttributeValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;NLoops&quot;</span><span class="p">:</span>
             <span class="c1"># Can the be accessed quicker later using self._nloops</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_nloops</span> <span class="o">=</span> <span class="n">value</span>
@@ -157,11 +157,11 @@ abstract class; a number of these are currently provided in the Mantid Kernel su
 - Bounded Validator (numeric attribute value must be between two provided bounds).
 - String contrains validator (string attribute value must contain a provided sub-string/s)</p>
 <p>In python, attributes can be declared with a validator using the following syntax:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.kernel</span> <span class="kn">import</span> <span class="n">StringListValidator</span><span class="p">,</span> <span class="n">StringContainsValidator</span><span class="p">,</span> <span class="n">FloatBoundedValidator</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringListValidator</span><span class="p">,</span> <span class="n">StringContainsValidator</span><span class="p">,</span> <span class="n">FloatBoundedValidator</span>
 
-<span class="k">class</span> <span class="nc">Example1DFunction</span><span class="p">(</span><span class="n">IFunction1D</span><span class="p">):</span> <span class="c1"># or IPeakFunction</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Example1DFunction</span><span class="p">(</span><span class="n">IFunction1D</span><span class="p">):</span> <span class="c1"># or IPeakFunction</span>
 
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;StrAttr&quot;</span><span class="p">,</span> <span class="s2">&quot;acceptable&quot;</span><span class="p">,</span> <span class="n">StringListValidator</span><span class="p">([</span><span class="s2">&quot;acceptable&quot;</span><span class="p">,</span><span class="s2">&quot;values&quot;</span><span class="p">]))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareAttribute</span><span class="p">(</span><span class="s2">&quot;FloatAtt&quot;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">FloatBoundedValidator</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareAttribute</span><span class="p">(</span><span class="s2">&quot;StringContainsAtt&quot;</span><span class="p">,</span> <span class="s2">&quot;StringContains&quot;</span><span class="p">,</span>

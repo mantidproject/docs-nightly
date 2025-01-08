@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Exercise 6 Solutions</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-    <script src="../../../_static/documentation_options.js?v=40bd42f4"></script>
+    <script src="../../../_static/documentation_options.js?v=8b83fff7"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -115,21 +115,21 @@
 <h2>Simple 1D<a class="headerlink" href="#simple-1d" title="Link to this heading">¶</a></h2>
 <p>The aim of this exercise is to implement a Lorentz function, that has no
 derivative.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">INVERSE_PI</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
 
-<span class="k">class</span> <span class="nc">Lorentz</span><span class="p">(</span><span class="n">IFunction1D</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Lorentz</span><span class="p">(</span><span class="n">IFunction1D</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Tell Mantid about the 3 parameters that are involved in the function</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">function1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">function1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
         <span class="c1"># xvals is a 1D numpy array that contains the X values for the defined fitting range.</span>
 
         <span class="c1"># Get the current values of the 3 parameters</span>
@@ -149,21 +149,21 @@ derivative.</p>
 <h2>Analytical Derivative<a class="headerlink" href="#analytical-derivative" title="Link to this heading">¶</a></h2>
 <p>The aim of this exercise is to implement a Lorentz function, that contains a
 derivative.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">INVERSE_PI</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
 
-<span class="k">class</span> <span class="nc">LorentzWithDeriv</span><span class="p">(</span><span class="n">IFunction1D</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LorentzWithDeriv</span><span class="p">(</span><span class="n">IFunction1D</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Tell Mantid about the 3 parameters that are involved in the function</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">function1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">function1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
         <span class="c1"># xvals is a 1D numpy array that contains the X values for the defined fitting range.</span>
 
         <span class="c1"># Get the current values of the 3 parameters</span>
@@ -174,7 +174,7 @@ derivative.</p>
         <span class="n">denom</span> <span class="o">=</span> <span class="p">(</span><span class="n">xvals</span> <span class="o">-</span> <span class="n">peak_centre</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">half_gamma</span><span class="o">*</span><span class="n">half_gamma</span>
         <span class="k">return</span> <span class="n">amp</span><span class="o">*</span><span class="n">INVERSE_PI</span><span class="o">*</span><span class="n">half_gamma</span><span class="o">/</span><span class="n">denom</span>
 
-    <span class="k">def</span> <span class="nf">functionDeriv1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">functionDeriv1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="c1"># xvals is a 1D numpy array that contains the X values for the defined fitting range.</span>
         <span class="c1"># out is a Jacobian matrix object. Mantid expects the partial derivatives</span>
         <span class="c1"># w.r.t the parameters and x values to be stored here</span>
@@ -207,27 +207,27 @@ derivative.</p>
 <section id="peak-function">
 <h2>Peak Function<a class="headerlink" href="#peak-function" title="Link to this heading">¶</a></h2>
 <p>The aim of this exercise is to implement a peak fit function function to fit.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.api</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
 <span class="n">INVERSE_PI</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
 
-<span class="k">class</span> <span class="nc">LorentzPeak</span><span class="p">(</span><span class="n">IPeakFunction</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LorentzPeak</span><span class="p">(</span><span class="n">IPeakFunction</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Tell Mantid about the 3 parameters that are involved in the function</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">functionLocal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">functionLocal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
         <span class="c1"># xvals is a 1D numpy array that contains the X values for the defined fitting range.</span>
         <span class="n">half_gamma</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">)</span>
         <span class="n">denom</span> <span class="o">=</span> <span class="p">(</span><span class="n">xvals</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">half_gamma</span><span class="o">*</span><span class="n">half_gamma</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span><span class="o">*</span><span class="n">INVERSE_PI</span><span class="o">*</span><span class="n">half_gamma</span><span class="o">/</span><span class="n">denom</span>
 
-    <span class="k">def</span> <span class="nf">functionDerivLocal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">functionDerivLocal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="c1"># xvals is a 1D numpy array that contains the X values for the defined fitting range.</span>
         <span class="c1"># out is a Jacobian matrix object. Mantid expects the partial derivatives</span>
         <span class="c1"># w.r.t the parameters and x values to be stored here</span>
@@ -251,27 +251,27 @@ derivative.</p>
             <span class="n">dfdg</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">amplitude</span><span class="o">*</span><span class="n">INVERSE_PI</span><span class="o">*</span><span class="p">(</span><span class="n">gamma</span><span class="o">*</span><span class="n">gamma</span> <span class="o">-</span> <span class="mf">4.0</span><span class="o">*</span><span class="n">diff</span><span class="o">*</span><span class="n">diff</span><span class="p">)</span><span class="o">*</span><span class="n">invDen1</span><span class="o">*</span><span class="n">invDen1</span>
             <span class="n">out</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dfdg</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">centre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">centre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Return a guess at the centre</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Return a guess at the height</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">fwhm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fwhm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Return a guess at the FWHM</span>
         <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">setCentre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setCentre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">):</span>
         <span class="c1"># Update centre guess when a new value is chosen from GUI</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">setHeight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_height</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setHeight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_height</span><span class="p">):</span>
         <span class="c1"># Update Amplitude guess when a new height is chosen from GUI</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">,</span> <span class="n">new_height</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">setFwhm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_fwhm</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setFwhm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_fwhm</span><span class="p">):</span>
         <span class="c1"># Update Gamma guess when a new width is chosen from GUI</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">,</span> <span class="n">new_fwhm</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
 

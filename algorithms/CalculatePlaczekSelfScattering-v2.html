@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>CalculatePlaczekSelfScattering v2</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=40bd42f4"></script>
+    <script src="../_static/documentation_options.js?v=8b83fff7"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -183,9 +183,9 @@ so that scripts still using this algorithm may benefit from the updated calculat
 <section id="usage">
 <h2><a class="toc-backref" href="#id13" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p><strong>Example: calculate Placzek self scattering correction using a sample detector setup</strong> <a class="footnote-reference brackets" href="#id8" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Create the workspace to hold the already corrected incident spectrum</span>
 <span class="n">incident_wksp_name</span> <span class="o">=</span> <span class="s1">&#39;incident_spectrum_wksp&#39;</span>
@@ -202,7 +202,7 @@ so that scripts still using this algorithm may benefit from the updated calculat
 <span class="n">incident_wksp</span> <span class="o">=</span> <span class="n">ConvertToPointData</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">incident_wksp</span><span class="p">)</span>
 
 <span class="c1"># Spectrum function given in Milder et al. Eq (5)</span>
-<span class="k">def</span> <span class="nf">incident_spectrum</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">phi_max</span><span class="p">,</span> <span class="n">phi_epi</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">lambda_1</span><span class="p">,</span> <span class="n">lambda_2</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">incident_spectrum</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">phi_max</span><span class="p">,</span> <span class="n">phi_epi</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">lambda_1</span><span class="p">,</span> <span class="n">lambda_2</span><span class="p">,</span>
                      <span class="n">lamda_t</span><span class="p">):</span>
     <span class="n">delta_term</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">wavelengths</span> <span class="o">-</span> <span class="n">lambda_1</span><span class="p">)</span> <span class="o">/</span> <span class="n">lambda_2</span><span class="p">))</span>
     <span class="n">term_1</span> <span class="o">=</span> <span class="n">phi_max</span> <span class="o">*</span> <span class="p">(</span>
@@ -272,8 +272,8 @@ so that scripts still using this algorithm may benefit from the updated calculat
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id15" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5bf2d7dfcefdec98747a8e0cede1bf14d25681e6/Framework/Algorithms/inc/MantidAlgorithms/CalculatePlaczekSelfScattering2.h">CalculatePlaczekSelfScattering2.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/5bf2d7dfcefdec98747a8e0cede1bf14d25681e6/Framework/Algorithms/src/CalculatePlaczekSelfScattering2.cpp">CalculatePlaczekSelfScattering2.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/2319044a3b78738b569124437d87dd0c1c61c19f/Framework/Algorithms/inc/MantidAlgorithms/CalculatePlaczekSelfScattering2.h">CalculatePlaczekSelfScattering2.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/2319044a3b78738b569124437d87dd0c1c61c19f/Framework/Algorithms/src/CalculatePlaczekSelfScattering2.cpp">CalculatePlaczekSelfScattering2.cpp</a></p>
 </section>
 </section>
 

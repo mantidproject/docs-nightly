@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>UI &amp; Usability Changes</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=40bd42f4"></script>
+    <script src="../../_static/documentation_options.js?v=8b83fff7"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -195,15 +195,15 @@ then drag the corresponding peaks workspace into the VSI window.</p></li>
 In it’s current implementation, the instrument view depends on the
 global workspace list in order to load data from workspaces. Example script:</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">PyQt4</span>
-<span class="kn">import</span> <span class="nn">mantid.simpleapi</span> <span class="k">as</span> <span class="nn">simpleapi</span>
-<span class="kn">import</span> <span class="nn">mantidqtpython</span> <span class="k">as</span> <span class="nn">mpy</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">threading</span><span class="w"> </span><span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">PyQt4</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">simpleapi</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mantidqtpython</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpy</span>
 
 <span class="n">ConfigService</span> <span class="o">=</span> <span class="n">simpleapi</span><span class="o">.</span><span class="n">ConfigService</span>
-<span class="k">def</span> <span class="nf">startFakeEventDAE</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">startFakeEventDAE</span><span class="p">():</span>
     <span class="c1"># This will generate 2000 events roughly every 20ms, so about 50,000 events/sec</span>
     <span class="c1"># They will be randomly shared across the 100 spectra</span>
     <span class="c1"># and have a time of flight between 10,000 and 20,000</span>
@@ -212,7 +212,7 @@ global workspace list in order to load data from workspaces. Example script:</p>
     <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
         <span class="k">pass</span>
 
-<span class="k">def</span> <span class="nf">captureLive</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">captureLive</span><span class="p">():</span>
     <span class="n">ConfigService</span><span class="o">.</span><span class="n">setFacility</span><span class="p">(</span><span class="s2">&quot;TEST_LIVE&quot;</span><span class="p">)</span>
 
     <span class="c1"># start a Live data listener updating every second, that rebins the data</span>

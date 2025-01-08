@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>directtools</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=40bd42f4"></script>
+    <script src="../_static/documentation_options.js?v=8b83fff7"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -116,8 +116,8 @@
 <section id="plotsofqw">
 <h3><cite>plotSofQW</cite><a class="headerlink" href="#plotsofqw" title="Link to this heading">¶</a></h3>
 <p>The default parameters for <a class="reference internal" href="#directtools.plotSofQW" title="directtools.plotSofQW"><code class="xref py py-func docutils literal notranslate"><span class="pre">directtools.plotSofQW()</span></code></a> give a view of the <span class="math notranslate nohighlight">\(S(Q,E)\)</span> workspace around the elastic peak with sensible limits for the axes and intensity:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">directtools</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">directtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">DirectILLCollectData</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN4/084447.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="n">DirectILLReduction</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;SofQW&#39;</span><span class="p">)</span>
@@ -131,8 +131,8 @@
 <img alt="../_images/DirecttoolsPythonModule-1.png" class="plot-directive" src="../_images/DirecttoolsPythonModule-1.png" />
 </figure>
 <p>The <span class="math notranslate nohighlight">\(Q\)</span>, <span class="math notranslate nohighlight">\(E\)</span> and intensity limits can be changed using the optional parameters. The utility functions <a class="reference internal" href="#directtools.validQ" title="directtools.validQ"><code class="xref py py-func docutils literal notranslate"><span class="pre">directtools.validQ()</span></code></a> and <a class="reference internal" href="#directtools.nanminmax" title="directtools.nanminmax"><code class="xref py py-func docutils literal notranslate"><span class="pre">directtools.nanminmax()</span></code></a> might be helpful when determining suitable ranges:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">directtools</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">directtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">DirectILLCollectData</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN4/084447.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="n">DirectILLReduction</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;SofQW&#39;</span><span class="p">)</span>
@@ -153,9 +153,9 @@
 <section id="cuts-in-s-q-e">
 <h3>Cuts in <span class="math notranslate nohighlight">\(S(Q,E)\)</span><a class="headerlink" href="#cuts-in-s-q-e" title="Link to this heading">¶</a></h3>
 <p>An important aspect of examining the <span class="math notranslate nohighlight">\(S(Q,E)\)</span> workspace is to plot cuts at constant <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(E\)</span>. This can be done by <a class="reference internal" href="#directtools.plotconstQ" title="directtools.plotconstQ"><code class="xref py py-func docutils literal notranslate"><span class="pre">directtools.plotconstQ()</span></code></a> and <a class="reference internal" href="#directtools.plotconstE" title="directtools.plotconstE"><code class="xref py py-func docutils literal notranslate"><span class="pre">directtools.plotconstE()</span></code></a>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">directtools</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">directtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
 <span class="n">DirectILLCollectData</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN4/084447.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="n">DirectILLReduction</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;SofQW&#39;</span><span class="p">)</span>
@@ -176,8 +176,8 @@
 <img alt="../_images/DirecttoolsPythonModule-3.png" class="plot-directive" src="../_images/DirecttoolsPythonModule-3.png" />
 </figure>
 <p>Any of the workspace, cut centre or cut width arguments can be a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> instead. This enables data comparison:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">directtools</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">directtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">DirectILLCollectData</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN4/084447.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="n">DirectILLReduction</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;SofQW&#39;</span><span class="p">)</span>
@@ -195,8 +195,8 @@
 </figure>
 <p>The <a class="reference internal" href="#directtools.plotconstQ" title="directtools.plotconstQ"><code class="xref py py-func docutils literal notranslate"><span class="pre">directtools.plotconstQ()</span></code></a> and <a class="reference internal" href="#directtools.plotconstE" title="directtools.plotconstE"><code class="xref py py-func docutils literal notranslate"><span class="pre">directtools.plotconstE()</span></code></a> functions use <a class="reference internal" href="#directtools.plotcuts" title="directtools.plotcuts"><code class="xref py py-func docutils literal notranslate"><span class="pre">directtools.plotcuts()</span></code></a> to do the actual line profiles and plotting. The profiles are made by the <a class="reference internal" href="../algorithms/LineProfile-v1.html#algm-lineprofile"><span class="std std-ref">LineProfile v1</span></a> algorithm, and all three plotting functions return a list of the produced line profile workspace names.</p>
 <p>If a line profile already exists, it can be plotted using <a class="reference internal" href="#directtools.plotprofiles" title="directtools.plotprofiles"><code class="xref py py-func docutils literal notranslate"><span class="pre">directtools.plotprofiles()</span></code></a>. This also accepts either a single line profile workspace or a list of workspaces enabling comparison:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">directtools</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">directtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">DirectILLCollectData</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN4/084447.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="n">DirectILLReduction</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;SofQW&#39;</span><span class="p">)</span>
@@ -221,8 +221,8 @@
 <section id="plotting-density-of-states">
 <h3>Plotting density of states<a class="headerlink" href="#plotting-density-of-states" title="Link to this heading">¶</a></h3>
 <p>The density of states data calculated by <a class="reference internal" href="../algorithms/ComputeIncoherentDOS-v1.html#algm-computeincoherentdos"><span class="std std-ref">ComputeIncoherentDOS</span></a> can be plotted by the <a class="reference internal" href="#directtools.plotDOS" title="directtools.plotDOS"><code class="xref py py-func docutils literal notranslate"><span class="pre">directtools.plotDOS()</span></code></a> function. The function accepts a single workspace or a list of workspaces as its arguments. The example below shows a comparison of densities of states calculated from <span class="math notranslate nohighlight">\(S(Q,E)\)</span> and <span class="math notranslate nohighlight">\(S(2\theta,E)\)</span>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">directtools</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">directtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">DirectILLCollectData</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN4/084447.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="n">DirectILLReduction</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;SofQW&#39;</span><span class="p">,</span> <span class="n">OutputSofThetaEnergyWorkspace</span><span class="o">=</span><span class="s1">&#39;SofTW&#39;</span><span class="p">)</span>
@@ -240,8 +240,8 @@
 <section id="convenience-tools">
 <h3>Convenience tools<a class="headerlink" href="#convenience-tools" title="Link to this heading">¶</a></h3>
 <p><a class="reference internal" href="#directtools.SampleLogs" title="directtools.SampleLogs"><code class="xref py py-class docutils literal notranslate"><span class="pre">directtools.SampleLogs</span></code></a> is a convenience class to import the sample logs of a workspace into a ‘struct’ like object in Python:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">directtools</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">directtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">DirectILLCollectData</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN4/084447.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="n">DirectILLReduction</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;SofQW&#39;</span><span class="p">)</span>

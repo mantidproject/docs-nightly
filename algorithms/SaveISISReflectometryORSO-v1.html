@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=8b83fff7"></script>
+    <script src="../_static/documentation_options.js?v=b601f6e1"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -110,23 +110,23 @@
 <nav class="contents local" id="table-of-contents">
 <span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id3">Summary</a></p></li>
-<li><p><a class="reference internal" href="#properties" id="id4">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id5">Description</a></p></li>
-<li><p><a class="reference internal" href="#dataset-names" id="id6">Dataset names</a></p></li>
-<li><p><a class="reference internal" href="#data-values" id="id7">Data values</a></p></li>
-<li><p><a class="reference internal" href="#header-metadata" id="id8">Header Metadata</a></p></li>
-<li><p><a class="reference internal" href="#usage" id="id9">Usage</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id10">References</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id11">Source</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id4">Summary</a></p></li>
+<li><p><a class="reference internal" href="#properties" id="id5">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id6">Description</a></p></li>
+<li><p><a class="reference internal" href="#dataset-names" id="id7">Dataset names</a></p></li>
+<li><p><a class="reference internal" href="#data-values" id="id8">Data values</a></p></li>
+<li><p><a class="reference internal" href="#header-metadata" id="id9">Header Metadata</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id10">Usage</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id11">References</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id12">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Saves ISIS processed reflectometry workspaces into either the ASCII or Nexus implementation of the ORSO data standard.</p>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -165,7 +165,7 @@
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This algorithm saves the data and relevant metadata from a reduced ISIS Reflectometry workspace into either the ASCII (<code class="docutils literal notranslate"><span class="pre">.ort</span></code>) or Nexus (<code class="docutils literal notranslate"><span class="pre">.orb</span></code>) implementation of the ORSO data standard <a class="footnote-reference brackets" href="#orso" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 The orsopy library <a class="footnote-reference brackets" href="#orsopy" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> is used to format and write out the file.
 Currently this algorithm is unable to collect all of the mandatory information required by the ORSO standard so it produces a file that is not fully ORSO compliant.
@@ -180,20 +180,24 @@ Dataset names must be unique, so an error will be thrown if duplicate dataset na
 <p>The <code class="docutils literal notranslate"><span class="pre">Filename</span></code> property is used to provide the save location and name for the file. The save path must end with a valid ORSO file extension - use <code class="docutils literal notranslate"><span class="pre">.ort</span></code> to save into the ORSO ASCII format or <code class="docutils literal notranslate"><span class="pre">.orb</span></code> to save into the ORSO Nexus format.</p>
 </section>
 <section id="dataset-names">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Dataset names</a><a class="headerlink" href="#dataset-names" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Dataset names</a><a class="headerlink" href="#dataset-names" title="Link to this heading">¶</a></h2>
 <p>A dataset name is generated automatically for each individual workspace in the input list or workspace group. This is done as follows:</p>
 <ul class="simple">
 <li><p>If there is a call to <a class="reference internal" href="Stitch1DMany-v1.html#algm-stitch1dmany"><span class="std std-ref">Stitch1DMany v1</span></a> in the workspace history then the dataset is given the name “Stitched”.</p></li>
 <li><p>If it is not a stitched dataset then, if available in the workspace reduction history, the value of theta that was used for conversion to Q is given as the dataset name.</p></li>
 <li><p>If a dataset name cannot be generated from either of the above, then the workspace name is used as the dataset name.</p></li>
 </ul>
-<p>For a workspace that is a member of a workspace group, if the generated dataset name is either “Stitched” or the theta value, then the individual workspace name is also included in the dataset name.
-This is done to ensure a unique name.</p>
+<p>For a workspace that is a member of a workspace group, if the generated dataset name is either “Stitched” or the theta value, we include the following additional
+information in the name to make it unique:</p>
+<ul class="simple">
+<li><p>If the data is polarized, then we include the spin state using the ORSO notation for polarization.</p></li>
+<li><p>If the data is not polarized, then we include the individual workspace name.</p></li>
+</ul>
 <p>Depending on the combination of workspaces and workspace groups passed in, it is possible that duplicate dataset names will be generated. If this happens then the algorithm will give an error and
 fail to save out a file.</p>
 </section>
 <section id="data-values">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Data values</a><a class="headerlink" href="#data-values" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Data values</a><a class="headerlink" href="#data-values" title="Link to this heading">¶</a></h2>
 <p>The saved ORSO file contains at least three columns of data: the normal wavevector transfer (Qz), the reflectivity (R) and the error of the reflectivity.
 The data is converted to point data using algorithm <a class="reference internal" href="ConvertToPointData-v1.html#algm-converttopointdata"><span class="std std-ref">ConvertToPointData v1</span></a> before being saved to file.</p>
 <p>If parameter <code class="docutils literal notranslate"><span class="pre">WriteResolution</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> then the algorithm will also attempt to include a fourth column that calculates the resolution of the normal wavevector transfer as: <span class="math notranslate nohighlight">\(resolution * Qz\)</span>.
@@ -214,7 +218,7 @@ For non-stitched datasets there will be the four columns described above plus an
 <p>If it is not possible to calculate the values for the additional columns then a warning is logged and they are excluded from the file.</p>
 </section>
 <section id="header-metadata">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Header Metadata</a><a class="headerlink" href="#header-metadata" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Header Metadata</a><a class="headerlink" href="#header-metadata" title="Link to this heading">¶</a></h2>
 <p>Some of the metadata for the ORSO file header is retrieved directly from the input workspace, as detailed below.
 For values retrieved from the workspace history, if any information cannot be extracted from the history then
 the file is saved without this metadata included.</p>
@@ -259,11 +263,15 @@ additional_files</p></td>
 correction workspace or file name and the calibration file name from
 <a class="reference internal" href="ReflectometryISISLoadAndProcess-v1.html#algm-reflectometryisisloadandprocess"><span class="std std-ref">ReflectometryISISLoadAndProcess v1</span></a> in the workspace history.</p></td>
 </tr>
+<tr class="row-even"><td><p>polarization</p></td>
+<td><p>For input workspaces containing the <code class="docutils literal notranslate"><span class="pre">spin_state_ORSO</span></code> sample log, polarization information
+will be added to the header using the ORSO format <a class="footnote-reference brackets" href="#orso" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p><strong>Example - Save a workspace in ISIS Reflectometry ORSO ASCII format</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the os path libraries for directory functions</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -292,10 +300,11 @@ correction workspace or file name and the calibration file name from
 </div>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="orso" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
 <p>ORSO file format specification: <a class="reference external" href="https://www.reflectometry.org/file_format/specification">https://www.reflectometry.org/file_format/specification</a></p>
 </aside>
 <aside class="footnote brackets" id="orsopy" role="doc-footnote">
@@ -306,8 +315,8 @@ correction workspace or file name and the calibration file name from
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Reflectometry/ISIS.html">Reflectometry\ISIS</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/2319044a3b78738b569124437d87dd0c1c61c19f/Framework/PythonInterface/plugins/algorithms/SaveISISReflectometryORSO.py">SaveISISReflectometryORSO.py</a></p>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a411fec9bb779acef8e7d27a4f7295d1405bb3e5/Framework/PythonInterface/plugins/algorithms/SaveISISReflectometryORSO.py">SaveISISReflectometryORSO.py</a></p>
 </section>
 </section>
 

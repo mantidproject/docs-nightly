@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=8b83fff7"></script>
+    <script src="../_static/documentation_options.js?v=b601f6e1"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -116,9 +116,13 @@
 </ul>
 </li>
 <li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id4">Description</a></p></li>
-<li><p><a class="reference internal" href="#usage" id="id5">Usage</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id6">Source</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id4">Description</a></p>
+<ul>
+<li><p><a class="reference internal" href="#comments-for-creating-useful-cross-correlation-output" id="id5">Comments for creating useful cross-correlation output</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#usage" id="id6">Usage</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id7">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
@@ -200,20 +204,39 @@
 </section>
 <section id="description">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
-<p>Compute the cross correlation function for a range of spectra with
-respect to a reference spectrum.</p>
+<p>Compute the cross correlation function for a range of spectra with respect to a reference spectrum.</p>
+<p>This is used in powder diffraction experiments when trying to estimate the offset (in number of bin indices) of one spectrum with respect to another one, where the x-axis units share a common crystallographic unit (such as d-spacing or momentum transfer).
+The input spectra need to be in d-spacing and then interpolated on the X-axis of the reference before calculating the cross correlation in bin index.
+In principle, momentum transfer will work, but this is not currently supported.
+The cross correlation function is computed as:</p>
 <div class="math notranslate nohighlight">
-\[c_{fg}(r) = \frac{1}{\sigma_f \sigma_g} \int (f(x) - \mu_f) (g(x+r)-\mu_g) dx\]</div>
-<p>This is use in powder diffraction experiments when trying to estimate
-the offset of one spectra with respect to another one. The spectra are
-converted in d-spacing and then interpolate on the X-axis of the
-reference. The cross correlation function is computed in the range
-[-N/2,N/2] where N is the number of points.</p>
+\[c_{fg}(r) = \frac{1}{\sigma_f \sigma_g} \int_{XMin}^{XMax} (f(x) - \mu_f) (g(x+r)-\mu_g) dx\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(r\)</span> are bin indices.
+<span class="math notranslate nohighlight">\(r\)</span> being either half of the number of points in the requested range, <code class="docutils literal notranslate"><span class="pre">XMin</span></code> to <code class="docutils literal notranslate"><span class="pre">XMax</span></code>, of the reference spectrum, or up to the number of bins corresponding to <cite>MaxDSpaceShift</cite>, whichever is smaller.
+<span class="math notranslate nohighlight">\(f(x)\)</span> is the reference spectrum, with <span class="math notranslate nohighlight">\(\mu_f\)</span> and <span class="math notranslate nohighlight">\(\sigma_f\)</span> being the mean and variance respectively.
+Similarly, <span class="math notranslate nohighlight">\(g(x)\)</span> is the reference spectrum, with <span class="math notranslate nohighlight">\(\mu_g\)</span> and <span class="math notranslate nohighlight">\(\sigma_g\)</span> being the mean and variance respectively.
+All functions are evaluated as a function of bin number rather than x-value.</p>
 <p>More details can be found
 <a class="reference external" href="http://en.wikipedia.org/wiki/Cross-correlation">here.</a></p>
+<section id="comments-for-creating-useful-cross-correlation-output">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Comments for creating useful cross-correlation output</a><a class="headerlink" href="#comments-for-creating-useful-cross-correlation-output" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Supply input data with relatively high signal to noise ratio.
+When this is not met, the resulting cross-correlation generally have issues having offsets determined from them by <a class="reference internal" href="GetDetectorOffsets-v1.html#algm-getdetectoroffsets"><span class="std std-ref">GetDetectorOffsets v1</span></a>.</p></li>
+<li><p>Take note of input binning structure before using <a class="reference internal" href="GetDetectorOffsets-v1.html#algm-getdetectoroffsets"><span class="std std-ref">GetDetectorOffsets v1</span></a> and <a class="reference internal" href="ConvertDiffCal-v1.html#algm-convertdiffcal"><span class="std std-ref">ConvertDiffCal v1</span></a>.
+The different binning modes (linear or logorithmic) correspond to different behavior in the follow-on algorithms.</p></li>
+<li><p>Cross-correlating linear binning generally uses <code class="docutils literal notranslate"><span class="pre">OffsetMode=&quot;Relative&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">OffsetMode=&quot;Absolute&quot;</span></code> and requires a narrow range of integration around a single Bragg peak with known reference d-spacing.</p></li>
+<li><p>Use a large range for <code class="docutils literal notranslate"><span class="pre">XMin</span></code> to <code class="docutils literal notranslate"><span class="pre">XMax</span></code>.
+This will promote calibrations that take a larger range of the data into account rather than a single diffraction peak.
+However, it only works for logorithmic binning which will use <code class="docutils literal notranslate"><span class="pre">OffsetMode=&quot;Signed&quot;</span></code> in <a class="reference internal" href="GetDetectorOffsets-v1.html#algm-getdetectoroffsets"><span class="std std-ref">GetDetectorOffsets v1</span></a>.</p></li>
+<li><p>With wide range of integration, use the <code class="docutils literal notranslate"><span class="pre">MaxDSpaceShift</span></code> to limit the value of <span class="math notranslate nohighlight">\(r\)</span>.
+Not only will this speed up the calculation, but the output spectra will only include where the spectra are similar to the reference and not have spurious peaks or background.
+<strong>NOTE:</strong> <cite>MaxDSpaceShift</cite> must be greater than  approximately double the maximum Bragg peak full-width of the input data to ensure that the cross correlation contains a complete peak.</p></li>
+</ul>
+</section>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p><strong>Example - Crosscorrelate 2 spectra</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Create a workspace with 2 spectra with five bins of width 0.5</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;dSpacing&#39;</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -233,9 +256,9 @@ CrossCorrelation [-0.68136257  0.16838401  0.45685055]
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Arithmetic.html">Arithmetic</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/2319044a3b78738b569124437d87dd0c1c61c19f/Framework/Algorithms/inc/MantidAlgorithms/CrossCorrelate.h">CrossCorrelate.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/2319044a3b78738b569124437d87dd0c1c61c19f/Framework/Algorithms/src/CrossCorrelate.cpp">CrossCorrelate.cpp</a></p>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a411fec9bb779acef8e7d27a4f7295d1405bb3e5/Framework/Algorithms/inc/MantidAlgorithms/CrossCorrelate.h">CrossCorrelate.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/a411fec9bb779acef8e7d27a4f7295d1405bb3e5/Framework/Algorithms/src/CrossCorrelate.cpp">CrossCorrelate.cpp</a></p>
 </section>
 </section>
 

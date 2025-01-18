@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=266643d4"></script>
+    <script src="../../_static/documentation_options.js?v=ab4ffcd3"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -171,6 +171,7 @@
 <section id="bugfixes">
 <h3><a class="toc-backref" href="#id13" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Fixed bug in:ref:<cite>LoadNGEM &lt;algm-LoadNGEM&gt;</cite> where <code class="docutils literal notranslate"><span class="pre">Min/MaxEventsPerFrame</span></code> inputs were not being respected.</p></li>
 <li><p>Fixed a bug in <a class="reference internal" href="../../interfaces/general/Sample%20Transmission%20Calculator.html#sample-transmission-calculator"><span class="std std-ref">Sample Transmission Calculator</span></a> (Interfaces &gt; General &gt; Sample Transmission Calculator) interface to restrict entering commas mixed with decimal point in the double spin boxes for Low, Width and High fields</p></li>
 <li><p><a class="reference internal" href="../../algorithms/RemovePromptPulse-v1.html#algm-removepromptpulse"><span class="std std-ref">RemovePromptPulse</span></a> has been fixed to correctly account for the first pulse.</p></li>
 <li><p>fixes a bug in <a class="reference internal" href="../../algorithms/LoadNexusProcessed-v2.html#algm-loadnexusprocessed"><span class="std std-ref">LoadNexusProcessed</span></a> when determining the number of workspaces in a NeXus HDF5 file.  It now counts the number of root-level “NX_class: NXentry” groups. Previously, it simply counted the number of root-level groups, assuming all were of “NX_class: NXentry”.</p></li>
@@ -178,6 +179,7 @@
 <li><p>fixes bug in <a class="reference internal" href="../../algorithms/CompareWorkspaces-v1.html#algm-compareworkspaces"><span class="std std-ref">CompareWorkspaces</span></a> that evaluated <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values as equal to any floating point (including <code class="docutils literal notranslate"><span class="pre">inf</span></code> and finite values).</p></li>
 <li><p>adds new flag NaNsEqual to <a class="reference internal" href="../../algorithms/CompareWorkspaces-v1.html#algm-compareworkspaces"><span class="std std-ref">CompareWorkspaces</span></a> to control how <code class="docutils literal notranslate"><span class="pre">NaN</span></code> compares to other <code class="docutils literal notranslate"><span class="pre">NaN</span></code> s.</p></li>
 <li><p>Fixed a segmentation fault in <a class="reference internal" href="../../algorithms/FindPeaksConvolve-v1.html#algm-findpeaksconvolve"><span class="std std-ref">FindPeaksConvolve</span></a> algorithm due to a racing condition in the parallel loop. The issue was first observed as a flaky unit test failure in the CI.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/ConjoinWorkspaces-v1.html#algm-conjoinworkspaces"><span class="std std-ref">ConjoinWorkspaces</span></a> now performs a check and throws an error if input workspace’s bins are mismatched. The mismatch check can be disabled setting the <code class="docutils literal notranslate"><span class="pre">CheckMatchingBins</span></code> property to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 <li><p>Add support for histogram <a class="reference internal" href="../../concepts/Ragged_Workspace.html#ragged-workspace"><span class="std std-ref">ragged workspaces</span></a> to <a class="reference internal" href="../../algorithms/ConvertUnits-v1.html#algm-convertunits"><span class="std std-ref">ConvertUnits</span></a>. Ragged workspaces with bin centers (Point rather than BinEdges) still generate errors.</p></li>
 <li><p>The following parameter names in <a class="reference internal" href="../../algorithms/HeliumAnalyserEfficiency-v1.html#algm-heliumanalyserefficiency"><span class="std std-ref">HeliumAnalyserEfficiency v1</span></a> have been updated for consistency: <cite>GasPressureTimesCellLength</cite> is now <cite>PxD</cite>, <cite>GasPressureTimesCellLengthError</cite> is now <cite>PXDError</cite>, <cite>StartLambda</cite> is now <cite>StartX</cite>, and <cite>EndLambda</cite> is now <cite>EndX</cite>. Any scripts using the old names will need to be updated.</p></li>
 </ul>
@@ -233,6 +235,7 @@
 </section>
 <section id="id8">
 <h3><a class="toc-backref" href="#id26" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<p><a class="reference internal" href="../../api/python/mantid/plots/index.html#mantid.plots.MantidAxes" title="mantid.plots.MantidAxes"><code class="xref py py-class docutils literal notranslate"><span class="pre">MantidAxes</span></code></a> accounts for plotting both workspaces and lines on the same axis in the rename case</p>
 </section>
 </section>
 <section id="dependencies">

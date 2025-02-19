@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=2f22b5d0"></script>
+    <script src="../_static/documentation_options.js?v=93a11e12"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -292,7 +292,7 @@
 <p>This algorithm takes an <code class="docutils literal notranslate"><span class="pre">InputWorkspace</span></code> containing powder diffraction spectra from a standard sample with x-units of time-of-flight (TOF).
 These spectra are fitted to extract the Bragg peak positions. The extracted peak positions are then used to
 determine the diffractometer constants that convert diffraction spectra from TOF to d-spacing. These constants are described in detail
-in <a class="reference internal" href="AlignDetectors-v1.html#algm-aligndetectors"><span class="std std-ref">AlignDetectors v1</span></a>. The number of the constants being determined (1,2,or 3) is controlled by <code class="docutils literal notranslate"><span class="pre">CalibrationParameters</span></code>.
+in <a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">Units</span></a>. The number of the constants being determined (1,2,or 3) is controlled by <code class="docutils literal notranslate"><span class="pre">CalibrationParameters</span></code>.
 The results are output to a <a class="reference internal" href="../concepts/DiffractionCalibrationWorkspace.html#diffractioncalibrationworkspace"><span class="std std-ref">diffraction calibration workspace</span></a>.</p>
 <p>Unlike other calibration algorithms (see <a class="reference external" href="../concepts/calibration/PowderDiffractionCalibration.html">Time-of-Flight Powder Diffraction Calibration</a>),
 peak fitting in <cite>PDCalibration</cite> is done in TOF, not d-spacing. Correspondingly, the input <code class="docutils literal notranslate"><span class="pre">PeakPositions</span></code> and <code class="docutils literal notranslate"><span class="pre">PeakWindow</span></code> values are converted
@@ -316,9 +316,10 @@ spectrum is calibrated separately following the same basic steps:</p>
 returned. This favors using less parameters.</p>
 <p>When not specified using the <code class="docutils literal notranslate"><span class="pre">MaskWorkspace</span></code> parameter, the default name for the mask workspace will be the <code class="docutils literal notranslate"><span class="pre">OutputCalibrationTable</span></code> parameter + <code class="docutils literal notranslate"><span class="pre">_mask</span></code>.  If the mask workspace already exists, its masked values will be combined with those from any uncalibrated pixels detected during the algorithm’s execution.</p>
 <p>The resulting calibration table can be saved with
-<a class="reference internal" href="SaveDiffCal-v1.html#algm-savediffcal"><span class="std std-ref">SaveDiffCal v1</span></a>, loaded with <a class="reference internal" href="LoadDiffCal-v1.html#algm-loaddiffcal"><span class="std std-ref">LoadDiffCal v1</span></a> and
-applied to a workspace with <a class="reference internal" href="AlignDetectors-v1.html#algm-aligndetectors"><span class="std std-ref">AlignDetectors v1</span></a>. There are also
-three workspaces placed in the <code class="docutils literal notranslate"><span class="pre">DiagnosticWorkspace</span></code> group. They are:</p>
+<a class="reference internal" href="SaveDiffCal-v1.html#algm-savediffcal"><span class="std std-ref">SaveDiffCal v1</span></a>, loaded with <a class="reference internal" href="LoadDiffCal-v1.html#algm-loaddiffcal"><span class="std std-ref">LoadDiffCal v1</span></a>.
+The calibration can be applied to a workspace using <a class="reference internal" href="ApplyDiffCal-v1.html#algm-applydiffcal"><span class="std std-ref">ApplyDiffCal v1</span></a> which uses the calibration table
+and updates the diffractometer constants in the <code class="docutils literal notranslate"><span class="pre">UnitParams</span></code> map of the workspace that is then used in <a class="reference internal" href="ConvertUnits-v1.html#algm-convertunits"><span class="std std-ref">ConvertUnits v1</span></a> to convert the x-axis of the data from TOF to e.g. d-spacing.</p>
+<p>There are also three workspaces placed in the <code class="docutils literal notranslate"><span class="pre">DiagnosticWorkspace</span></code> group. They are:</p>
 <ul class="simple">
 <li><p>evaluated fit functions (<code class="docutils literal notranslate"><span class="pre">_fitted</span></code>) which is the <code class="docutils literal notranslate"><span class="pre">OutputPeakParametersWorkspace</span></code> from <a class="reference internal" href="FitPeaks-v1.html#algm-fitpeaks"><span class="std std-ref">FitPeaks</span></a></p></li>
 <li><p>raw peak fit values (<code class="docutils literal notranslate"><span class="pre">_fitparam</span></code>) which is the <code class="docutils literal notranslate"><span class="pre">FittedPeaksWorkspace</span></code> from <a class="reference internal" href="FitPeaks-v1.html#algm-fitpeaks"><span class="std std-ref">FitPeaks</span></a></p></li>
@@ -400,8 +401,8 @@ In this mode, the <code class="docutils literal notranslate"><span class="pre">C
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d1e96c3f6567e1b4b4dd64c89c1e0ff480a4ef94/Framework/Algorithms/inc/MantidAlgorithms/PDCalibration.h">PDCalibration.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d1e96c3f6567e1b4b4dd64c89c1e0ff480a4ef94/Framework/Algorithms/src/PDCalibration.cpp">PDCalibration.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/18fa2f03c3a88fa76a244e9fa65762f23a77d733/Framework/Algorithms/inc/MantidAlgorithms/PDCalibration.h">PDCalibration.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/18fa2f03c3a88fa76a244e9fa65762f23a77d733/Framework/Algorithms/src/PDCalibration.cpp">PDCalibration.cpp</a></p>
 </section>
 </section>
 

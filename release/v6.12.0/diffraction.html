@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=2f22b5d0"></script>
+    <script src="../../_static/documentation_options.js?v=93a11e12"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -112,87 +112,82 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#powder-diffraction" id="id5">Powder Diffraction</a></p>
+<li><p><a class="reference internal" href="#powder-diffraction" id="id4">Powder Diffraction</a></p>
 <ul>
-<li><p><a class="reference internal" href="#new-features" id="id6">New features</a></p></li>
-<li><p><a class="reference internal" href="#bugfixes" id="id7">Bugfixes</a></p></li>
+<li><p><a class="reference internal" href="#new-features" id="id5">New features</a></p></li>
+<li><p><a class="reference internal" href="#bugfixes" id="id6">Bugfixes</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#engineering-diffraction" id="id8">Engineering Diffraction</a></p>
+<li><p><a class="reference internal" href="#engineering-diffraction" id="id7">Engineering Diffraction</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id1" id="id9">New features</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id10">Bugfixes</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id8">Bugfixes</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#single-crystal-diffraction" id="id11">Single Crystal Diffraction</a></p>
+<li><p><a class="reference internal" href="#single-crystal-diffraction" id="id9">Single Crystal Diffraction</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id3" id="id12">New features</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id13">Bugfixes</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id10">New features</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id11">Bugfixes</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="powder-diffraction">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Powder Diffraction</a><a class="headerlink" href="#powder-diffraction" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Powder Diffraction</a><a class="headerlink" href="#powder-diffraction" title="Link to this heading">¶</a></h2>
 <section id="new-features">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">New features</a><a class="headerlink" href="#new-features" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">New features</a><a class="headerlink" href="#new-features" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p><a class="reference internal" href="../../algorithms/AlignAndFocusPowder-v1.html#algm-alignandfocuspowder-v1"><span class="std std-ref">AlignAndFocusPowder</span></a> has been modified to utilize the new binning parameters added to <a class="reference internal" href="../../algorithms/DiffractionFocussing-v2.html#algm-diffractionfocussing-v2"><span class="std std-ref">DiffractionFocussing</span></a>.</p></li>
-<li><p>Added new mode <code class="docutils literal notranslate"><span class="pre">mode=&quot;pdf_norm&quot;</span></code> to <a class="reference internal" href="../../techniques/ISISPowder-Polaris-v1.html#isis-powder-diffraction-polaris-ref"><span class="std std-ref">ISIS POLARIS powder reduction</span></a> for when the chopper is off/stationary with a default <code class="docutils literal notranslate"><span class="pre">van_normalisation_method=&quot;absolute&quot;</span></code>. The existing  <code class="docutils literal notranslate"><span class="pre">mode=&quot;pdf&quot;</span></code> now has a default  <code class="docutils literal notranslate"><span class="pre">van_normalisation_method=&quot;relative&quot;</span></code> (was previously <code class="docutils literal notranslate"><span class="pre">&quot;absolute&quot;</span></code>).</p></li>
-<li><p>The ability to define the output binning of each spectra has been added to <a class="reference internal" href="../../algorithms/DiffractionFocussing-v2.html#algm-diffractionfocussing-v2"><span class="std std-ref">DiffractionFocussing</span></a>.</p></li>
-<li><p>Move <a class="reference external" href="https://github.com/neutrons/pystog">pystog</a> from v0.2.7 to v0.5.0 which supports numpy v2</p></li>
-<li><p>New container type added in for POWGEN instrument and accordingly the <a class="reference internal" href="../../algorithms/SNSPowderReduction-v1.html#algm-snspowderreduction"><span class="std std-ref">SNSPowderReduction</span></a> interface has been updated to accommodate this new container type.</p></li>
-<li><p>New focus mode “trans_custom” added to <a class="reference internal" href="../../techniques/ISISPowder-Pearl-v1.html#isis-powder-diffraction-pearl-ref"><span class="std std-ref">PEARL powder</span></a> routine which allows a user to specify modules to include in the transverse bank focusing using the parameter trans_mod_nums. The module numbers in the range 1-9 can be specified using the same string syntax as run-numbers - e.g. trans_mod_nums=”1-3,5” corresponds to focusing modules 1,2,3 and 5.</p></li>
-<li><p>Add more information to <a class="reference internal" href="../../algorithms/CrossCorrelate-v1.html#algm-crosscorrelate"><span class="std std-ref">CrossCorrelate</span></a> and <a class="reference internal" href="../../algorithms/GetDetectorOffsets-v1.html#algm-getdetectoroffsets"><span class="std std-ref">GetDetectorOffsets</span></a> user documenation</p></li>
+<li><p><a class="reference internal" href="../../algorithms/DiffractionFocussing-v2.html#algm-diffractionfocussing-v2"><span class="std std-ref">DiffractionFocussing</span></a> now allows the user to define binning parameters for each output spectrum.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/AlignAndFocusPowder-v1.html#algm-alignandfocuspowder-v1"><span class="std std-ref">AlignAndFocusPowder</span></a> uses the new binning parameters added to <a class="reference internal" href="../../algorithms/DiffractionFocussing-v2.html#algm-diffractionfocussing-v2"><span class="std std-ref">DiffractionFocussing</span></a>.</p></li>
+<li><p>New powder cell container type added for POWGEN. <a class="reference internal" href="../../algorithms/SNSPowderReduction-v1.html#algm-snspowderreduction"><span class="std std-ref">SNSPowderReduction</span></a> now accommodates this container type.</p></li>
+<li><p><a class="reference internal" href="../../techniques/ISISPowder-Pearl-v1.html#isis-powder-diffraction-pearl-ref"><span class="std std-ref">PEARL powder</span></a> has a new <code class="docutils literal notranslate"><span class="pre">trans_custom</span></code> focus mode. This allows the user to specify modules to include in the transverse bank focusing using the parameter <code class="docutils literal notranslate"><span class="pre">trans_mod_nums</span></code>. The module numbers in the range 1-9 can be specified using the same string syntax as run-numbers - e.g. <code class="docutils literal notranslate"><span class="pre">trans_mod_nums=&quot;1-3,5&quot;</span></code> corresponds to focusing modules 1,2,3 and 5.</p></li>
+<li><p><a class="reference external" href="https://github.com/neutrons/pystog">pystog</a> upgraded from v0.2.7 to v0.5.0, which supports NumPy v2.</p></li>
+<li><p><a class="reference internal" href="../../techniques/ISISPowder-Polaris-v1.html#isis-powder-diffraction-polaris-ref"><span class="std std-ref">ISIS POLARIS powder reduction</span></a> has a new mode, <code class="docutils literal notranslate"><span class="pre">mode=&quot;pdf_norm&quot;</span></code>, for when the chopper is off/stationary with a default <code class="docutils literal notranslate"><span class="pre">van_normalisation_method=&quot;absolute&quot;</span></code>. The existing  <code class="docutils literal notranslate"><span class="pre">mode=&quot;pdf&quot;</span></code> now has a default  <code class="docutils literal notranslate"><span class="pre">van_normalisation_method=&quot;relative&quot;</span></code> (was previously <code class="docutils literal notranslate"><span class="pre">&quot;absolute&quot;</span></code>).</p></li>
+<li><p><a class="reference internal" href="../../algorithms/CrossCorrelate-v1.html#algm-crosscorrelate"><span class="std std-ref">CrossCorrelate</span></a> and <a class="reference internal" href="../../algorithms/GetDetectorOffsets-v1.html#algm-getdetectoroffsets"><span class="std std-ref">GetDetectorOffsets</span></a> user documentation improvements.</p></li>
 </ul>
 </section>
 <section id="bugfixes">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>Fix the issue with the <a class="reference internal" href="../../algorithms/InterpolateBackground-v1.html#algm-interpolatebackground"><span class="std std-ref">InterpolateBackground</span></a> algorithm.</p></li>
-<li><p>Fix bug where unable to call <cite>create_vanadium</cite> without setting sample details in <a class="reference internal" href="../../techniques/ISISPowder-Index-v1.html#isis-powder-diffraction-ref"><span class="std std-ref">ISIS Powder Diffraction Scripts</span></a>.</p></li>
+<li><p>In <a class="reference internal" href="../../techniques/ISISPowder-Index-v1.html#isis-powder-diffraction-ref"><span class="std std-ref">ISIS Powder Diffraction Scripts</span></a>, <code class="docutils literal notranslate"><span class="pre">create_vanadium</span></code> now works without setting the sample material and geometry/shape (this information is retrieved from the advanced config files for each instrument).</p></li>
+<li><p><a class="reference internal" href="../../algorithms/InterpolateBackground-v1.html#algm-interpolatebackground"><span class="std std-ref">InterpolateBackground</span></a> now works as expected.</p></li>
 </ul>
 </section>
 </section>
 <section id="engineering-diffraction">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Engineering Diffraction</a><a class="headerlink" href="#engineering-diffraction" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Engineering Diffraction</a><a class="headerlink" href="#engineering-diffraction" title="Link to this heading">¶</a></h2>
 <section id="id1">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">New features</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
-</section>
-<section id="id2">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>Fix issue with <a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a> loading banks 1, 5, 6 as single banks</p></li>
-<li><p>Fix Deprecation Warning for getSampleDetails in <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#ui-engineering-fitting"><span class="std std-ref">Fitting tab</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getSampleDetails</span></code> deprecation warning resolved in the <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#ui-engineering-fitting"><span class="std std-ref">fitting tab</span></a>.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a> is now able to load banks 1, 5, 6 as single banks for VULCAN.</p></li>
 </ul>
 </section>
 </section>
 <section id="single-crystal-diffraction">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Single Crystal Diffraction</a><a class="headerlink" href="#single-crystal-diffraction" title="Link to this heading">¶</a></h2>
-<section id="id3">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">New features</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Single Crystal Diffraction</a><a class="headerlink" href="#single-crystal-diffraction" title="Link to this heading">¶</a></h2>
+<section id="id2">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">New features</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>A new peak shape named <cite>detectorbin</cite> was introduced to save the detector IDs and bin indices of either TOF or dSpacing domains. This peak shape could be used for Overlap detection, Two-step integration and Eventual visualisation on instrument view.</p></li>
-<li><p>The new peak shape has been associated with the peaks integrated with <a class="reference internal" href="../../algorithms/IntegratePeaksShoeboxTOF-v1.html#algm-integratepeaksshoeboxtof"><span class="std std-ref">IntegratePeaksShoeboxTOF v1</span></a> and <a class="reference internal" href="../../algorithms/IntegratePeaksSkew-v1.html#algm-integratepeaksskew"><span class="std std-ref">IntegratePeaksSkew</span></a> integration algorithms.</p></li>
-<li><p>By accessing the <cite>detectorbin</cite> peak shape users now can view the detector ids associated for each integrated peak from the above algorithms.</p></li>
-<li><p>Use <a class="reference internal" href="../../fitting/fitfunctions/MultiDomainFunction.html#func-multidomainfunction"><span class="std std-ref">MultiDomainFunction</span></a> in <a class="reference internal" href="../../algorithms/IntegratePeaks1DProfile-v1.html#algm-integratepeaks1dprofile"><span class="std std-ref">IntegratePeaks1DProfile</span></a> to tie peak profile parameters accross pixels.</p></li>
-<li><p>Add option <code class="docutils literal notranslate"><span class="pre">SeparateBatchNumbers</span></code> to <a class="reference internal" href="../../algorithms/SaveReflections-v1.html#algm-savereflections-v1"><span class="std std-ref">SaveReflections</span></a> to write a different batch number/scale factor ID for each run.</p></li>
-<li><p>Added table view for group peaks workspaces, displaying group indices alongside standard peak data, with all the capabilities of a standard table view.</p></li>
-<li><p>Updated <a class="reference internal" href="../../algorithms/FindGlobalBMatrix-v1.html#algm-findglobalbmatrix-v1"><span class="std std-ref">FindGlobalBMatrix</span></a> to change how reference UBs are chosen before refinement and improvements made to verbosity of error/ warning reporting for users.</p></li>
-<li><p>Small usability improvements to <a class="reference internal" href="../../techniques/ISIS_SingleCrystalDiffraction_Workflow.html#isis-single-crystal-diffraction-ref"><span class="std std-ref">ISIS Single Crystal Diffraction Reduction Classes</span></a>:</p>
+<li><p>Updated <a class="reference internal" href="../../algorithms/FindGlobalBMatrix-v1.html#algm-findglobalbmatrix-v1"><span class="std std-ref">FindGlobalBMatrix</span></a> to change how reference UBs are chosen before refinement. Output of error and warning messages has also been improved.</p></li>
+<li><p>Added a table view for groups of peaks workspaces, displaying group indices alongside standard peak data, with all the capabilities of a standard table view.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PeakShapeDetectorBin</span></code> peak shape introduced to store the detector IDs and bin indices for either TOF or d-spacing units. This peak shape is stored on the <code class="docutils literal notranslate"><span class="pre">Peak</span></code> object after using the <a class="reference internal" href="../../algorithms/IntegratePeaksShoeboxTOF-v1.html#algm-integratepeaksshoeboxtof"><span class="std std-ref">IntegratePeaksShoeboxTOF v1</span></a> and <a class="reference internal" href="../../algorithms/IntegratePeaksSkew-v1.html#algm-integratepeaksskew"><span class="std std-ref">IntegratePeaksSkew</span></a>  algorithms.</p></li>
+<li><p><a class="reference internal" href="../../techniques/ISIS_SingleCrystalDiffraction_Workflow.html#isis-single-crystal-diffraction-ref"><span class="std std-ref">ISIS Single Crystal Diffraction Reduction Classes</span></a> usability improvements:</p>
 <ul>
-<li><p>Allow users to pass key-word arguments to methods <code class="docutils literal notranslate"><span class="pre">save_peak_table</span></code> and <code class="docutils literal notranslate"><span class="pre">save_all_peaks</span></code> (passed to <a class="reference internal" href="../../algorithms/SaveReflections-v1.html#algm-savereflections-v1"><span class="std std-ref">SaveReflections</span></a>)</p></li>
-<li><p>Make saving of .nxs file of peak tables in above methods optional using argument <code class="docutils literal notranslate"><span class="pre">save_nxs</span></code> (default is True)</p></li>
-<li><p>Check UB filepath exists in method <code class="docutils literal notranslate"><span class="pre">load_isaw_ub</span></code></p></li>
-<li><p>Added option to set min I/Sigma <code class="docutils literal notranslate"><span class="pre">min_intens_over_Sigma</span></code> in method <code class="docutils literal notranslate"><span class="pre">remove_non_integrated_peaks</span></code> (default is 0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_peak_table</span></code> and <code class="docutils literal notranslate"><span class="pre">save_all_peaks</span></code> methods now accept keyword arguments (passed to <a class="reference internal" href="../../algorithms/SaveReflections-v1.html#algm-savereflections-v1"><span class="std std-ref">SaveReflections</span></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_nxs=False</span></code> can now be passed as an optional key word argument to the above functions to turn off saving .nxs peak tables (default is True).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">load_isaw_ub</span></code> now checks whether the UB file path exists before attempting to run the <code class="docutils literal notranslate"><span class="pre">LoadIsawUB</span></code> algorithm.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">remove_non_integrated_peaks</span></code> now has the optional argument <code class="docutils literal notranslate"><span class="pre">min_intens_over_sigma</span></code> to set min I/Sigma (default is 0).</p></li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="../../algorithms/SaveReflections-v1.html#algm-savereflections-v1"><span class="std std-ref">SaveReflections</span></a> now has the option <code class="docutils literal notranslate"><span class="pre">SeparateBatchNumbers</span></code> to write a different batch number/scale factor ID for each run.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/IntegratePeaks1DProfile-v1.html#algm-integratepeaks1dprofile"><span class="std std-ref">IntegratePeaks1DProfile</span></a> now uses <a class="reference internal" href="../../fitting/fitfunctions/MultiDomainFunction.html#func-multidomainfunction"><span class="std std-ref">MultiDomainFunction</span></a> to tie peak profile parameters across pixels.</p></li>
 </ul>
 </section>
-<section id="id4">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<section id="id3">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>Fix bug in reflection condition affecting all-face centered lattice</p></li>
+<li><p>Corrected logic in the all-face centred reflection condition that would cause an occasional crash in <a class="reference internal" href="../../algorithms/StatisticsOfPeaksWorkspace-v1.html#algm-statisticsofpeaksworkspace"><span class="std std-ref">StatisticsOfPeaksWorkspace</span></a>.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/SaveINS-v1.html#algm-saveins-v1"><span class="std std-ref">SaveINS</span></a> now saves only the minimum required symmetry operations to file.</p></li>
 </ul>
 <p><a class="reference internal" href="index.html#v6-12-0"><span class="std std-ref">Release 6.12.0</span></a></p>
 </section>

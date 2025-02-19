@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=2f22b5d0"></script>
+    <script src="../_static/documentation_options.js?v=93a11e12"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -240,6 +240,28 @@ of <span class="math notranslate nohighlight">\(\mu s\)</span> per <span class="
 <p><strong>d-spacingPerpendicular</strong> is a unit invented in <a class="reference external" href="https://doi.org/10.1107/S1600576715016520">J. Appl. Cryst. (2015) 48, pp. 1627–1636</a> for 2D Rietveld refinement
 of angular and wavelength-dispersive neutron time-of-flight powder diffraction data. Together with the d-Spacing <span class="math notranslate nohighlight">\(d\)</span>,
 d-SpacingPerpendicular <span class="math notranslate nohighlight">\(d_{\perp}\)</span> forms a new orthogonal coordinate system.</p>
+<p><strong>Note on converting time-of-flight to dSpacing using GSAS</strong>
+The equation in <a class="reference external" href="https://subversion.xor.aps.anl.gov/trac/pyGSAS">GSAS</a> converts from
+d-spacing (<span class="math notranslate nohighlight">\(d\)</span>) to time-of-flight (<span class="math notranslate nohighlight">\(TOF\)</span>) by the equation:</p>
+<div class="math notranslate nohighlight">
+\[TOF = DIFC * d + DIFA * d^2 + TZERO\]</div>
+<p>The manual describes these terms in more detail. Roughly,
+<span class="math notranslate nohighlight">\(TZERO\)</span> is related to the difference between the measured and
+actual time-of-flight base on emission time from the moderator, <span class="math notranslate nohighlight">\(DIFA\)</span> is an empirical term (ideally zero), and <span class="math notranslate nohighlight">\(DIFC\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[DIFC = \frac{2m_N}{h} L_{tot} sin \theta\]</div>
+<p>Measuring peak positions using a crystal with a very well known
+lattice constant will give a good value for converting the data. The
+d-spacing of the data will be calculated using whichever equation
+below is appropriate for solving the quadratic.</p>
+<p>When <span class="math notranslate nohighlight">\(DIFA = 0\)</span> then the solution is just for a line and</p>
+<div class="math notranslate nohighlight">
+\[d = \frac{TOF - TZERO}{DIFC}\]</div>
+<p>For the case of needing to solve the actual quadratic equation</p>
+<div class="math notranslate nohighlight">
+\[d = \frac{-DIFC}{2 DIFA} \pm \sqrt{\frac{TOF}{DIFA} + \left(\frac{DIFC}{2 DIFA}\right)^2 - \frac{TZERO}{DIFA}}\]</div>
+<p>Here the positive root is used when <span class="math notranslate nohighlight">\(DIFA &gt; 0\)</span> and the negative
+when <span class="math notranslate nohighlight">\(DIFA &lt; 0\)</span>.</p>
 </section>
 <section id="available-non-tof-convertible-units">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Available non-TOF Convertible units</a><a class="headerlink" href="#available-non-tof-convertible-units" title="Link to this heading">¶</a></h2>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=2f22b5d0"></script>
+    <script src="../_static/documentation_options.js?v=93a11e12"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -264,6 +264,44 @@ fashion as the plotting of arrays in matplotlib. Moreover, one can combine the t
 <figure class="align-default">
 <img alt="../_images/index-3.png" class="plot-directive" src="../_images/index-3.png" />
 </figure>
+<p id="markerws-example">Some data is best visualized as a Marker type workspace with no lines connecting the points.
+<a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace-plotting"><span class="std std-ref">Matrix workspace</span></a> has some built-in functions to simplify plotting Marker type workspaces.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">plots</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">CreateWorkspace</span>
+
+<span class="c1"># Generate random x and y values for two workspaces</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span>  <span class="c1"># Random values between 5 and 50</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>  <span class="c1"># Different random values</span>
+
+<span class="c1"># Create a marker workspace</span>
+<span class="n">w1</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">x1</span><span class="p">,</span> <span class="n">DataY</span><span class="o">=</span><span class="n">y1</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">w1</span><span class="o">.</span><span class="n">setPlotType</span><span class="p">(</span><span class="s1">&#39;marker&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a second marker workspace</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">x2</span><span class="p">,</span> <span class="n">DataY</span><span class="o">=</span><span class="n">y2</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">w2</span><span class="o">.</span><span class="n">setPlotType</span><span class="p">(</span><span class="s1">&#39;marker&#39;</span><span class="p">)</span>
+<span class="n">w2</span><span class="o">.</span><span class="n">setMarkerStyle</span><span class="p">(</span><span class="s1">&#39;circle&#39;</span><span class="p">)</span>
+<span class="n">w2</span><span class="o">.</span><span class="n">setMarkerSize</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Plot using the mantid projection</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w1</span><span class="p">)</span>  <span class="c1"># First marker workspace</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w2</span><span class="p">)</span>  <span class="c1"># Second marker workspace with different style marker</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Marker Workspace Example&quot;</span><span class="p">)</span>  <span class="c1"># Set plot title</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>  <span class="c1"># Show the legend</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference download internal" download="" href="../_downloads/7df5df3b75b496a780f38f1bdda74b4b/index-4.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/048fab36c041c6761a1c6b2ab10729e7/index-4.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/a37d12beac3845ec2f05059db3796b05/index-4.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/004049912fb51489bd65325dbc7f5661/index-4.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/index-4.png" class="plot-directive" src="../_images/index-4.png" />
+</figure>
 <p>One can then change properties of the plot. Here is an example that
 changes the label of the data, changes the label of the x and y axis,
 changes the limits for the y axis, adds a title, change tick orientations,
@@ -297,9 +335,9 @@ and adds a grid</p>
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/7df5df3b75b496a780f38f1bdda74b4b/index-4.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/048fab36c041c6761a1c6b2ab10729e7/index-4.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/a37d12beac3845ec2f05059db3796b05/index-4.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/004049912fb51489bd65325dbc7f5661/index-4.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/93df0877e900e4e55bb38974952b1355/index-5.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/b0e600aa6dc4b7d28cd2f910c469c093/index-5.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/c79a3a4458e33c45307a0a039908ce74/index-5.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/03b367dc1afcf66c39de9584537ede10/index-5.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-default">
-<img alt="../_images/index-4.png" class="plot-directive" src="../_images/index-4.png" />
+<img alt="../_images/index-5.png" class="plot-directive" src="../_images/index-5.png" />
 </figure>
 <p>Let’s create now a figure with two panels. In the upper part we show the workspace as
 above, but we add a fit, In the bottom part we add the difference.</p>
@@ -347,9 +385,9 @@ above, but we add a fit, In the bottom part we add the difference.</p>
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/93df0877e900e4e55bb38974952b1355/index-5.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/b0e600aa6dc4b7d28cd2f910c469c093/index-5.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/c79a3a4458e33c45307a0a039908ce74/index-5.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/03b367dc1afcf66c39de9584537ede10/index-5.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/0f3bd57e35a50f6b9dbdd9af2c48c00f/index-6.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/d27f2034a05de6fc46bfa018669bf885/index-6.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/5e2c2b74171724473c10c0967e3e567f/index-6.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/8eafb389b6d729e56d5da1be4c5ca4e0/index-6.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-default">
-<img alt="../_images/index-5.png" class="plot-directive" src="../_images/index-5.png" />
+<img alt="../_images/index-6.png" class="plot-directive" src="../_images/index-6.png" />
 </figure>
 <p>One can do twin axes as well:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -379,9 +417,9 @@ above, but we add a fit, In the bottom part we add the difference.</p>
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/0f3bd57e35a50f6b9dbdd9af2c48c00f/index-6.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/d27f2034a05de6fc46bfa018669bf885/index-6.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/5e2c2b74171724473c10c0967e3e567f/index-6.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/8eafb389b6d729e56d5da1be4c5ca4e0/index-6.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/d0bae4388aa5550e660f84e2fd95e689/index-7.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/2ab8320cd3ae5ca80a5302e42481926b/index-7.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/775f708ea4827f2cd712563ae61d8411/index-7.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/b4fefccd767d752dc5a3cd78e20e9a14/index-7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-default">
-<img alt="../_images/index-6.png" class="plot-directive" src="../_images/index-6.png" />
+<img alt="../_images/index-7.png" class="plot-directive" src="../_images/index-7.png" />
 </figure>
 </section>
 <section id="custom-colors">
@@ -420,9 +458,9 @@ Both can be found <a class="reference external" href="https://www.rapidtables.co
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/d0bae4388aa5550e660f84e2fd95e689/index-7.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/2ab8320cd3ae5ca80a5302e42481926b/index-7.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/775f708ea4827f2cd712563ae61d8411/index-7.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/b4fefccd767d752dc5a3cd78e20e9a14/index-7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/4076edf614b1691f805bfb152bc14321/index-8.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/853b937f0946a0bf3d642f406a1082a5/index-8.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/8d82171beb4a29ef199079f3bed34c9d/index-8.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/fab9f70fd6dbdd3ed5023843505da754/index-8.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-default">
-<img alt="../_images/index-7.png" class="plot-directive" src="../_images/index-7.png" />
+<img alt="../_images/index-8.png" class="plot-directive" src="../_images/index-8.png" />
 </figure>
 </section>
 <section id="custom-colormap-mantidworkbench">
@@ -570,9 +608,9 @@ These Colormaps can be registered and remain for the current session, but need t
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/4076edf614b1691f805bfb152bc14321/index-8.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/853b937f0946a0bf3d642f406a1082a5/index-8.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/8d82171beb4a29ef199079f3bed34c9d/index-8.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/fab9f70fd6dbdd3ed5023843505da754/index-8.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/c6f6f2a38f689798b86230a0184e49ca/index-9.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/d7dd670b1350a0087c74aa8cc19b862f/index-9.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/0735c6dae9b764f5378e73db99d28950/index-9.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/db7e5c24d5913ceb6090748799dda6fc/index-9.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-default">
-<img alt="../_images/index-8.png" class="plot-directive" src="../_images/index-8.png" />
+<img alt="../_images/index-9.png" class="plot-directive" src="../_images/index-9.png" />
 </figure>
 <p>Colormaps can also be created with the <a class="reference external" href="https://colormap.readthedocs.io/en/latest/">colormap package</a> or by <a class="reference external" href="https://matplotlib.org/stable/users/explain/colors/colormap-manipulation.html">concatenating existing colormaps</a>.</p>
 </section>
@@ -598,9 +636,9 @@ beginning of the run), but one can also plot absolute time using <cite>FullTime=
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/c6f6f2a38f689798b86230a0184e49ca/index-9.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/d7dd670b1350a0087c74aa8cc19b862f/index-9.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/0735c6dae9b764f5378e73db99d28950/index-9.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/db7e5c24d5913ceb6090748799dda6fc/index-9.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/477b242c4b35ee4aba982edb9ccf1800/index-10.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/dbf1eefcd91bad11ce7ff8ef37fb1012/index-10.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/da66e02b0741adf088e8d9238236ba20/index-10.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/f34f83a09db407c96b0e4912f36d41cb/index-10.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-default">
-<img alt="../_images/index-9.png" class="plot-directive" src="../_images/index-9.png" />
+<img alt="../_images/index-10.png" class="plot-directive" src="../_images/index-10.png" />
 </figure>
 <p>Note that the parasite axes in matplotlib do not accept the projection keyword.
 So one needs to use <a class="reference internal" href="../api/python/mantid/plots/index.html#mantid.plots.axesfunctions.plot" title="mantid.plots.axesfunctions.plot"><code class="xref py py-func docutils literal notranslate"><span class="pre">mantid.plots.axesfunctions.plot</span></code></a> instead.</p>
@@ -615,9 +653,9 @@ So one needs to use <a class="reference internal" href="../api/python/mantid/plo
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/477b242c4b35ee4aba982edb9ccf1800/index-10.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/dbf1eefcd91bad11ce7ff8ef37fb1012/index-10.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/da66e02b0741adf088e8d9238236ba20/index-10.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/f34f83a09db407c96b0e4912f36d41cb/index-10.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/16584b4533e31f1b41a6eb38e353fa22/index-11.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/c6262beef08a83710d89cbb7f981b7a7/index-11.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/de90ae1b021cdbc984a76bcdcb5f1633/index-11.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/436aef89fd83a6084092ea3e1a87dce6/index-11.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-default">
-<img alt="../_images/index-10.png" class="plot-directive" src="../_images/index-10.png" />
+<img alt="../_images/index-11.png" class="plot-directive" src="../_images/index-11.png" />
 </figure>
 <p>If a TimeROI is applied to the workspace, the Sample Logs can also include shaded regions to indicate the regions
 of the logs that are being excluded by the TimeROI.</p>
@@ -638,9 +676,9 @@ of the logs that are being excluded by the TimeROI.</p>
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/16584b4533e31f1b41a6eb38e353fa22/index-11.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/c6262beef08a83710d89cbb7f981b7a7/index-11.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/de90ae1b021cdbc984a76bcdcb5f1633/index-11.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/436aef89fd83a6084092ea3e1a87dce6/index-11.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/5a96def43c0d59e96213f4ff4962aeae/index-12.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/7fa3785e19f6c69ae76d9e8a52232a40/index-12.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/762df642e62c0fc4d7bb403448569918/index-12.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/1d1a4cfa699004d14d2f95dd426f95f3/index-12.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-default">
-<img alt="../_images/index-11.png" class="plot-directive" src="../_images/index-11.png" />
+<img alt="../_images/index-12.png" class="plot-directive" src="../_images/index-12.png" />
 </figure>
 </section>
 <section id="complex-plots">
@@ -680,9 +718,9 @@ of the logs that are being excluded by the TimeROI.</p>
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/5a96def43c0d59e96213f4ff4962aeae/index-12.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/7fa3785e19f6c69ae76d9e8a52232a40/index-12.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/762df642e62c0fc4d7bb403448569918/index-12.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/1d1a4cfa699004d14d2f95dd426f95f3/index-12.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/3e18d0c31c311e4db97a7ec6ce449ddc/index-13.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/1c7b507a8d639d374fe72b6003b2cb39/index-13.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/2154e78446f18dbea8ca384a9db9b1e9/index-13.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/3fcf8a2f1d6df34f41683a847044d18f/index-13.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-default">
-<img alt="../_images/index-12.png" class="plot-directive" src="../_images/index-12.png" />
+<img alt="../_images/index-13.png" class="plot-directive" src="../_images/index-13.png" />
 </figure>
 <p>Plotting dispersion curves  on multiple panels can also be done using matplotlib:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -787,9 +825,9 @@ of the logs that are being excluded by the TimeROI.</p>
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/3e18d0c31c311e4db97a7ec6ce449ddc/index-13.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/1c7b507a8d639d374fe72b6003b2cb39/index-13.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/2154e78446f18dbea8ca384a9db9b1e9/index-13.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/3fcf8a2f1d6df34f41683a847044d18f/index-13.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/5b08d5b53e293e2ee4d2b99ad02782e1/index-14.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="../_downloads/c957c850296ec518fc03f3a42525eed1/index-14.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/53b87f97bf0752eaf11de629673c8be5/index-14.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/0fa2563eac2a2e5993e7c6397b04571b/index-14.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
 <figure class="align-default">
-<img alt="../_images/index-13.png" class="plot-directive" src="../_images/index-13.png" />
+<img alt="../_images/index-14.png" class="plot-directive" src="../_images/index-14.png" />
 </figure>
 </section>
 <section id="change-matplotlib-defaults">
@@ -822,17 +860,17 @@ editable parameters is available at <a class="reference external" href="https://
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="../_downloads/5b08d5b53e293e2ee4d2b99ad02782e1/index-14.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="../_downloads/2cb1e2fed6fc067794cd8fed547a6a05/index-15.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
 <figure class="align-default" id="id2">
-<img alt="../_images/index-14_00.png" class="plot-directive" src="../_images/index-14_00.png" />
+<img alt="../_images/index-15_00.png" class="plot-directive" src="../_images/index-15_00.png" />
 <figcaption>
-<p><span class="caption-text">(<a class="reference download internal" download="" href="../_downloads/fa0001f8e5686df92475d35edf89dc94/index-14_00.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/b7f8af78c8e0b02c1656cf78460bfce7/index-14_00.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/8553ce4edcc7a710a61e282eaa910885/index-14_00.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+<p><span class="caption-text">(<a class="reference download internal" download="" href="../_downloads/55f9c85df85f1aa74f4f8955c1a9b0e2/index-15_00.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/94dd8e071c78e5113f6064d5b1305fa6/index-15_00.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/19185085b365ebf59a3944bf80f45215/index-15_00.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id3">
-<img alt="../_images/index-14_01.png" class="plot-directive" src="../_images/index-14_01.png" />
+<img alt="../_images/index-15_01.png" class="plot-directive" src="../_images/index-15_01.png" />
 <figcaption>
-<p><span class="caption-text">(<a class="reference download internal" download="" href="../_downloads/5962f76b7033d40dcfafbd890b466e42/index-14_01.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/ee43f4ad2a5dffbe49bf0565f2bc1419/index-14_01.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/2be4067397b0cb103485220e2119ef0b/index-14_01.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+<p><span class="caption-text">(<a class="reference download internal" download="" href="../_downloads/e50914586e9a5cf3172b7aa321ef0836/index-15_01.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/6d9f20509b935fff6d3d5ac179eb9d33/index-15_01.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="../_downloads/cfee1326825196a933e1869a14eebf16/index-15_01.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>For much more on customising the graph appearance see the <a class="reference external" href="https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html">Matplotlib documentation</a>.</p>

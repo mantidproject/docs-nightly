@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=2f22b5d0"></script>
+    <script src="../_static/documentation_options.js?v=93a11e12"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -118,12 +118,13 @@
 <li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
 <li><p><a class="reference internal" href="#description" id="id4">Description</a></p>
 <ul>
-<li><p><a class="reference internal" href="#restrictions-on-the-input-workspace" id="id5">Restrictions on the input workspace</a></p></li>
+<li><p><a class="reference internal" href="#applying-instrument-calibration" id="id5">Applying instrument calibration</a></p></li>
+<li><p><a class="reference internal" href="#restrictions-on-the-input-workspace" id="id6">Restrictions on the input workspace</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#available-units" id="id6">Available units</a></p></li>
-<li><p><a class="reference internal" href="#usage" id="id7">Usage</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id8">Source</a></p></li>
+<li><p><a class="reference internal" href="#available-units" id="id7">Available units</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id8">Usage</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id9">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
@@ -215,8 +216,21 @@ definition file.</p>
 <p>If ConvertFromPointData is true, an input workspace
 contains Point data will be converted using <a class="reference internal" href="ConvertToHistogram-v1.html#algm-converttohistogram"><span class="std std-ref">ConvertToHistogram</span></a>
 and then the algorithm will be run on the converted workspace.</p>
+<section id="applying-instrument-calibration">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Applying instrument calibration</a><a class="headerlink" href="#applying-instrument-calibration" title="Link to this heading">¶</a></h3>
+<p>Some workflows involve applying a calibration in the form of updated detector positions. In the case of
+time-of-flight (TOF) diffraction it is also possible to provide detector offsets
+(from <a class="reference internal" href="GetDetectorOffsets-v1.html#algm-getdetectoroffsets"><span class="std std-ref">GetDetectorOffsets</span></a>) or diffractometer constants
+(from <a class="reference internal" href="PDCalibration-v1.html#algm-pdcalibration"><span class="std std-ref">PDCalibration</span></a>) for the conversion between TOF and d-spacing.
+For more details on diffractometer constants see <a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">Units</span></a>, for the relation between offsets and diffractometer
+constants see <a class="reference internal" href="ConvertDiffCal-v1.html#algm-convertdiffcal"><span class="std std-ref">ConvertDiffCal v1</span></a>.</p>
+<p><a class="reference internal" href="ApplyDiffCal-v1.html#algm-applydiffcal"><span class="std std-ref">ApplyDiffCal</span></a> is used to apply a detector calibration in the form of a <code class="docutils literal notranslate"><span class="pre">CalibrationFile</span></code>,
+<code class="docutils literal notranslate"><span class="pre">CalibrationWorkspace</span></code> or <code class="docutils literal notranslate"><span class="pre">OffsetsWorkspace</span></code>. Note this calibration will be used to do the conversion from d-spacing
+to TOF unless the user calls <a class="reference internal" href="ApplyDiffCal-v1.html#algm-applydiffcal"><span class="std std-ref">ApplyDiffCal</span></a> again with <code class="docutils literal notranslate"><span class="pre">ClearCalibration=True</span></code> after the call
+to <a class="reference internal" href="#algm-convertunits"><span class="std std-ref">ConvertUnits</span></a> (to reproduce the behaviour of the deprecated <code class="docutils literal notranslate"><span class="pre">AlignDetectors</span></code> algorithm).</p>
+</section>
 <section id="restrictions-on-the-input-workspace">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">Restrictions on the input workspace</a><a class="headerlink" href="#restrictions-on-the-input-workspace" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Restrictions on the input workspace</a><a class="headerlink" href="#restrictions-on-the-input-workspace" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Naturally, the X values must have a unit set, and that unit must be
 known to the <a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">Unit Factory</span></a>.</p></li>
@@ -228,13 +242,13 @@ properly defined).</p></li>
 </section>
 </section>
 <section id="available-units">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Available units</a><a class="headerlink" href="#available-units" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Available units</a><a class="headerlink" href="#available-units" title="Link to this heading">¶</a></h2>
 <p>The units currently available to this algorithm are listed
 <a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">here</span></a>, along with equations specifying exactly how the
 conversions are done.</p>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p><strong>Example: Convert to wavelength</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">wsOut</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">)</span>
@@ -251,9 +265,9 @@ Output 5.22196485301
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Transforms/Units.html">Transforms\Units</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d1e96c3f6567e1b4b4dd64c89c1e0ff480a4ef94/Framework/Algorithms/inc/MantidAlgorithms/ConvertUnits.h">ConvertUnits.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d1e96c3f6567e1b4b4dd64c89c1e0ff480a4ef94/Framework/Algorithms/src/ConvertUnits.cpp">ConvertUnits.cpp</a></p>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/18fa2f03c3a88fa76a244e9fa65762f23a77d733/Framework/Algorithms/inc/MantidAlgorithms/ConvertUnits.h">ConvertUnits.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/18fa2f03c3a88fa76a244e9fa65762f23a77d733/Framework/Algorithms/src/ConvertUnits.cpp">ConvertUnits.cpp</a></p>
 </section>
 </section>
 

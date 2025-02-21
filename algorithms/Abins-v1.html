@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=93a11e12"></script>
+    <script src="../_static/documentation_options.js?v=37b0e8a2"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -299,7 +299,6 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">benzene_wrk</span> <span class="o">=</span> <span class="n">Abins</span><span class="p">(</span><span class="n">AbInitioProgram</span><span class="o">=</span><span class="s2">&quot;CASTEP&quot;</span><span class="p">,</span> <span class="n">VibrationalOrPhononFile</span><span class="o">=</span><span class="s2">&quot;benzene.phonon&quot;</span><span class="p">,</span>
                     <span class="n">QuantumOrderEventsNumber</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
 
-
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">benzene_wrk</span><span class="o">.</span><span class="n">getNames</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
@@ -332,10 +331,16 @@ wrk_O
 </pre></div>
 </div>
 <p><strong>Example - calling AbINS with more arguments:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">wrk_verbose</span><span class="o">=</span><span class="n">Abins</span><span class="p">(</span><span class="n">AbInitioProgram</span><span class="o">=</span><span class="s2">&quot;CASTEP&quot;</span><span class="p">,</span> <span class="n">VibrationalOrPhononFile</span><span class="o">=</span><span class="s2">&quot;benzene.phonon&quot;</span><span class="p">,</span>
-                  <span class="n">ExperimentalFile</span><span class="o">=</span><span class="s2">&quot;benzene_experimental.dat&quot;</span><span class="p">,</span>
-                  <span class="n">TemperatureInKelvin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">BinWidthInWavenumber</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">SampleForm</span><span class="o">=</span><span class="s2">&quot;Powder&quot;</span><span class="p">,</span> <span class="n">Instrument</span><span class="o">=</span><span class="s2">&quot;TOSCA&quot;</span><span class="p">,</span>
-                  <span class="n">Atoms</span><span class="o">=</span><span class="s2">&quot;H, atom1, atom2&quot;</span><span class="p">,</span> <span class="n">SumContributions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">QuantumOrderEventsNumber</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="n">ScaleByCrossSection</span><span class="o">=</span><span class="s2">&quot;Incoherent&quot;</span><span class="p">)</span>
+<p>Here the cache file is directed to a temporary directory and will be cleaned up automatically.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tempfile</span><span class="w"> </span><span class="kn">import</span> <span class="n">TemporaryDirectory</span>
+
+<span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmp_dir</span><span class="p">:</span>
+
+    <span class="n">wrk_verbose</span><span class="o">=</span><span class="n">Abins</span><span class="p">(</span><span class="n">AbInitioProgram</span><span class="o">=</span><span class="s2">&quot;CASTEP&quot;</span><span class="p">,</span> <span class="n">VibrationalOrPhononFile</span><span class="o">=</span><span class="s2">&quot;benzene.phonon&quot;</span><span class="p">,</span>
+                      <span class="n">ExperimentalFile</span><span class="o">=</span><span class="s2">&quot;benzene_experimental.dat&quot;</span><span class="p">,</span>
+                      <span class="n">TemperatureInKelvin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">BinWidthInWavenumber</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">SampleForm</span><span class="o">=</span><span class="s2">&quot;Powder&quot;</span><span class="p">,</span> <span class="n">Instrument</span><span class="o">=</span><span class="s2">&quot;TOSCA&quot;</span><span class="p">,</span>
+                      <span class="n">Atoms</span><span class="o">=</span><span class="s2">&quot;H, atom1, atom2&quot;</span><span class="p">,</span> <span class="n">SumContributions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">QuantumOrderEventsNumber</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="n">ScaleByCrossSection</span><span class="o">=</span><span class="s2">&quot;Incoherent&quot;</span><span class="p">,</span>
+                      <span class="n">CacheDirectory</span><span class="o">=</span><span class="n">tmp_dir</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">wrk_verbose</span><span class="o">.</span><span class="n">getNames</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
@@ -356,7 +361,7 @@ wrk_verbose_atom_2
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/18fa2f03c3a88fa76a244e9fa65762f23a77d733/Framework/PythonInterface/plugins/algorithms/Abins.py">Abins.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/56f61efdf9ca71ef6b64c17c4b9bee8748b462db/Framework/PythonInterface/plugins/algorithms/Abins.py">Abins.py</a></p>
 </section>
 <section id="references">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>

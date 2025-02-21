@@ -5,13 +5,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Description</title>
+    <title>LoadMuonNexus v3</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=93a11e12"></script>
+    <script src="../_static/documentation_options.js?v=37b0e8a2"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -93,7 +93,7 @@
         
         
           
-            <li class="nav-item nav-item-this"><a href="">Description</a></li>
+            <li class="nav-item nav-item-this"><a href="">LoadMuonNexus v3</a></li>
           
         
       </ul>
@@ -105,12 +105,143 @@
     <div class="body col-md-12 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
-<p><strong>ERROR: No algorithm ‘LoadMuonNexus’ version ‘3’, skipping directive</strong></p>
-<p><strong>ERROR: No algorithm ‘LoadMuonNexus’ version ‘3’, skipping directive</strong></p>
-<p><strong>ERROR: No algorithm ‘LoadMuonNexus’ version ‘3’, skipping directive</strong></p>
-<p><strong>ERROR: No algorithm ‘LoadMuonNexus’ version ‘3’, skipping directive</strong></p>
+<section id="loadmuonnexus-v3">
+<span id="algm-loadmuonnexus"></span><span id="algm-loadmuonnexus-v3"></span><h1>LoadMuonNexus v3<a class="headerlink" href="#loadmuonnexus-v3" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="table-of-contents">
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p>
+<ul>
+<li><p><a class="reference internal" href="#see-also" id="id2">See Also</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#properties" id="id3">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id4">Description</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id5">Usage</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id6">Source</a></p></li>
+</ul>
+</nav>
+<section id="summary">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
+<p>The LoadMuonNexus algorithm will read the given NeXus Muon data file Version 1 or 2 and use the results to populate the named workspace. LoadMuonNexus may be invoked by LoadNexus if it is given a NeXus file of this type.</p>
+<section id="see-also">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h3>
+<p><a class="reference internal" href="LoadNexus-v1.html#algm-loadnexus"><span class="std std-ref">LoadNexus</span></a>, <a class="reference internal" href="LoadMuonNexusV2-v1.html#algm-loadmuonnexusv2"><span class="std std-ref">LoadMuonNexusV2</span></a></p>
+</section>
+</section>
+<section id="properties">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Direction</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Filename</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p><em>Mandatory</em></p></td>
+<td><p>The name of the Nexus file to load. Allowed extensions: [‘.nxs’]</p></td>
+</tr>
+<tr class="row-odd"><td><p>OutputWorkspace</p></td>
+<td><p>Output</p></td>
+<td><p><a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></td>
+<td><p><em>Mandatory</em></p></td>
+<td><p>The name of the workspace to be created as the output of the algorithm. For multiperiod files, one workspace will be generated for each period</p></td>
+</tr>
+<tr class="row-even"><td><p>SpectrumMin</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p>0</p></td>
+<td><p>Index number of the first spectrum to read</p></td>
+</tr>
+<tr class="row-odd"><td><p>SpectrumMax</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>Index of last spectrum to read (default the last spectrum)</p></td>
+</tr>
+<tr class="row-even"><td><p>SpectrumList</p></td>
+<td><p>Input</p></td>
+<td><p>int list</p></td>
+<td></td>
+<td><p>Array, or comma separated list, of indexes of spectra to load. If a range and a list of spectra are both supplied, all the specified spectra will be loaded.</p></td>
+</tr>
+<tr class="row-odd"><td><p>AutoGroup</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>Determines whether the spectra are automatically grouped together based on the groupings in the NeXus file, only for single period data (default no). Version 1 only.</p></td>
+</tr>
+<tr class="row-even"><td><p>EntryNumber</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p>0</p></td>
+<td><p>0 indicates that every entry is loaded, into a separate workspace within a group. A positive number identifies one entry to be loaded, into one workspace</p></td>
+</tr>
+<tr class="row-odd"><td><p>MainFieldDirection</p></td>
+<td><p>Output</p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>Output the main field direction if specified in Nexus file (run/instrument/detector/orientation, default longitudinal). Version 1 only. Allowed values: [‘Transverse’, ‘Longitudinal’]</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeZero</p></td>
+<td><p>Output</p></td>
+<td><p>number</p></td>
+<td></td>
+<td><p>Time zero in units of micro-seconds (default to 0.0)</p></td>
+</tr>
+<tr class="row-odd"><td><p>FirstGoodData</p></td>
+<td><p>Output</p></td>
+<td><p>number</p></td>
+<td></td>
+<td><p>First good data in units of micro-seconds (default to 0.0)</p></td>
+</tr>
+<tr class="row-even"><td><p>LastGoodData</p></td>
+<td><p>Output</p></td>
+<td><p>number</p></td>
+<td></td>
+<td><p>Last good data in the OutputWorkspace’s spectra</p></td>
+</tr>
+<tr class="row-odd"><td><p>TimeZeroList</p></td>
+<td><p>Output</p></td>
+<td><p>dbl list</p></td>
+<td></td>
+<td><p>A vector of time zero values</p></td>
+</tr>
+<tr class="row-even"><td><p>TimeZeroTable</p></td>
+<td><p>Output</p></td>
+<td><p><a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></td>
+<td></td>
+<td><p>TableWorkspace containing time zero values per spectra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>CorrectTime</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td><p>Boolean flag controlling whether time should be corrected by timezero.</p></td>
+</tr>
+<tr class="row-even"><td><p>DeadTimeTable</p></td>
+<td><p>Output</p></td>
+<td><p><a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></td>
+<td></td>
+<td><p>Table or a group of tables containing detector dead times. Version 1 only.</p></td>
+</tr>
+<tr class="row-odd"><td><p>DetectorGroupingTable</p></td>
+<td><p>Output</p></td>
+<td><p><a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></td>
+<td></td>
+<td><p>Table or a group of tables with information about the detector grouping stored in the file (if any). Version 1 only.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="description">
-<h1>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h1>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>The algorithm LoadMuonNexus will read a Muon Nexus data file and place
 the data into the named workspace. The file name can be an absolute or
 relative path and should have the extension .nxs or .NXS.</p>
@@ -127,7 +258,7 @@ algorithm properties only apply to <a class="reference internal" href="LoadMuonN
 <p>Please refer to the documentation for the individual algorithms for implementation detail.</p>
 </section>
 <section id="usage">
-<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h1>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To run these usage examples please first download the
@@ -172,8 +303,13 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 10 0.004211476538
 </pre></div>
 </div>
-<p><strong>ERROR: No algorithm ‘LoadMuonNexus’ version ‘3’, skipping directive</strong></p>
-<p><strong>ERROR: No algorithm ‘LoadMuonNexus’ version ‘3’, skipping directive</strong></p>
+<p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/DataHandling/Nexus.html">DataHandling\Nexus</a> | <a class="reference external" href="categories/Muon/DataHandling.html">Muon\DataHandling</a></p>
+</section>
+<section id="source">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/56f61efdf9ca71ef6b64c17c4b9bee8748b462db/Framework/Muon/inc/MantidMuon/LoadMuonNexus3.h">LoadMuonNexus3.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/56f61efdf9ca71ef6b64c17c4b9bee8748b462db/Framework/Muon/src/LoadMuonNexus3.cpp">LoadMuonNexus3.cpp</a></p>
+</section>
 </section>
 
 

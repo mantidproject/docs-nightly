@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=042d7fbf"></script>
+    <script src="../_static/documentation_options.js?v=858477aa"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -168,7 +168,7 @@
 </section>
 <section id="description">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
-<p>In many experiments at POLDI it is well known which compounds are present in a sample, as well as their unit cells. For some algorithms it is necessary to index the peaks found in the correlation spectrum obtained by <a class="reference internal" href="PoldiAutoCorrelation-v5.html#algm-poldiautocorrelation"><span class="std std-ref">PoldiAutoCorrelation v5</span></a>. This algorithm tries to index those peaks using lists of calculated reflections of one or more compounds (created with <a class="reference internal" href="PoldiCreatePeaksFromCell-v1.html#algm-poldicreatepeaksfromcell"><span class="std std-ref">PoldiCreatePeaksFromCell v1</span></a>). This technique is sometimes referred to as “pattern matching”. This implementation allows for a certain tolerance by allowing the user to specify an expected relative deviation of the lattice parameters, <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
+<p>In many experiments at POLDI it is well known which compounds are present in a sample, as well as their unit cells. For some algorithms it is necessary to index the peaks found in the correlation spectrum obtained by <a class="reference internal" href="PoldiAutoCorrelation-v6.html#algm-poldiautocorrelation"><span class="std std-ref">PoldiAutoCorrelation v6</span></a>. This algorithm tries to index those peaks using lists of calculated reflections of one or more compounds (created with <a class="reference internal" href="PoldiCreatePeaksFromCell-v1.html#algm-poldicreatepeaksfromcell"><span class="std std-ref">PoldiCreatePeaksFromCell v1</span></a>). This technique is sometimes referred to as “pattern matching”. This implementation allows for a certain tolerance by allowing the user to specify an expected relative deviation of the lattice parameters, <span class="math notranslate nohighlight">\(\delta\)</span>.</p>
 <p>The major difficulty arises from the fact that typical POLDI experiments involve lattice deformations, which causes a shift in peak positions. For a single phase material with few peaks, this can be handled by making the tolerance larger - but only to a certain degree. If cell parameters are too large and consequently lattice plane spacings at low d-values too narrow, the indexing becomes ambiguous. Of course, introducing additional phases makes this situation even worse, leading to even more ambiguity.</p>
 <p>To resolve these ambiguities, this algorithm assumes that a peak must occur somewhere in the vicinity of the theoretical position. As the distance between measured and calculated position grows, it becomes less and less likely that the measured peak corresponds to the theoretical one. By assuming a normal distribution centered at 0 and a standard deviation corresponding to an acceptable tolerance, the probability of finding the peak within this distance can be calculated.</p>
 <p>The standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> of the distribution is simply <span class="math notranslate nohighlight">\(\delta\cdot d_0\)</span>. To determine whether a peak can be indexed by a reflection, the algorithm checks if observed and calculated position are closer than <span class="math notranslate nohighlight">\(3\sigma\)</span>. If <span class="math notranslate nohighlight">\(n\)</span> reflections are closer to an observed peak at position <span class="math notranslate nohighlight">\(d\)</span>, all are considered a candidate for correct assignment. In order to decide which reflection is most likely to be correct, the probability is calculated for each combination of measured and calculated position and the candidate with highest value is used to indexed the measured peak.</p>
@@ -190,7 +190,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <span class="n">raw_6904</span> <span class="o">=</span> <span class="n">LoadSINQFile</span><span class="p">(</span><span class="n">Filename</span> <span class="o">=</span> <span class="s2">&quot;poldi2013n006904.hdf&quot;</span><span class="p">,</span> <span class="n">Instrument</span> <span class="o">=</span> <span class="s2">&quot;POLDI&quot;</span><span class="p">)</span>
 <span class="n">LoadInstrument</span><span class="p">(</span><span class="n">raw_6904</span><span class="p">,</span> <span class="n">InstrumentName</span> <span class="o">=</span> <span class="s2">&quot;POLDI&quot;</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">correlated_6904</span> <span class="o">=</span> <span class="n">PoldiAutoCorrelation</span><span class="p">(</span><span class="n">raw_6904</span><span class="p">)</span>
+<span class="n">correlated_6904</span> <span class="o">=</span> <span class="n">PoldiAutoCorrelation</span><span class="p">(</span><span class="n">raw_6904</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">peaks_6904</span> <span class="o">=</span> <span class="n">PoldiPeakSearch</span><span class="p">(</span><span class="n">correlated_6904</span><span class="p">)</span>
 
 <span class="n">PoldiFitPeaks1D</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="n">correlated_6904</span><span class="p">,</span> <span class="n">FwhmMultiples</span> <span class="o">=</span> <span class="mf">4.0</span><span class="p">,</span>
@@ -224,8 +224,8 @@ Number of unindexed peaks: 0
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/765056d3b273fe2b804f37a753b9d48931f1e3f9/Framework/SINQ/inc/MantidSINQ/PoldiIndexKnownCompounds.h">PoldiIndexKnownCompounds.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/765056d3b273fe2b804f37a753b9d48931f1e3f9/Framework/SINQ/src/PoldiIndexKnownCompounds.cpp">PoldiIndexKnownCompounds.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3529709fe1a8c772a59c129b5ec22865190c88f4/Framework/SINQ/inc/MantidSINQ/PoldiIndexKnownCompounds.h">PoldiIndexKnownCompounds.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3529709fe1a8c772a59c129b5ec22865190c88f4/Framework/SINQ/src/PoldiIndexKnownCompounds.cpp">PoldiIndexKnownCompounds.cpp</a></p>
 </section>
 </section>
 

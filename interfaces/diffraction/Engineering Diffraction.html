@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=c0e2668f"></script>
+    <script src="../../_static/documentation_options.js?v=7d009e01"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -211,20 +211,20 @@ in the base directory:</p>
 <section id="cropping">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">Cropping</a><a class="headerlink" href="#cropping" title="Link to this heading">¶</a></h3>
 <p>The interface also provides the ability to restrict a new calibration to a particular region of interest:
-one of the two banks on ENGIN-X, a custom .cal file, a list of spectra (referred to as cropped), Texture20 grouping
+one of the two banks on ENGIN-X, a custom grouping file (<code class="docutils literal notranslate"><span class="pre">.cal</span></code> or <code class="docutils literal notranslate"><span class="pre">.xml</span></code> files), a list of spectra (referred to as cropped), Texture20 grouping
 (consists of 10 groupings per detector bank - 20 in total) and Texture30 (15 groupings per detector bank - 30 in total).</p>
 </section>
 <section id="parameters">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h3>
 <dl class="simple">
-<dt>Vanadium Number</dt><dd><p>The run number or file path used to correct the calibration and experiment runs.</p>
-</dd>
 <dt>Calibration Sample Number</dt><dd><p>The run number for the calibration sample run (such as ceria) used to calibrate
 experiment runs.</p>
 </dd>
 <dt>Path</dt><dd><p>The path to the GSAS parameter file (.prm) to be loaded.</p>
 </dd>
-<dt>Bank/Spectra</dt><dd><p>Select a bank to crop to or specify a custom spectra will be entered.</p>
+<dt>Region Of Interest</dt><dd><p>Select a bank to crop to or specify a custom spectra will be entered.</p>
+</dd>
+<dt>Custom Grouping File</dt><dd><p>The path to a custom <code class="docutils literal notranslate"><span class="pre">.cal</span></code> or <code class="docutils literal notranslate"><span class="pre">.xml</span></code> file with the desired detector groupings.</p>
 </dd>
 <dt>Custom Spectra</dt><dd><p>A comma separated list of spectra to restrict the calibration to. Can be provided as single spectrum numbers
 or ranges using hyphens (e.g. 14-150, 405, 500-600).</p>
@@ -243,7 +243,7 @@ To do this a new or existing calibration must be created or loaded (see above) a
 vanadium run must also be supplied for normalisation.</p>
 <p>The data will be focused over the region of interest selected in the calibration tab.
 Files can be selected by providing run numbers or selecting the files manually using the browse button.</p>
-<p>Ticking the “Plot Focused Workspace” checkbox will create a plot of nthe focused spectra for each of the focused runs
+<p>Ticking the “Plot Focused Workspace” checkbox will create a plot of the focused spectra for each of the focused runs
 when the algorithm is complete.</p>
 <p>Clicking the focus button will begin the focusing algorithm for the selected run files. The button and plotting checkbox
 will be disabled until the fitting algorithm is complete.</p>
@@ -257,7 +257,9 @@ will be disabled until the fitting algorithm is complete.</p>
 <dl class="simple">
 <dt>Sample Run Number</dt><dd><p>The run numbers of or file paths to the data files to be focused.</p>
 </dd>
-<dt>Bank/Spectra</dt><dd><p>Select which bank to restrict the focusing to or allow for the entry of custom spectra.</p>
+<dt>Vanadium Number</dt><dd><p>The run number or file path used to correct the focused data files.</p>
+</dd>
+<dt>Chosen Region Of Interest</dt><dd><p>Select which bank to restrict the focusing to or allow for the entry of custom spectra (this is carried over from the Calibration Tab).</p>
 </dd>
 </dl>
 <a class="reference internal image-reference" href="../../_images/EngDiff_Focus.png"><img alt="../../_images/EngDiff_Focus.png" class="align-center" src="../../_images/EngDiff_Focus.png" style="width: 600px;" />

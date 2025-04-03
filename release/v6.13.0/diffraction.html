@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=7d009e01"></script>
+    <script src="../../_static/documentation_options.js?v=fbc73f49"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -162,6 +162,7 @@
 <section id="id2">
 <h3><a class="toc-backref" href="#id11" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Within  <a class="reference internal" href="../../algorithms/AbsorptionCorrection-v1.html#algm-absorptioncorrection"><span class="std std-ref">AbsorptionCorrection v1</span></a> algorithm, when <code class="docutils literal notranslate"><span class="pre">Rasterize</span></code> is called, it now takes both the Integration Volume Shape and the Sample Shape to calculate L1 paths. Before, it would only take the integration volume and would assume that the paths within this shape are equal to the paths within the sample.</p></li>
 <li><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/38882">#38882</a> : Fix issue with <code class="docutils literal notranslate"><span class="pre">GSAS-II</span> <span class="pre">GSASIIscriptable.py</span></code> hard-coded path which is invalid for newer version of GSAS-II (versions 5758 and later).</p></li>
 <li><p>When Focusing, either within the interface or in a script, you should no longer be able to unknowingly apply an outdated vanadium correction. Previously, when focusing had already been run on a user defined region of interest (Custom or Cropped), the vanadium correction was calculated and saved in the ADS as <code class="docutils literal notranslate"><span class="pre">engggui_curves_Custom</span></code> or <code class="docutils literal notranslate"><span class="pre">engggui_curves_Cropped</span></code>. If this ROI was then updated and recalibrated, when focus was run again, it would load the existing <code class="docutils literal notranslate"><span class="pre">engggui_curves</span></code> from the ADS which would be from the old ROI. Now, the naming of these files should be more unique to the specific ROI, and in the case where a file is loaded from the ADS which may be wrong, a warning is supplied to the user.</p></li>
 </ul>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=fbc73f49"></script>
+    <script src="../_static/documentation_options.js?v=487e322b"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -224,11 +224,11 @@ All functions are evaluated as a function of bin number rather than x-value.</p>
 <li><p>Supply input data with relatively high signal to noise ratio.
 When this is not met, the resulting cross-correlation generally have issues having offsets determined from them by <a class="reference internal" href="GetDetectorOffsets-v1.html#algm-getdetectoroffsets"><span class="std std-ref">GetDetectorOffsets v1</span></a>.</p></li>
 <li><p>Take note of input binning structure before using <a class="reference internal" href="GetDetectorOffsets-v1.html#algm-getdetectoroffsets"><span class="std std-ref">GetDetectorOffsets v1</span></a> and <a class="reference internal" href="ConvertDiffCal-v1.html#algm-convertdiffcal"><span class="std std-ref">ConvertDiffCal v1</span></a>.
-The different binning modes (linear or logorithmic) correspond to different behavior in the follow-on algorithms.</p></li>
+The different binning modes (linear or logarithmic) correspond to different behavior in the follow-on algorithms.</p></li>
 <li><p>Cross-correlating linear binning generally uses <code class="docutils literal notranslate"><span class="pre">OffsetMode=&quot;Relative&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">OffsetMode=&quot;Absolute&quot;</span></code> and requires a narrow range of integration around a single Bragg peak with known reference d-spacing.</p></li>
 <li><p>Use a large range for <code class="docutils literal notranslate"><span class="pre">XMin</span></code> to <code class="docutils literal notranslate"><span class="pre">XMax</span></code>.
 This will promote calibrations that take a larger range of the data into account rather than a single diffraction peak.
-However, it only works for logorithmic binning which will use <code class="docutils literal notranslate"><span class="pre">OffsetMode=&quot;Signed&quot;</span></code> in <a class="reference internal" href="GetDetectorOffsets-v1.html#algm-getdetectoroffsets"><span class="std std-ref">GetDetectorOffsets v1</span></a>.</p></li>
+However, it only works for logarithmic binning which will use <code class="docutils literal notranslate"><span class="pre">OffsetMode=&quot;Signed&quot;</span></code> in <a class="reference internal" href="GetDetectorOffsets-v1.html#algm-getdetectoroffsets"><span class="std std-ref">GetDetectorOffsets v1</span></a>.</p></li>
 <li><p>With wide range of integration, use the <code class="docutils literal notranslate"><span class="pre">MaxDSpaceShift</span></code> to limit the value of <span class="math notranslate nohighlight">\(r\)</span>.
 Not only will this speed up the calculation, but the output spectra will only include where the spectra are similar to the reference and not have spurious peaks or background.
 <strong>NOTE:</strong> <cite>MaxDSpaceShift</cite> must be greater than  approximately double the maximum Bragg peak full-width of the input data to ensure that the cross correlation contains a complete peak.</p></li>
@@ -257,8 +257,8 @@ CrossCorrelation [-0.68136257  0.16838401  0.45685055]
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ea766f7eacc2d6641d8688c3eb9d2cd5e5154856/Framework/Algorithms/inc/MantidAlgorithms/CrossCorrelate.h">CrossCorrelate.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ea766f7eacc2d6641d8688c3eb9d2cd5e5154856/Framework/Algorithms/src/CrossCorrelate.cpp">CrossCorrelate.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/df447580d6cc1b3ab53d2f69e58ca887bd039d09/Framework/Algorithms/inc/MantidAlgorithms/CrossCorrelate.h">CrossCorrelate.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/df447580d6cc1b3ab53d2f69e58ca887bd039d09/Framework/Algorithms/src/CrossCorrelate.cpp">CrossCorrelate.cpp</a></p>
 </section>
 </section>
 

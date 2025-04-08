@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=fbc73f49"></script>
+    <script src="../_static/documentation_options.js?v=487e322b"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -212,7 +212,7 @@
 <p>where</p>
 <ul class="simple">
 <li><p>theta = scattering_angle/2</p></li>
-<li><p>lamda = wavelength (in angstroms?)</p></li>
+<li><p>lambda = wavelength (in angstroms?)</p></li>
 <li><p>spec = incident spectrum correction</p></li>
 <li><p>eff = pixel efficiency</p></li>
 <li><p>trans = absorption correction</p></li>
@@ -221,18 +221,18 @@
 pre-calculated for each pixel. It could be saved in array pix_weight[].</p>
 <p>For now, pix_weight[] is calculated by the method <code class="docutils literal notranslate"><span class="pre">BuildPixWeights()</span></code>
 and just holds the <span class="math notranslate nohighlight">\(\text{sin}^2(theta)\)</span> values. The wavelength dependent portion
-of the correction is saved in the array lamda_weight[].</p>
+of the correction is saved in the array lambda_weight[].</p>
 <p>The time-of-flight is converted to wave length by multiplying by
-tof_to_lamda[id], then (int)STEPS_PER_ANGSTROM * lamda gives an
-index into the table lamda_weight[]. The lamda_weight[] array contains
-values like: 1/(lamda^power * spec(lamda)) which are pre-calculated for
-each lamda. These values are saved in the array lamda_weight[]. The
+tof_to_lambda[id], then (int)STEPS_PER_ANGSTROM * lambda gives an
+index into the table lambda_weight[]. The lambda_weight[] array contains
+values like: 1/(lambda^power * spec(lambda)) which are pre-calculated for
+each lambda. These values are saved in the array lambda_weight[]. The
 optimal value to use for the power should be determined when a good
 incident spectrum has been determined. Currently, power=3 when used with
 an incident spectrum and power=2.4 when used without an incident
 spectrum.</p>
 <p>The pixel efficiency and incident spectrum correction are NOT CURRENTLY
-USED. The absorption correction, trans, depends on both lamda and the
+USED. The absorption correction, trans, depends on both lambda and the
 pixel, Which is a fairly expensive calculation when done for each event.
 The transmission is calculated for a spherical sample using the fits to
 the tabulated values of <span class="math notranslate nohighlight">\(A^* = 1/\text{transmission}\)</span> in <a class="footnote-reference brackets" href="#web" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>
@@ -266,8 +266,8 @@ using the functional form set out in <a class="footnote-reference brackets" href
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ea766f7eacc2d6641d8688c3eb9d2cd5e5154856/Framework/Crystal/inc/MantidCrystal/AnvredCorrection.h">AnvredCorrection.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ea766f7eacc2d6641d8688c3eb9d2cd5e5154856/Framework/Crystal/src/AnvredCorrection.cpp">AnvredCorrection.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/df447580d6cc1b3ab53d2f69e58ca887bd039d09/Framework/Crystal/inc/MantidCrystal/AnvredCorrection.h">AnvredCorrection.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/df447580d6cc1b3ab53d2f69e58ca887bd039d09/Framework/Crystal/src/AnvredCorrection.cpp">AnvredCorrection.cpp</a></p>
 </section>
 </section>
 

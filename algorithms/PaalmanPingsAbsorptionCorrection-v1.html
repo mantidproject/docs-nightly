@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=743f97f0"></script>
+    <script src="../_static/documentation_options.js?v=616642fc"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -204,11 +204,20 @@ algorithm to fail because of insufficient memory.</p>
 <section id="assumptions">
 <h3><a class="toc-backref" href="#id5" role="doc-backlink">Assumptions</a><a class="headerlink" href="#assumptions" title="Link to this heading">¶</a></h3>
 <p>This algorithm assumes that the (parallel) beam illuminates the entire
-sample <strong>unless</strong> a ‘gauge volume’ has been defined using the
-<a class="reference internal" href="DefineGaugeVolume-v1.html#algm-definegaugevolume"><span class="std std-ref">DefineGaugeVolume v1</span></a> algorithm (or by otherwise
+sample <strong>unless</strong> a ‘gauge volume’ has been defined. A ‘gauge volume’ can
+be defined one of two ways.</p>
+<ol class="arabic simple">
+<li><p>Using the <a class="reference internal" href="DefineGaugeVolume-v1.html#algm-definegaugevolume"><span class="std std-ref">DefineGaugeVolume v1</span></a> algorithm (or by otherwise
 adding a valid XML string <a class="reference internal" href="../concepts/HowToDefineGeometricShape.html#howtodefinegeometricshape"><span class="std std-ref">defining a
 shape</span></a> to a <a class="reference internal" href="../concepts/Run.html#run"><span class="std std-ref">Run</span></a> property called
-“GaugeVolume”). In this latter case only scattering within this volume
+“GaugeVolume”).</p></li>
+<li><p>Using the <a class="reference internal" href="SetBeam-v1.html#algm-setbeam"><span class="std std-ref">SetBeam v1</span></a> algorithm to set the shape and size of the
+beam. This will create an intersection shape with the beam and the sample.
+The intersection will assume the beam extends infinitely along the beam direction
+(default is the Z axis) with the defined Height/Width or Radius.</p></li>
+</ol>
+<p>If a workspace has both <code class="docutils literal notranslate"><span class="pre">GaugeVolume</span></code> and <code class="docutils literal notranslate"><span class="pre">SetBeam</span></code> parameters, priority will be
+given to <code class="docutils literal notranslate"><span class="pre">GaugeVolume</span></code>. When using a ‘gauge volume’, only scattering within this volume
 (and the sample) is integrated, because this is all the detector can
 ‘see’. The full sample is still used for the neutron paths.</p>
 <p>It is worth pointing out that the parameter <code class="docutils literal notranslate"><span class="pre">ContainerElementSize</span></code> has very
@@ -250,8 +259,8 @@ acsc 0.3258(θ=10) 0.4221(θ=90) 0.5782(θ=170) 0.4014(θ=90,φ=45)
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/739d8f4b7ba39b89f5b0e313f8e276b8d234fdaf/Framework/Algorithms/inc/MantidAlgorithms/PaalmanPingsAbsorptionCorrection.h">PaalmanPingsAbsorptionCorrection.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/739d8f4b7ba39b89f5b0e313f8e276b8d234fdaf/Framework/Algorithms/src/PaalmanPingsAbsorptionCorrection.cpp">PaalmanPingsAbsorptionCorrection.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0c9767c8217c378b19f00ea7437292daa9573b6/Framework/Algorithms/inc/MantidAlgorithms/PaalmanPingsAbsorptionCorrection.h">PaalmanPingsAbsorptionCorrection.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0c9767c8217c378b19f00ea7437292daa9573b6/Framework/Algorithms/src/PaalmanPingsAbsorptionCorrection.cpp">PaalmanPingsAbsorptionCorrection.cpp</a></p>
 </section>
 </section>
 

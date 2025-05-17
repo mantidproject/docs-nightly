@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=339cfd23"></script>
+    <script src="../_static/documentation_options.js?v=763c36c5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -134,7 +134,7 @@
 <tbody>
 <tr class="row-even"><td><p>InputWorkspace</p></td>
 <td><p>Input</p></td>
-<td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
+<td><p><a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>The workspace which is to be saved. This workspace needs to be the result of a SANS reduction, i.e. it can only be 1D or 2D if the second axis is numeric.</p></td>
 </tr>
@@ -166,73 +166,85 @@
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
-<td><p>Save as CanSAS xml format.Note that if file formats of the same type, e.g. .xml are chosen, then the file format is appended to the file name.</p></td>
+<td><p>Save as CanSAS xml format. Note that if file formats of the same type, e.g. .xml are chosen, then the file format is appended to the file name.</p></td>
 </tr>
 <tr class="row-even"><td><p>NXcanSAS</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
-<td><p>Save as NXcanSAS format.Note that if file formats of the same type, e.g. .xml are chosen, then the file format is appended to the file name.</p></td>
+<td><p>Save as NXcanSAS format. Note that if file formats of the same type, e.g. .xml are chosen, then the file format is appended to the file name.</p></td>
 </tr>
-<tr class="row-odd"><td><p>NistQxy</p></td>
+<tr class="row-odd"><td><p>PolarizedNXcanSAS</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
-<td><p>Save as Nist Qxy format.Note that if file formats of the same type, e.g. .xml are chosen, then the file format is appended to the file name.</p></td>
+<td><p>Save in PolarizedNXcanSAS format. Note that if file formats of the same type, e.g. .xml are chosen, then the file format is appended to the file name.</p></td>
 </tr>
-<tr class="row-even"><td><p>RKH</p></td>
+<tr class="row-even"><td><p>NistQxy</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
-<td><p>Save as RKH format.Note that if file formats of the same type, e.g. .xml are chosen, then the file format is appended to the file name.</p></td>
+<td><p>Save as Nist Qxy format. Note that if file formats of the same type, e.g. .xml are chosen, then the file format is appended to the file name.</p></td>
 </tr>
-<tr class="row-odd"><td><p>CSV</p></td>
+<tr class="row-odd"><td><p>RKH</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
-<td><p>Save as CSV format.Note that if file formats of the same type, e.g. .xml are chosen, then the file format is appended to the file name.</p></td>
+<td><p>Save as RKH format. Note that if file formats of the same type, e.g. .xml are chosen, then the file format is appended to the file name.</p></td>
 </tr>
-<tr class="row-even"><td><p>UseZeroErrorFree</p></td>
+<tr class="row-even"><td><p>CSV</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>Save as CSV format. Note that if file formats of the same type, e.g. .xml are chosen, then the file format is appended to the file name.</p></td>
+</tr>
+<tr class="row-odd"><td><p>UseZeroErrorFree</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>This allows the user to artificially inflate zero error values.</p></td>
 </tr>
-<tr class="row-odd"><td><p>SampleTransmissionRunNumber</p></td>
+<tr class="row-even"><td><p>SampleTransmissionRunNumber</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>The run number for the Sample Transmission workspace used in the reduction. Can be blank.</p></td>
 </tr>
-<tr class="row-even"><td><p>SampleDirectRunNumber</p></td>
+<tr class="row-odd"><td><p>SampleDirectRunNumber</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>The run number for the Sample Direct workspace used in the reduction. Can be blank.</p></td>
 </tr>
-<tr class="row-odd"><td><p>CanScatterRunNumber</p></td>
+<tr class="row-even"><td><p>CanScatterRunNumber</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>The run number for the Can Scatter workspace used in the reduction. Can be blank.</p></td>
 </tr>
-<tr class="row-even"><td><p>CanDirectRunNumber</p></td>
+<tr class="row-odd"><td><p>CanDirectRunNumber</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>The run number for the Can Direct workspace used in the reduction. Can be blank.</p></td>
 </tr>
-<tr class="row-odd"><td><p>BackgroundSubtractionWorkspace</p></td>
+<tr class="row-even"><td><p>BackgroundSubtractionWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>The workspace used to perform a scaled background subtraction on the reduced workspace. Can be blank.</p></td>
 </tr>
-<tr class="row-even"><td><p>BackgroundSubtractionScaleFactor</p></td>
+<tr class="row-odd"><td><p>BackgroundSubtractionScaleFactor</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
 <td><p>The scale factor the BackgroundSubtractionWorkspace is multiplied by before subtraction. Can be blank.</p></td>
+</tr>
+<tr class="row-even"><td><p>PolarizationProps</p></td>
+<td><p>Input</p></td>
+<td><p>Dictionary</p></td>
+<td><p>null</p></td>
+<td><p>A dictionary of properties to values for all of the metadata used in a polarized reduction. Supported properties are: InputSpinStates (str), PolarizerComponentName (str), AnalyzerComponentName (str), FlipperComponentNames (str, comma separated list), MagneticFieldStrengthLogName (str), MagneticFieldDirection (str, comma separated list of axes), PolarizationTransmissionWorkspaces (dict, component name -&gt; workspace name), PolarizationEfficiencyWorkspaces (dict, component name -&gt; workspace name), PolarizationEmptyCellWorkspaces (dict, component name -&gt; workspace name), ElectricFieldStrengthLogName (str), ElectricFieldDirection (str, comma separated list of axes), InitialCellPolarizations (dict, component name -&gt; value (str)), InitialCellPolarizationErrorWorkspaces (dict, component name -&gt; value (str)), GasPressure (dict, component name -&gt; value (float))</p></td>
 </tr>
 </tbody>
 </table>
@@ -254,7 +266,7 @@ that the particular data point with vanishing error has no significance when use
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0a03d975d16f78cbae310a823670ab277f74cfac/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/SANS/SANSSave.py">SANSSave.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/779677ed8562deaf590700283e15243ccb0c328d/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/SANS/SANSSave.py">SANSSave.py</a></p>
 </section>
 </section>
 

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=04d6f8fc"></script>
+    <script src="../_static/documentation_options.js?v=68809bb4"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -109,7 +109,7 @@
 <span id="id1"></span><h1>Properties File<a class="headerlink" href="#properties-file" title="Link to this heading">¶</a></h1>
 <section id="the-properties-files">
 <h2>The <code class="docutils literal notranslate"><span class="pre">*.properties</span></code> Files<a class="headerlink" href="#the-properties-files" title="Link to this heading">¶</a></h2>
-<p>The Mantid framework is configured using up to three simple text <code class="docutils literal notranslate"><span class="pre">*.properties</span></code> files that are read an interpreted every time the framework is started. These properties are not the same as the properties of algorithms. All three have the same format. The three files are read from first to last, with the values in subsequent <code class="docutils literal notranslate"><span class="pre">*.properties</span></code> overriding those in previous ones.</p>
+<p>The Mantid framework is configured using up to three simple text <code class="docutils literal notranslate"><span class="pre">*.properties</span></code> files that are read and interpreted every time the framework is started. These properties are not the same as the properties of algorithms. All three have the same format. The three files are read from first to last, with the values in subsequent <code class="docutils literal notranslate"><span class="pre">*.properties</span></code> overriding those in previous ones.</p>
 <ol class="arabic simple">
 <li><p>Install directory <code class="docutils literal notranslate"><span class="pre">Mantid.properties</span></code> defines the default configuration that the development team suggest as sensible defaults. This file should not be altered by users as it will be replaced with every new install or upgrade of Mantid.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">/etc/mantid.local.properties</span></code> is an optional, linux only file that sets shared defaults on a shared system. This is commonly used for setting the <code class="docutils literal notranslate"><span class="pre">default.facility</span></code>, <code class="docutils literal notranslate"><span class="pre">default.instrument</span></code>, and <code class="docutils literal notranslate"><span class="pre">datasearch.searcharchive</span></code> properties.</p></li>
@@ -243,43 +243,47 @@ data archive</p></td>
 the data archive</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">../data</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">framework.plugins.directory</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">errorreports.core_dumps</span></code></p></td>
+<td><p><em>Linux only</em>
+Set this variable to your system’s core file
+location and the error reporter will automatically
+extract C++ stacktraces after a crash.
+You may find this location listed in
+<code class="docutils literal notranslate"><span class="pre">/proc/sys/kernel/core_pattern</span></code> (See
+<a class="reference external" href="https://www.kernel.org/doc/Documentation/sysctl/kernel.txt">the kernel docs</a> for more info).</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/var/lib/apport/coredump</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">framework.plugins.directory</span></code></p></td>
 <td><p>The path to the directory that contains the
 Mantid plugin libraries</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">../plugins</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">framework.plugins.exclude</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">framework.plugins.exclude</span></code></p></td>
 <td><p>A list of substrings to allow libraries to be
 skipped</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Qt5</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">instrumentDefinition.directory</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">instrumentDefinition.directory</span></code></p></td>
 <td><p>Where to load instrument definition files from</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">../Test/Instrument</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mantidqt.plugins.directory</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mantidqt.plugins.directory</span></code></p></td>
 <td><p>The path to the directory containing the
 Mantid Qt-based plugin libraries</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">../plugins/qtX</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">parameterDefinition.directory</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">parameterDefinition.directory</span></code></p></td>
 <td><p>Where to load parameter definition files from</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">../Test/Instrument</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pythonscripts.directories</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pythonscripts.directories</span></code></p></td>
 <td><p>Python will also search the listed directories
 when importing modules.</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">../scripts</span></code> or <code class="docutils literal notranslate"><span class="pre">C:/MyScripts</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pythonscripts.directory</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pythonscripts.directory</span></code></p></td>
 <td><p><strong>DEPRECATED:</strong> Use <code class="docutils literal notranslate"><span class="pre">pythonscripts.directories</span></code>
 instead</p></td>
-<td><p>N/A</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">requiredpythonscript.directories</span></code></p></td>
-<td><p>A list of directories containing Python scripts
-that Mantid requires to function correctly.
-<strong>WARNING:</strong> Do not alter the default value.</p></td>
 <td><p>N/A</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">requiredpythonscript.directories</span></code></p></td>
@@ -288,14 +292,20 @@ that Mantid requires to function correctly.
 <strong>WARNING:</strong> Do not alter the default value.</p></td>
 <td><p>N/A</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">python.plugins.manifest</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">requiredpythonscript.directories</span></code></p></td>
+<td><p>A list of directories containing Python scripts
+that Mantid requires to function correctly.
+<strong>WARNING:</strong> Do not alter the default value.</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">python.plugins.manifest</span></code></p></td>
 <td><p>A path to the location of the manifest file
 containing paths to each of the python algorithm
 files.
 <strong>WARNING:</strong> Do not alter the default value.</p></td>
 <td><p>N/A</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">python.templates.directory</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">python.templates.directory</span></code></p></td>
 <td><p>The directory of python .in files used as
 templates when generating python scripts from
 within an algorithm.</p></td>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=d9f76d8c"></script>
+    <script src="../_static/documentation_options.js?v=559a92b0"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -181,6 +181,18 @@
 <td><p>0</p></td>
 <td><p>The target workspace index for the splitter.</p></td>
 </tr>
+<tr class="row-even"><td><p>FilterBadPulses</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>Filter bad pulses in the same way that <a class="reference internal" href="FilterBadPulses-v1.html#algm-filterbadpulses"><span class="std std-ref">FilterBadPulses v1</span></a> does.</p></td>
+</tr>
+<tr class="row-odd"><td><p>BadPulsesLowerCutoff</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p>95</p></td>
+<td><p>The percentage of the average to use as the lower bound when filtering bad pulses.</p></td>
+</tr>
 <tr class="row-even"><td><p>CalFileName</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
@@ -249,7 +261,6 @@ As a result, there is a significantly smaller memory usage and the processing is
 <li><p>hard coded for 6 particular groups</p></li>
 <li><p>does not support copping data</p></li>
 <li><p>does not support removing prompt pulse</p></li>
-<li><p>does not support removing bad pulses</p></li>
 </ul>
 <p>Child algorithms used are</p>
 <ul class="simple">
@@ -275,11 +286,11 @@ As a result, there is a significantly smaller memory usage and the processing is
 <span class="n">splitter</span><span class="o">.</span><span class="n">addRow</span><span class="p">((</span><span class="mi">400</span><span class="p">,</span><span class="mi">410</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">))</span>
 
 <span class="c1"># pass the splitter table to AlignAndFocusPowderSlim</span>
-<span class="n">ws</span><span class="o">=</span><span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span>
-                           <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="n">splitter</span><span class="p">,</span> <span class="n">RelativeTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                           <span class="n">XMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">XDelta</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>
-                           <span class="n">BinningMode</span><span class="o">=</span><span class="s2">&quot;Linear&quot;</span><span class="p">,</span>
-                           <span class="n">BinningUnits</span><span class="o">=</span><span class="s2">&quot;TOF&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span>
+                             <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="n">splitter</span><span class="p">,</span> <span class="n">RelativeTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                             <span class="n">XMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">XDelta</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>
+                             <span class="n">BinningMode</span><span class="o">=</span><span class="s2">&quot;Linear&quot;</span><span class="p">,</span>
+                             <span class="n">BinningUnits</span><span class="o">=</span><span class="s2">&quot;TOF&quot;</span><span class="p">)</span>
 
 <span class="c1"># This is equivalent to using FilterEvents with the same splitter table.</span>
 <span class="c1"># But note that this example doesn&#39;t align the data so put everything in 1 big bin to compare.</span>
@@ -311,7 +322,25 @@ As a result, there is a significantly smaller memory usage and the processing is
                      <span class="n">MaximumLogValue</span><span class="o">=</span><span class="mf">70.15</span><span class="p">)</span>
 
 <span class="c1"># Use the splitter table to filter the events during loading</span>
-<span class="n">ws</span><span class="o">=</span><span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span> <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">&#39;splitter&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span> <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">&#39;splitter&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Example - filter bad pulses</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span>
+                             <span class="n">XMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">XDelta</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>
+                             <span class="n">BinningMode</span><span class="o">=</span><span class="s2">&quot;Linear&quot;</span><span class="p">,</span>
+                             <span class="n">BinningUnits</span><span class="o">=</span><span class="s2">&quot;TOF&quot;</span><span class="p">,</span>
+                             <span class="n">FilterBadPulses</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># This is equivalent to using FilterBadPulses.</span>
+<span class="c1"># But note that this example doesn&#39;t align the data so put everything in 1 big bin to compare.</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">LoadEventNexus</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">)</span>
+<span class="n">grp</span> <span class="o">=</span> <span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">GroupDetectorsBy</span><span class="o">=</span><span class="s1">&#39;bank&#39;</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">GroupDetectors</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">CopyGroupingFromWorkspace</span><span class="o">=</span><span class="s2">&quot;grp&quot;</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">FilterBadPulses</span><span class="p">(</span><span class="n">ws2</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="s2">&quot;0,50000,50000&quot;</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ws2</span><span class="p">,</span> <span class="n">CheckUncertainty</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CheckSpectraMap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CheckInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -322,8 +351,8 @@ As a result, there is a significantly smaller memory usage and the processing is
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/cc3cdcce00b3e220cc97b6da4130202416137e45/Framework/DataHandling/inc/MantidDataHandling/AlignAndFocusPowderSlim.h">AlignAndFocusPowderSlim.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/cc3cdcce00b3e220cc97b6da4130202416137e45/Framework/DataHandling/src/AlignAndFocusPowderSlim.cpp">AlignAndFocusPowderSlim.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/39e67143221dacdd27edf54ce28825283acd0d85/Framework/DataHandling/inc/MantidDataHandling/AlignAndFocusPowderSlim.h">AlignAndFocusPowderSlim.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/39e67143221dacdd27edf54ce28825283acd0d85/Framework/DataHandling/src/AlignAndFocusPowderSlim.cpp">AlignAndFocusPowderSlim.cpp</a></p>
 </section>
 </section>
 

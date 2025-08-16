@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=d9f76d8c"></script>
+    <script src="../../_static/documentation_options.js?v=559a92b0"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -154,7 +154,9 @@
 <section id="new-features">
 <h3><a class="toc-backref" href="#id12" role="doc-backlink">New features</a><a class="headerlink" href="#new-features" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>New algorithm <a class="reference internal" href="../../algorithms/EstimateScatteringVolumeCentreOfMass-v1.html#algm-estimatescatteringvolumecentreofmass"><span class="std std-ref">EstimateScatteringVolumeCentreOfMass v1</span></a>, allows user to estimate the centre of mass of the intersection between an illumination volume and a sample shape.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/SNSPowderReduction-v1.html#algm-snspowderreduction"><span class="std std-ref">SNSPowderReduction</span></a> has been updated to more correctly apply absorption corrections.</p></li>
+<li><p>Add UpdateUB option to <a class="reference internal" href="../../algorithms/IndexPeaks-v1.html#algm-indexpeaks"><span class="std std-ref">IndexPeaks v1</span></a> that enables saving the optimized UB matrix in the case where there is a single run and CommonUBForAll=False.</p></li>
 </ul>
 </section>
 <section id="bugfixes">
@@ -258,6 +260,23 @@ or <code class="docutils literal notranslate"><span class="pre">Online</span> <s
 <h2><a class="toc-backref" href="#id27" role="doc-backlink">Dependencies</a><a class="headerlink" href="#dependencies" title="Link to this heading">¶</a></h2>
 <section id="id9">
 <h3><a class="toc-backref" href="#id28" role="doc-backlink">New features</a><a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p>This release has removed all reliance on the <a class="reference external" href="https://github.com/nexusformat/code">NeXus API</a> .  Instead the <code class="docutils literal notranslate"><span class="pre">File</span></code> class was rewritten to use direct calls to the <a class="reference external" href="https://github.com/HDFGroup/hdf5/tree/4f1c3b6a4c7f2af6b617aede8dfb0ff1a6c58850">HDF5 API</a>. In some places the C++ API (<code class="docutils literal notranslate"><span class="pre">H5Cpp</span></code>) is used for compatibility with other Mantid packages that also use the C++ API, but otherwise the low-level C API (<code class="docutils literal notranslate"><span class="pre">hdf5</span></code>) is used.  This decision was made because:</p>
+<ol class="arabic simple">
+<li><p>The C++ API is unsupported by the HDF Group (in private correspondence they suggested we use a 3rd party API).</p></li>
+<li><p>The C++ API is not properly documented.</p></li>
+<li><p>The C++ API does not have access to every possible feature or option that might be needed.</p></li>
+<li><p>The C API is fully documented.</p></li>
+<li><p>The C API is regularly maintained.</p></li>
+<li><p>The C API is the “base” API for HDF5, and so automatically supports all available features natively.</p></li>
+</ol>
+<p>Throughout this release cycle, we have been methodically replacing and modernizing the <code class="docutils literal notranslate"><span class="pre">Nexus</span></code> abstraction layer, one piece of functionality at a time.  This has included modern objects such as vectors and strings in place of arrays and C-strings, fixing many instances that apparently led to memory leaks due to unclosed objects, and simplifying the logic inside many of the methods for saving or loading data.</p>
+<p>This should not impact the observed behavior, except that memory should be more cleanly freed in Workbench, and loading or saving operations might run slightly faster.</p>
+<p>Loading of HDF4 files is still handled by the read-only <code class="docutils literal notranslate"><span class="pre">LegacyNexus</span></code> layer.</p>
+<p>Those interested in the details of the changes can see them in the (developer centric)
+<a class="reference external" href="https://github.com/mantidproject/mantid/issues/38332">github issue</a> or by following the <a class="reference external" href="https://github.com/mantidproject/mantid/pulls?q=is%3Apr+is%3Aclosed+label%3ANexus">Nexus tag</a>.</p>
+</li>
+</ul>
 </section>
 <section id="id10">
 <h3><a class="toc-backref" href="#id29" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>

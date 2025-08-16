@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=d9f76d8c"></script>
+    <script src="../_static/documentation_options.js?v=559a92b0"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -250,19 +250,37 @@
 <td><p>0</p></td>
 <td><p>add this quantity to the psi angle stored                              in the log</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputSusceptibility</p></td>
+<tr class="row-even"><td><p>OutputSusceptibilityFrequencyNXS</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
-<td><p>Output dynamic susceptibility (Xqw)</p></td>
+<td><p>Output dynamic susceptibility (Xqw) in nxs format (frequency)</p></td>
 </tr>
-<tr class="row-odd"><td><p>OutputPowderSpectrum</p></td>
+<tr class="row-odd"><td><p>OutputSusceptibilityEnergyNXS</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>Output dynamic susceptibility (Xqw) in nxs format (energy)</p></td>
+</tr>
+<tr class="row-even"><td><p>OutputSusceptibilityFrequencyASCII</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>Output dynamic susceptibility (Xqw) in ascii format (frequency)</p></td>
+</tr>
+<tr class="row-odd"><td><p>OutputSusceptibilityEnergyASCII</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>Output dynamic susceptibility (Xqw) in ascii format (energy)</p></td>
+</tr>
+<tr class="row-even"><td><p>OutputPowderSpectrum</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>Output S(Q) and S(theta) powder diffraction</p></td>
 </tr>
-<tr class="row-even"><td><p>RemoveTemporaryWorkspaces</p></td>
+<tr class="row-odd"><td><p>RemoveTemporaryWorkspaces</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
@@ -400,10 +418,15 @@ since this is a required property of the algorithm.</p>
 </section>
 <section id="dynamic-susceptibility">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Dynamic Susceptibility</a><a class="headerlink" href="#dynamic-susceptibility" title="Link to this heading">¶</a></h3>
-<p>If &lt;i&gt;OutputSusceptibility&lt;/i&gt; is checked, one additional workspace and one Nexus file will be generated,
-both containing the dynamic susceptibility as a function of frequency, in units of GHz.
-The extension denoting this quantity in the workspace and file names is “Xqw”
-(the extension for the structure factor is “sqw”).</p>
+<p>The algorithm offers 4 options that create one additional workspace (extensions ends with “sqw”) and one Nexus or ASCII file
+both containing the dynamic susceptibility:</p>
+<ul class="simple">
+<li><p>OutputSusceptibilityFrequencyNXS: If checked the Nexus file contains the dynamic susceptibility as a function of frequency, in units of GHz.</p></li>
+<li><p>OutputSusceptibilityEnergyNXS:  If checked the Nexus file contains the dynamic susceptibility as a function of energy, in units of meV.</p></li>
+<li><p>OutputSusceptibilityFrequencyASCII:  If checked the dat file contains the dynamic susceptibility as a function of frequency, in units of GHz.</p></li>
+<li><p>OutputSusceptibilityEnergyASCII:  If checked the dat file contains the dynamic susceptibility as a function of energy, in units of meV.</p></li>
+</ul>
+<p>The datafiles will be stored in the “Default Save Directory” as specified in the “Manage User Directories” settings.</p>
 </section>
 <section id="powder-diffraction">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">Powder Diffraction</a><a class="headerlink" href="#powder-diffraction" title="Link to this heading">¶</a></h3>
@@ -428,7 +451,7 @@ after a call to algorithm <a class="reference internal" href="BASISPowderDiffrac
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/cc3cdcce00b3e220cc97b6da4130202416137e45/Framework/PythonInterface/plugins/algorithms/BASISReduction.py">BASISReduction.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/39e67143221dacdd27edf54ce28825283acd0d85/Framework/PythonInterface/plugins/algorithms/BASISReduction.py">BASISReduction.py</a></p>
 </section>
 <section id="workflow">
 <h2><a class="toc-backref" href="#id11" role="doc-backlink">Workflow</a><a class="headerlink" href="#workflow" title="Link to this heading">¶</a></h2>

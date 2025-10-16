@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=88b095cb"></script>
+    <script src="../_static/documentation_options.js?v=951d45c5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -110,20 +110,20 @@
 <nav class="contents local" id="table-of-contents">
 <span id="index-0"></span><p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#summary" id="id6">Summary</a></p></li>
-<li><p><a class="reference internal" href="#properties" id="id7">Properties</a></p></li>
-<li><p><a class="reference internal" href="#description" id="id8">Description</a></p></li>
-<li><p><a class="reference internal" href="#usage" id="id9">Usage</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id10">References</a></p></li>
-<li><p><a class="reference internal" href="#source" id="id11">Source</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id7">Summary</a></p></li>
+<li><p><a class="reference internal" href="#properties" id="id8">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id9">Description</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id10">Usage</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id11">References</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id12">Source</a></p></li>
 </ul>
 </nav>
 <section id="summary">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>Performs correlation analysis of POLDI 2D-data.</p>
 </section>
 <section id="properties">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -158,20 +158,26 @@
 <td><p>5</p></td>
 <td><p>Maximum wavelength to consider.</p></td>
 </tr>
+<tr class="row-even"><td><p>InterpolationMethod</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p>Linear</p></td>
+<td><p>Interpolation used when adding intensity to a given bin in correlation function - ‘Nearest’ is quicker but potentially less accurate. Allowed values: [‘Linear’, ‘Nearest’]</p></td>
+</tr>
 </tbody>
 </table>
 </section>
 <section id="description">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>POLDI is a pulse overlap diffractometer and therefore the arrival time of a neutron does not uniquely determine
 the time-of-flight of the neutron (and hence the d-spacing in a given detector). Neutrons of different wavelength can
 arrive at the same time having passed through the chopper in a different pulse/slit.
 Indeed, neutrons corresponding to the same d-spacing are observed at many different arrival times in a given detector
 due to the overlapping pulses measured.</p>
-<figure class="align-right" id="id4" style="width: 10cm">
+<figure class="align-right" id="id5" style="width: 10cm">
 <img alt="Raw POLDI 1.2 data (i.e. post 2D detector upgrade) for silicon powder standard." src="../_images/POLDI1p2_silicon_raw2D.jpeg" />
 <figcaption>
-<p><span class="caption-text">Raw POLDI 1.2 data (i.e. post 2D detector upgrade) for silicon powder standard.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Raw POLDI 1.2 data (i.e. post 2D detector upgrade) for silicon powder standard.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The output of PoldiAutoCorrelation is a correlation spectrum, similar to the spectrum of a conventional TOF
@@ -180,20 +186,24 @@ The positions of the Bragg peaks can be determined to a high accuracy in the cor
 accordingly.</p>
 <p>PoldiAutoCorrelation performs a type of average of the intensity over different arrival times from
 each pulse corresponding to a given d-spacing for each detector: the correlation intensity at a given
-d-spacing is the inverse of the sum of the inverse intensities at each possible arrival time (see Eq. 8 in <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>).
+d-spacing is the inverse of the sum of the inverse intensities at each possible arrival time (see Eq. 8 in <a class="footnote-reference brackets" href="#id4" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>).
 A high correlation intensity implies a consistently high intensity was measured at all arrival times due to all
 possible chopper openings/pulses.</p>
+<p>In general the arrival time of a neutron for a given d-spacing will not coincide with a bin-center in the data -
+some interpolation is required. There are two interpolation methods which can be specified with the
+<code class="docutils literal notranslate"><span class="pre">InterpolationMethod</span></code> parameter: <code class="docutils literal notranslate"><span class="pre">Linear</span></code> (default - as in <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>) and <code class="docutils literal notranslate"><span class="pre">Nearest</span></code>. The <code class="docutils literal notranslate"><span class="pre">Nearest</span></code> method is a
+roughly a factor of 2-3 quicker but is potentially less accurate.</p>
 <p>Note by convention the correlation spectrum is converted from d-spacing into momentum transfer.</p>
-<p>Further details of the POLDI instrument and the reduction can be found in <a class="footnote-reference brackets" href="#id3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
-<figure class="align-right" id="id5" style="width: 10cm">
+<p>Further details of the POLDI instrument and the reduction can be found in <a class="footnote-reference brackets" href="#id4" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<figure class="align-right" id="id6" style="width: 10cm">
 <img alt="Correlation spectrum of silicon powder standard." src="../_images/PoldiAutoCorrelation_silicon.jpeg" />
 <figcaption>
-<p><span class="caption-text">Correlation spectrum of silicon powder standard.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Correlation spectrum of silicon powder standard.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="usage">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p>Note POLDI 1.2 is still under development, the data are currently saved in ASCII format with no meta-data required
 for the reduction. Currently there is a helper function <code class="docutils literal notranslate"><span class="pre">load_poldi</span></code> that reads the ASCII file, loads an instrument
 definition and adds the appropriate meta-data to the workspace.</p>
@@ -214,24 +224,24 @@ definition and adds the appropriate meta-data to the workspace.</p>
 </div>
 <p>Output:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The workspace contains 448 spectra.
-The correlation spectrum has 2460 bins.
+The correlation spectrum has 2833 bins.
 </pre></div>
 </div>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id3" role="doc-footnote">
+<aside class="footnote brackets" id="id4" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>,<a role="doc-backlink" href="#id3">3</a>)</span>
 <p>Stuhr, U. (2005). Nuclear Instruments and Methods in Physics Research Section A, 545(1-2), 319-329.</p>
 </aside>
 </aside>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/SINQ/Poldi.html">SINQ\Poldi</a></p>
 </section>
 <section id="source">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4fd1836fba3872cafd49d786c044025df3903352/Framework/PythonInterface/plugins/algorithms/PoldiAutoCorrelation6.py">PoldiAutoCorrelation6.py</a></p>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c49d176b06ff6df0737d52742e46c8178ba53c0/Framework/PythonInterface/plugins/algorithms/PoldiAutoCorrelation6.py">PoldiAutoCorrelation6.py</a></p>
 </section>
 </section>
 

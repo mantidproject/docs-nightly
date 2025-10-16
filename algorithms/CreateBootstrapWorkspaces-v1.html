@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=88b095cb"></script>
+    <script src="../_static/documentation_options.js?v=951d45c5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -174,8 +174,8 @@ Bootstrap works by running a single routine or procedure on the many simulated r
 The Bootstrap replicas can be generated in two ways:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">BootstrapType=ErrorSampling</span></code>: This type of sampling changes the value of each Y data point by randomly sampling from a normal distribution with the mean at Y and deviation of the error at that datapoint, i.e. <code class="docutils literal notranslate"><span class="pre">newDataY</span> <span class="pre">=</span> <span class="pre">Gaussian(originalDataY,</span> <span class="pre">originalDataE)</span></code>. This means that data from one spectrum does not have any influence on the data from another spectrum, as the sampling is done point by point.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">BootstrapType=SpectraSampling</span></code>: This type of sampling does not change the data on each spectra but instead samples the spectrum numbers with repetition. This means that each row of the workspace is equal to an original row picked at random from the input workspace. In practice, this means that each spectra is calculated as <code class="docutils literal notranslate"><span class="pre">boot_sample_ws.dataY(index)</span> <span class="pre">=</span> <span class="pre">input_ws.dataY(Uniform[0,</span> <span class="pre">numberOfHistograms])</span></code>. This kind of bootstrap replicas might make sense when the input workspace is averaged as part of the routine you’re trying to investigate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BootstrapType=ErrorSampling</span></code>: This type of sampling changes the value of each Y data point by randomly sampling from a normal distribution with the mean at Y and deviation of the error at that datapoint, i.e. <code class="docutils literal notranslate"><span class="pre">newDataY</span> <span class="pre">=</span> <span class="pre">Gaussian(originalDataY,</span> <span class="pre">originalDataE)</span></code>. This means that data from one spectrum does not have any influence on the data from another spectrum, as the sampling is done point by point. The errors of the newly created workspaces are set to zero to conform with the theory of Bootstrap.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BootstrapType=SpectraSampling</span></code>: This type of sampling samples the spectrum numbers with repetition. This means that each row of the workspace is equal to an original row picked at random from the input workspace. In practice, this means that each spectra is calculated as <code class="docutils literal notranslate"><span class="pre">boot_sample_ws.dataY(index)</span> <span class="pre">=</span> <span class="pre">input_ws.dataY(Uniform[0,</span> <span class="pre">numberOfHistograms])</span></code>. This kind of bootstrap might make sense when the input workspace contains spectra resulting from measurements of the same observable that, in the absence of noise and background, would have been supposed to have been identical. An example would be a collection of the momentum distributions of the same isotopic species measured by different detectors</p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -240,8 +240,8 @@ The Bootstrap replicas can be generated in two ways:</p>
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4fd1836fba3872cafd49d786c044025df3903352/Framework/Algorithms/inc/MantidAlgorithms/CreateBootstrapWorkspaces.h">CreateBootstrapWorkspaces.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4fd1836fba3872cafd49d786c044025df3903352/Framework/Algorithms/src/CreateBootstrapWorkspaces.cpp">CreateBootstrapWorkspaces.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c49d176b06ff6df0737d52742e46c8178ba53c0/Framework/Algorithms/inc/MantidAlgorithms/CreateBootstrapWorkspaces.h">CreateBootstrapWorkspaces.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c49d176b06ff6df0737d52742e46c8178ba53c0/Framework/Algorithms/src/CreateBootstrapWorkspaces.cpp">CreateBootstrapWorkspaces.cpp</a></p>
 </section>
 </section>
 

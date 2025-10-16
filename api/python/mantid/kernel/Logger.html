@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
-    <script src="../../../../_static/documentation_options.js?v=88b095cb"></script>
+    <script src="../../../../_static/documentation_options.js?v=951d45c5"></script>
     <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -114,6 +114,15 @@
 <section id="logger">
 <h1>Logger<a class="headerlink" href="#logger" title="Link to this heading">¶</a></h1>
 <p>This is a Python binding to the C++ class Mantid::Kernel::Logger.</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">Logger.notice()</span></code> will log at the root level (mantid).
+To get a named <code class="docutils literal notranslate"><span class="pre">Logger</span></code> you must create an instance with the name</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">Mantid.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="n">Logger</span>
+<span class="n">mylogger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="s2">&quot;mine&quot;</span><span class="p">)</span>
+<span class="n">mylogger</span><span class="o">.</span><span class="n">notice</span><span class="p">(</span><span class="s2">&quot;this is a test&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will generate the text <code class="docutils literal notranslate"><span class="pre">this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">test</span></code> in the logging console and <code class="docutils literal notranslate"><span class="pre">mine-[Notice]</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">test</span></code> in the terminal.
+This assumes you are using the default settings.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="mantid.kernel.Logger">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mantid.kernel.</span></span><span class="sig-name descname"><span class="pre">Logger</span></span><a class="headerlink" href="#mantid.kernel.Logger" title="Link to this definition">¶</a></dt>

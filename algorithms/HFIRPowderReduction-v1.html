@@ -5,13 +5,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Description</title>
+    <title>HFIRPowderReduction v1</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=77b458ea"></script>
+    <script src="../_static/documentation_options.js?v=1d22286e"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -50,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>6.13</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>6.14</b></span>
       </div>
 
       
@@ -93,7 +93,7 @@
         
         
           
-            <li class="nav-item nav-item-this"><a href="">Description</a></li>
+            <li class="nav-item nav-item-this"><a href="">HFIRPowderReduction v1</a></li>
           
         
       </ul>
@@ -105,17 +105,131 @@
     <div class="body col-md-12 content" role="main">
       
   <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
-<p><strong>ERROR: No algorithm ‘HFIRPowderReduction’ version ‘1’, skipping directive</strong></p>
-<p><strong>ERROR: No algorithm ‘HFIRPowderReduction’ version ‘1’, skipping directive</strong></p>
-<p><strong>ERROR: No algorithm ‘HFIRPowderReduction’ version ‘1’, skipping directive</strong></p>
-<p><strong>ERROR: No algorithm ‘HFIRPowderReduction’ version ‘1’, skipping directive</strong></p>
+<section id="hfirpowderreduction-v1">
+<span id="algm-hfirpowderreduction"></span><span id="algm-hfirpowderreduction-v1"></span><h1>HFIRPowderReduction v1<a class="headerlink" href="#hfirpowderreduction-v1" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="table-of-contents">
+<span id="index-0"></span><p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p></li>
+<li><p><a class="reference internal" href="#properties" id="id2">Properties</a></p></li>
+<li><p><a class="reference internal" href="#description" id="id3">Description</a></p></li>
+<li><p><a class="reference internal" href="#source" id="id4">Source</a></p></li>
+</ul>
+</nav>
+<section id="summary">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
+<p>Powder reduction for HFIR instruments</p>
+</section>
+<section id="properties">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Direction</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SampleFilename</p></td>
+<td><p>Input</p></td>
+<td><p>list of str lists</p></td>
+<td></td>
+<td><p>Sample files to Load. Allowed extensions: [‘.nxs.h5’]</p></td>
+</tr>
+<tr class="row-odd"><td><p>SampleIPTS</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>Sample IPTS number to load from</p></td>
+</tr>
+<tr class="row-even"><td><p>SampleRunNumbers</p></td>
+<td><p>Input</p></td>
+<td><p>int list</p></td>
+<td></td>
+<td><p>Sample run numbers to load</p></td>
+</tr>
+<tr class="row-odd"><td><p>VanadiumFilename</p></td>
+<td><p>Input</p></td>
+<td><p>list of str lists</p></td>
+<td></td>
+<td><p>Vanadium files to Load. Allowed extensions: [‘.nxs.h5’]</p></td>
+</tr>
+<tr class="row-even"><td><p>VanadiumIPTS</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>Vanadium IPTS number to load from</p></td>
+</tr>
+<tr class="row-odd"><td><p>VanadiumRunNumbers</p></td>
+<td><p>Input</p></td>
+<td><p>int list</p></td>
+<td></td>
+<td><p>Vanadium run numbers to load</p></td>
+</tr>
+<tr class="row-even"><td><p>VanadiumBackgroundFilename</p></td>
+<td><p>Input</p></td>
+<td><p>list of str lists</p></td>
+<td></td>
+<td><p>Vanadium background files to Load. Allowed extensions: [‘.nxs.h5’]</p></td>
+</tr>
+<tr class="row-odd"><td><p>VanadiumBackgroundIPTS</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>Vanadium background IPTS number to load from</p></td>
+</tr>
+<tr class="row-even"><td><p>VanadiumBackgroundRunNumbers</p></td>
+<td><p>Input</p></td>
+<td><p>int list</p></td>
+<td></td>
+<td><p>Vanadium background run numbers to load</p></td>
+</tr>
+<tr class="row-odd"><td><p>SampleBackgroundFilename</p></td>
+<td><p>Input</p></td>
+<td><p>list of str lists</p></td>
+<td></td>
+<td><p>Sample background files to Load. Allowed extensions: [‘.nxs.h5’]</p></td>
+</tr>
+<tr class="row-even"><td><p>SampleBackgroundIPTS</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>Sample background IPTS number to load from</p></td>
+</tr>
+<tr class="row-odd"><td><p>SampleBackgroundRunNumbers</p></td>
+<td><p>Input</p></td>
+<td><p>int list</p></td>
+<td></td>
+<td><p>Sample background run numbers to load</p></td>
+</tr>
+<tr class="row-even"><td><p>ApplyMask</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td><p>If True standard masking will be applied to the workspace</p></td>
+</tr>
+<tr class="row-odd"><td><p>Grouping</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p>None</p></td>
+<td><p>Group pixels. Allowed values: [‘None’, ‘2x2’, ‘4x4’]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="description">
-<h1>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h1>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This algorithm is used to reduce powder diffraction data from the HFIR instruments at ORNL. It is a
 workflow algorithm that uses several other algorithms to perform the reduction. The input data can be
 specified either as a list of files or as an IPTS number and a list of run numbers. This works for both WAND and MIDAS instruments.</p>
-<p><strong>ERROR: No algorithm ‘HFIRPowderReduction’ version ‘1’, skipping directive</strong></p>
-<p><strong>ERROR: No algorithm ‘HFIRPowderReduction’ version ‘1’, skipping directive</strong></p>
+<p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/DataHandling/Nexus.html">DataHandling\Nexus</a></p>
+</section>
+<section id="source">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c1052ef805e0c48a4878f22cc3c07f0bd48501d9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/HFIRPowderReduction.py">HFIRPowderReduction.py</a></p>
+</section>
 </section>
 
 

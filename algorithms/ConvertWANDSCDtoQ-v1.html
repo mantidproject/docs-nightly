@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=77b458ea"></script>
+    <script src="../_static/documentation_options.js?v=1d22286e"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -50,7 +50,7 @@
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org">
            </a>
-        <span class="navbar-text navbar-version pull-left"><b>6.13</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>6.14</b></span>
       </div>
 
       
@@ -225,71 +225,71 @@
 <td><p>-8.02,8.02,401</p></td>
 <td><p>Binning parameters for the 2nd dimension. Enter it as acomma-separated list of values with theformat: ‘minimum,maximum,number_of_bins’.</p></td>
 </tr>
-<tr class="row-even"><td><p>KeepTemporaryWorkspaces</p></td>
-<td><p>Input</p></td>
-<td><p>boolean</p></td>
-<td><p>False</p></td>
-<td><p>If True the normalization and data workspaces in addition to the normalized data will be outputted</p></td>
-</tr>
-<tr class="row-odd"><td><p>ObliquityParallaxCoefficient</p></td>
+<tr class="row-even"><td><p>ObliquityParallaxCoefficient</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>1</p></td>
 <td><p>Geometrical correction for shift in vertical beam position due to wide beam.</p></td>
 </tr>
-<tr class="row-even"><td><p>SymmetryOperations</p></td>
+<tr class="row-odd"><td><p>SymmetryOperations</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>Space Group name, Point Group name, or list individual Symmetries used to perform the symmetrization</p></td>
 </tr>
+<tr class="row-even"><td><p>KeepTemporaryWorkspaces</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>If True, non-normalized data, normalization, non-normalized background, and background normalization workspaces will be also outputted</p></td>
+</tr>
 <tr class="row-odd"><td><p>TemporaryDataWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>IMDHistoWorkspace</p></td>
 <td></td>
-<td><p>An (optional) input MDHistoWorkspace used to accumulate data from multiple MDEventWorkspaces.If unspecified a blank MDHistoWorkspace will be created</p></td>
+<td><p>An (optional) input MDHistoWorkspace to which we’ll add the non-normalized data. If specified, ‘KeepTemporaryWorkspaces’ will be set to True.</p></td>
 </tr>
 <tr class="row-even"><td><p>TemporaryNormalizationWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>IMDHistoWorkspace</p></td>
 <td></td>
-<td><p>An (optional) input MDHistoWorkspace used to accumulate normalization data from multiple MDEventWorkspaces.If unspecified a blank MDHistoWorkspace will be created</p></td>
+<td><p>An (optional) input MDHistoWorkspace to which we’ll add the normalization workspace. If specified, ‘KeepTemporaryWorkspaces’ will be set to True.</p></td>
 </tr>
 <tr class="row-odd"><td><p>TemporaryBackgroundDataWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>IMDHistoWorkspace</p></td>
 <td></td>
-<td><p>An (optional) input MDHistoWorkspace used to accumulate background data from multiple MDEventWorkspaces.If unspecified but BackgroundWorkspace is specified, a blank MDHistoWorkspace will be created</p></td>
+<td><p>An (optional) input MDHistoWorkspace to which we’ll add the non-normalized background workspace. If specified, ‘KeepTemporaryWorkspaces’ will be set to True.</p></td>
 </tr>
 <tr class="row-even"><td><p>TemporaryBackgroundNormalizationWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>IMDHistoWorkspace</p></td>
 <td></td>
-<td><p>An (optional) input MDHistoWorkspace used to accumulate background normalization data from multiple MDEventWorkspaces.If unspecified but BackgroundWorkspace is specified, a blank MDHistoWorkspace will be created</p></td>
+<td><p>An (optional) input MDHistoWorkspace to which we’ll add the background normalization workspace. If specified, ‘KeepTemporaryWorkspaces’ will be set to True.</p></td>
 </tr>
 <tr class="row-odd"><td><p>OutputDataWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
-<td><p>Name for the Output Data Workspace</p></td>
+<td><p>Name for the Output non-normalized data Workspace. If unspecified, the name will that of the OutputWorkspace plus suffix ‘_data’, and only when option KeepTemporaryWorkspaces is True</p></td>
 </tr>
 <tr class="row-even"><td><p>OutputNormalizationWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
-<td><p>Name for the Output Normalization Workspace</p></td>
+<td><p>Name for the Output Normalization Workspace.If unspecified, the name will that of the OutputWorkspace plus suffix ‘_normalization’, and only when option KeepTemporaryWorkspaces is True</p></td>
 </tr>
 <tr class="row-odd"><td><p>OutputBackgroundDataWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
-<td><p>Name for the Output Background Workspace</p></td>
+<td><p>Name for the Output Background Workspace. If unspecified, the name will that of the OutputWorkspace plus suffix ‘_background_data’, and only when option KeepTemporaryWorkspaces is True</p></td>
 </tr>
 <tr class="row-even"><td><p>OutputBackgroundNormalizationWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
-<td><p>Name for the Output Background Normalization Workspace</p></td>
+<td><p>Name for the Output Background Normalization Workspace. If unspecified, the name will that of the OutputWorkspace plus suffix ‘_background_normalization’, and only when option KeepTemporaryWorkspaces is True</p></td>
 </tr>
 <tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
@@ -386,11 +386,12 @@ Symmetry Operations can be found <a class="reference internal" href="../concepts
 <figure class="align-default">
 <img alt="../_images/ConvertWANDSCDtoQ_HKL.png" src="../_images/ConvertWANDSCDtoQ_HKL.png" />
 </figure>
+<img alt="../_images/ConvertWANDSCDtoQ-v1_wkflw.svg" src="../_images/ConvertWANDSCDtoQ-v1_wkflw.svg" />
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/DataHandling/Nexus.html">DataHandling\Nexus</a></p>
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/9889ad0efb4d247259f9f9443f0f0f771563a052/Framework/PythonInterface/plugins/algorithms/ConvertWANDSCDtoQ.py">ConvertWANDSCDtoQ.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c1052ef805e0c48a4878f22cc3c07f0bd48501d9/Framework/PythonInterface/plugins/algorithms/ConvertWANDSCDtoQ.py">ConvertWANDSCDtoQ.py</a></p>
 </section>
 </section>
 

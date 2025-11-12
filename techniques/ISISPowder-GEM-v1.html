@@ -7,14 +7,13 @@
 
     <title>ISIS Powder Diffraction Scripts - GEM Reference</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=4468db6d" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=d0c3728f"></script>
+    <script src="../_static/documentation_options.js?v=76017a27"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="ISIS Powder Diffraction Scripts - HRPD Reference" href="ISISPowder-HRPD-v1.html" />
@@ -38,7 +37,7 @@
 
 
 
-  <div id="navbar" class="navbar navbar-default ">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         
@@ -49,7 +48,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org">
-           </a>
+          MantidProject</a>
         <span class="navbar-text navbar-version pull-left"><b>6.14</b></span>
       </div>
 
@@ -59,17 +58,122 @@
           <ul class="nav navbar-nav">
             <li class="divider-vertical"></li>
             
-                <li><a href="https://www.mantidproject.org">Home</a></li>
-                <li><a href="https://download.mantidproject.org">Download</a></li>
-                <li><a href="https://docs.mantidproject.org">Documentation</a></li>
-                <li><a href="https://www.mantidproject.org/contact">Contact Us</a></li>
-            
             
               
               
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">ISIS Powder Diffraction Scripts - GEM Reference</a><ul>
+<li><a class="reference internal" href="#creating-gem-object">Creating GEM Object</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#create-vanadium">create_vanadium</a><ul>
+<li><a class="reference internal" href="#id1">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#focus">focus</a><ul>
+<li><a class="reference internal" href="#id2">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#set-sample">set_sample</a><ul>
+<li><a class="reference internal" href="#id3">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-cal">create_cal</a><ul>
+<li><a class="reference internal" href="#id4">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#calibration-mapping-file">Calibration Mapping File</a><ul>
+<li><a class="reference internal" href="#id5">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parameters">Parameters</a><ul>
+<li><a class="reference internal" href="#calibration-to-adjust">calibration_to_adjust</a></li>
+<li><a class="reference internal" href="#calibration-directory">calibration_directory</a></li>
+<li><a class="reference internal" href="#calibration-mapping-file-gem-isis-powder-diffraction-ref">calibration_mapping_file</a></li>
+<li><a class="reference internal" href="#config-file">config_file</a></li>
+<li><a class="reference internal" href="#do-absorb-corrections">do_absorb_corrections</a></li>
+<li><a class="reference internal" href="#file-ext">file_ext</a></li>
+<li><a class="reference internal" href="#first-cycle-run-no">first_cycle_run_no</a></li>
+<li><a class="reference internal" href="#input-mode">input_mode</a></li>
+<li><a class="reference internal" href="#mode">mode</a></li>
+<li><a class="reference internal" href="#multiple-scattering">multiple_scattering</a></li>
+<li><a class="reference internal" href="#output-directory">output_directory</a></li>
+<li><a class="reference internal" href="#run-number">run_number</a></li>
+<li><a class="reference internal" href="#sample-empty">sample_empty</a></li>
+<li><a class="reference internal" href="#sample-empty-scale">sample_empty_scale</a></li>
+<li><a class="reference internal" href="#save-all">save_all</a></li>
+<li><a class="reference internal" href="#texture-mode">texture_mode</a></li>
+<li><a class="reference internal" href="#unit-to-keep">unit_to_keep</a></li>
+<li><a class="reference internal" href="#suffix">suffix</a></li>
+<li><a class="reference internal" href="#user-name">user_name</a></li>
+<li><a class="reference internal" href="#vanadium-normalisation">vanadium_normalisation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#advanced-parameters">Advanced Parameters</a><ul>
+<li><a class="reference internal" href="#create-cal-rebin-1-params">create_cal_rebin_1_params</a></li>
+<li><a class="reference internal" href="#create-cal-rebin-2-params">create_cal_rebin_2_params</a></li>
+<li><a class="reference internal" href="#cross-corr-reference-spectra">cross_corr_reference_spectra</a></li>
+<li><a class="reference internal" href="#cross-corr-ws-index-max">cross_corr_ws_index_max</a></li>
+<li><a class="reference internal" href="#cross-corr-ws-index-min">cross_corr_ws_index_min</a></li>
+<li><a class="reference internal" href="#cross-cor-x-max">cross_cor_x_max</a></li>
+<li><a class="reference internal" href="#cross-cor-x-min">cross_cor_x_min</a></li>
+<li><a class="reference internal" href="#get-det-offsets-d-ref">get_det_offsets_d_ref</a></li>
+<li><a class="reference internal" href="#get-det-offsets-step">get_det_offsets_step</a></li>
+<li><a class="reference internal" href="#get-det-offsets-x-max">get_det_offsets_x_max</a></li>
+<li><a class="reference internal" href="#get-det-offsets-x-min">get_det_offsets_x_min</a></li>
+<li><a class="reference internal" href="#focused-cropping-values">focused_cropping_values</a></li>
+<li><a class="reference internal" href="#grouping-file-name">grouping_file_name</a></li>
+<li><a class="reference internal" href="#gsas-calib-filename">gsas_calib_filename</a></li>
+<li><a class="reference internal" href="#nxs-filename">nxs_filename</a></li>
+<li><a class="reference internal" href="#gss-filename">gss_filename</a></li>
+<li><a class="reference internal" href="#dat-files-directory">dat_files_directory</a></li>
+<li><a class="reference internal" href="#tof-xye-filename">tof_xye_filename</a></li>
+<li><a class="reference internal" href="#dspacing-xye-filename">dspacing_xye_filename</a></li>
+<li><a class="reference internal" href="#maud-grouping-scheme">maud_grouping_scheme</a></li>
+<li><a class="reference internal" href="#raw-tof-cropping-values">raw_tof_cropping_values</a></li>
+<li><a class="reference internal" href="#save-gda">save_gda</a></li>
+<li><a class="reference internal" href="#save-maud-calib">save_maud_calib</a></li>
+<li><a class="reference internal" href="#save-maud">save_maud</a></li>
+<li><a class="reference internal" href="#spline-coefficient">spline_coefficient</a></li>
+<li><a class="reference internal" href="#subtract-empty-instrument">subtract_empty_instrument</a></li>
+<li><a class="reference internal" href="#vanadium-cropping-values">vanadium_cropping_values</a></li>
+<li><a class="reference internal" href="#vanadium-sample-details">Vanadium sample details</a><ul>
+<li><a class="reference internal" href="#chemical-formula">chemical_formula</a></li>
+<li><a class="reference internal" href="#number-density">number_density</a></li>
+<li><a class="reference internal" href="#cylinder-sample-height">cylinder_sample_height</a></li>
+<li><a class="reference internal" href="#cylinder-sample-radius">cylinder_sample_radius</a></li>
+<li><a class="reference internal" href="#cylinder-position">cylinder_position</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
             
             
             
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/techniques/ISISPowder-GEM-v1.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
             
           </ul>
               
@@ -104,8 +208,7 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
-<section id="isis-powder-diffraction-scripts-gem-reference">
+  <section id="isis-powder-diffraction-scripts-gem-reference">
 <span id="isis-powder-diffraction-gem-ref"></span><h1>ISIS Powder Diffraction Scripts - GEM Reference<a class="headerlink" href="#isis-powder-diffraction-scripts-gem-reference" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>

@@ -7,11 +7,11 @@
 
     <title>HFIR Single Crystal Reduction Interface</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=4468db6d" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=d0c3728f"></script>
+    <script src="../../_static/documentation_options.js?v=76017a27"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -38,7 +38,7 @@
 
 
 
-  <div id="navbar" class="navbar navbar-default ">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         
@@ -49,7 +49,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org">
-           </a>
+          MantidProject</a>
         <span class="navbar-text navbar-version pull-left"><b>6.14</b></span>
       </div>
 
@@ -59,17 +59,69 @@
           <ul class="nav navbar-nav">
             <li class="divider-vertical"></li>
             
-                <li><a href="https://www.mantidproject.org">Home</a></li>
-                <li><a href="https://download.mantidproject.org">Download</a></li>
-                <li><a href="https://docs.mantidproject.org">Documentation</a></li>
-                <li><a href="https://www.mantidproject.org/contact">Contact Us</a></li>
-            
             
               
               
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">HFIR Single Crystal Reduction Interface</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#introduction-of-tabs">Introduction of Tabs</a></li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a><ul>
+<li><a class="reference internal" href="#set-up-reduction">Set up reduction</a></li>
+<li><a class="reference internal" href="#experiment-overview">Experiment overview</a></li>
+<li><a class="reference internal" href="#workflow-to-calculate-and-refine-ub-matrix">Workflow to calculate and refine UB matrix</a></li>
+<li><a class="reference internal" href="#workflow-to-merge-measurements-in-scan">Workflow to merge measurements in scan</a></li>
+<li><a class="reference internal" href="#workflow-to-calculate-peak-intensity-of-a-single-measurement-scan">Workflow to calculate peak intensity of a single measurement scan</a></li>
+<li><a class="reference internal" href="#peak-integration-with-automatic-background-subtraction-by-approximation">Peak Integration with automatic background subtraction by approximation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ub-matrix-calculation-and-refinement">UB Matrix Calculation and Refinement</a><ul>
+<li><a class="reference internal" href="#converting-spice-ub-matrix-to-mantid-ub-matrix">Converting SPICE UB matrix to Mantid UB matrix</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#peak-integration">Peak Integration</a><ul>
+<li><a class="reference internal" href="#normalization">Normalization</a></li>
+<li><a class="reference internal" href="#region-of-interest">Region of interest</a></li>
+<li><a class="reference internal" href="#integration-algorithm-1-simple-counts-summation">Integration algorithm 1: simple counts summation</a><ul>
+<li><a class="reference internal" href="#estimating-background">Estimating background</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#integration-algorithm-2-simple-counts-summation-with-fitted-background">Integration algorithm 2: simple counts summation with fitted background</a></li>
+<li><a class="reference internal" href="#integration-algorithm-3-calculate-intensity-from-fitted-model">Integration algorithm 3: calculate intensity from fitted model</a><ul>
+<li><a class="reference internal" href="#issue">Issue</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-peak-integration-algorithms-in-consideration">Other peak integration algorithms in consideration</a><ul>
+<li><a class="reference internal" href="#peak-integration-with-automatic-background-subtraction-by-integrateellipsoids">Peak Integration with automatic background subtraction by IntegrateEllipsoids</a></li>
+<li><a class="reference internal" href="#integrating-a-peak-in-cuboid-in-q-space">Integrating a peak in cuboid in Q-space</a></li>
+<li><a class="reference internal" href="#id1">Estimating background</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
             
             
             
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../_sources/interfaces/diffraction/HFIR Single Crystal Reduction.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
             
           </ul>
               
@@ -104,8 +156,7 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
-<section id="hfir-single-crystal-reduction-interface">
+  <section id="hfir-single-crystal-reduction-interface">
 <span id="interface-hfir-single-crystal-reduction"></span><h1>HFIR Single Crystal Reduction Interface<a class="headerlink" href="#hfir-single-crystal-reduction-interface" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>

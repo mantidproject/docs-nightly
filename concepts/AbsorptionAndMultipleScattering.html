@@ -7,11 +7,11 @@
 
     <title>Absorption and Multiple Scattering Corrections</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=fadd4351" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=4468db6d" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=d0c3728f"></script>
+    <script src="../_static/documentation_options.js?v=76017a27"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -38,7 +38,7 @@
 
 
 
-  <div id="navbar" class="navbar navbar-default ">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         
@@ -49,7 +49,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="http://www.mantidproject.org">
-           </a>
+          MantidProject</a>
         <span class="navbar-text navbar-version pull-left"><b>6.14</b></span>
       </div>
 
@@ -59,17 +59,76 @@
           <ul class="nav navbar-nav">
             <li class="divider-vertical"></li>
             
-                <li><a href="https://www.mantidproject.org">Home</a></li>
-                <li><a href="https://download.mantidproject.org">Download</a></li>
-                <li><a href="https://docs.mantidproject.org">Documentation</a></li>
-                <li><a href="https://www.mantidproject.org/contact">Contact Us</a></li>
-            
             
               
               
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Absorption and Multiple Scattering Corrections</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#total-cross-section-sigma-t">Total cross section (<span class="math notranslate nohighlight">\(\sigma_t\)</span>)</a></li>
+<li><a class="reference internal" href="#scattering-cross-section-sigma-s">Scattering cross section (<span class="math notranslate nohighlight">\(\sigma_s\)</span> )</a></li>
+<li><a class="reference internal" href="#absorption-cross-section-sigma-a">Absorption cross section (<span class="math notranslate nohighlight">\(\sigma_a\)</span>)</a></li>
+<li><a class="reference internal" href="#attenuation-length-mu">Attenuation Length (<span class="math notranslate nohighlight">\(\mu\)</span>)</a></li>
+<li><a class="reference internal" href="#techniques-for-calculating-corrections">Techniques for Calculating Corrections</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#absorption">Absorption</a><ul>
+<li><a class="reference internal" href="#id6">Introduction</a></li>
+<li><a class="reference internal" href="#basic-sample-absorption-theory">Basic Sample Absorption Theory</a></li>
+<li><a class="reference internal" href="#gauge-volume">Gauge Volume</a></li>
+<li><a class="reference internal" href="#partial-absorption-correction-factors-paalman-and-pings-formalism">Partial Absorption Correction Factors: Paalman and Pings Formalism</a></li>
+<li><a class="reference internal" href="#general-notes">General Notes</a><ul>
+<li><a class="reference internal" href="#integration-methods">Integration Methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#legends-for-absorption-correction-algorithms-in-mantid-table">Legends for Absorption Correction Algorithms in Mantid Table</a></li>
+<li><a class="reference internal" href="#absorption-correction-algorithms-in-mantid-table">Absorption Correction Algorithms in Mantid Table</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#multiple-scattering">Multiple Scattering</a><ul>
+<li><a class="reference internal" href="#id18">Introduction</a></li>
+<li><a class="reference internal" href="#theory">Theory</a></li>
+<li><a class="reference internal" href="#assumptions">Assumptions</a><ul>
+<li><a class="reference internal" href="#elastic-scattering">Elastic Scattering</a></li>
+<li><a class="reference internal" href="#isotropic-scattering">Isotropic Scattering</a></li>
+<li><a class="reference internal" href="#elastic-isotropic-scattering">Elastic + Isotropic Scattering</a></li>
+<li><a class="reference internal" href="#constant-ratio-for-frac-i-n-i-n-1-delta">Constant Ratio for  <span class="math notranslate nohighlight">\(\frac{I_n}{I_{n-1}} = \Delta\)</span></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id25">General Notes</a><ul>
+<li><a class="reference internal" href="#analytical-methods">Analytical Methods</a></li>
+<li><a class="reference internal" href="#monte-carlo-methods">Monte Carlo Methods</a></li>
+<li><a class="reference internal" href="#small-angle-scattering">Small Angle Scattering</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#legends-for-multiple-scattering-correction-algorithms-in-mantid-table">Legends for Multiple Scattering Correction Algorithms in Mantid Table</a></li>
+<li><a class="reference internal" href="#multiple-scattering-correction-algorithms-in-mantid-table">Multiple Scattering Correction Algorithms in Mantid Table</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
             
             
             
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/concepts/AbsorptionAndMultipleScattering.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
             
           </ul>
               
@@ -104,8 +163,7 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <p><span class="math notranslate nohighlight">\(\renewcommand\AA{\unicode{x212B}}\)</span></p>
-<section id="absorption-and-multiple-scattering-corrections">
+  <section id="absorption-and-multiple-scattering-corrections">
 <span id="sample-corrections"></span><h1><a class="toc-backref" href="#id55" role="doc-backlink">Absorption and Multiple Scattering Corrections</a><a class="headerlink" href="#absorption-and-multiple-scattering-corrections" title="Link to this heading">¶</a></h1>
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>

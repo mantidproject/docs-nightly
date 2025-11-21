@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=a9dd2bee"></script>
+    <script src="../_static/documentation_options.js?v=8b12d636"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -149,7 +149,7 @@
 </nav>
 <section id="summary">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
-<p>Calculate the efficiency of the polarization flipper.</p>
+<p>Calculate the efficiency of the polarization or analyzer flipper.</p>
 </section>
 <section id="properties">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Properties</a><a class="headerlink" href="#properties" title="Link to this heading">¶</a></h2>
@@ -169,19 +169,25 @@
 <td><p><em>Mandatory</em></p></td>
 <td><p>Group workspace containing flipper transmissions for all 4 polarization states.</p></td>
 </tr>
-<tr class="row-odd"><td><p>SpinStates</p></td>
+<tr class="row-odd"><td><p>Flipper</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p>Polarizer</p></td>
+<td><p>Allowed values: [‘Polarizer’, ‘Analyzer’]</p></td>
+</tr>
+<tr class="row-even"><td><p>SpinStates</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>11,10,01,00</p></td>
 <td><p>Order of individual flipper configurations in the input group workspace, e.g. “01,11,00,10”</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputWorkspace</p></td>
+<tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
 <td></td>
 <td><p>Workspace containing the wavelength-dependent efficiency for the flipper.</p></td>
 </tr>
-<tr class="row-odd"><td><p>OutputFilePath</p></td>
+<tr class="row-even"><td><p>OutputFilePath</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
@@ -196,25 +202,20 @@
 The input workspace must be a group of four single spectrum workspaces,
 each representing the transmission of a known spin state as specified by the <code class="docutils literal notranslate"><span class="pre">SpinStates</span></code> parameter. These four spin
 state transmissions are used to calculate the proportion of neutrons lost to the flipper as a function of wavelength.</p>
-<p>The polarization of the flipper <span class="math notranslate nohighlight">\(P_{F}\)</span> is given by:</p>
+<p>With the <code class="docutils literal notranslate"><span class="pre">Flipper</span></code> property, the efficiency of the analyzer or polarizer flipper is calculated by choosing, respectively,
+<cite>Analyzer</cite> or <cite>Polarizer</cite>.</p>
+<p>The polarization of the polarizer flipper, <span class="math notranslate nohighlight">\(P_{F_{P}}\)</span>, is given by:</p>
 <div class="math notranslate nohighlight">
-\[P_F = \frac{(\frac{T_{11} - T_{10}}{T_{11} + T_{10}})}{(\frac{T_{00} - T_{01}}{T_{00} + T_{01}})}\]</div>
-<p>Since the efficiency <span class="math notranslate nohighlight">\(\epsilon_{F}\)</span> is equal to <span class="math notranslate nohighlight">\(\frac{1 + P_{F}}{2}\)</span>, we can calculate the efficiency of
-the flipper directly using:</p>
+\[P_{F_{P}} = \frac{(\frac{T_{11} - T_{10}}{T_{11} + T_{10}})}{(\frac{T_{00} - T_{01}}{T_{00} + T_{01}})}\]</div>
+<p>While the polarization of the analyzer flipper, <span class="math notranslate nohighlight">\(P_{F_{A}}\)</span> is:</p>
 <div class="math notranslate nohighlight">
-\[\epsilon_{F} = \frac{T_{11}T_{00} - T_{10}T_{01}}{(T_{11} + T_{10})(T_{00} - T_{01})}\]</div>
-<p>The errors are calculated as follows:</p>
+\[P_{F_{A}} = \frac{(\frac{T_{11} - T_{01}}{T_{11} + T_{01}})}{(\frac{T_{00} - T_{10}}{T_{00} + T_{10}})}\]</div>
+<p>And the efficiency is calculated from the polarization as :</p>
 <div class="math notranslate nohighlight">
-\[\sigma_{\epsilon_{F}} = \sqrt{| \frac{\partial \epsilon_{F}}{\partial T_{11}}|^2 * \sigma^2_{T_{11}} + | \frac{\partial \epsilon_{F}}{\partial T_{00}}|^2 * \sigma^2_{T_{00}} + | \frac{\partial \epsilon_{F}}{\partial T_{10}}|^2 * \sigma^2_{T_{10}} + | \frac{\partial \epsilon_{F}}{\partial T_{01}}|^2 * \sigma^2_{T_{01}}}\]</div>
-<p>Where:</p>
+\[\epsilon_{F} = \frac{1 + P_{F}}{2}\]</div>
+<p>The errors are calculated with error propagation from the partial derivatives with respect ot the transmission amplitudes:</p>
 <div class="math notranslate nohighlight">
-\[\frac{\partial \epsilon_{F}}{\partial T_{11}} = \frac{T_{10} * (T_{00} + T_{01})}{(T_{11} + T_{10})^2 * (T_{00} - T_{01})}\]</div>
-<div class="math notranslate nohighlight">
-\[\frac{\partial \epsilon_{F}}{\partial T_{00}} = \frac{T_{01} * (T_{10} - T_{11})}{(T_{11} + T_{10}) * (T_{00} - T_{01})^2}\]</div>
-<div class="math notranslate nohighlight">
-\[\frac{\partial \epsilon_{F}}{\partial T_{10}} = \frac{-T_{11} * (T_{00} + T_{01})}{(T_{11} + T_{10})^2 * (T_{00} - T_{01})}\]</div>
-<div class="math notranslate nohighlight">
-\[\frac{\partial \epsilon_{F}}{\partial T_{01}} = \frac{T_{00} * (T_{11} - T_{10})}{(T_{11} + T_{10}) * (T_{00} - T_{01})^2}\]</div>
+\[\sigma_{\epsilon_{F}} = \sqrt{\sum_{i,j=0,1} \left( \frac{\partial{\epsilon_{F}}}{\partial{T_{ij}}} \right)^{2} \,  \sigma_{i,j}^2 }\]</div>
 <section id="outputs">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">Outputs</a><a class="headerlink" href="#outputs" title="Link to this heading">¶</a></h3>
 <p>If an output file path is provided, a NeXus file containing the output workspace will be saved. If an absolute path is
@@ -265,8 +266,8 @@ output workspace will be saved with that filename into the location set in the <
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/8684303bc63af6c2c987ec08210962467148ac5d/Framework/Algorithms/inc/MantidAlgorithms/PolarizationCorrections/FlipperEfficiency.h">FlipperEfficiency.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/8684303bc63af6c2c987ec08210962467148ac5d/Framework/Algorithms/src/PolarizationCorrections/FlipperEfficiency.cpp">FlipperEfficiency.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/780fef910c8d3bb943d0090d19d6a199bcad2268/Framework/Algorithms/inc/MantidAlgorithms/PolarizationCorrections/FlipperEfficiency.h">FlipperEfficiency.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/780fef910c8d3bb943d0090d19d6a199bcad2268/Framework/Algorithms/src/PolarizationCorrections/FlipperEfficiency.cpp">FlipperEfficiency.cpp</a></p>
 </section>
 </section>
 

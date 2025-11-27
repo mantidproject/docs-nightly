@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=8b12d636"></script>
+    <script src="../_static/documentation_options.js?v=38763d69"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -73,6 +73,7 @@
 <li><a class="reference internal" href="#">McStas - A neutron ray-trace simulation package</a><ul>
 <li><a class="reference internal" href="#introduction-to-mcstas">Introduction to McStas</a></li>
 <li><a class="reference internal" href="#id2">McStas and Mantid integration</a></li>
+<li><a class="reference internal" href="#quick-mcstas-tutorial">Quick McStas Tutorial</a></li>
 </ul>
 </li>
 </ul>
@@ -146,6 +147,29 @@ run to simulate neutron scattering experiments.</p>
 <a class="reference internal" href="NexusFile.html#nexus-file"><span class="std std-ref">NeXus</span></a> format. Mantid also requires the instrument information it reads to be saved as
 an <a class="reference internal" href="InstrumentDefinitionFile.html#instrumentdefinitionfile"><span class="std std-ref">Instrument Definition File</span></a>. Instructions on how to do this can be found on the <a class="reference external" href="https://github.com/McStasMcXtrace/McCode/wiki/McStas-and-Mantid">McStas and Mantid wiki page</a> in the McStas repository.</p>
 <p>Once the NeXus data has been generated it can be loaded into Mantid using <a class="reference internal" href="../algorithms/LoadMcStas-v1.html#algm-loadmcstas"><span class="std std-ref">LoadMcStas v1</span></a>.</p>
+</section>
+<section id="quick-mcstas-tutorial">
+<h2>Quick McStas Tutorial<a class="headerlink" href="#quick-mcstas-tutorial" title="Link to this heading">¶</a></h2>
+<p>This tutorial is just to generate a simple data file with McStas that Mantid is able to load.
+It is recommendeed to install McStas with conda by following the instructions on the <a class="reference external" href="https://github.com/mccode-dev/McCode/blob/main/INSTALL-McStas/conda/README.md">McStas conda installation page</a>.
+Once you clone the McStas repository, build with conda, and activate the McStas environment, you can run the command <code class="docutils literal notranslate"><span class="pre">mcgui</span></code> on the command line to open the McStas GUI.</p>
+<ol class="arabic simple">
+<li><p>On the GUI, select File -&gt; New From Template and you will see a selection for Mantid.</p></li>
+<li><p>Pick a template from Mantid and you will see a save window pop up.
+It should not matter which template you pick.</p></li>
+<li><p>Rename the file if you wish and save it.
+If you would like more info on how to make an instrument file for McStas, see <a class="reference external" href="https://github.com/mccode-dev/McCode/wiki/McStas-and-Mantid#setup-the-mcstas-instrument-to-create-a-mantid-instrument">this section in the wiki</a>.</p></li>
+<li><p>On the McStas GUI, click Run and a window will pop up asking for parameters.
+The main thing to change here is the output format to NeXus –IDF.
+If it does not have –IDF when you generate the data, Mantid will not be able to load it properly.</p></li>
+<li><p>Click start to generate the data.</p></li>
+<li><p>Once the data has been generated, open Mantid and click Load -&gt; File in the workspaces box.
+Alternatively, you can use the <a class="reference internal" href="../algorithms/LoadMcStas-v1.html#algm-loadmcstas"><span class="std std-ref">LoadMcStas v1</span></a> algorithm to load the data.</p></li>
+<li><p>Browse to the McStas generated file and load it.
+It should be in a folder titled &lt;template&gt;_&lt;date+time&gt; that is in the location used in step 3.
+It will be called something like mccode.h5.
+You should now see the McStas data in the workspace browser.</p></li>
+</ol>
 <p><strong>Category</strong>: <a class="reference external" href="../api/python/mantid/api/categories/Concepts.html">Concepts</a></p>
 </section>
 </section>

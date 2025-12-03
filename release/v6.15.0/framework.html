@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=2dcc68a3"></script>
+    <script src="../../_static/documentation_options.js?v=d94cc256"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -211,9 +211,12 @@
 <li><p>Created new algorithm <a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction</span></a>, just added UI for loading data to reduce</p></li>
 <li><p>New algorithm <a class="reference internal" href="../../algorithms/AddLogSmoothed-v1.html#algm-addlogsmoothed"><span class="std std-ref">AddLogSmoothed</span></a> for smoothing time series log data.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/AlignAndFocusPowderSlim-v1.html#algm-alignandfocuspowderslim"><span class="std std-ref">AlignAndFocusPowderSlim</span></a> now has the parameter <code class="docutils literal notranslate"><span class="pre">OutputSpectrumNumber</span></code> for selecting to load only a single bank of data.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/AlignAndFocusPowderSlim-v1.html#algm-alignandfocuspowderslim"><span class="std std-ref">AlignAndFocusPowderSlim</span></a> can now can split events based on full time (pulsetime+TOF) with the parameter <code class="docutils literal notranslate"><span class="pre">UseFullTime</span></code>.</p></li>
 <li><p>Documenting flowchart diagram for <a class="reference internal" href="../../algorithms/LoadWANDSCD-v1.html#algm-loadwandscd"><span class="std std-ref">LoadWANDSCD v1</span></a>.</p></li>
 <li><p>Added UI elements for the reduction part of <a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction</span></a></p></li>
+<li><p>New algorithm <a class="reference internal" href="../../algorithms/ReorientUnitCell-v1.html#algm-reorientunitcell"><span class="std std-ref">ReorientUnitCell</span></a> to select the unit cell most aligned to goniometer axes.</p></li>
 <li><p>Added a new implementation for splitting into multiple workspace to <a class="reference internal" href="../../algorithms/AlignAndFocusPowderSlim-v1.html#algm-alignandfocuspowderslim"><span class="std std-ref">AlignAndFocusPowderSlim</span></a> that can be tested by setting <code class="docutils literal notranslate"><span class="pre">ProcessBankSplitTask=True</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/Framework/Algorithms/src/UnaryOperation.cpp">UnaryOperation</a> algorithms like <a class="reference internal" href="../../algorithms/ReplaceSpecialValues-v1.html#algm-replacespecialvalues"><span class="std std-ref">ReplaceSpecialValues</span></a>, <a class="reference internal" href="../../algorithms/Logarithm-v1.html#algm-logarithm"><span class="std std-ref">Logarithm</span></a> now support ragged workspaces.</p></li>
 <li><p>Documenting flowchart diagram for <a class="reference internal" href="../../algorithms/ConvertHFIRSCDtoMDE-v1.html#algm-converthfirscdtomde"><span class="std std-ref">ConvertHFIRSCDtoMDE v1</span></a></p></li>
 <li><p>New algorithm, <a class="reference internal" href="../../algorithms/CreateGroupingByComponent-v1.html#algm-creategroupingbycomponent"><span class="std std-ref">CreateGroupingByComponent</span></a>, allows for creation of <code class="docutils literal notranslate"><span class="pre">GroupingWorkspaces</span></code> where the groups are formed by combining components, under a given parent component. Components which should be combined are identified by providing strings which their names should/should not contain. Each of these groups can be optionally subdivided into a further, <code class="docutils literal notranslate"><span class="pre">GroupSubdivision</span></code>, number of groups.</p></li>
 <li><p>Documenting flowchart diagram for <a class="reference internal" href="../../algorithms/ConvertWANDSCDtoQ-v1.html#algm-convertwandscdtoq"><span class="std std-ref">ConvertWANDSCDtoQ v1</span></a>.</p></li>
@@ -246,6 +249,10 @@ This new option was introduced to be used in the background of the new instrumen
 </section>
 <section id="id2">
 <h3><a class="toc-backref" href="#id19" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Improve stabiltiy of <a class="reference internal" href="../../fitting/fitfunctions/Gaussian.html#func-gaussian"><span class="std std-ref">Gaussian</span></a> fits by change of internal ‘active’ parameter to <code class="docutils literal notranslate"><span class="pre">1/sigma</span></code> instead of <code class="docutils literal notranslate"><span class="pre">1/sigma^2</span></code>.</p></li>
+<li><p>Fix normalisation in histogram evaluation of <a class="reference internal" href="../../fitting/fitfunctions/Gaussian.html#func-gaussian"><span class="std std-ref">Gaussian</span></a> function and Jacobian such that they are now consistent with <code class="docutils literal notranslate"><span class="pre">CentrePoint</span></code> evaluation for small bin-widths.</p></li>
+</ul>
 </section>
 <section id="id3">
 <h3><a class="toc-backref" href="#id20" role="doc-backlink">Deprecated</a><a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>

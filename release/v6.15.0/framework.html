@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=90c9cc33"></script>
+    <script src="../../_static/documentation_options.js?v=cb515d9c"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -212,7 +212,9 @@
 <li><p>New algorithm <a class="reference internal" href="../../algorithms/AddLogSmoothed-v1.html#algm-addlogsmoothed"><span class="std std-ref">AddLogSmoothed</span></a> for smoothing time series log data.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/AlignAndFocusPowderSlim-v1.html#algm-alignandfocuspowderslim"><span class="std std-ref">AlignAndFocusPowderSlim</span></a> now has the parameter <code class="docutils literal notranslate"><span class="pre">OutputSpectrumNumber</span></code> for selecting to load only a single bank of data.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/AlignAndFocusPowderSlim-v1.html#algm-alignandfocuspowderslim"><span class="std std-ref">AlignAndFocusPowderSlim</span></a> can now can split events based on full time (pulsetime+TOF) with the parameter <code class="docutils literal notranslate"><span class="pre">UseFullTime</span></code>.</p></li>
+<li><p>Algorithm <a class="reference internal" href="../../algorithms/LoadNGEM-v1.html#algm-loadngem"><span class="std std-ref">LoadNGEM</span></a> has been extended to allow for data to be loaded directly into histograms, via the setting of the PreserveEvents property to <code class="docutils literal notranslate"><span class="pre">False</span></code>. For workflows where preserving events is not necessary, this reduces load time and memory usage by a large factor.</p></li>
 <li><p>Documenting flowchart diagram for <a class="reference internal" href="../../algorithms/LoadWANDSCD-v1.html#algm-loadwandscd"><span class="std std-ref">LoadWANDSCD v1</span></a>.</p></li>
+<li><p>New property in <a class="reference internal" href="../../algorithms/ApplyDetailedBalanceMD-v1.html#algm-applydetailedbalancemd"><span class="std std-ref">ApplyDetailedBalanceMD</span></a> allows scaling data from one temperature to another.</p></li>
 <li><p>Added UI elements for the reduction part of <a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction</span></a></p></li>
 <li><p>New algorithm <a class="reference internal" href="../../algorithms/ReorientUnitCell-v1.html#algm-reorientunitcell"><span class="std std-ref">ReorientUnitCell</span></a> to select the unit cell most aligned to goniometer axes.</p></li>
 <li><p>Added a new implementation for splitting into multiple workspace to <a class="reference internal" href="../../algorithms/AlignAndFocusPowderSlim-v1.html#algm-alignandfocuspowderslim"><span class="std std-ref">AlignAndFocusPowderSlim</span></a> that can be tested by setting <code class="docutils literal notranslate"><span class="pre">ProcessBankSplitTask=True</span></code>.</p></li>
@@ -223,6 +225,7 @@
 <li><p><a class="reference internal" href="../../algorithms/CreateDetectorTable-v1.html#algm-createdetectortable"><span class="std std-ref">CreateDetectorTable</span></a> now supports option <code class="docutils literal notranslate"><span class="pre">PickOneDetectorID</span></code> for returning column of detector IDs as a column of integers containing only one detector ID per row.
 By default this option is disabled, so by default the column of detector IDs will consist of strings of one or more detector ID per row.
 This new option was introduced to be used in the background of the new instrument view interface, but might also be useful if the user wants a single detector ID per row.</p></li>
+<li><p>New algorithm <a class="reference internal" href="../../algorithms/AddLogInterpolated-v1.html#algm-addloginterpolated"><span class="std std-ref">AddLogInterpolated</span></a> for interpolating time series sample logs.</p></li>
 </ul>
 </section>
 <section id="bugfixes">
@@ -292,6 +295,7 @@ For example, with <code class="docutils literal notranslate"><span class="pre">i
 <h3><a class="toc-backref" href="#id29" role="doc-backlink">New features</a><a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Add <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/AGENTS.md">AGENTS.md</a> which gives instructions to coding agents in a way consistent with the <a class="reference external" href="https://agents.md">https://agents.md</a> standard</p></li>
+<li><p>Add the ability to select mirrors for test data in builds using the <code class="docutils literal notranslate"><span class="pre">DATA_STORE_MIRROR</span></code> cmake variable. See <a class="reference external" href="https://developer.mantidproject.org/DataFilesForTesting.html" title="(in MantidProject vmain)"><span class="xref std std-doc">data files for testing</span></a></p></li>
 </ul>
 </section>
 <section id="id10">

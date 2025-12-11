@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
-    <script src="../../../../_static/documentation_options.js?v=90c9cc33"></script>
+    <script src="../../../../_static/documentation_options.js?v=cb515d9c"></script>
     <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
@@ -184,39 +184,39 @@ This example shows the initialization process and adding a time entry</p>
 </pre></div>
 </div>
 <p>Example Output at <cite>Mantid.user.properties.performance.filename</cite> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">START_POINT</span><span class="p">:</span> <span class="mi">1728507408768867137</span> <span class="n">MAX_THREAD</span><span class="p">:</span> <span class="mi">12</span>
-<span class="n">ThreadID</span><span class="o">=</span><span class="mi">124522639565888</span><span class="p">,</span> <span class="n">AlgorithmName</span><span class="o">=</span><span class="n">demo_function</span><span class="p">,</span> <span class="n">StartTime</span><span class="o">=</span><span class="mi">144539</span><span class="p">,</span> <span class="n">EndTime</span><span class="o">=</span><span class="mi">1346405816</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>START_POINT: 1728507408768867137 MAX_THREAD: 12
+ThreadID=124522639565888, AlgorithmName=demo_function, StartTime=144539, EndTime=1346405816
 </pre></div>
 </div>
 <p><strong>Example 2 - Use AlgoTimeRegister to measure time - overwrite the performance.log file:</strong>
 The performance configuration can be overwritten in the script, by defining a custom <cite>performancelog.filename</cite>
 and calling evertyhing within the <cite>amend_config</cite> with block.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#define `performancelog.filenamer` filepath for ta particular script</span>
-<span class="n">performance_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;performancelog.write&quot;</span><span class="p">:</span> <span class="s2">&quot;On&quot;</span><span class="p">,</span> <span class="s2">&quot;performancelog.filename&quot;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">custom</span> <span class="n">filepath</span><span class="o">&gt;</span><span class="p">}</span>
-<span class="k">with</span> <span class="n">amend_config</span><span class="p">(</span><span class="o">**</span><span class="n">performance_config</span><span class="p">):</span>
-    <span class="c1"># use python time module to measure time in nanoseconds</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#define `performancelog.filenamer` filepath for ta particular script
+performance_config = {&quot;performancelog.write&quot;: &quot;On&quot;, &quot;performancelog.filename&quot;: &lt;custom filepath&gt;}
+with amend_config(**performance_config):
+    # use python time module to measure time in nanoseconds
+    import time
 
-    <span class="c1">#initialize the clock *once*</span>
-    <span class="n">AlgoTimeRegister</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span>
+    #initialize the clock *once*
+    AlgoTimeRegister.Instance()
 
-    <span class="c1"># get start time in nanoseconds before calling the function of interest</span>
-    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time_ns</span><span class="p">()</span>
+    # get start time in nanoseconds before calling the function of interest
+    start_time = time.time_ns()
 
-    <span class="c1"># execute the function</span>
-    <span class="n">demo_function</span><span class="p">()</span>
+    # execute the function
+    demo_function()
 
-    <span class="c1"># get end time in nanoseconds after it is completed</span>
-    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time_ns</span><span class="p">()</span>
+    # get end time in nanoseconds after it is completed
+    end_time = time.time_ns()
 
-    <span class="c1"># store the time log</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;demo_function&quot;</span>
-    <span class="n">AlgoTimeRegister</span><span class="o">.</span><span class="n">addTime</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">start_time</span><span class="p">,</span><span class="n">end_time</span><span class="p">)</span>
+    # store the time log
+    name = &quot;demo_function&quot;
+    AlgoTimeRegister.addTime(name,start_time,end_time)
 </pre></div>
 </div>
 <p>Example Output at <cite>performance_config.performance.filename</cite> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">START_POINT</span><span class="p">:</span> <span class="mi">1728507555711066754</span> <span class="n">MAX_THREAD</span><span class="p">:</span> <span class="mi">12</span>
-<span class="n">ThreadID</span><span class="o">=</span><span class="mi">139238466401344</span><span class="p">,</span> <span class="n">AlgorithmName</span><span class="o">=</span><span class="n">demo_function</span><span class="p">,</span> <span class="n">StartTime</span><span class="o">=</span><span class="mi">144981</span><span class="p">,</span> <span class="n">EndTime</span><span class="o">=</span><span class="mi">4115162290</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>START_POINT: 1728507555711066754 MAX_THREAD: 12
+ThreadID=139238466401344, AlgorithmName=demo_function, StartTime=144981, EndTime=4115162290
 </pre></div>
 </div>
 <p><strong>Example 3 - Use AlgoTimeRegister to measure time - initialization omitted:</strong>
@@ -245,9 +245,9 @@ In any other case, initialization should be specified very eary on, in the scrip
 </pre></div>
 </div>
 <p>Example Output at <cite>Mantid.user.properties.performance.filename</cite> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">START_POINT</span><span class="p">:</span> <span class="mi">1728507650978221781</span> <span class="n">MAX_THREAD</span><span class="p">:</span> <span class="mi">12</span>
-<span class="n">ThreadID</span><span class="o">=</span><span class="mi">138583991714880</span><span class="p">,</span> <span class="n">AlgorithmName</span><span class="o">=</span><span class="n">CreateSampleWorkspace</span><span class="p">,</span> <span class="n">StartTime</span><span class="o">=</span><span class="mi">154046</span><span class="p">,</span> <span class="n">EndTime</span><span class="o">=</span><span class="mi">1818067</span>
-<span class="n">ThreadID</span><span class="o">=</span><span class="mi">138583991714880</span><span class="p">,</span> <span class="n">AlgorithmName</span><span class="o">=</span><span class="n">demo_function</span><span class="p">,</span> <span class="n">StartTime</span><span class="o">=</span><span class="mi">2044656</span><span class="p">,</span> <span class="n">EndTime</span><span class="o">=</span><span class="mi">4117415173</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>START_POINT: 1728507650978221781 MAX_THREAD: 12
+ThreadID=138583991714880, AlgorithmName=CreateSampleWorkspace, StartTime=154046, EndTime=1818067
+ThreadID=138583991714880, AlgorithmName=demo_function, StartTime=2044656, EndTime=4117415173
 </pre></div>
 </div>
 </section>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=90c9cc33"></script>
+    <script src="../../_static/documentation_options.js?v=cb515d9c"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -140,9 +140,9 @@ expressions.</p></li>
 characters and this string would then match with only that exact
 string, e.g.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span> <span class="s1">&#39;email&#39;</span>
-<span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;email&#39;</span> <span class="c1"># This is a regular expression but albeit not a very</span>
-               <span class="c1"># useful one as only matches with one word!</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>string in file: &#39;email&#39;
+regex: &#39;email&#39; # This is a regular expression but albeit not a very
+               # useful one as only matches with one word!
 </pre></div>
 </div>
 <ul class="simple">
@@ -163,7 +163,7 @@ search for “regular expression reference” online.</p></li>
 <li><p>An asterisk <code class="docutils literal notranslate"><span class="pre">*</span></code> specifies that the character preceding it can
 appear zero or more times, e.g,</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;a*b&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;a*b&#39;</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span>         <span class="c1"># Matches as there are no occurrences of &#39;a&#39;</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;ab&#39;</span>        <span class="c1"># Matches as there is a single &#39;a&#39;</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;aaaaaaaab&#39;</span> <span class="c1"># Matches as there are multiple occurrences of &#39;a&#39;</span>
@@ -175,7 +175,7 @@ appear zero or more times, e.g,</p></li>
 <li><p>A range of characters, or a “character class” is defined using square
 brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>, e.g.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;[a-z]&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;[a-z]&#39;</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span> <span class="c1"># Matches as it is a lower case letter</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;M&#39;</span> <span class="c1"># Fails as it is an upper case letter</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;4&#39;</span> <span class="c1"># Fails as it is a number</span>
@@ -184,7 +184,7 @@ brackets <code class="docutils literal notranslate"><span class="pre">[]</span><
 <ul class="simple">
 <li><p>Several ranges can be specified such that they are all checked, e.g.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;[a-z,A-Z,0-9]&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;[a-z,A-Z,0-9]&#39;</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span>  <span class="c1"># Matches!</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;M&#39;</span>  <span class="c1"># Matches!</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;4&#39;</span>  <span class="c1"># Matches!</span>
@@ -195,7 +195,7 @@ brackets <code class="docutils literal notranslate"><span class="pre">[]</span><
 <li><p>Combining ranges and the asterisk allows us to specify any number of
 alphanumeric characters!, e.g.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;[a-z,A-Z,0-9]*&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;[a-z,A-Z,0-9]*&#39;</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;mm&#39;</span>    <span class="c1"># Matches</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;a0123&#39;</span> <span class="c1"># Matches</span>
 </pre></div>
@@ -203,7 +203,7 @@ alphanumeric characters!, e.g.</p></li>
 <ul class="simple">
 <li><p>To specify an exact number of characters use braces <code class="docutils literal notranslate"><span class="pre">{}</span></code>, e.g.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;a</span><span class="si">{2}</span><span class="s1">&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;a</span><span class="si">{2}</span><span class="s1">&#39;</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;abab&#39;</span>  <span class="c1"># Fails as there is not two consecutive a&#39;s in the string</span>
 <span class="n">test</span><span class="p">:</span> <span class="s1">&#39;aaaab&#39;</span> <span class="c1"># Matches</span>
 </pre></div>

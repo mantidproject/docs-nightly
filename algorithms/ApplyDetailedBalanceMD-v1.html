@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=90c9cc33"></script>
+    <script src="../_static/documentation_options.js?v=cb515d9c"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -166,7 +166,13 @@
 <td></td>
 <td><p>SampleLog variable name that contains the temperature or a number</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputWorkspace</p></td>
+<tr class="row-even"><td><p>RescaleToTemperature</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>The temperature to which to rescale the intensity</p></td>
+</tr>
+<tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDEventWorkspace</span></a></p></td>
 <td><p><em>Mandatory</em></p></td>
@@ -190,6 +196,8 @@ function <span class="math notranslate nohighlight">\(S\)</span>. The signal of 
 dynamic susceptibility. The temperature is either extracted as the average of the
 values stored in the appropriate entry of the log attached to the workspace
 (user supplies the name of the entry) or user can pass a number for the temperature.</p>
+<p>One can use this formula to calculate the scattering at different temperature:</p>
+<p><span class="math notranslate nohighlight">\(\left(1-e^{-\frac{E}{k_B T_1}}\right) S(\mathbf{q}, E, T_1)=\left(1-e^{-\frac{E}{k_B T_2}}\right) S(\mathbf{q}, E, T_2)\)</span></p>
 <p>[1] S. W. Lovesey - Theory of Neutron Scattering from Condensed Matter,
 vol 1</p>
 <p>[2] I. A. Zaliznyak and S. H. Lee - Magnetic Neutron Scattering in
@@ -234,8 +242,8 @@ Workspaces are True equal
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/effda71441c7a83cd9bff52e3afbbcc1c9748f14/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ApplyDetailedBalanceMD.h">ApplyDetailedBalanceMD.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/effda71441c7a83cd9bff52e3afbbcc1c9748f14/Framework/MDAlgorithms/src/ApplyDetailedBalanceMD.cpp">ApplyDetailedBalanceMD.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c7edceeee215da3c5a7e71793b0ca33305dea95/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ApplyDetailedBalanceMD.h">ApplyDetailedBalanceMD.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3c7edceeee215da3c5a7e71793b0ca33305dea95/Framework/MDAlgorithms/src/ApplyDetailedBalanceMD.cpp">ApplyDetailedBalanceMD.cpp</a></p>
 </section>
 </section>
 

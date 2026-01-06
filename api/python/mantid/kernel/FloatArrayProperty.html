@@ -11,9 +11,9 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
-    <script src="../../../../_static/documentation_options.js?v=dceada0a"></script>
-    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/documentation_options.js?v=da6d3f8a"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="FloatBoundedValidator" href="FloatBoundedValidator.html" />
@@ -76,6 +76,7 @@
 <li><a class="reference internal" href="#mantid.kernel.FloatArrayProperty.EMPTY_INT"><code class="docutils literal notranslate"><span class="pre">FloatArrayProperty.EMPTY_INT</span></code></a></li>
 <li><a class="reference internal" href="#mantid.kernel.FloatArrayProperty.EMPTY_LONG"><code class="docutils literal notranslate"><span class="pre">FloatArrayProperty.EMPTY_LONG</span></code></a></li>
 <li><a class="reference internal" href="#mantid.kernel.FloatArrayProperty.allowedValues"><code class="docutils literal notranslate"><span class="pre">FloatArrayProperty.allowedValues</span></code></a></li>
+<li><a class="reference internal" href="#mantid.kernel.FloatArrayProperty.clearSettings"><code class="docutils literal notranslate"><span class="pre">FloatArrayProperty.clearSettings()</span></code></a></li>
 <li><a class="reference internal" href="#mantid.kernel.FloatArrayProperty.direction"><code class="docutils literal notranslate"><span class="pre">FloatArrayProperty.direction</span></code></a></li>
 <li><a class="reference internal" href="#mantid.kernel.FloatArrayProperty.documentation"><code class="docutils literal notranslate"><span class="pre">FloatArrayProperty.documentation</span></code></a></li>
 <li><a class="reference internal" href="#mantid.kernel.FloatArrayProperty.dtype"><code class="docutils literal notranslate"><span class="pre">FloatArrayProperty.dtype()</span></code></a></li>
@@ -160,37 +161,43 @@
 <p><em>bases:</em> <a class="reference internal" href="VectorFloatPropertyWithValue.html#mantid.kernel.VectorFloatPropertyWithValue" title="mantid.kernel.VectorFloatPropertyWithValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mantid.kernel.VectorFloatPropertyWithValue</span></code></a></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mantid.kernel.</span></span><span class="sig-name descname"><span class="pre">FloatArrayProperty</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">mantid.kernel.</span></span><span class="sig-name descname"><span class="pre">FloatArrayProperty</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty" title="Link to this definition">¶</a></dt>
 <dd><dl class="py attribute">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.EMPTY_DBL">
-<span class="sig-name descname"><span class="pre">EMPTY_DBL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8.988465674311579e+307</span></em><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.EMPTY_DBL" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">EMPTY_DBL</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8.988465674311579e+307</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.EMPTY_DBL" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.EMPTY_INT">
-<span class="sig-name descname"><span class="pre">EMPTY_INT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2147483647</span></em><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.EMPTY_INT" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">EMPTY_INT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2147483647</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.EMPTY_INT" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.EMPTY_LONG">
-<span class="sig-name descname"><span class="pre">EMPTY_LONG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9223372036854775807</span></em><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.EMPTY_LONG" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">EMPTY_LONG</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9223372036854775807</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.EMPTY_LONG" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.allowedValues">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allowedValues</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.allowedValues" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">allowedValues</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.allowedValues" title="Link to this definition">¶</a></dt>
 <dd><p>A list of allowed values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.clearSettings">
+<span class="sig-name descname"><span class="pre">clearSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(Property)arg1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.clearSettings" title="Link to this definition">¶</a></dt>
+<dd><p>Clear the settings vector for this property</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.direction">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">direction</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.direction" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">direction</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.direction" title="Link to this definition">¶</a></dt>
 <dd><p>Input, Output, InOut or Unknown. See the Direction class</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.documentation">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">documentation</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.documentation" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">documentation</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.documentation" title="Link to this definition">¶</a></dt>
 <dd><p>The property’s doc string</p>
 </dd></dl>
 
@@ -207,37 +214,37 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.getDefault">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getDefault</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.getDefault" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getDefault</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.getDefault" title="Link to this definition">¶</a></dt>
 <dd><p>Get the default value as a string</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.getGroup">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getGroup</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.getGroup" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getGroup</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.getGroup" title="Link to this definition">¶</a></dt>
 <dd><p>Return the ‘group’ of the property, that is, the header in the algorithm’s list of properties.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.isDefault">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isDefault</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.isDefault" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isDefault</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.isDefault" title="Link to this definition">¶</a></dt>
 <dd><p>Is the property set at the default value</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.isDynamicDefault">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isDynamicDefault</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.isDynamicDefault" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isDynamicDefault</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.isDynamicDefault" title="Link to this definition">¶</a></dt>
 <dd><p>A flag indicating that the property’s value has been set programmatically:  for example, if the property’s default value depends on an upstream property</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.isValid">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isValid</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.isValid" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isValid</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.isValid" title="Link to this definition">¶</a></dt>
 <dd><p>An empty string if the property is valid, otherwise it contains an error message.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.name">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.name" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.name" title="Link to this definition">¶</a></dt>
 <dd><p>The name of the property</p>
 </dd></dl>
 
@@ -267,43 +274,43 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.settings">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">settings</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.settings" title="Link to this definition">¶</a></dt>
-<dd><p>Return the object managing this property’s settings</p>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">settings</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.settings" title="Link to this definition">¶</a></dt>
+<dd><p>Return the settings vector for this property</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.type">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.type" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.type" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a string identifier for the type</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.units">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">units</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.units" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">units</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.units" title="Link to this definition">¶</a></dt>
 <dd><p>The units attached to this property</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.unitsAsBytes">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unitsAsBytes</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.unitsAsBytes" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">unitsAsBytes</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.unitsAsBytes" title="Link to this definition">¶</a></dt>
 <dd><p>The units attached to this property as a encoded bytes object. It is assumed the caller knows the correct endcoding used.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.value">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.value" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.value" title="Link to this definition">¶</a></dt>
 <dd><p>None( (mantid.kernel._kernel.VectorFloatPropertyWithValue)arg1) -&gt; numpy.ndarray</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.valueAsPrettyStr">
-<span class="sig-name descname"><span class="pre">valueAsPrettyStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(Property)arg1</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">(int)maxLength=0</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">(bool)collapseLists=True</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.valueAsPrettyStr" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">valueAsPrettyStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(Property)arg1</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">(int)maxLength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">(bool)collapseLists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.valueAsPrettyStr" title="Link to this definition">¶</a></dt>
 <dd><p>The value of the property as a formatted string. If maxLength is defined then the output may not contain the full contents of the property. The maxLength and collapseLists arguments do not work for all property types</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.FloatArrayProperty.valueAsStr">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">valueAsStr</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.valueAsStr" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">valueAsStr</span></span><a class="headerlink" href="#mantid.kernel.FloatArrayProperty.valueAsStr" title="Link to this definition">¶</a></dt>
 <dd><p>The value of the property as a string. For some property types, e.g. Workspaces, it is useful to be able to refer to the string value directly</p>
 </dd></dl>
 

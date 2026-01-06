@@ -11,10 +11,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=dceada0a"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/documentation_options.js?v=da6d3f8a"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CorrectKiKf v1" href="CorrectKiKf-v1.html" />
@@ -311,7 +311,7 @@ adjust the position and orientation of each bank.</p>
 </pre></div>
 </div>
 <p>A set of output workspaces are created, including the adjustment diagnostic workspaces.</p>
-<a class="reference internal image-reference" href="../_images/CorelliPowderCalibrationCreate_1.png"><img alt="output workspaces" class="align-center" src="../_images/CorelliPowderCalibrationCreate_1.png" style="width: 800px;" />
+<a class="reference internal image-reference" href="../_images/CorelliPowderCalibrationCreate_1.png"><img alt="output workspaces" class="align-center" src="../_images/CorelliPowderCalibrationCreate_1.png" width="800" />
 </a>
 <p>All workspaces are prefixed by <code class="docutils literal notranslate"><span class="pre">LaB6_</span></code>, which is the value we set for option <code class="docutils literal notranslate"><span class="pre">OutputWorkspacesPrefix</span></code> when we
 invoked the algorithm. A description of the output workspaces follows:</p>
@@ -372,7 +372,7 @@ changes in position and orientation for each Bank, as follows:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">LaB6_PDCalibration_peaks_original</span></code> and <code class="docutils literal notranslate"><span class="pre">LaB6_PDCalibration_peaks_adjustments</span></code> contains one fitted-intensity spectrum per bank versus <code class="docutils literal notranslate"><span class="pre">d-spacing</span></code> before and after the banks are adjusted.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/CorelliPowderCalibrationCreate_2.png"><img alt="fitted-intensity spectrum for bank 87" class="align-center" src="../_images/CorelliPowderCalibrationCreate_2.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="../_images/CorelliPowderCalibrationCreate_2.png"><img alt="fitted-intensity spectrum for bank 87" class="align-center" src="../_images/CorelliPowderCalibrationCreate_2.png" width="400" />
 </a>
 <p>As one can see, intensity is displayed only in the neighborhood of those values of <cite>d-spacing</cite> where peaks are found.
 In addition, we don’t show the raw intensity, but we substitute each raw peak with a Gaussian fit of the peak.
@@ -381,7 +381,7 @@ pixels within one bank.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">LaB6_peak_deviations_original</span></code> and <code class="docutils literal notranslate"><span class="pre">LaB6_peak_deviations_adjustment</span></code> finds for each peak the difference between the peak center and the reference d-spacing value we know from the standard. These peak center deviations are collected for all peaks found in the pixels of the bank, and then histogrammed.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/CorelliPowderCalibrationCreate_3.png"><img alt="Histogram of peak center deviations for bank 42" class="align-center" src="../_images/CorelliPowderCalibrationCreate_3.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="../_images/CorelliPowderCalibrationCreate_3.png"><img alt="Histogram of peak center deviations for bank 42" class="align-center" src="../_images/CorelliPowderCalibrationCreate_3.png" width="400" />
 </a>
 <p>Adjusting the bank removes any observed systemic deviation, thus centering the histogram around the
 no-deviation value. The FHWM of these histograms is only modestly reduced, indicating that the remaining
@@ -389,13 +389,13 @@ observed deviations are not due to misalignment in the position and orientation 
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">LaB6_percent_peak_deviations_original</span></code> and <code class="docutils literal notranslate"><span class="pre">LaB6_percent_peak_deviations_adjustment</span></code> histograms the unitless peak center deviations, this achieved dividing each deviation by its reference d-spacing, i.e. <span class="math notranslate nohighlight">\(\frac{d_{observed} - d_{reference}}{d_{reference}}\)</span>. This largely eliminates the scaling of the peak center deviation with the value of the peak center.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/CorelliPowderCalibrationCreate_4.png"><img alt="Histogram of peak center percent deviations for bank 42" class="align-center" src="../_images/CorelliPowderCalibrationCreate_4.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="../_images/CorelliPowderCalibrationCreate_4.png"><img alt="Histogram of peak center percent deviations for bank 42" class="align-center" src="../_images/CorelliPowderCalibrationCreate_4.png" width="400" />
 </a>
 <p>Adjusting the bank removes the previously observed systemic deviation and modestly reduces the FWHM of the histogram.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">LaB6_percent_peak_deviations_summary</span></code> presents basics statistics for the histograms of <code class="docutils literal notranslate"><span class="pre">LaB6_percent_peak_deviations_original</span></code> and <code class="docutils literal notranslate"><span class="pre">LaB6_percent_peak_deviations_adjustment</span></code>, namely the average and FWHM of each histogram, as well as the average of the absolute value of the deviations.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/CorelliPowderCalibrationCreate_5.png"><img alt="Statistics for the histogram of peak center deviations for bank 42" class="align-center" src="../_images/CorelliPowderCalibrationCreate_5.png" style="width: 600px;" />
+<a class="reference internal image-reference" href="../_images/CorelliPowderCalibrationCreate_5.png"><img alt="Statistics for the histogram of peak center deviations for bank 42" class="align-center" src="../_images/CorelliPowderCalibrationCreate_5.png" width="600" />
 </a>
 <p>From the picture, peaks in bank87 deviated from their reference value between <span class="math notranslate nohighlight">\(mean - FWHM \simeq -1\%\)</span> and
 <span class="math notranslate nohighlight">\(mean + FWHM \simeq +4.5\%\)</span> before adjustment. After adjustment the peaks deviated between <span class="math notranslate nohighlight">\(-2\%\)</span> and
@@ -404,7 +404,7 @@ observed deviations are not due to misalignment in the position and orientation 
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/926f2d71761fba3111423fcad8d0c3fcf51ef1ad/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/CorelliPowderCalibrationCreate.py">CorelliPowderCalibrationCreate.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e59a3f5359cdb30215abd3e22f0fad04c42e9389/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/CorelliPowderCalibrationCreate.py">CorelliPowderCalibrationCreate.py</a></p>
 </section>
 </section>
 

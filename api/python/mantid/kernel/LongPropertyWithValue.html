@@ -11,9 +11,9 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
-    <script src="../../../../_static/documentation_options.js?v=dceada0a"></script>
-    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/documentation_options.js?v=da6d3f8a"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="Material" href="Material.html" />
@@ -76,6 +76,7 @@
 <li><a class="reference internal" href="#mantid.kernel.LongPropertyWithValue.EMPTY_INT"><code class="docutils literal notranslate"><span class="pre">LongPropertyWithValue.EMPTY_INT</span></code></a></li>
 <li><a class="reference internal" href="#mantid.kernel.LongPropertyWithValue.EMPTY_LONG"><code class="docutils literal notranslate"><span class="pre">LongPropertyWithValue.EMPTY_LONG</span></code></a></li>
 <li><a class="reference internal" href="#mantid.kernel.LongPropertyWithValue.allowedValues"><code class="docutils literal notranslate"><span class="pre">LongPropertyWithValue.allowedValues</span></code></a></li>
+<li><a class="reference internal" href="#mantid.kernel.LongPropertyWithValue.clearSettings"><code class="docutils literal notranslate"><span class="pre">LongPropertyWithValue.clearSettings()</span></code></a></li>
 <li><a class="reference internal" href="#mantid.kernel.LongPropertyWithValue.direction"><code class="docutils literal notranslate"><span class="pre">LongPropertyWithValue.direction</span></code></a></li>
 <li><a class="reference internal" href="#mantid.kernel.LongPropertyWithValue.documentation"><code class="docutils literal notranslate"><span class="pre">LongPropertyWithValue.documentation</span></code></a></li>
 <li><a class="reference internal" href="#mantid.kernel.LongPropertyWithValue.dtype"><code class="docutils literal notranslate"><span class="pre">LongPropertyWithValue.dtype()</span></code></a></li>
@@ -160,37 +161,43 @@
 <p><em>bases:</em> <a class="reference internal" href="Property.html#mantid.kernel.Property" title="mantid.kernel.Property"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mantid.kernel.Property</span></code></a></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mantid.kernel.</span></span><span class="sig-name descname"><span class="pre">LongPropertyWithValue</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">mantid.kernel.</span></span><span class="sig-name descname"><span class="pre">LongPropertyWithValue</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue" title="Link to this definition">¶</a></dt>
 <dd><dl class="py attribute">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.EMPTY_DBL">
-<span class="sig-name descname"><span class="pre">EMPTY_DBL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8.988465674311579e+307</span></em><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.EMPTY_DBL" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">EMPTY_DBL</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8.988465674311579e+307</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.EMPTY_DBL" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.EMPTY_INT">
-<span class="sig-name descname"><span class="pre">EMPTY_INT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2147483647</span></em><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.EMPTY_INT" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">EMPTY_INT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2147483647</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.EMPTY_INT" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.EMPTY_LONG">
-<span class="sig-name descname"><span class="pre">EMPTY_LONG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9223372036854775807</span></em><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.EMPTY_LONG" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">EMPTY_LONG</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9223372036854775807</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.EMPTY_LONG" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.allowedValues">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allowedValues</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.allowedValues" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">allowedValues</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.allowedValues" title="Link to this definition">¶</a></dt>
 <dd><p>A list of allowed values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.clearSettings">
+<span class="sig-name descname"><span class="pre">clearSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(Property)arg1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.clearSettings" title="Link to this definition">¶</a></dt>
+<dd><p>Clear the settings vector for this property</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.direction">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">direction</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.direction" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">direction</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.direction" title="Link to this definition">¶</a></dt>
 <dd><p>Input, Output, InOut or Unknown. See the Direction class</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.documentation">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">documentation</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.documentation" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">documentation</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.documentation" title="Link to this definition">¶</a></dt>
 <dd><p>The property’s doc string</p>
 </dd></dl>
 
@@ -207,37 +214,37 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.getDefault">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getDefault</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.getDefault" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getDefault</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.getDefault" title="Link to this definition">¶</a></dt>
 <dd><p>Get the default value as a string</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.getGroup">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getGroup</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.getGroup" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">getGroup</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.getGroup" title="Link to this definition">¶</a></dt>
 <dd><p>Return the ‘group’ of the property, that is, the header in the algorithm’s list of properties.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.isDefault">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isDefault</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.isDefault" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isDefault</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.isDefault" title="Link to this definition">¶</a></dt>
 <dd><p>Is the property set at the default value</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.isDynamicDefault">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isDynamicDefault</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.isDynamicDefault" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isDynamicDefault</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.isDynamicDefault" title="Link to this definition">¶</a></dt>
 <dd><p>A flag indicating that the property’s value has been set programmatically:  for example, if the property’s default value depends on an upstream property</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.isValid">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isValid</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.isValid" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isValid</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.isValid" title="Link to this definition">¶</a></dt>
 <dd><p>An empty string if the property is valid, otherwise it contains an error message.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.name">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.name" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.name" title="Link to this definition">¶</a></dt>
 <dd><p>The name of the property</p>
 </dd></dl>
 
@@ -267,43 +274,43 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.settings">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">settings</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.settings" title="Link to this definition">¶</a></dt>
-<dd><p>Return the object managing this property’s settings</p>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">settings</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.settings" title="Link to this definition">¶</a></dt>
+<dd><p>Return the settings vector for this property</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.type">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.type" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.type" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a string identifier for the type</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.units">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">units</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.units" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">units</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.units" title="Link to this definition">¶</a></dt>
 <dd><p>The units attached to this property</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.unitsAsBytes">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unitsAsBytes</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.unitsAsBytes" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">unitsAsBytes</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.unitsAsBytes" title="Link to this definition">¶</a></dt>
 <dd><p>The units attached to this property as a encoded bytes object. It is assumed the caller knows the correct endcoding used.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.value">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.value" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.value" title="Link to this definition">¶</a></dt>
 <dd><p>None( (mantid.kernel._kernel.LongPropertyWithValue)arg1) -&gt; int</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.valueAsPrettyStr">
-<span class="sig-name descname"><span class="pre">valueAsPrettyStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(Property)arg1</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">(int)maxLength=0</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">(bool)collapseLists=True</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.valueAsPrettyStr" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">valueAsPrettyStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(Property)arg1</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">(int)maxLength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">(bool)collapseLists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.valueAsPrettyStr" title="Link to this definition">¶</a></dt>
 <dd><p>The value of the property as a formatted string. If maxLength is defined then the output may not contain the full contents of the property. The maxLength and collapseLists arguments do not work for all property types</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mantid.kernel.LongPropertyWithValue.valueAsStr">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">valueAsStr</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.valueAsStr" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">valueAsStr</span></span><a class="headerlink" href="#mantid.kernel.LongPropertyWithValue.valueAsStr" title="Link to this definition">¶</a></dt>
 <dd><p>The value of the property as a string. For some property types, e.g. Workspaces, it is useful to be able to refer to the string value directly</p>
 </dd></dl>
 

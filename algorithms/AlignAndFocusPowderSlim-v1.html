@@ -11,9 +11,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=dceada0a"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/documentation_options.js?v=da6d3f8a"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="AlignComponents v1" href="AlignComponents-v1.html" />
@@ -300,6 +300,30 @@
 <td><p><em>Optional</em></p></td>
 <td><p>The bank for which to read data; if specified, others will be blank</p></td>
 </tr>
+<tr class="row-even"><td><p>L1</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Mandatory</em></p></td>
+<td><p>The primary distance $ell_1$ from beam to sample</p></td>
+</tr>
+<tr class="row-odd"><td><p>L2</p></td>
+<td><p>Input</p></td>
+<td><p>dbl list</p></td>
+<td><p><em>Mandatory</em></p></td>
+<td><p>The secondary distances $ell_2$ from sample to focus group</p></td>
+</tr>
+<tr class="row-even"><td><p>Polar</p></td>
+<td><p>Input</p></td>
+<td><p>dbl list</p></td>
+<td><p><em>Mandatory</em></p></td>
+<td><p>The effective polar angle (2$theta$) of each focus group</p></td>
+</tr>
+<tr class="row-odd"><td><p>Azimuthal</p></td>
+<td><p>Input</p></td>
+<td><p>dbl list</p></td>
+<td></td>
+<td><p>The effective azimuthal angle $phi$ for each focus group</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -343,7 +367,11 @@ As a result, there is a significantly smaller memory usage and the processing is
                              <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="n">splitter</span><span class="p">,</span> <span class="n">RelativeTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                              <span class="n">XMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">XDelta</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>
                              <span class="n">BinningMode</span><span class="o">=</span><span class="s2">&quot;Linear&quot;</span><span class="p">,</span>
-                             <span class="n">BinningUnits</span><span class="o">=</span><span class="s2">&quot;TOF&quot;</span><span class="p">)</span>
+                             <span class="n">BinningUnits</span><span class="o">=</span><span class="s2">&quot;TOF&quot;</span><span class="p">,</span>
+                             <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
+                             <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.530</span><span class="p">],</span>
+                             <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mf">65.5</span><span class="p">],</span>
+                             <span class="n">Azimuthal</span><span class="o">=</span><span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># This is equivalent to using FilterEvents with the same splitter table.</span>
 <span class="c1"># But note that this example doesn&#39;t align the data so put everything in 1 big bin to compare.</span>
@@ -356,9 +384,9 @@ As a result, there is a significantly smaller memory usage and the processing is
              <span class="n">FilterByPulseTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
              <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s2">&quot;filtered&quot;</span><span class="p">,</span>
              <span class="n">GroupWorkspaces</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">out</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="s2">&quot;filtered_0&quot;</span><span class="p">,</span> <span class="s2">&quot;0,50000,50000&quot;</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="s2">&quot;filtered&quot;</span><span class="p">,</span> <span class="s2">&quot;0,50000,50000&quot;</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">CheckUncertainty</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CheckSpectraMap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CheckInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">CheckSpectraMap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CheckInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Example - splitting events based on log values</strong></p>
@@ -377,13 +405,21 @@ As a result, there is a significantly smaller memory usage and the processing is
                      <span class="n">LogValueInterval</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
 <span class="c1"># Use the splitter table to filter the events during loading and output to workspace group</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span> <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">&#39;splitter&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span> <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">&#39;splitter&#39;</span><span class="p">,</span>
+                             <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
+                             <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.530</span><span class="p">],</span>
+                             <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mf">65.5</span><span class="p">],</span>
+                             <span class="n">Azimuthal</span><span class="o">=</span><span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">())</span>  <span class="c1"># should be 6 workspaces in the group</span>
 
 <span class="c1"># By default the events are split based on pulsetime of the events. If you want to split based on full time (pulsetime + tof), set UseFullTime=False.</span>
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span>
                               <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">&#39;splitter&#39;</span><span class="p">,</span>
-                              <span class="n">UseFullTime</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                              <span class="n">UseFullTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                              <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
+                              <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.530</span><span class="p">],</span>
+                              <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mf">65.5</span><span class="p">],</span>
+                              <span class="n">Azimuthal</span><span class="o">=</span><span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 <p><strong>Example - filter bad pulses</strong></p>
@@ -391,7 +427,11 @@ As a result, there is a significantly smaller memory usage and the processing is
                              <span class="n">XMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">XDelta</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>
                              <span class="n">BinningMode</span><span class="o">=</span><span class="s2">&quot;Linear&quot;</span><span class="p">,</span>
                              <span class="n">BinningUnits</span><span class="o">=</span><span class="s2">&quot;TOF&quot;</span><span class="p">,</span>
-                             <span class="n">FilterBadPulses</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                             <span class="n">FilterBadPulses</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                             <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
+                             <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.530</span><span class="p">],</span>
+                             <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mf">65.5</span><span class="p">],</span>
+                             <span class="n">Azimuthal</span><span class="o">=</span><span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># This is equivalent to using FilterBadPulses.</span>
 <span class="c1"># But note that this example doesn&#39;t align the data so put everything in 1 big bin to compare.</span>
@@ -401,15 +441,15 @@ As a result, there is a significantly smaller memory usage and the processing is
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">FilterBadPulses</span><span class="p">(</span><span class="n">ws2</span><span class="p">)</span>
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="s2">&quot;0,50000,50000&quot;</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ws2</span><span class="p">,</span> <span class="n">CheckUncertainty</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CheckSpectraMap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CheckInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ws2</span><span class="p">,</span> <span class="n">CheckSpectraMap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CheckInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Workflow/Diffraction.html">Workflow\Diffraction</a></p>
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/926f2d71761fba3111423fcad8d0c3fcf51ef1ad/Framework/DataHandling/inc/MantidDataHandling/AlignAndFocusPowderSlim.h">AlignAndFocusPowderSlim.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/926f2d71761fba3111423fcad8d0c3fcf51ef1ad/Framework/DataHandling/src/AlignAndFocusPowderSlim.cpp">AlignAndFocusPowderSlim.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e59a3f5359cdb30215abd3e22f0fad04c42e9389/Framework/DataHandling/inc/MantidDataHandling/AlignAndFocusPowderSlim.h">AlignAndFocusPowderSlim.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e59a3f5359cdb30215abd3e22f0fad04c42e9389/Framework/DataHandling/src/AlignAndFocusPowderSlim.cpp">AlignAndFocusPowderSlim.cpp</a></p>
 </section>
 </section>
 

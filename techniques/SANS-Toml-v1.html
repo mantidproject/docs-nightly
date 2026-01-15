@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=a08917e0"></script>
+    <script src="../_static/documentation_options.js?v=edae8aef"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -82,6 +82,7 @@
 <li><a class="reference internal" href="#toml-file-version">toml_file_version</a></li>
 <li><a class="reference internal" href="#metadata">Metadata</a></li>
 <li><a class="reference internal" href="#instrument">Instrument</a></li>
+<li><a class="reference internal" href="#phi-mask">Phi Mask</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#conversion-from-legacy-user-files">Conversion From Legacy User Files</a><ul>
@@ -227,84 +228,85 @@
 <li><p><a class="reference internal" href="#toml-file-version" id="id15">toml_file_version</a></p></li>
 <li><p><a class="reference internal" href="#metadata" id="id16">Metadata</a></p></li>
 <li><p><a class="reference internal" href="#instrument" id="id17">Instrument</a></p></li>
+<li><p><a class="reference internal" href="#phi-mask" id="id18">Phi Mask</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#conversion-from-legacy-user-files" id="id18">Conversion From Legacy User Files</a></p>
+<li><p><a class="reference internal" href="#conversion-from-legacy-user-files" id="id19">Conversion From Legacy User Files</a></p>
 <ul>
-<li><p><a class="reference internal" href="#layout" id="id19">Layout</a></p></li>
-<li><p><a class="reference internal" href="#tips-for-converting" id="id20">Tips for converting</a></p></li>
+<li><p><a class="reference internal" href="#layout" id="id20">Layout</a></p></li>
+<li><p><a class="reference internal" href="#tips-for-converting" id="id21">Tips for converting</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#legacy-command-set" id="id21">Legacy Command Set</a></p>
+<li><p><a class="reference internal" href="#legacy-command-set" id="id22">Legacy Command Set</a></p>
 <ul>
-<li><p><a class="reference internal" href="#back-mon-times-t1-t2" id="id22">BACK/MON/TIMES t1 t2</a></p></li>
-<li><p><a class="reference internal" href="#back-m-n-times-t1-t2" id="id23">BACK/M[n]/TIMES t1 t2</a></p></li>
-<li><p><a class="reference internal" href="#compatibility-on" id="id24">COMPATIBILITY ON</a></p></li>
-<li><p><a class="reference internal" href="#det-corr-front-rear-x-y-z-xtilt-ytilt-ztilt-rot-side-radius-n" id="id25">DET/CORR [FRONT][REAR] [X][Y][Z] [XTILT][YTILT][ZTILT] [ROT] [SIDE] [RADIUS] n</a></p></li>
-<li><p><a class="reference internal" href="#det-rear-front-merged-both" id="id26">DET/[REAR][FRONT][MERGED][BOTH]</a></p></li>
-<li><p><a class="reference internal" href="#det-rescale-n" id="id27">DET/RESCALE n</a></p></li>
-<li><p><a class="reference internal" href="#det-rescale-fit-q1-q2" id="id28">DET/RESCALE/FIT [q1 q2]</a></p></li>
-<li><p><a class="reference internal" href="#det-shift-y" id="id29">DET/SHIFT y</a></p></li>
-<li><p><a class="reference internal" href="#det-shift-fit-q1-q2" id="id30">DET/SHIFT/FIT [q1 q2]</a></p></li>
-<li><p><a class="reference internal" href="#det-overlap-q1-q2" id="id31">DET/OVERLAP q1 q2</a></p></li>
-<li><p><a class="reference internal" href="#fit-centre-t1-t2" id="id32">FIT/CENTRE t1 t2</a></p></li>
-<li><p><a class="reference internal" href="#fit-mid-hab-file-script-txt" id="id33">FIT/MID[/HAB]/FILE=script.txt</a></p></li>
-<li><p><a class="reference internal" href="#fit-monitor-t1-t2" id="id34">FIT/MONITOR t1 t2</a></p></li>
-<li><p><a class="reference internal" href="#fit-trans-clear-off" id="id35">FIT/TRANS[/CLEAR][/OFF]</a></p></li>
-<li><p><a class="reference internal" href="#fit-trans-sample-can-linear-ylog-polynomialn-w1-w2" id="id36">FIT/TRANS[[/SAMPLE][/CAN]][/LINEAR][/YLOG][/POLYNOMIALn] [w1 w2]</a></p></li>
-<li><p><a class="reference internal" href="#gravity-on-off" id="id37">GRAVITY[/ON/OFF]</a></p></li>
-<li><p><a class="reference internal" href="#gravity-lextra-x" id="id38">GRAVITY/LEXTRA x</a></p></li>
-<li><p><a class="reference internal" href="#l-eventstime-binning-string" id="id39">L/EVENTSTIME binning_string</a></p></li>
-<li><p><a class="reference internal" href="#l-phi-nomirror-a-b" id="id40">L/PHI[/NOMIRROR] a b</a></p></li>
-<li><p><a class="reference internal" href="#l-q-binning-string" id="id41">L/Q binning_string</a></p></li>
-<li><p><a class="reference internal" href="#l-q-rcut-r" id="id42">L/Q/RCUT r</a></p></li>
-<li><p><a class="reference internal" href="#l-q-wcut-w" id="id43">L/Q/WCUT w</a></p></li>
-<li><p><a class="reference internal" href="#l-qxy-binning-string" id="id44">L/QXY binning_string</a></p></li>
-<li><p><a class="reference internal" href="#l-r-r1-r2-rstep" id="id45">L/R r1 r2 [rstep]</a></p></li>
-<li><p><a class="reference internal" href="#l-sp" id="id46">L/SP</a></p></li>
-<li><p><a class="reference internal" href="#l-wav-binning-string" id="id47">L/WAV binning_string</a></p></li>
-<li><p><a class="reference internal" href="#mask-clear-time" id="id48">MASK/CLEAR[/TIME]</a></p></li>
-<li><p><a class="reference internal" href="#maskfile-mask-file-list" id="id49">MASKFILE=mask_file_list</a></p></li>
-<li><p><a class="reference internal" href="#mask-front-rear-hn" id="id50">MASK[/FRONT][/REAR] Hn</a></p></li>
-<li><p><a class="reference internal" href="#mask-front-rear-hn-hm" id="id51">MASK[/FRONT][/REAR] Hn&gt;Hm</a></p></li>
-<li><p><a class="reference internal" href="#mask-front-rear-vn" id="id52">MASK[/FRONT][/REAR] Vn</a></p></li>
-<li><p><a class="reference internal" href="#mask-front-rear-vn-vm" id="id53">MASK[/FRONT][/REAR] Vn&gt;Vm</a></p></li>
-<li><p><a class="reference internal" href="#mask-x1-x2-y1-y2" id="id54">MASK x1 x2 y1 y2</a></p></li>
-<li><p><a class="reference internal" href="#mask-line-a-b" id="id55">MASK/LINE a b</a></p></li>
-<li><p><a class="reference internal" href="#mask-line-a-b-c-d" id="id56">MASK/LINE a b c d</a></p></li>
-<li><p><a class="reference internal" href="#mask-sn" id="id57">MASK Sn</a></p></li>
-<li><p><a class="reference internal" href="#mask-t-t1-t2" id="id58">MASK/T t1 t2</a></p></li>
-<li><p><a class="reference internal" href="#mon-direct-front-hab-filename" id="id59">MON/DIRECT[/FRONT][/HAB]=filename</a></p></li>
-<li><p><a class="reference internal" href="#mon-flat-front-rear-filename" id="id60">MON/FLAT[/FRONT][/REAR]=filename</a></p></li>
-<li><p><a class="reference internal" href="#mon-habeff-a" id="id61">MON/HABEFF=a</a></p></li>
-<li><p><a class="reference internal" href="#mon-habpath-on-off" id="id62">MON/HABPATH[/ON][/OFF]</a></p></li>
-<li><p><a class="reference internal" href="#mon-length-z-s" id="id63">MON/LENGTH=z s</a></p></li>
-<li><p><a class="reference internal" href="#mon-spectrum-n" id="id64">MON/SPECTRUM=n</a></p></li>
-<li><p><a class="reference internal" href="#mon-interpolate" id="id65">MON [/INTERPOLATE]</a></p></li>
-<li><p><a class="reference internal" href="#mon-trans-spectrum-n" id="id66">MON/TRANS/SPECTRUM=n</a></p></li>
-<li><p><a class="reference internal" href="#mon-trans-interpolate" id="id67">MON/TRANS[/INTERPOLATE]</a></p></li>
-<li><p><a class="reference internal" href="#print-string" id="id68">PRINT string</a></p></li>
-<li><p><a class="reference internal" href="#qresol-on-off" id="id69">QRESOL[/ON][/OFF]</a></p></li>
-<li><p><a class="reference internal" href="#qresol-moderator-filename" id="id70">QRESOL/MODERATOR=filename</a></p></li>
-<li><p><a class="reference internal" href="#qresol-deltar-dr" id="id71">QRESOL/DELTAR=dr</a></p></li>
-<li><p><a class="reference internal" href="#qresol-a1-x" id="id72">QRESOL/A1=x</a></p></li>
-<li><p><a class="reference internal" href="#qresol-a2-x" id="id73">QRESOL/A2=x</a></p></li>
-<li><p><a class="reference internal" href="#qresol-h1-x1-w1-y1-h2-x2-w2-y2" id="id74">QRESOL[/H1=x1][/W1=y1][/H2=x2][/W2=y2]</a></p></li>
-<li><p><a class="reference internal" href="#qresol-lcollim-z" id="id75">QRESOL/LCOLLIM=z</a></p></li>
-<li><p><a class="reference internal" href="#sample-offset-z" id="id76">SAMPLE/OFFSET z</a></p></li>
-<li><p><a class="reference internal" href="#sample-path-on-off" id="id77">SAMPLE/PATH[/ON][/OFF]</a></p></li>
-<li><p><a class="reference internal" href="#set-centre-a-b" id="id78">SET CENTRE a b</a></p></li>
-<li><p><a class="reference internal" href="#set-centre-main-hab-a-b-c-d" id="id79">SET CENTRE[/MAIN][/HAB] a b [c d]</a></p></li>
-<li><p><a class="reference internal" href="#set-scales-a-b-c-d-e" id="id80">SET SCALES a b c d e</a></p></li>
-<li><p><a class="reference internal" href="#set-notables-bank-a-b-c-d-e" id="id81">SET[/NOTABLES] BANK a b c d e</a></p></li>
-<li><p><a class="reference internal" href="#set-xcor-ycor-on-off-clear" id="id82">SET[/XCOR][/YCOR][/ON][/OFF][/CLEAR]</a></p></li>
-<li><p><a class="reference internal" href="#set-notables-xcor-ycor-filename" id="id83">SET[/NOTABLES][/XCOR][/YCOR]=filename</a></p></li>
-<li><p><a class="reference internal" href="#trans-mask-filename" id="id84">TRANS/MASK=filename</a></p></li>
-<li><p><a class="reference internal" href="#trans-radius-r" id="id85">TRANS/RADIUS=r</a></p></li>
-<li><p><a class="reference internal" href="#trans-roi-filename" id="id86">TRANS/ROI=filename</a></p></li>
-<li><p><a class="reference internal" href="#trans-transpec-s" id="id87">TRANS/TRANSPEC=s</a></p></li>
-<li><p><a class="reference internal" href="#trans-transpec-s-shift-dz" id="id88">TRANS/TRANSPEC=s/SHIFT=dz</a></p></li>
-<li><p><a class="reference internal" href="#tubecalibfile-filename" id="id89">TUBECALIBFILE=filename</a></p></li>
+<li><p><a class="reference internal" href="#back-mon-times-t1-t2" id="id23">BACK/MON/TIMES t1 t2</a></p></li>
+<li><p><a class="reference internal" href="#back-m-n-times-t1-t2" id="id24">BACK/M[n]/TIMES t1 t2</a></p></li>
+<li><p><a class="reference internal" href="#compatibility-on" id="id25">COMPATIBILITY ON</a></p></li>
+<li><p><a class="reference internal" href="#det-corr-front-rear-x-y-z-xtilt-ytilt-ztilt-rot-side-radius-n" id="id26">DET/CORR [FRONT][REAR] [X][Y][Z] [XTILT][YTILT][ZTILT] [ROT] [SIDE] [RADIUS] n</a></p></li>
+<li><p><a class="reference internal" href="#det-rear-front-merged-both" id="id27">DET/[REAR][FRONT][MERGED][BOTH]</a></p></li>
+<li><p><a class="reference internal" href="#det-rescale-n" id="id28">DET/RESCALE n</a></p></li>
+<li><p><a class="reference internal" href="#det-rescale-fit-q1-q2" id="id29">DET/RESCALE/FIT [q1 q2]</a></p></li>
+<li><p><a class="reference internal" href="#det-shift-y" id="id30">DET/SHIFT y</a></p></li>
+<li><p><a class="reference internal" href="#det-shift-fit-q1-q2" id="id31">DET/SHIFT/FIT [q1 q2]</a></p></li>
+<li><p><a class="reference internal" href="#det-overlap-q1-q2" id="id32">DET/OVERLAP q1 q2</a></p></li>
+<li><p><a class="reference internal" href="#fit-centre-t1-t2" id="id33">FIT/CENTRE t1 t2</a></p></li>
+<li><p><a class="reference internal" href="#fit-mid-hab-file-script-txt" id="id34">FIT/MID[/HAB]/FILE=script.txt</a></p></li>
+<li><p><a class="reference internal" href="#fit-monitor-t1-t2" id="id35">FIT/MONITOR t1 t2</a></p></li>
+<li><p><a class="reference internal" href="#fit-trans-clear-off" id="id36">FIT/TRANS[/CLEAR][/OFF]</a></p></li>
+<li><p><a class="reference internal" href="#fit-trans-sample-can-linear-ylog-polynomialn-w1-w2" id="id37">FIT/TRANS[[/SAMPLE][/CAN]][/LINEAR][/YLOG][/POLYNOMIALn] [w1 w2]</a></p></li>
+<li><p><a class="reference internal" href="#gravity-on-off" id="id38">GRAVITY[/ON/OFF]</a></p></li>
+<li><p><a class="reference internal" href="#gravity-lextra-x" id="id39">GRAVITY/LEXTRA x</a></p></li>
+<li><p><a class="reference internal" href="#l-eventstime-binning-string" id="id40">L/EVENTSTIME binning_string</a></p></li>
+<li><p><a class="reference internal" href="#l-phi-nomirror-a-b" id="id41">L/PHI[/NOMIRROR] a b</a></p></li>
+<li><p><a class="reference internal" href="#l-q-binning-string" id="id42">L/Q binning_string</a></p></li>
+<li><p><a class="reference internal" href="#l-q-rcut-r" id="id43">L/Q/RCUT r</a></p></li>
+<li><p><a class="reference internal" href="#l-q-wcut-w" id="id44">L/Q/WCUT w</a></p></li>
+<li><p><a class="reference internal" href="#l-qxy-binning-string" id="id45">L/QXY binning_string</a></p></li>
+<li><p><a class="reference internal" href="#l-r-r1-r2-rstep" id="id46">L/R r1 r2 [rstep]</a></p></li>
+<li><p><a class="reference internal" href="#l-sp" id="id47">L/SP</a></p></li>
+<li><p><a class="reference internal" href="#l-wav-binning-string" id="id48">L/WAV binning_string</a></p></li>
+<li><p><a class="reference internal" href="#mask-clear-time" id="id49">MASK/CLEAR[/TIME]</a></p></li>
+<li><p><a class="reference internal" href="#maskfile-mask-file-list" id="id50">MASKFILE=mask_file_list</a></p></li>
+<li><p><a class="reference internal" href="#mask-front-rear-hn" id="id51">MASK[/FRONT][/REAR] Hn</a></p></li>
+<li><p><a class="reference internal" href="#mask-front-rear-hn-hm" id="id52">MASK[/FRONT][/REAR] Hn&gt;Hm</a></p></li>
+<li><p><a class="reference internal" href="#mask-front-rear-vn" id="id53">MASK[/FRONT][/REAR] Vn</a></p></li>
+<li><p><a class="reference internal" href="#mask-front-rear-vn-vm" id="id54">MASK[/FRONT][/REAR] Vn&gt;Vm</a></p></li>
+<li><p><a class="reference internal" href="#mask-x1-x2-y1-y2" id="id55">MASK x1 x2 y1 y2</a></p></li>
+<li><p><a class="reference internal" href="#mask-line-a-b" id="id56">MASK/LINE a b</a></p></li>
+<li><p><a class="reference internal" href="#mask-line-a-b-c-d" id="id57">MASK/LINE a b c d</a></p></li>
+<li><p><a class="reference internal" href="#mask-sn" id="id58">MASK Sn</a></p></li>
+<li><p><a class="reference internal" href="#mask-t-t1-t2" id="id59">MASK/T t1 t2</a></p></li>
+<li><p><a class="reference internal" href="#mon-direct-front-hab-filename" id="id60">MON/DIRECT[/FRONT][/HAB]=filename</a></p></li>
+<li><p><a class="reference internal" href="#mon-flat-front-rear-filename" id="id61">MON/FLAT[/FRONT][/REAR]=filename</a></p></li>
+<li><p><a class="reference internal" href="#mon-habeff-a" id="id62">MON/HABEFF=a</a></p></li>
+<li><p><a class="reference internal" href="#mon-habpath-on-off" id="id63">MON/HABPATH[/ON][/OFF]</a></p></li>
+<li><p><a class="reference internal" href="#mon-length-z-s" id="id64">MON/LENGTH=z s</a></p></li>
+<li><p><a class="reference internal" href="#mon-spectrum-n" id="id65">MON/SPECTRUM=n</a></p></li>
+<li><p><a class="reference internal" href="#mon-interpolate" id="id66">MON [/INTERPOLATE]</a></p></li>
+<li><p><a class="reference internal" href="#mon-trans-spectrum-n" id="id67">MON/TRANS/SPECTRUM=n</a></p></li>
+<li><p><a class="reference internal" href="#mon-trans-interpolate" id="id68">MON/TRANS[/INTERPOLATE]</a></p></li>
+<li><p><a class="reference internal" href="#print-string" id="id69">PRINT string</a></p></li>
+<li><p><a class="reference internal" href="#qresol-on-off" id="id70">QRESOL[/ON][/OFF]</a></p></li>
+<li><p><a class="reference internal" href="#qresol-moderator-filename" id="id71">QRESOL/MODERATOR=filename</a></p></li>
+<li><p><a class="reference internal" href="#qresol-deltar-dr" id="id72">QRESOL/DELTAR=dr</a></p></li>
+<li><p><a class="reference internal" href="#qresol-a1-x" id="id73">QRESOL/A1=x</a></p></li>
+<li><p><a class="reference internal" href="#qresol-a2-x" id="id74">QRESOL/A2=x</a></p></li>
+<li><p><a class="reference internal" href="#qresol-h1-x1-w1-y1-h2-x2-w2-y2" id="id75">QRESOL[/H1=x1][/W1=y1][/H2=x2][/W2=y2]</a></p></li>
+<li><p><a class="reference internal" href="#qresol-lcollim-z" id="id76">QRESOL/LCOLLIM=z</a></p></li>
+<li><p><a class="reference internal" href="#sample-offset-z" id="id77">SAMPLE/OFFSET z</a></p></li>
+<li><p><a class="reference internal" href="#sample-path-on-off" id="id78">SAMPLE/PATH[/ON][/OFF]</a></p></li>
+<li><p><a class="reference internal" href="#set-centre-a-b" id="id79">SET CENTRE a b</a></p></li>
+<li><p><a class="reference internal" href="#set-centre-main-hab-a-b-c-d" id="id80">SET CENTRE[/MAIN][/HAB] a b [c d]</a></p></li>
+<li><p><a class="reference internal" href="#set-scales-a-b-c-d-e" id="id81">SET SCALES a b c d e</a></p></li>
+<li><p><a class="reference internal" href="#set-notables-bank-a-b-c-d-e" id="id82">SET[/NOTABLES] BANK a b c d e</a></p></li>
+<li><p><a class="reference internal" href="#set-xcor-ycor-on-off-clear" id="id83">SET[/XCOR][/YCOR][/ON][/OFF][/CLEAR]</a></p></li>
+<li><p><a class="reference internal" href="#set-notables-xcor-ycor-filename" id="id84">SET[/NOTABLES][/XCOR][/YCOR]=filename</a></p></li>
+<li><p><a class="reference internal" href="#trans-mask-filename" id="id85">TRANS/MASK=filename</a></p></li>
+<li><p><a class="reference internal" href="#trans-radius-r" id="id86">TRANS/RADIUS=r</a></p></li>
+<li><p><a class="reference internal" href="#trans-roi-filename" id="id87">TRANS/ROI=filename</a></p></li>
+<li><p><a class="reference internal" href="#trans-transpec-s" id="id88">TRANS/TRANSPEC=s</a></p></li>
+<li><p><a class="reference internal" href="#trans-transpec-s-shift-dz" id="id89">TRANS/TRANSPEC=s/SHIFT=dz</a></p></li>
+<li><p><a class="reference internal" href="#tubecalibfile-filename" id="id90">TUBECALIBFILE=filename</a></p></li>
 </ul>
 </li>
 </ul>
@@ -423,11 +425,21 @@ to enter any user attributes. They are ignored by the TOML parser.</p>
 </pre></div>
 </div>
 </section>
+<section id="phi-mask">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Phi Mask</a><a class="headerlink" href="#phi-mask" title="Link to this heading">¶</a></h3>
+<p>From Mantid 6.15, a new field for adding a range of phi slices is added to the phi mask. This is to automatize the process
+of reducing with different phi masks. A set of ranges as comma separated pairs can be input and there will be multiple reductions, each one with a different phi range.
+This settings overrides the phi start and stop angles, but is optional.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">mask.phi</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">range = -15.0,15.0,45.0,90.0</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="conversion-from-legacy-user-files">
-<h2><a class="toc-backref" href="#id18" role="doc-backlink">Conversion From Legacy User Files</a><a class="headerlink" href="#conversion-from-legacy-user-files" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Conversion From Legacy User Files</a><a class="headerlink" href="#conversion-from-legacy-user-files" title="Link to this heading">¶</a></h2>
 <section id="layout">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink">Layout</a><a class="headerlink" href="#layout" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Layout</a><a class="headerlink" href="#layout" title="Link to this heading">¶</a></h3>
 <p>This section is designed like a reference that users can paste straight into
 existing TOML files, but means that the sections are listed alphabetically
 by the <em>old</em> command name!</p>
@@ -468,7 +480,7 @@ match, for example these three examples:</p>
 </div>
 </section>
 <section id="tips-for-converting">
-<h3><a class="toc-backref" href="#id20" role="doc-backlink">Tips for converting</a><a class="headerlink" href="#tips-for-converting" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Tips for converting</a><a class="headerlink" href="#tips-for-converting" title="Link to this heading">¶</a></h3>
 <p>For converting existing files the following process is recommended:</p>
 <ul class="simple">
 <li><p>Make a copy of the existing (old-format) user file to work with</p></li>
@@ -503,9 +515,9 @@ user file!!!</strong></p></li>
 </section>
 </section>
 <section id="legacy-command-set">
-<h2><a class="toc-backref" href="#id21" role="doc-backlink">Legacy Command Set</a><a class="headerlink" href="#legacy-command-set" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Legacy Command Set</a><a class="headerlink" href="#legacy-command-set" title="Link to this heading">¶</a></h2>
 <section id="back-mon-times-t1-t2">
-<span id="back-mon-times-ref"></span><h3><a class="toc-backref" href="#id22" role="doc-backlink">BACK/MON/TIMES t1 t2</a><a class="headerlink" href="#back-mon-times-t1-t2" title="Link to this heading">¶</a></h3>
+<span id="back-mon-times-ref"></span><h3><a class="toc-backref" href="#id23" role="doc-backlink">BACK/MON/TIMES t1 t2</a><a class="headerlink" href="#back-mon-times-t1-t2" title="Link to this heading">¶</a></h3>
 <p>BACK was used to specify a time window over which to estimate the
 (time-independent) background on monitor spectra. This background
 is then subtracted from the specified monitor spectra before the
@@ -534,7 +546,7 @@ is now deprecated. See also <a class="reference internal" href="#back-mn-times-r
 <p>Note: if using this, set any instances of use_own_background to false.</p>
 </section>
 <section id="back-m-n-times-t1-t2">
-<span id="back-mn-times-ref"></span><h3><a class="toc-backref" href="#id23" role="doc-backlink">BACK/M[n]/TIMES t1 t2</a><a class="headerlink" href="#back-m-n-times-t1-t2" title="Link to this heading">¶</a></h3>
+<span id="back-mn-times-ref"></span><h3><a class="toc-backref" href="#id24" role="doc-backlink">BACK/M[n]/TIMES t1 t2</a><a class="headerlink" href="#back-m-n-times-t1-t2" title="Link to this heading">¶</a></h3>
 <p>This command was used to estimate and subtract the (time-independent)
 background level on a specified monitor. See also <a class="reference internal" href="#back-mon-times-ref"><span class="std std-ref">BACK/MON/TIMES t1 t2</span></a>.</p>
 <p>Times were specified in microseconds.</p>
@@ -568,7 +580,7 @@ background level on a specified monitor. See also <a class="reference internal" 
 </div>
 </section>
 <section id="compatibility-on">
-<h3><a class="toc-backref" href="#id24" role="doc-backlink">COMPATIBILITY ON</a><a class="headerlink" href="#compatibility-on" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">COMPATIBILITY ON</a><a class="headerlink" href="#compatibility-on" title="Link to this heading">¶</a></h3>
 <p>This command was used to allow event data to be reduced in
 a manner that, so far as was possible, emulated the reduction
 of histogram data. The primary use of this command was as a
@@ -582,7 +594,7 @@ COMPATIBILITY OFF.</p>
 <p>Unsupported</p>
 </section>
 <section id="det-corr-front-rear-x-y-z-xtilt-ytilt-ztilt-rot-side-radius-n">
-<h3><a class="toc-backref" href="#id25" role="doc-backlink">DET/CORR [FRONT][REAR] [X][Y][Z] [XTILT][YTILT][ZTILT] [ROT] [SIDE] [RADIUS] n</a><a class="headerlink" href="#det-corr-front-rear-x-y-z-xtilt-ytilt-ztilt-rot-side-radius-n" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">DET/CORR [FRONT][REAR] [X][Y][Z] [XTILT][YTILT][ZTILT] [ROT] [SIDE] [RADIUS] n</a><a class="headerlink" href="#det-corr-front-rear-x-y-z-xtilt-ytilt-ztilt-rot-side-radius-n" title="Link to this heading">¶</a></h3>
 <p>This command was used to fine tune the position of a specified
 detector by applying a relative correction to the logged encoder
 value. The parameter n could be a distance or an angle depending
@@ -651,7 +663,7 @@ DET/CORR REAR Z 58
 </div>
 </section>
 <section id="det-rear-front-merged-both">
-<h3><a class="toc-backref" href="#id26" role="doc-backlink">DET/[REAR][FRONT][MERGED][BOTH]</a><a class="headerlink" href="#det-rear-front-merged-both" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">DET/[REAR][FRONT][MERGED][BOTH]</a><a class="headerlink" href="#det-rear-front-merged-both" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify which detector(s) were to be
 processed during data reduction.</p>
 <p>On the LOQ instrument the qualifier <cite>/FRONT</cite> could be  equivalently replaced by <cite>/HAB</cite> (for
@@ -676,7 +688,7 @@ has been replaced by “all”.</p>
 </div>
 </section>
 <section id="det-rescale-n">
-<h3><a class="toc-backref" href="#id27" role="doc-backlink">DET/RESCALE n</a><a class="headerlink" href="#det-rescale-n" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">DET/RESCALE n</a><a class="headerlink" href="#det-rescale-n" title="Link to this heading">¶</a></h3>
 <p>This command specified the factor by which the reduced <em>front</em>
 detector data should be multiplied to allow it to overlap the
 reduced rear detector data. If omitted n was assumed to be 1.0
@@ -700,7 +712,7 @@ reduced rear detector data. If omitted n was assumed to be 1.0
 </div>
 </section>
 <section id="det-rescale-fit-q1-q2">
-<span id="det-rescale-fit-ref"></span><h3><a class="toc-backref" href="#id28" role="doc-backlink">DET/RESCALE/FIT [q1 q2]</a><a class="headerlink" href="#det-rescale-fit-q1-q2" title="Link to this heading">¶</a></h3>
+<span id="det-rescale-fit-ref"></span><h3><a class="toc-backref" href="#id29" role="doc-backlink">DET/RESCALE/FIT [q1 q2]</a><a class="headerlink" href="#det-rescale-fit-q1-q2" title="Link to this heading">¶</a></h3>
 <p>This command was used to automatically estimate the factor by
 which the reduced <em>front</em> detector data should be multiplied to
 allow it to overlap the reduced rear detector data. A specific
@@ -729,7 +741,7 @@ also <a class="reference internal" href="#det-rescale-fit-ref"><span class="std 
 </div>
 </section>
 <section id="det-shift-y">
-<span id="det-shift-y-ref"></span><h3><a class="toc-backref" href="#id29" role="doc-backlink">DET/SHIFT y</a><a class="headerlink" href="#det-shift-y" title="Link to this heading">¶</a></h3>
+<span id="det-shift-y-ref"></span><h3><a class="toc-backref" href="#id30" role="doc-backlink">DET/SHIFT y</a><a class="headerlink" href="#det-shift-y" title="Link to this heading">¶</a></h3>
 <p>This command specified the relative amount (a constant) by which the
 reduced <em>front</em> detector data should be shifted in intensity to allow
 it to overlap the reduced rear detector data. If omitted n was assumed
@@ -753,7 +765,7 @@ to be 0.0 (no shift). See also <a class="reference internal" href="#det-rescale-
 </div>
 </section>
 <section id="det-shift-fit-q1-q2">
-<h3><a class="toc-backref" href="#id30" role="doc-backlink">DET/SHIFT/FIT [q1 q2]</a><a class="headerlink" href="#det-shift-fit-q1-q2" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">DET/SHIFT/FIT [q1 q2]</a><a class="headerlink" href="#det-shift-fit-q1-q2" title="Link to this heading">¶</a></h3>
 <p>This command was used to automatically estimate the relative amount
 (a constant) by which the reduced <em>front</em> detector data should be
 shifted to allow it to overlap the reduced rear detector data. A
@@ -782,7 +794,7 @@ specified. If omitted, all overlapping Q values were used. See also
 </div>
 </section>
 <section id="det-overlap-q1-q2">
-<h3><a class="toc-backref" href="#id31" role="doc-backlink">DET/OVERLAP q1 q2</a><a class="headerlink" href="#det-overlap-q1-q2" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">DET/OVERLAP q1 q2</a><a class="headerlink" href="#det-overlap-q1-q2" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the Q-range over which
 merging of the rear and front detectors was to be done. If
 omitted, all overlapping Q values were used.</p>
@@ -808,7 +820,7 @@ omitted, all overlapping Q values were used.</p>
 </div>
 </section>
 <section id="fit-centre-t1-t2">
-<span id="fit-centre-ref"></span><h3><a class="toc-backref" href="#id32" role="doc-backlink">FIT/CENTRE t1 t2</a><a class="headerlink" href="#fit-centre-t1-t2" title="Link to this heading">¶</a></h3>
+<span id="fit-centre-ref"></span><h3><a class="toc-backref" href="#id33" role="doc-backlink">FIT/CENTRE t1 t2</a><a class="headerlink" href="#fit-centre-t1-t2" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify a time window within which
 the ‘prompt spike’ could be found in <em>detector</em> spectra. This
 information was used to remove the spike by interpolating
@@ -823,7 +835,7 @@ along the time-of-flight distribution. See also <a class="reference internal" hr
 <p>Unsupported</p>
 </section>
 <section id="fit-mid-hab-file-script-txt">
-<h3><a class="toc-backref" href="#id33" role="doc-backlink">FIT/MID[/HAB]/FILE=script.txt</a><a class="headerlink" href="#fit-mid-hab-file-script-txt" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id34" role="doc-backlink">FIT/MID[/HAB]/FILE=script.txt</a><a class="headerlink" href="#fit-mid-hab-file-script-txt" title="Link to this heading">¶</a></h3>
 <p>This command was used to drive automatic determination of the
 coordinates of the centre of the scattering pattern on the
 specified detector using a script file. It has been superseded
@@ -839,7 +851,7 @@ FIT/MID/HAB/FILE=FIND_CENTRE_HAB2.COM
 <p>Unsupported</p>
 </section>
 <section id="fit-monitor-t1-t2">
-<span id="fit-monitor-ref"></span><h3><a class="toc-backref" href="#id34" role="doc-backlink">FIT/MONITOR t1 t2</a><a class="headerlink" href="#fit-monitor-t1-t2" title="Link to this heading">¶</a></h3>
+<span id="fit-monitor-ref"></span><h3><a class="toc-backref" href="#id35" role="doc-backlink">FIT/MONITOR t1 t2</a><a class="headerlink" href="#fit-monitor-t1-t2" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify a time window within which
 the ‘prompt spike’ could be found in <em>monitor</em> spectra. This
 information was used to remove the spike by interpolating
@@ -861,7 +873,7 @@ along the time-of-flight distribution. See also <a class="reference internal" hr
 </div>
 </section>
 <section id="fit-trans-clear-off">
-<span id="trans-fitting-off-ref"></span><h3><a class="toc-backref" href="#id35" role="doc-backlink">FIT/TRANS[/CLEAR][/OFF]</a><a class="headerlink" href="#fit-trans-clear-off" title="Link to this heading">¶</a></h3>
+<span id="trans-fitting-off-ref"></span><h3><a class="toc-backref" href="#id36" role="doc-backlink">FIT/TRANS[/CLEAR][/OFF]</a><a class="headerlink" href="#fit-trans-clear-off" title="Link to this heading">¶</a></h3>
 <p>This command was used to disable fitting of the calculated
 transmission data. See also <a class="reference internal" href="#fitting-on-ref"><span class="std std-ref">FIT/TRANS[[/SAMPLE][/CAN]][/LINEAR][/YLOG][/POLYNOMIALn] [w1 w2]</span></a>.</p>
 <p><strong>Replacement</strong></p>
@@ -889,7 +901,7 @@ transmission data. See also <a class="reference internal" href="#fitting-on-ref"
 </div>
 </section>
 <section id="fit-trans-sample-can-linear-ylog-polynomialn-w1-w2">
-<span id="fitting-on-ref"></span><h3><a class="toc-backref" href="#id36" role="doc-backlink">FIT/TRANS[[/SAMPLE][/CAN]][/LINEAR][/YLOG][/POLYNOMIALn] [w1 w2]</a><a class="headerlink" href="#fit-trans-sample-can-linear-ylog-polynomialn-w1-w2" title="Link to this heading">¶</a></h3>
+<span id="fitting-on-ref"></span><h3><a class="toc-backref" href="#id37" role="doc-backlink">FIT/TRANS[[/SAMPLE][/CAN]][/LINEAR][/YLOG][/POLYNOMIALn] [w1 w2]</a><a class="headerlink" href="#fit-trans-sample-can-linear-ylog-polynomialn-w1-w2" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify how the calculated transmission data
 should be fitted. Subsequent data processing would then use transmission
 values interpolated using the fit function. In some instances doing this
@@ -932,7 +944,7 @@ Y=C0+C1X+C2X^2+…CnX^n where n&gt;2.</p>
 </div>
 </section>
 <section id="gravity-on-off">
-<span id="gravity-on-ref"></span><h3><a class="toc-backref" href="#id37" role="doc-backlink">GRAVITY[/ON/OFF]</a><a class="headerlink" href="#gravity-on-off" title="Link to this heading">¶</a></h3>
+<span id="gravity-on-ref"></span><h3><a class="toc-backref" href="#id38" role="doc-backlink">GRAVITY[/ON/OFF]</a><a class="headerlink" href="#gravity-on-off" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify whether the detector data should be
 corrected for the ballistic effects of gravity on the neutrons. This
 correction is particularly important at long sample-detector distances
@@ -955,7 +967,7 @@ corrections will be included in that calculation too.</p>
 </div>
 </section>
 <section id="gravity-lextra-x">
-<span id="gravity-extra-len-ref"></span><h3><a class="toc-backref" href="#id38" role="doc-backlink">GRAVITY/LEXTRA x</a><a class="headerlink" href="#gravity-lextra-x" title="Link to this heading">¶</a></h3>
+<span id="gravity-extra-len-ref"></span><h3><a class="toc-backref" href="#id39" role="doc-backlink">GRAVITY/LEXTRA x</a><a class="headerlink" href="#gravity-lextra-x" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify an extra length that can be added
 to the gravity correction. The extra length is only taken into account
 when the gravity correction is enabled and the default value is x=0.0.
@@ -978,7 +990,7 @@ to 0.5 * collimation_length. See also <a class="reference internal" href="#qreso
 </div>
 </section>
 <section id="l-eventstime-binning-string">
-<h3><a class="toc-backref" href="#id39" role="doc-backlink">L/EVENTSTIME binning_string</a><a class="headerlink" href="#l-eventstime-binning-string" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id40" role="doc-backlink">L/EVENTSTIME binning_string</a><a class="headerlink" href="#l-eventstime-binning-string" title="Link to this heading">¶</a></h3>
 <p>L was an accepted abbreviation for LIMIT.</p>
 <p>This command was used to specify a binning scheme to be applied to
 event mode data. The scheme comprised a comma-separated string of the
@@ -1008,7 +1020,7 @@ tsteps were specified as %/100.</p>
 </div>
 </section>
 <section id="l-phi-nomirror-a-b">
-<h3><a class="toc-backref" href="#id40" role="doc-backlink">L/PHI[/NOMIRROR] a b</a><a class="headerlink" href="#l-phi-nomirror-a-b" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id41" role="doc-backlink">L/PHI[/NOMIRROR] a b</a><a class="headerlink" href="#l-phi-nomirror-a-b" title="Link to this heading">¶</a></h3>
 <p>L was an accepted abbreviation for LIMIT.</p>
 <p>This command specified the azimuthal range of 2D detector data to be
 included in data reduction.
@@ -1041,7 +1053,7 @@ included (ie, selecting a=-30 &amp; b=+30 would <em>also</em> include the sector
 </div>
 </section>
 <section id="l-q-binning-string">
-<span id="q-ref"></span><h3><a class="toc-backref" href="#id41" role="doc-backlink">L/Q binning_string</a><a class="headerlink" href="#l-q-binning-string" title="Link to this heading">¶</a></h3>
+<span id="q-ref"></span><h3><a class="toc-backref" href="#id42" role="doc-backlink">L/Q binning_string</a><a class="headerlink" href="#l-q-binning-string" title="Link to this heading">¶</a></h3>
 <p>L was an accepted abbreviation for LIMIT.</p>
 <p>This command was used to specify a Q-binning scheme to be applied
 during 1D data reduction. See also <a class="reference internal" href="#qxy-ref"><span class="std std-ref">L/QXY binning_string</span></a>.</p>
@@ -1079,7 +1091,7 @@ qsteps were specified as %/100.</p>
 </div>
 </section>
 <section id="l-q-rcut-r">
-<span id="q-rcut-ref"></span><h3><a class="toc-backref" href="#id42" role="doc-backlink">L/Q/RCUT r</a><a class="headerlink" href="#l-q-rcut-r" title="Link to this heading">¶</a></h3>
+<span id="q-rcut-ref"></span><h3><a class="toc-backref" href="#id43" role="doc-backlink">L/Q/RCUT r</a><a class="headerlink" href="#l-q-rcut-r" title="Link to this heading">¶</a></h3>
 <p>L was an accepted abbreviation for LIMIT.</p>
 <p>This command was used to specify the ‘radius cut’ value, a construct
 which could be used to improve the statistical uncertainty on Q bins
@@ -1104,7 +1116,7 @@ algorithm description.</p>
 </div>
 </section>
 <section id="l-q-wcut-w">
-<span id="q-wcut-ref"></span><h3><a class="toc-backref" href="#id43" role="doc-backlink">L/Q/WCUT w</a><a class="headerlink" href="#l-q-wcut-w" title="Link to this heading">¶</a></h3>
+<span id="q-wcut-ref"></span><h3><a class="toc-backref" href="#id44" role="doc-backlink">L/Q/WCUT w</a><a class="headerlink" href="#l-q-wcut-w" title="Link to this heading">¶</a></h3>
 <p>L was an accepted abbreviation for LIMIT.</p>
 <p>This command was used to specify the ‘wavelength cut’ value, a construct
 which could be used to improve the statistical uncertainty on Q bins
@@ -1130,7 +1142,7 @@ algorithm description.</p>
 </div>
 </section>
 <section id="l-qxy-binning-string">
-<span id="qxy-ref"></span><h3><a class="toc-backref" href="#id44" role="doc-backlink">L/QXY binning_string</a><a class="headerlink" href="#l-qxy-binning-string" title="Link to this heading">¶</a></h3>
+<span id="qxy-ref"></span><h3><a class="toc-backref" href="#id45" role="doc-backlink">L/QXY binning_string</a><a class="headerlink" href="#l-qxy-binning-string" title="Link to this heading">¶</a></h3>
 <p>L was an accepted abbreviation for LIMIT.</p>
 <p>This command was used to specify a Q-binning scheme to be applied
 during 2D data reduction. See also <a class="reference internal" href="#q-ref"><span class="std std-ref">L/Q binning_string</span></a>.</p>
@@ -1169,7 +1181,7 @@ Logarithmic qsteps were specified as %/100.</p>
 </div>
 </section>
 <section id="l-r-r1-r2-rstep">
-<h3><a class="toc-backref" href="#id45" role="doc-backlink">L/R r1 r2 [rstep]</a><a class="headerlink" href="#l-r-r1-r2-rstep" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id46" role="doc-backlink">L/R r1 r2 [rstep]</a><a class="headerlink" href="#l-r-r1-r2-rstep" title="Link to this heading">¶</a></h3>
 <p>L was an accepted abbreviation for LIMIT.</p>
 <p>This command was used to specify the radii on the detector between
 which the radial integration of the data was to be performed. Typically,
@@ -1200,7 +1212,7 @@ in such cases is also unclear!</strong></p>
 </div>
 </section>
 <section id="l-sp">
-<h3><a class="toc-backref" href="#id46" role="doc-backlink">L/SP</a><a class="headerlink" href="#l-sp" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id47" role="doc-backlink">L/SP</a><a class="headerlink" href="#l-sp" title="Link to this heading">¶</a></h3>
 <p>L was an accepted abbreviation for LIMIT.</p>
 <p>This command was used to specify the detector spectra (ie, pixels) to be
 included in the data reduction. Historically this mitigated computation
@@ -1214,7 +1226,7 @@ DET/[REAR][FRONT][MERGED][BOTH] command.</p>
 <p>Unsupported</p>
 </section>
 <section id="l-wav-binning-string">
-<h3><a class="toc-backref" href="#id47" role="doc-backlink">L/WAV binning_string</a><a class="headerlink" href="#l-wav-binning-string" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id48" role="doc-backlink">L/WAV binning_string</a><a class="headerlink" href="#l-wav-binning-string" title="Link to this heading">¶</a></h3>
 <p>L was an accepted abbreviation for LIMIT.</p>
 <p>This command was used to specify a wavelength-binning scheme to be
 applied during data reduction.</p>
@@ -1249,7 +1261,7 @@ Logarithmic wsteps were specified as %/100.</p>
 </div>
 </section>
 <section id="mask-clear-time">
-<h3><a class="toc-backref" href="#id48" role="doc-backlink">MASK/CLEAR[/TIME]</a><a class="headerlink" href="#mask-clear-time" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id49" role="doc-backlink">MASK/CLEAR[/TIME]</a><a class="headerlink" href="#mask-clear-time" title="Link to this heading">¶</a></h3>
 <p>This command was used to clear any detector masks in operation. Without
 the TIME qualifier only <em>spatial</em> masks were cleared; with the TIME
 qualifier only time masks were cleared.</p>
@@ -1262,7 +1274,7 @@ MASK/CLEAR/TIME
 <p>Unsupported</p>
 </section>
 <section id="maskfile-mask-file-list">
-<h3><a class="toc-backref" href="#id49" role="doc-backlink">MASKFILE=mask_file_list</a><a class="headerlink" href="#maskfile-mask-file-list" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id50" role="doc-backlink">MASKFILE=mask_file_list</a><a class="headerlink" href="#maskfile-mask-file-list" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify one or more detector mask files to be
 applied during data reduction to omit individual detector pixels or
 regions of pixels from the calculation.</p>
@@ -1282,7 +1294,7 @@ regions of pixels from the calculation.</p>
 </div>
 </section>
 <section id="mask-front-rear-hn">
-<span id="mask-h-ref"></span><h3><a class="toc-backref" href="#id50" role="doc-backlink">MASK[/FRONT][/REAR] Hn</a><a class="headerlink" href="#mask-front-rear-hn" title="Link to this heading">¶</a></h3>
+<span id="mask-h-ref"></span><h3><a class="toc-backref" href="#id51" role="doc-backlink">MASK[/FRONT][/REAR] Hn</a><a class="headerlink" href="#mask-front-rear-hn" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify a <strong>horizontal row</strong> of detector pixels
 to be omitted from the calculation during data reduction. See also
 <a class="reference internal" href="#mask-h-ref"><span class="std std-ref">MASK[/FRONT][/REAR] Hn</span></a>.</p>
@@ -1309,7 +1321,7 @@ MASK/REAR H200
 <p><a class="reference internal" href="#mask-h-ref"><span class="std std-ref">MASK[/FRONT][/REAR] Hn</span></a></p>
 </section>
 <section id="mask-front-rear-hn-hm">
-<h3><a class="toc-backref" href="#id51" role="doc-backlink">MASK[/FRONT][/REAR] Hn&gt;Hm</a><a class="headerlink" href="#mask-front-rear-hn-hm" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id52" role="doc-backlink">MASK[/FRONT][/REAR] Hn&gt;Hm</a><a class="headerlink" href="#mask-front-rear-hn-hm" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify several <strong>contiguous horizontal rows</strong>
 of detector pixels to be omitted from the calculation during data reduction.
 See also <a class="reference internal" href="#mask-h-ref"><span class="std std-ref">MASK[/FRONT][/REAR] Hn</span></a>.</p>
@@ -1335,7 +1347,7 @@ specified at once.</p>
 </div>
 </section>
 <section id="mask-front-rear-vn">
-<span id="mask-v-ref"></span><h3><a class="toc-backref" href="#id52" role="doc-backlink">MASK[/FRONT][/REAR] Vn</a><a class="headerlink" href="#mask-front-rear-vn" title="Link to this heading">¶</a></h3>
+<span id="mask-v-ref"></span><h3><a class="toc-backref" href="#id53" role="doc-backlink">MASK[/FRONT][/REAR] Vn</a><a class="headerlink" href="#mask-front-rear-vn" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify a <strong>vertical column</strong> of detector pixels
 to be omitted from the calculation during data reduction. See also
 <a class="reference internal" href="#mask-v-ref"><span class="std std-ref">MASK[/FRONT][/REAR] Vn</span></a>.</p>
@@ -1362,7 +1374,7 @@ MASK/REAR V200
 <p><a class="reference internal" href="#mask-v-ref"><span class="std std-ref">MASK[/FRONT][/REAR] Vn</span></a></p>
 </section>
 <section id="mask-front-rear-vn-vm">
-<h3><a class="toc-backref" href="#id53" role="doc-backlink">MASK[/FRONT][/REAR] Vn&gt;Vm</a><a class="headerlink" href="#mask-front-rear-vn-vm" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id54" role="doc-backlink">MASK[/FRONT][/REAR] Vn&gt;Vm</a><a class="headerlink" href="#mask-front-rear-vn-vm" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify several <strong>contiguous vertical columns</strong>
 of detector pixels to be omitted from the calculation during data reduction.
 See also <a class="reference internal" href="#mask-v-ref"><span class="std std-ref">MASK[/FRONT][/REAR] Vn</span></a>.</p>
@@ -1388,7 +1400,7 @@ specified at once.</p>
 </div>
 </section>
 <section id="mask-x1-x2-y1-y2">
-<h3><a class="toc-backref" href="#id54" role="doc-backlink">MASK x1 x2 y1 y2</a><a class="headerlink" href="#mask-x1-x2-y1-y2" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id55" role="doc-backlink">MASK x1 x2 y1 y2</a><a class="headerlink" href="#mask-x1-x2-y1-y2" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify a <strong>rectangular box</strong> of detector pixels
 to be omitted from the calculation during data reduction.</p>
 <p>The parameters were specified in mm.</p>
@@ -1404,7 +1416,7 @@ could be used to replicate some of the same functionality.</p>
 <p>Unsupported</p>
 </section>
 <section id="mask-line-a-b">
-<span id="mask-line-two-params"></span><h3><a class="toc-backref" href="#id55" role="doc-backlink">MASK/LINE a b</a><a class="headerlink" href="#mask-line-a-b" title="Link to this heading">¶</a></h3>
+<span id="mask-line-two-params"></span><h3><a class="toc-backref" href="#id56" role="doc-backlink">MASK/LINE a b</a><a class="headerlink" href="#mask-line-a-b" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify a <strong>diagonal line</strong> of detector pixels
 to be omitted from the calculation during data reduction. See also
 <a class="reference internal" href="#mask-line-four-params-ref"><span class="std std-ref">MASK/LINE a b c d</span></a>.</p>
@@ -1435,7 +1447,7 @@ instruments.</p>
 </div>
 </section>
 <section id="mask-line-a-b-c-d">
-<span id="mask-line-four-params-ref"></span><h3><a class="toc-backref" href="#id56" role="doc-backlink">MASK/LINE a b c d</a><a class="headerlink" href="#mask-line-a-b-c-d" title="Link to this heading">¶</a></h3>
+<span id="mask-line-four-params-ref"></span><h3><a class="toc-backref" href="#id57" role="doc-backlink">MASK/LINE a b c d</a><a class="headerlink" href="#mask-line-a-b-c-d" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify a <strong>diagonal line</strong> of detector pixels
 to be omitted from the calculation during data reduction. See also <a class="reference internal" href="#mask-line-two-params"><span class="std std-ref">MASK/LINE a b</span></a>.</p>
 <p>This command works identically to <a class="reference internal" href="#mask-line-two-params"><span class="std std-ref">MASK/LINE a b</span></a>. Instead of starting at (0, 0)
@@ -1457,7 +1469,7 @@ even in legacy files!</p>
 </div>
 </section>
 <section id="mask-sn">
-<h3><a class="toc-backref" href="#id57" role="doc-backlink">MASK Sn</a><a class="headerlink" href="#mask-sn" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id58" role="doc-backlink">MASK Sn</a><a class="headerlink" href="#mask-sn" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify individual detector spectra (ie, pixels)
 to be omitted from the calculation during data reduction.</p>
 <p>The TOML replacement command actually permits several spectra to be
@@ -1479,7 +1491,7 @@ MASK S456
 </div>
 </section>
 <section id="mask-t-t1-t2">
-<h3><a class="toc-backref" href="#id58" role="doc-backlink">MASK/T t1 t2</a><a class="headerlink" href="#mask-t-t1-t2" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id59" role="doc-backlink">MASK/T t1 t2</a><a class="headerlink" href="#mask-t-t1-t2" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify regions of the time-of-flight spectrum
 <strong>in all spectra</strong> to be omitted from the calculation during data reduction.
 Note that the action of this command differs from FIT/CENTRE and FIT/MONITOR.</p>
@@ -1513,7 +1525,7 @@ MASK/T 39354.5 41348.5
 </div>
 </section>
 <section id="mon-direct-front-hab-filename">
-<h3><a class="toc-backref" href="#id59" role="doc-backlink">MON/DIRECT[/FRONT][/HAB]=filename</a><a class="headerlink" href="#mon-direct-front-hab-filename" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id60" role="doc-backlink">MON/DIRECT[/FRONT][/HAB]=filename</a><a class="headerlink" href="#mon-direct-front-hab-filename" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the name of a file containing the ratio
 of the efficiency of the detector to that of the incident beam monitor as
 a function of wavelength.</p>
@@ -1543,7 +1555,7 @@ MON/DIRECT/HAB=DIRECT_RUN524.dat
 </div>
 </section>
 <section id="mon-flat-front-rear-filename">
-<h3><a class="toc-backref" href="#id60" role="doc-backlink">MON/FLAT[/FRONT][/REAR]=filename</a><a class="headerlink" href="#mon-flat-front-rear-filename" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id61" role="doc-backlink">MON/FLAT[/FRONT][/REAR]=filename</a><a class="headerlink" href="#mon-flat-front-rear-filename" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the name of a file containing the relative
 efficiency of the individual detector pixels, also known as the ‘flat cell’ or
 ‘flood source’ file.</p>
@@ -1570,7 +1582,7 @@ efficiency.</p>
 </div>
 </section>
 <section id="mon-habeff-a">
-<span id="habeff-ref"></span><h3><a class="toc-backref" href="#id61" role="doc-backlink">MON/HABEFF=a</a><a class="headerlink" href="#mon-habeff-a" title="Link to this heading">¶</a></h3>
+<span id="habeff-ref"></span><h3><a class="toc-backref" href="#id62" role="doc-backlink">MON/HABEFF=a</a><a class="headerlink" href="#mon-habeff-a" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify an approximate correction to the LOQ
 instrument high-angle detector efficiencies arising from the longer path
 length through the detection volume at high angles. See also <a class="reference internal" href="#habpath-ref"><span class="std std-ref">MON/HABPATH[/ON][/OFF]</span></a>.</p>
@@ -1586,7 +1598,7 @@ to ignoring this correction.</p>
 <p>Unsupported</p>
 </section>
 <section id="mon-habpath-on-off">
-<span id="habpath-ref"></span><h3><a class="toc-backref" href="#id62" role="doc-backlink">MON/HABPATH[/ON][/OFF]</a><a class="headerlink" href="#mon-habpath-on-off" title="Link to this heading">¶</a></h3>
+<span id="habpath-ref"></span><h3><a class="toc-backref" href="#id63" role="doc-backlink">MON/HABPATH[/ON][/OFF]</a><a class="headerlink" href="#mon-habpath-on-off" title="Link to this heading">¶</a></h3>
 <p>This command was used to activate a correction to calculated transmissions
 on the LOQ instrument arising from the longer path length through the
 sample/can at high angles. See also <a class="reference internal" href="#habeff-ref"><span class="std std-ref">MON/HABEFF=a</span></a>.</p>
@@ -1600,7 +1612,7 @@ SAMPLE/PATH[/ON][/OFF].</strong></p>
 <p>Unsupported</p>
 </section>
 <section id="mon-length-z-s">
-<h3><a class="toc-backref" href="#id63" role="doc-backlink">MON/LENGTH=z s</a><a class="headerlink" href="#mon-length-z-s" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id64" role="doc-backlink">MON/LENGTH=z s</a><a class="headerlink" href="#mon-length-z-s" title="Link to this heading">¶</a></h3>
 <p>This command was intended to override the default distance of the specified
 monitor s stored in the Mantid Instrument Definition File in instances where
 a very accurate time-of-flight calculation was required. The parameter z was
@@ -1610,7 +1622,7 @@ the moderator-monitor distance.</p>
 <p>Unsupported</p>
 </section>
 <section id="mon-spectrum-n">
-<h3><a class="toc-backref" href="#id64" role="doc-backlink">MON/SPECTRUM=n</a><a class="headerlink" href="#mon-spectrum-n" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id65" role="doc-backlink">MON/SPECTRUM=n</a><a class="headerlink" href="#mon-spectrum-n" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify which monitor <em>spectrum</em> (not number) was to
 be used for normalisation during data reduction.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
@@ -1641,7 +1653,7 @@ be used for normalisation during data reduction.</p>
 </div>
 </section>
 <section id="mon-interpolate">
-<span id="mon-interpolate-ref"></span><h3><a class="toc-backref" href="#id65" role="doc-backlink">MON [/INTERPOLATE]</a><a class="headerlink" href="#mon-interpolate" title="Link to this heading">¶</a></h3>
+<span id="mon-interpolate-ref"></span><h3><a class="toc-backref" href="#id66" role="doc-backlink">MON [/INTERPOLATE]</a><a class="headerlink" href="#mon-interpolate" title="Link to this heading">¶</a></h3>
 <p>The optional /INTERPOLATE qualifier could be used to apply an interpolating
 rebin of the specified monitor spectrum. This could be useful as a means of
 ‘smoothing’ noisy monitor spectra where the normal rebin command generated
@@ -1656,7 +1668,7 @@ in Event mode.</p>
 <p>Unsupported - Obsolete</p>
 </section>
 <section id="mon-trans-spectrum-n">
-<h3><a class="toc-backref" href="#id66" role="doc-backlink">MON/TRANS/SPECTRUM=n</a><a class="headerlink" href="#mon-trans-spectrum-n" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id67" role="doc-backlink">MON/TRANS/SPECTRUM=n</a><a class="headerlink" href="#mon-trans-spectrum-n" title="Link to this heading">¶</a></h3>
 <p>This command could also be used to specify which monitor <em>spectrum</em> (not number) was to
 be used for normalisation during data reduction. As the /TRANS qualifier was
 present the command only applied to the normalisation of <em>transmission</em>
@@ -1715,11 +1727,11 @@ MON/TRANS/SPECTRUM=4
 </div>
 </section>
 <section id="mon-trans-interpolate">
-<h3><a class="toc-backref" href="#id67" role="doc-backlink">MON/TRANS[/INTERPOLATE]</a><a class="headerlink" href="#mon-trans-interpolate" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id68" role="doc-backlink">MON/TRANS[/INTERPOLATE]</a><a class="headerlink" href="#mon-trans-interpolate" title="Link to this heading">¶</a></h3>
 <p>See <a class="reference internal" href="#mon-interpolate-ref"><span class="std std-ref">MON [/INTERPOLATE]</span></a>.</p>
 </section>
 <section id="print-string">
-<h3><a class="toc-backref" href="#id68" role="doc-backlink">PRINT string</a><a class="headerlink" href="#print-string" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id69" role="doc-backlink">PRINT string</a><a class="headerlink" href="#print-string" title="Link to this heading">¶</a></h3>
 <p>This command was used to write an arbitrary string to the Mantid Results
 Log or Messages windows (depending on the Mantid version).</p>
 <p>There is no equivalent of this command in TOML User Files but there are
@@ -1752,7 +1764,7 @@ example:</p></li>
 <p>Unsupported</p>
 </section>
 <section id="qresol-on-off">
-<h3><a class="toc-backref" href="#id69" role="doc-backlink">QRESOL[/ON][/OFF]</a><a class="headerlink" href="#qresol-on-off" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id70" role="doc-backlink">QRESOL[/ON][/OFF]</a><a class="headerlink" href="#qresol-on-off" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify whether data reduction should <em>also</em> calculate
 an estimate of the Q-resolution. If gravity corrections are also enabled (see
 GRAVITY[/ON/OFF]) these are included in the calculation.</p>
@@ -1775,7 +1787,7 @@ algorithm description.</p>
 </div>
 </section>
 <section id="qresol-moderator-filename">
-<h3><a class="toc-backref" href="#id70" role="doc-backlink">QRESOL/MODERATOR=filename</a><a class="headerlink" href="#qresol-moderator-filename" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id71" role="doc-backlink">QRESOL/MODERATOR=filename</a><a class="headerlink" href="#qresol-moderator-filename" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the name of a file containing the
 moderator time spread as a function of wavelength. At ISIS these
 data were produced from moderator performance simulations conducted
@@ -1803,7 +1815,7 @@ uncertainty on time spread (zero if unknown).</p>
 </div>
 </section>
 <section id="qresol-deltar-dr">
-<h3><a class="toc-backref" href="#id71" role="doc-backlink">QRESOL/DELTAR=dr</a><a class="headerlink" href="#qresol-deltar-dr" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id72" role="doc-backlink">QRESOL/DELTAR=dr</a><a class="headerlink" href="#qresol-deltar-dr" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the width of the virtual rings used
 for the radial integration. A value of 3 mm would be typical, otherwise
 it would be sensible to use the rstep value specified in the
@@ -1830,7 +1842,7 @@ in <a class="reference internal" href="../algorithms/TOFSANSResolutionByPixel-v1
 </div>
 </section>
 <section id="qresol-a1-x">
-<span id="a1-ref"></span><h3><a class="toc-backref" href="#id72" role="doc-backlink">QRESOL/A1=x</a><a class="headerlink" href="#qresol-a1-x" title="Link to this heading">¶</a></h3>
+<span id="a1-ref"></span><h3><a class="toc-backref" href="#id73" role="doc-backlink">QRESOL/A1=x</a><a class="headerlink" href="#qresol-a1-x" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the <strong>source</strong> aperture <em>diameter</em> to be
 used in the estimation of the Q-resolution. See also <a class="reference internal" href="#a2-ref"><span class="std std-ref">QRESOL/A2=x</span></a> and
 <a class="reference internal" href="#h1-w1-h2-w2-ref"><span class="std std-ref">QRESOL[/H1=x1][/W1=y1][/H2=x2][/W2=y2]</span></a>.</p>
@@ -1855,7 +1867,7 @@ pinhole collimation!</strong></p>
 </div>
 </section>
 <section id="qresol-a2-x">
-<span id="a2-ref"></span><h3><a class="toc-backref" href="#id73" role="doc-backlink">QRESOL/A2=x</a><a class="headerlink" href="#qresol-a2-x" title="Link to this heading">¶</a></h3>
+<span id="a2-ref"></span><h3><a class="toc-backref" href="#id74" role="doc-backlink">QRESOL/A2=x</a><a class="headerlink" href="#qresol-a2-x" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the <strong>sample</strong> aperture <em>diameter</em> to be
 used in the estimation of the Q-resolution. See also <a class="reference internal" href="#a1-ref"><span class="std std-ref">QRESOL/A1=x</span></a> and
 <a class="reference internal" href="#h1-w1-h2-w2-ref"><span class="std std-ref">QRESOL[/H1=x1][/W1=y1][/H2=x2][/W2=y2]</span></a>.</p>
@@ -1884,7 +1896,7 @@ block at the top of TOML User Files instead of the [q_resolution] block.</p>
 </div>
 </section>
 <section id="qresol-h1-x1-w1-y1-h2-x2-w2-y2">
-<span id="h1-w1-h2-w2-ref"></span><h3><a class="toc-backref" href="#id74" role="doc-backlink">QRESOL[/H1=x1][/W1=y1][/H2=x2][/W2=y2]</a><a class="headerlink" href="#qresol-h1-x1-w1-y1-h2-x2-w2-y2" title="Link to this heading">¶</a></h3>
+<span id="h1-w1-h2-w2-ref"></span><h3><a class="toc-backref" href="#id75" role="doc-backlink">QRESOL[/H1=x1][/W1=y1][/H2=x2][/W2=y2]</a><a class="headerlink" href="#qresol-h1-x1-w1-y1-h2-x2-w2-y2" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the <strong>source and sample</strong> slit sizes to be
 used in the estimation of the Q-resolution. See also <a class="reference internal" href="#a1-ref"><span class="std std-ref">QRESOL/A1=x</span></a> and
 <a class="reference internal" href="#a2-ref"><span class="std std-ref">QRESOL/A2=x</span></a>.</p>
@@ -1920,7 +1932,7 @@ QRESOL/W2=8.0
 </div>
 </section>
 <section id="qresol-lcollim-z">
-<span id="id7"></span><h3><a class="toc-backref" href="#id75" role="doc-backlink">QRESOL/LCOLLIM=z</a><a class="headerlink" href="#qresol-lcollim-z" title="Link to this heading">¶</a></h3>
+<span id="id7"></span><h3><a class="toc-backref" href="#id76" role="doc-backlink">QRESOL/LCOLLIM=z</a><a class="headerlink" href="#qresol-lcollim-z" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the length of the collimation - the distance
 between the source and sample apertures/slits/jaws - to be used in the
 estimation of the Q-resolution.</p>
@@ -1947,7 +1959,7 @@ block at the top of TOML User Files instead of the [q_resolution] block.</p>
 </div>
 </section>
 <section id="sample-offset-z">
-<h3><a class="toc-backref" href="#id76" role="doc-backlink">SAMPLE/OFFSET z</a><a class="headerlink" href="#sample-offset-z" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id77" role="doc-backlink">SAMPLE/OFFSET z</a><a class="headerlink" href="#sample-offset-z" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify any correction to the default Z coordinate
 in the Mantid Instrument Definition File defining the nominal position of the
 sample. The offset is a relative value with positive offsets translating the
@@ -1968,7 +1980,7 @@ sample position <em>towards</em> the detector(s).</p>
 </div>
 </section>
 <section id="sample-path-on-off">
-<h3><a class="toc-backref" href="#id77" role="doc-backlink">SAMPLE/PATH[/ON][/OFF]</a><a class="headerlink" href="#sample-path-on-off" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id78" role="doc-backlink">SAMPLE/PATH[/ON][/OFF]</a><a class="headerlink" href="#sample-path-on-off" title="Link to this heading">¶</a></h3>
 <p>This command was used to activate a correction to calculated transmissions
 arising from the longer path length through the sample/can at high angles.
 Unlike MON/HABPATH[/ON][/OFF] this command was generic.</p>
@@ -1986,7 +1998,7 @@ algorithm description.</p>
 </div>
 </section>
 <section id="set-centre-a-b">
-<span id="set-centre-ref"></span><h3><a class="toc-backref" href="#id78" role="doc-backlink">SET CENTRE a b</a><a class="headerlink" href="#set-centre-a-b" title="Link to this heading">¶</a></h3>
+<span id="set-centre-ref"></span><h3><a class="toc-backref" href="#id79" role="doc-backlink">SET CENTRE a b</a><a class="headerlink" href="#set-centre-a-b" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the (x,y) coordinates (in real-space) of
 the centre of the scattering pattern on the rear (ie, main) detector. See
 also SET CENTRE[/MAIN][/HAB] a b [c d].</p>
@@ -2011,7 +2023,7 @@ this will not be sensible.</strong></p>
 </div>
 </section>
 <section id="set-centre-main-hab-a-b-c-d">
-<h3><a class="toc-backref" href="#id79" role="doc-backlink">SET CENTRE[/MAIN][/HAB] a b [c d]</a><a class="headerlink" href="#set-centre-main-hab-a-b-c-d" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id80" role="doc-backlink">SET CENTRE[/MAIN][/HAB] a b [c d]</a><a class="headerlink" href="#set-centre-main-hab-a-b-c-d" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the (x,y) coordinates (in real-space) of
 the centre of the scattering pattern on a specific detector. Compare with
 SET CENTRE a b.</p>
@@ -2051,7 +2063,7 @@ SET CENTRE/HAB 317.92 325.498
 </div>
 </section>
 <section id="set-scales-a-b-c-d-e">
-<h3><a class="toc-backref" href="#id80" role="doc-backlink">SET SCALES a b c d e</a><a class="headerlink" href="#set-scales-a-b-c-d-e" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id81" role="doc-backlink">SET SCALES a b c d e</a><a class="headerlink" href="#set-scales-a-b-c-d-e" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the absolute intensity calibration scale
 factor (parameter a) to be applied to all intensity values at the end of
 the data reduction calculation.</p>
@@ -2090,7 +2102,7 @@ high and low angle banks - if <code class="docutils literal notranslate"><span c
 </div>
 </section>
 <section id="set-notables-bank-a-b-c-d-e">
-<h3><a class="toc-backref" href="#id81" role="doc-backlink">SET[/NOTABLES] BANK a b c d e</a><a class="headerlink" href="#set-notables-bank-a-b-c-d-e" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id82" role="doc-backlink">SET[/NOTABLES] BANK a b c d e</a><a class="headerlink" href="#set-notables-bank-a-b-c-d-e" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the physical location and orientation
 of the four LOQ instrument high-angle detector modules.</p>
 <p>The parameters were: an ISIS Detector ID Code, the distance from the
@@ -2113,7 +2125,7 @@ SET/NOTAB BANK 307 11.582 270. -247.72 -113.19
 <p>Unsupported</p>
 </section>
 <section id="set-xcor-ycor-on-off-clear">
-<span id="clear-xcor-ycor-ref"></span><h3><a class="toc-backref" href="#id82" role="doc-backlink">SET[/XCOR][/YCOR][/ON][/OFF][/CLEAR]</a><a class="headerlink" href="#set-xcor-ycor-on-off-clear" title="Link to this heading">¶</a></h3>
+<span id="clear-xcor-ycor-ref"></span><h3><a class="toc-backref" href="#id83" role="doc-backlink">SET[/XCOR][/YCOR][/ON][/OFF][/CLEAR]</a><a class="headerlink" href="#set-xcor-ycor-on-off-clear" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify if non-linear coordinate
 corrections to LOQ instrument detector data should be applied
 during data reduction. The /XCOR (/XC was also supported) qualifier
@@ -2129,7 +2141,7 @@ were to be corrected. See also <a class="reference internal" href="#set-xcor-yco
 <p>Unsupported</p>
 </section>
 <section id="set-notables-xcor-ycor-filename">
-<span id="set-xcor-ycor-ref"></span><h3><a class="toc-backref" href="#id83" role="doc-backlink">SET[/NOTABLES][/XCOR][/YCOR]=filename</a><a class="headerlink" href="#set-notables-xcor-ycor-filename" title="Link to this heading">¶</a></h3>
+<span id="set-xcor-ycor-ref"></span><h3><a class="toc-backref" href="#id84" role="doc-backlink">SET[/NOTABLES][/XCOR][/YCOR]=filename</a><a class="headerlink" href="#set-notables-xcor-ycor-filename" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify a file containing non-linear
 coordinate corrections to LOQ instrument detector data. Separate files
 were required for the x and y coordinates. See also <a class="reference internal" href="#clear-xcor-ycor-ref"><span class="std std-ref">SET[/XCOR][/YCOR][/ON][/OFF][/CLEAR]</span></a>.</p>
@@ -2146,7 +2158,7 @@ SET/YC=ycorr.991_994
 <p>Unsupported</p>
 </section>
 <section id="trans-mask-filename">
-<span id="trans-mask-ref"></span><h3><a class="toc-backref" href="#id84" role="doc-backlink">TRANS/MASK=filename</a><a class="headerlink" href="#trans-mask-filename" title="Link to this heading">¶</a></h3>
+<span id="trans-mask-ref"></span><h3><a class="toc-backref" href="#id85" role="doc-backlink">TRANS/MASK=filename</a><a class="headerlink" href="#trans-mask-filename" title="Link to this heading">¶</a></h3>
 <p>This command was used in conjunction with TRANS/RADIUS=r or, more likely,
 TRANS/ROI=filename to <em>exclude</em> regions of the detector specified by those
 commands. See also <a class="reference internal" href="#trans-radius-ref"><span class="std std-ref">TRANS/RADIUS=r</span></a> and <a class="reference internal" href="#trans-roi-ref"><span class="std std-ref">TRANS/ROI=filename</span></a>.</p>
@@ -2162,7 +2174,7 @@ TRANS/MASK=exclude.xml
 <p>Unsupported, see <a class="reference internal" href="#trans-roi-ref"><span class="std std-ref">TRANS/ROI=filename</span></a>.</p>
 </section>
 <section id="trans-radius-r">
-<span id="trans-radius-ref"></span><h3><a class="toc-backref" href="#id85" role="doc-backlink">TRANS/RADIUS=r</a><a class="headerlink" href="#trans-radius-r" title="Link to this heading">¶</a></h3>
+<span id="trans-radius-ref"></span><h3><a class="toc-backref" href="#id86" role="doc-backlink">TRANS/RADIUS=r</a><a class="headerlink" href="#trans-radius-r" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify a circular region-of-interest (ROI) of radius r
 on the detector taking the transmitted beam which was to be used in place of a
 dedicated transmission monitor. The ROI was assumed to be centred on the beam
@@ -2181,7 +2193,7 @@ TRANS/RADIUS=r command.</strong> See also <a class="reference internal" href="#t
 <p>Unsupported, pending future discussion.</p>
 </section>
 <section id="trans-roi-filename">
-<span id="trans-roi-ref"></span><h3><a class="toc-backref" href="#id86" role="doc-backlink">TRANS/ROI=filename</a><a class="headerlink" href="#trans-roi-filename" title="Link to this heading">¶</a></h3>
+<span id="trans-roi-ref"></span><h3><a class="toc-backref" href="#id87" role="doc-backlink">TRANS/ROI=filename</a><a class="headerlink" href="#trans-roi-filename" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify an arbitrary region-of-interest (ROI) on the
 detector taking the transmitted beam which was to be used in place of a dedicated
 transmission monitor. See also <a class="reference internal" href="#trans-mask-ref"><span class="std std-ref">TRANS/MASK=filename</span></a> and <a class="reference internal" href="#trans-radius-ref"><span class="std std-ref">TRANS/RADIUS=r</span></a>.</p>
@@ -2220,7 +2232,7 @@ TRANS/ROI=filename command.</strong> See also <a class="reference internal" href
 </div>
 </section>
 <section id="trans-transpec-s">
-<span id="trans-transpec-ref"></span><h3><a class="toc-backref" href="#id87" role="doc-backlink">TRANS/TRANSPEC=s</a><a class="headerlink" href="#trans-transpec-s" title="Link to this heading">¶</a></h3>
+<span id="trans-transpec-ref"></span><h3><a class="toc-backref" href="#id88" role="doc-backlink">TRANS/TRANSPEC=s</a><a class="headerlink" href="#trans-transpec-s" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify the spectrum (not monitor) <em>number</em>
 containing the transmission data. The spectrum number and the monitor*
 number may, or may not, be the same depending on the instrument!</p>
@@ -2249,7 +2261,7 @@ number may, or may not, be the same depending on the instrument!</p>
 </div>
 </section>
 <section id="trans-transpec-s-shift-dz">
-<h3><a class="toc-backref" href="#id88" role="doc-backlink">TRANS/TRANSPEC=s/SHIFT=dz</a><a class="headerlink" href="#trans-transpec-s-shift-dz" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id89" role="doc-backlink">TRANS/TRANSPEC=s/SHIFT=dz</a><a class="headerlink" href="#trans-transpec-s-shift-dz" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify any correction to the default Z coordinate
 in the Mantid Instrument Definition File defining the nominal position of the
 transmission monitor represented by the specified spectrum number. The offset
@@ -2284,7 +2296,7 @@ transmission monitors.</p>
 </div>
 </section>
 <section id="tubecalibfile-filename">
-<h3><a class="toc-backref" href="#id89" role="doc-backlink">TUBECALIBFILE=filename</a><a class="headerlink" href="#tubecalibfile-filename" title="Link to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id90" role="doc-backlink">TUBECALIBFILE=filename</a><a class="headerlink" href="#tubecalibfile-filename" title="Link to this heading">¶</a></h3>
 <p>This command was used to specify a spatial calibration file for tube
 array detectors. Only one file could be specified, and so if an instrument
 had more than one such detector the calibrations for each needed to

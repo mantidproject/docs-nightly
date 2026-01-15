@@ -11,9 +11,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=a08917e0"></script>
+    <script src="../_static/documentation_options.js?v=edae8aef"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="AlignComponents v1" href="AlignComponents-v1.html" />
@@ -228,101 +229,107 @@
 <td><p>95</p></td>
 <td><p>The percentage of the average to use as the lower bound when filtering bad pulses.</p></td>
 </tr>
-<tr class="row-even"><td><p>CalFileName</p></td>
+<tr class="row-even"><td><p>GroupingWorkspace</p></td>
+<td><p>Input</p></td>
+<td><p>GroupingWorkspace</p></td>
+<td></td>
+<td><p>A GroupingWorkspace giving the grouping info. If not provided then the grouping from the calibration file will be used if provided, else a default grouping of one group per bank.</p></td>
+</tr>
+<tr class="row-odd"><td><p>CalFileName</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>The .cal file containing the position correction factors. Either this or OffsetsWorkspace needs to be specified. Allowed extensions: [‘.h5’, ‘.hd5’, ‘.hdf’, ‘.cal’]</p></td>
 </tr>
-<tr class="row-odd"><td><p>XMin</p></td>
+<tr class="row-even"><td><p>XMin</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td><p>0.1</p></td>
 <td><p>Minimum x-value for the output binning</p></td>
 </tr>
-<tr class="row-even"><td><p>XDelta</p></td>
+<tr class="row-odd"><td><p>XDelta</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td><p>0.0016</p></td>
 <td><p>Bin size for output data</p></td>
 </tr>
-<tr class="row-odd"><td><p>XMax</p></td>
+<tr class="row-even"><td><p>XMax</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td><p>2</p></td>
 <td><p>Minimum x-value for the output binning</p></td>
 </tr>
-<tr class="row-even"><td><p>BinningUnits</p></td>
+<tr class="row-odd"><td><p>BinningUnits</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>dSpacing</p></td>
 <td><p>The units of the input X min, max and delta values. Output will always be TOF. Allowed values: [‘dSpacing’, ‘TOF’, ‘MomentumTransfer’]</p></td>
 </tr>
-<tr class="row-odd"><td><p>BinningMode</p></td>
+<tr class="row-even"><td><p>BinningMode</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>Logarithmic</p></td>
 <td><p>Specify binning behavior (‘Logarithmic’). Allowed values: [‘Logarithmic’, ‘Linear’]</p></td>
 </tr>
-<tr class="row-even"><td><p>LogAllowList</p></td>
+<tr class="row-odd"><td><p>LogAllowList</p></td>
 <td><p>Input</p></td>
 <td><p>str list</p></td>
 <td></td>
 <td><p>If specified, only these logs will be loaded from the file</p></td>
 </tr>
-<tr class="row-odd"><td><p>LogBlockList</p></td>
+<tr class="row-even"><td><p>LogBlockList</p></td>
 <td><p>Input</p></td>
 <td><p>str list</p></td>
 <td></td>
 <td><p>If specified, these logs will not be loaded from the file</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputWorkspace</p></td>
+<tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>An output workspace.</p></td>
 </tr>
-<tr class="row-odd"><td><p>ReadSizeFromDisk</p></td>
+<tr class="row-even"><td><p>ReadSizeFromDisk</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>100000000</p></td>
 <td><p>Number of elements of time-of-flight or detector-id to read at a time. This is a maximum</p></td>
 </tr>
-<tr class="row-even"><td><p>EventsPerThread</p></td>
+<tr class="row-odd"><td><p>EventsPerThread</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>1000000</p></td>
 <td><p>Number of events to read in a single thread. Higher means less threads are created.</p></td>
 </tr>
-<tr class="row-odd"><td><p>OutputSpectrumNumber</p></td>
+<tr class="row-even"><td><p>OutputSpectrumNumber</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>The bank for which to read data; if specified, others will be blank</p></td>
 </tr>
-<tr class="row-even"><td><p>L1</p></td>
+<tr class="row-odd"><td><p>L1</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Mandatory</em></p></td>
-<td><p>The primary distance $ell_1$ from beam to sample</p></td>
+<td><p>The primary distance <span class="math notranslate nohighlight">\(\ell_1\)</span> from beam to sample</p></td>
 </tr>
-<tr class="row-odd"><td><p>L2</p></td>
+<tr class="row-even"><td><p>L2</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td><p><em>Mandatory</em></p></td>
-<td><p>The secondary distances $ell_2$ from sample to focus group</p></td>
+<td><p>The secondary distances <span class="math notranslate nohighlight">\(\ell_2\)</span> from sample to focus group</p></td>
 </tr>
-<tr class="row-even"><td><p>Polar</p></td>
+<tr class="row-odd"><td><p>Polar</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td><p><em>Mandatory</em></p></td>
-<td><p>The effective polar angle (2$theta$) of each focus group</p></td>
+<td><p>The effective polar angle (<span class="math notranslate nohighlight">\(2\theta\)</span>) of each focus group</p></td>
 </tr>
-<tr class="row-odd"><td><p>Azimuthal</p></td>
+<tr class="row-even"><td><p>Azimuthal</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
-<td><p>The effective azimuthal angle $phi$ for each focus group</p></td>
+<td><p>The effective azimuthal angle <span class="math notranslate nohighlight">\(\phi\)</span> for each focus group</p></td>
 </tr>
 </tbody>
 </table>
@@ -335,7 +342,6 @@ As a result, there is a significantly smaller memory usage and the processing is
 <p>Current limitations compared to <code class="docutils literal notranslate"><span class="pre">AlignAndFocusPowderFromFiles</span></code></p>
 <ul class="simple">
 <li><p>only supports the VULCAN instrument</p></li>
-<li><p>hard coded for 6 particular groups</p></li>
 <li><p>does not support copping data</p></li>
 <li><p>does not support removing prompt pulse</p></li>
 </ul>
@@ -444,12 +450,26 @@ As a result, there is a significantly smaller memory usage and the processing is
 <span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ws2</span><span class="p">,</span> <span class="n">CheckSpectraMap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CheckInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
+<p><strong>Example - using a GroupingWorkspace</strong></p>
+<p>You can provide a <code class="docutils literal notranslate"><span class="pre">GroupingWorkspace</span></code> to define how the detectors are grouped in the output workspace. If a <code class="docutils literal notranslate"><span class="pre">GroupingWorkspace</span></code> is not provided, the grouping from the calibration file will be used if provided, else a default grouping of one group per bank is used.</p>
+<p>The example done here is using <a class="reference internal" href="GenerateGroupingPowder-v2.html#algm-generategroupingpowder"><span class="std std-ref">GenerateGroupingPowder</span></a> to create a grouping workspace. With an angle step of 45 degrees, this will create 3 groups.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inst</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;VULCAN&quot;</span><span class="p">)</span>
+<span class="n">GenerateGroupingPowder</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">GroupingWorkspace</span><span class="o">=</span><span class="s1">&#39;powder_group&#39;</span><span class="p">,</span> <span class="n">AngleStep</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span> <span class="n">GroupingWorkspace</span><span class="o">=</span><span class="s2">&quot;powder_group&quot;</span><span class="p">,</span>
+                             <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
+                             <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.25</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span>
+                             <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>  <span class="c1"># should be 3 histograms in the output workspace</span>
+</pre></div>
+</div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Workflow/Diffraction.html">Workflow\Diffraction</a></p>
 </section>
 <section id="source">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Source</a><a class="headerlink" href="#source" title="Link to this heading">¶</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/f3cb70f0d5730621dc019e0fa5a08d56fa10d03d/Framework/DataHandling/inc/MantidDataHandling/AlignAndFocusPowderSlim.h">AlignAndFocusPowderSlim.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/f3cb70f0d5730621dc019e0fa5a08d56fa10d03d/Framework/DataHandling/src/AlignAndFocusPowderSlim.cpp">AlignAndFocusPowderSlim.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/00dd6556befafaa84d70a39a716717eee9a4c5f9/Framework/DataHandling/inc/MantidDataHandling/AlignAndFocusPowderSlim.h">AlignAndFocusPowderSlim.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/00dd6556befafaa84d70a39a716717eee9a4c5f9/Framework/DataHandling/src/AlignAndFocusPowderSlim.cpp">AlignAndFocusPowderSlim.cpp</a></p>
 </section>
 </section>
 

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=c4863cd7"></script>
+    <script src="../../_static/documentation_options.js?v=5a6d2bc1"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -174,11 +174,13 @@ stitched together.</p></li>
 <li><p>Support Pawley refinement of TOF workspaces in <code class="docutils literal notranslate"><span class="pre">PawleyPattern1D</span></code> class and added TOF peak profile <code class="docutils literal notranslate"><span class="pre">BackToBackGauss</span></code> for back-to-back exponential convoluted with a Gaussian.</p></li>
 <li><p>Support zero shift and scale factor for reflection d-spacings in <code class="docutils literal notranslate"><span class="pre">PawleyPattern1D</span></code> class (equivalent to modifying TZERO and DIFC).</p></li>
 <li><p>Now when using the spliiter workspace with <a class="reference internal" href="../../algorithms/AlignAndFocusPowderSlim-v1.html#algm-alignandfocuspowderslim"><span class="std std-ref">AlignAndFocusPowderSlim</span></a> it will output multiple workspaces, one for each target. The <code class="docutils literal notranslate"><span class="pre">SplitterTarget</span></code> property has been removed.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/AlignAndFocusPowderSlim-v1.html#algm-alignandfocuspowderslim"><span class="std std-ref">AlignAndFocusPowderSlim</span></a> is no longer hard-coded for the VULCAN instrument.</p></li>
 </ul>
 </section>
 <section id="bugfixes">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">force_high_q_to_1</span></code> option to POLARIS <code class="docutils literal notranslate"><span class="pre">create_total_scattering_pdf</span></code> to work around a <a class="reference external" href="https://github.com/mantidproject/mantid/issues/40566">normalisation bug</a></p></li>
 <li><p>Disabled StripVanadiumPeaks in ref:<cite>SNSPowderReduction &lt;algm-SNSPowderReduction&gt;</cite>’s test, “SNSPowderRedux.PG3Analysis” because it was causing stochastic test failures on ornl runners and contributed little to the test’s purpose.</p></li>
 <li><p>Solve the crash issue in ref:<cite>SNSPowderReduction &lt;algm-SNSPowderReduction&gt;</cite> regarding the definition of non-standard sample and container geometries for the absorption correction purpose.</p></li>
 </ul>
@@ -189,6 +191,13 @@ stitched together.</p></li>
 <section id="id1">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">New features</a><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>In <a class="reference internal" href="../../algorithms/CreatePoleFigureTableWorkspace-v1.html#algm-createpolefiguretableworkspace"><span class="std std-ref">CreatePoleFigureTableWorkspace v1</span></a>, two new options have been added to the inputs. <code class="docutils literal notranslate"><span class="pre">SpectraWorkspace</span></code> allows the user to provide a name for a new output workspace which contains spectra corresponding to rows in the standard <code class="docutils literal notranslate"><span class="pre">OutputWorkspace</span></code> table. <code class="docutils literal notranslate"><span class="pre">IncludeSpectrumInfo</span></code> is a flag which adds information columns to the final <code class="docutils literal notranslate"><span class="pre">OutputWorkspace</span></code> about where each spectra has come from.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">texture_helper.py</span></code> has been created to hold stand alone texture functionality which is independent of specific instrument workflows or workflow classes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">show_texture_sample_shape</span></code> in <code class="docutils literal notranslate"><span class="pre">texture_helper.py</span></code> is a new standalone function which allows the user to show the sample present on a workspace along with the texture sample directions, and optionally a gauge volume.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">load_all_orientations</span></code> in <code class="docutils literal notranslate"><span class="pre">texture_helper.py</span></code> is a new standalone function which allows the user to take a sequence of workspaces and apply sample orientations, loaded from an input file (as described in the <a class="reference internal" href="../../concepts/TextureAnalysis.html#orientationsection"><span class="std std-ref">orientation file section</span></a> of the <a class="reference internal" href="../../concepts/TextureAnalysis.html#textureanalysis"><span class="std std-ref">Texture Analysis Concept doc</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_pole_figure_tables</span></code> in <code class="docutils literal notranslate"><span class="pre">texture_helper.py</span></code> is a new standalone function which allows the user to directly create a single pole figure table for a sequence of workspaces and their fit parameters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot_pole_figure</span></code> in <code class="docutils literal notranslate"><span class="pre">texture_helper.py</span></code> is a new standalone function which allows the user to directly create a pole figure plot for a pole figure table.</p></li>
+<li><p>Pole Figure plots can now be created from <code class="docutils literal notranslate"><span class="pre">texture_helper</span></code> functions with a debug flag which allows interactive annotation of points in the pole figure by holding “a” key on the keyboard and clicking.</p></li>
 <li><p>Update to the <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a>, adding two tabs, <code class="docutils literal notranslate"><span class="pre">Absorption</span> <span class="pre">Correction</span></code> and <code class="docutils literal notranslate"><span class="pre">Texture</span></code>.</p></li>
 <li><p>The new <code class="docutils literal notranslate"><span class="pre">Absorption</span> <span class="pre">Correction</span></code> tab allows the user to correct workspaces for the beam attenuation through the sample.</p></li>
 <li><p>The new <code class="docutils literal notranslate"><span class="pre">Texture</span></code> tab allows the user to combine data from focused workspaces and peak fitting, to plot pole figures for their experimental data</p></li>

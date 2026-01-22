@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=77160d70" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=c4863cd7"></script>
+    <script src="../_static/documentation_options.js?v=5a6d2bc1"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
@@ -394,11 +394,32 @@ to aid in the setup of <a class="reference internal" href="#referenceworkspacese
 by providing either a series of fixed rotations around known axes (cradle) or by providing a flattened transformation matrix corresponding to a more complicated
 transformation (cybaman). The flag which controls this behaviour is <code class="docutils literal notranslate"><span class="pre">orient_file_is_euler</span></code>.</p>
 <p>If this is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the orientation file is expect to be a text file with a row for each run and, within each row, a rotation angle for each axis.
-These axes are then defined by <code class="docutils literal notranslate"><span class="pre">euler_scheme</span></code>, taking a string of lab directions for the initial
+An example snippet is shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">45</span>  <span class="mi">0</span>       <span class="mi">0</span>
+<span class="mi">45</span>  <span class="mi">30</span>      <span class="mi">180</span>
+<span class="mi">45</span>  <span class="mi">45</span>      <span class="mi">0</span>
+<span class="mi">45</span>  <span class="mi">45</span>      <span class="mi">180</span>
+<span class="mi">45</span>  <span class="mi">45</span>      <span class="mi">270</span>
+<span class="mi">45</span>  <span class="mi">55</span>      <span class="mi">100</span>
+<span class="mi">45</span>  <span class="mi">90</span>      <span class="mi">0</span>
+</pre></div>
+</div>
+<p>These axes are then defined by <code class="docutils literal notranslate"><span class="pre">euler_scheme</span></code>, taking a string of lab directions for the initial
 axes of each goniometer axis. The sense of the rotation around these axes are then defined by <code class="docutils literal notranslate"><span class="pre">euler_axes_sense</span></code>, where the string given should be comma separated +/-1,
 one for each axis, where rotations are counter-clockwise (1) or clockwise (-1).</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">orient_file_is_euler</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the orientation file is expected to be a text file with a row for each run and, within each row the first 9 values are expected to
-be a “C-style” (row-major) flattened 3x3 transformation matrix. It is anticipated that this matrix would be extracted from the <cite>SscansS2</cite> software <a class="footnote-reference brackets" href="#sscanss" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, and a script is provided below for converted
+be a “C-style” (row-major) flattened 3x3 transformation matrix. An example is shown below for the equivalent if the above euler file
+(for <code class="docutils literal notranslate"><span class="pre">euler_scheme</span> <span class="pre">=</span> <span class="pre">YXY</span></code> and <code class="docutils literal notranslate"><span class="pre">euler_axes_sense</span> <span class="pre">=</span> <span class="pre">&quot;-1,-1,-1&quot;</span></code>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.7071147</span><span class="p">,</span><span class="mf">2.05e-05</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7070989</span><span class="p">,</span><span class="mf">1.45e-05</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">4.35e-05</span><span class="p">,</span><span class="mf">0.7070989</span><span class="p">,</span><span class="o">-</span><span class="mf">4.1e-05</span><span class="p">,</span><span class="mf">0.7071147</span>
+<span class="o">-</span><span class="mf">0.707094</span><span class="p">,</span><span class="mf">0.3535975</span><span class="p">,</span><span class="mf">0.6123617</span><span class="p">,</span><span class="o">-</span><span class="mf">1.39e-05</span><span class="p">,</span><span class="mf">0.8659876</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5000654</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7071196</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3536017</span><span class="p">,</span><span class="o">-</span><span class="mf">0.6123297</span>
+<span class="mf">0.707098</span><span class="p">,</span><span class="mf">0.4999857</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5000267</span><span class="p">,</span><span class="mf">2.63e-05</span><span class="p">,</span><span class="mf">0.7071172</span><span class="p">,</span><span class="mf">0.7070964</span><span class="p">,</span><span class="mf">0.7071155</span><span class="p">,</span><span class="o">-</span><span class="mf">0.4999996</span><span class="p">,</span><span class="mf">0.499988</span>
+<span class="o">-</span><span class="mf">0.7071186</span><span class="p">,</span><span class="mf">0.499997</span><span class="p">,</span><span class="mf">0.4999862</span><span class="p">,</span><span class="o">-</span><span class="mf">1.37e-05</span><span class="p">,</span><span class="mf">0.7070894</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7071242</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7070949</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5000275</span><span class="p">,</span><span class="o">-</span><span class="mf">0.4999892</span>
+<span class="mf">0.4999937</span><span class="p">,</span><span class="mf">0.4999759</span><span class="p">,</span><span class="mf">0.7071283</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7070834</span><span class="p">,</span><span class="mf">0.7071302</span><span class="p">,</span><span class="o">-</span><span class="mf">1.52e-05</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5000394</span><span class="p">,</span><span class="o">-</span><span class="mf">0.4999911</span><span class="p">,</span><span class="mf">0.7070852</span>
+<span class="o">-</span><span class="mf">0.5222607</span><span class="p">,</span><span class="mf">0.5792695</span><span class="p">,</span><span class="o">-</span><span class="mf">0.6258519</span><span class="p">,</span><span class="mf">0.8067115</span><span class="p">,</span><span class="mf">0.573551</span><span class="p">,</span><span class="o">-</span><span class="mf">0.1423229</span><span class="p">,</span><span class="mf">0.2765147</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5792116</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7668465</span>
+<span class="mf">0.7071052</span><span class="p">,</span><span class="mf">0.7071078</span><span class="p">,</span><span class="o">-</span><span class="mf">0.0008898</span><span class="p">,</span><span class="o">-</span><span class="mf">1.14e-05</span><span class="p">,</span><span class="mf">0.0012697</span><span class="p">,</span><span class="mf">0.9999992</span><span class="p">,</span><span class="mf">0.7071084</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7071046</span><span class="p">,</span><span class="mf">0.0009059</span>
+</pre></div>
+</div>
+<p>It is anticipated that this matrix would be extracted from the <cite>SscansS2</cite> software <a class="footnote-reference brackets" href="#sscanss" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, and a script is provided below for converted
 the transformation matrices from SscansS2 reference frame into mantid. In principle, a flattened matrix from any sample positioner could be given here instead.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import mantid algorithms, numpy and matplotlib</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
@@ -486,12 +507,12 @@ the user interface while providing more repeatable processing.</p>
 <span class="n">exp_name</span> <span class="o">=</span> <span class="s2">&quot;PostExp-ZrRingDiagScript&quot;</span>
 
 <span class="c1"># otherwise set root directory here:</span>
-<span class="n">root_dir</span> <span class="o">=</span> <span class="sa">fr</span><span class="s2">&quot;C:\Users\kcd17618\Engineering_Mantid\User\</span><span class="si">{</span><span class="n">exp_name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">root_dir</span> <span class="o">=</span> <span class="sa">fr</span><span class="s2">&quot;C:\Users\name\Engineering_Mantid\User\</span><span class="si">{</span><span class="n">exp_name</span><span class="si">}</span><span class="s2">&quot;</span>
 
 <span class="c1"># next, specify the folder with the files you would like to apply the absorption correction to</span>
-<span class="n">corr_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\kcd17618\Documents\dev\TextureCommisioning\Day3\ZrRing\DataFiles\Point2&quot;</span>
+<span class="n">corr_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\name\Documents\dev\TextureCommisioning\Day3\ZrRing\DataFiles\Point2&quot;</span>
 
-<span class="c1"># For texture, it is expected that you have a single ssmple shape, that is reorientated between runs.</span>
+<span class="c1"># For texture, it is expected that you have a single sample shape, that is reorientated between runs.</span>
 <span class="c1"># this is handled by having a reference workspace with the shape in its neutral position</span>
 <span class="c1"># (position in the beamline when the goniometer is home)</span>
 <span class="c1"># This reference workspace probably requires you to do some interacting and validating, so should be setup in the UI</span>
@@ -512,7 +533,7 @@ the user interface while providing more repeatable processing.</p>
 <span class="c1"># Matrix Orientation (orient_file_is_euler = False)</span>
 <span class="c1"># for this the first 9 values in each row of the files are assumed to be flattened rotation matrix.</span>
 <span class="c1"># These are used to directly reorientate the samples</span>
-<span class="n">orientation_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\kcd17618\Documents\dev\TextureCommisioning\Day3\ZrRing\Sscanss\Split\Zirc_ring_pose_matrices_mantid_point_1.txt&quot;</span>
+<span class="n">orientation_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\name\Documents\dev\TextureCommisioning\Day3\ZrRing\Sscanss\Split\Zirc_ring_pose_matrices_mantid_point_1.txt&quot;</span>
 <span class="n">orient_file_is_euler</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">euler_scheme</span> <span class="o">=</span> <span class="s2">&quot;YXY&quot;</span>
 <span class="n">euler_axes_sense</span> <span class="o">=</span> <span class="s2">&quot;1,-1,1&quot;</span>
@@ -564,7 +585,6 @@ the user interface while providing more repeatable processing.</p>
             <span class="n">include_atten_table</span> <span class="o">=</span> <span class="n">include_atten_table</span><span class="p">,</span>
             <span class="n">eval_point</span> <span class="o">=</span> <span class="n">eval_point</span><span class="p">,</span>
             <span class="n">eval_units</span> <span class="o">=</span> <span class="n">eval_units</span><span class="p">,</span>
-            <span class="n">exp_name</span> <span class="o">=</span> <span class="n">exp_name</span><span class="p">,</span>
             <span class="n">root_dir</span> <span class="o">=</span> <span class="n">root_dir</span><span class="p">,</span>
             <span class="n">include_div_corr</span> <span class="o">=</span> <span class="n">include_div_corr</span><span class="p">,</span>
             <span class="n">div_hoz</span> <span class="o">=</span> <span class="n">div_hoz</span><span class="p">,</span>
@@ -579,62 +599,8 @@ the user interface while providing more repeatable processing.</p>
 <p>Regardless of whether absorption correction has been applied (at the very least the absorption correction script should probably be run with <code class="docutils literal notranslate"><span class="pre">include_abs_corr</span> <span class="pre">=</span> <span class="pre">False</span></code>,
 in order to apply the sample shape and orientations), some focusing of data is likely required for creating pole figures. In principle, unfocussed data could be used,
 but this would be rather slow due to the fitting of peaks on each spectra, and this would not necessarily provide meaningful improvement in spatial resolution. As far as
-ENGINX is concerned, grouping any more finely than the block level is mostly diminishing returns. The below script can be used to generate some custom groupings at
-the module or block level, and could be modified for more exotic groupings beyond this, but there are standard groupings available as well.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import mantid algorithms, numpy and matplotlib</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">get_detector_grouping_string</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">group_by</span><span class="p">):</span>
-   <span class="n">info</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">componentInfo</span><span class="p">()</span>
-   <span class="n">detinfo</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">detectorInfo</span><span class="p">()</span>
-   <span class="n">dets</span> <span class="o">=</span> <span class="n">detinfo</span><span class="o">.</span><span class="n">detectorIDs</span><span class="p">()</span>
-   <span class="n">instr_dets</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">detectorsInSubtree</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">root</span><span class="p">())</span>
-
-   <span class="k">def</span><span class="w"> </span><span class="nf">get_det_id</span><span class="p">(</span><span class="n">comp_ind</span><span class="p">,</span> <span class="n">dets</span><span class="p">,</span> <span class="n">instr_dets</span><span class="p">):</span>
-      <span class="k">return</span> <span class="n">dets</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">instr_dets</span> <span class="o">==</span> <span class="n">comp_ind</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
-
-   <span class="n">nbi</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">indexOfAny</span><span class="p">(</span><span class="s2">&quot;NorthBank&quot;</span><span class="p">)</span>
-   <span class="n">sbi</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">indexOfAny</span><span class="p">(</span><span class="s2">&quot;SouthBank&quot;</span><span class="p">)</span>
-
-
-   <span class="n">nbmi</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">children</span><span class="p">(</span><span class="n">nbi</span><span class="p">)</span>
-   <span class="n">sbmi</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">children</span><span class="p">(</span><span class="n">sbi</span><span class="p">)</span>
-
-   <span class="n">nbmbi</span> <span class="o">=</span> <span class="p">[</span><span class="n">xx</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="n">info</span><span class="o">.</span><span class="n">children</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nbm</span><span class="p">))</span> <span class="k">for</span> <span class="n">nbm</span> <span class="ow">in</span> <span class="n">nbmi</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
-   <span class="n">sbmbi</span> <span class="o">=</span> <span class="p">[</span><span class="n">xx</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="n">info</span><span class="o">.</span><span class="n">children</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sbm</span><span class="p">))</span> <span class="k">for</span> <span class="n">sbm</span> <span class="ow">in</span> <span class="n">sbmi</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
-   <span class="k">if</span> <span class="n">group_by</span> <span class="o">==</span> <span class="s2">&quot;module&quot;</span><span class="p">:</span>
-      <span class="n">n_mods</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-            <span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">get_det_id</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dets</span><span class="p">,</span> <span class="n">instr_dets</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">detectorsInSubtree</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nbm</span><span class="p">))])</span> <span class="k">for</span> <span class="n">nbm</span> <span class="ow">in</span>
-            <span class="n">nbmi</span><span class="p">])</span>
-      <span class="n">s_mods</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-            <span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">get_det_id</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dets</span><span class="p">,</span> <span class="n">instr_dets</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">detectorsInSubtree</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sbm</span><span class="p">))])</span> <span class="k">for</span> <span class="n">sbm</span> <span class="ow">in</span>
-            <span class="n">sbmi</span><span class="p">])</span>
-      <span class="k">return</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">n_mods</span><span class="p">,</span> <span class="n">s_mods</span><span class="p">])</span>
-   <span class="k">if</span> <span class="n">group_by</span> <span class="o">==</span> <span class="s2">&quot;block&quot;</span><span class="p">:</span>
-      <span class="n">n_blocks</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-            <span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">get_det_id</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dets</span><span class="p">,</span> <span class="n">instr_dets</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">detectorsInSubtree</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nbm</span><span class="p">))])</span> <span class="k">for</span> <span class="n">nbm</span> <span class="ow">in</span>
-            <span class="n">nbmbi</span><span class="p">])</span>
-      <span class="n">s_blocks</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-            <span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">get_det_id</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dets</span><span class="p">,</span> <span class="n">instr_dets</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">detectorsInSubtree</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sbm</span><span class="p">))])</span> <span class="k">for</span> <span class="n">sbm</span> <span class="ow">in</span>
-            <span class="n">sbmbi</span><span class="p">])</span>
-      <span class="k">return</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">n_blocks</span><span class="p">,</span> <span class="n">s_blocks</span><span class="p">])</span>
-
-<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">InstrumentName</span> <span class="o">=</span> <span class="s2">&quot;ENGINX&quot;</span><span class="p">)</span>
-
-<span class="n">block_string</span> <span class="o">=</span> <span class="n">get_detector_grouping_string</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s2">&quot;block&quot;</span><span class="p">)</span>
-
-<span class="n">det_group</span> <span class="o">=</span> <span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="n">ws</span><span class="p">,</span> <span class="n">CustomGroupingString</span> <span class="o">=</span> <span class="n">block_string</span><span class="p">,</span> <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">&quot;det_group&quot;</span><span class="p">)</span>
-
-<span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s1">&#39;ENGINX&#39;</span><span class="p">,</span>
-                        <span class="n">ComponentName</span><span class="o">=</span><span class="s1">&#39;ENGIN-X&#39;</span><span class="p">,</span>
-                        <span class="n">CustomGroupingString</span><span class="o">=</span><span class="n">block_string</span><span class="p">,</span>
-                        <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">&quot;det_group&quot;</span><span class="p">)</span>
-
-<span class="n">SaveCalFile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;path\to\cal\block.cal&quot;</span><span class="p">,</span> <span class="n">GroupingWorkspace</span> <span class="o">=</span> <span class="s2">&quot;det_group&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+ENGINX is concerned, grouping any more finely than the block level is mostly diminishing returns. Groupings can be made using the <a class="reference internal" href="../algorithms/CreateGroupingByComponent-v1.html#algm-creategroupingbycomponent"><span class="std std-ref">CreateGroupingByComponent v1</span></a> algorithm
+(with examples given on that page, and an example usage is commented out in the snippet below)</p>
 <p>These cal files can be provided as a <code class="docutils literal notranslate"><span class="pre">grouping_filepath</span></code> if desired, or used to calibrate in the user interface and the resultant <code class="docutils literal notranslate"><span class="pre">prm</span></code> file can be used for focusing.</p>
 <p>If using a standard grouping, no <code class="docutils literal notranslate"><span class="pre">grouping_filepath</span></code> or <code class="docutils literal notranslate"><span class="pre">prm_filepath</span></code> is required, and simply the string (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;Texture30&quot;</span></code>) is needed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import mantid algorithms, numpy and matplotlib</span>
@@ -667,6 +633,17 @@ the module or block level, and could be modified for more exotic groupings beyon
 <span class="n">prm_path</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># fr&quot;{root}\Calibration\ENGINX_305738_Texture30.prm&quot;</span>
 <span class="n">grouping</span> <span class="o">=</span> <span class="s2">&quot;Texture30&quot;</span> <span class="c1"># use &quot;Custom&quot; if you want to provide custom grouping</span>
 <span class="n">groupingfile_path</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># r&quot;C:\Users\Name\block.cal&quot; # if a custom cal/xml grouping file is desired</span>
+
+<span class="c1">#example snippet for custom grouping:</span>
+<span class="c1">#CreateGroupingByComponent(InstrumentName = &quot;ENGINX&quot;,</span>
+<span class="c1">#                       OutputWorkspace = &quot;test_group&quot;,</span>
+<span class="c1">#                       ComponentNameIncludes = &quot;block&quot;,</span>
+<span class="c1">#                       ComponentNameExcludes = &quot;transmission&quot;,</span>
+<span class="c1">#                       GroupSubdivision = 1)</span>
+<span class="c1">#SaveCalFile(r&quot;path\to\cal\block.cal&quot;, GroupingWorkspace = &quot;test_group&quot;)</span>
+<span class="c1">#grouping = &quot;Custom&quot;</span>
+<span class="c1">#groupingfile_path = r&quot;path\to\cal\block.cal&quot;</span>
+
 
 <span class="c1"># Define some file paths, can be found in the interface settings</span>
 <span class="n">full_instr_calib</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\mantid\scripts\Engineering\calib\ENGINX_full_instrument_calibration_193749.nxs&quot;</span>
@@ -787,7 +764,7 @@ of pole figures over a set of different peaks and parameters.</p>
 <span class="n">exp_name</span> <span class="o">=</span> <span class="s2">&quot;PostExp-SteelCentre&quot;</span>
 
 <span class="c1"># otherwise set root directory here:</span>
-<span class="n">save_root</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\kcd17618\Engineering_Mantid&quot;</span>
+<span class="n">save_root</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\name\Engineering_Mantid&quot;</span>
 <span class="n">root_dir</span> <span class="o">=</span> <span class="sa">fr</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">save_root</span><span class="si">}</span><span class="s2">\User\</span><span class="si">{</span><span class="n">exp_name</span><span class="si">}</span><span class="s2">&quot;</span>
 
 

@@ -11,9 +11,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9aca6aaf" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=19cf5ec0"></script>
+    <script src="../_static/documentation_options.js?v=a50b65bf"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Scripting SANS Reductions" href="ScriptingSANSReductions.html" />
@@ -339,11 +341,14 @@ to enter any user attributes. They are ignored by the TOML parser.</p>
 </section>
 <section id="phi-mask">
 <h3><a class="toc-backref" href="#id18" role="doc-backlink">Phi Mask</a><a class="headerlink" href="#phi-mask" title="Link to this heading">¶</a></h3>
-<p>From Mantid 6.15, a new field for adding a range of phi slices is added to the phi mask. This is to automatize the process
-of reducing with different phi masks. A set of ranges as comma separated pairs can be input and there will be multiple reductions, each one with a different phi range.
-This settings overrides the phi start and stop angles, but is optional.</p>
+<p>From Mantid 6.15, a new field, <code class="docutils literal notranslate"><span class="pre">range</span></code>, for adding a range of phi slices is added to the phi mask.
+This is to automatize the process of reducing with different phi masks. A range is input as a list of floats,
+which will produce multiple reductions, each one with a different phi mask.
+Note that the range has to contain an even number of values as the slices will be extracted as pairs from the list:
+<span class="math notranslate nohighlight">\([PhiMin_1,PhiMax_1,PhiMin_2,PhiMax_2] \to [PhiMin_1,PhiMax_1], [PhiMin_2,PhiMax_2]\)</span>.
+This field takes precedence over <code class="docutils literal notranslate"><span class="pre">phi.start</span></code> and <code class="docutils literal notranslate"><span class="pre">phi.stop</span></code> if both are set on the user file.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">mask.phi</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">range = -15.0,15.0,45.0,90.0</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">range = [-15.0,15.0,45.0,90.0]</span>
 </pre></div>
 </div>
 </section>

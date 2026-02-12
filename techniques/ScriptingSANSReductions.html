@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9aca6aaf" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=19cf5ec0"></script>
+    <script src="../_static/documentation_options.js?v=a50b65bf"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}}</script>
@@ -147,6 +147,7 @@
 <li><p><a class="reference internal" href="#wavrangereduction" id="id15">WavRangeReduction</a></p></li>
 <li><p><a class="reference internal" href="#batchreduce" id="id16">BatchReduce</a></p></li>
 <li><p><a class="reference internal" href="#addruns" id="id17">AddRuns</a></p></li>
+<li><p><a class="reference internal" href="#phiranges" id="id18">PhiRanges</a></p></li>
 </ul>
 </li>
 </ul>
@@ -294,7 +295,7 @@ The lowest angle detector is assumed if this line is not given.</p>
 </pre></div>
 </div>
 <p>Call this function to restrict the analysis to sectors of the detector.
-<code class="docutils literal notranslate"><span class="pre">Phimin</span></code> and <code class="docutils literal notranslate"><span class="pre">phimax</span></code> define the limits of the sector where <code class="docutils literal notranslate"><span class="pre">phi=0</span></code> is the x-axis and <code class="docutils literal notranslate"><span class="pre">phi=90</span></code> is the y-axis.
+<code class="docutils literal notranslate"><span class="pre">phimin</span></code> and <code class="docutils literal notranslate"><span class="pre">phimax</span></code> define the limits of the sector where <code class="docutils literal notranslate"><span class="pre">phi=0</span></code> is the x-axis and <code class="docutils literal notranslate"><span class="pre">phi=90</span></code> is the y-axis.
 Setting <code class="docutils literal notranslate"><span class="pre">use_mirror</span></code> to true causes the mirror sector to be included.</p>
 </section>
 <section id="wavrangereduction">
@@ -376,6 +377,15 @@ The <code class="docutils literal notranslate"><span class="pre">isOverlay</span
 This is only applied if <code class="docutils literal notranslate"><span class="pre">saveAsEvent</span></code> was selected.
 The <code class="docutils literal notranslate"><span class="pre">time_shifts</span></code> variable is a list of additional time shifts which will be applied if <code class="docutils literal notranslate"><span class="pre">isOverlay</span></code> is selected.
 <em>Note that there has to be exactly one less time time shift than files to be added.</em></p>
+</section>
+<section id="phiranges">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">PhiRanges</a><a class="headerlink" href="#phiranges" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PhiRanges</span><span class="p">(</span><span class="n">phis</span><span class="p">,</span> <span class="n">use_mirror</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Takes a list of phi ranges (<code class="docutils literal notranslate"><span class="pre">phis</span></code>) either as a list [a, b, c, d] or comma-separated string of numbers “a,b,c,d”.
+It reduces in the phi ranges a-b and c-d. This is equivalent to combining <code class="docutils literal notranslate"><span class="pre">SetPhiLimit</span></code> and then calling <code class="docutils literal notranslate"><span class="pre">WavRangeReduction</span></code> for
+multiple phi limits. <code class="docutils literal notranslate"><span class="pre">use_mirror</span></code> selects whether to use the mirror for each phi mask. <code class="docutils literal notranslate"><span class="pre">plot</span></code> is not yet implemented.</p>
 <p><strong>Category</strong>: <a class="reference external" href="categories/Techniques.html">Techniques</a></p>
 </section>
 </section>

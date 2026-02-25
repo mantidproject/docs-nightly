@@ -11,10 +11,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9aca6aaf" />
     <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=acb664e5"></script>
+    <script src="../_static/documentation_options.js?v=2095a000"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}}</script>
+    <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -53,7 +53,7 @@
         <a class="navbar-brand" href="http://www.mantidproject.org">
          </a>
       </li>
-      <span class="navbar-text navbar-version pull-left"><b>6.14</b></span>
+      <span class="navbar-text navbar-version pull-left"><b>6.15</b></span>
     </ul>
 
     
@@ -483,6 +483,7 @@ the user interface while providing more repeatable processing.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnalysisDataService</span> <span class="k">as</span> <span class="n">ADS</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">makedirs</span><span class="p">,</span> <span class="n">scandir</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.texture.TextureUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_all_files</span><span class="p">,</span> <span class="n">run_abs_corr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">string</span>
 
 <span class="c1">############### ENGINEERING DIFFRACTION INTERFACE ABSORPTION CORRECTION ANALOGUE #######################</span>
 
@@ -556,6 +557,13 @@ the user interface while providing more repeatable processing.</p>
    <span class="k">if</span> <span class="ow">not</span> <span class="n">ADS</span><span class="o">.</span><span class="n">doesExist</span><span class="p">(</span><span class="n">ws</span><span class="p">):</span>
       <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span> <span class="o">=</span> <span class="n">corr_wss</span><span class="p">[</span><span class="n">iws</span><span class="p">],</span> <span class="n">OutputWorkspace</span><span class="o">=</span> <span class="n">ws</span><span class="p">)</span>
 
+<span class="c1"># on some operating systems (e.g Linux), this file retrieval will not necessarily give files in numerical run order.</span>
+<span class="c1"># the below line assumes that your filename is in the form INSTR00123456 (where 123456 is the run number) and will sort the files into ascending run order.</span>
+<span class="c1"># If your file is not in this format the key lambda function will need to be adjusted to retrieve the run number to then sort them into the correct order to match</span>
+<span class="c1"># the order of rows in orientation file</span>
+
+<span class="c1">#wss = sorted(wss, key = lambda x: int(x.split(&quot;_&quot;)[0].strip(string.ascii_letters)))</span>
+
 <span class="c1"># run script</span>
 <span class="n">run_abs_corr</span><span class="p">(</span><span class="n">wss</span> <span class="o">=</span> <span class="n">wss</span><span class="p">,</span>
             <span class="n">ref_ws</span> <span class="o">=</span> <span class="n">ref_ws_str</span><span class="p">,</span>
@@ -593,7 +601,12 @@ ENGINX is concerned, grouping any more finely than the block level is mostly dim
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnalysisDataService</span> <span class="k">as</span> <span class="n">ADS</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.texture.TextureUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_all_files</span><span class="p">,</span> <span class="n">run_focus_script</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.texture.TextureUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_all_files</span><span class="p">,</span> <span class="n">run_focus_script</span><span class="p">,</span> <span class="n">mk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.common.calibration_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalibrationInfo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.EnggUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">GROUP</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">string</span>
 
 <span class="c1">############### ENGINEERING DIFFRACTION INTERFACE FOCUS ANALOGUE #######################</span>
 
@@ -646,6 +659,28 @@ ENGINX is concerned, grouping any more finely than the block level is mostly dim
                <span class="n">grouping</span> <span class="o">=</span> <span class="n">grouping</span><span class="p">,</span>
                <span class="n">prm_path</span> <span class="o">=</span> <span class="n">prm_path</span><span class="p">,</span>
                <span class="n">groupingfile_path</span> <span class="o">=</span> <span class="n">groupingfile_path</span><span class="p">)</span>
+
+<span class="c1"># Currently the bank-wise grouping is not treated as a texture grouping so doesn&#39;t create a</span>
+<span class="c1"># separate grouping directory automatically. While this can be ignored, it will work better with the</span>
+<span class="c1"># other scripts if the file structures are the same</span>
+
+<span class="k">if</span> <span class="n">grouping</span> <span class="o">==</span> <span class="s2">&quot;banks&quot;</span><span class="p">:</span>
+   <span class="n">bank_focus_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="s2">&quot;Focus&quot;</span><span class="p">,</span> <span class="s2">&quot;CombinedFiles&quot;</span><span class="p">)</span>
+
+   <span class="c1"># get grouping directory name</span>
+   <span class="n">calib_info</span> <span class="o">=</span> <span class="n">CalibrationInfo</span><span class="p">(</span><span class="n">group</span> <span class="o">=</span> <span class="n">GROUP</span><span class="p">(</span><span class="n">grouping</span><span class="p">))</span>
+   <span class="k">if</span> <span class="n">groupingfile_path</span><span class="p">:</span>
+      <span class="n">calib_info</span><span class="o">.</span><span class="n">set_grouping_file</span><span class="p">(</span><span class="n">groupingfile_path</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="n">prm_path</span><span class="p">:</span>
+      <span class="n">calib_info</span><span class="o">.</span><span class="n">set_prm_filepath</span><span class="p">(</span><span class="n">prm_path</span><span class="p">)</span>
+   <span class="n">group_folder</span> <span class="o">=</span> <span class="n">calib_info</span><span class="o">.</span><span class="n">get_group_suffix</span><span class="p">()</span>
+   <span class="n">focussed_data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">file_folder</span><span class="p">,</span> <span class="n">group_folder</span><span class="p">)</span>
+
+   <span class="c1"># create output directory</span>
+   <span class="n">mk</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">file_folder</span><span class="p">,</span> <span class="n">group_folder</span><span class="p">))</span>
+   <span class="n">mk</span><span class="p">(</span><span class="n">focussed_data_dir</span><span class="p">)</span>
+
+   <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">bank_focus_dir</span><span class="p">,</span> <span class="n">focussed_data_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -696,9 +731,9 @@ Additionally to fitting the peak, the table will also contain a numerical integr
 <span class="c1"># nan_replacement then happens after this, if a nan_replacement method is given any parameters without an unfit_value provided will have nans replaced</span>
 <span class="c1"># either with &quot;zeros&quot;, or with the min/max/mean value of that parameter (Note: if all the values are nan, the value will remain nan)</span>
 
-<span class="n">i_over_sigma_thresh</span> <span class="o">=</span> <span class="mf">3.0</span>
-<span class="n">no_fit_value_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;I_est&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
-<span class="n">nan_replacement</span> <span class="o">=</span> <span class="s2">&quot;mean&quot;</span>
+<span class="n">i_over_sigma_thresh</span> <span class="o">=</span> <span class="mf">5.0</span>
+<span class="n">no_fit_value_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;I_est&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;I_err&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
+<span class="n">nan_replacement</span> <span class="o">=</span> <span class="kc">None</span>
 
 <span class="c1">######################### RUN SCRIPT ########################################</span>
 
@@ -724,7 +759,7 @@ Additionally to fitting the peak, the table will also contain a numerical integr
 
 
 <span class="c1"># execute the fitting</span>
-<span class="n">fit_all_peaks</span><span class="p">(</span><span class="n">focus_wss</span><span class="p">,</span> <span class="n">peaks</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">fit_save_dir</span><span class="p">,</span> <span class="n">i_over_sigma_thresh</span> <span class="o">=</span> <span class="n">i_over_sigma_thresh</span><span class="p">,</span> <span class="n">nan_replacement</span> <span class="o">=</span> <span class="n">nan_replacement</span><span class="p">,</span> <span class="n">no_fit_value_dict</span> <span class="o">=</span> <span class="n">no_fit_value_dict</span><span class="p">)</span>
+<span class="n">fit_all_peaks</span><span class="p">(</span><span class="n">focus_wss</span><span class="p">,</span> <span class="n">peaks</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">fit_save_dir</span><span class="p">,</span> <span class="n">i_over_sigma_thresh</span> <span class="o">=</span> <span class="n">i_over_sigma_thresh</span><span class="p">,</span> <span class="n">nan_replacement</span> <span class="o">=</span> <span class="n">nan_replacement</span><span class="p">,</span> <span class="n">no_fit_value_dict</span> <span class="o">=</span> <span class="n">no_fit_value_dict</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -737,7 +772,7 @@ of pole figures over a set of different peaks and parameters.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnalysisDataService</span> <span class="k">as</span> <span class="n">ADS</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.texture.TextureUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_all_files</span><span class="p">,</span> <span class="n">create_pf_loop</span><span class="p">,</span> <span class="n">get_xtal_structure</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.texture.TextureUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_all_files</span><span class="p">,</span> <span class="n">create_pf_loop</span><span class="p">,</span> <span class="n">get_xtal_structure</span><span class="p">,</span> <span class="n">mk</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.common.calibration_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalibrationInfo</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.EnggUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">GROUP</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -755,7 +790,7 @@ of pole figures over a set of different peaks and parameters.</p>
 
 
 <span class="n">ws_folder</span> <span class="o">=</span> <span class="s2">&quot;Focus&quot;</span>
-<span class="n">fit_save_folder</span> <span class="o">=</span> <span class="s2">&quot;ScriptFitParameters-New&quot;</span>
+<span class="n">fit_save_folder</span> <span class="o">=</span> <span class="s2">&quot;ScriptFitParameters&quot;</span>
 <span class="c1"># define the peaks of interest, NOTE these must correspond to sub folders in the fit directory</span>
 <span class="n">peaks</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.03</span><span class="p">,</span><span class="mf">1.44</span><span class="p">,</span> <span class="mf">1.17</span><span class="p">]</span>
 <span class="c1"># define the columns you would like to create pole figures for</span>
@@ -800,21 +835,7 @@ of pole figures over a set of different peaks and parameters.</p>
 <span class="c1">######################### RUN SCRIPT ########################################</span>
 
 
-<span class="c1"># get grouping directory name</span>
-<span class="n">calib_info</span> <span class="o">=</span> <span class="n">CalibrationInfo</span><span class="p">(</span><span class="n">group</span> <span class="o">=</span> <span class="n">GROUP</span><span class="p">(</span><span class="n">grouping</span><span class="p">))</span>
-<span class="k">if</span> <span class="n">groupingfile_path</span><span class="p">:</span>
-   <span class="n">calib_info</span><span class="o">.</span><span class="n">set_grouping_file</span><span class="p">(</span><span class="n">groupingfile_path</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">prm_path</span><span class="p">:</span>
-   <span class="n">calib_info</span><span class="o">.</span><span class="n">set_prm_filepath</span><span class="p">(</span><span class="n">prm_path</span><span class="p">)</span>
-<span class="n">group_folder</span> <span class="o">=</span> <span class="n">calib_info</span><span class="o">.</span><span class="n">get_group_suffix</span><span class="p">()</span>
-<span class="n">focussed_data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">ws_folder</span><span class="p">,</span> <span class="n">group_folder</span><span class="p">,</span> <span class="s2">&quot;CombinedFiles&quot;</span><span class="p">)</span>
-<span class="n">focus_ws_paths</span> <span class="o">=</span> <span class="n">find_all_files</span><span class="p">(</span><span class="n">focussed_data_dir</span><span class="p">)</span>
-<span class="n">focus_wss</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fp</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">fp</span> <span class="ow">in</span> <span class="n">focus_ws_paths</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">iws</span><span class="p">,</span> <span class="n">ws</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">focus_wss</span><span class="p">):</span>
-   <span class="k">if</span> <span class="ow">not</span> <span class="n">ADS</span><span class="o">.</span><span class="n">doesExist</span><span class="p">(</span><span class="n">ws</span><span class="p">):</span>
-      <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span> <span class="o">=</span> <span class="n">focus_ws_paths</span><span class="p">[</span><span class="n">iws</span><span class="p">],</span> <span class="n">OutputWorkspace</span><span class="o">=</span> <span class="n">ws</span><span class="p">)</span>
-
-<span class="n">fit_load_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">fit_save_folder</span><span class="p">,</span> <span class="n">group_folder</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">peak</span><span class="p">))</span> <span class="k">for</span> <span class="n">peak</span> <span class="ow">in</span> <span class="n">peaks</span><span class="p">]</span>
+<span class="n">fit_load_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="n">fit_save_folder</span><span class="p">,</span> <span class="n">calib_info</span><span class="o">.</span><span class="n">get_foc_ws_suffix</span><span class="p">(),</span> <span class="nb">str</span><span class="p">(</span><span class="n">peak</span><span class="p">))</span> <span class="k">for</span> <span class="n">peak</span> <span class="ow">in</span> <span class="n">peaks</span><span class="p">]</span>
 
 <span class="n">hkls</span> <span class="o">=</span> <span class="p">[</span><span class="n">hkl_peaks</span><span class="p">[</span><span class="n">peak</span><span class="p">]</span> <span class="k">for</span> <span class="n">peak</span> <span class="ow">in</span> <span class="n">peaks</span><span class="p">]</span>
 
@@ -828,6 +849,22 @@ of pole figures over a set of different peaks and parameters.</p>
    <span class="k">for</span> <span class="n">iparam</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">param_wss</span><span class="p">):</span>
       <span class="k">if</span> <span class="ow">not</span> <span class="n">ADS</span><span class="o">.</span><span class="n">doesExist</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
             <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">fit_wss</span><span class="p">[</span><span class="n">iparam</span><span class="p">],</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">param</span><span class="p">)</span>
+
+<span class="n">pf_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="s2">&quot;TextureResults&quot;</span><span class="p">)</span>
+<span class="n">pf_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pf_root</span><span class="p">,</span> <span class="n">grouping</span><span class="p">)</span>
+<span class="n">mk</span><span class="p">(</span><span class="n">pf_root</span><span class="p">)</span>
+<span class="n">mk</span><span class="p">(</span><span class="n">pf_dir</span><span class="p">)</span>
+
+<span class="c1"># As in the absorption correction, on some operating systems (e.g Linux), this file retrieval will not necessarily give files in numerical run order.</span>
+<span class="c1"># the below line assumes that your filename is in the form INSTR00123456 (where 123456 is the run number) and will sort the files into ascending run order.</span>
+<span class="c1"># If your file is not in this format the key lambda functions will need to be adjusted to retrieve the run number to then sort them into the correct order to match</span>
+<span class="c1"># the order of rows in orientation file</span>
+
+
+<span class="n">focus_wss</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">focus_wss</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">fit_param_wss</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="n">param_wss</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span> <span class="k">for</span> <span class="n">param_wss</span> <span class="ow">in</span> <span class="n">fit_param_wss</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">focus_wss</span><span class="p">,</span> <span class="n">fit_param_wss</span><span class="p">)</span>
 
 <span class="n">create_pf_loop</span><span class="p">(</span><span class="n">wss</span> <span class="o">=</span> <span class="n">focus_wss</span><span class="p">,</span>
                <span class="n">param_wss</span> <span class="o">=</span> <span class="n">fit_param_wss</span><span class="p">,</span>
@@ -845,9 +882,12 @@ of pole figures over a set of different peaks and parameters.</p>
                <span class="n">scat_vol_pos</span> <span class="o">=</span> <span class="n">scat_vol_pos</span><span class="p">,</span>
                <span class="n">chi2_thresh</span> <span class="o">=</span> <span class="n">chi2_thresh</span><span class="p">,</span>
                <span class="n">peak_thresh</span> <span class="o">=</span> <span class="n">peak_thresh</span><span class="p">,</span>
-               <span class="n">save_root</span> <span class="o">=</span> <span class="n">save_root</span><span class="p">,</span>
+               <span class="n">save_root</span> <span class="o">=</span> <span class="n">pf_dir</span><span class="p">,</span>
                <span class="n">exp_name</span> <span class="o">=</span> <span class="n">exp_name</span><span class="p">,</span>
-               <span class="n">projection_method</span> <span class="o">=</span> <span class="n">projection_method</span><span class="p">)</span>
+               <span class="n">projection_method</span> <span class="o">=</span> <span class="n">projection_method</span><span class="p">,</span>
+               <span class="n">create_combined_output</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+               <span class="n">debug_info_level</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+               <span class="n">override_dir</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

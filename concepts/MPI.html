@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MPI in Mantid</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=4468db6d" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9aca6aaf" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=c3e39853"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Materials" href="Materials.html" />
+    <link rel="prev" title="MD Workspace" href="MDWorkspace.html" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59110517-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </head><body>
+
+
+
+
+
+<nav id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div id="navbar-main" class="container">
+    <ul class="nav navbar-nav">
+      
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <li>
+        <a class="navbar-brand" href="http://www.mantidproject.org">
+         </a>
+      </li>
+      <span class="navbar-text navbar-version pull-left"><b>6.15</b></span>
+    </ul>
+
+    
+    <div class="collapse navbar-collapse nav-collapse">
+    
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          <li>
+            <a href="https://www.mantidproject.org">Home</a>
+          </li>
+          <li>
+            <a href="https://download.mantidproject.org">Download</a>
+          </li>
+          <li>
+            <a href="https://docs.mantidproject.org">Documentation</a>
+          </li>
+          <li>
+            <a href="https://www.mantidproject.org/contact">Contact Us</a>
+          </li>
+        
+        
+          
+          
+        
+        
+        
+        
+      </ul>
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          </div>
+  </div> <!-- /navbar-main -->
+<div id="navbar-breadcrumbs" class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li class="nav-item nav-item-0">
+      <a href="../index.html">Documentation</a>
+         &#187;
+    </li>
+    
+    <li class="nav-item nav-item-1">
+      <a href="index.html" accesskey="U">
+        Concepts
+      </a>
+       &#187;
+    </li>
+    
+    
+    
+    
+    <li class="nav-item nav-item-this">
+      <a href="">MPI in Mantid</a>
+    </li>
+    
+    
+  </ul>
+</div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="mpi-in-mantid">
+<span id="mpi"></span><h1>MPI in Mantid<a class="headerlink" href="#mpi-in-mantid" title="Link to this heading">¶</a></h1>
+<section id="what-is-mpi">
+<h2>What is MPI?<a class="headerlink" href="#what-is-mpi" title="Link to this heading">¶</a></h2>
+<p>MPI (Message Passing Interface) is a standardized and portable message-passing system
+designed to enable parallel computing across multiple processors or nodes.
+It allows programs to coordinate and communicate data between processes running simultaneously,
+making it possible to distribute computational workloads and process large datasets more efficiently.</p>
+<p>In the context of scientific computing and data reduction, MPI enables:</p>
+<ul class="simple">
+<li><p><strong>Parallel data processing</strong> - Split large datasets across multiple processes for faster analysis</p></li>
+<li><p><strong>Distributed memory computing</strong> - Each process has its own memory space, allowing processing of datasets larger than a single machine’s memory</p></li>
+<li><p><strong>Scalability</strong> - Run the same code on anything from a laptop to a supercomputer cluster</p></li>
+<li><p><strong>Collective operations</strong> - Built-in operations for common patterns like broadcasting, gathering, and reducing data</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>MPI in Mantid<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>Mantid provides MPI support through a few specialized algorithms that enable parallel data reduction workflows.
+These algorithms are designed to work with Mantid’s workspace objects as MPI’s communication primitives.</p>
+<p>The MPI algorithms in Mantid are:</p>
+<ul class="simple">
+<li><p><strong>BroadcastWorkspace</strong> - Distributes a workspace from one process to all other processes</p></li>
+<li><p><strong>GatherWorkspaces</strong> - Collects workspaces from all processes to a single root process</p></li>
+</ul>
+<p>These algorithms are built as part of the <code class="docutils literal notranslate"><span class="pre">MantidMPIAlgorithms</span></code> plugin and are only available for linux in the <code class="docutils literal notranslate"><span class="pre">mantidmpi</span></code> package
+or when Mantid is compiled with the cmake flag <code class="docutils literal notranslate"><span class="pre">MPI_BUILD=ON</span></code>.</p>
+</section>
+<section id="building-mantid-with-mpi-support">
+<h2>Building Mantid with MPI Support<a class="headerlink" href="#building-mantid-with-mpi-support" title="Link to this heading">¶</a></h2>
+<p>To use MPI algorithms, Mantid must be compiled with MPI support enabled:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DMPI_BUILD<span class="o">=</span>ON<span class="w"> </span>--preset<span class="o">=</span>linux
+<span class="nb">cd</span><span class="w"> </span>build
+ninja
+</pre></div>
+</div>
+<p>The required MPI packages are already included as mantid dependencies.</p>
+</section>
+<section id="running-mantid-scripts-with-mpi">
+<h2>Running Mantid Scripts with MPI<a class="headerlink" href="#running-mantid-scripts-with-mpi" title="Link to this heading">¶</a></h2>
+<p>MPI-enabled Mantid scripts are executed using the <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> launcher:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpiexec<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>python<span class="w"> </span>my_mpi_script.py
+</pre></div>
+</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-np</span> <span class="pre">4</span></code> specifies the number of MPI processes (ranks) to launch</p></li>
+<li><p>Each process executes the same script but can take different code paths based on its rank</p></li>
+</ul>
+</section>
+<section id="common-mpi-patterns">
+<h2>Common MPI Patterns<a class="headerlink" href="#common-mpi-patterns" title="Link to this heading">¶</a></h2>
+<section id="master-worker-pattern">
+<h3>Master-Worker Pattern<a class="headerlink" href="#master-worker-pattern" title="Link to this heading">¶</a></h3>
+<p>The most common pattern involves a “master” process (typically rank 0) that coordinates work:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># Master process</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running with </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2"> processes&quot;</span><span class="p">)</span>
+    <span class="c1"># Coordinate work</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Worker processes</span>
+    <span class="c1"># Perform assigned tasks</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+<section id="broadcast-process-gather-pattern">
+<h3>Broadcast-Process-Gather Pattern<a class="headerlink" href="#broadcast-process-gather-pattern" title="Link to this heading">¶</a></h3>
+<p>A typical parallel data reduction workflow:</p>
+<ol class="arabic simple">
+<li><p><strong>Broadcast</strong> - Distribute common data (workspace, calibration, instrument geometry) to all processes</p></li>
+<li><p><strong>Process</strong> - Each process works on its portion of the data independently</p></li>
+<li><p><strong>Gather</strong> - Collect results back to the master process</p></li>
+</ol>
+</section>
+</section>
+<section id="mpi-algorithm-reference">
+<h2>MPI Algorithm Reference<a class="headerlink" href="#mpi-algorithm-reference" title="Link to this heading">¶</a></h2>
+<section id="broadcastworkspace">
+<h3>BroadcastWorkspace<a class="headerlink" href="#broadcastworkspace" title="Link to this heading">¶</a></h3>
+<p><strong>Purpose</strong>: Distribute a workspace from one MPI process (the broadcaster) to all other processes in the MPI job.</p>
+<p><strong>Key Features</strong>:</p>
+<ul class="simple">
+<li><p>Only the broadcaster rank needs to provide an input workspace</p></li>
+<li><p>Optimized for large workspaces through chunked broadcasting</p></li>
+<li><p>Automatically detects and optimizes shared X data across spectra</p></li>
+<li><p>Memory-efficient with configurable chunk sizes</p></li>
+</ul>
+<p><strong>Usage</strong>: This is a collective MPI operation - all processes must call it simultaneously.</p>
+</section>
+<section id="gatherworkspaces">
+<h3>GatherWorkspaces<a class="headerlink" href="#gatherworkspaces" title="Link to this heading">¶</a></h3>
+<p><strong>Purpose</strong>: Collect workspaces from all MPI processes to a single root process.</p>
+<p><strong>Key Features</strong>:</p>
+<ul class="simple">
+<li><p>Supports two accumulation methods: Add and Append</p></li>
+<li><p>Chunked processing for large workspaces</p></li>
+<li><p>Preserves EventWorkspace data when requested</p></li>
+<li><p>Only root process receives output</p></li>
+</ul>
+<p><strong>Usage</strong>: This is a collective MPI operation - all participating processes must call it simultaneously.</p>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<section id="example-1-broadcasting-calibration-data">
+<h3>Example 1: Broadcasting Calibration Data<a class="headerlink" href="#example-1-broadcasting-calibration-data" title="Link to this heading">¶</a></h3>
+<p>A common use case is to load a workspace or calibration data on one process and distribute it to all others:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Load</span><span class="p">,</span> <span class="n">BroadcastWorkspace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+
+<span class="c1"># Only rank 0 loads the calibration file</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">cal_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;calibration.nxs&#39;</span><span class="p">)</span>
+    <span class="n">shared_cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span>
+        <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">cal_ws</span><span class="p">,</span>
+        <span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;calibration&#39;</span>
+    <span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Other ranks receive the broadcast</span>
+    <span class="n">shared_cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span>
+        <span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;calibration&#39;</span>
+    <span class="p">)</span>
+
+<span class="c1"># All ranks now have &#39;shared_cal&#39; and can use it for processing</span>
+</pre></div>
+</div>
+</section>
+<section id="example-2-parallel-data-reduction-with-gather">
+<h3>Example 2: Parallel Data Reduction with Gather<a class="headerlink" href="#example-2-parallel-data-reduction-with-gather" title="Link to this heading">¶</a></h3>
+<p>Process different run numbers in parallel and combine results:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Load</span><span class="p">,</span> <span class="n">Rebin</span><span class="p">,</span> <span class="n">GatherWorkspaces</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span>
+
+<span class="c1"># Define run numbers to process</span>
+<span class="n">run_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12345</span><span class="p">,</span> <span class="mi">12346</span><span class="p">,</span> <span class="mi">12347</span><span class="p">,</span> <span class="mi">12348</span><span class="p">,</span> <span class="mi">12349</span><span class="p">,</span> <span class="mi">12350</span><span class="p">,</span> <span class="mi">12351</span><span class="p">,</span> <span class="mi">12352</span><span class="p">]</span>
+
+<span class="c1"># Each rank processes a subset of runs</span>
+<span class="n">my_runs</span> <span class="o">=</span> <span class="n">run_numbers</span><span class="p">[</span><span class="n">rank</span><span class="p">::</span><span class="n">size</span><span class="p">]</span>  <span class="c1"># Distribute runs round-robin</span>
+
+<span class="c1"># Process assigned runs</span>
+<span class="k">for</span> <span class="n">run_num</span> <span class="ow">in</span> <span class="n">my_runs</span><span class="p">:</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;data_</span><span class="si">{</span><span class="n">run_num</span><span class="si">}</span><span class="s1">.nxs&#39;</span><span class="p">)</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;0.1,-0.001,3.0&#39;</span><span class="p">)</span>
+    <span class="c1"># Additional processing...</span>
+
+<span class="c1"># For this example, assume last processed workspace is &#39;ws&#39;</span>
+<span class="c1"># Gather all processed workspaces to rank 0</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span>
+        <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
+        <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s1">&#39;Append&#39;</span><span class="p">,</span>
+        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;all_runs_combined&#39;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined workspace has </span><span class="si">{</span><span class="n">combined</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()</span><span class="si">}</span><span class="s2"> spectra&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">GatherWorkspaces</span><span class="p">(</span>
+        <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
+        <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s1">&#39;Append&#39;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-3-summing-data-across-processes">
+<h3>Example 3: Summing Data Across Processes<a class="headerlink" href="#example-3-summing-data-across-processes" title="Link to this heading">¶</a></h3>
+<p>Use “Add” mode to sum corresponding spectra from all processes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">CreateWorkspace</span><span class="p">,</span> <span class="n">GatherWorkspaces</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+
+<span class="c1"># Each rank creates workspace with rank-dependent values</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Rank 0: 1s, Rank 1: 2s, etc.</span>
+
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">DataY</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Sum all workspaces together</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">summed</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span>
+        <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
+        <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span>
+        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;summed&#39;</span>
+    <span class="p">)</span>
+    <span class="c1"># If 4 processes: result = 1 + 2 + 3 + 4 = 10</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Summed value: </span><span class="si">{</span><span class="n">summed</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">GatherWorkspaces</span><span class="p">(</span>
+        <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
+        <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s1">&#39;Add&#39;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-4-complete-workflow-broadcast-process-gather">
+<h3>Example 4: Complete Workflow - Broadcast, Process, Gather<a class="headerlink" href="#example-4-complete-workflow-broadcast-process-gather" title="Link to this heading">¶</a></h3>
+<p>A complete parallel data reduction workflow:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">Load</span><span class="p">,</span> <span class="n">BroadcastWorkspace</span><span class="p">,</span>
+                               <span class="n">AlignAndFocusPowder</span><span class="p">,</span> <span class="n">GatherWorkspaces</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span>
+
+<span class="c1"># Step 1: Broadcast calibration data</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">cal</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;calibration.nxs&#39;</span><span class="p">)</span>
+    <span class="n">cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">cal</span><span class="p">,</span>
+                             <span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;cal&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;cal&#39;</span><span class="p">)</span>
+
+<span class="c1"># Step 2: Each rank processes its assigned data</span>
+<span class="n">my_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;data_rank</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">.nxs&#39;</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">my_file</span><span class="p">)</span>
+
+<span class="c1"># Use the shared calibration</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowder</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
+                        <span class="n">CalFileName</span><span class="o">=</span><span class="n">cal</span><span class="p">,</span>
+                        <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;0.5,-0.001,10&#39;</span><span class="p">)</span>
+
+<span class="c1"># Step 3: Gather results</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
+                               <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s1">&#39;Append&#39;</span><span class="p">,</span>
+                               <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;final_result&#39;</span><span class="p">)</span>
+    <span class="c1"># Save combined result</span>
+    <span class="n">SaveNexus</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">combined</span><span class="p">,</span>
+             <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;combined_output.nxs&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
+                    <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s1">&#39;Append&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading">¶</a></h2>
+<section id="chunking-strategy">
+<h3>Chunking Strategy<a class="headerlink" href="#chunking-strategy" title="Link to this heading">¶</a></h3>
+<p>Both <code class="docutils literal notranslate"><span class="pre">BroadcastWorkspace</span></code> and <code class="docutils literal notranslate"><span class="pre">GatherWorkspaces</span></code> support chunked processing:</p>
+<ul class="simple">
+<li><p><strong>Automatic (ChunkSize=0)</strong> - Recommended for most cases, targets ~100MB chunks</p></li>
+<li><p><strong>All-at-once (ChunkSize=-1)</strong> - Fastest but uses most memory</p></li>
+<li><p><strong>Explicit (ChunkSize=N)</strong> - Manual control, useful for memory-constrained systems</p></li>
+</ul>
+</section>
+<section id="memory-usage">
+<h3>Memory Usage<a class="headerlink" href="#memory-usage" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BroadcastWorkspace</span></code> temporarily duplicates data during transmission</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GatherWorkspaces</span></code> with Append mode requires memory for all gathered data on root</p></li>
+<li><p>Consider using chunking and processing data in stages for very large datasets</p></li>
+</ul>
+</section>
+<section id="network-bandwidth">
+<h3>Network Bandwidth<a class="headerlink" href="#network-bandwidth" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Shared X data is automatically detected and broadcast only once</p></li>
+<li><p>Use appropriate chunk sizes to balance memory and network efficiency</p></li>
+<li><p>EventWorkspaces can be large - consider converting to histograms if events aren’t needed</p></li>
+</ul>
+</section>
+</section>
+<section id="common-pitfalls">
+<h2>Common Pitfalls<a class="headerlink" href="#common-pitfalls" title="Link to this heading">¶</a></h2>
+<section id="collective-operations">
+<h3>Collective Operations<a class="headerlink" href="#collective-operations" title="Link to this heading">¶</a></h3>
+<p><strong>Problem</strong>: One process doesn’t call the MPI algorithm, causing the job to hang.</p>
+<p><strong>Solution</strong>: Ensure all processes in the communicator call MPI algorithms, even if they don’t have input data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRONG - only rank 0 calls the algorithm</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">)</span>
+
+<span class="c1"># CORRECT - all ranks participate</span>
+<span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
+                             <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s1">&#39;Append&#39;</span><span class="p">,</span>
+                             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;result&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
+                    <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s1">&#39;Append&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="workspace-compatibility">
+<h3>Workspace Compatibility<a class="headerlink" href="#workspace-compatibility" title="Link to this heading">¶</a></h3>
+<p><strong>Problem</strong>: Attempting to gather workspaces with different numbers of bins.</p>
+<p><strong>Solution</strong>: Ensure all workspaces have compatible structure before gathering:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All workspaces must have same number of bins</span>
+<span class="c1"># Rebin to common grid if necessary</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;0,-0.001,10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="missing-input-on-root">
+<h3>Missing Input on Root<a class="headerlink" href="#missing-input-on-root" title="Link to this heading">¶</a></h3>
+<p><strong>Problem</strong>: Root process doesn’t provide input to <code class="docutils literal notranslate"><span class="pre">BroadcastWorkspace</span></code>.</p>
+<p><strong>Solution</strong>: Only the broadcaster rank needs to provide input:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;data.nxs&#39;</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">)</span>  <span class="c1"># Required</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># No input needed</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>MPI Tutorial: <a class="reference external" href="https://mpitutorial.com/">https://mpitutorial.com/</a></p></li>
+<li><p>mpi4py Documentation: <a class="reference external" href="https://mpi4py.readthedocs.io/">https://mpi4py.readthedocs.io/</a></p></li>
+<li><p>Mantid MPI Algorithms: See <a class="reference internal" href="../algorithms/BroadcastWorkspace-v1.html#algm-broadcastworkspace"><span class="std std-ref">BroadcastWorkspace</span></a> and <a class="reference internal" href="../algorithms/GatherWorkspaces-v1.html#algm-gatherworkspaces"><span class="std std-ref">GatherWorkspaces</span></a></p></li>
+</ul>
+<p><strong>Category</strong>: <a class="reference external" href="../api/python/mantid/api/categories/Concepts.html">Concepts</a></p>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+      <ul id="footer-nav" class="nav navbar-nav">
+      
+      
+          
+            
+  <li>
+    <a href="MDWorkspace.html" title="Previous Chapter: MD Workspace"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; MD Workspace</span>
+    </a>
+  </li>
+  <li>
+    <a href="Materials.html" title="Next Chapter: Materials"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Materials &raquo;</span>
+    </a>
+  </li>
+          
+       
+          <li><a href="#">Back to top</a></li>
+       </ul>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

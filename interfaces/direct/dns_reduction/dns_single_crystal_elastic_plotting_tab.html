@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=9aca6aaf" />
     <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-    <script src="../../../_static/documentation_options.js?v=c3e39853"></script>
+    <script src="../../../_static/documentation_options.js?v=9e9bc6c5"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -127,7 +127,7 @@
   <section id="dns-single-crystal-elastic-plotting-tab">
 <span id="dns-single-crystal-elastic-plotting-tab-ref"></span><h1>DNS Single Crystal Elastic - Plotting Tab<a class="headerlink" href="#dns-single-crystal-elastic-plotting-tab" title="Link to this heading">¶</a></h1>
 <p>The <strong>Plotting</strong> tab offers basic plotting functionality for reduced datasets.</p>
-<a class="reference internal image-reference" href="../../../_images/DNS_interface_single_crystal_elastic_plotting_tab.png"><img alt="../../../_images/DNS_interface_single_crystal_elastic_plotting_tab.png" class="align-center" src="../../../_images/DNS_interface_single_crystal_elastic_plotting_tab.png" style="height: 400px;" />
+<a class="reference internal image-reference" href="../../../_images/DNS_interface_single_crystal_elastic_plotting_tab_updated.png"><img alt="../../../_images/DNS_interface_single_crystal_elastic_plotting_tab_updated.png" class="align-center" src="../../../_images/DNS_interface_single_crystal_elastic_plotting_tab_updated.png" style="height: 400px;" />
 </a>
 <p></p>
 <p>On the left of this tab, a list with different channels of the reduced dataset is shown and
@@ -153,7 +153,7 @@ scattering plane. It works only if two principle axes change in the
 horizontal plane.</p></td>
 </tr>
 <tr class="row-odd"><td><p><img alt="exp-projections" src="../../../_images/dns-projections.png" /> Projection selector</p></td>
-<td><p>Turn on/off projections of the intensity function averaged along
+<td><p>Turn on/off projections of the intensity function along
 <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions.</p></td>
 </tr>
 <tr class="row-even"><td><p><img alt="exp-edge-control" src="../../../_images/dns-edge-control.png" /> Data
@@ -172,18 +172,19 @@ exports in the <strong>Path</strong> tab.</p></td>
 </tbody>
 </table>
 <p>The rest of the buttons have the same functionality as in matplotlib’s navigation toolbar.</p>
-<p>When the mouse cursor is hovered over the plot, the cursor’s <span class="math notranslate nohighlight">\((x, y)\)</span> coordinates together with the coresponding
-<span class="math notranslate nohighlight">\(hkl\)</span> values (in relative lattice units, r.l.u.) will be displayed on the right hand side of matplotlib’s control buttons.
-In addition, the correponding value of intensity (with an error-bar) of the closest measured data point will be displayed as well.
-(This does not give the intensity of the quadrilateral, which could involve interpolation.)</p>
-<p>The <strong>X</strong>, <strong>Y</strong> and <strong>Z</strong> input lines below the navigation buttons allow to manually specify the region to zoom into. The
-syntax to be used inside these lines is similar to the python’s list slicing (or dnsplot’s range). For example, <strong>0:2</strong> in the
-<strong>X</strong> input line would imply that the displayed values of X should be in the range from 0 to 2. When the desired ranges of
-<strong>X</strong>, <strong>Y</strong> and <strong>Z</strong> are specified, pressing the Enter key inside an input line will update the plot.</p>
-<p>The <strong>log</strong> button next to <strong>X, Y, Z</strong> turns on/off the logarithmic intensity scale. The dropdown list nearby to the <strong>log</strong>
-button allows to select different colormaps for visualisation. The button next to the dropdown list inverts the colormap color
-scale. The <strong>FontSize</strong> dialog allows to change the fontsize of the legend (the Enter key has to be pressed inside the fontsize
-box for the change to have an effect).</p>
+<p>When the mouse cursor hovers over the plot, the cursor’s <span class="math notranslate nohighlight">\((x, y)\)</span> coordinates together with the corresponding
+<span class="math notranslate nohighlight">\(hkl\)</span> values (in relative lattice units, r.l.u.) will be displayed to the right of matplotlib’s control buttons.
+In addition, the intensity value (with an error-bar) of the closest measured data point will also be shown. Note that when
+interpolation is enabled (either in triangulation or quadrilateral mode), the displayed intensity value will not include the
+error estimate. Furthermore, since triangulation does not create triangles centered at the measured data points, the error
+estimate is not displayed in this mode either.</p>
+<p>The input fields labeled <span class="math notranslate nohighlight">\(\mathbf{X_{min}/X_{max}}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{Y_{min}/Y_{max}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{I_{min}/I_{max}}\)</span>,
+located below the navigation buttons, allow you to manually specify the region to zoom into. Once the desired values are entered,
+pressing the Enter key in any input field will update the plot.</p>
+<p>The <strong>log</strong> button next to <span class="math notranslate nohighlight">\(\mathbf{I_{max}}\)</span> turns on/off the logarithmic intensity scale. The dropdown list nearby to the
+<strong>log</strong> button allows to select different colormaps for visualisation. The button next to the dropdown list inverts the colormap
+color scale. The <strong>FontSize</strong> dialog allows to change the fontsize of the legend (the Enter key has to be pressed inside the
+fontsize box for the change to have an effect).</p>
 <p>The <strong>Plot View</strong> menu, which can be accessed from the main menu of the “DNS Reduction” GUI, offers control over the style of
 the plot.</p>
 <p>The <strong>Plot Type</strong> menu of <strong>Plot View</strong> can be used to toggle between <strong>Triangulation</strong>, <strong>Quadmesh</strong>, and <strong>Scatter</strong> display
@@ -195,7 +196,8 @@ the same, otherwise quadrilaterals are not well defined. The <strong>Scatter</st
 <p>The <strong>Axes</strong> menu of <strong>Plot View</strong> allows to change the plot axes between (<span class="math notranslate nohighlight">\(n_x\)</span> and <span class="math notranslate nohighlight">\(n_y\)</span>), as given in the
 <strong>Options</strong>, or (<span class="math notranslate nohighlight">\(q_x, q_x\)</span>), or (<span class="math notranslate nohighlight">\(2 \theta, \omega\)</span>). In addition, <strong>Fix Aspect Ratio</strong> can be selected to fix
 the aspect ratio between the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> axis of the plot. This is especially usefull if crystallographic axes
-are used since then the shown angles will be correct. <strong>Switch Axes</strong> will switch <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> axes in the plot.</p>
+are used since then the shown angles will be correct. <strong>Switch Axes</strong> will switch <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> axes in the plot.
+<strong>Fix Aspect Ratio</strong> is not available in (<span class="math notranslate nohighlight">\(2 \theta, \omega\)</span>) mode.</p>
 <p>The <strong>Interpolation</strong> menu of <strong>Plot View</strong> allows to generate additional triangles/quadrilaterals in order to make the plot
 look smoother. For example, if <strong>1-&gt;9</strong> option is selected, each quadrilateral will be replaced by 9 quadrilaterals, and so
 on. In this case, the data points will be interpolated using the RectBivariateSpline() method of the scipy library. The

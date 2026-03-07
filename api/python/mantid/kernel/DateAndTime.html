@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=9aca6aaf" />
     <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
-    <script src="../../../../_static/documentation_options.js?v=9e9bc6c5"></script>
+    <script src="../../../../_static/documentation_options.js?v=0aa75a15"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
@@ -163,12 +163,12 @@ internally, use the code:</p>
 </pre></div>
 </div>
 <p>For converting <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html">numpy.datetime64</a> data to a string for the default facilty, use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.datetime_as_string.html#numpy.datetime_as_string" title="(in NumPy v2.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.datetime_as_string()</span></code></a> explicitly (assuming the times are a variable named <code class="docutils literal notranslate"><span class="pre">times</span></code>)</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytz</span>
-<span class="n">tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="n">ConfigService</span><span class="o">.</span><span class="n">getFacility</span><span class="p">()</span><span class="o">.</span><span class="n">timezone</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">zoneinfo</span><span class="w"> </span><span class="kn">import</span> <span class="n">ZoneInfo</span>
+<span class="n">tz</span> <span class="o">=</span> <span class="n">ZoneInfo</span><span class="p">(</span><span class="n">ConfigService</span><span class="o">.</span><span class="n">getFacility</span><span class="p">()</span><span class="o">.</span><span class="n">timezone</span><span class="p">())</span>
 <span class="n">times</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">timezone</span><span class="o">=</span><span class="n">tz</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This is how numpy internally converts <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html">numpy.datetime64</a> to strings for printing, but the selection of timezone is explicit (using <a class="reference external" href="https://pythonhosted.org/pytz/">pytz</a>) to allow for matching where the data was recorded rather than the system’s timezone.</p>
+<p>This is how numpy internally converts <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html">numpy.datetime64</a> to strings for printing, but the selection of timezone is explicit (using <a class="reference external" href="https://docs.python.org/3/library/zoneinfo.html">zoneinfo</a>) to allow for matching where the data was recorded rather than the system’s timezone.</p>
 <section id="converting-strings-to-datetime64">
 <h2>Converting strings to <code class="docutils literal notranslate"><span class="pre">datetime64</span></code><a class="headerlink" href="#converting-strings-to-datetime64" title="Link to this heading">¶</a></h2>
 <p>How strings are interpreted by <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html">numpy.datetime64</a>  <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html#changes-with-numpy-1-11">changed in version 1.11</a>. Before this point, a string without timezone designation was assumed to be in local timezone. After this point it is assumed to be in UTC. Additionally as of version 1.11, NumPy started warning if a string was supplied with timezone designation. This means that on rhel7 (in EDT)</p>

@@ -1,129 +1,372 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Calibration Implementation Details</title>
+    <title>Calibration Implementation Details &#8212; MantidProject 6.15.20260313.1415 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=4468db6d" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9aca6aaf" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=0aa75a15"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=f985d54a"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'techniques/Calibration_implementation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Create Back To Back Parameters" href="CreateBackToBackParameters.html" />
     <link rel="prev" title="Calibration" href="Calibration.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="../_static/images/favicon.ico">
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-  ga('create', 'UA-59110517-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-
-  </head><body>
-
-
-
-
-
-<nav id="navbar" class="navbar navbar-default navbar-fixed-top">
-  <div id="navbar-main" class="container">
-    <ul class="nav navbar-nav">
-      
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <li>
-        <a class="navbar-brand" href="http://www.mantidproject.org">
-         </a>
-      </li>
-      <span class="navbar-text navbar-version pull-left"><b>6.15</b></span>
-    </ul>
-
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="collapse navbar-collapse nav-collapse">
-    
-      <ul class="nav navbar-nav">
-        <li class="divider-vertical"></li>
-        
-          <li>
-            <a href="https://www.mantidproject.org">Home</a>
-          </li>
-          <li>
-            <a href="https://download.mantidproject.org">Download</a>
-          </li>
-          <li>
-            <a href="https://docs.mantidproject.org">Documentation</a>
-          </li>
-          <li>
-            <a href="https://www.mantidproject.org/contact">Contact Us</a>
-          </li>
-        
-        
-          
-          
-        
-        
-        
-        
-      </ul>
-            
-<form class="navbar-form navbar-right" action="../search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form>
-          </div>
-  </div> <!-- /navbar-main -->
-<div id="navbar-breadcrumbs" class="related" role="navigation" aria-label="related navigation">
-  <h3>Navigation</h3>
-  <ul>
-    <li class="nav-item nav-item-0">
-      <a href="../index.html">Documentation</a>
-         &#187;
-    </li>
-    
-    <li class="nav-item nav-item-1">
-      <a href="index.html" accesskey="U">
-        Techniques
-      </a>
-       &#187;
-    </li>
-    
-    
-    
-    
-    <li class="nav-item nav-item-this">
-      <a href="">Calibration Implementation Details</a>
-    </li>
-    
-    
-  </ul>
-</div>
-</nav>
+  </dialog>
 
-<div class="container">
-  <div class="row">
-    <div class="body col-md-12 content" role="main">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  <img src="../_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="../_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
       
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ApplyingCorrections.html">Applying Corrections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BinMDCoordinateTransformations.html">BinMD Coordinate Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Calibration.html">Calibration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Calibration Implementation Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateBackToBackParameters.html">Create Back To Back Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateIkedaCarpenterParameters.html">Create Ikeda Carpenter Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateIkedaCarpenterParametersFullprof.html">Create Ikeda Carpenter Parameters Fullprof</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateIkedaCarpenterParametersGSAS.html">Create Ikeda Carpenter Parameters GSAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CrystalField.html">Crystal Field Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DirectILL.html">Data reduction for ILL’s direct geometry instruments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DirecttoolsPythonModule.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">directtools</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISISPowder-GEM-v1.html">ISIS Powder Diffraction Scripts - GEM Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISISPowder-HRPD-v1.html">ISIS Powder Diffraction Scripts - HRPD Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISISPowder-Index-v1.html">ISIS Powder Diffraction Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISISPowder-OSIRIS-v1.html">ISIS Powder Diffraction Scripts - OSIRIS Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISISPowder-Pearl-v1.html">ISIS Powder Diffraction Scripts - PEARL Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISISPowder-Polaris-v1.html">ISIS Powder Diffraction Scripts - POLARIS Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISISPowder-SampleDetails-v1.html">ISIS Powder Diffraction Scripts - SampleDetails Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISISPowder-Tutorials.html">ISIS Powder - Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISISPowder-Workflows-v1.html">ISIS Powder Diffraction Scripts Workflow Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISIS_Reflectometry.html">ISIS Reflectometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ISIS_SingleCrystalDiffraction_Workflow.html">ISIS Single Crystal Diffraction Reduction Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PolarisedDiffractionILL.html">Data reduction for D7 instrument at the ILL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReflectometryILL.html">Data reduction for reflectometry instruments at the ILL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SANS-Toml-v1.html">SANS TOML Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ScriptingSANSReductions.html">Scripting SANS Reductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TextureReduction.html">Texture Reduction</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Techniques</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Calibration Implementation Details</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="module-tube_calib">
-<span id="id1"></span><span id="calibration-implementation-details"></span><h1>Calibration Implementation Details<a class="headerlink" href="#module-tube_calib" title="Link to this heading">¶</a></h1>
+<span id="id1"></span><span id="calibration-implementation-details"></span><h1>Calibration Implementation Details<a class="headerlink" href="#module-tube_calib" title="Link to this heading">#</a></h1>
 <p>This file is concerned with calibrating a specified set of tubes</p>
 <p>The main function is <a class="reference internal" href="#tube_calib.getCalibration" title="tube_calib.getCalibration"><code class="xref py py-func docutils literal notranslate"><span class="pre">getCalibration()</span></code></a> which is at the end of this file.
 It populates an empty Calibration Table Workspace with the new positions of the pixel detectors after calibration.
@@ -131,7 +374,7 @@ This Calibration Table Workspace can be used later to move the pixel detectors t
 <p>Users should not need to directly call any other function other than <a class="reference internal" href="#tube_calib.getCalibration" title="tube_calib.getCalibration"><code class="xref py py-func docutils literal notranslate"><span class="pre">getCalibration()</span></code></a> from this file.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="tube_calib.constructIdealTubeFromRealTube">
-<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">constructIdealTubeFromRealTube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ws</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitPar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcForm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.constructIdealTubeFromRealTube" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">constructIdealTubeFromRealTube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ws</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitPar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcForm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.constructIdealTubeFromRealTube" title="Link to this definition">#</a></dt>
 <dd><p>Construct an ideal tube from an actual tube (assumed ideal)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -150,7 +393,7 @@ This Calibration Table Workspace can be used later to move the pixel detectors t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tube_calib.correct_tube">
-<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">correct_tube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nDets</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.correct_tube" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">correct_tube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nDets</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.correct_tube" title="Link to this definition">#</a></dt>
 <dd><p>Corrects position errors in a tube in the same manner as is done for MERLIN
 according to an algorithm used by Rob Bewley in his MATLAB code.</p>
 <p>&#64;param AP: Fit position of left (in pixels)
@@ -162,7 +405,7 @@ according to an algorithm used by Rob Bewley in his MATLAB code.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tube_calib.correct_tube_to_ideal_tube">
-<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">correct_tube_to_ideal_tube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tube_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ideal_tube_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_detectors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polin_fit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/kernel/Direction.html#mantid.kernel.Direction.None" title="mantid.kernel.Direction.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#tube_calib.correct_tube_to_ideal_tube" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">correct_tube_to_ideal_tube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tube_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ideal_tube_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_detectors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polin_fit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/kernel/Direction.html#mantid.kernel.Direction.None" title="mantid.kernel.Direction.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#tube_calib.correct_tube_to_ideal_tube" title="Link to this definition">#</a></dt>
 <dd><p>Corrects position errors in a tube given an array of points and their ideal positions.</p>
 <p>Note that any element of tubePoints not between 0.0 and nDets is considered a rogue point and so is ignored.</p>
 <dl class="field-list simple">
@@ -186,7 +429,7 @@ coefficients, as well as goodness-of-fit chi-square value. If <cite>None</cite>,
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tube_calib.create_tube_calibration_ws_by_ws_index_list">
-<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">create_tube_calibration_ws_by_ws_index_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integrated_workspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_workspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workspace_index_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.create_tube_calibration_ws_by_ws_index_list" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">create_tube_calibration_ws_by_ws_index_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integrated_workspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_workspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workspace_index_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.create_tube_calibration_ws_by_ws_index_list" title="Link to this definition">#</a></dt>
 <dd><p>Creates workspace with integrated data for one tube against distance along tube
 The tube is specified by a list of workspace indices of its spectra</p>
 <p>&#64;param integrated_workspace: Workspace of integrated data
@@ -198,7 +441,7 @@ The tube is specified by a list of workspace indices of its spectra</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tube_calib.getCalibratedPixelPositions">
-<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">getCalibratedPixelPositions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_workspace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects._dataobjects.EventWorkspace"><span class="pre">EventWorkspace</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/dataobjects/Workspace2D.html#mantid.dataobjects.Workspace2D" title="mantid.dataobjects._dataobjects.Workspace2D"><span class="pre">Workspace2D</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tube_positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ideal_tube_positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">which_tube</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_test_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polin_fit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/kernel/Direction.html#mantid.kernel.Direction.None" title="mantid.kernel.Direction.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tube_calib.getCalibratedPixelPositions" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">getCalibratedPixelPositions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_workspace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects._dataobjects.EventWorkspace"><span class="pre">EventWorkspace</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/dataobjects/Workspace2D.html#mantid.dataobjects.Workspace2D" title="mantid.dataobjects._dataobjects.Workspace2D"><span class="pre">Workspace2D</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tube_positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ideal_tube_positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">which_tube</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_test_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polin_fit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/kernel/Direction.html#mantid.kernel.Direction.None" title="mantid.kernel.Direction.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tube_calib.getCalibratedPixelPositions" title="Link to this definition">#</a></dt>
 <dd><p>Get the calibrated detector positions for one tube.</p>
 <p>The tube is specified by a list of workspace indices of its spectra. The calibration is assumed
 to be done parallel to the Y-axis.</p>
@@ -223,7 +466,7 @@ coefficients, as well as goodness-of-fit chi-square value. If <cite>None</cite>,
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tube_calib.getCalibration">
-<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">getCalibration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_workspace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/dataobjects/Workspace2D.html#mantid.dataobjects.Workspace2D" title="mantid.dataobjects._dataobjects.Workspace2D"><span class="pre">Workspace2D</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tubeSet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tube_spec.TubeSpec" title="tube_spec.TubeSpec"><span class="pre">TubeSpec</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibTable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api/python/mantid/dataobjects/TableWorkspace.html#mantid.dataobjects.TableWorkspace" title="mantid.dataobjects._dataobjects.TableWorkspace"><span class="pre">TableWorkspace</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitPar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tube_calib_fit_params.TubeCalibFitParams" title="tube_calib_fit_params.TubeCalibFitParams"><span class="pre">TubeCalibFitParams</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iTube</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ideal_tube.IdealTube" title="ideal_tube.IdealTube"><span class="pre">IdealTube</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">peaksTable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api/python/mantid/dataobjects/TableWorkspace.html#mantid.dataobjects.TableWorkspace" title="mantid.dataobjects._dataobjects.TableWorkspace"><span class="pre">TableWorkspace</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">overridePeaks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excludeShortTubes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotTube</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/kernel/Direction.html#mantid.kernel.Direction.None" title="mantid.kernel.Direction.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polinFit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peaksTestMode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters_table_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/kernel/Direction.html#mantid.kernel.Direction.None" title="mantid.kernel.Direction.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../api/python/mantid/kernel/Direction.html#mantid.kernel.Direction.None" title="mantid.kernel.Direction.None"><span class="pre">None</span></a></span></span><a class="headerlink" href="#tube_calib.getCalibration" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">getCalibration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_workspace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/dataobjects/Workspace2D.html#mantid.dataobjects.Workspace2D" title="mantid.dataobjects._dataobjects.Workspace2D"><span class="pre">Workspace2D</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tubeSet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tube_spec.TubeSpec" title="tube_spec.TubeSpec"><span class="pre">TubeSpec</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibTable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api/python/mantid/dataobjects/TableWorkspace.html#mantid.dataobjects.TableWorkspace" title="mantid.dataobjects._dataobjects.TableWorkspace"><span class="pre">TableWorkspace</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitPar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tube_calib_fit_params.TubeCalibFitParams" title="tube_calib_fit_params.TubeCalibFitParams"><span class="pre">TubeCalibFitParams</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iTube</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ideal_tube.IdealTube" title="ideal_tube.IdealTube"><span class="pre">IdealTube</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">peaksTable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api/python/mantid/dataobjects/TableWorkspace.html#mantid.dataobjects.TableWorkspace" title="mantid.dataobjects._dataobjects.TableWorkspace"><span class="pre">TableWorkspace</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">overridePeaks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excludeShortTubes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotTube</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/kernel/Direction.html#mantid.kernel.Direction.None" title="mantid.kernel.Direction.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polinFit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peaksTestMode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters_table_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/kernel/Direction.html#mantid.kernel.Direction.None" title="mantid.kernel.Direction.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../api/python/mantid/kernel/Direction.html#mantid.kernel.Direction.None" title="mantid.kernel.Direction.None"><span class="pre">None</span></a></span></span><a class="headerlink" href="#tube_calib.getCalibration" title="Link to this definition">#</a></dt>
 <dd><p>Get the results the calibration and put them in the calibration table provided.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -258,7 +501,7 @@ If <cite>None</cite>, no group workspace is generated.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tube_calib.getCalibrationFromPeakFile">
-<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">getCalibrationFromPeakFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ws</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibTable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iTube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PeakFile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.getCalibrationFromPeakFile" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">getCalibrationFromPeakFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ws</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibTable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iTube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PeakFile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.getCalibrationFromPeakFile" title="Link to this definition">#</a></dt>
 <dd><p>Get the results the calibration and put them in the calibration table provided.</p>
 <p>&#64;param ws: Integrated Workspace with tubes to be calibrated
 &#64;param calibTable: Calibration table into which the calibration results are placed
@@ -268,7 +511,7 @@ If <cite>None</cite>, no group workspace is generated.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tube_calib.getPoints">
-<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">getPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integrated_ws</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_forms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which_tube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.getPoints" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">getPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integrated_ws</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_forms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which_tube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.getPoints" title="Link to this definition">#</a></dt>
 <dd><p>Get the centres of N slits or edges for calibration</p>
 <p>It does look for the peak position in pixels by fitting the peaks and
 edges. It is the method responsible for estimating the peak position in each tube.</p>
@@ -294,7 +537,7 @@ edges. It is the method responsible for estimating the peak position in each tub
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tube_calib.get_ideal_tube_from_n_slits">
-<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">get_ideal_tube_from_n_slits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integrated_workspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slits</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.get_ideal_tube_from_n_slits" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">get_ideal_tube_from_n_slits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integrated_workspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slits</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.get_ideal_tube_from_n_slits" title="Link to this definition">#</a></dt>
 <dd><p>Given N slits for calibration on an ideal tube
 convert to Y values to form a ideal tube for correctTubeToIdealTube()</p>
 <p>&#64;param integrated_workspace: Workspace of integrated data
@@ -304,7 +547,7 @@ convert to Y values to form a ideal tube for correctTubeToIdealTube()</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tube_calib.read_peak_file">
-<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">read_peak_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.read_peak_file" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">tube_calib.</span></span><span class="sig-name descname"><span class="pre">read_peak_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib.read_peak_file" title="Link to this definition">#</a></dt>
 <dd><p>Load the file calibration</p>
 <p>It returns a list of tuples, where the first value is the detector identification
 and the second value is its calibration values.</p>
@@ -319,10 +562,10 @@ print(cal_values)</p>
 </dd></dl>
 
 <section id="tubespec">
-<h2>TubeSpec<a class="headerlink" href="#tubespec" title="Link to this heading">¶</a></h2>
+<h2>TubeSpec<a class="headerlink" href="#tubespec" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">tube_spec.</span></span><span class="sig-name descname"><span class="pre">TubeSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_workspace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api._api.Workspace"><span class="pre">Workspace</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">tube_spec.</span></span><span class="sig-name descname"><span class="pre">TubeSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_workspace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api._api.Workspace"><span class="pre">Workspace</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec" title="Link to this definition">#</a></dt>
 <dd><p>The python class <a class="reference internal" href="#tube_spec.TubeSpec" title="tube_spec.TubeSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">TubeSpec</span></code></a> provides a way of specifying a set of tubes for
 calibration, so that the necessary information about detectors etc. is forthcoming.
 The function <a class="reference internal" href="#tube_calib.getCalibration" title="tube_calib.getCalibration"><code class="xref py py-func docutils literal notranslate"><span class="pre">getCalibration()</span></code></a> of <a class="reference internal" href="#module-tube_calib" title="tube_calib"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tube_calib</span></code></a> needs such an object.</p>
@@ -352,7 +595,7 @@ This may differ from the order they appear in the workspace indices.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.getComponent">
-<span class="sig-name descname"><span class="pre">getComponent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getComponent" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getComponent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getComponent" title="Link to this definition">#</a></dt>
 <dd><p>Returns instrument component corresponding to specification</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -363,7 +606,7 @@ This may differ from the order they appear in the workspace indices.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.getComponents">
-<span class="sig-name descname"><span class="pre">getComponents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getComponents" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getComponents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getComponents" title="Link to this definition">#</a></dt>
 <dd><p>Returns instrument components corresponding to specification</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -374,7 +617,7 @@ This may differ from the order they appear in the workspace indices.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.getDetectorInfoFromTube">
-<span class="sig-name descname"><span class="pre">getDetectorInfoFromTube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeIx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getDetectorInfoFromTube" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getDetectorInfoFromTube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeIx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getDetectorInfoFromTube" title="Link to this definition">#</a></dt>
 <dd><p>Returns detector info for one tube.</p>
 <p>Returns information about detectors in the ( <strong>tubeIx</strong> +1)st tube in the specification,
 where <strong>tubeIx</strong> is the argument. Three integers are returned:</p>
@@ -396,7 +639,7 @@ the increment step of detector IDs in the tube (usually 1, but may be -1).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.getNumTubes">
-<span class="sig-name descname"><span class="pre">getNumTubes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getNumTubes" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getNumTubes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getNumTubes" title="Link to this definition">#</a></dt>
 <dd><p>Returns number of tubes specified. May also save info about these tubes</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -407,7 +650,7 @@ the increment step of detector IDs in the tube (usually 1, but may be -1).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.getTube">
-<span class="sig-name descname"><span class="pre">getTube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeIx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getTube" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getTube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeIx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getTube" title="Link to this definition">#</a></dt>
 <dd><p>Returns list of workspace indices of a tube</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -421,7 +664,7 @@ the increment step of detector IDs in the tube (usually 1, but may be -1).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.getTubeByString">
-<span class="sig-name descname"><span class="pre">getTubeByString</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeIx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getTubeByString" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getTubeByString</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeIx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getTubeByString" title="Link to this definition">#</a></dt>
 <dd><p>Returns list of workspace indices of a tube set that has been specified by string
 It assumes that all the pixels along the tube have consecutive detector IDs</p>
 <dl class="field-list simple">
@@ -436,7 +679,7 @@ It assumes that all the pixels along the tube have consecutive detector IDs</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.getTubeLength">
-<span class="sig-name descname"><span class="pre">getTubeLength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeIx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getTubeLength" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getTubeLength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeIx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getTubeLength" title="Link to this definition">#</a></dt>
 <dd><p>Returns length of the ( <strong>tubeIx</strong> +1)st tube.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -450,7 +693,7 @@ It assumes that all the pixels along the tube have consecutive detector IDs</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.getTubeName">
-<span class="sig-name descname"><span class="pre">getTubeName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeIx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getTubeName" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getTubeName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeIx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.getTubeName" title="Link to this definition">#</a></dt>
 <dd><p>Returns name of tube.</p>
 <p>This function is not used in tube calibration, but may be useful as a diagnostic.
 It is used in creating the peakfile, which lists the peaks found for each tube.</p>
@@ -466,7 +709,7 @@ It is used in creating the peakfile, which lists the peaks found for each tube.<
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.isTube">
-<span class="sig-name descname"><span class="pre">isTube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.isTube" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">isTube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.isTube" title="Link to this definition">#</a></dt>
 <dd><p>Determines whether the component is a tube.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -480,7 +723,7 @@ It is used in creating the peakfile, which lists the peaks found for each tube.<
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.searchForTubes">
-<span class="sig-name descname"><span class="pre">searchForTubes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.searchForTubes" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">searchForTubes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.searchForTubes" title="Link to this definition">#</a></dt>
 <dd><p>Searches the component for tubes and saves them in array, appending if array is not empty.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -491,7 +734,7 @@ It is used in creating the peakfile, which lists the peaks found for each tube.<
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.setTubeSpecByString">
-<span class="sig-name descname"><span class="pre">setTubeSpecByString</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeSpecString</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.setTubeSpecByString" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setTubeSpecByString</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeSpecString</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.setTubeSpecByString" title="Link to this definition">#</a></dt>
 <dd><p>Define the sets of tube from the workspace.</p>
 <p>Sets tube specification by string. The string specifies a component of the instrument
 as in the instrument tree of its IDF file. This component may contain one or more tubes
@@ -515,7 +758,7 @@ be no error message. So if in doubt don’t skip a step.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tube_spec.TubeSpec.setTubeSpecByStringArray">
-<span class="sig-name descname"><span class="pre">setTubeSpecByStringArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeSpecArray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.setTubeSpecByStringArray" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setTubeSpecByStringArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tubeSpecArray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_spec.TubeSpec.setTubeSpecByStringArray" title="Link to this definition">#</a></dt>
 <dd><p>Define the sets of tube from the workspace with an array of strings.</p>
 <p>Set tube specification like setTubeSpecByString, but with an array of string
 to enable multiple components to be calibrated.</p>
@@ -534,18 +777,18 @@ Each string specifies a component such as a window or a single tube in the same 
 
 </section>
 <section id="tubecalibfitparams">
-<h2>TubeCalibFitParams<a class="headerlink" href="#tubecalibfitparams" title="Link to this heading">¶</a></h2>
+<h2>TubeCalibFitParams<a class="headerlink" href="#tubecalibfitparams" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="tube_calib_fit_params.TubeCalibFitParams">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">tube_calib_fit_params.</span></span><span class="sig-name descname"><span class="pre">TubeCalibFitParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peaks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threePointMethod</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outEdge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inEdge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgeGrad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib_fit_params.TubeCalibFitParams" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">tube_calib_fit_params.</span></span><span class="sig-name descname"><span class="pre">TubeCalibFitParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peaks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threePointMethod</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outEdge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inEdge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgeGrad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tube_calib_fit_params.TubeCalibFitParams" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="idealtube">
-<h2>IdealTube<a class="headerlink" href="#idealtube" title="Link to this heading">¶</a></h2>
+<h2>IdealTube<a class="headerlink" href="#idealtube" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="ideal_tube.IdealTube">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ideal_tube.</span></span><span class="sig-name descname"><span class="pre">IdealTube</span></span><a class="headerlink" href="#ideal_tube.IdealTube" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ideal_tube.</span></span><span class="sig-name descname"><span class="pre">IdealTube</span></span><a class="headerlink" href="#ideal_tube.IdealTube" title="Link to this definition">#</a></dt>
 <dd><p>The IdealTube specifies where the peaks formed by slits or edges should occur.</p>
 <p>They can be considered as the known positions as well.
 It does also keep informatin about the shape of the known_positions, if they are
@@ -568,7 +811,7 @@ Then call another function to populate it.</p>
 </div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="ideal_tube.IdealTube.constructTubeFor3PointsMethod">
-<span class="sig-name descname"><span class="pre">constructTubeFor3PointsMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idealAP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idealBP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idealCP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activeTubeLen</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.constructTubeFor3PointsMethod" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">constructTubeFor3PointsMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idealAP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idealBP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idealCP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activeTubeLen</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.constructTubeFor3PointsMethod" title="Link to this definition">#</a></dt>
 <dd><p>Construct and ideal tube for Merlin 3-point calibration</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -584,19 +827,19 @@ Then call another function to populate it.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ideal_tube.IdealTube.getArray">
-<span class="sig-name descname"><span class="pre">getArray</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.getArray" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getArray</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.getArray" title="Link to this definition">#</a></dt>
 <dd><p>Return the array of of points where the peaks should be in Metres</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ideal_tube.IdealTube.getFunctionalForms">
-<span class="sig-name descname"><span class="pre">getFunctionalForms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.getFunctionalForms" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">getFunctionalForms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.getFunctionalForms" title="Link to this definition">#</a></dt>
 <dd><p>Return the array of of points where the peaks should be in Metres</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ideal_tube.IdealTube.setArray">
-<span class="sig-name descname"><span class="pre">setArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.setArray" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.setArray" title="Link to this definition">#</a></dt>
 <dd><p>Construct an ideal tube directly from an array of positions</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -607,13 +850,13 @@ Then call another function to populate it.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ideal_tube.IdealTube.setForm">
-<span class="sig-name descname"><span class="pre">setForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.setForm" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.setForm" title="Link to this definition">#</a></dt>
 <dd><p>Define the functional form for the peaks</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ideal_tube.IdealTube.setPositionsAndForm">
-<span class="sig-name descname"><span class="pre">setPositionsAndForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.setPositionsAndForm" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setPositionsAndForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ideal_tube.IdealTube.setPositionsAndForm" title="Link to this definition">#</a></dt>
 <dd><p>Construct and ideal tube directly from an array of positions and functional forms</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -632,32 +875,163 @@ Then call another function to populate it.</p>
 </section>
 
 
-    </div>
-      
-  </div>
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Calibration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Calibration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="CreateBackToBackParameters.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Create Back To Back Parameters</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
-<footer class="footer">
-  <div class="container">
-      <ul id="footer-nav" class="nav navbar-nav">
-      
-      
-          
+                </footer>
+              
+            </div>
             
-  <li>
-    <a href="Calibration.html" title="Previous Chapter: Calibration"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Calibration</span>
-    </a>
-  </li>
-  <li>
-    <a href="CreateBackToBackParameters.html" title="Next Chapter: Create Back To Back Parameters"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Create Back T... &raquo;</span>
-    </a>
-  </li>
-          
-       
-          <li><a href="#">Back to top</a></li>
-       </ul>
-    <p>
-    </p>
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
   </div>
-</footer>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_calib.constructIdealTubeFromRealTube"><code class="docutils literal notranslate"><span class="pre">constructIdealTubeFromRealTube()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_calib.correct_tube"><code class="docutils literal notranslate"><span class="pre">correct_tube()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_calib.correct_tube_to_ideal_tube"><code class="docutils literal notranslate"><span class="pre">correct_tube_to_ideal_tube()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_calib.create_tube_calibration_ws_by_ws_index_list"><code class="docutils literal notranslate"><span class="pre">create_tube_calibration_ws_by_ws_index_list()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_calib.getCalibratedPixelPositions"><code class="docutils literal notranslate"><span class="pre">getCalibratedPixelPositions()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_calib.getCalibration"><code class="docutils literal notranslate"><span class="pre">getCalibration()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_calib.getCalibrationFromPeakFile"><code class="docutils literal notranslate"><span class="pre">getCalibrationFromPeakFile()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_calib.getPoints"><code class="docutils literal notranslate"><span class="pre">getPoints()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_calib.get_ideal_tube_from_n_slits"><code class="docutils literal notranslate"><span class="pre">get_ideal_tube_from_n_slits()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_calib.read_peak_file"><code class="docutils literal notranslate"><span class="pre">read_peak_file()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tubespec">TubeSpec</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec"><code class="docutils literal notranslate"><span class="pre">TubeSpec</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.getComponent"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getComponent()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.getComponents"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getComponents()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.getDetectorInfoFromTube"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getDetectorInfoFromTube()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.getNumTubes"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getNumTubes()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.getTube"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getTube()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.getTubeByString"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getTubeByString()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.getTubeLength"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getTubeLength()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.getTubeName"><code class="docutils literal notranslate"><span class="pre">TubeSpec.getTubeName()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.isTube"><code class="docutils literal notranslate"><span class="pre">TubeSpec.isTube()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.searchForTubes"><code class="docutils literal notranslate"><span class="pre">TubeSpec.searchForTubes()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.setTubeSpecByString"><code class="docutils literal notranslate"><span class="pre">TubeSpec.setTubeSpecByString()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_spec.TubeSpec.setTubeSpecByStringArray"><code class="docutils literal notranslate"><span class="pre">TubeSpec.setTubeSpecByStringArray()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tubecalibfitparams">TubeCalibFitParams</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tube_calib_fit_params.TubeCalibFitParams"><code class="docutils literal notranslate"><span class="pre">TubeCalibFitParams</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idealtube">IdealTube</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal_tube.IdealTube"><code class="docutils literal notranslate"><span class="pre">IdealTube</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal_tube.IdealTube.constructTubeFor3PointsMethod"><code class="docutils literal notranslate"><span class="pre">IdealTube.constructTubeFor3PointsMethod()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal_tube.IdealTube.getArray"><code class="docutils literal notranslate"><span class="pre">IdealTube.getArray()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal_tube.IdealTube.getFunctionalForms"><code class="docutils literal notranslate"><span class="pre">IdealTube.getFunctionalForms()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal_tube.IdealTube.setArray"><code class="docutils literal notranslate"><span class="pre">IdealTube.setArray()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal_tube.IdealTube.setForm"><code class="docutils literal notranslate"><span class="pre">IdealTube.setForm()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal_tube.IdealTube.setPositionsAndForm"><code class="docutils literal notranslate"><span class="pre">IdealTube.setPositionsAndForm()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/techniques/Calibration_implementation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
   </body>
 </html>

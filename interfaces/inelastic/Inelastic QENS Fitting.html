@@ -1,133 +1,425 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../../">
+
+<html lang="en" data-content_root="../../" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Inelastic QENS Fitting</title>
+    <title>Inelastic QENS Fitting &#8212; MantidProject 6.15.20260313.1415 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=4468db6d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=9aca6aaf" />
-    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <script src="../../_static/documentation_options.js?v=0aa75a15"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=f985d54a"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'interfaces/inelastic/Inelastic QENS Fitting';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Muon Feature Flags" href="../muon/Feature%20Flags.html" />
     <link rel="prev" title="Inelastic Data Processor" href="Inelastic%20Data%20Processor.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="../../_static/images/favicon.ico">
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-  ga('create', 'UA-59110517-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-
-  </head><body>
-
-
-
-
-
-<nav id="navbar" class="navbar navbar-default navbar-fixed-top">
-  <div id="navbar-main" class="container">
-    <ul class="nav navbar-nav">
-      
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <li>
-        <a class="navbar-brand" href="http://www.mantidproject.org">
-         </a>
-      </li>
-      <span class="navbar-text navbar-version pull-left"><b>6.15</b></span>
-    </ul>
-
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="collapse navbar-collapse nav-collapse">
-    
-      <ul class="nav navbar-nav">
-        <li class="divider-vertical"></li>
-        
-          <li>
-            <a href="https://www.mantidproject.org">Home</a>
-          </li>
-          <li>
-            <a href="https://download.mantidproject.org">Download</a>
-          </li>
-          <li>
-            <a href="https://docs.mantidproject.org">Documentation</a>
-          </li>
-          <li>
-            <a href="https://www.mantidproject.org/contact">Contact Us</a>
-          </li>
-        
-        
-          
-          
-        
-        
-        
-        
-      </ul>
-            
-<form class="navbar-form navbar-right" action="../../search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form>
-          </div>
-  </div> <!-- /navbar-main -->
-<div id="navbar-breadcrumbs" class="related" role="navigation" aria-label="related navigation">
-  <h3>Navigation</h3>
-  <ul>
-    <li class="nav-item nav-item-0">
-      <a href="../../index.html">Documentation</a>
-         &#187;
-    </li>
-    
-    <li class="nav-item nav-item-1">
-      <a href="../index.html" accesskey="U">
-        Interfaces
-      </a>
-       &#187;
-    </li>
-    
-    
-    
-    
-    <li class="nav-item nav-item-this">
-      <a href="">Inelastic QENS Fitting</a>
-    </li>
-    
-    
-  </ul>
-</div>
-</nav>
+  </dialog>
 
-<div class="container">
-  <div class="row">
-    <div class="body col-md-12 content" role="main">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  <img src="../../_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="../../_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
       
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../isis_sans/ISIS%20SANS.html">ISIS SANS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../isis_sans/Batch%20File%20Format.html">Batch File Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../isis_sans/Beam%20Centre%20Tab.html">Beam centre tab</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../isis_sans/Diagnostic%20Tab.html">Diagnostic tab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../isis_sans/Runs%20Tab.html">Runs Tab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../isis_sans/Settings%20Tab.html">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../isis_sans/Sum%20Runs.html">Run Summation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../isis_sans/User%20File%20Format.html">User File Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../isis_sans/Using%20The%20SANS%20GUI.html">Using The SANS GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../isis_sans/sans_save_other.html">Save Other</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffraction/Engineering%20Diffraction.html">Engineering Diffraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffraction/HFIR%20Single%20Crystal%20Reduction.html">HFIR Single Crystal Reduction Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffraction/SCD%20Event%20Data%20Reduction.html">SCD Event Data Reduction interface(MantidEV)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/ALFView.html">ALFView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/Crystal%20Field%20Python%20Interface.html">Crystal Field Python Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/DGS%20Planner.html">DGS Planner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/MSlice.html">MSlice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/PyChop.html">PyChop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../framework/ManageUserDirectories.html">Manage User Directories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/Fit%20Script%20Generator.html">Fit Script Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/Sample%20Transmission%20Calculator.html">Sample Transmission Calculator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/Step%20Scan%20Analysis.html">Step Scan Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ILL/DrILL.html">DrILL interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ILL/Simple%20Scan%20Viewer.html">SimpleScanViewer Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../indirect/Indirect%20Data%20Reduction.html">Indirect Data Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../indirect/Indirect%20Diffraction.html">Indirect Diffraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../indirect/Indirect%20Settings.html">Indirect Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../indirect/Indirect%20Simulation.html">Indirect Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../indirect/Indirect%20Tools.html">Indirect Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inelastic%20Bayes%20Fitting.html">Inelastic Bayes Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inelastic%20Corrections.html">Inelastic Corrections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inelastic%20Data%20Processor.html">Inelastic Data Processor</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Inelastic QENS Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/Feature%20Flags.html">Muon Feature Flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/Frequency%20Domain%20Analysis.html">Frequency Domain Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/Muon%20ALC.html">Muon ALC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/Muon%20Analysis.html">Muon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/Muon%20Elemental%20Analysis.html">Muon Elemental Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/frequency_plotting_window.html">Frequency Plotting Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/muon_analysis_plotting_window.html">Muon Analysis Plotting Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/muon_corrections_tab.html">Corrections Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/muon_fitting_tab.html">Fitting Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/muon_grouping_tab.html">Grouping Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/muon_home_tab.html">Home Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/muon_model_fitting_tab.html">Model Fitting Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/muon_phase_table_tab.html">Phase Table Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/muon_plotting_window.html">Plotting Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/muon_results_tab.html">Results Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/muon_sequential_fitting_tab.html">Sequential Fitting Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../muon/muon_transform_tab.html">Transformation Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reflectometry/ISIS%20Reflectometry.html">ISIS Reflectometry Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utility/Filter%20Events.html">Filter Events Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utility/QE%20Coverage.html">QE Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utility/TOF%20Converter.html">Time of Flight Converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/DNS%20Powder%20Elastic.html">DNS Powder Elastic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/DNS%20Powder%20TOF.html">DNS Powder TOF</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../direct/dns_reduction/DNS%20Reduction.html">DNS Reduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/DNS%20Single%20Crystal%20Elastic.html">DNS Single Crystal Elastic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/dns_powder_elastic_options_tab.html">DNS Powder Elastic - Options Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/dns_powder_elastic_plotting_tab.html">DNS Powder Elastic - Plotting Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/dns_powder_elastic_script_generator_tab.html">DNS Powder Elastic - Script Generator Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/dns_powder_tof_data_tab.html">DNS Reduction - Data Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/dns_powder_tof_options_tab.html">DNS Powder TOF - Options Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/dns_powder_tof_paths_tab.html">DNS Reduction - Paths Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/dns_powder_tof_plotting_tab.html">DNS Powder TOF - Plotting Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/dns_powder_tof_script_generator_tab.html">DNS Powder TOF - Script Generator Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/dns_single_crystal_elastic_options_tab.html">DNS Single Crystal Elastic - Options Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/dns_single_crystal_elastic_plotting_tab.html">DNS Single Crystal Elastic - Plotting Tab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../direct/dns_reduction/dns_single_crystal_elastic_script_generator_tab.html">DNS Single Crystal Elastic - Script Generator Tab</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Interfaces</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Inelastic QENS Fitting</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="inelastic-qens-fitting">
-<span id="interface-inelastic-qens-fitting"></span><h1>Inelastic QENS Fitting<a class="headerlink" href="#inelastic-qens-fitting" title="Link to this heading">¶</a></h1>
+<span id="interface-inelastic-qens-fitting"></span><h1>Inelastic QENS Fitting<a class="headerlink" href="#inelastic-qens-fitting" title="Link to this heading">#</a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>The Inelastic QENS Fitting interface is a collection of tools within Mantid
 for analysing reduced data from indirect geometry spectrometers, such as IRIS and
 OSIRIS and data from direct geometry spectrometer LET. Note that this interface
@@ -139,7 +431,7 @@ workspaces (<em>_sqw</em>) created using either the Indirect Data Reduction inte
 taken from a bespoke algorithm or auto reduction.</p>
 </section>
 <section id="qens-fitting-tabs">
-<h2>QENS Fitting tabs<a class="headerlink" href="#qens-fitting-tabs" title="Link to this heading">¶</a></h2>
+<h2>QENS Fitting tabs<a class="headerlink" href="#qens-fitting-tabs" title="Link to this heading">#</a></h2>
 <p>There are four QENS Fitting interfaces that share a common layout and features:</p>
 <ul class="simple">
 <li><p>MSD</p></li>
@@ -150,7 +442,7 @@ taken from a bespoke algorithm or auto reduction.</p>
 <p>Each tab also has a few unique options. These interfaces do not support GroupWorkspaces
 as input.</p>
 <section id="input">
-<h3>Input<a class="headerlink" href="#input" title="Link to this heading">¶</a></h3>
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading">#</a></h3>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../../_images/ConvFitDataSelection.png"><img alt="../../_images/ConvFitDataSelection.png" src="../../_images/ConvFitDataSelection.png" style="height: 200px;" />
 </a>
@@ -164,7 +456,7 @@ selected. Above the preview plots there is a drop-down menu with which can be us
 will be shown in the plots.</p>
 </section>
 <section id="sequential-and-simultaneous-fits">
-<h3>Sequential and Simultaneous fits<a class="headerlink" href="#sequential-and-simultaneous-fits" title="Link to this heading">¶</a></h3>
+<h3>Sequential and Simultaneous fits<a class="headerlink" href="#sequential-and-simultaneous-fits" title="Link to this heading">#</a></h3>
 <p>There are options to fit your selected spectra either Sequentially or Simultaneously.</p>
 <p>A <a class="reference internal" href="../../algorithms/IqtFitSequential-v1.html#algm-iqtfitsequential"><span class="std std-ref">sequential fit</span></a> will fit each spectra one after another. By default this will use the end values of one fit as the starting values of the next. This behaviour can be toggled
 using the sequential/individual option.</p>
@@ -173,7 +465,7 @@ parameters which are expected to be constant across the data range can be tied a
 fitted with better statistics and hence reduced errors.</p>
 </section>
 <section id="fit-function">
-<h3>Fit Function<a class="headerlink" href="#fit-function" title="Link to this heading">¶</a></h3>
+<h3>Fit Function<a class="headerlink" href="#fit-function" title="Link to this heading">#</a></h3>
 <figure class="align-left">
 <a class="reference internal image-reference" href="../../_images/ConvFitFunctionSelection.png"><img alt="../../_images/ConvFitFunctionSelection.png" src="../../_images/ConvFitFunctionSelection.png" style="height: 300px;" />
 </a>
@@ -190,7 +482,7 @@ using the available options under ‘Constraint’.</p>
 spectrum.</p>
 </section>
 <section id="settings">
-<h3>Settings<a class="headerlink" href="#settings" title="Link to this heading">¶</a></h3>
+<h3>Settings<a class="headerlink" href="#settings" title="Link to this heading">#</a></h3>
 <p>The bottom half of the Fit Function section contains a table of settings which control what sort of fit is done. These are:</p>
 <dl class="simple">
 <dt>Fitting</dt><dd><p>Controls whether to do a sequential or simultaneous fit.</p>
@@ -210,7 +502,7 @@ spectrum.</p>
 </dl>
 </section>
 <section id="preview-plots">
-<h3>Preview Plots<a class="headerlink" href="#preview-plots" title="Link to this heading">¶</a></h3>
+<h3>Preview Plots<a class="headerlink" href="#preview-plots" title="Link to this heading">#</a></h3>
 <figure class="align-left">
 <a class="reference internal image-reference" href="../../_images/ConvFitPlotPreview.png"><img alt="../../_images/ConvFitPlotPreview.png" src="../../_images/ConvFitPlotPreview.png" style="height: 300px;" />
 </a>
@@ -227,7 +519,7 @@ a separate plotting window.</p>
 <p>The ‘Plot Guess’ check-box can be used to enable/disable the guess curve in the top preview plot.</p>
 </section>
 <section id="output">
-<h3>Output<a class="headerlink" href="#output" title="Link to this heading">¶</a></h3>
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading">#</a></h3>
 <p>The results of the fit may be plotted and saved under the ‘Output’ section of the fitting interfaces.</p>
 <p>Next to the ‘Plot’ label, you can select a parameter to plot and then click ‘Plot’ to plot it with error
 bars across the fit spectra (if multiple data-sets have been used, a separate plot will be produced for each data-set).
@@ -241,7 +533,7 @@ produced from a fit to a single spectrum. See the algorithm <a class="reference 
 <p>Clicking the ‘Save Result’ button will save the result of the fit to your default save location.</p>
 </section>
 <section id="action-buttons">
-<h3>Action Buttons<a class="headerlink" href="#action-buttons" title="Link to this heading">¶</a></h3>
+<h3>Action Buttons<a class="headerlink" href="#action-buttons" title="Link to this heading">#</a></h3>
 <p>There are several buttons on the bottom left of every tab in the interface. These are:</p>
 <dl class="simple">
 <dt>Settings</dt><dd><p>Opens the <a class="reference internal" href="../indirect/Indirect%20Settings.html#inelastic-interface-settings"><span class="std std-ref">Settings</span></a> GUI which allows you to
@@ -260,7 +552,7 @@ and default save directory and enable/disable data archive search.</p>
 </section>
 </section>
 <section id="msd">
-<h2>MSD<a class="headerlink" href="#msd" title="Link to this heading">¶</a></h2>
+<h2>MSD<a class="headerlink" href="#msd" title="Link to this heading">#</a></h2>
 <p>Given either a saved NeXus file, or workspace generated using the Elwin tab, this
 tab fits <span class="math notranslate nohighlight">\(intensity\)</span> vs. <span class="math notranslate nohighlight">\(Q\)</span> with one of three functions for each
 run specified to give the Mean Square Displacement (MSD). It then plots the MSD
@@ -287,7 +579,7 @@ equal to zero.</p>
 </a>
 </figure>
 <section id="msd-example-workflow">
-<span id="msdfit-example-workflow"></span><h3>MSD Example Workflow<a class="headerlink" href="#msd-example-workflow" title="Link to this heading">¶</a></h3>
+<span id="msdfit-example-workflow"></span><h3>MSD Example Workflow<a class="headerlink" href="#msd-example-workflow" title="Link to this heading">#</a></h3>
 <p>The MSD tab operates on <code class="docutils literal notranslate"><span class="pre">_eq</span></code> files. The files used in this workflow are produced on the Elwin
 tab as seen in the <a class="reference internal" href="Inelastic%20Data%20Processor.html#elwin-example-workflow"><span class="std std-ref">Elwin Example Workflow</span></a>.</p>
 <ol class="arabic simple">
@@ -316,7 +608,7 @@ Msd parameter which can be found within the _Results group workspace.</p></li>
 </section>
 </section>
 <section id="i-q-t">
-<span id="iqtfit"></span><h2>I(Q, t)<a class="headerlink" href="#i-q-t" title="Link to this heading">¶</a></h2>
+<span id="iqtfit"></span><h2>I(Q, t)<a class="headerlink" href="#i-q-t" title="Link to this heading">#</a></h2>
 <p>I(Q, t) provides a simplified interface for controlling various fitting
 functions (see the <a class="reference internal" href="../../algorithms/Fit-v1.html#algm-fit"><span class="std std-ref">Fit</span></a> algorithm for more info). The functions
 are also available via the fit wizard.</p>
@@ -327,7 +619,7 @@ are also available via the fit wizard.</p>
 </a>
 </figure>
 <section id="i-q-t-example-workflow">
-<span id="iqtfit-example-workflow"></span><h3>I(Q, t)  Example Workflow<a class="headerlink" href="#i-q-t-example-workflow" title="Link to this heading">¶</a></h3>
+<span id="iqtfit-example-workflow"></span><h3>I(Q, t)  Example Workflow<a class="headerlink" href="#i-q-t-example-workflow" title="Link to this heading">#</a></h3>
 <p>The I(Q, t) tab operates on <code class="docutils literal notranslate"><span class="pre">_iqt</span></code> files. The files used in this workflow are produced on the
 I(Q, t) tab as seen in the <a class="reference internal" href="Inelastic%20Data%20Processor.html#iqt-example-workflow"><span class="std std-ref">I(Q, t) Example Workflow</span></a>.</p>
 <ol class="arabic simple">
@@ -354,7 +646,7 @@ algorithm for more details. Note that the output workspace is inserted into the 
 </section>
 </section>
 <section id="convolution">
-<span id="convfit"></span><h2>Convolution<a class="headerlink" href="#convolution" title="Link to this heading">¶</a></h2>
+<span id="convfit"></span><h2>Convolution<a class="headerlink" href="#convolution" title="Link to this heading">#</a></h2>
 <p>Convolution provides a simplified interface for controlling
 various fitting functions (see the <a class="reference internal" href="../../algorithms/Fit-v1.html#algm-fit"><span class="std std-ref">Fit</span></a> algorithm for more
 info). The functions are also available via the fit wizard.</p>
@@ -375,7 +667,7 @@ preview plot.</p>
 </a>
 </figure>
 <section id="convolution-options">
-<h3>Convolution Options<a class="headerlink" href="#convolution-options" title="Link to this heading">¶</a></h3>
+<h3>Convolution Options<a class="headerlink" href="#convolution-options" title="Link to this heading">#</a></h3>
 <dl class="simple">
 <dt>Sample</dt><dd><p>Either a reduced file (<em>_red.nxs</em>) or workspace (<em>_red</em>) or an <span class="math notranslate nohighlight">\(S(Q,
 \omega)\)</span> file (<em>_sqw.nxs</em>, <em>_sqw.dave</em>) or workspace (<em>_sqw</em>).</p>
@@ -388,7 +680,7 @@ a warning will be provided to the user when loading the data.</p>
 </dl>
 </section>
 <section id="convolution-example-workflow">
-<span id="convfit-example-workflow"></span><h3>Convolution Example Workflow<a class="headerlink" href="#convolution-example-workflow" title="Link to this heading">¶</a></h3>
+<span id="convfit-example-workflow"></span><h3>Convolution Example Workflow<a class="headerlink" href="#convolution-example-workflow" title="Link to this heading">#</a></h3>
 <p>The Convolution tab allows <code class="docutils literal notranslate"><span class="pre">_red</span></code> and <code class="docutils literal notranslate"><span class="pre">_sqw</span></code> for its sample file, and allows <code class="docutils literal notranslate"><span class="pre">_red</span></code>, <code class="docutils literal notranslate"><span class="pre">_sqw</span></code> and
 <code class="docutils literal notranslate"><span class="pre">_res</span></code> for the resolution file. The sample file used in this workflow can be produced using the run
 number 26176 on the <a class="reference internal" href="../indirect/Indirect%20Data%20Reduction.html#interface-indirect-data-reduction"><span class="std std-ref">Indirect Data Reduction</span></a> interface in the ISIS
@@ -415,11 +707,11 @@ the <a class="reference internal" href="#fqfit-example-workflow"><span class="st
 </ol>
 </section>
 <section id="theory">
-<h3>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h3>
+<h3>Theory<a class="headerlink" href="#theory" title="Link to this heading">#</a></h3>
 <p>For more on the theory of Convolution see the <a class="reference internal" href="../../concepts/ConvFit.html#convfitconcept"><span class="std std-ref">Conv Fit</span></a> concept page.</p>
 </section>
 <section id="convolution-fitting-model">
-<h3>Convolution fitting model<a class="headerlink" href="#convolution-fitting-model" title="Link to this heading">¶</a></h3>
+<h3>Convolution fitting model<a class="headerlink" href="#convolution-fitting-model" title="Link to this heading">#</a></h3>
 <p>The model used to perform fitting in Convolution is described in the following tree, note that
 everything under the Model section is optional and determined by the <em>Fit Type</em>
 and <em>Use Delta Function</em> options in the interface.</p>
@@ -488,7 +780,7 @@ formula <span class="math notranslate nohighlight">\(((x * 11.606) / T) / (1 - e
 </section>
 </section>
 <section id="function-q">
-<span id="fqfit"></span><h2>Function(Q)<a class="headerlink" href="#function-q" title="Link to this heading">¶</a></h2>
+<span id="fqfit"></span><h2>Function(Q)<a class="headerlink" href="#function-q" title="Link to this heading">#</a></h2>
 <p>One of the models used to interpret diffusion is that of jump diffusion in which
 it is assumed that an atom remains at a given site for a time <span class="math notranslate nohighlight">\(\tau\)</span>; and
 then moves rapidly, that is, in a time negligible compared to <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
@@ -497,7 +789,7 @@ EISF. This is done by means of the
 <a class="reference internal" href="../../algorithms/QENSFitSequential-v1.html#algm-qensfitsequential"><span class="std std-ref">QENSFitSequential</span></a> algorithm.</p>
 <p>This interface can load <span class="math notranslate nohighlight">\(A0\)</span>, <span class="math notranslate nohighlight">\(EISF\)</span>, <span class="math notranslate nohighlight">\(Width\)</span> or <span class="math notranslate nohighlight">\(FWHM\)</span> fitting
 parameters. The fit types available for each of these are listed below:</p>
-<table class="docutils align-default">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Fit Parameter</p></th>
 <th class="head"><p>Produced on</p></th>
@@ -523,12 +815,13 @@ parameters. The fit types available for each of these are listed below:</p>
 </tr>
 </tbody>
 </table>
+</div>
 <figure class="align-default">
 <a class="screenshot reference internal image-reference" href="../../_images/QENS_Fitting_tabFunctionQ_widget.png"><img alt="../../_images/QENS_Fitting_tabFunctionQ_widget.png" class="screenshot" src="../../_images/QENS_Fitting_tabFunctionQ_widget.png" style="width: 450px;" />
 </a>
 </figure>
 <section id="function-q-example-workflow">
-<span id="fqfit-example-workflow"></span><h3>Function(Q) Example Workflow<a class="headerlink" href="#function-q-example-workflow" title="Link to this heading">¶</a></h3>
+<span id="fqfit-example-workflow"></span><h3>Function(Q) Example Workflow<a class="headerlink" href="#function-q-example-workflow" title="Link to this heading">#</a></h3>
 <p>The Function(Q) tab operates on <code class="docutils literal notranslate"><span class="pre">_result</span></code> files which can be produced on the Convolution tab.  The
 sample file used in this workflow is produced on the Convolution tab as seen in the
 <a class="reference internal" href="#convfit-example-workflow"><span class="std std-ref">Convolution Example Workflow</span></a>.</p>
@@ -550,7 +843,7 @@ option is disabled as the output workspace ending in _Result only has one data p
 </section>
 </section>
 <section id="bayesian-fabada-minimizer">
-<h2>Bayesian (FABADA minimizer)<a class="headerlink" href="#bayesian-fabada-minimizer" title="Link to this heading">¶</a></h2>
+<h2>Bayesian (FABADA minimizer)<a class="headerlink" href="#bayesian-fabada-minimizer" title="Link to this heading">#</a></h2>
 <p>There is the option to perform Bayesian analysis on the I(Q, t) and Convolution
 tabs on this interface by using the <a class="reference internal" href="../../concepts/FABADA.html#fabada"><span class="std std-ref">FABADA</span></a> fitting minimizer, however in
 order to to use this you will need to use better starting parameters than the
@@ -587,32 +880,150 @@ then it is possible to plot this PDF data using the output options at the bottom
 </section>
 
 
-    </div>
-      
-  </div>
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Inelastic%20Data%20Processor.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Inelastic Data Processor</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../muon/Feature%20Flags.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Muon Feature Flags</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
-<footer class="footer">
-  <div class="container">
-      <ul id="footer-nav" class="nav navbar-nav">
-      
-      
-          
+                </footer>
+              
+            </div>
             
-  <li>
-    <a href="Inelastic%20Data%20Processor.html" title="Previous Chapter: Inelastic Data Processor"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Inelastic Dat...</span>
-    </a>
-  </li>
-  <li>
-    <a href="../muon/Feature%20Flags.html" title="Next Chapter: Muon Feature Flags"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Muon Feature Flags &raquo;</span>
-    </a>
-  </li>
-          
-       
-          <li><a href="#">Back to top</a></li>
-       </ul>
-    <p>
-    </p>
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
   </div>
-</footer>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qens-fitting-tabs">QENS Fitting tabs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input">Input</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sequential-and-simultaneous-fits">Sequential and Simultaneous fits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-function">Fit Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settings">Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-plots">Preview Plots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#action-buttons">Action Buttons</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#msd">MSD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msd-example-workflow">MSD Example Workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-q-t">I(Q, t)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-q-t-example-workflow">I(Q, t)  Example Workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution">Convolution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-options">Convolution Options</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-example-workflow">Convolution Example Workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theory">Theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-fitting-model">Convolution fitting model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-q">Function(Q)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-q-example-workflow">Function(Q) Example Workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-fabada-minimizer">Bayesian (FABADA minimizer)</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/interfaces/inelastic/Inelastic QENS Fitting.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
   </body>
 </html>

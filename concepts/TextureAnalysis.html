@@ -1,131 +1,456 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Texture Analysis Theory</title>
+    <title>Texture Analysis Theory &#8212; MantidProject 6.15.20260313.1415 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=4468db6d" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9aca6aaf" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-    <script src="../_static/documentation_options.js?v=0aa75a15"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=f985d54a"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/TextureAnalysis';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Units" href="UnitFactory.html" />
     <link rel="prev" title="Table Workspaces" href="TableWorkspaces.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="../_static/images/favicon.ico">
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-  ga('create', 'UA-59110517-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-
-  </head><body>
-
-
-
-
-
-<nav id="navbar" class="navbar navbar-default navbar-fixed-top">
-  <div id="navbar-main" class="container">
-    <ul class="nav navbar-nav">
-      
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <li>
-        <a class="navbar-brand" href="http://www.mantidproject.org">
-         </a>
-      </li>
-      <span class="navbar-text navbar-version pull-left"><b>6.15</b></span>
-    </ul>
-
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="collapse navbar-collapse nav-collapse">
-    
-      <ul class="nav navbar-nav">
-        <li class="divider-vertical"></li>
-        
-          <li>
-            <a href="https://www.mantidproject.org">Home</a>
-          </li>
-          <li>
-            <a href="https://download.mantidproject.org">Download</a>
-          </li>
-          <li>
-            <a href="https://docs.mantidproject.org">Documentation</a>
-          </li>
-          <li>
-            <a href="https://www.mantidproject.org/contact">Contact Us</a>
-          </li>
-        
-        
-          
-          
-        
-        
-        
-        
-      </ul>
-            
-<form class="navbar-form navbar-right" action="../search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form>
-          </div>
-  </div> <!-- /navbar-main -->
-<div id="navbar-breadcrumbs" class="related" role="navigation" aria-label="related navigation">
-  <h3>Navigation</h3>
-  <ul>
-    <li class="nav-item nav-item-0">
-      <a href="../index.html">Documentation</a>
-         &#187;
-    </li>
-    
-    <li class="nav-item nav-item-1">
-      <a href="index.html" accesskey="U">
-        Concepts
-      </a>
-       &#187;
-    </li>
-    
-    
-    
-    
-    <li class="nav-item nav-item-this">
-      <a href="">Texture Analysis Theory</a>
-    </li>
-    
-    
-  </ul>
-</div>
-</nav>
+  </dialog>
 
-<div class="container">
-  <div class="row">
-    <div class="body col-md-12 content" role="main">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  <img src="../_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="../_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
       
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="AbinsDataFormats.html">Abins Data Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AbinsImplementation.html">Abins: Implementation details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AbinsInterpolatedBroadening.html">Abins: Fast approximate broadening with “interpolate”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AbsorptionAndMultipleScattering.html">Absorption and Multiple Scattering Corrections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Algorithm.html">Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalysisDataService.html">Analysis Data Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CaChannel.html">CaChannel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Calibration.html">Calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ComponentInfo.html">ComponentInfo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ConvFit.html">Conv Fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CreateanIDF.html">Create an IDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CrystalField.html">Crystal Field Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CrystalStructureAndReflections.html">Crystal structure and reflections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DataService.html">Data Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DetectorInfo.html">DetectorInfo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DiffractionCalibrationWorkspace.html">Diffraction Calibration Workspace</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="DynamicFactory.html">Dynamic Factory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DynamicalStructureFactorFromAbInitio.html">Ab initio calculation of dynamical structure factor (S)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ElementalAnalysisUsingNegativeMuons.html">Elemental analysis using negative muons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ErrorPropagation.html">Error Propagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EventFiltering.html">Event Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EventWorkspace.html">Event Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FABADA.html">FABADA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FacilitiesFile.html">Facilities File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FitConstraint.html">Fit Constraint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FitFunctionsInPython.html">Fit Functions In Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fitting.html">Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FittingMinimizers.html">Which minimizers to use with Mantid</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="FittingMinimizersComparisonDetailed.html">Comparison of minimizers for individual test problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FittingMinimizersWeightedComparisonDetailed.html">Comparison of minimizers, with weighted least squares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FractionalRebinning.html">Fractional Rebinning (RebinnedOutput Workspaces)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FrameworkManager.html">Framework Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GeometryofPosition.html">Geometry of Position</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GeometryofShape.html">Geometry of Shape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HistogramData.html">Transition to the HistogramData module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToDefineGeometricShape.html">How To Define Geometric Shape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Howtoresetdetectorscalibration.html">How to reset detectors calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Instrument.html">Instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstrumentAccessLayers.html">Instrument Access via SpectrumInfo, DetectorInfo, ComponentInfo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstrumentDataService.html">Instrument Data Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstrumentDefinitionFile.html">Instrument Definition File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstrumentParameterFile.html">Instrument Parameter File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="KafkaLiveStreams.html">Listening on Kafka Live Streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LETSampleIDF.html">IDF ISIS LET annotated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lattice.html">Lattice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LeBailFit.html">Theory of Le Bail Fit</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="LeanElasticPeaksWorkspace.html">LeanElasticPeaks Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MDHistoWorkspace.html">MD Histogram Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MDNorm.html">Multi dimensional neutron scattering data normalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MDWorkspace.html">MD Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MPI.html">MPI in Mantid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Materials.html">Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MatrixWorkspace.html">Matrix Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="McStas.html">McStas - A neutron ray-trace simulation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModulatedStructure.html">Modulated Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NexusFile.html">Nexus File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ORNL_SANS_Reduction.html">Reduction for ORNL SANS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PSIMuonBinFile.html">PSI Muon Bin File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PeaksWorkspace.html">Peaks Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PipInstall.html">Pip Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Plugin.html">Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PointAndSpaceGroups.html">Point and space groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Project.html">Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProjectRecovery.html">Project Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Properties.html">Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PropertiesFile.html">Properties File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PythonNotebook.html">Access Mantid in Python and Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RAWFile.html">RAW File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ragged_Workspace.html">Ragged Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RectangularDetector.html">Rectangular Detector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Run.html">Run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SANS2DSampleIDF.html">IDF ISIS SANS2D annotated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sample.html">Sample</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SampleEnvironment.html">Sample Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SharedPointer.html">Shared Pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SymmetryGroups.html">Symmetry groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TableWorkspaces.html">Table Workspaces</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Texture Analysis Theory</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="UnitFactory.html">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UsingXMLSchema.html">Using XML Schemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkflowAlgorithm.html">Workflow Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkingWithWorspaces.html">Working with Workspaces in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Workspace.html">Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Workspace2D.html">Workspace2D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WorkspaceGroup.html">Workspace Group</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="calibration/index.html">Calibration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="calibration/AfterTubeCalibration.html">After Tube Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/CalFile.html">CalFile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/EngineeringCalibration.html">Engineering Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/PSDTubeCalibration.html">PSD Tube Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/PowderDiffractionCalibration.html">Time-of-Flight Powder Diffraction Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/PythonCodeForCalibration.html">Python Code For Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/SingleCrystalDiffractionPanelCalibration.html">Single Crystal Diffraction Panel Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/TubeCalibFitParams.html">TubeCalibFitParams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/TubeCalibrationCorelli.html">Corelli Tube Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/TubeCalibrationExamples.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/TubeCalibrationIntroduction.html">Tube Calibration Introduction</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="calibration/TubeSpec.html">TubeSpec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/Tubecalib.html">Tube calib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration/VisualizationofCalibratedTubes.html">Visualization of Calibrated Tubes</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Concepts</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Texture Analysis Theory</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="texture-analysis-theory">
-<span id="textureanalysis"></span><h1><a class="toc-backref" href="#id11" role="doc-backlink">Texture Analysis Theory</a><a class="headerlink" href="#texture-analysis-theory" title="Link to this heading">¶</a></h1>
+<span id="textureanalysis"></span><h1><a class="toc-backref" href="#id11" role="doc-backlink">Texture Analysis Theory</a><a class="headerlink" href="#texture-analysis-theory" title="Link to this heading">#</a></h1>
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
@@ -155,14 +480,14 @@
 </ul>
 </nav>
 <section id="introduction-to-texture-analysis">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">Introduction to Texture Analysis</a><a class="headerlink" href="#introduction-to-texture-analysis" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Introduction to Texture Analysis</a><a class="headerlink" href="#introduction-to-texture-analysis" title="Link to this heading">#</a></h2>
 <p>For argument’s sake, let’s say you have some sample and you are interested in knowing it’s crystallographic texture – that is to say, you want to know what
 the relationship is between the macroscopic dimensions of your sample and some given crystallographic plane e.g. <span class="math notranslate nohighlight">\((100)\)</span>?</p>
 <figure class="align-default" id="id3">
 <img alt="An example cuboid sample and a corresponding mantid representation" src="../_images/texture-example-sample.png" />
 <figcaption>
 <p><span class="caption-text">Figure 1 - An example cuboid sample and a corresponding mantid representation, the intrinsic directions corresponding to: the Rolling Direction (RD);
-the Traverse Direction (TD); and the Normal Direction (ND), are shown with the red, blue and green arrows.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+the Traverse Direction (TD); and the Normal Direction (ND), are shown with the red, blue and green arrows.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Taking the above sample as example, you can see that, by virtue of being a cuboid, the sample has a unique height, width and length.
@@ -192,7 +517,7 @@ how the experimental data collection is done and how this data is processed to c
 within Mantid using some scripts as example.</p>
 </section>
 <section id="interpreting-pole-figures">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Interpreting Pole Figures</a><a class="headerlink" href="#interpreting-pole-figures" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Interpreting Pole Figures</a><a class="headerlink" href="#interpreting-pole-figures" title="Link to this heading">#</a></h2>
 <p>A way to interpret the pole figure is to imagine that your sample is placed within a sphere.
 Each unique direction relative to your sample will intercept the sphere at a unique point – these points are the poles (like the North and South Poles of the Earth).</p>
 <p>If we imagine being able to sample the intensity of your given reflection peak in every possible direction, this would correspond to sampling the surface of the sphere.
@@ -200,7 +525,7 @@ Plotting the intensity associated with a Bragg peak in each of these direction o
 This is shown in the first of the two graphics below.
 The second graphic then shows the same intensity plot, but with the intensity values convolved into the radial coordinate,
 which gives another spatial representation of the intensity of the bragg reflection as a function of direction around the sample.</p>
-<table class="docutils align-center">
+<div class="pst-scrollable-table-container"><table class="table table-center">
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -210,7 +535,7 @@ which gives another spatial representation of the intensity of the bragg reflect
 <a class="reference internal image-reference" href="../_images/texture-direction-sphere.gif"><img alt="Direction vectors trace out sphere" src="../_images/texture-direction-sphere.gif" style="width: 90%;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Figure 2 - Direction vectors around a sample.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Figure 2 - Direction vectors around a sample.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </td>
@@ -218,20 +543,21 @@ which gives another spatial representation of the intensity of the bragg reflect
 <a class="reference internal image-reference" href="../_images/texture-direction-peaks.gif"><img alt="Direction vectors with intensity" src="../_images/texture-direction-peaks.gif" style="width: 90%;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Figure 3 - Directions convolved with intensity.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Figure 3 - Directions convolved with intensity.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>Much like how maps of the world provide 2D representations of the 3D globe, we can do the same thing by projecting this 3D pole figure down into a 2D pole figure.
 The below graphic shows the relationship between the 2D pole figure which are commonly encountered and that 3D sphere which defines all unique directions around a sample.</p>
 <figure class="align-default" id="id6">
 <a class="reference internal image-reference" href="../_images/texture-pole-figure-interpretation.gif"><img alt="GIF showing the relationship between the 3D and 2D representations of the pole figure" src="../_images/texture-pole-figure-interpretation.gif" style="width: 500px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Figure 4 - Animation showing how the relationship between the 3D and 2D representations of the pole figure.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Figure 4 - Animation showing how the relationship between the 3D and 2D representations of the pole figure.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The surface of this sphere is again coloured by the intensity of a selected bragg peak, giving a 3D pole figure.
@@ -245,12 +571,12 @@ worth stressing that this does not provide an suitable replacement for a robust 
 <figure class="align-default" id="id7">
 <img alt="Image comparing the scatter plot pole figure and the contour interpolation" src="../_images/texture-pole-figure-displays.png" />
 <figcaption>
-<p><span class="caption-text">Figure 5 - Image comparing the scatter plot pole figure and the contour interpolation</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Figure 5 - Image comparing the scatter plot pole figure and the contour interpolation</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="generating-pole-figures">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">Generating Pole Figures</a><a class="headerlink" href="#generating-pole-figures" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Generating Pole Figures</a><a class="headerlink" href="#generating-pole-figures" title="Link to this heading">#</a></h2>
 <p>Here we provide two animations which aim to explain how the experimental pole figures are created.</p>
 <p>The first of the these two, the below figure, shows how the orientation of the detectors, relative to the sample, relates to the 3D and 2D pole figures.
 The top two graphics show the individual scattering vectors for two of the detectors, depicted as gold and pink arrows,
@@ -261,7 +587,7 @@ The bottom right graphic shows how the scattering vectors (corresponding to all 
 <figure class="align-default" id="id8">
 <img alt="GIF showing the relationship between the experimental geometry and the pole figure" src="../_images/texture-pole-figure-lookup.gif" />
 <figcaption>
-<p><span class="caption-text">Figure 6 - Animation showing the relationship between the experimental geometry and the pole figure</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Figure 6 - Animation showing the relationship between the experimental geometry and the pole figure</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The second of these graphics, again below, shows how the intensities are determined for the points in the experimental pole figure.
@@ -271,12 +597,12 @@ The bottom plots show these integrated intensity values on the actual detector b
 <figure class="align-default" id="id9">
 <img alt="GIF showing how intensities are calculated for each detector in the pole figure" src="../_images/texture-pole-figure-detectors.gif" />
 <figcaption>
-<p><span class="caption-text">Figure 7 - Animation showing how intensities are calculated for each detector in the pole figure</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Figure 7 - Animation showing how intensities are calculated for each detector in the pole figure</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="pole-figure-resolution-and-coverage">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">Pole Figure Resolution and Coverage</a><a class="headerlink" href="#pole-figure-resolution-and-coverage" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Pole Figure Resolution and Coverage</a><a class="headerlink" href="#pole-figure-resolution-and-coverage" title="Link to this heading">#</a></h2>
 <p>A few factors will affect the final quality of the experimental pole figure data, with the two main considerations being how the detector banks are grouped and
 for what sample orientations data is collected.</p>
 <p>In mantid, the first of these – the detector groupings, can be decided after the experiment has been run.
@@ -288,7 +614,7 @@ different detector groupings, and the effect this has on the pole figure coverag
 <figure class="align-default" id="id10">
 <img alt="Image showing pole figures using different detector groupings" src="../_images/texture-pole-figure-groupings.png" />
 <figcaption>
-<p><span class="caption-text">Figure 8 - Image showing pole figures using different detector groupings.</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Figure 8 - Image showing pole figures using different detector groupings.</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The second factor – sample orientations, is something which perhaps requires more consideration before hitting <em>GO</em> on data collection. The factors to weigh up here are
@@ -303,14 +629,14 @@ A discussion of possible exploratory coverage schemes is given in <a class="foot
 </section>
 </section>
 <section id="producing-pole-figures-within-mantid">
-<h1><a class="toc-backref" href="#id16" role="doc-backlink">Producing Pole Figures within Mantid</a><a class="headerlink" href="#producing-pole-figures-within-mantid" title="Link to this heading">¶</a></h1>
+<h1><a class="toc-backref" href="#id16" role="doc-backlink">Producing Pole Figures within Mantid</a><a class="headerlink" href="#producing-pole-figures-within-mantid" title="Link to this heading">#</a></h1>
 <p>The creation of experimental pole figures within Mantid can be achieved in two distinct workflows: either using scripts within the python interface or
 through the Engineering Diffraction user interface. The application of the latter will be discussed separately in <a class="reference internal" href="../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction</span></a>,
 here we will focus on the scripting approach. It is worth noting that for practical application, the scripts offer the most time efficient workflow and, as such,
 are probably the preferable approach for creating pole figures post-experiment. The user interface, contrastingly, offers a more interactive approach which lends itself to
 processing and guiding the evolution of the experiment, as it is being conducted.</p>
 <section id="introduction-to-sample-shape-material-and-orientation">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">Introduction to Sample Shape, Material, and Orientation</a><a class="headerlink" href="#introduction-to-sample-shape-material-and-orientation" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Introduction to Sample Shape, Material, and Orientation</a><a class="headerlink" href="#introduction-to-sample-shape-material-and-orientation" title="Link to this heading">#</a></h2>
 <p>A critical aspect in creating the experimental pole figure is having the correct representation of the sample, its shape, and its intrinsic directions for each dataset you process.
 This is crucial because these are the factors which will determine where detector points are projected in the pole figure.
 Getting these things right within mantid, should hopefully, not be too onerous, but care should be taken to make good records of the
@@ -331,7 +657,7 @@ reference workspace to each of the run workspaces.</p>
 <p>This procedure is applied as part of the absorption script provided in the <a class="reference internal" href="#absorptioncorrectionsection"><span class="std std-ref">section below</span></a>. We also provide some additional notes and scripts
 to aid in the setup of <a class="reference internal" href="#referenceworkspacesection"><span class="std std-ref">reference workspaces</span></a> and <a class="reference internal" href="#orientationsection"><span class="std std-ref">orientation files</span></a>.</p>
 <section id="reference-workspace">
-<span id="referenceworkspacesection"></span><h3><a class="toc-backref" href="#id18" role="doc-backlink">Reference Workspace</a><a class="headerlink" href="#reference-workspace" title="Link to this heading">¶</a></h3>
+<span id="referenceworkspacesection"></span><h3><a class="toc-backref" href="#id18" role="doc-backlink">Reference Workspace</a><a class="headerlink" href="#reference-workspace" title="Link to this heading">#</a></h3>
 <p>The following script will allow the setup of the reference workspace.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import mantid algorithms, numpy and matplotlib</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
@@ -375,7 +701,7 @@ to aid in the setup of <a class="reference internal" href="#referenceworkspacese
 </div>
 </section>
 <section id="orientation-files">
-<span id="orientationsection"></span><h3><a class="toc-backref" href="#id19" role="doc-backlink">Orientation Files</a><a class="headerlink" href="#orientation-files" title="Link to this heading">¶</a></h3>
+<span id="orientationsection"></span><h3><a class="toc-backref" href="#id19" role="doc-backlink">Orientation Files</a><a class="headerlink" href="#orientation-files" title="Link to this heading">#</a></h3>
 <p>As discussed previously, the orientation information is expected to come from either the Eulerian Cradle or the Cybaman, but these two goniometers are handled broadly
 by providing either a series of fixed rotations around known axes (cradle) or by providing a flattened transformation matrix corresponding to a more complicated
 transformation (cybaman). The flag which controls this behaviour is <code class="docutils literal notranslate"><span class="pre">orient_file_is_euler</span></code>.</p>
@@ -468,7 +794,7 @@ the transformation matrices from SscansS2 reference frame into mantid. In princi
 </section>
 </section>
 <section id="absorption-correction">
-<span id="absorptioncorrectionsection"></span><h2><a class="toc-backref" href="#id20" role="doc-backlink">Absorption Correction</a><a class="headerlink" href="#absorption-correction" title="Link to this heading">¶</a></h2>
+<span id="absorptioncorrectionsection"></span><h2><a class="toc-backref" href="#id20" role="doc-backlink">Absorption Correction</a><a class="headerlink" href="#absorption-correction" title="Link to this heading">#</a></h2>
 <p>A consideration when performing texture analysis is to decide how to deal with attenuation and absorption. Depending upon the material being used,
 the accuracy required, and the amount of time available, you may or may not want to apply a correction to the raw data to correct for neutron attenuation.
 Mantid offers a suite of approaches to tackle this (<a class="reference internal" href="AbsorptionAndMultipleScattering.html#sample-corrections"><span class="std std-ref">Absorption and Multiple Scattering Corrections</span></a>), so to a certain extent this can be tailored to the use case, but here we
@@ -589,7 +915,7 @@ the user interface while providing more repeatable processing.</p>
 </div>
 </section>
 <section id="focusing">
-<h2><a class="toc-backref" href="#id21" role="doc-backlink">Focusing</a><a class="headerlink" href="#focusing" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Focusing</a><a class="headerlink" href="#focusing" title="Link to this heading">#</a></h2>
 <p>Regardless of whether absorption correction has been applied (at the very least the absorption correction script should probably be run with <code class="docutils literal notranslate"><span class="pre">include_abs_corr</span> <span class="pre">=</span> <span class="pre">False</span></code>,
 in order to apply the sample shape and orientations), some focusing of data is likely required for creating pole figures. In principle, unfocussed data could be used,
 but this would be rather slow due to the fitting of peaks on each spectra, and this would not necessarily provide meaningful improvement in spatial resolution. As far as
@@ -685,7 +1011,7 @@ ENGINX is concerned, grouping any more finely than the block level is mostly dim
 </div>
 </section>
 <section id="fitting">
-<h2><a class="toc-backref" href="#id22" role="doc-backlink">Fitting</a><a class="headerlink" href="#fitting" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Fitting</a><a class="headerlink" href="#fitting" title="Link to this heading">#</a></h2>
 <p>Once the data has been focused, it is most likely that the desire is to extract some fitted parameters from these focused spectra. The following script can be used to
 do this. This script will fit a BackToBackExponential to each peak provided in the <code class="docutils literal notranslate"><span class="pre">peaks</span></code> list and save the associated parameters into individual table workspaces.
 Additionally to fitting the peak, the table will also contain a numerical integration of the peak window after subtraction of a linear background (<code class="docutils literal notranslate"><span class="pre">I_est</span></code>).</p>
@@ -764,7 +1090,7 @@ Additionally to fitting the peak, the table will also contain a numerical integr
 </div>
 </section>
 <section id="pole-figure-creation">
-<h2><a class="toc-backref" href="#id23" role="doc-backlink">Pole Figure creation</a><a class="headerlink" href="#pole-figure-creation" title="Link to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Pole Figure creation</a><a class="headerlink" href="#pole-figure-creation" title="Link to this heading">#</a></h2>
 <p>Finally, the focused workspaces and the parameter workspaces can be combined to create the pole figures of interest. The below script can be used to produce a collection
 of pole figures over a set of different peaks and parameters.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import mantid algorithms, numpy and matplotlib</span>
@@ -893,7 +1219,7 @@ of pole figures over a set of different peaks and parameters.</p>
 </section>
 </section>
 <section id="references">
-<h1><a class="toc-backref" href="#id24" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">¶</a></h1>
+<h1><a class="toc-backref" href="#id24" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="detbanks" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
@@ -908,32 +1234,140 @@ of pole figures over a set of different peaks and parameters.</p>
 </section>
 
 
-    </div>
-      
-  </div>
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="TableWorkspaces.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Table Workspaces</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="UnitFactory.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Units</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
-<footer class="footer">
-  <div class="container">
-      <ul id="footer-nav" class="nav navbar-nav">
-      
-      
-          
+                </footer>
+              
+            </div>
             
-  <li>
-    <a href="TableWorkspaces.html" title="Previous Chapter: Table Workspaces"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Table Workspaces</span>
-    </a>
-  </li>
-  <li>
-    <a href="UnitFactory.html" title="Next Chapter: Units"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Units &raquo;</span>
-    </a>
-  </li>
-          
-       
-          <li><a href="#">Back to top</a></li>
-       </ul>
-    <p>
-    </p>
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
   </div>
-</footer>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Texture Analysis Theory</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-texture-analysis">Introduction to Texture Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-pole-figures">Interpreting Pole Figures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-pole-figures">Generating Pole Figures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pole-figure-resolution-and-coverage">Pole Figure Resolution and Coverage</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-pole-figures-within-mantid">Producing Pole Figures within Mantid</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-sample-shape-material-and-orientation">Introduction to Sample Shape, Material, and Orientation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-workspace">Reference Workspace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-files">Orientation Files</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#absorption-correction">Absorption Correction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#focusing">Focusing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting">Fitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pole-figure-creation">Pole Figure creation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/concepts/TextureAnalysis.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
   </body>
 </html>

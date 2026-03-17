@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SumSpectra v1 &#8212; MantidProject 6.15.20260313.1415 documentation</title>
+    <title>SumSpectra v1 &#8212; MantidProject 6.15.20260316.2027 documentation</title>
   
   
   
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=f985d54a"></script>
+    <script src="../_static/documentation_options.js?v=63e00ccf"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1513,18 +1513,72 @@ ignored. The result is stored as a new workspace containing a single
 spectra.</p>
 <p>If we define a the <span class="math notranslate nohighlight">\(i^{th}\)</span> spectrum with bins <span class="math notranslate nohighlight">\(j\)</span>. The unweighted sum is just (<code class="docutils literal notranslate"><span class="pre">WeightedSum=False</span></code>)</p>
 <div class="math notranslate nohighlight">
-\[Signal[j] = \displaystyle\Sigma_{i \in spectra} Signal_i[j]\]</div>
-<p>The weighted sum (<code class="docutils literal notranslate"><span class="pre">WeightedSum=True</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiplyBySpectra=True</span></code>, ignored for event workspaces), the sum is defined (skipping <span class="math notranslate nohighlight">\(Signal_i[j]\)</span> when <span class="math notranslate nohighlight">\(Error_i[j] == 0\)</span>),</p>
+\[Signal[j] = \sum_{i \in spectra} Signal_i[j]\]</div>
+<p>and the corresponding error is correctly propagated as</p>
 <div class="math notranslate nohighlight">
-\[Signal[j] = NSpectra \times \displaystyle\Sigma_{i \in spectra} \left(\frac{Signal_i[j]}{Error_i^2[j]}\right) / \Sigma_{i \in spectra}\left(\frac{1}{Error_i^2[j]}\right)\]</div>
-<p><span class="math notranslate nohighlight">\(NSpectra\)</span> is the number of spectra contributing to that bin. If the weights contributing to the sum are equal, these result in the same value. This should be used for unnormalized (e.g. not divided by vanadium spectrum) data. If the data has been normalized (e.g. divided by vanadium spectrum for total scattering) then multiplying by the number of spectra contributing to the bin is incorrect, use <code class="docutils literal notranslate"><span class="pre">WeightedSum=True</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiplyBySpectra=False</span></code> to sum as</p>
+\[Error[j] = \sqrt{\sum_{i \in spectra} Error_i^2[j]}.\]</div>
+<p>In the case of using <code class="docutils literal notranslate"><span class="pre">WeightedSum=True</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiplyBySpectra=False</span></code> (both ignored for event workspaces),
+what is calculated is the weighted mean of the spectra,
+defined as (skipping <span class="math notranslate nohighlight">\(Signal_i[j]\)</span> when <span class="math notranslate nohighlight">\(Error_i[j] == 0\)</span>),</p>
 <div class="math notranslate nohighlight">
-\[Signal[j] = \displaystyle\Sigma_{i \in spectra} \left(\frac{Signal_i[j]}{Error_i^2[j]}\right) / \Sigma_{i \in spectra}\left(\frac{1}{Error_i^2[j]}\right)\]</div>
+\[Signal[j] = \frac{
+    \sum_{i \in spectra} \left(\frac{Signal_i[j]}{Error_i^2[j]}\right)
+}{
+    \sum_{i \in spectra}\left(\frac{1}{Error_i^2[j]}\right)
+}\]</div>
+<p>and the error is correctly propagated as</p>
+<div class="math notranslate nohighlight">
+\[Error[j] = \sqrt{\frac{1}{\sum_{i \in spectra}\left(\frac{1}{Error_i^2[j]}\right)}}.\]</div>
+<p>The weighted sum (<code class="docutils literal notranslate"><span class="pre">WeightedSum=True</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiplyBySpectra=True</span></code>, ignored for event workspaces)
+is defined (skipping <span class="math notranslate nohighlight">\(Signal_i[j]\)</span> when <span class="math notranslate nohighlight">\(Error_i[j] == 0\)</span>) as</p>
+<div class="math notranslate nohighlight">
+\[Signal[j] = \frac{
+    NSpectra \times \sum_{i \in spectra} \left(\frac{Signal_i[j]}{Error_i^2[j]}\right)
+}{
+    \sum_{i \in spectra}\left(\frac{1}{Error_i^2[j]}\right)
+}\]</div>
+<p>and the error is correctly propagated as</p>
+<div class="math notranslate nohighlight">
+\[Error[j] = NSpectra \times \sqrt{\frac{1}{\sum_{i \in spectra}\left(\frac{1}{Error_i^2[j]}\right)}},\]</div>
+<p>where <span class="math notranslate nohighlight">\(NSpectra\)</span> is the number of spectra contributing to that bin.
+If the weights contributing to the sum are equal, these result in the same value.
+This should be used for unnormalized (e.g. not divided by vanadium spectrum) data.</p>
+<p>If the data has been normalized (e.g. divided by vanadium spectrum for total scattering)
+then multiplying by the number of spectra contributing to the bin is incorrect,
+use <code class="docutils literal notranslate"><span class="pre">WeightedSum=True</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiplyBySpectra=False</span></code>.</p>
+<p>If a workspace contains fractional bins, it is useful to consider an “effective” signal and error
+given by <span class="math notranslate nohighlight">\(\overline{Signal}_i[j] = Signal_i[j] \times fracVal_i[j]\)</span>
+and <span class="math notranslate nohighlight">\(\overline{Error}_i[j] = Error_i[j] \times fracVal_i[j]\)</span>,
+where <span class="math notranslate nohighlight">\(fracVal_i[j]\)</span> is the fractional value for the bin.
+Then the unweighted sum with fractional bins is defined as</p>
+<div class="math notranslate nohighlight">
+\[Signal[j] = \sum_{i \in spectra} \overline{Signal}_i[j]
+= \sum_{i \in spectra} Signal_i[j] \times fracVal_i[j],\]</div>
+<p>with error</p>
+<div class="math notranslate nohighlight">
+\[Error[j] = \sqrt{\sum_{i \in spectra} \overline{Error}_i[j]^2}
+= \sqrt{\sum_{i \in spectra} (Error_i[j] \times fracVal_i[j])^2}.\]</div>
+<p>The weighted sum with fractional bins is defined as</p>
+<div class="math notranslate nohighlight">
+\[Signal[j] = \frac{
+  \sum_{i \in spectra} \frac{\overline{Signal}_i[j]}{\overline{Error}_i[j]^2}
+}{
+  \sum_{i \in spectra} \frac{1}{\overline{Error}_i[j]^2}
+}
+= \frac{
+  \sum_{i \in spectra} \left(\frac{Signal_i[j] \times fracVal_i[j]}{(Error_i[j] \times fracVal_i[j])^2}\right)
+}{
+  \sum_{i \in spectra} \left(\frac{1}{(Error_i[j] \times fracVal_i[j])^2}\right)
+}\]</div>
+<p>with error</p>
+<div class="math notranslate nohighlight">
+\[Error[j] = \sqrt{\frac{1}{\sum_{i \in spectra} \frac{1}{\overline{Error}_i[j]^2}}}
+= \sqrt{\frac{1}{\sum_{i \in spectra}\left(\frac{1}{(Error_i[j] \times fracVal_i[j])^2}\right)}}.\]</div>
 <p>The algorithm adds to the <code class="docutils literal notranslate"><span class="pre">OutputWorkspace</span></code> three additional
 properties (Log values). The properties (Log) names are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">NumAllSpectra</span></code> is the number of spectra contributed to the sum</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">NumMaskSpectra</span></code> is the spectra dropped from the summations because they are masked. Monitors are not included in this total if <code class="docutils literal notranslate"><span class="pre">IncludeMonitors=False</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NumMaskSpectra</span></code> is the number of spectra dropped from the summations because they are masked. Monitors are not included in this total if <code class="docutils literal notranslate"><span class="pre">IncludeMonitors=False</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">NumZeroSpectra</span></code> is the number of zero bins in histogram workspace or empty spectra for event workspace. These spectra are dropped from the summation of histogram workspace when <code class="docutils literal notranslate"><span class="pre">WeightedSum=True</span></code>.</p></li>
 </ul>
 <p>Assuming <code class="docutils literal notranslate"><span class="pre">pWS</span></code> is the output workspace handle, from Python these
@@ -1593,8 +1647,8 @@ Workspace has 1 spectra
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/358350658ef79dc42312b3d399e1762c1dc432cb/Framework/Algorithms/inc/MantidAlgorithms/SumSpectra.h">SumSpectra.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/358350658ef79dc42312b3d399e1762c1dc432cb/Framework/Algorithms/src/SumSpectra.cpp">SumSpectra.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/082a2fd032af80b99f3a7d19a1d20b3c7e51783e/Framework/Algorithms/inc/MantidAlgorithms/SumSpectra.h">SumSpectra.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/082a2fd032af80b99f3a7d19a1d20b3c7e51783e/Framework/Algorithms/src/SumSpectra.cpp">SumSpectra.cpp</a></p>
 </section>
 </section>
 

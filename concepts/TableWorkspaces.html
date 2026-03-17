@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Table Workspaces &#8212; MantidProject 6.15.20260313.1415 documentation</title>
+    <title>Table Workspaces &#8212; MantidProject 6.15.20260316.2027 documentation</title>
   
   
   
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=f985d54a"></script>
+    <script src="../_static/documentation_options.js?v=63e00ccf"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/TableWorkspaces';</script>
@@ -540,12 +540,12 @@ a name and a type - the type of the data in that column. Data can be accessed by
 </section>
 <section id="converting-to-pandas-dataframes">
 <h3>Converting To Pandas DataFrames<a class="headerlink" href="#converting-to-pandas-dataframes" title="Link to this heading">#</a></h3>
-<p>Table workspaces can be easily converted to a pandas <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> using the following code snippet.</p>
+<p>Table workspaces can be easily converted to a pandas <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> using the following code snippet.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">toDict</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>If only a subset of the data from the table is required, or you’re working with an existing <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> and want to append columns from the Table workspace this can be achieved as follows.</p>
+<p>If only a subset of the data from the table is required, or you’re working with an existing <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> and want to append columns from the Table workspace this can be achieved as follows.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">tableWS</span><span class="o">.</span><span class="n">getColumnNames</span><span class="p">():</span>
     <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">tableWS</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>

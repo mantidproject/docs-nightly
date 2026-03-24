@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>HFIRPowderReduction v1 &#8212; MantidProject 6.15.20260318.1518 documentation</title>
+    <title>HFIRPowderReduction v1 &#8212; MantidProject 6.15.20260323.2058 documentation</title>
   
   
   
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=a84e381b"></script>
+    <script src="../_static/documentation_options.js?v=d1f01df3"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/HFIRPowderReduction-v1';</script>
@@ -1558,7 +1558,7 @@
 <tr class="row-even"><td><p>XBinWidth</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
-<td><p>0</p></td>
+<td><p>0.1</p></td>
 <td><p>Bin width for each spectrum</p></td>
 </tr>
 <tr class="row-odd"><td><p>Scale</p></td>
@@ -1597,6 +1597,24 @@
 <td><p>False</p></td>
 <td><p>Specifies either single output workspace or output group workspace containing several workspaces.</p></td>
 </tr>
+<tr class="row-odd"><td><p>OutputWorkspace</p></td>
+<td><p>Output</p></td>
+<td><p><a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></td>
+<td><p><em>Mandatory</em></p></td>
+<td><p>Output Workspace</p></td>
+</tr>
+<tr class="row-even"><td><p>OutputDirectory</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p>~/HFIRPowderReductionOutput</p></td>
+<td><p>Allowed extensions: [‘.dat’]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Overwrite</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td><p>If True previous file will be overwritten</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1605,12 +1623,14 @@
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
 <p>This algorithm is used to reduce powder diffraction data from the HFIR instruments at ORNL. It is a
 workflow algorithm that uses several other algorithms to perform the reduction. The input data can be
-specified either as a list of files or as an IPTS number and a list of run numbers. This works for both WAND and MIDAS instruments.</p>
+specified either as a list of files or as an IPTS number and a list of run numbers. This works for both WAND and MIDAS instruments.
+Reducing WAND^2 data with HFIRPowderReduction is very similar to using <a class="reference internal" href="WANDPowderReduction-v1.html#algm-wandpowderreduction"><span class="std std-ref">WANDPowderReduction v1</span></a>, but with some differences in the input parameters,
+and reduction steps are slightly modified.</p>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/DataHandling/Nexus.html">DataHandling\Nexus</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ed9c8a890c6cf7f87a2a6101a3dc27f6a593e377/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/HFIRPowderReduction.py">HFIRPowderReduction.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/1cb6234cd60cded8966117b490b15162c1cae762/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/HFIRPowderReduction.py">HFIRPowderReduction.py</a></p>
 </section>
 </section>
 

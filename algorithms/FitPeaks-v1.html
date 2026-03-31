@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FitPeaks v1 &#8212; MantidProject 6.15.20260327.1818 documentation</title>
+    <title>FitPeaks v1 &#8212; MantidProject 6.15.20260330.1519 documentation</title>
   
   
   
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=8625186d"></script>
+    <script src="../_static/documentation_options.js?v=0d8e7cc8"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1575,43 +1575,49 @@
 <td><p>True</p></td>
 <td><p>If true peak position will be constrained by estimated positions (highest Y value position) and the peak width either estimted by observation or calculate.</p></td>
 </tr>
-<tr class="row-odd"><td><p>FittedPeaksWorkspace</p></td>
+<tr class="row-odd"><td><p>CopyLastGoodPeakParameters</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td><p>If true, initial peak parameters (with the exception of peak centre) may be copied from the last successfully fit peak in the spectra.</p></td>
+</tr>
+<tr class="row-even"><td><p>FittedPeaksWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
 <td></td>
 <td><p>Name of the output matrix workspace with fitted peak. This output workspace has the same dimension as the input workspace.The Y values belonged to peaks to fit are replaced by fitted value. Values of estimated background are used if peak fails to be fit.</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputPeakParametersWorkspace</p></td>
+<tr class="row-odd"><td><p>OutputPeakParametersWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>Name of table workspace containing all fitted peak parameters.</p></td>
 </tr>
-<tr class="row-odd"><td><p>OutputParameterFitErrorsWorkspace</p></td>
+<tr class="row-even"><td><p>OutputParameterFitErrorsWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a></p></td>
 <td></td>
 <td><p>Name of workspace containing all fitted peak parameters’ fitting error.It must be used along with FittedPeaksWorkspace and RawPeakParameters (True)</p></td>
 </tr>
-<tr class="row-even"><td><p>RawPeakParameters</p></td>
+<tr class="row-odd"><td><p>RawPeakParameters</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>false generates table with effective centre/width/height parameters. true generates a table with peak function parameters</p></td>
 </tr>
-<tr class="row-odd"><td><p>MinimumSignalToNoiseRatio</p></td>
+<tr class="row-even"><td><p>MinimumSignalToNoiseRatio</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
 <td><p>Used for validating peaks before fitting. If the signal-to-noise ratio is under this value, the peak will be marked as error. This does not apply to peaks for which the noise cannot be estimated.</p></td>
 </tr>
-<tr class="row-even"><td><p>MinimumPeakTotalCount</p></td>
+<tr class="row-odd"><td><p>MinimumPeakTotalCount</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Used for validating peaks before fitting. If the total peak window Y-value count is under this value, the peak will be excluded from fitting and calibration.</p></td>
 </tr>
-<tr class="row-odd"><td><p>MinimumSignalToSigmaRatio</p></td>
+<tr class="row-even"><td><p>MinimumSignalToSigmaRatio</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
@@ -1675,6 +1681,53 @@ The fitting starts from either the peak at the smallest X value or the largest X
 user’s input.
 The first peak will be fit with the starting value provided by the user.
 except background and peak center, which will be determiend by <em>observation</em>.</p>
+</section>
+<section id="peak-parameter-initialisation-order">
+<h3>Peak parameter initialisation order<a class="headerlink" href="#peak-parameter-initialisation-order" title="Link to this heading">#</a></h3>
+<p>Once at least one peak has been successfully fitted, the starting parameters for
+subsequent peaks are determined in the following priority order:</p>
+<ol class="arabic simple">
+<li><p><strong>Same peak in a previous spectrum</strong> — if the same peak was successfully
+fitted in an earlier spectrum and the current spectrum has a consecutive
+detector ID with the spectrum that produced that fit, those fitted
+parameters are used as the starting point.</p></li>
+<li><p><strong>Last successfully fitted peak in the current spectrum</strong> — if cross-spectrum
+parameters are not available and <code class="docutils literal notranslate"><span class="pre">CopyLastGoodPeakParameters</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>
+(the default), the parameters from the most recently fitted peak <em>in the
+same spectrum</em> are copied as starting values. This is generally a good
+strategy because physically nearby peaks tend to have similar profile
+parameters.</p></li>
+<li><p><strong>IDF / Parameter File defaults</strong> — if neither of the above applies (e.g.
+the very first peak in the first spectrum), the peak function retains the
+default values from the Instrument Definition File (IDF). For peak functions
+such as <a class="reference internal" href="../fitting/fitfunctions/BackToBackExponential.html#func-backtobackexponential"><span class="std std-ref">BackToBackExponential</span></a>, the <code class="docutils literal notranslate"><span class="pre">setMatrixWorkspace</span></code> call
+can calculate parameters (e.g. <em>A</em> and <em>B</em>) from formulae in the
+<code class="docutils literal notranslate"><span class="pre">INSTR_Parameter.xml</span></code> file, which can provide physically meaningful
+starting values.</p></li>
+<li><p><strong>Internal estimation routines</strong> — peak centre, height and FWHM are always
+estimated by <em>observation</em> of the data within the fit window (see
+<a class="reference internal" href="#estimation-of-values-of-peak-profiles">Estimation of values of peak profiles</a> below). User-specified starting
+values (<code class="docutils literal notranslate"><span class="pre">PeakParameterNames</span></code> / <code class="docutils literal notranslate"><span class="pre">PeakParameterValues</span></code>) are applied when
+no parameter copying has occurred.</p></li>
+</ol>
+<p>Parameters marked as <code class="docutils literal notranslate"><span class="pre">&lt;fixed</span> <span class="pre">/&gt;</span></code> in the Parameter File are applied as
+<strong>ties</strong> by <code class="docutils literal notranslate"><span class="pre">setMatrixWorkspace()</span></code>. This means that regardless of which step
+above sets the starting values, these tied parameters are forced back to their
+IDF-calculated values during each iteration of the fit. In effect, they act as
+constraints that override any values copied from neighbouring peaks.</p>
+<section id="copylastgoodpeakparameters">
+<h4>CopyLastGoodPeakParameters<a class="headerlink" href="#copylastgoodpeakparameters" title="Link to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">CopyLastGoodPeakParameters</span></code> property (default <code class="docutils literal notranslate"><span class="pre">True</span></code>) controls whether
+step 2 above is used. Copying parameters from the last successfully fitted peak
+in the same spectrum is, in general, a good way of providing physically sensible
+starting values and has been retained as the default behaviour.</p>
+<p>However, in situations where peak parameters are highly wavelength-dependent but
+are <em>not</em> marked as fixed in the Parameter File, copying from a peak at a
+potentially very different wavelength can give a worse starting position than the
+default or data-driven estimation. Setting <code class="docutils literal notranslate"><span class="pre">CopyLastGoodPeakParameters</span></code> to
+<code class="docutils literal notranslate"><span class="pre">False</span></code> disables step 2, so the algorithm falls through directly to the IDF
+defaults (step 3) and internal estimation (step 4) for each peak independently.</p>
+</section>
 </section>
 <section id="background">
 <h3>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h3>
@@ -2016,8 +2069,8 @@ Expected @ 1.076  Fitted @ 1.075
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/75668e959b833e6e34e00865d1e00efbf6fc9112/Framework/Algorithms/inc/MantidAlgorithms/FitPeaks.h">FitPeaks.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/75668e959b833e6e34e00865d1e00efbf6fc9112/Framework/Algorithms/src/FitPeaks.cpp">FitPeaks.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Algorithms/inc/MantidAlgorithms/FitPeaks.h">FitPeaks.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Algorithms/src/FitPeaks.cpp">FitPeaks.cpp</a></p>
 </section>
 </section>
 
@@ -2077,6 +2130,10 @@ Expected @ 1.076  Fitted @ 1.075
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-algorithm">Description of algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peak-parameter-initialisation-order">Peak parameter initialisation order</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#copylastgoodpeakparameters">CopyLastGoodPeakParameters</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-values-of-peak-profiles">Estimation of values of peak profiles</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subalgorithms-used">Subalgorithms used</a><ul class="nav section-nav flex-column">

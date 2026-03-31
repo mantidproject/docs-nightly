@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PDCalibration v1 &#8212; MantidProject 6.15.20260327.1818 documentation</title>
+    <title>PDCalibration v1 &#8212; MantidProject 6.15.20260330.1519 documentation</title>
   
   
   
@@ -41,7 +41,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=8625186d"></script>
+    <script src="../_static/documentation_options.js?v=0d8e7cc8"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/PDCalibration-v1';</script>
@@ -1525,61 +1525,67 @@
 <td><p>False</p></td>
 <td><p>Flag whether the input data has high background compared to peaks’ heights. This option is recommended for data with peak-to-background ratios under ~5.</p></td>
 </tr>
-<tr class="row-odd"><td><p>MinimumSignalToNoiseRatio</p></td>
+<tr class="row-odd"><td><p>CopyLastGoodPeakParameters</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td><p>If true, for a given peak in a spectrum the initial peak parameters (with the exception of peak centre) may be copied from the last successfully fit peak in that spectrum.</p></td>
+</tr>
+<tr class="row-even"><td><p>MinimumSignalToNoiseRatio</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
 <td><p>Used for validating peaks before fitting. If the signal-to-noise ratio is under this value, the peak will be excluded from fitting and calibration. This check does not apply to peaks for which the noise cannot be estimated. The minimum recommended value is 12.</p></td>
 </tr>
-<tr class="row-even"><td><p>CalibrationParameters</p></td>
+<tr class="row-odd"><td><p>CalibrationParameters</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>DIFC</p></td>
 <td><p>Select which diffractometer constants (GSAS convention) to determine. Allowed values: [‘DIFC’, ‘DIFC+TZERO’, ‘DIFC+TZERO+DIFA’]</p></td>
 </tr>
-<tr class="row-odd"><td><p>TZEROrange</p></td>
+<tr class="row-even"><td><p>TZEROrange</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Range for allowable calibrated TZERO value. Default: no restriction.</p></td>
 </tr>
-<tr class="row-even"><td><p>DIFArange</p></td>
+<tr class="row-odd"><td><p>DIFArange</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Range for allowable calibrated DIFA value. Default: no restriction.</p></td>
 </tr>
-<tr class="row-odd"><td><p>UseChiSq</p></td>
+<tr class="row-even"><td><p>UseChiSq</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>Defines the weighting scheme used in the least-squares fit of the extracted peak centers that determines the diffractometer constants. If true, the peak weight will be the inverse square of the error on the fitted peak center. If false, the peak weight will be the square of the fitted peak height.</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputCalibrationTable</p></td>
+<tr class="row-odd"><td><p>OutputCalibrationTable</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>Output table workspace containing the calibration.</p></td>
 </tr>
-<tr class="row-odd"><td><p>MaskWorkspace</p></td>
+<tr class="row-even"><td><p>MaskWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p>MaskWorkspace</p></td>
 <td><p>_empty_</p></td>
 <td><p>Mask workspace (optional input / output workspace):  when specified, if the workspace already exists, any incoming masked detectors will be combined  with any additional outgoing masked detectors detected by the algorithm</p></td>
 </tr>
-<tr class="row-even"><td><p>DiagnosticWorkspaces</p></td>
+<tr class="row-odd"><td><p>DiagnosticWorkspaces</p></td>
 <td><p>Output</p></td>
 <td><p>WorkspaceGroup</p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>Auxiliary workspaces containing extended information on the calibration results.</p></td>
 </tr>
-<tr class="row-odd"><td><p>MinimumPeakTotalCount</p></td>
+<tr class="row-even"><td><p>MinimumPeakTotalCount</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Used for validating peaks before fitting. If the total peak window Y-value count is under this value, the peak will be excluded from fitting and calibration.</p></td>
 </tr>
-<tr class="row-even"><td><p>MinimumSignalToSigmaRatio</p></td>
+<tr class="row-odd"><td><p>MinimumSignalToSigmaRatio</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
@@ -1703,8 +1709,8 @@ In this mode, the <code class="docutils literal notranslate"><span class="pre">C
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/75668e959b833e6e34e00865d1e00efbf6fc9112/Framework/Algorithms/inc/MantidAlgorithms/PDCalibration.h">PDCalibration.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/75668e959b833e6e34e00865d1e00efbf6fc9112/Framework/Algorithms/src/PDCalibration.cpp">PDCalibration.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Algorithms/inc/MantidAlgorithms/PDCalibration.h">PDCalibration.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Algorithms/src/PDCalibration.cpp">PDCalibration.cpp</a></p>
 </section>
 </section>
 

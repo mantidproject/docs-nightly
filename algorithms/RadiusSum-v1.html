@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>RadiusSum v1 &#8212; MantidProject 6.15.20260330.1519 documentation</title>
+    <title>RadiusSum v1 &#8212; MantidProject 6.15.20260331.2253 documentation</title>
   
   
   
@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -41,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=0d8e7cc8"></script>
+    <script src="../_static/documentation_options.js?v=d380279f"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1443,13 +1442,13 @@
 <tbody>
 <tr class="row-even"><td><p>InputWorkspace</p></td>
 <td><p>Input</p></td>
-<td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>An input workspace.</p></td>
 </tr>
 <tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
-<td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>An output workspace.</p></td>
 </tr>
@@ -1497,7 +1496,7 @@
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
 <p>RadiusSum sums the counts in rings against radius.</p>
 <p>Below, there is an example of the execution of the RadiusSum to a
-<a class="reference internal" href="../concepts/Workspace2D.html#workspace2d"><span class="std std-ref">Workspace2D</span></a>
+<a class="reference internal" href="../api/python/mantid/dataobjects/Workspace2D.html#mantid.dataobjects.Workspace2D" title="mantid.dataobjects.Workspace2D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace2D</span></code></a>
 where the position of the pixels are not associated to detector
 positions, but it is derived from the Axes.</p>
 <figure class="align-default">
@@ -1515,7 +1514,7 @@ one with <span class="math notranslate nohighlight">\(width = BinSize\)</span> f
 <span class="math notranslate nohighlight">\(BinSize=\frac{MaxRadius-MinRadius}{NumBins}\)</span>.</p>
 <p>The algorithm applies a rudimentary calculation to define the bin for
 each that each pixel or detector in the
-<a class="reference internal" href="../concepts/Workspace2D.html#workspace2d"><span class="std std-ref">Workspace2D</span></a>,
+<a class="reference internal" href="../api/python/mantid/dataobjects/Workspace2D.html#mantid.dataobjects.Workspace2D" title="mantid.dataobjects.Workspace2D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace2D</span></code></a>,
 but taking its center point. If the center point belongs to one bin, it
 is considered that the whole pixel belongs to the bin. The picture
 below, shows what does this means. An ideal solution for RadiusSum is
@@ -1525,7 +1524,7 @@ the left image, while the right image is what is current implemented.</p>
 </a>
 </figure>
 <p>Although the images were applied to an image
-<a class="reference internal" href="../concepts/Workspace2D.html#workspace2d"><span class="std std-ref">Workspace2D</span></a>, the
+<a class="reference internal" href="../api/python/mantid/dataobjects/Workspace2D.html#mantid.dataobjects.Workspace2D" title="mantid.dataobjects.Workspace2D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace2D</span></code></a>, the
 image below shows that it is possible to apply this algorithm to
 Workspaces attached to instruments.</p>
 <figure class="align-default">
@@ -1536,8 +1535,8 @@ Workspaces attached to instruments.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Algorithms/inc/MantidAlgorithms/RadiusSum.h">RadiusSum.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Algorithms/src/RadiusSum.cpp">RadiusSum.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/Algorithms/inc/MantidAlgorithms/RadiusSum.h">RadiusSum.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/Algorithms/src/RadiusSum.cpp">RadiusSum.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SmoothNeighbours v1 &#8212; MantidProject 6.15.20260330.1519 documentation</title>
+    <title>SmoothNeighbours v1 &#8212; MantidProject 6.15.20260331.2253 documentation</title>
   
   
   
@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -41,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=0d8e7cc8"></script>
+    <script src="../_static/documentation_options.js?v=d380279f"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1443,13 +1442,13 @@
 <tbody>
 <tr class="row-even"><td><p>InputWorkspace</p></td>
 <td><p>Input</p></td>
-<td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>The workspace containing the spectra to be averaged.</p></td>
 </tr>
 <tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
-<td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>The name of the workspace to be created as the output of the algorithm.</p></td>
 </tr>
@@ -1546,8 +1545,8 @@
 <p>This algorithm performs a moving-average smoothing of data by summing
 spectra of nearest neighbours over the face of detectors. The output
 workspace has the same number of spectra as the input workspace. This
-works on both <a class="reference internal" href="../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspaces</span></a> and
-<a class="reference internal" href="../concepts/Workspace2D.html#workspace2d"><span class="std std-ref">Workspace2D</span></a>’s. It has two main modes of operation.</p>
+works on both <a class="reference internal" href="../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects.EventWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventWorkspace</span></code></a> and
+<a class="reference internal" href="../api/python/mantid/dataobjects/Workspace2D.html#mantid.dataobjects.Workspace2D" title="mantid.dataobjects.Workspace2D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace2D</span></code></a>’s. It has two main modes of operation.</p>
 <section id="processing-either-generically-or-assuming-rectangular-detectors">
 <h3>Processing Either Generically or Assuming Rectangular Detectors<a class="headerlink" href="#processing-either-generically-or-assuming-rectangular-detectors" title="Link to this heading">#</a></h3>
 <p>You may either specify properties for the Rectangular Detector Group, or
@@ -1564,7 +1563,7 @@ section below).</p>
 </section>
 <section id="for-instruments-with-rectangular-detectors">
 <h3>For Instruments With Rectangular Detectors<a class="headerlink" href="#for-instruments-with-rectangular-detectors" title="Link to this heading">#</a></h3>
-<p>The algorithm looks through the <a class="reference internal" href="../concepts/Instrument.html#instrument"><span class="std std-ref">Instrument</span></a> to find all
+<p>The algorithm looks through the <a class="reference internal" href="../api/python/mantid/geometry/Instrument.html#mantid.geometry.Instrument" title="mantid.geometry.Instrument"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Instrument</span></code></a> to find all
 the <a class="reference internal" href="../concepts/RectangularDetector.html#rectangulardetector"><span class="std std-ref">RectangularDetectors</span></a> defined. For each
 pixel in each detector, the AdjX*AdjY neighboring spectra are summed
 together and saved in the output workspace.</p>
@@ -1812,8 +1811,8 @@ Smoothed values:
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Algorithms/inc/MantidAlgorithms/SmoothNeighbours.h">SmoothNeighbours.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Algorithms/src/SmoothNeighbours.cpp">SmoothNeighbours.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/Algorithms/inc/MantidAlgorithms/SmoothNeighbours.h">SmoothNeighbours.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/Algorithms/src/SmoothNeighbours.cpp">SmoothNeighbours.cpp</a></p>
 </section>
 </section>
 

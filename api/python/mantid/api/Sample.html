@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Sample &#8212; MantidProject 6.15.20260330.1519 documentation</title>
+    <title>Sample &#8212; MantidProject 6.15.20260331.2253 documentation</title>
   
   
   
@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -41,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=0d8e7cc8"></script>
+    <script src="../../../../_static/documentation_options.js?v=d380279f"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/api/Sample';</script>
@@ -627,6 +626,66 @@
   <section id="sample">
 <span id="mantid-api-sample"></span><h1>Sample<a class="headerlink" href="#sample" title="Link to this heading">#</a></h1>
 <p>This is a Python binding to the C++ class Mantid::API::Sample.</p>
+<p>The sample object holds details of the samples in an experiment.
+While most of the time this will refer to a single sample, it can also describe a collection of samples.
+Specifically this holds information about a samples:</p>
+<ul class="simple">
+<li><p>Material properties and chemical composition</p></li>
+<li><p>Shape and dimensions</p></li>
+<li><p>Crystal structure</p></li>
+</ul>
+<section id="working-with-sample-objects-in-python">
+<h2>Working with Sample objects in Python<a class="headerlink" href="#working-with-sample-objects-in-python" title="Link to this heading">#</a></h2>
+<section id="getting-the-sample-object-from-a-workspace">
+<h3>Getting the Sample Object from a Workspace<a class="headerlink" href="#getting-the-sample-object-from-a-workspace" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="s1">&#39;1,2&#39;</span><span class="p">,</span><span class="n">DataY</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">=</span><span class="n">ws</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="sample-properties">
+<h3>Sample Properties<a class="headerlink" href="#sample-properties" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+
+<span class="c1"># Dimensions</span>
+<span class="n">s</span><span class="o">.</span><span class="n">setHeight</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">setWidth</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">setThickness</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Height: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getHeight</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Width: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getWidth</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Thickness: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getThickness</span><span class="p">()))</span>
+
+<span class="c1"># Material</span>
+<span class="n">SetSampleMaterial</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">ChemicalFormula</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">getMaterial</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Material Name &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">name</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total scattering X-Section: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">totalScatterXSection</span><span class="p">()))</span>
+
+<span class="c1"># Crystal Structure</span>
+<span class="n">SetUB</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="n">u</span><span class="o">=</span><span class="s2">&quot;1,0,0&quot;</span><span class="p">,</span><span class="n">v</span><span class="o">=</span><span class="s2">&quot;0,0,1&quot;</span><span class="p">)</span>
+<span class="n">ol</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">getOrientedLattice</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data lattice parameters are: </span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> </span><span class="si">{2}</span><span class="s2"> </span><span class="si">{3}</span><span class="s2"> </span><span class="si">{4}</span><span class="s2"> </span><span class="si">{5}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ol</span><span class="o">.</span><span class="n">a</span><span class="p">(),</span><span class="n">ol</span><span class="o">.</span><span class="n">b</span><span class="p">(),</span><span class="n">ol</span><span class="o">.</span><span class="n">c</span><span class="p">(),</span><span class="n">ol</span><span class="o">.</span><span class="n">alpha</span><span class="p">(),</span><span class="n">ol</span><span class="o">.</span><span class="n">beta</span><span class="p">(),</span><span class="n">ol</span><span class="o">.</span><span class="n">gamma</span><span class="p">()))</span>
+</pre></div>
+</div>
+</section>
+<section id="multiple-samples">
+<h3>Multiple Samples<a class="headerlink" href="#multiple-samples" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Sample()</span></code> method actually returns a collection, however if you do not specify which sample you want you will get the first member of the collection.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+<span class="c1"># Is the same as</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">sample</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># You can ask how many samples there are with</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="mantid.api.Sample">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">mantid.api.</span></span><span class="sig-name descname"><span class="pre">Sample</span></span><a class="headerlink" href="#mantid.api.Sample" title="Link to this definition">#</a></dt>
@@ -777,6 +836,7 @@
 </dd></dl>
 
 </section>
+</section>
 
 
                 </article>
@@ -825,31 +885,40 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample"><code class="docutils literal notranslate"><span class="pre">Sample</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.clearCrystalStructure"><code class="docutils literal notranslate"><span class="pre">Sample.clearCrystalStructure()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.clearOrientedLattice"><code class="docutils literal notranslate"><span class="pre">Sample.clearOrientedLattice()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getCrystalStructure"><code class="docutils literal notranslate"><span class="pre">Sample.getCrystalStructure()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getEnvironment"><code class="docutils literal notranslate"><span class="pre">Sample.getEnvironment()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getGeometryFlag"><code class="docutils literal notranslate"><span class="pre">Sample.getGeometryFlag()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getHeight"><code class="docutils literal notranslate"><span class="pre">Sample.getHeight()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getMaterial"><code class="docutils literal notranslate"><span class="pre">Sample.getMaterial()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getName"><code class="docutils literal notranslate"><span class="pre">Sample.getName()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getOrientedLattice"><code class="docutils literal notranslate"><span class="pre">Sample.getOrientedLattice()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getShape"><code class="docutils literal notranslate"><span class="pre">Sample.getShape()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getThickness"><code class="docutils literal notranslate"><span class="pre">Sample.getThickness()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getWidth"><code class="docutils literal notranslate"><span class="pre">Sample.getWidth()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.hasCrystalStructure"><code class="docutils literal notranslate"><span class="pre">Sample.hasCrystalStructure()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.hasEnvironment"><code class="docutils literal notranslate"><span class="pre">Sample.hasEnvironment()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.hasOrientedLattice"><code class="docutils literal notranslate"><span class="pre">Sample.hasOrientedLattice()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.hasShape"><code class="docutils literal notranslate"><span class="pre">Sample.hasShape()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setCrystalStructure"><code class="docutils literal notranslate"><span class="pre">Sample.setCrystalStructure()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setEnvironment"><code class="docutils literal notranslate"><span class="pre">Sample.setEnvironment()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setGeometryFlag"><code class="docutils literal notranslate"><span class="pre">Sample.setGeometryFlag()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setHeight"><code class="docutils literal notranslate"><span class="pre">Sample.setHeight()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setShape"><code class="docutils literal notranslate"><span class="pre">Sample.setShape()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setThickness"><code class="docutils literal notranslate"><span class="pre">Sample.setThickness()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setWidth"><code class="docutils literal notranslate"><span class="pre">Sample.setWidth()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.size"><code class="docutils literal notranslate"><span class="pre">Sample.size()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-sample-objects-in-python">Working with Sample objects in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-sample-object-from-a-workspace">Getting the Sample Object from a Workspace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-properties">Sample Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-samples">Multiple Samples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample"><code class="docutils literal notranslate"><span class="pre">Sample</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.clearCrystalStructure"><code class="docutils literal notranslate"><span class="pre">Sample.clearCrystalStructure()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.clearOrientedLattice"><code class="docutils literal notranslate"><span class="pre">Sample.clearOrientedLattice()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getCrystalStructure"><code class="docutils literal notranslate"><span class="pre">Sample.getCrystalStructure()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getEnvironment"><code class="docutils literal notranslate"><span class="pre">Sample.getEnvironment()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getGeometryFlag"><code class="docutils literal notranslate"><span class="pre">Sample.getGeometryFlag()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getHeight"><code class="docutils literal notranslate"><span class="pre">Sample.getHeight()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getMaterial"><code class="docutils literal notranslate"><span class="pre">Sample.getMaterial()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getName"><code class="docutils literal notranslate"><span class="pre">Sample.getName()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getOrientedLattice"><code class="docutils literal notranslate"><span class="pre">Sample.getOrientedLattice()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getShape"><code class="docutils literal notranslate"><span class="pre">Sample.getShape()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getThickness"><code class="docutils literal notranslate"><span class="pre">Sample.getThickness()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.getWidth"><code class="docutils literal notranslate"><span class="pre">Sample.getWidth()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.hasCrystalStructure"><code class="docutils literal notranslate"><span class="pre">Sample.hasCrystalStructure()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.hasEnvironment"><code class="docutils literal notranslate"><span class="pre">Sample.hasEnvironment()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.hasOrientedLattice"><code class="docutils literal notranslate"><span class="pre">Sample.hasOrientedLattice()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.hasShape"><code class="docutils literal notranslate"><span class="pre">Sample.hasShape()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setCrystalStructure"><code class="docutils literal notranslate"><span class="pre">Sample.setCrystalStructure()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setEnvironment"><code class="docutils literal notranslate"><span class="pre">Sample.setEnvironment()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setGeometryFlag"><code class="docutils literal notranslate"><span class="pre">Sample.setGeometryFlag()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setHeight"><code class="docutils literal notranslate"><span class="pre">Sample.setHeight()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setShape"><code class="docutils literal notranslate"><span class="pre">Sample.setShape()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setThickness"><code class="docutils literal notranslate"><span class="pre">Sample.setThickness()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.setWidth"><code class="docutils literal notranslate"><span class="pre">Sample.setWidth()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Sample.size"><code class="docutils literal notranslate"><span class="pre">Sample.size()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

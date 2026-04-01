@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Instrument &#8212; MantidProject 6.15.20260330.1519 documentation</title>
+    <title>Instrument &#8212; MantidProject 6.15.20260331.2253 documentation</title>
   
   
   
@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -41,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../../../_static/documentation_options.js?v=0d8e7cc8"></script>
+    <script src="../../../../_static/documentation_options.js?v=d380279f"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/geometry/Instrument';</script>
@@ -628,6 +627,159 @@
 <h1>Instrument<a class="headerlink" href="#instrument" title="Link to this heading">#</a></h1>
 <p>This is a Python binding to the C++ class Mantid::Geometry::Instrument.</p>
 <p><em>bases:</em> <a class="reference internal" href="CompAssembly.html#mantid.geometry.CompAssembly" title="mantid.geometry.CompAssembly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mantid.geometry.CompAssembly</span></code></a></p>
+<section id="what-are-instruments">
+<h2>What are Instruments?<a class="headerlink" href="#what-are-instruments" title="Link to this heading">#</a></h2>
+<p>The Instrument in Mantid is a geometrical description of the components that make
+up the beam line. The components described will generally include:</p>
+<ul class="simple">
+<li><p>The source</p></li>
+<li><p>The sample position</p></li>
+<li><p>Each detector ‘pixel’</p></li>
+<li><p>Each monitor</p></li>
+</ul>
+<p>Other components may also be included such as</p>
+<ul class="simple">
+<li><p>Slits</p></li>
+<li><p>Mirrows</p></li>
+<li><p>Guides</p></li>
+<li><p>Choppers</p></li>
+<li><p>Engineering obstacles in the beam path</p></li>
+<li><p>Link between log-files and variable parameters of the instrument
+(such as the height of a detector table)</p></li>
+</ul>
+<p>An instrument is described using an <a class="reference internal" href="../../../../concepts/InstrumentDefinitionFile.html#instrumentdefinitionfile"><span class="std std-ref">instrument definition
+file</span></a>.</p>
+<p>The Mantid geometry is further explained <a class="reference internal" href="../../../../concepts/Geometry.html#geometry"><span class="std std-ref">here</span></a>.</p>
+<p><strong>Why do we have a full instrument description, and not just a list of L2 and 2Theta values?</strong></p>
+<p>A list of L2 and 2Theta values will provide information to perform unit
+conversions and several other algorithms, however a full geometric
+instrument description allows much more.</p>
+<ul class="simple">
+<li><p>Visualization of the instrument internals with data overlays</p></li>
+<li><p>Complex absorption corrections</p></li>
+<li><p>Montecarlo simulations of experiments</p></li>
+<li><p>Updating the instrument geometry according to values stored in
+log-files</p></li>
+</ul>
+</section>
+<section id="working-with-instruments-in-python">
+<h2>Working with Instruments in Python<a class="headerlink" href="#working-with-instruments-in-python" title="Link to this heading">#</a></h2>
+<section id="getting-the-instrument-from-a-workspace">
+<h3>Getting the Instrument from a workspace<a class="headerlink" href="#getting-the-instrument-from-a-workspace" title="Link to this heading">#</a></h3>
+<p>You can get access to the Instrument for a workspace with</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">instrument</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="instrument-properties">
+<h3>Instrument Properties<a class="headerlink" href="#instrument-properties" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
+<span class="n">instrument</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span>
+
+<span class="c1"># get the instrument name</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">instrument</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span>
+<span class="c1"># Get the validity dates for this instrument definition</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">instrument</span><span class="o">.</span><span class="n">getValidToDate</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">instrument</span><span class="o">.</span><span class="n">getValidFromDate</span><span class="p">())</span>
+<span class="c1"># Get the X,Y,Z position of the source and sample</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">getSource</span><span class="p">()</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">getSample</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">getPos</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">getPos</span><span class="p">())</span>
+<span class="c1"># Get the distance from the source to the sample</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">getDistance</span><span class="p">(</span><span class="n">source</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="finding-specific-components-of-the-instrument">
+<h3>Finding Specific Components of the instrument<a class="headerlink" href="#finding-specific-components-of-the-instrument" title="Link to this heading">#</a></h3>
+<p>The instrument class has several methods to help in finding the objects that describe specific parts of the instrument.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
+<span class="n">instrument</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span>
+
+<span class="c1"># Get the source and sample</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">getSource</span><span class="p">()</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">getSample</span><span class="p">()</span>
+
+<span class="c1"># You can get a component by name</span>
+<span class="n">bank1</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">getComponentByName</span><span class="p">(</span><span class="s2">&quot;bank1&quot;</span><span class="p">)</span>
+<span class="c1"># Or by Detector_id</span>
+<span class="n">det101</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="instrument-parameters">
+<h3>Instrument Parameters<a class="headerlink" href="#instrument-parameters" title="Link to this heading">#</a></h3>
+<p>Instruments, or any component within them (bank, detector, chopper, slit etc) can have parameters defined for them.  These can be accessed from Python.  Any search for instrument parameters cascades up the instrument tree, so a detector will inherit any parameters from it’s back, and it’s instrument.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
+<span class="c1">#set a string parameter on the whole instrument</span>
+<span class="n">SetInstrumentParameter</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">ParameterName</span><span class="o">=</span><span class="s2">&quot;TestParam&quot;</span><span class="p">,</span><span class="n">Value</span><span class="o">=</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+
+<span class="c1">#set a Number parameter just for bank 1</span>
+<span class="n">SetInstrumentParameter</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">ParameterName</span><span class="o">=</span><span class="s2">&quot;NumberParam&quot;</span><span class="p">,</span><span class="n">Value</span><span class="o">=</span><span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="n">ComponentName</span><span class="o">=</span><span class="s2">&quot;bank1&quot;</span><span class="p">,</span><span class="n">ParameterType</span><span class="o">=</span><span class="s2">&quot;Number&quot;</span><span class="p">)</span>
+
+<span class="c1">#set a different value on bank 2</span>
+<span class="n">SetInstrumentParameter</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">ParameterName</span><span class="o">=</span><span class="s2">&quot;NumberParam&quot;</span><span class="p">,</span><span class="n">Value</span><span class="o">=</span><span class="s2">&quot;3.5&quot;</span><span class="p">,</span> <span class="n">ComponentName</span><span class="o">=</span><span class="s2">&quot;bank2&quot;</span><span class="p">,</span><span class="n">ParameterType</span><span class="o">=</span><span class="s2">&quot;Number&quot;</span><span class="p">)</span>
+
+
+<span class="n">instrument</span><span class="o">=</span><span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span>
+<span class="n">bank1</span><span class="o">=</span><span class="n">instrument</span><span class="o">.</span><span class="n">getComponentByName</span><span class="p">(</span><span class="s2">&quot;bank1&quot;</span><span class="p">)</span>
+<span class="n">bank2</span><span class="o">=</span><span class="n">instrument</span><span class="o">.</span><span class="n">getComponentByName</span><span class="p">(</span><span class="s2">&quot;bank2&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The whole instrument parameter can be read from anywhere.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  The instrument: &quot;</span> <span class="o">+</span> <span class="n">instrument</span><span class="o">.</span><span class="n">getStringParameter</span><span class="p">(</span><span class="s2">&quot;TestParam&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  bank 1: &quot;</span> <span class="o">+</span> <span class="n">bank1</span><span class="o">.</span><span class="n">getStringParameter</span><span class="p">(</span><span class="s2">&quot;TestParam&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  bank 2: &quot;</span> <span class="o">+</span> <span class="n">bank2</span><span class="o">.</span><span class="n">getStringParameter</span><span class="p">(</span><span class="s2">&quot;TestParam&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The parameters  on the Bank 1 can be read from the bank or below.&quot;</span><span class="p">)</span>
+<span class="c1">#For this one call getIntParameter as the number was an int</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  bank 1: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bank1</span><span class="o">.</span><span class="n">getIntParameter</span><span class="p">(</span><span class="s2">&quot;NumberParam&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="c1">#For this one call getNumberParameter as the number was a float</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  bank 2: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bank2</span><span class="o">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="s2">&quot;NumberParam&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="c1">#if you are not sure of the type of a parameter you can call getParameterType</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  The type of NumberParam in bank 1: &quot;</span> <span class="o">+</span> <span class="n">bank1</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s2">&quot;NumberParam&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  The type of NumberParam in bank 2: &quot;</span> <span class="o">+</span> <span class="n">bank2</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s2">&quot;NumberParam&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The whole instrument parameter can be read from anywhere.
+  The instrument: Hello
+  bank 1: Hello
+  bank 2: Hello
+The parameters  on the Bank 1 can be read from the bank or below.
+  bank 1: 3
+  bank 2: 3.5
+  The type of NumberParam in bank 1: int
+  The type of NumberParam in bank 2: double
+</pre></div>
+</div>
+<section id="getting-all-the-parameters-on-an-instrument-component">
+<h4>Getting all the Parameters on an instrument component<a class="headerlink" href="#getting-all-the-parameters-on-an-instrument-component" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># setup as above</span>
+<span class="n">instrument</span><span class="o">=</span><span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span>
+<span class="n">det101</span><span class="o">=</span><span class="n">instrument</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">det101</span><span class="o">.</span><span class="n">getParameterNames</span><span class="p">()</span> <span class="p">:</span>
+    <span class="k">if</span> <span class="n">det101</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;int&quot;</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">det101</span><span class="o">.</span><span class="n">getIntParameter</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">det101</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;double&quot;</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">det101</span><span class="o">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">det101</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;string&quot;</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">det101</span><span class="o">.</span><span class="n">getStringParameter</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">value</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>NumberParam [3]
+TestParam [&#39;Hello&#39;]
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="mantid.geometry.Instrument">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">mantid.geometry.</span></span><span class="sig-name descname"><span class="pre">Instrument</span></span><a class="headerlink" href="#mantid.geometry.Instrument" title="Link to this definition">#</a></dt>
@@ -848,6 +1000,7 @@
 </dd></dl>
 
 </section>
+</section>
 
 
                 </article>
@@ -896,45 +1049,59 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.findGridDetectors"><code class="docutils literal notranslate"><span class="pre">Instrument.findGridDetectors()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.findRectDetectors"><code class="docutils literal notranslate"><span class="pre">Instrument.findRectDetectors()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getBaseInstrument"><code class="docutils literal notranslate"><span class="pre">Instrument.getBaseInstrument()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getBoolParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getBoolParameter()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getComponentByName"><code class="docutils literal notranslate"><span class="pre">Instrument.getComponentByName()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getDefaultView"><code class="docutils literal notranslate"><span class="pre">Instrument.getDefaultView()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getDescription"><code class="docutils literal notranslate"><span class="pre">Instrument.getDescription()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getDetector"><code class="docutils literal notranslate"><span class="pre">Instrument.getDetector()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getDistance"><code class="docutils literal notranslate"><span class="pre">Instrument.getDistance()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getFilename"><code class="docutils literal notranslate"><span class="pre">Instrument.getFilename()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getFittingParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getFittingParameter()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getFullName"><code class="docutils literal notranslate"><span class="pre">Instrument.getFullName()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getIntParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getIntParameter()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getName"><code class="docutils literal notranslate"><span class="pre">Instrument.getName()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getNumberDetectors"><code class="docutils literal notranslate"><span class="pre">Instrument.getNumberDetectors()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getNumberParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getNumberParameter()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getParamDescription"><code class="docutils literal notranslate"><span class="pre">Instrument.getParamDescription()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getParamShortDescription"><code class="docutils literal notranslate"><span class="pre">Instrument.getParamShortDescription()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getParameterNames"><code class="docutils literal notranslate"><span class="pre">Instrument.getParameterNames()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getParameterType"><code class="docutils literal notranslate"><span class="pre">Instrument.getParameterType()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getPos"><code class="docutils literal notranslate"><span class="pre">Instrument.getPos()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getPositionParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getPositionParameter()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getReferenceFrame"><code class="docutils literal notranslate"><span class="pre">Instrument.getReferenceFrame()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getRelativePos"><code class="docutils literal notranslate"><span class="pre">Instrument.getRelativePos()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getRelativeRot"><code class="docutils literal notranslate"><span class="pre">Instrument.getRelativeRot()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getRotation"><code class="docutils literal notranslate"><span class="pre">Instrument.getRotation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getRotationParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getRotationParameter()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getSample"><code class="docutils literal notranslate"><span class="pre">Instrument.getSample()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getShortDescription"><code class="docutils literal notranslate"><span class="pre">Instrument.getShortDescription()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getSource"><code class="docutils literal notranslate"><span class="pre">Instrument.getSource()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getStringParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getStringParameter()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getValidFromDate"><code class="docutils literal notranslate"><span class="pre">Instrument.getValidFromDate()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getValidToDate"><code class="docutils literal notranslate"><span class="pre">Instrument.getValidToDate()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.hasParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.hasParameter()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.nelements"><code class="docutils literal notranslate"><span class="pre">Instrument.nelements()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.setDescription"><code class="docutils literal notranslate"><span class="pre">Instrument.setDescription()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.setFilename"><code class="docutils literal notranslate"><span class="pre">Instrument.setFilename()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.type"><code class="docutils literal notranslate"><span class="pre">Instrument.type()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-instruments">What are Instruments?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-instruments-in-python">Working with Instruments in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-instrument-from-a-workspace">Getting the Instrument from a workspace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrument-properties">Instrument Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-specific-components-of-the-instrument">Finding Specific Components of the instrument</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrument-parameters">Instrument Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-all-the-parameters-on-an-instrument-component">Getting all the Parameters on an instrument component</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.findGridDetectors"><code class="docutils literal notranslate"><span class="pre">Instrument.findGridDetectors()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.findRectDetectors"><code class="docutils literal notranslate"><span class="pre">Instrument.findRectDetectors()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getBaseInstrument"><code class="docutils literal notranslate"><span class="pre">Instrument.getBaseInstrument()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getBoolParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getBoolParameter()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getComponentByName"><code class="docutils literal notranslate"><span class="pre">Instrument.getComponentByName()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getDefaultView"><code class="docutils literal notranslate"><span class="pre">Instrument.getDefaultView()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getDescription"><code class="docutils literal notranslate"><span class="pre">Instrument.getDescription()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getDetector"><code class="docutils literal notranslate"><span class="pre">Instrument.getDetector()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getDistance"><code class="docutils literal notranslate"><span class="pre">Instrument.getDistance()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getFilename"><code class="docutils literal notranslate"><span class="pre">Instrument.getFilename()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getFittingParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getFittingParameter()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getFullName"><code class="docutils literal notranslate"><span class="pre">Instrument.getFullName()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getIntParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getIntParameter()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getName"><code class="docutils literal notranslate"><span class="pre">Instrument.getName()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getNumberDetectors"><code class="docutils literal notranslate"><span class="pre">Instrument.getNumberDetectors()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getNumberParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getNumberParameter()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getParamDescription"><code class="docutils literal notranslate"><span class="pre">Instrument.getParamDescription()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getParamShortDescription"><code class="docutils literal notranslate"><span class="pre">Instrument.getParamShortDescription()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getParameterNames"><code class="docutils literal notranslate"><span class="pre">Instrument.getParameterNames()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getParameterType"><code class="docutils literal notranslate"><span class="pre">Instrument.getParameterType()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getPos"><code class="docutils literal notranslate"><span class="pre">Instrument.getPos()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getPositionParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getPositionParameter()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getReferenceFrame"><code class="docutils literal notranslate"><span class="pre">Instrument.getReferenceFrame()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getRelativePos"><code class="docutils literal notranslate"><span class="pre">Instrument.getRelativePos()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getRelativeRot"><code class="docutils literal notranslate"><span class="pre">Instrument.getRelativeRot()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getRotation"><code class="docutils literal notranslate"><span class="pre">Instrument.getRotation()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getRotationParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getRotationParameter()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getSample"><code class="docutils literal notranslate"><span class="pre">Instrument.getSample()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getShortDescription"><code class="docutils literal notranslate"><span class="pre">Instrument.getShortDescription()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getSource"><code class="docutils literal notranslate"><span class="pre">Instrument.getSource()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getStringParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.getStringParameter()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getValidFromDate"><code class="docutils literal notranslate"><span class="pre">Instrument.getValidFromDate()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.getValidToDate"><code class="docutils literal notranslate"><span class="pre">Instrument.getValidToDate()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.hasParameter"><code class="docutils literal notranslate"><span class="pre">Instrument.hasParameter()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.nelements"><code class="docutils literal notranslate"><span class="pre">Instrument.nelements()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.setDescription"><code class="docutils literal notranslate"><span class="pre">Instrument.setDescription()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.setFilename"><code class="docutils literal notranslate"><span class="pre">Instrument.setFilename()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.Instrument.type"><code class="docutils literal notranslate"><span class="pre">Instrument.type()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

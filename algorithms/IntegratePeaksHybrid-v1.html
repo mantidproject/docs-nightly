@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>IntegratePeaksHybrid v1 &#8212; MantidProject 6.15.20260330.1519 documentation</title>
+    <title>IntegratePeaksHybrid v1 &#8212; MantidProject 6.15.20260331.2253 documentation</title>
   
   
   
@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -41,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=0d8e7cc8"></script>
+    <script src="../_static/documentation_options.js?v=d380279f"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/IntegratePeaksHybrid-v1';</script>
@@ -1441,7 +1440,7 @@
 <tbody>
 <tr class="row-even"><td><p>InputWorkspace</p></td>
 <td><p>Input</p></td>
-<td><p><a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDEventWorkspace</span></a></p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/dataobjects/MDEventWorkspace1D.html#mantid.dataobjects.MDEventWorkspace1D" title="mantid.dataobjects.MDEventWorkspace1D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>Input md workspace.</p></td>
 </tr>
@@ -1484,10 +1483,10 @@
 <p>This is a hybrid between <a class="reference internal" href="IntegratePeaksMD-v2.html#algm-integratepeaksmd"><span class="std std-ref">IntegratePeaksMD v2</span></a> and <a class="reference internal" href="IntegratePeaksUsingClusters-v1.html#algm-integratepeaksusingclusters"><span class="std std-ref">IntegratePeaksUsingClusters v1</span></a>. Each peak region is treated as a separate image and rebinned accordingly. The background threshold is automatically determined around each peak, by averaging over all pixels in that region.
 The NumberOfBins and BackgroundOuterRadius are global to all Peaks. The actual background threshold is calculated independently for each peak based on NumberOfBins, BackgroundOuterRadius and the signal values in that region. This algorithm is in general faster than <a class="reference internal" href="IntegratePeaksUsingClusters-v1.html#algm-integratepeaksusingclusters"><span class="std std-ref">IntegratePeaksUsingClusters v1</span></a> and has a better ability to distinguish peaks from the background because each peak is treated independently.</p>
 <p>Integrates arbitrary shaped single crystal peaks defined on an
-<a class="reference internal" href="../concepts/MDHistoWorkspace.html#mdhistoworkspace"><span class="std std-ref">MDHistoWorkspace</span></a> using connected component
+<a class="reference internal" href="../api/python/mantid/dataobjects/MDHistoWorkspace.html#mantid.dataobjects.MDHistoWorkspace" title="mantid.dataobjects.MDHistoWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDHistoWorkspace</span></code></a> using connected component
 analysis to determine regions of interest around each peak of the
-<a class="reference internal" href="../concepts/PeaksWorkspace.html#peaksworkspace"><span class="std std-ref">PeaksWorkspace</span></a>. The output is an integrated
-<a class="reference internal" href="../concepts/PeaksWorkspace.html#peaksworkspace"><span class="std std-ref">PeaksWorkspace</span></a> as well as a group of images <a class="reference internal" href="../concepts/WorkspaceGroup.html#workspacegroup"><span class="std std-ref">WorkspaceGroup</span></a> of <a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDWorkspaces</span></a>  containing the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">PeaksWorkspace</span></code>. The output is an integrated
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">PeaksWorkspace</span></code> as well as a group of images <a class="reference internal" href="../api/python/mantid/api/WorkspaceGroup.html#mantid.api.WorkspaceGroup" title="mantid.api.WorkspaceGroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code></a> of <a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDWorkspaces</span></a>  containing the
 labels assigned to each cluster for diagnostic and visualisation
 purposes.</p>
 <p><strong>The algorithm makes no assmptions about Peak shape or size</strong> and can
@@ -1517,10 +1516,10 @@ the detector/TOF space is no longer accessible.</p>
 </section>
 <section id="no-cluster-corresponding-to-peak">
 <h3>No Cluster Corresponding to Peak<a class="headerlink" href="#no-cluster-corresponding-to-peak" title="Link to this heading">#</a></h3>
-<p>This is because the input <a class="reference internal" href="../concepts/PeaksWorkspace.html#peaksworkspace"><span class="std std-ref">PeaksWorkspace</span></a> has peaks
+<p>This is because the input <code class="xref py py-obj docutils literal notranslate"><span class="pre">PeaksWorkspace</span></code> has peaks
 that do not align with peaks in the image. The error could either be on
 the side of the input PeaksWorkspace (spurious peaks), or of the
-<a class="reference internal" href="../concepts/MDHistoWorkspace.html#mdhistoworkspace"><span class="std std-ref">MDHistoWorkspace</span></a> generated as part of processing.
+<a class="reference internal" href="../api/python/mantid/dataobjects/MDHistoWorkspace.html#mantid.dataobjects.MDHistoWorkspace" title="mantid.dataobjects.MDHistoWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDHistoWorkspace</span></code></a> generated as part of processing.
 One thing to verify is that the combination of Threshold and
 Normalization input parameters are not so low that they are treating
 genuine peaks in the image as background.</p>
@@ -1562,8 +1561,8 @@ genuine peaks in the image as background.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Crystal/inc/MantidCrystal/IntegratePeaksHybrid.h">IntegratePeaksHybrid.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Crystal/src/IntegratePeaksHybrid.cpp">IntegratePeaksHybrid.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/Crystal/inc/MantidCrystal/IntegratePeaksHybrid.h">IntegratePeaksHybrid.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/Crystal/src/IntegratePeaksHybrid.cpp">IntegratePeaksHybrid.cpp</a></p>
 </section>
 </section>
 

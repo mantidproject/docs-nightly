@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Data reduction for D7 instrument at the ILL &#8212; MantidProject 6.15.20260330.1519 documentation</title>
+    <title>Data reduction for D7 instrument at the ILL &#8212; MantidProject 6.15.20260331.2253 documentation</title>
   
   
   
@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -41,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=0d8e7cc8"></script>
+    <script src="../_static/documentation_options.js?v=d380279f"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -532,7 +531,7 @@ As long as this d-spacing list is sufficient and does not require changes, the <
 <p>The measurement of the cadmium absorber is optional and does not have to be provided as input for the transmission to be calculated. However, it allows
 to take into account dark currents in the readout system electronics and thus this measurement is advised to be included in transmission calculations.</p>
 <p>It is possible to provide more than one numor as input for the transmission calculation. In such a case, the input workspaces are averaged.</p>
-<p>The output of the transmission calculation is given as a <a class="reference internal" href="../concepts/WorkspaceGroup.html#workspacegroup"><span class="std std-ref">WorkspaceGroup</span></a> with a single workspace containing a single value of the calculated polarisation.</p>
+<p>The output of the transmission calculation is given as a <a class="reference internal" href="../api/python/mantid/api/WorkspaceGroup.html#mantid.api.WorkspaceGroup" title="mantid.api.WorkspaceGroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code></a> with a single workspace containing a single value of the calculated polarisation.</p>
 <p>Instead of running the transmission calculation it is also possible to either provide a workspace with a single value or a floating-point value for the transmission to the workflows
 that require transmission.</p>
 <section id="workflow-diagrams-and-working-example">
@@ -615,9 +614,9 @@ after polarisation correction is calculated.</p>
 \[\phi = \frac{\dot{I_{B}}(00) - \dot{I_{B}}(01)}{(2f_{p}-1) \dot{I_{B}}(00) + \dot{I_{B}}(01)},\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_{p}\)</span> is the flipper efficiency, currently assumed to be 1.0, and <span class="math notranslate nohighlight">\(\dot{I_{B}}(00)\)</span> and <span class="math notranslate nohighlight">\(\dot{I_{B}}(01)\)</span> denote normalised
 and background-subtracted data with flipper states off and on respectively.</p>
-<p>The output is given in as a <a class="reference internal" href="../concepts/WorkspaceGroup.html#workspacegroup"><span class="std std-ref">WorkspaceGroup</span></a> with the number of entries consistent with the number of measured polarisation directions.
+<p>The output is given in as a <a class="reference internal" href="../api/python/mantid/api/WorkspaceGroup.html#mantid.api.WorkspaceGroup" title="mantid.api.WorkspaceGroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code></a> with the number of entries consistent with the number of measured polarisation directions.
 Each workspace in the group contains a single value of the polariser-analyser efficiency per detector. The flipping ratios are also available for inspection
-in a <a class="reference internal" href="../concepts/WorkspaceGroup.html#workspacegroup"><span class="std std-ref">WorkspaceGroup</span></a> named <cite>flipping_ratios</cite>.</p>
+in a <a class="reference internal" href="../api/python/mantid/api/WorkspaceGroup.html#mantid.api.WorkspaceGroup" title="mantid.api.WorkspaceGroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code></a> named <cite>flipping_ratios</cite>.</p>
 <section id="workflow-diagram-and-working-example">
 <h4><a class="toc-backref" href="#id27" role="doc-backlink">Workflow diagram and working example</a><a class="headerlink" href="#workflow-diagram-and-working-example" title="Link to this heading">#</a></h4>
 <p>Below is the relevant workflow diagram describing reduction steps of the quartz reduction.</p>
@@ -900,7 +899,7 @@ correction of the current sample data.</p>
 <h4><a class="toc-backref" href="#id35" role="doc-backlink">Output</a><a class="headerlink" href="#output" title="Link to this heading">#</a></h4>
 <p>The corrected counts in each each detector are normalised to the expected total cross-section for vanadium
 of <span class="math notranslate nohighlight">\(0.404 \frac{\text{barn}}{\text{steradian} \cdot \text{atom}}\)</span>. The output of vanadium reduction
-is a <a class="reference internal" href="../concepts/WorkspaceGroup.html#workspacegroup"><span class="std std-ref">WorkspaceGroup</span></a> with one entry if the <cite>OutputTreatment</cite> is set to <cite>Sum</cite>, or
+is a <a class="reference internal" href="../api/python/mantid/api/WorkspaceGroup.html#mantid.api.WorkspaceGroup" title="mantid.api.WorkspaceGroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code></a> with one entry if the <cite>OutputTreatment</cite> is set to <cite>Sum</cite>, or
 the same number of entries as input data if <cite>Individual</cite> was selected. In the case of <cite>TOF</cite> reduction mode,
 vanadium counts are integrated around the elastic peak position for each detector before normalisation
 to the expected cross-section.</p>
@@ -1053,7 +1052,7 @@ and relevant only for the <cite>SingleCrystal</cite> reduction are:</p>
 <li><p>KiXAngle - the angle between the incident momentum and the Sharpf angle,</p></li>
 <li><p>OmegaShift - omega offset of the sample.</p></li>
 </ul>
-<p>The output of the  is a <a class="reference internal" href="../concepts/WorkspaceGroup.html#workspacegroup"><span class="std std-ref">WorkspaceGroup</span></a> with the number of entries equal to number of measured polarisations
+<p>The output of the  is a <a class="reference internal" href="../api/python/mantid/api/WorkspaceGroup.html#mantid.api.WorkspaceGroup" title="mantid.api.WorkspaceGroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code></a> with the number of entries equal to number of measured polarisations
 times number of steps in a <span class="math notranslate nohighlight">\(2\theta\)</span> scan. This output can be provided to <a class="reference internal" href="../algorithms/D7AbsoluteCrossSections-v1.html#algm-d7absolutecrosssections"><span class="std std-ref">D7AbsoluteCrossSections</span></a>
 for cross-section separation, e.g. for diagnostic purposes, or for the final normalisation.</p>
 <section id="id10">
@@ -1101,7 +1100,7 @@ nuclear-spin-incoherent cross-section of the sample.</p>
 </section>
 <section id="id15">
 <h4><a class="toc-backref" href="#id42" role="doc-backlink">Output</a><a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
-<p>The output of the reduction and normalisation is a <a class="reference internal" href="../concepts/WorkspaceGroup.html#workspacegroup"><span class="std std-ref">WorkspaceGroup</span></a> with the number of entries consistent with the input
+<p>The output of the reduction and normalisation is a <a class="reference internal" href="../api/python/mantid/api/WorkspaceGroup.html#mantid.api.WorkspaceGroup" title="mantid.api.WorkspaceGroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code></a> with the number of entries consistent with the input
 if the <cite>OutputTreatment</cite> property was selected to be <cite>Individual</cite>, or the number of entries will be consistent with either the number of polarisation
 orientations present in the data (e.g. six for a XYZ method) or the number of separated cross-section.
 Each entry of the output group is a workspace with X-axis unit being either momentum exchange <span class="math notranslate nohighlight">\(Q\)</span>, the scattering angle <span class="math notranslate nohighlight">\(2\theta\)</span>,

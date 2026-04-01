@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MaskDetectors v1 &#8212; MantidProject 6.15.20260330.1519 documentation</title>
+    <title>MaskDetectors v1 &#8212; MantidProject 6.15.20260331.2253 documentation</title>
   
   
   
@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -41,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=0d8e7cc8"></script>
+    <script src="../_static/documentation_options.js?v=d380279f"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/MaskDetectors-v1';</script>
@@ -1441,7 +1440,7 @@
 <tbody>
 <tr class="row-even"><td><p>Workspace</p></td>
 <td><p>InOut</p></td>
-<td><p><a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>The name of the input and output workspace on which to perform the algorithm.</p></td>
 </tr>
@@ -1465,7 +1464,7 @@
 </tr>
 <tr class="row-even"><td><p>MaskedWorkspace</p></td>
 <td><p>Input</p></td>
-<td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a></p></td>
 <td></td>
 <td><p>If given but not as a SpecialWorkspace2D, the masking from this workspace will be copied. If given as a SpecialWorkspace2D, the masking is read from its Y values.</p></td>
 </tr>
@@ -1564,7 +1563,7 @@ property, only the indexes in this range are masked.</p></li>
 <em>Workspace</em> mask have the same instrument.</p>
 <p>The algorithm works differently depending on <em>MaskedWorkspace</em> property
 being a <em>Mask Workspace</em> (SpecialWorkspace2D object) or
-<a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">Matrix Workspace</span></a>.</p>
+<a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a>.</p>
 <p>If source <em>MaskedWorkspace</em> is a <em>Mask Workspace</em> and the number of spectra in the source
 <em>MaskedWorkspace</em> is equal to number of spectra in the target <em>Workspace</em>, the
 spectra numbers of the <em>MaskedWorkspace</em> are used as source
@@ -1576,7 +1575,7 @@ uses them to mask the corresponding spectra of the target workspace.</p>
 to always use <em>MaskedWorkspace</em> detector IDs as the source of the masking
 information. If a detector is masked, then the corresponding detector
 will be masked in the input <em>Workspace</em>.</p>
-<p>If the input <em>MaskedWorkspace</em> is a <a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">Matrix Workspace</span></a>
+<p>If the input <em>MaskedWorkspace</em> is a <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a>
 and the number of spectra in the source <em>MaskedWorkspace</em> is equal to the number
 of spectra in the target <em>Workspace</em>, then workspace indices of the source are
 used.</p>
@@ -1608,7 +1607,7 @@ mask detectors, including</p>
 <li><p>Detector IDs</p></li>
 <li><p>Instrument components</p></li>
 <li><p>MaskWorkspace</p></li>
-<li><p>General <a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a> other than
+<li><p>General <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> other than
 MaskWorkspace (In this case, the mask will be
 extracted from this workspace)</p></li>
 <li><p>Workspace index range specified by setting either <em>StartWorkspacIndex</em> or <em>EndWorkspaceIndex</em> to non-default value.
@@ -1622,14 +1621,14 @@ the entire workspace.</p></li>
 <ol class="arabic simple">
 <li><p>At least one of the masking inputs must be specified.</p></li>
 <li><p>Workspace indices and Spectra cannot be given at the same time.</p></li>
-<li><p>MaskWorkspace  and general <a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a> cannot be given at the same time.</p></li>
-<li><p>When a general <a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a> is specified, then all detectors in a spectrum are treated as masked if the effective detector of that spectrum is masked.</p></li>
+<li><p>MaskWorkspace  and general <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> cannot be given at the same time.</p></li>
+<li><p>When a general <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> is specified, then all detectors in a spectrum are treated as masked if the effective detector of that spectrum is masked.</p></li>
 <li><p>The detectors found recursively in given instrument components are added to the list of detectors to mask. If multiple components with the same name exist, the first component found is masked.</p></li>
 <li><p>The masks specified from</p>
 <ol class="loweralpha simple">
 <li><p>workspace indices/spectra</p></li>
 <li><p>detectors</p></li>
-<li><p>MaskWorkspace /general <a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a> will be combined by the <em>plus</em> operation.</p></li>
+<li><p>MaskWorkspace /general <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> will be combined by the <em>plus</em> operation.</p></li>
 </ol>
 </li>
 </ol>
@@ -1932,8 +1931,8 @@ Detector 106 is masked: False
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/DataHandling/inc/MantidDataHandling/MaskDetectors.h">MaskDetectors.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/DataHandling/src/MaskDetectors.cpp">MaskDetectors.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/DataHandling/inc/MantidDataHandling/MaskDetectors.h">MaskDetectors.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/DataHandling/src/MaskDetectors.cpp">MaskDetectors.cpp</a></p>
 </section>
 </section>
 

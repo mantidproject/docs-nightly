@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>GenerateEventsFilter v1 &#8212; MantidProject 6.15.20260330.1519 documentation</title>
+    <title>GenerateEventsFilter v1 &#8212; MantidProject 6.15.20260331.2253 documentation</title>
   
   
   
@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -41,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=0d8e7cc8"></script>
+    <script src="../_static/documentation_options.js?v=d380279f"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1443,19 +1442,19 @@
 <tbody>
 <tr class="row-even"><td><p>InputWorkspace</p></td>
 <td><p>Input</p></td>
-<td><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a></p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>An input Matrix workspace.</p></td>
 </tr>
 <tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
-<td><p><a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>The name to use for the output SplittersWorkspace object, ie the filter.</p></td>
 </tr>
 <tr class="row-even"><td><p>InformationWorkspace</p></td>
 <td><p>Output</p></td>
-<td><p><a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a></p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/dataobjects/TableWorkspace.html#mantid.dataobjects.TableWorkspace" title="mantid.dataobjects.TableWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableWorkspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>Optional output for the information of each splitter workspace index</p></td>
 </tr>
@@ -1568,9 +1567,9 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
 <p>This algorithm is able to generate event splitting according to user’s requirements.
-The generated time splitters are stored either in a <a class="reference internal" href="../api/python/mantid/api/ISplittersWorkspace.html#splittersworkspace"><span class="std std-ref">Splitters Workspace</span></a> or a <a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a>.
+The generated time splitters are stored either in a <a class="reference internal" href="../api/python/mantid/api/ISplittersWorkspace.html#splittersworkspace"><span class="std std-ref">Splitters Workspace</span></a> or a <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a>.
 Either can be used by algorithm <a class="reference internal" href="FilterEvents-v1.html#algm-filterevents"><span class="std std-ref">FilterEvents</span></a>
-to filter an <a class="reference internal" href="../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspace</span></a>.</p>
+to filter an <a class="reference internal" href="../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects.EventWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventWorkspace</span></code></a>.</p>
 <p>This algorithm is designed as a general-purposed method for generating event splitting.
 The time resolution of this two algorithms is microseconds,
 i.e., the absolute time of the (neutron) event including time-of-flight.
@@ -1596,7 +1595,7 @@ event splitters that are supported by this algorithm.</p>
 time, stop time and target workspace for events within start time and
 stop time. This type of workspace is appropriate for the case that
 the amount of generated event splitters are not huge;</p></li>
-<li><p><a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a>: It uses X-axis to store time
+<li><p><a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a>: It uses X-axis to store time
 stamp in total nanoseconds and Y-axis to store target workspace. For
 example, <span class="math notranslate nohighlight">\(x_{i}, x_{i+1}\)</span> and <span class="math notranslate nohighlight">\(y_{i}\)</span> construct an event filter as start
 time is <span class="math notranslate nohighlight">\(x_{i}\)</span>, stop time is <span class="math notranslate nohighlight">\(x_{i+1}\)</span>, and target workspace is <span class="math notranslate nohighlight">\(y_{i}\)</span> -th
@@ -1604,7 +1603,7 @@ workspace. If <span class="math notranslate nohighlight">\(y_{i}\)</span> is les
 between time <span class="math notranslate nohighlight">\(x_{i}\)</span> and <span class="math notranslate nohighlight">\(x_{i+1}\)</span> will be discarded. This type of
 workspace is appropriate for the case that the amount of generated
 event splitters are huge, because processing a
-<a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a> is way faster than a
+<a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> is way faster than a
 <a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a> in Mantid.</p></li>
 </ul>
 </section>
@@ -1739,7 +1738,7 @@ events between <code class="docutils literal notranslate"><span class="pre">t_i<
 </section>
 <section id="parameter-fastlog">
 <h3>Parameter: <code class="docutils literal notranslate"><span class="pre">FastLog</span></code><a class="headerlink" href="#parameter-fastlog" title="Link to this heading">#</a></h3>
-<p>When <code class="docutils literal notranslate"><span class="pre">FastLog</span></code> is set to True, a <a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a> will be used to store the event
+<p>When <code class="docutils literal notranslate"><span class="pre">FastLog</span></code> is set to True, a <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> will be used to store the event
 splitters, which is more appropriate for fast changing logs. (see above for details).</p>
 </section>
 <section id="parameter-usereverselogarithmic">
@@ -1809,7 +1808,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p><strong>Example - Generate event filter by temperature value</strong></p>
 <p>The following is a contrived example to show how one would use the algorithm to split
-up an <a class="reference internal" href="../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspace</span></a> by a temperature
+up an <a class="reference internal" href="../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects.EventWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventWorkspace</span></code></a> by a temperature
 log. The resulting workspaces would then be fed to
 <a class="reference internal" href="FilterEvents-v1.html#algm-filterevents"><span class="std std-ref">FilterEvents</span></a>
 for further processing.</p>
@@ -1875,8 +1874,8 @@ Number of rows in second TableWorkspace = 9
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Algorithms/inc/MantidAlgorithms/GenerateEventsFilter.h">GenerateEventsFilter.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/Algorithms/src/GenerateEventsFilter.cpp">GenerateEventsFilter.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/Algorithms/inc/MantidAlgorithms/GenerateEventsFilter.h">GenerateEventsFilter.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/Algorithms/src/GenerateEventsFilter.cpp">GenerateEventsFilter.cpp</a></p>
 </section>
 </section>
 

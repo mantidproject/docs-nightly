@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Fit v1 &#8212; MantidProject 6.15.20260330.1519 documentation</title>
+    <title>Fit v1 &#8212; MantidProject 6.15.20260331.2253 documentation</title>
   
   
   
@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -41,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=0d8e7cc8"></script>
+    <script src="../_static/documentation_options.js?v=d380279f"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1449,7 +1448,7 @@
 </tr>
 <tr class="row-odd"><td><p>InputWorkspace</p></td>
 <td><p>Input</p></td>
-<td><p><a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">Workspace</span></a></p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>Name of the input Workspace</p></td>
 </tr>
@@ -1570,7 +1569,7 @@
 <section id="additional-properties-for-a-1d-function">
 <h3>Additional properties for a 1D function<a class="headerlink" href="#additional-properties-for-a-1d-function" title="Link to this heading">#</a></h3>
 <p>If Function defines a one-dimensional function and InputWorkspace is a
-<a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a> the algorithm will have these
+<a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> the algorithm will have these
 additional properties:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1661,7 +1660,7 @@ additional properties:</p>
 <h3>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h3>
 <p>This is a generic algorithm for fitting data in a Workspace with a
 function. The workspace must have the type supported by the algorithm.
-Currently supported types are: <a class="reference internal" href="../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a> and
+Currently supported types are: <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> and
 <a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">Table Workspace</span></a> for fitting with a IFunction1D and
 <a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDWorkspace</span></a> for fitting with IFunctionMD.
 After Function and InputWorkspace properties are set the algorithm may decide
@@ -1901,13 +1900,14 @@ replace the name of the workspace with a different name if you give a
 value to the property ‘Output’ which redefines the base name of the
 output workspaces.</p>
 <p>OutputParameters is a <a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a> with the fitted
-parameter values. OutputWorkspace is a <a class="reference internal" href="../concepts/Workspace2D.html#workspace2d"><span class="std std-ref">Workspace2D</span></a> which compares the fit with the original data. The
+parameter values. OutputWorkspace is a <a class="reference internal" href="../api/python/mantid/dataobjects/Workspace2D.html#mantid.dataobjects.Workspace2D" title="mantid.dataobjects.Workspace2D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace2D</span></code></a>
+which compares the fit with the original data. The
 names given to these workspaces are built by appending the suffixes
 “_Parameters” and “_Workspace” to the name given in the input property
 ‘Output’. For example, if ‘Output’ was set to “MyResults” the name of
 the parameter TableWorkspace will be “MyResults_Parameters” and the
 name of the Workspace2D will be “MyResults_Workspace”.</p>
-<p>The <a class="reference internal" href="../concepts/Workspace2D.html#workspace2d"><span class="std std-ref">Workspace2D</span></a> produced in the output property
+<p>The <a class="reference internal" href="../api/python/mantid/dataobjects/Workspace2D.html#mantid.dataobjects.Workspace2D" title="mantid.dataobjects.Workspace2D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace2D</span></code></a> produced in the output property
 ‘OutputWorkspace’ (example name: “MyResults_Workspace”) has three
 spectra:</p>
 <ol class="arabic simple">
@@ -2427,8 +2427,8 @@ Constant 2: 5.00
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/Fit.h">Fit.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ddb87ada076dcfc0cb1f4fff02fa351069fb0ea0/Framework/CurveFitting/src/Algorithms/Fit.cpp">Fit.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/Fit.h">Fit.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/73fbe467f8c1800ee84bc2fb3ad149deb79cafc2/Framework/CurveFitting/src/Algorithms/Fit.cpp">Fit.cpp</a></p>
 </section>
 </section>
 

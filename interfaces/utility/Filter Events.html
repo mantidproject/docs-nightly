@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Filter Events Interface &#8212; MantidProject 6.15.20260330.1519 documentation</title>
+    <title>Filter Events Interface &#8212; MantidProject 6.15.20260331.2253 documentation</title>
   
   
   
@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -41,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=0d8e7cc8"></script>
+    <script src="../../_static/documentation_options.js?v=d380279f"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -436,7 +435,7 @@
 <a class="reference internal" href="../../algorithms/GenerateEventsFilter-v1.html#algm-generateeventsfilter"><span class="std std-ref">GenerateEventsFilter</span></a> which is able to generate event splitters
 according to user’s requirement for filtering events.
 The generated time splitters are stored either in a SplittersWorkspace or a
-<a class="reference internal" href="../../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a>. Both of them will be used by algorithm
+<a class="reference internal" href="../../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a>. Both of them will be used by algorithm
 <a class="reference internal" href="../../algorithms/FilterEvents-v1.html#algm-filterevents"><span class="std std-ref">FilterEvents</span></a> which filters the events from a EventWorkspace to one or
 multiple EventWorkspaces according to an input <a class="reference internal" href="../../api/python/mantid/api/ISplittersWorkspace.html#splittersworkspace"><span class="std std-ref">Splitters Workspace</span></a>
 containing a series of splitters.</p>
@@ -457,7 +456,7 @@ or <a class="reference internal" href="../../algorithms/GenerateEventsFilter-v1.
 appropriate file via <em>Browse</em> button or by entering an integer as a valid run number in the
 <em>File/Run</em> field, if the instrument name is set up in Mantid. The user must provide a file,
 which contains valid sample logs
-for splitting and <a class="reference internal" href="../../concepts/EventWorkspace.html#eventworkspace"><span class="std std-ref">EventWorkspace</span></a>. The data will be loaded once the user
+for splitting and <a class="reference internal" href="../../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects.EventWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventWorkspace</span></code></a>. The data will be loaded once the user
 has clicked upon the <em>Load</em> button.
 With the help of <em>drop-down</em> list, user is be able to load more than one file and then click
 on the <em>Use</em> button which will load the selected
@@ -486,13 +485,13 @@ output workspaces for storing event splitters that are supported by
 <a class="reference internal" href="../../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a> that has 3 columns for start time,
 stop time and target workspace for events within start time and stop time. This type of workspace is
 appropriate for the case that the amount of generated event splitters are not huge.</p></li>
-<li><p><a class="reference internal" href="../../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a>: It uses X-axis to store time stamp in total nanoseconds
+<li><p><a class="reference internal" href="../../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a>: It uses X-axis to store time stamp in total nanoseconds
 and Y-axis to store target workspace. For example, <span class="math notranslate nohighlight">\([x_i, x_i+1]\)</span> and <span class="math notranslate nohighlight">\([y_i]\)</span> construct
 an event filter as start time is <span class="math notranslate nohighlight">\([x_i]\)</span>, stop time is <span class="math notranslate nohighlight">\([x_i+1]\)</span>, and target workspace
 is <span class="math notranslate nohighlight">\([y_i-th]\)</span> workspace. If <span class="math notranslate nohighlight">\([y_i]\)</span>, is less than 0, then it means
 that all events between time <span class="math notranslate nohighlight">\([x_i]\)</span> and <span class="math notranslate nohighlight">\([x_i+1]\)</span> will be discarded. This type of
 workspace is appropriate for the case that the amount of generated event splitters are huge, because
-processing a <a class="reference internal" href="../../concepts/MatrixWorkspace.html#matrixworkspace"><span class="std std-ref">MatrixWorkspace</span></a> is way faster than a
+processing a <a class="reference internal" href="../../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> is way faster than a
 <a class="reference internal" href="../../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a> in Mantid.</p></li>
 </ul>
 </section>

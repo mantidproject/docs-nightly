@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Algorithm &#8212; MantidProject 6.15.20260413.1004 documentation</title>
+    <title>Algorithm &#8212; MantidProject 6.15.20260417.1728 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../../../../_static/documentation_options.js?v=8800fdde"></script>
+    <script src="../../../../_static/documentation_options.js?v=00bfdd9b"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/api/Algorithm';</script>
@@ -633,6 +633,99 @@
 <h1>Algorithm<a class="headerlink" href="#algorithm" title="Link to this heading">#</a></h1>
 <p>This is a Python binding to the C++ class Mantid::API::Algorithm.</p>
 <p><em>bases:</em> <a class="reference internal" href="IAlgorithm.html#mantid.api.IAlgorithm" title="mantid.api.IAlgorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mantid.api.IAlgorithm</span></code></a></p>
+<section id="what-are-they">
+<h2>What are they?<a class="headerlink" href="#what-are-they" title="Link to this heading">#</a></h2>
+<p>Algorithms are the verbs of Mantid. They are the actors. If you want to
+manipulate your data in any way it will be done through an algorithm.
+Algorithms operate primarily on data in <a class="reference internal" href="Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspaces</span></code></a>. They
+will normally take one or more <a class="reference internal" href="Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspaces</span></code></a> as an input,
+perform some processing on them and provide an output as another
+<a class="reference internal" href="Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a> (although it is possible to have multiple
+outputs).</p>
+</section>
+<section id="categories-name-and-versions">
+<h2>Categories, Name and Versions<a class="headerlink" href="#categories-name-and-versions" title="Link to this heading">#</a></h2>
+<p>Each algorithm has a category, a name and a version. The name and
+version of an algorithm when taken together have to be unique.</p>
+<section id="category">
+<h3>Category<a class="headerlink" href="#category" title="Link to this heading">#</a></h3>
+<p>A category is a group of algorithms that have some connection in their
+usage. This is primarily used to make the list of algorithms easier to
+work with in graphical user interfaces. Example categories include,
+DataHandling, Diffraction, Muon, Workflow and are currently
+subcategories of Algorithms category.</p>
+</section>
+<section id="name">
+<h3>Name<a class="headerlink" href="#name" title="Link to this heading">#</a></h3>
+<p>The name of an algorithm is what is used to refer to it. This can be
+different from the class name in C++, as for example if you had two
+versions of the same algorithm they would have the same name, but would
+have to have different class names (or at least be in different
+namespaces).</p>
+</section>
+<section id="version">
+<h3>Version<a class="headerlink" href="#version" title="Link to this heading">#</a></h3>
+<p>Mantid allows multiple versions of the same algorithm. These are
+differentiated by using a single integer as a version number, where a
+higher version number denotes a more recent version. This allows you to
+normally use the most recent version of an algorithm but also to access
+previous versions if you prefer.</p>
+</section>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<p>Each algorithm will have one or more parameters, known within Mantid as
+<a class="reference internal" href="../kernel/Property.html#mantid.kernel.Property" title="mantid.kernel.Property"><code class="xref py py-obj docutils literal notranslate"><span class="pre">properties</span></code></a>, that will control how it performs its
+processing. These parameters specify both what the inputs and outputs of
+the algorithm will be as well any other options that alter the
+processing.</p>
+<p>For examples of the parameters of an algorithm, look at the page for one
+of the example algorithms below.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># where p1,p2 &amp; p3 are values for algorithm &quot;Alg&quot;&#39;s properties</span>
+<span class="n">mtd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;Alg&quot;</span><span class="p">,</span><span class="s2">&quot;p1;p2;p3&quot;</span><span class="p">)</span> <span class="c1"># using parameter ordinal position</span>
+<span class="c1">#or</span>
+<span class="n">mtd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;Alg&quot;</span><span class="p">,</span><span class="s2">&quot;Property1=p1;Property2=p2;Property3=p3&quot;</span><span class="p">)</span> <span class="c1">#using parameter names</span>
+<span class="c1">#or</span>
+<span class="n">alg</span> <span class="o">=</span> <span class="n">mtd</span><span class="o">.</span><span class="n">createAlgorithm</span><span class="p">(</span><span class="s2">&quot;Alg&quot;</span><span class="p">)</span> <span class="c1"># explicitly setting each parameter, then executing</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s2">&quot;Property1&quot;</span><span class="p">,</span><span class="s2">&quot;p1&quot;</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s2">&quot;Property2&quot;</span><span class="p">,</span><span class="s2">&quot;p2&quot;</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s2">&quot;Property3&quot;</span><span class="p">,</span><span class="s2">&quot;p3&quot;</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+
+<span class="c1"># Properties of Algorithms can be read (but not written to) through a Python dictionary. So you may do:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alg</span><span class="p">[</span><span class="s2">&quot;Property1&quot;</span><span class="p">])</span>
+<span class="c1"># prints &#39;p1&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alg</span><span class="p">[</span><span class="s2">&quot;Property2&quot;</span><span class="p">])</span>
+<span class="c1"># prints &#39;p2&#39;, etc</span>
+</pre></div>
+</div>
+</section>
+<section id="example-algorithms">
+<h2>Example Algorithms<a class="headerlink" href="#example-algorithms" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../../../algorithms/Plus-v1.html#algm-plus"><span class="std std-ref">Plus</span></a>
+- An algorithm for adding data in two <a class="reference internal" href="Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspaces</span></code></a>
+together</p></li>
+<li><p><a class="reference internal" href="../../../../algorithms/Rebin-v1.html#algm-rebin"><span class="std std-ref">Rebin</span></a>
+- An algorithm for altering the binning of the data in a
+<a class="reference internal" href="Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="../../../../algorithms/Load-v1.html#algm-load"><span class="std std-ref">Load</span></a>
+- An algorithm for loading the data from a file into a
+<a class="reference internal" href="Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="../../../../algorithms/GroupDetectors-v2.html#algm-groupdetectors"><span class="std std-ref">GroupDetectors</span></a>
+- An algorithm for grouping two or more detectors into a larger
+‘logical’ detector.</p></li>
+</ul>
+</section>
+<section id="writing-your-own-algorithm">
+<h2>Writing your own algorithm<a class="headerlink" href="#writing-your-own-algorithm" title="Link to this heading">#</a></h2>
+<p>A primer for this is <a class="reference internal" href="../../../../tutorials/extending_mantid_with_python/python_algorithms/01_basic_algorithm_structure.html#basic-algorithm-structure"><span class="std std-ref">here</span></a>.</p>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="mantid.api.Algorithm">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">mantid.api.</span></span><span class="sig-name descname"><span class="pre">Algorithm</span></span><a class="headerlink" href="#mantid.api.Algorithm" title="Link to this definition">#</a></dt>
@@ -1015,6 +1108,7 @@
 </dd></dl>
 
 </section>
+</section>
 
 
                 </article>
@@ -1063,68 +1157,82 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm"><code class="docutils literal notranslate"><span class="pre">Algorithm</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.alias"><code class="docutils literal notranslate"><span class="pre">Algorithm.alias()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.aliasDeprecated"><code class="docutils literal notranslate"><span class="pre">Algorithm.aliasDeprecated()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.cancel"><code class="docutils literal notranslate"><span class="pre">Algorithm.cancel()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.categories"><code class="docutils literal notranslate"><span class="pre">Algorithm.categories()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.category"><code class="docutils literal notranslate"><span class="pre">Algorithm.category()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.createChildAlgorithm"><code class="docutils literal notranslate"><span class="pre">Algorithm.createChildAlgorithm()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.declareOrReplaceProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.declareOrReplaceProperty()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.declareProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.declareProperty()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.docString"><code class="docutils literal notranslate"><span class="pre">Algorithm.docString()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.enableHistoryRecordingForChild"><code class="docutils literal notranslate"><span class="pre">Algorithm.enableHistoryRecordingForChild()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.execute"><code class="docutils literal notranslate"><span class="pre">Algorithm.execute()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.executeAsync"><code class="docutils literal notranslate"><span class="pre">Algorithm.executeAsync()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.existsProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.existsProperty()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.fromString"><code class="docutils literal notranslate"><span class="pre">Algorithm.fromString()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.get"><code class="docutils literal notranslate"><span class="pre">Algorithm.get()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getAlgStartupLogging"><code class="docutils literal notranslate"><span class="pre">Algorithm.getAlgStartupLogging()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getAlgorithmID"><code class="docutils literal notranslate"><span class="pre">Algorithm.getAlgorithmID()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getAlwaysStoreInADS"><code class="docutils literal notranslate"><span class="pre">Algorithm.getAlwaysStoreInADS()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getLogger"><code class="docutils literal notranslate"><span class="pre">Algorithm.getLogger()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getOptionalMessage"><code class="docutils literal notranslate"><span class="pre">Algorithm.getOptionalMessage()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.getProperties()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.getProperty()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getPropertyValue"><code class="docutils literal notranslate"><span class="pre">Algorithm.getPropertyValue()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getWikiSummary"><code class="docutils literal notranslate"><span class="pre">Algorithm.getWikiSummary()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.has_key"><code class="docutils literal notranslate"><span class="pre">Algorithm.has_key()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.helpURL"><code class="docutils literal notranslate"><span class="pre">Algorithm.helpURL()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.initialize"><code class="docutils literal notranslate"><span class="pre">Algorithm.initialize()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.inoutProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.inoutProperties()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isChild"><code class="docutils literal notranslate"><span class="pre">Algorithm.isChild()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isExecuted"><code class="docutils literal notranslate"><span class="pre">Algorithm.isExecuted()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isInitialized"><code class="docutils literal notranslate"><span class="pre">Algorithm.isInitialized()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isLogging"><code class="docutils literal notranslate"><span class="pre">Algorithm.isLogging()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isPropertyEnabled"><code class="docutils literal notranslate"><span class="pre">Algorithm.isPropertyEnabled()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isPropertyVisible"><code class="docutils literal notranslate"><span class="pre">Algorithm.isPropertyVisible()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isRunning"><code class="docutils literal notranslate"><span class="pre">Algorithm.isRunning()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.keys"><code class="docutils literal notranslate"><span class="pre">Algorithm.keys()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.log"><code class="docutils literal notranslate"><span class="pre">Algorithm.log()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.mandatoryProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.mandatoryProperties()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.name"><code class="docutils literal notranslate"><span class="pre">Algorithm.name()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.orderedProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.orderedProperties()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.outputProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.outputProperties()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.propertyCount"><code class="docutils literal notranslate"><span class="pre">Algorithm.propertyCount()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.seeAlso"><code class="docutils literal notranslate"><span class="pre">Algorithm.seeAlso()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setAlgStartupLogging"><code class="docutils literal notranslate"><span class="pre">Algorithm.setAlgStartupLogging()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setAlwaysStoreInADS"><code class="docutils literal notranslate"><span class="pre">Algorithm.setAlwaysStoreInADS()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setChild"><code class="docutils literal notranslate"><span class="pre">Algorithm.setChild()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setLogging"><code class="docutils literal notranslate"><span class="pre">Algorithm.setLogging()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.setProperties()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.setProperty()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setPropertyGroup"><code class="docutils literal notranslate"><span class="pre">Algorithm.setPropertyGroup()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setPropertySettings"><code class="docutils literal notranslate"><span class="pre">Algorithm.setPropertySettings()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setPropertyValue"><code class="docutils literal notranslate"><span class="pre">Algorithm.setPropertyValue()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setRethrows"><code class="docutils literal notranslate"><span class="pre">Algorithm.setRethrows()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setWikiSummary"><code class="docutils literal notranslate"><span class="pre">Algorithm.setWikiSummary()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.summary"><code class="docutils literal notranslate"><span class="pre">Algorithm.summary()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.validateInputs"><code class="docutils literal notranslate"><span class="pre">Algorithm.validateInputs()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.values"><code class="docutils literal notranslate"><span class="pre">Algorithm.values()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.version"><code class="docutils literal notranslate"><span class="pre">Algorithm.version()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.workspaceMethodInputProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.workspaceMethodInputProperty()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.workspaceMethodName"><code class="docutils literal notranslate"><span class="pre">Algorithm.workspaceMethodName()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.workspaceMethodOn"><code class="docutils literal notranslate"><span class="pre">Algorithm.workspaceMethodOn()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-they">What are they?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categories-name-and-versions">Categories, Name and Versions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#category">Category</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#version">Version</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-algorithms">Example Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-your-own-algorithm">Writing your own algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm"><code class="docutils literal notranslate"><span class="pre">Algorithm</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.alias"><code class="docutils literal notranslate"><span class="pre">Algorithm.alias()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.aliasDeprecated"><code class="docutils literal notranslate"><span class="pre">Algorithm.aliasDeprecated()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.cancel"><code class="docutils literal notranslate"><span class="pre">Algorithm.cancel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.categories"><code class="docutils literal notranslate"><span class="pre">Algorithm.categories()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.category"><code class="docutils literal notranslate"><span class="pre">Algorithm.category()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.createChildAlgorithm"><code class="docutils literal notranslate"><span class="pre">Algorithm.createChildAlgorithm()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.declareOrReplaceProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.declareOrReplaceProperty()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.declareProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.declareProperty()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.docString"><code class="docutils literal notranslate"><span class="pre">Algorithm.docString()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.enableHistoryRecordingForChild"><code class="docutils literal notranslate"><span class="pre">Algorithm.enableHistoryRecordingForChild()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.execute"><code class="docutils literal notranslate"><span class="pre">Algorithm.execute()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.executeAsync"><code class="docutils literal notranslate"><span class="pre">Algorithm.executeAsync()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.existsProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.existsProperty()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.fromString"><code class="docutils literal notranslate"><span class="pre">Algorithm.fromString()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.get"><code class="docutils literal notranslate"><span class="pre">Algorithm.get()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getAlgStartupLogging"><code class="docutils literal notranslate"><span class="pre">Algorithm.getAlgStartupLogging()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getAlgorithmID"><code class="docutils literal notranslate"><span class="pre">Algorithm.getAlgorithmID()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getAlwaysStoreInADS"><code class="docutils literal notranslate"><span class="pre">Algorithm.getAlwaysStoreInADS()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getLogger"><code class="docutils literal notranslate"><span class="pre">Algorithm.getLogger()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getOptionalMessage"><code class="docutils literal notranslate"><span class="pre">Algorithm.getOptionalMessage()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.getProperties()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.getProperty()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getPropertyValue"><code class="docutils literal notranslate"><span class="pre">Algorithm.getPropertyValue()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.getWikiSummary"><code class="docutils literal notranslate"><span class="pre">Algorithm.getWikiSummary()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.has_key"><code class="docutils literal notranslate"><span class="pre">Algorithm.has_key()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.helpURL"><code class="docutils literal notranslate"><span class="pre">Algorithm.helpURL()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.initialize"><code class="docutils literal notranslate"><span class="pre">Algorithm.initialize()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.inoutProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.inoutProperties()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isChild"><code class="docutils literal notranslate"><span class="pre">Algorithm.isChild()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isExecuted"><code class="docutils literal notranslate"><span class="pre">Algorithm.isExecuted()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isInitialized"><code class="docutils literal notranslate"><span class="pre">Algorithm.isInitialized()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isLogging"><code class="docutils literal notranslate"><span class="pre">Algorithm.isLogging()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isPropertyEnabled"><code class="docutils literal notranslate"><span class="pre">Algorithm.isPropertyEnabled()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isPropertyVisible"><code class="docutils literal notranslate"><span class="pre">Algorithm.isPropertyVisible()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.isRunning"><code class="docutils literal notranslate"><span class="pre">Algorithm.isRunning()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.keys"><code class="docutils literal notranslate"><span class="pre">Algorithm.keys()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.log"><code class="docutils literal notranslate"><span class="pre">Algorithm.log()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.mandatoryProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.mandatoryProperties()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.name"><code class="docutils literal notranslate"><span class="pre">Algorithm.name()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.orderedProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.orderedProperties()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.outputProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.outputProperties()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.propertyCount"><code class="docutils literal notranslate"><span class="pre">Algorithm.propertyCount()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.seeAlso"><code class="docutils literal notranslate"><span class="pre">Algorithm.seeAlso()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setAlgStartupLogging"><code class="docutils literal notranslate"><span class="pre">Algorithm.setAlgStartupLogging()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setAlwaysStoreInADS"><code class="docutils literal notranslate"><span class="pre">Algorithm.setAlwaysStoreInADS()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setChild"><code class="docutils literal notranslate"><span class="pre">Algorithm.setChild()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setLogging"><code class="docutils literal notranslate"><span class="pre">Algorithm.setLogging()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setProperties"><code class="docutils literal notranslate"><span class="pre">Algorithm.setProperties()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.setProperty()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setPropertyGroup"><code class="docutils literal notranslate"><span class="pre">Algorithm.setPropertyGroup()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setPropertySettings"><code class="docutils literal notranslate"><span class="pre">Algorithm.setPropertySettings()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setPropertyValue"><code class="docutils literal notranslate"><span class="pre">Algorithm.setPropertyValue()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setRethrows"><code class="docutils literal notranslate"><span class="pre">Algorithm.setRethrows()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.setWikiSummary"><code class="docutils literal notranslate"><span class="pre">Algorithm.setWikiSummary()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.summary"><code class="docutils literal notranslate"><span class="pre">Algorithm.summary()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.validateInputs"><code class="docutils literal notranslate"><span class="pre">Algorithm.validateInputs()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.values"><code class="docutils literal notranslate"><span class="pre">Algorithm.values()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.version"><code class="docutils literal notranslate"><span class="pre">Algorithm.version()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.workspaceMethodInputProperty"><code class="docutils literal notranslate"><span class="pre">Algorithm.workspaceMethodInputProperty()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.workspaceMethodName"><code class="docutils literal notranslate"><span class="pre">Algorithm.workspaceMethodName()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.Algorithm.workspaceMethodOn"><code class="docutils literal notranslate"><span class="pre">Algorithm.workspaceMethodOn()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>AnalysisDataServiceImpl &#8212; MantidProject 6.15.20260413.1004 documentation</title>
+    <title>AnalysisDataServiceImpl &#8212; MantidProject 6.15.20260417.1728 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../../../../_static/documentation_options.js?v=8800fdde"></script>
+    <script src="../../../../_static/documentation_options.js?v=00bfdd9b"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/api/AnalysisDataServiceImpl';</script>
@@ -632,6 +632,27 @@
   <section id="analysisdataserviceimpl">
 <span id="mantid-api-analysisdataserviceimpl"></span><h1>AnalysisDataServiceImpl<a class="headerlink" href="#analysisdataserviceimpl" title="Link to this heading">#</a></h1>
 <p>This is a Python binding to the C++ class Mantid::API::AnalysisDataServiceImpl.</p>
+<section id="what-is-it">
+<h2>What is it?<a class="headerlink" href="#what-is-it" title="Link to this heading">#</a></h2>
+<p>The Analysis Data Service is a <a class="reference internal" href="../../../../concepts/DataService.html#data-service"><span class="std std-ref">Data Service</span></a> that is
+specialized to hold all of the <a class="reference internal" href="Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspaces</span></code></a> that are
+created by user run <a class="reference internal" href="Algorithm.html#mantid.api.Algorithm" title="mantid.api.Algorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">algorithms</span></code></a>. Whenever an algorithm is
+executed it automatically extracts its input workspaces from the
+Analysis Data Service, and inserts its output workspaces upon
+completion.</p>
+</section>
+<section id="extracting-a-workspace-from-the-analysis-data-service">
+<h2>Extracting a workspace from the Analysis Data Service<a class="headerlink" href="#extracting-a-workspace-from-the-analysis-data-service" title="Link to this heading">#</a></h2>
+<p>The most usual way in user code would be to use the <a class="reference internal" href="FrameworkManagerImpl.html#mantid.api.FrameworkManagerImpl" title="mantid.api.FrameworkManagerImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrameworkManager</span></code></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Workspace* result = FrameworkManager::Instance().getWorkspace(&quot;workspaceName&quot;)</span></code></p>
+<p>Or you could get it directly from the AnalysisDataService (as a <a class="reference internal" href="../../../../concepts/SharedPointer.html#shared-pointer"><span class="std std-ref">Shared
+Pointer</span></a>)</p>
+<p><code class="docutils literal notranslate"><span class="pre">Workspace_sptr result = AnalysisDataService::Instance().retrieve(&quot;test_out1&quot;);</span></code></p>
+<p>If you were writing an algorithm however you would most likely use a
+Workspace <a class="reference internal" href="../kernel/Property.html#mantid.kernel.Property" title="mantid.kernel.Property"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Property</span></code></a> to access or store your workspaces.</p>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="mantid.api.AnalysisDataServiceImpl">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">mantid.api.</span></span><span class="sig-name descname"><span class="pre">AnalysisDataServiceImpl</span></span><a class="headerlink" href="#mantid.api.AnalysisDataServiceImpl" title="Link to this definition">#</a></dt>
@@ -756,6 +777,7 @@ mtd[‘deltax’].</p>
 </dd></dl>
 
 </section>
+</section>
 
 
                 </article>
@@ -804,23 +826,28 @@ mtd[‘deltax’].</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.Instance"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.Instance()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.add"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.add()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.addOrReplace"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.addOrReplace()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.addToGroup"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.addToGroup()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.clear"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.clear()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.doesExist"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.doesExist()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.getObjectNames"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.getObjectNames()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.importAll"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.importAll()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.remove"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.remove()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.removeFromGroup"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.removeFromGroup()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.retrieve"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.retrieve()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.retrieveGroupPeaksWorkspaces"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.retrieveGroupPeaksWorkspaces()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.retrieveWorkspaces"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.retrieveWorkspaces()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.size"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.size()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.unique_hidden_name"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.unique_hidden_name()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.unique_name"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.unique_name()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-it">What is it?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-a-workspace-from-the-analysis-data-service">Extracting a workspace from the Analysis Data Service</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.Instance"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.Instance()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.add"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.add()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.addOrReplace"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.addOrReplace()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.addToGroup"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.addToGroup()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.clear"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.clear()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.doesExist"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.doesExist()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.getObjectNames"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.getObjectNames()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.importAll"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.importAll()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.remove"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.remove()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.removeFromGroup"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.removeFromGroup()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.retrieve"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.retrieve()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.retrieveGroupPeaksWorkspaces"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.retrieveGroupPeaksWorkspaces()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.retrieveWorkspaces"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.retrieveWorkspaces()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.size"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.size()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.unique_hidden_name"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.unique_hidden_name()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.api.AnalysisDataServiceImpl.unique_name"><code class="docutils literal notranslate"><span class="pre">AnalysisDataServiceImpl.unique_name()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

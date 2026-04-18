@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadDNSSCD v1 &#8212; MantidProject 6.15.20260413.1004 documentation</title>
+    <title>LoadDNSSCD v1 &#8212; MantidProject 6.15.20260417.1728 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../_static/documentation_options.js?v=8800fdde"></script>
+    <script src="../_static/documentation_options.js?v=00bfdd9b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1570,7 +1570,7 @@
 <p class="admonition-title">Warning</p>
 <p>This algorithm does not perform any consistency check of the input data. It is the users responsibility to choose a physically reasonable dataset.</p>
 </div>
-<p>This algorithm loads a list  of DNS <cite>.d_dat</cite> data files into a <a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDEventWorkspace</span></a>. If the algorithm fails to process a file, this file will be ignored. In this case the algorithm produces a warning and continues to process further files. Only if no valid files are provided, the algorithm terminates with an error message.</p>
+<p>This algorithm loads a list  of DNS <cite>.d_dat</cite> data files into a <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a>. If the algorithm fails to process a file, this file will be ignored. In this case the algorithm produces a warning and continues to process further files. Only if no valid files are provided, the algorithm terminates with an error message.</p>
 <p>This algorithm is meant to replace the <a class="reference internal" href="LoadDNSLegacy-v1.html#algm-loaddnslegacy"><span class="std std-ref">LoadDNSLegacy v1</span></a> for single crystal diffraction data.</p>
 <p><strong>Output</strong></p>
 <p>As a result, two workspaces are created:</p>
@@ -1599,8 +1599,8 @@ The metadata are loaded into time series sample logs.</p>
 <h2>Data replication<a class="headerlink" href="#data-replication" title="Link to this heading">#</a></h2>
 <p>For standard data (vanadium, NiCr, background) the sample rotation angle is assumed to be not important. These data are typically measured only for one sample rotation angle. The algorithm can replicate these data for the same sample rotation angles as a single crystal sample has been measured. For this purpose optional input fields <em>SaveHuberTo</em> and <em>LoadHuberFrom</em> can be used.</p>
 <ul class="simple">
-<li><p><em>SaveHuberTo</em> should contain a name of the <a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a> where sample rotation angles (Huber) read from the data files will be saved. If the specified workspace exists, it will be overwritten.</p></li>
-<li><p><em>LoadHuberFrom</em> should contain a name of the <a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a>. The workspace must exist and contain one column with the name <em>Huber(degrees)</em>, where the sample rotation angles are specified.</p></li>
+<li><p><em>SaveHuberTo</em> should contain a name of the <a class="reference internal" href="../api/python/mantid/api/ITableWorkspace.html#mantid.api.ITableWorkspace" title="mantid.api.ITableWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableWorkspace</span></code></a> where sample rotation angles (Huber) read from the data files will be saved. If the specified workspace exists, it will be overwritten.</p></li>
+<li><p><em>LoadHuberFrom</em> should contain a name of the <a class="reference internal" href="../api/python/mantid/api/ITableWorkspace.html#mantid.api.ITableWorkspace" title="mantid.api.ITableWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableWorkspace</span></code></a>. The workspace must exist and contain one column with the name <em>Huber(degrees)</em>, where the sample rotation angles are specified.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1764,8 +1764,8 @@ Signal at some points: 0.0035, 0.0033, 0.0035
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/91411c7a7dbf1c8ce6fa522302cce36ee835ddf4/Framework/MDAlgorithms/inc/MantidMDAlgorithms/LoadDNSSCD.h">LoadDNSSCD.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/91411c7a7dbf1c8ce6fa522302cce36ee835ddf4/Framework/MDAlgorithms/src/LoadDNSSCD.cpp">LoadDNSSCD.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/410ab669ee9deb4a7bf401ce6602e190736f426c/Framework/MDAlgorithms/inc/MantidMDAlgorithms/LoadDNSSCD.h">LoadDNSSCD.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/410ab669ee9deb4a7bf401ce6602e190736f426c/Framework/MDAlgorithms/src/LoadDNSSCD.cpp">LoadDNSSCD.cpp</a></p>
 </section>
 </section>
 

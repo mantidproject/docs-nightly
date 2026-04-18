@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Material &#8212; MantidProject 6.15.20260413.1004 documentation</title>
+    <title>Material &#8212; MantidProject 6.15.20260417.1728 documentation</title>
   
   
   
@@ -40,9 +40,11 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../../../../_static/documentation_options.js?v=8800fdde"></script>
+    <script src="../../../../_static/documentation_options.js?v=00bfdd9b"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/kernel/Material';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
@@ -632,6 +634,133 @@
   <section id="material">
 <h1>Material<a class="headerlink" href="#material" title="Link to this heading">#</a></h1>
 <p>This is a Python binding to the C++ class Mantid::Kernel::Material.</p>
+<p>Neutron scattering lengths and cross sections of the elements and their
+isotopes have been taken from
+<a class="reference external" href="http://www.ncnr.nist.gov/resources/n-lengths/list.html">NIST</a>.</p>
+<section id="chemical-composition-with-examples">
+<h2>Chemical Composition with Examples<a class="headerlink" href="#chemical-composition-with-examples" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">H2</span> <span class="pre">O</span></code> - Isotopically averaged Hydrogen</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(H2)2</span> <span class="pre">O</span></code> - Heavy water</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">D2</span> <span class="pre">O</span></code> - Another way to specify heavy water</p></li>
+</ul>
+<p>Enter a composition as a molecular formula of elements or isotopes.
+For example, basic elements might be <code class="docutils literal notranslate"><span class="pre">H</span></code>, <code class="docutils literal notranslate"><span class="pre">Fe</span></code> or <code class="docutils literal notranslate"><span class="pre">Si</span></code>, etc.
+A molecular formula of elements might be <code class="docutils literal notranslate"><span class="pre">H4-N2-C3</span></code>, which
+corresponds to a molecule with 4 Hydrogen atoms, 2 Nitrogen atoms and
+3 Carbon atoms.  Each element in a molecular formula is followed by
+the number of the atoms for that element, specified <strong>without a hyphen</strong>,
+because each element is separated from other elements using a hyphen.</p>
+<p>The number of atoms can be integer or float, but must start with a
+digit, e.g. 0.6 is fine but .6 is not. This can be used to set elemental ratios
+within a chemical composition. For example 95.1% Vanadium 4.9% Niobium can be
+expressed as <code class="docutils literal notranslate"><span class="pre">V0.951</span> <span class="pre">Nb0.049</span></code>. <em>Warning: Using this representation will
+calculate all properties except for SampleNumberDensity which must be
+set manually if required</em></p>
+<p>Isotopes may also be included in a <a class="reference internal" href="#mantid.kernel.Material" title="mantid.kernel.Material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">material</span></code></a> composition, and can be specified alone (as
+in <code class="docutils literal notranslate"><span class="pre">(Li7)</span></code>), or in a molecular formula (as in <code class="docutils literal notranslate"><span class="pre">(Li7)2-C-H4-N-Cl6</span></code>).
+Note, however, that No Spaces or Hyphens are allowed in an isotope
+symbol specification. Also Note that for isotopes specified in a
+molecular expression, the isotope must be enclosed by parenthesis,
+except for two special cases, <code class="docutils literal notranslate"><span class="pre">D</span></code> and <code class="docutils literal notranslate"><span class="pre">T</span></code>, which stand for <code class="docutils literal notranslate"><span class="pre">H2</span></code>
+and <code class="docutils literal notranslate"><span class="pre">H3</span></code>, respectively.</p>
+</section>
+<section id="cross-section-calculations">
+<h2>Cross Section Calculations<a class="headerlink" href="#cross-section-calculations" title="Link to this heading">#</a></h2>
+<p>Each of the cross sections (<span class="math notranslate nohighlight">\(\sigma\)</span>) are calculated according to</p>
+<div class="math notranslate nohighlight">
+\[\sigma = \frac{1}{N_{atoms}}\sum_{i}\sigma_{i}n_{i}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N_{atoms} = \sum_{i}n_{i}\)</span>. A concrete example for the total
+cross section of <code class="docutils literal notranslate"><span class="pre">D2</span> <span class="pre">O</span></code></p>
+<div class="math notranslate nohighlight">
+\[\sigma = \frac{1}{2+1}\left( 7.64*2 + 4.232*1\right) = 6.504\ barns\]</div>
+</section>
+<section id="number-density">
+<h2>Number Density<a class="headerlink" href="#number-density" title="Link to this heading">#</a></h2>
+<p>The number density is defined as</p>
+<div class="math notranslate nohighlight">
+\[\rho_n = \frac{N_{atoms}ZParameter}{UnitCellVolume}\]</div>
+<p>It can can be generated in one of several ways:</p>
+<ol class="arabic simple">
+<li><p>Specifying it directly with <code class="docutils literal notranslate"><span class="pre">NumberDensity</span></code>.</p></li>
+<li><p>Specifying the <code class="docutils literal notranslate"><span class="pre">ZParameter</span></code> and the <code class="docutils literal notranslate"><span class="pre">UnitCellVolume</span></code> (or letting
+the algorithm calculate it from the OrientedLattice on the
+<code class="docutils literal notranslate"><span class="pre">InputWorkspace</span></code>).</p></li>
+<li><p>If a chemical formula consisting of a single element has been supplied the number density will be looked up from Mantid tables</p></li>
+<li><p>The default behaviour is to deduce it from an effective number density (see below) and an optional packing fraction supplied as <code class="docutils literal notranslate"><span class="pre">PackingFraction</span></code> (which is assumed to be 1 if not supplied)</p></li>
+</ol>
+<p>The effective number density is defined as</p>
+<div class="math notranslate nohighlight">
+\[\rho_{n,eff} = f \rho_n\]</div>
+<p>where <span class="math notranslate nohighlight">\(f\)</span> is the packing fraction</p>
+<p>It can be specified in one of several ways:</p>
+<ol class="arabic simple">
+<li><p>Specifiying it directly with <code class="docutils literal notranslate"><span class="pre">EffectiveNumberDensity</span></code></p></li>
+<li><p>Specifying the mass density. In this case the effective number density is calculated as follows:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\rho_{n,eff} = \frac{N_{atoms} \rho_m N_A}{\sum_{i}n_{i}M_i}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_m\)</span> is the mass density, <span class="math notranslate nohighlight">\(N_A\)</span> is the Avogadro constant, and <span class="math notranslate nohighlight">\(M_i\)</span> is the relative molecular mass of the ith atom.</p>
+<ol class="arabic simple" start="3">
+<li><p>The default behaviour is to set it equal to the full number density multipled by the optional packing fraction (which is assumed to be 1 if not supplied)</p></li>
+</ol>
+<p>The effective number density, <span class="math notranslate nohighlight">\(\rho_{n,eff}\)</span>, should be used for <a class="reference internal" href="../../../../concepts/AbsorptionAndMultipleScattering.html#sample-corrections"><span class="std std-ref">absorption calculations</span></a>.
+However, the number density, <span class="math notranslate nohighlight">\(\rho_n\)</span> should be used for refinements and converting between real space representations.</p>
+<p>If both a number density and effective number density are supplied using the non-default behaviours then a packing fraction will be calculated from their ratio.</p>
+</section>
+<section id="attenuation-coefficients">
+<h2>Attenuation Coefficients<a class="headerlink" href="#attenuation-coefficients" title="Link to this heading">#</a></h2>
+<p>The attenuation effect is calculated according to the following formula:</p>
+<div class="math notranslate nohighlight">
+\[\exp(-\rho_n(\mu_s+\mu_a)t)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_n\)</span> is in unit of <span class="math notranslate nohighlight">\(\AA^{-3}\)</span>, <span class="math notranslate nohighlight">\(t\)</span> is the material thickness in cm, the two attenuation coefficients representing scattering and absorption (<span class="math notranslate nohighlight">\(\mu_s\)</span> and <span class="math notranslate nohighlight">\(\mu_a\)</span> respectively) are calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[\mu_s = \rho_n \frac{1}{N_{atoms}}\sum_{i}s_{i}n_{i} \text{ units of 1/cm}\]</div>
+<div class="math notranslate nohighlight">
+\[s = \sigma_{total scattering}\]</div>
+<div class="math notranslate nohighlight">
+\[\mu_a = \rho_n \frac{1}{N_{atoms}}\sum_{i}a_{i}n_{i} \text{ units of 1/cm}\]</div>
+<div class="math notranslate nohighlight">
+\[a = \frac{\lambda}{\lambda_0} \sigma_{absorption} (\lambda_0) \text{ where } \lambda_0=1.8\AA\]</div>
+<p>A detailed version of this is found in [2].</p>
+<p>The sum of the two attenuation coefficients can be replaced by an externally measured profile of attenuation versus wavelength if the scattering effect is wavelength dependent eg if a material is crystalline and shows some Bragg edges in its attenuation profile.
+Mantid supports a space delimited text file format for the externally measured profile containing the following columns:</p>
+<ul class="simple">
+<li><p>wavelength (in <span class="math notranslate nohighlight">\(\AA\)</span>)</p></li>
+<li><p>attenuation factor (in <span class="math notranslate nohighlight">\(mm^{-1}\)</span>)</p></li>
+<li><p>error (currently ignored)</p></li>
+</ul>
+<p>The Xray Attenuation coefficients can also be provided by text file with the following columns containing:</p>
+<ul class="simple">
+<li><p>energy (in <span class="math notranslate nohighlight">\(KeV\)</span>)</p></li>
+<li><p>attenuation factor (in <span class="math notranslate nohighlight">\(mm^{-1}\)</span>)</p></li>
+<li><p>error (currently ignored)</p></li>
+</ul>
+<p>Any lines not following this format (eg header rows) are ignored. The file must have a .DAT file extension.</p>
+</section>
+<section id="normalized-laue">
+<h2>Normalized Laue<a class="headerlink" href="#normalized-laue" title="Link to this heading">#</a></h2>
+<p>The low-<span class="math notranslate nohighlight">\(Q\)</span> limit of <span class="math notranslate nohighlight">\(S(Q)\)</span> is <span class="math notranslate nohighlight">\(-L\)</span> where <span class="math notranslate nohighlight">\(L\)</span> is called the normalized Laue term</p>
+<div class="math notranslate nohighlight">
+\[bAverage = &lt;b_{coh}&gt; = \frac{1}{N_{atoms}}\sum_{i}b_{coh,i}\]</div>
+<div class="math notranslate nohighlight">
+\[bSquaredAverage = &lt;b_{tot}^2&gt; = \frac{1}{N_{atoms}}\sum_{i}b_{tot,i}^2\]</div>
+<div class="math notranslate nohighlight">
+\[L = \frac{&lt;b_{tot}^2&gt;-&lt;b_{coh}&gt;^2}{&lt;b_{coh}&gt;^2}\]</div>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<p>The data used in this algorithm comes from the following paper.</p>
+<ol class="arabic simple">
+<li><p>Varley F. Sears, <em>Neutron scattering lengths and cross sections</em>, Neutron News <strong>3:3</strong> (1992) 26
+<a class="reference external" href="http://dx.doi.org/10.1080/10448639208218770">doi: 10.1080/10448639208218770</a></p></li>
+<li><p>J. A. K. Howard, O. Johnson, A. J. Schultz and A. M. Stringer, <em>Determination of the neutron
+absorption cross section for hydrogen as a function of wavelength with a pulsed neutron
+source</em>, J. Appl. Cryst. (1987). 20, 120-122
+<a class="reference external" href="http://dx.doi.org/10.1107/S0021889887087028">doi: 10.1107/S0021889887087028</a></p></li>
+</ol>
+</section>
+<section id="reference">
+<h3>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="mantid.kernel.Material">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">mantid.kernel.</span></span><span class="sig-name descname"><span class="pre">Material</span></span><a class="headerlink" href="#mantid.kernel.Material" title="Link to this definition">#</a></dt>
@@ -776,6 +905,8 @@
 </dd></dl>
 
 </section>
+</section>
+</section>
 
 
                 </article>
@@ -824,30 +955,41 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material"><code class="docutils literal notranslate"><span class="pre">Material</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.absorbXSection"><code class="docutils literal notranslate"><span class="pre">Material.absorbXSection()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.chemicalFormula"><code class="docutils literal notranslate"><span class="pre">Material.chemicalFormula()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.cohScatterLength"><code class="docutils literal notranslate"><span class="pre">Material.cohScatterLength()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.cohScatterLengthImg"><code class="docutils literal notranslate"><span class="pre">Material.cohScatterLengthImg()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.cohScatterLengthReal"><code class="docutils literal notranslate"><span class="pre">Material.cohScatterLengthReal()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.cohScatterLengthSqrd"><code class="docutils literal notranslate"><span class="pre">Material.cohScatterLengthSqrd()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.cohScatterXSection"><code class="docutils literal notranslate"><span class="pre">Material.cohScatterXSection()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.incohScatterLength"><code class="docutils literal notranslate"><span class="pre">Material.incohScatterLength()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.incohScatterLengthImg"><code class="docutils literal notranslate"><span class="pre">Material.incohScatterLengthImg()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.incohScatterLengthReal"><code class="docutils literal notranslate"><span class="pre">Material.incohScatterLengthReal()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.incohScatterLengthSqrd"><code class="docutils literal notranslate"><span class="pre">Material.incohScatterLengthSqrd()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.incohScatterXSection"><code class="docutils literal notranslate"><span class="pre">Material.incohScatterXSection()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.name"><code class="docutils literal notranslate"><span class="pre">Material.name()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.numberDensity"><code class="docutils literal notranslate"><span class="pre">Material.numberDensity</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.numberDensityEffective"><code class="docutils literal notranslate"><span class="pre">Material.numberDensityEffective</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.packingFraction"><code class="docutils literal notranslate"><span class="pre">Material.packingFraction</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.pressure"><code class="docutils literal notranslate"><span class="pre">Material.pressure</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.relativeMolecularMass"><code class="docutils literal notranslate"><span class="pre">Material.relativeMolecularMass()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.temperature"><code class="docutils literal notranslate"><span class="pre">Material.temperature</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.totalAtoms"><code class="docutils literal notranslate"><span class="pre">Material.totalAtoms</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.totalScatterLength"><code class="docutils literal notranslate"><span class="pre">Material.totalScatterLength()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.totalScatterLengthSqrd"><code class="docutils literal notranslate"><span class="pre">Material.totalScatterLengthSqrd()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.totalScatterXSection"><code class="docutils literal notranslate"><span class="pre">Material.totalScatterXSection()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chemical-composition-with-examples">Chemical Composition with Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-section-calculations">Cross Section Calculations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#number-density">Number Density</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attenuation-coefficients">Attenuation Coefficients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalized-laue">Normalized Laue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material"><code class="docutils literal notranslate"><span class="pre">Material</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.absorbXSection"><code class="docutils literal notranslate"><span class="pre">Material.absorbXSection()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.chemicalFormula"><code class="docutils literal notranslate"><span class="pre">Material.chemicalFormula()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.cohScatterLength"><code class="docutils literal notranslate"><span class="pre">Material.cohScatterLength()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.cohScatterLengthImg"><code class="docutils literal notranslate"><span class="pre">Material.cohScatterLengthImg()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.cohScatterLengthReal"><code class="docutils literal notranslate"><span class="pre">Material.cohScatterLengthReal()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.cohScatterLengthSqrd"><code class="docutils literal notranslate"><span class="pre">Material.cohScatterLengthSqrd()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.cohScatterXSection"><code class="docutils literal notranslate"><span class="pre">Material.cohScatterXSection()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.incohScatterLength"><code class="docutils literal notranslate"><span class="pre">Material.incohScatterLength()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.incohScatterLengthImg"><code class="docutils literal notranslate"><span class="pre">Material.incohScatterLengthImg()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.incohScatterLengthReal"><code class="docutils literal notranslate"><span class="pre">Material.incohScatterLengthReal()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.incohScatterLengthSqrd"><code class="docutils literal notranslate"><span class="pre">Material.incohScatterLengthSqrd()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.incohScatterXSection"><code class="docutils literal notranslate"><span class="pre">Material.incohScatterXSection()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.name"><code class="docutils literal notranslate"><span class="pre">Material.name()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.numberDensity"><code class="docutils literal notranslate"><span class="pre">Material.numberDensity</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.numberDensityEffective"><code class="docutils literal notranslate"><span class="pre">Material.numberDensityEffective</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.packingFraction"><code class="docutils literal notranslate"><span class="pre">Material.packingFraction</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.pressure"><code class="docutils literal notranslate"><span class="pre">Material.pressure</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.relativeMolecularMass"><code class="docutils literal notranslate"><span class="pre">Material.relativeMolecularMass()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.temperature"><code class="docutils literal notranslate"><span class="pre">Material.temperature</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.totalAtoms"><code class="docutils literal notranslate"><span class="pre">Material.totalAtoms</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.totalScatterLength"><code class="docutils literal notranslate"><span class="pre">Material.totalScatterLength()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.totalScatterLengthSqrd"><code class="docutils literal notranslate"><span class="pre">Material.totalScatterLengthSqrd()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.kernel.Material.totalScatterXSection"><code class="docutils literal notranslate"><span class="pre">Material.totalScatterXSection()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

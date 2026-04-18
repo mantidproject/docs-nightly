@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Texture Reduction &#8212; MantidProject 6.15.20260413.1004 documentation</title>
+    <title>Texture Reduction &#8212; MantidProject 6.15.20260417.1728 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../_static/documentation_options.js?v=8800fdde"></script>
+    <script src="../_static/documentation_options.js?v=00bfdd9b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'techniques/TextureReduction';</script>
@@ -396,7 +396,7 @@ your own data, but will not explain in detail what each option entails, for this
 <li><p>Raw Diffraction Data for each experimental run (this would ideally be nexus files or, if data search directories and priviledges are setup correctly, just the run numbers may suffice)</p></li>
 <li><p>Calibration Run Data files, for ENGINX this is a Ceria run for diffraction parameter calibration and a vanadium run for intensity normalisation (see <a class="reference internal" href="../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">interface documentation</span></a> for more information)</p></li>
 <li><p>Sample Shape information, either as an <code class="docutils literal notranslate"><span class="pre">STL</span></code> file that you have created/obtained already or as a Constructive Solid Geometry shape definition <code class="docutils literal notranslate"><span class="pre">XML</span></code> string (see <a class="reference internal" href="../concepts/HowToDefineGeometricShape.html#howtodefinegeometricshape"><span class="std std-ref">How To Define Geometric Shape</span></a> for more info)</p></li>
-<li><p>Sample Material Information, this is solely for attenuation correction and so the accuracy of the information will be determined by the accuracy required by your experiment (see <a class="reference internal" href="../concepts/Materials.html#materials"><span class="std std-ref">Materials</span></a> for more info)</p></li>
+<li><p>Sample Material Information, this is solely for attenuation correction and so the accuracy of the information will be determined by the accuracy required by your experiment (see <a class="reference internal" href="../api/python/mantid/kernel/Material.html#mantid.kernel.Material" title="mantid.kernel.Material"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Material</span></code></a> for more info)</p></li>
 <li><p>Correct definition of the Sample Shape in its initial state when the goniometer is homed/default (this would ideally be how the sample shape information is provided above, but the shape definition could be defined in a different orientation and transformed to the initial state if necessary)</p></li>
 <li><p>Orientation Information for each experimental run, either provided as transformation matrices or euler angles (if using euler angles you must know the axes of rotation for the goniometer and the sense of these rotations - <em>take care to get this correct</em>)</p></li>
 <li><p>Sample Directions relative to sample shape (texture can be defined relative to intrinsic directions of the sample, for example the Rolling, Normal and Tranverse Directions)</p></li>
@@ -680,7 +680,7 @@ experimental pole figure:</p>
 </section>
 <section id="adding-crystal-structure-information">
 <h3>Adding Crystal Structure Information<a class="headerlink" href="#adding-crystal-structure-information" title="Link to this heading">#</a></h3>
-<p>In the Workspace list (<a class="reference internal" href="../concepts/AnalysisDataService.html#analysis-data-service"><span class="std std-ref">ADS</span></a>), in the main Mantid window, you might notice some pole figure Table Workspaces have been created. These are named with the convention:
+<p>In the Workspace list (<a class="reference internal" href="../api/python/mantid/api/AnalysisDataServiceImpl.html#mantid.api.AnalysisDataServiceImpl" title="mantid.api.AnalysisDataServiceImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ADS</span></code></a>), in the main Mantid window, you might notice some pole figure Table Workspaces have been created. These are named with the convention:
 <code class="docutils literal notranslate"><span class="pre">{Peak}_{Instrument}_{StartRun}-{EndRun}_{Grouping}_pf_table_{parameter}</span></code> provided a parameter file is loaded to get <code class="docutils literal notranslate"><span class="pre">Peak</span></code> and <code class="docutils literal notranslate"><span class="pre">parameter</span></code> metadata. <code class="docutils literal notranslate"><span class="pre">Peak</span></code> will be the average peak centre value of all
 the parameter files. If, instead, you would like peak to be the HKL indices, you must provide crystal structure information, either as a <code class="docutils literal notranslate"><span class="pre">CIF</span></code> file or by input</p>
 <ul class="simple">

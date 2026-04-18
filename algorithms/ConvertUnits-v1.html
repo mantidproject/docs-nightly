@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ConvertUnits v1 &#8212; MantidProject 6.15.20260413.1004 documentation</title>
+    <title>ConvertUnits v1 &#8212; MantidProject 6.15.20260417.1728 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../_static/documentation_options.js?v=8800fdde"></script>
+    <script src="../_static/documentation_options.js?v=00bfdd9b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1494,14 +1494,12 @@
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
-<p>Changes the units in which the X values of a <a class="reference internal" href="../concepts/Workspace.html#workspace"><span class="std std-ref">workspace</span></a>
-are represented. The available units are those registered with the <a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">Unit
-Factory</span></a>. If the Y data is ‘dimensioned’ (i.e. has been
-divided by the bin width), then this will be correctly handled, but at
-present nothing else is done to the Y data. If the sample-detector
-distance cannot be calculated then the affected spectrum will be zeroed,
-and a warning message will be output on the <a class="reference internal" href="../tutorials/extending_mantid_with_python/python_algorithms/05_logging.html#logging"><span class="std std-ref">logging</span></a>
-service.</p>
+<p>Changes the units in which the X values of a <a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a>
+are represented. The available units are those registered with the <a class="reference internal" href="../api/python/mantid/kernel/UnitFactoryImpl.html#mantid.kernel.UnitFactoryImpl" title="mantid.kernel.UnitFactoryImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnitFactory</span></code></a>.
+If the Y data is ‘dimensioned’ (i.e. has been divided by the bin width),
+then this will be correctly handled, but at present nothing else is done to the Y data.
+If the sample-detector distance cannot be calculated then the affected spectrum will be zeroed,
+and a warning message will be output on the <a class="reference internal" href="../tutorials/extending_mantid_with_python/python_algorithms/05_logging.html#logging"><span class="std std-ref">logging</span></a> service.</p>
 <p>If AlignBins is false or left at the default the output workspace may be
 a <a class="reference internal" href="../concepts/Ragged_Workspace.html#ragged-workspace"><span class="std std-ref">ragged workspace</span></a>. If it is set to true then the
 data is automatically <a class="reference internal" href="Rebin-v1.html#algm-rebin"><span class="std std-ref">rebinned</span></a> to a regular grid so that the
@@ -1522,7 +1520,7 @@ and then the algorithm will be run on the converted workspace.</p>
 time-of-flight (TOF) diffraction it is also possible to provide detector offsets
 (from <a class="reference internal" href="GetDetectorOffsets-v1.html#algm-getdetectoroffsets"><span class="std std-ref">GetDetectorOffsets</span></a>) or diffractometer constants
 (from <a class="reference internal" href="PDCalibration-v1.html#algm-pdcalibration"><span class="std std-ref">PDCalibration</span></a>) for the conversion between TOF and d-spacing.
-For more details on diffractometer constants see <a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">Units</span></a>, for the relation between offsets and diffractometer
+For more details on diffractometer constants see <a class="reference internal" href="../api/python/mantid/kernel/UnitFactoryImpl.html#mantid.kernel.UnitFactoryImpl" title="mantid.kernel.UnitFactoryImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnitFactory</span></code></a>, for the relation between offsets and diffractometer
 constants see <a class="reference internal" href="ConvertDiffCal-v1.html#algm-convertdiffcal"><span class="std std-ref">ConvertDiffCal v1</span></a>.</p>
 <p><a class="reference internal" href="ApplyDiffCal-v1.html#algm-applydiffcal"><span class="std std-ref">ApplyDiffCal</span></a> is used to apply a detector calibration in the form of a <code class="docutils literal notranslate"><span class="pre">CalibrationFile</span></code>,
 <code class="docutils literal notranslate"><span class="pre">CalibrationWorkspace</span></code> or <code class="docutils literal notranslate"><span class="pre">OffsetsWorkspace</span></code>. Note this calibration will be used to do the conversion from d-spacing
@@ -1533,7 +1531,7 @@ to <a class="reference internal" href="#algm-convertunits"><span class="std std-
 <h3>Restrictions on the input workspace<a class="headerlink" href="#restrictions-on-the-input-workspace" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Naturally, the X values must have a unit set, and that unit must be
-known to the <a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">Unit Factory</span></a>.</p></li>
+known to the <a class="reference internal" href="../api/python/mantid/kernel/UnitFactoryImpl.html#mantid.kernel.UnitFactoryImpl" title="mantid.kernel.UnitFactoryImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnitFactory</span></code></a>.</p></li>
 <li><p>Histograms and Point data can be handled.</p></li>
 <li><p>The algorithm will also fail if the source-sample distance cannot be
 calculated (i.e. the <a class="reference internal" href="../api/python/mantid/geometry/Instrument.html#mantid.geometry.Instrument" title="mantid.geometry.Instrument"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Instrument</span></code></a> has not been
@@ -1543,9 +1541,8 @@ properly defined).</p></li>
 </section>
 <section id="available-units">
 <h2>Available units<a class="headerlink" href="#available-units" title="Link to this heading">#</a></h2>
-<p>The units currently available to this algorithm are listed
-<a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">here</span></a>, along with equations specifying exactly how the
-conversions are done.</p>
+<p>The units currently available to this algorithm are listed in <a class="reference internal" href="../api/python/mantid/kernel/UnitFactoryImpl.html#mantid.kernel.UnitFactoryImpl" title="mantid.kernel.UnitFactoryImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnitFactory</span></code></a>,
+along with equations specifying exactly how the conversions are done.</p>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
@@ -1566,8 +1563,8 @@ Output 5.22196485301
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/91411c7a7dbf1c8ce6fa522302cce36ee835ddf4/Framework/Algorithms/inc/MantidAlgorithms/ConvertUnits.h">ConvertUnits.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/91411c7a7dbf1c8ce6fa522302cce36ee835ddf4/Framework/Algorithms/src/ConvertUnits.cpp">ConvertUnits.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/410ab669ee9deb4a7bf401ce6602e190736f426c/Framework/Algorithms/inc/MantidAlgorithms/ConvertUnits.h">ConvertUnits.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/410ab669ee9deb4a7bf401ce6602e190736f426c/Framework/Algorithms/src/ConvertUnits.cpp">ConvertUnits.cpp</a></p>
 </section>
 </section>
 

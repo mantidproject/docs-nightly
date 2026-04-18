@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>TransformMD v1 &#8212; MantidProject 6.15.20260413.1004 documentation</title>
+    <title>TransformMD v1 &#8212; MantidProject 6.15.20260417.1728 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../_static/documentation_options.js?v=8800fdde"></script>
+    <script src="../_static/documentation_options.js?v=00bfdd9b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1477,7 +1477,7 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
 <p>This algorithm applies a simple linear transformation to a
-<a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDWorkspace</span></a> or
+<a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDWorkspace</span></code></a> or
 <a class="reference internal" href="../api/python/mantid/dataobjects/MDHistoWorkspace.html#mantid.dataobjects.MDHistoWorkspace" title="mantid.dataobjects.MDHistoWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDHistoWorkspace</span></code></a>. This could be used, for
 example, to scale the Energy dimension to different units.</p>
 <p>Each coordinate is transformed so that <span class="math notranslate nohighlight">\(x'_d = (x_d * s_d) + o_d\)</span>
@@ -1493,7 +1493,7 @@ you can specify a list with one entry for each dimension.</p>
 <section id="notes">
 <h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h3>
 <p>The relationship between the workspace and the original
-<a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDWorkspace</span></a>, for example when the MDHistoWorkspace is
+<a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDWorkspace</span></code></a>, for example when the MDHistoWorkspace is
 the result of <a class="reference internal" href="BinMD-v1.html#algm-binmd"><span class="std std-ref">BinMD v1</span></a>, is lost. This means that you cannot
 re-bin a transformed <a class="reference internal" href="../api/python/mantid/dataobjects/MDHistoWorkspace.html#mantid.dataobjects.MDHistoWorkspace" title="mantid.dataobjects.MDHistoWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDHistoWorkspace</span></code></a>.</p>
 <p>No units are not modified by this algorithm.</p>
@@ -1507,9 +1507,9 @@ the original workspace.</p></li>
 <li><p>For <a class="reference internal" href="../api/python/mantid/dataobjects/MDHistoWorkspace.html#mantid.dataobjects.MDHistoWorkspace" title="mantid.dataobjects.MDHistoWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDHistoWorkspaces</span></code></a> done in-place,
 TransformMD is very quick (no data is modified, just the
 coordinates).</p></li>
-<li><p>For <a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDWorkspaces</span></a>, every event’s coordinates gets
+<li><p>For <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDWorkspace</span></code></a>, every event’s coordinates gets
 modified, so this may take a while for large workspaces.</p></li>
-<li><p>For file-backed <a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDWorkspaces</span></a>, you will find much
+<li><p>For file-backed <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDWorkspace</span></code></a>, you will find much
 better performance if you perform the change in-place (input=output),
 because the data gets written out to disk twice otherwise.</p></li>
 </ul>
@@ -1518,8 +1518,8 @@ because the data gets written out to disk twice otherwise.</p></li>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/91411c7a7dbf1c8ce6fa522302cce36ee835ddf4/Framework/MDAlgorithms/inc/MantidMDAlgorithms/TransformMD.h">TransformMD.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/91411c7a7dbf1c8ce6fa522302cce36ee835ddf4/Framework/MDAlgorithms/src/TransformMD.cpp">TransformMD.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/410ab669ee9deb4a7bf401ce6602e190736f426c/Framework/MDAlgorithms/inc/MantidMDAlgorithms/TransformMD.h">TransformMD.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/410ab669ee9deb4a7bf401ce6602e190736f426c/Framework/MDAlgorithms/src/TransformMD.cpp">TransformMD.cpp</a></p>
 </section>
 </section>
 

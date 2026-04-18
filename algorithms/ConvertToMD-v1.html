@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ConvertToMD v1 &#8212; MantidProject 6.15.20260413.1004 documentation</title>
+    <title>ConvertToMD v1 &#8212; MantidProject 6.15.20260417.1728 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../_static/documentation_options.js?v=8800fdde"></script>
+    <script src="../_static/documentation_options.js?v=00bfdd9b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1609,9 +1609,8 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
 <p>The algorithm is used transform existing <a class="reference internal" href="../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects.EventWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventWorkspace</span></code></a>
-or <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> into
-<a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">Multidimensional workspace</span></a>.</p>
-<p>If  the target workspace does not exist, the algorithm creates <a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDEventWorkspace</span></a>
+or <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> into <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDWorkspace</span></code></a>.</p>
+<p>If  the target workspace does not exist, the algorithm creates <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a>
 with selected dimensions, e.g. the reciprocal space of momentums <strong>(Qx, Qy, Qz)</strong> or momentums modules <strong>|Q|</strong>, energy transfer <strong>dE</strong> if available
 and any other user specified log values which can be treated as dimensions. If the target workspace do exist,
 the <strong>MD Events</strong> are added to this workspace.</p>
@@ -1620,9 +1619,9 @@ Note that this will significantly increase the execution time of the algorithm.<
 </section>
 <section id="used-subalgorithms">
 <h2>Used Subalgorithms<a class="headerlink" href="#used-subalgorithms" title="Link to this heading">#</a></h2>
-<p>The algorithm uses <a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">Unit Factory</span></a> and existing unit
-conversion procedures from the input Workspace <a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">units</span></a>
-to the <a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">units</span></a> , necessary
+<p>The algorithm uses <a class="reference internal" href="../api/python/mantid/kernel/UnitFactoryImpl.html#mantid.kernel.UnitFactoryImpl" title="mantid.kernel.UnitFactoryImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnitFactory</span></code></a> and existing unit
+conversion procedures from the input Workspace <a class="reference internal" href="../api/python/mantid/kernel/UnitFactoryImpl.html#mantid.kernel.UnitFactoryImpl" title="mantid.kernel.UnitFactoryImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a>
+to the <a class="reference internal" href="../api/python/mantid/kernel/UnitFactoryImpl.html#mantid.kernel.UnitFactoryImpl" title="mantid.kernel.UnitFactoryImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a> , necessary
 for transformation into correspondent <strong>MD Event workspace</strong>. It also uses
 <a class="reference internal" href="PreprocessDetectorsToMD-v1.html#algm-preprocessdetectorstomd"><span class="std std-ref">PreprocessDetectorsToMD v1</span></a> algorithm to help
 with transformation to reciprocal space.</p>
@@ -1638,7 +1637,7 @@ values then dimensions or some min values are bigger then max values)</p>
 <h2>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>For elastic analysis (<span class="math notranslate nohighlight">\(dEAnalysisMode=Elastic\)</span>) the target
-<a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">unit</span></a> is momentum <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+<a class="reference internal" href="../api/python/mantid/kernel/UnitFactoryImpl.html#mantid.kernel.UnitFactoryImpl" title="mantid.kernel.UnitFactoryImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unit</span></code></a> is momentum <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
 <li><p>For no analysis (CopyToMD) mode, the units remain the one, previously
 defined along the workspace’s axes.</p></li>
 <li><p>When units of input Matrix 2D workspace (Histogram workspace) are not
@@ -1654,7 +1653,7 @@ must be equal to 1 or 2 for energy transfer calculation” is generated
 when one tries to process the results of inelastic scattering
 experiment in elastic mode. This message is generated by units
 conversion routine, which finds out that one of the workspace axis is
-in <a class="reference internal" href="../concepts/UnitFactory.html#unit-factory"><span class="std std-ref">unit</span></a> of DeltaE. These units can not be directly
+in <a class="reference internal" href="../api/python/mantid/kernel/UnitFactoryImpl.html#mantid.kernel.UnitFactoryImpl" title="mantid.kernel.UnitFactoryImpl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unit</span></code></a> of DeltaE. These units can not be directly
 converted into momentum or energy, necessary for elastic mode. Select
 Direct or Indirect mode and integrate over whole energy transfer
 range to obtain MD workspace, which would correspond to an Elastic
@@ -1875,8 +1874,8 @@ Resulting MD workspace contains 605880 events and 3 dimensions
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/91411c7a7dbf1c8ce6fa522302cce36ee835ddf4/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertToMD.h">ConvertToMD.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/91411c7a7dbf1c8ce6fa522302cce36ee835ddf4/Framework/MDAlgorithms/src/ConvertToMD.cpp">ConvertToMD.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/410ab669ee9deb4a7bf401ce6602e190736f426c/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertToMD.h">ConvertToMD.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/410ab669ee9deb4a7bf401ce6602e190736f426c/Framework/MDAlgorithms/src/ConvertToMD.cpp">ConvertToMD.cpp</a></p>
 </section>
 </section>
 

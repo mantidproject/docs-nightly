@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.15.20260413.1004 documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.15.20260417.1728 documentation</title>
   
   
   
@@ -40,9 +40,11 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../../_static/documentation_options.js?v=8800fdde"></script>
+    <script src="../../_static/documentation_options.js?v=00bfdd9b"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v6.16.0/framework';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -711,12 +713,14 @@
 <li><p>Include IMAGINE instrument in <a class="reference internal" href="../../algorithms/MaskBTP-v1.html#algm-maskbtp"><span class="std std-ref">MaskBTP v1</span></a>.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/SCDCalibratePanels-v2.html#algm-scdcalibratepanels-v2"><span class="std std-ref">SCDCalibratePanels v2</span></a> now writes the full name for bank components.</p></li>
 <li><p>MPI Algorithms <a class="reference internal" href="../../algorithms/BroadcastWorkspace-v1.html#algm-broadcastworkspace"><span class="std std-ref">BroadcastWorkspace</span></a> and <a class="reference internal" href="../../algorithms/GatherWorkspaces-v1.html#algm-gatherworkspaces"><span class="std std-ref">GatherWorkspaces</span></a> have been added to mantid to allow for MPI processing that is workspace friendly. These are available on linux in the <code class="docutils literal notranslate"><span class="pre">mantidmpi</span></code> package.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction v1</span></a> now logs warnings for unset optional fields.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction v1</span></a> now has logic for loading MIDAS data</p></li>
 </ul>
 </section>
 <section id="bugfixes">
 <h3>Bugfixes<a class="headerlink" href="#bugfixes" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>Algorithm <cite>LoadMask</cite> will now throw an error if given an invalid file.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/MaskBTP-v1.html#algm-maskbtp"><span class="std std-ref">MaskBTP</span></a> now supports name and short-name for instrument IMAGINE.</p></li>
 <li><p>The algorithm <cite>LoadEventNexus</cite> will no longer delete unused banks for the TOPAZ and MANDI instruments.  This feature had not truly worked since Mantid 6.6, and was causing long loading times or errors.</p></li>
 <li><p>Algorithm <a class="reference internal" href="../../algorithms/LoadEventAsWorkspace2D-v1.html#algm-loadeventasworkspace2d"><span class="std std-ref">LoadEventAsWorkspace2D</span></a> now updates the run duration log when using
@@ -727,6 +731,7 @@ parameters <code class="docutils literal notranslate"><span class="pre">FilterBy
 range no longer causes the loading to hang due to an infinite loop.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/LoadEmptyInstrument-v1.html#algm-loademptyinstrument"><span class="std std-ref">LoadEmptyInstrument</span></a> will now load instruments from a wider class of NeXus files.</p></li>
 <li><p><cite>EnggEstimateFocussedBackground</cite> will no longer throw an error related to writing to a read-only destination.</p></li>
+<li><p>Fixed a bug in <a class="reference internal" href="../../algorithms/WeightedMeanOfWorkspace-v1.html#algm-weightedmeanofworkspace"><span class="std std-ref">WeightedMeanOfWorkspace</span></a> where output errors were computed as <span class="math notranslate nohighlight">\(\sqrt{\mathrm{weightSum}}\)</span> instead of <span class="math notranslate nohighlight">\(1/\sqrt{\mathrm{weightSum}}\)</span>. This affects <a class="reference internal" href="../../algorithms/DgsReduction-v1.html#algm-dgsreduction"><span class="std std-ref">DgsReduction</span></a> (including the Absolute Units tab in the GUI), DPDFReduction, and <a class="reference internal" href="../../algorithms/MDNorm-v1.html#algm-mdnorm"><span class="std std-ref">MDNorm</span></a> workflows. <strong>Warning:</strong> Results from previous releases may contain inflated uncertainties and should be reprocessed.</p></li>
 <li><p>Updated the <a class="reference internal" href="../../algorithms/SaveSESANS-v1.html#algm-savesesans"><span class="std std-ref">SaveSESANS</span></a> and <a class="reference internal" href="../../algorithms/SaveCanSAS1D-v2.html#algm-savecansas1d"><span class="std std-ref">SaveCanSAS1D</span></a> algorithms to include the decimal point if the data written to file is an integer.</p></li>
 <li><p>Fix performance issue in <a class="reference internal" href="../../algorithms/MaskDetectors-v1.html#algm-maskdetectors"><span class="std std-ref">MaskDetectors</span></a> using a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code> as the source of the mask</p></li>
 <li><p>Fix crash in <a class="reference internal" href="../../algorithms/SaveDiffCal-v1.html#algm-savediffcal"><span class="std std-ref">SaveDiffCal</span></a> produced by calibration tables with repeated entries.</p></li>
@@ -799,6 +804,7 @@ to record and playback an ADARA-packet stream.</p></li>
 <li><p>Move to <a class="reference external" href="https://github.com/pace-neutrons/Euphonic">euphonic</a> v1.6.0</p></li>
 <li><p>Add information for writing docs using MyST flavored markdown</p></li>
 <li><p>Remove <code class="docutils literal notranslate"><span class="pre">python-dateutil</span></code> in favor of python’s <code class="docutils literal notranslate"><span class="pre">datetime</span></code> module</p></li>
+<li><p>Updated Matplotlib from version 3.9 to version 3.10. The release notes for <a class="reference external" href="https://matplotlib.org/stable/users/prev_whats_new/whats_new_3.10.0.html">version 3.10 can be found in</a>.</p></li>
 </ul>
 </section>
 <section id="id10">

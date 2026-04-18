@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CutMD v1 &#8212; MantidProject 6.15.20260413.1004 documentation</title>
+    <title>CutMD v1 &#8212; MantidProject 6.15.20260417.1728 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../_static/documentation_options.js?v=8800fdde"></script>
+    <script src="../_static/documentation_options.js?v=00bfdd9b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/CutMD-v1';</script>
@@ -1527,13 +1527,13 @@ is that the same number of output workspaces are also given so that CutMD knows
 what to call each output workspace created.</p>
 <section id="mdeventworkspaces">
 <h3>MDEventWorkspaces<a class="headerlink" href="#mdeventworkspaces" title="Link to this heading">#</a></h3>
-<p>For input of type <a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDEventWorkspace</span></a> the algorithm uses <a class="reference internal" href="BinMD-v1.html#algm-binmd"><span class="std std-ref">BinMD v1</span></a> or
+<p>For input of type <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a> the algorithm uses <a class="reference internal" href="BinMD-v1.html#algm-binmd"><span class="std std-ref">BinMD v1</span></a> or
 <a class="reference internal" href="SliceMD-v1.html#algm-slicemd"><span class="std std-ref">SliceMD v1</span></a> to achieve the binning of the data. The choice of child
 algorithm used for slicing in this case is controlled by the NoPix option.</p>
 </section>
 <section id="mdhistoworkspaces">
 <h3>MDHistoWorkspaces<a class="headerlink" href="#mdhistoworkspaces" title="Link to this heading">#</a></h3>
-<p>If the input is an <a class="reference internal" href="../api/python/mantid/dataobjects/MDHistoWorkspace.html#mantid.dataobjects.MDHistoWorkspace" title="mantid.dataobjects.MDHistoWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDHistoWorkspace</span></code></a> <a class="reference internal" href="BinMD-v1.html#algm-binmd"><span class="std std-ref">BinMD v1</span></a> and <a class="reference internal" href="SliceMD-v1.html#algm-slicemd"><span class="std std-ref">SliceMD v1</span></a> are not made available as they needto get hold of the original MDEvents associated with an <a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDEventWorkspace</span></a> in order to perform the rebinning. As this information is missing from the MDHistoWorkspace images, those operations are forbidden. Instead, a limited subset of the operations are allowed, and are performed via <a class="reference internal" href="IntegrateMDHistoWorkspace-v1.html#algm-integratemdhistoworkspace"><span class="std std-ref">IntegrateMDHistoWorkspace v1</span></a>. In this case, the Projection and NoPix properties are ignored. See <a class="reference internal" href="IntegrateMDHistoWorkspace-v1.html#algm-integratemdhistoworkspace"><span class="std std-ref">IntegrateMDHistoWorkspace v1</span></a> for how the binning parameters are used.</p>
+<p>If the input is an <a class="reference internal" href="../api/python/mantid/dataobjects/MDHistoWorkspace.html#mantid.dataobjects.MDHistoWorkspace" title="mantid.dataobjects.MDHistoWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDHistoWorkspace</span></code></a> <a class="reference internal" href="BinMD-v1.html#algm-binmd"><span class="std std-ref">BinMD v1</span></a> and <a class="reference internal" href="SliceMD-v1.html#algm-slicemd"><span class="std std-ref">SliceMD v1</span></a> are not made available as they needto get hold of the original MDEvents associated with an <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a> in order to perform the rebinning. As this information is missing from the MDHistoWorkspace images, those operations are forbidden. Instead, a limited subset of the operations are allowed, and are performed via <a class="reference internal" href="IntegrateMDHistoWorkspace-v1.html#algm-integratemdhistoworkspace"><span class="std std-ref">IntegrateMDHistoWorkspace v1</span></a>. In this case, the Projection and NoPix properties are ignored. See <a class="reference internal" href="IntegrateMDHistoWorkspace-v1.html#algm-integratemdhistoworkspace"><span class="std std-ref">IntegrateMDHistoWorkspace v1</span></a> for how the binning parameters are used.</p>
 </section>
 <section id="projection-binning">
 <h3>Projection Binning<a class="headerlink" href="#projection-binning" title="Link to this heading">#</a></h3>
@@ -1542,7 +1542,7 @@ The dimension will be truncated to have extents ‘minimum’ and ‘maximum’,
 ‘(maximum - minimum)/stepsize’ is rounded down to produce an integer number, greater than or equal to 1, of equally-sized bins between ‘minimum’ and ‘maximum’.</p>
 <p>Note that if the output workspace is an MDEventWorkspace (NoPix=False), these properties define the top-level box structure of the workspace.
 If the MaxRecursionDepth property is set to higher than its default of 1 then if many events fall within a single box it may be split further,
-see the documentation for <a class="reference internal" href="../concepts/MDWorkspace.html#mdworkspace"><span class="std std-ref">MDEventWorkspace</span></a>.</p>
+see the documentation for <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a>.</p>
 <p>The PnBin parameters must match one of these three formats:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1573,7 +1573,7 @@ PBins accepts a tuple, or list, of PnBins parameters. The position in the list d
 <section id="creating-projections">
 <h3>Creating Projections<a class="headerlink" href="#creating-projections" title="Link to this heading">#</a></h3>
 <p>Projections are used by CutMD to transform the multidimensional data prior to
-cutting it. Projections are provided to CutMD in the form of a <a class="reference internal" href="../concepts/TableWorkspaces.html#table-workspaces"><span class="std std-ref">TableWorkspace</span></a>.
+cutting it. Projections are provided to CutMD in the form of a <a class="reference internal" href="../api/python/mantid/api/ITableWorkspace.html#mantid.api.ITableWorkspace" title="mantid.api.ITableWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableWorkspace</span></code></a>.
 The format of these workspaces is as follows:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1704,8 +1704,8 @@ Half the volume should give half the signal = 50.0
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/91411c7a7dbf1c8ce6fa522302cce36ee835ddf4/Framework/MDAlgorithms/inc/MantidMDAlgorithms/CutMD.h">CutMD.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/91411c7a7dbf1c8ce6fa522302cce36ee835ddf4/Framework/MDAlgorithms/src/CutMD.cpp">CutMD.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/410ab669ee9deb4a7bf401ce6602e190736f426c/Framework/MDAlgorithms/inc/MantidMDAlgorithms/CutMD.h">CutMD.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/410ab669ee9deb4a7bf401ce6602e190736f426c/Framework/MDAlgorithms/src/CutMD.cpp">CutMD.cpp</a></p>
 </section>
 </section>
 

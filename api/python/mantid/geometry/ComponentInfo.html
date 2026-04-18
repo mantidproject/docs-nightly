@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ComponentInfo &#8212; MantidProject 6.15.20260413.1004 documentation</title>
+    <title>ComponentInfo &#8212; MantidProject 6.15.20260417.1728 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
 
-    <script src="../../../../_static/documentation_options.js?v=8800fdde"></script>
+    <script src="../../../../_static/documentation_options.js?v=00bfdd9b"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/geometry/ComponentInfo';</script>
@@ -632,7 +632,11 @@
   <section id="componentinfo">
 <h1>ComponentInfo<a class="headerlink" href="#componentinfo" title="Link to this heading">#</a></h1>
 <p>This is a python binding to the C++ class Mantid::Geometry::ComponentInfo.</p>
-<p>Most of the information concerning <a class="reference internal" href="#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> can be found in the <a class="reference internal" href="../../../../concepts/InstrumentAccessLayers.html#instrumentaccesslayers"><span class="std std-ref">Instrument Access Layers</span></a> document.</p>
+<p><em>bases:</em> <a class="reference internal" href="#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mantid.geometry.ComponentInfo</span></code></a></p>
+<p><a class="reference internal" href="#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> provides faster and simpler access to instrument/beamline geometry as required by
+Mantid <a class="reference internal" href="../api/Algorithm.html#mantid.api.Algorithm" title="mantid.api.Algorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">algorithm</span></code></a> than was possible using <a class="reference internal" href="Instrument.html#mantid.geometry.Instrument" title="mantid.geometry.Instrument"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Instrument</span></code></a>.
+<a class="reference internal" href="#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> and <a class="reference internal" href="DetectorInfo.html#mantid.geometry.DetectorInfo" title="mantid.geometry.DetectorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DetectorInfo</span></code></a> are designed as full replacements to <a class="reference internal" href="Instrument.html#mantid.geometry.Instrument" title="mantid.geometry.Instrument"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Instrument</span></code></a>.</p>
+<p>Most of the information concerning <a class="reference internal" href="#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> can be found in the <a class="reference internal" href="../../../../concepts/InstrumentAccessLayers.html#instrumentaccesslayers"><span class="std std-ref">Instrument Access Layers</span></a> document, which provides details on how <a class="reference internal" href="DetectorInfo.html#mantid.geometry.DetectorInfo" title="mantid.geometry.DetectorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DetectorInfo</span></code></a> interacts with other geometry access layers.</p>
 <section id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">#</a></h2>
 <p>The purpose of the <a class="reference internal" href="#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> object is to allow the user to access geometric information about the components which are part of a beamline. A component is any physical item or group of items that is registered for the purpose of data reduction. The <a class="reference internal" href="#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> object can be used to access information such as the total number of components in the beamline, the absolute position of a component as well as the absolute rotation of a component. <a class="reference internal" href="#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> provides tree like access to the beamline including all the detectors.</p>
@@ -726,7 +730,26 @@ The returned list can then be indexed into to obtain a specific component.</p>
 []
 </pre></div>
 </div>
-<p><em>bases:</em> <a class="reference internal" href="#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mantid.geometry.ComponentInfo</span></code></a></p>
+<p><strong>Example 4 - Print indices of detectors in “bank1” that are masked</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">CreateSampleWorkspace</span>
+
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
+<span class="n">comp_info</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">componentInfo</span><span class="p">()</span>
+<span class="n">det_info</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">detectorInfo</span><span class="p">()</span>
+<span class="n">det_info</span><span class="o">.</span><span class="n">setMasked</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># Mask  a bank 1 detector for demo</span>
+<span class="n">det_info</span><span class="o">.</span><span class="n">setMasked</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">det_info</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># Mask detector not in bank 1</span>
+<span class="n">bank_index</span> <span class="o">=</span> <span class="n">comp_info</span><span class="o">.</span><span class="n">indexOfAny</span><span class="p">(</span><span class="s1">&#39;bank1&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">det_index</span> <span class="ow">in</span> <span class="n">comp_info</span><span class="o">.</span><span class="n">detectorsInSubtree</span><span class="p">(</span><span class="n">bank_index</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">det_info</span><span class="o">.</span><span class="n">isMasked</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">det_index</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Masked detector index of bank1 is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">det_index</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Masked detector index of bank1 is 2
+</pre></div>
+</div>
+<section id="reference">
+<h3>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="mantid.geometry.ComponentInfo">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">mantid.geometry.</span></span><span class="sig-name descname"><span class="pre">ComponentInfo</span></span><a class="headerlink" href="#mantid.geometry.ComponentInfo" title="Link to this definition">#</a></dt>
@@ -914,6 +937,7 @@ The returned list can then be indexed into to obtain a specific component.</p>
 
 </section>
 </section>
+</section>
 
 
                 </article>
@@ -965,37 +989,40 @@ The returned list can then be indexed into to obtain a specific component.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose">Purpose</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo"><code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.children"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.children()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.componentsInSubtree"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.componentsInSubtree()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.detectorsInSubtree"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.detectorsInSubtree()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasEquivalentSample"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasEquivalentSample()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasEquivalentSource"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasEquivalentSource()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasParent"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasParent()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasSample"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasSample()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasSource"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasSource()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasValidShape"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasValidShape()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.indexOfAny"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.indexOfAny()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.isDetector"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.isDetector()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.l1"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.l1()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.name"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.name()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.parent"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.parent()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.position"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.position()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.relativePosition"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.relativePosition()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.relativeRotation"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.relativeRotation()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.root"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.root()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.rotation"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.rotation()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.sample"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.sample()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.samplePosition"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.samplePosition()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.scaleFactor"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.scaleFactor()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.setPosition"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.setPosition()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.setRotation"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.setRotation()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.setScaleFactor"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.setScaleFactor()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.shape"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.shape()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.size"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.size()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.source"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.source()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.sourcePosition"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.sourcePosition()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.uniqueName"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.uniqueName()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo"><code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.children"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.children()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.componentsInSubtree"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.componentsInSubtree()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.detectorsInSubtree"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.detectorsInSubtree()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasEquivalentSample"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasEquivalentSample()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasEquivalentSource"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasEquivalentSource()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasParent"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasParent()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasSample"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasSample()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasSource"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasSource()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.hasValidShape"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.hasValidShape()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.indexOfAny"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.indexOfAny()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.isDetector"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.isDetector()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.l1"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.l1()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.name"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.name()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.parent"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.parent()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.position"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.position()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.relativePosition"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.relativePosition()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.relativeRotation"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.relativeRotation()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.root"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.root()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.rotation"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.rotation()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.sample"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.sample()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.samplePosition"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.samplePosition()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.scaleFactor"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.scaleFactor()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.setPosition"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.setPosition()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.setRotation"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.setRotation()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.setScaleFactor"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.setScaleFactor()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.shape"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.shape()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.size"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.size()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.source"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.source()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.sourcePosition"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.sourcePosition()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.ComponentInfo.uniqueName"><code class="docutils literal notranslate"><span class="pre">ComponentInfo.uniqueName()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

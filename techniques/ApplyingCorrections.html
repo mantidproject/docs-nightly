@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Applying Corrections &#8212; MantidProject 6.15.20260417.1728 documentation</title>
+    <title>Applying Corrections &#8212; MantidProject 6.15.20260427.1738 documentation</title>
   
   
   
@@ -27,20 +27,20 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../_static/documentation_options.js?v=00bfdd9b"></script>
+    <script src="../_static/documentation_options.js?v=54bf448d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -65,7 +65,9 @@
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -374,24 +376,8 @@
                   
   <section id="applying-corrections">
 <span id="id1"></span><h1>Applying Corrections<a class="headerlink" href="#applying-corrections" title="Link to this heading">#</a></h1>
-<nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id4">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#absorption-and-multiple-scattering-corrections-on-a-water-sample" id="id5">Absorption and Multiple Scattering Corrections on a Water sample</a></p>
-<ul>
-<li><p><a class="reference internal" href="#sample" id="id6">Sample</a></p></li>
-<li><p><a class="reference internal" href="#absorption-corrections" id="id7">Absorption Corrections</a></p></li>
-<li><p><a class="reference internal" href="#multiple-scattering-corrections" id="id8">Multiple Scattering Corrections</a></p></li>
-<li><p><a class="reference internal" href="#iterative-multiple-scattering-corrections" id="id9">Iterative multiple scattering corrections</a></p></li>
-<li><p><a class="reference internal" href="#effect-of-multiple-scattering-corrections-on-peak-widths" id="id10">Effect of Multiple Scattering Corrections on Peak Widths</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#references" id="id11">References</a></p></li>
-</ul>
-</nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Neutron Data from spectrometers sometimes requires taking into consideration the contributions from Absorption and Multiple
 Scattering processes from the sample and the container. This section gives an overview of considerations and techniques when applying corrections in Mantid with data obtained
 from an indirect geometry spectrometer.</p>
@@ -412,9 +398,9 @@ the containers can be stored within Mantid Workbench.</p></li>
 <p>We are going to illustrate a process of performing absorption and multiple scattering corrections produced and analysed within Mantid Workbench with a liquid sample, in this case water, acquired with an Indirect geometry instrument.</p>
 </section>
 <section id="absorption-and-multiple-scattering-corrections-on-a-water-sample">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Absorption and Multiple Scattering Corrections on a Water sample</a><a class="headerlink" href="#absorption-and-multiple-scattering-corrections-on-a-water-sample" title="Link to this heading">#</a></h2>
+<h2>Absorption and Multiple Scattering Corrections on a Water sample<a class="headerlink" href="#absorption-and-multiple-scattering-corrections-on-a-water-sample" title="Link to this heading">#</a></h2>
 <section id="sample">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Sample</a><a class="headerlink" href="#sample" title="Link to this heading">#</a></h3>
+<h3>Sample<a class="headerlink" href="#sample" title="Link to this heading">#</a></h3>
 <p>A water sample acquired in the IRIS spectrometer <cite>irs26176_graphite002_red.nsx</cite> from the Mantid Usage Data set is used.
 Characteristics of this sample are:</p>
 <ul class="simple">
@@ -425,7 +411,7 @@ Characteristics of this sample are:</p>
 </ul>
 </section>
 <section id="absorption-corrections">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Absorption Corrections</a><a class="headerlink" href="#absorption-corrections" title="Link to this heading">#</a></h3>
+<h3>Absorption Corrections<a class="headerlink" href="#absorption-corrections" title="Link to this heading">#</a></h3>
 <p>Firstly, we can calculate and apply neutron absorption corrections for the sample and container by using the  <a class="reference internal" href="../algorithms/PaalmanPingsMonteCarloAbsorption-v1.html#algm-paalmanpingsmontecarloabsorption"><span class="std std-ref">Monte Carlo Absorption</span></a>
 algorithm in the <a class="reference internal" href="../interfaces/inelastic/Inelastic%20Corrections.html#interface-inelastic-corrections"><span class="std std-ref">Inelastic Corrections</span></a> interface. Opening the interface, we navigate to the
 <cite>Calculate Monte Carlo Corrections</cite> tab. Selecting the <cite>irs26176_graphite002_red.nsx</cite> sample dataset with an annulus sample shape of the aforementioned dimensions.
@@ -440,7 +426,7 @@ A 3D plot of the generated workspace is shown below:</p>
 <p>The <span class="math notranslate nohighlight">\(S(Q, \omega)\)</span> workspace will be used to generate multiple scattering corrections.</p>
 </section>
 <section id="multiple-scattering-corrections">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Multiple Scattering Corrections</a><a class="headerlink" href="#multiple-scattering-corrections" title="Link to this heading">#</a></h3>
+<h3>Multiple Scattering Corrections<a class="headerlink" href="#multiple-scattering-corrections" title="Link to this heading">#</a></h3>
 <p>We are going to calculate the multiple scattering corrections using the <a class="reference internal" href="../algorithms/SimpleShapeDiscusInelastic-v1.html#algm-simpleshapediscusinelastic"><span class="std std-ref">SimpleShapeDiscusInelastic</span></a> algorithm from the algorithms widget.
 On this algorithm, the input workspaces are:</p>
 <ol class="arabic simple">
@@ -473,7 +459,7 @@ measured width, and thus could be appearing in fitting routines as extra peaks.<
 </figure>
 </section>
 <section id="iterative-multiple-scattering-corrections">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Iterative multiple scattering corrections</a><a class="headerlink" href="#iterative-multiple-scattering-corrections" title="Link to this heading">#</a></h3>
+<h3>Iterative multiple scattering corrections<a class="headerlink" href="#iterative-multiple-scattering-corrections" title="Link to this heading">#</a></h3>
 <p>In the calculation of the multiple scattering corrections using the <a class="reference internal" href="../algorithms/SimpleShapeDiscusInelastic-v1.html#algm-simpleshapediscusinelastic"><span class="std std-ref">SimpleShapeDiscusInelastic</span></a> algorithm, we have
 used a <span class="math notranslate nohighlight">\(S(Q, \omega)\)</span> file which already contained multiple scattering terms, as we obtained from the workspace.
 In this case, it would improve upon the multiple scattering results if we perform a second iteration on the <a class="reference internal" href="../algorithms/SimpleShapeDiscusInelastic-v1.html#algm-simpleshapediscusinelastic"><span class="std std-ref">SimpleShapeDiscusInelastic</span></a> algorithm,
@@ -492,7 +478,7 @@ at the following results from the third iteration:</p>
 correcting further by continuing with the iteration procedure and can stop applying multiple scattering corrections.</p>
 </section>
 <section id="effect-of-multiple-scattering-corrections-on-peak-widths">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Effect of Multiple Scattering Corrections on Peak Widths</a><a class="headerlink" href="#effect-of-multiple-scattering-corrections-on-peak-widths" title="Link to this heading">#</a></h3>
+<h3>Effect of Multiple Scattering Corrections on Peak Widths<a class="headerlink" href="#effect-of-multiple-scattering-corrections-on-peak-widths" title="Link to this heading">#</a></h3>
 <p>We can then use corrected multiple scattering data to model the quasielastic response with a convolution fitting algorithm.
 If we convolute with a lorentzian, we can apply the multiple scattering corrections to the reduced workspace as described above
 and then run ConvFit algorithm as normal.
@@ -507,7 +493,7 @@ from multiple scattering corrections.</p>
 </section>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id3" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
@@ -600,8 +586,8 @@ from multiple scattering corrections.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -635,7 +621,7 @@ from multiple scattering corrections.</p>
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
 </p></div>
       
     </div>

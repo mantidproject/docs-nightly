@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ISIS Single Crystal Diffraction Reduction Scripts &#8212; MantidProject 6.15.20260417.1728 documentation</title>
+    <title>ISIS Single Crystal Diffraction Reduction Scripts &#8212; MantidProject 6.15.20260427.1738 documentation</title>
   
   
   
@@ -27,20 +27,20 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../_static/documentation_options.js?v=00bfdd9b"></script>
+    <script src="../_static/documentation_options.js?v=54bf448d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'techniques/ISIS_SingleCrystalDiffraction_Workflow';</script>
@@ -63,7 +63,9 @@
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -372,45 +374,15 @@
                   
   <section id="isis-single-crystal-diffraction-reduction-scripts">
 <span id="isis-single-crystal-diffraction-ref"></span><h1>ISIS Single Crystal Diffraction Reduction Scripts<a class="headerlink" href="#isis-single-crystal-diffraction-reduction-scripts" title="Link to this heading">#</a></h1>
-<nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id2">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#basic-usage" id="id3">Basic Usage</a></p></li>
-<li><p><a class="reference internal" href="#sxd-workflow" id="id4">SXD Workflow</a></p>
-<ul>
-<li><p><a class="reference internal" href="#detector-calibration" id="id5">1. Detector Calibration</a></p></li>
-<li><p><a class="reference internal" href="#reduce-a-sequence-of-runs" id="id6">2. Reduce a sequence of runs</a></p>
-<ul>
-<li><p><a class="reference internal" href="#a-setting-up-the-sxd-object" id="id7">a. Setting up the SXD object</a></p></li>
-<li><p><a class="reference internal" href="#b-running-the-reduction" id="id8">b. Running the reduction</a></p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#wish-workflow" id="id9">WISH Workflow</a></p>
-<ul>
-<li><p><a class="reference internal" href="#preliminary-integration" id="id10">1. Preliminary integration</a></p></li>
-<li><p><a class="reference internal" href="#finding-the-ubs-for-a-sequence-of-runs" id="id11">2. Finding the UBs for a sequence of runs</a></p></li>
-<li><p><a class="reference internal" href="#id1" id="id12">3. Reduce a sequence of runs</a></p>
-<ul>
-<li><p><a class="reference internal" href="#a-skew-integration-no-satellites" id="id13">a. Skew Integration (no satellites)</a></p></li>
-<li><p><a class="reference internal" href="#b-q-integration-with-satellites" id="id14">b. Q Integration (with satellites)</a></p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>The reduction of single-crystal diffraction data from the SXD and WISH instruments at ISIS is
 achieved with the use of instrument specific classes (<code class="docutils literal notranslate"><span class="pre">SXD</span></code> and <code class="docutils literal notranslate"><span class="pre">WishSX</span></code> respectively).</p>
 <p>The instrument specific classes inherit from a base class <code class="docutils literal notranslate"><span class="pre">BaseSX</span></code> that contains code common to the
 workflow of all single-crystal diffraction reduction instruments - the user shouldn’t interact directly with this class.</p>
 </section>
 <section id="basic-usage">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Basic Usage</a><a class="headerlink" href="#basic-usage" title="Link to this heading">#</a></h2>
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">#</a></h2>
 <p>During beamtime, users may want to load data, find peaks and optimise UB matrices etc. without performing the
 time-consuming normalisation and correction procedures necessary when reducing the data for refinement.</p>
 <p>These simple operations have been made concise with the use of <cite>static</cite> methods in the reduction classes - i.e.
@@ -436,9 +408,9 @@ combined in a script with mantid algorithms in the usual way.</p>
 </div>
 </section>
 <section id="sxd-workflow">
-<span id="isis-single-crystal-diffraction-sxd-ref"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">SXD Workflow</a><a class="headerlink" href="#sxd-workflow" title="Link to this heading">#</a></h2>
+<span id="isis-single-crystal-diffraction-sxd-ref"></span><h2>SXD Workflow<a class="headerlink" href="#sxd-workflow" title="Link to this heading">#</a></h2>
 <section id="detector-calibration">
-<span id="sxd-detector-calibration-ref"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">1. Detector Calibration</a><a class="headerlink" href="#detector-calibration" title="Link to this heading">#</a></h3>
+<span id="sxd-detector-calibration-ref"></span><h3>1. Detector Calibration<a class="headerlink" href="#detector-calibration" title="Link to this heading">#</a></h3>
 <p>The positions of the SXD detector panels require calibration - typically using an NaCl crystal (standard sample).
 The updated positions are stored in an .xml file, the path to the file is returned by <cite>calibrate_sxd_panels</cite>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sxd</span> <span class="o">=</span> <span class="n">SXD</span><span class="p">()</span>
@@ -461,10 +433,10 @@ The updated positions are stored in an .xml file, the path to the file is return
 </div>
 </section>
 <section id="reduce-a-sequence-of-runs">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">2. Reduce a sequence of runs</a><a class="headerlink" href="#reduce-a-sequence-of-runs" title="Link to this heading">#</a></h3>
+<h3>2. Reduce a sequence of runs<a class="headerlink" href="#reduce-a-sequence-of-runs" title="Link to this heading">#</a></h3>
 <p>Once the detectors have been calibrated a sequence of runs can be reduced.</p>
 <section id="a-setting-up-the-sxd-object">
-<h4><a class="toc-backref" href="#id7" role="doc-backlink">a. Setting up the SXD object</a><a class="headerlink" href="#a-setting-up-the-sxd-object" title="Link to this heading">#</a></h4>
+<h4>a. Setting up the SXD object<a class="headerlink" href="#a-setting-up-the-sxd-object" title="Link to this heading">#</a></h4>
 <p>In order to reduce a sequence of runs, an instance of the <code class="docutils literal notranslate"><span class="pre">SXD</span></code> class needs to be initiated with a vanadium and empty
 run number and optionally the detector calibration file from <a class="reference internal" href="#sxd-detector-calibration-ref"><span class="std std-ref">1. Detector Calibration</span></a>.</p>
 <p>If sample absorption is to be corrected for, the sample shape/geometry and material can be set using <code class="docutils literal notranslate"><span class="pre">set_sample</span></code>
@@ -480,7 +452,7 @@ The goniometer angles are provided later.</p>
 </div>
 </section>
 <section id="b-running-the-reduction">
-<h4><a class="toc-backref" href="#id8" role="doc-backlink">b. Running the reduction</a><a class="headerlink" href="#b-running-the-reduction" title="Link to this heading">#</a></h4>
+<h4>b. Running the reduction<a class="headerlink" href="#b-running-the-reduction" title="Link to this heading">#</a></h4>
 <p>The reduction proceeds as follows:</p>
 <ul class="simple">
 <li><p>Process vanadium</p></li>
@@ -558,9 +530,9 @@ The goniometer angles are provided later.</p>
 </section>
 </section>
 <section id="wish-workflow">
-<span id="isis-single-crystal-diffraction-wish-ref"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">WISH Workflow</a><a class="headerlink" href="#wish-workflow" title="Link to this heading">#</a></h2>
+<span id="isis-single-crystal-diffraction-wish-ref"></span><h2>WISH Workflow<a class="headerlink" href="#wish-workflow" title="Link to this heading">#</a></h2>
 <section id="preliminary-integration">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">1. Preliminary integration</a><a class="headerlink" href="#preliminary-integration" title="Link to this heading">#</a></h3>
+<h3>1. Preliminary integration<a class="headerlink" href="#preliminary-integration" title="Link to this heading">#</a></h3>
 <p>During beamtime users may want to check that a run has been counted sufficiently. This
 involves saving the data with a different file extension e.g. <code class="docutils literal notranslate"><span class="pre">.s01</span></code>.</p>
 <p>This example shows how to load data with specific file extension and perform an integration in Q-space.</p>
@@ -595,7 +567,7 @@ preliminary refinement).</p>
 </div>
 </section>
 <section id="finding-the-ubs-for-a-sequence-of-runs">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">2. Finding the UBs for a sequence of runs</a><a class="headerlink" href="#finding-the-ubs-for-a-sequence-of-runs" title="Link to this heading">#</a></h3>
+<h3>2. Finding the UBs for a sequence of runs<a class="headerlink" href="#finding-the-ubs-for-a-sequence-of-runs" title="Link to this heading">#</a></h3>
 <p>The WISH workflow finds UBs before the reduction and exports the UB matrix for every run post rotation by the goniometer
 matrix. The UBs are then loaded in the subsequent reduction, which then doesn’t require the goniometer information, and
 the predicted peak positions are integrated (in contrast to SXD where the found peaks are integrated)..</p>
@@ -657,7 +629,7 @@ has changed).</p>
 </div>
 </section>
 <section id="id1">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">3. Reduce a sequence of runs</a><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<h3>3. Reduce a sequence of runs<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>After a UB matrix has been optimised for each run, the entire sequence of runs can now be reduced.</p>
 <p>The method <code class="docutils literal notranslate"><span class="pre">predict_peaks</span></code> predicts peaks based on the <cite>enum</cite> class <code class="docutils literal notranslate"><span class="pre">PEAK_TYPE</span></code>:</p>
 <ul class="simple">
@@ -678,7 +650,7 @@ using an agorithm determined by the <cite>enum</cite> class <code class="docutil
 each peak, the former method requires the user to supply the peak radius to <code class="docutils literal notranslate"><span class="pre">integrate_data</span></code> using keyword arguments
 as in <a class="reference internal" href="../algorithms/IntegratePeaksMD-v2.html#algm-integratepeaksmd-v2"><span class="std std-ref">IntegratePeaksMD v2</span></a>.</p>
 <section id="a-skew-integration-no-satellites">
-<h4><a class="toc-backref" href="#id13" role="doc-backlink">a. Skew Integration (no satellites)</a><a class="headerlink" href="#a-skew-integration-no-satellites" title="Link to this heading">#</a></h4>
+<h4>a. Skew Integration (no satellites)<a class="headerlink" href="#a-skew-integration-no-satellites" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Diffraction.single_crystal.base_sx</span><span class="w"> </span><span class="kn">import</span> <span class="n">PEAK_TYPE</span><span class="p">,</span> <span class="n">INTEGRATION_TYPE</span>
@@ -734,7 +706,7 @@ as in <a class="reference internal" href="../algorithms/IntegratePeaksMD-v2.html
 </div>
 </section>
 <section id="b-q-integration-with-satellites">
-<h4><a class="toc-backref" href="#id14" role="doc-backlink">b. Q Integration (with satellites)</a><a class="headerlink" href="#b-q-integration-with-satellites" title="Link to this heading">#</a></h4>
+<h4>b. Q Integration (with satellites)<a class="headerlink" href="#b-q-integration-with-satellites" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Diffraction.single_crystal.base_sx</span><span class="w"> </span><span class="kn">import</span> <span class="n">PEAK_TYPE</span><span class="p">,</span> <span class="n">INTEGRATION_TYPE</span>
@@ -893,8 +865,8 @@ as in <a class="reference internal" href="../algorithms/IntegratePeaksMD-v2.html
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -928,7 +900,7 @@ as in <a class="reference internal" href="../algorithms/IntegratePeaksMD-v2.html
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
 </p></div>
       
     </div>

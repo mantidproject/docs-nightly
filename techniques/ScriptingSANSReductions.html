@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Scripting SANS Reductions &#8212; MantidProject 6.15.20260417.1728 documentation</title>
+    <title>Scripting SANS Reductions &#8212; MantidProject 6.15.20260427.1738 documentation</title>
   
   
   
@@ -27,20 +27,20 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../_static/documentation_options.js?v=00bfdd9b"></script>
+    <script src="../_static/documentation_options.js?v=54bf448d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -65,7 +65,9 @@
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -374,34 +376,8 @@
                   
   <section id="scripting-sans-reductions">
 <span id="scriptingsansreductions"></span><h1>Scripting SANS Reductions<a class="headerlink" href="#scripting-sans-reductions" title="Link to this heading">#</a></h1>
-<nav class="contents local" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#reference-commands" id="id2">Reference Commands</a></p>
-<ul>
-<li><p><a class="reference internal" href="#loq-sans2d" id="id3">LOQ / SANS2D</a></p></li>
-<li><p><a class="reference internal" href="#userpath" id="id4">UserPath</a></p></li>
-<li><p><a class="reference internal" href="#datapath" id="id5">DataPath</a></p></li>
-<li><p><a class="reference internal" href="#maskfile" id="id6">MaskFile</a></p></li>
-<li><p><a class="reference internal" href="#assignsample" id="id7">AssignSample</a></p></li>
-<li><p><a class="reference internal" href="#transmissionsample" id="id8">TransmissionSample</a></p></li>
-<li><p><a class="reference internal" href="#assigncan" id="id9">AssignCan</a></p></li>
-<li><p><a class="reference internal" href="#transmissioncan" id="id10">TransmissionCan</a></p></li>
-<li><p><a class="reference internal" href="#setmonitorspectrum" id="id11">SetMonitorSpectrum</a></p></li>
-<li><p><a class="reference internal" href="#transfit" id="id12">TransFit</a></p></li>
-<li><p><a class="reference internal" href="#detector" id="id13">Detector</a></p></li>
-<li><p><a class="reference internal" href="#setphilimit" id="id14">SetPhiLimit</a></p></li>
-<li><p><a class="reference internal" href="#wavrangereduction" id="id15">WavRangeReduction</a></p></li>
-<li><p><a class="reference internal" href="#batchreduce" id="id16">BatchReduce</a></p></li>
-<li><p><a class="reference internal" href="#addruns" id="id17">AddRuns</a></p></li>
-<li><p><a class="reference internal" href="#phiranges" id="id18">PhiRanges</a></p></li>
-</ul>
-</li>
-</ul>
-</nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>SANS data from ISIS can be analysed using <a class="reference internal" href="../tutorials/introduction_to_python/index.html#introduction-to-python"><span class="std std-ref">Python</span></a> commands. Below is an example of a basic reduction on LOQ.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#import Command Interface from sans library</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sans.command_interface.ISISCommandInterface</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
@@ -432,9 +408,9 @@
 except where stated, the order does not matter.</p>
 </section>
 <section id="reference-commands">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">Reference Commands</a><a class="headerlink" href="#reference-commands" title="Link to this heading">#</a></h2>
+<h2>Reference Commands<a class="headerlink" href="#reference-commands" title="Link to this heading">#</a></h2>
 <section id="loq-sans2d">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">LOQ / SANS2D</a><a class="headerlink" href="#loq-sans2d" title="Link to this heading">#</a></h3>
+<h3>LOQ / SANS2D<a class="headerlink" href="#loq-sans2d" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LOQ</span><span class="p">()</span> <span class="c1">#For LOQ</span>
 <span class="n">SANS2D</span><span class="p">()</span> <span class="c1">#For SANS2D</span>
 </pre></div>
@@ -444,7 +420,7 @@ The layout of the detector banks and detector efficiency files are stored here.<
 <p><em>This line must be included, and before the</em> <code class="docutils literal notranslate"><span class="pre">MaskFile()</span></code> <em>line.</em></p>
 </section>
 <section id="userpath">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">UserPath</a><a class="headerlink" href="#userpath" title="Link to this heading">#</a></h3>
+<h3>UserPath<a class="headerlink" href="#userpath" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">UserPath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -452,7 +428,7 @@ The layout of the detector banks and detector efficiency files are stored here.<
 <p><em>This must be specified before the</em> <code class="docutils literal notranslate"><span class="pre">MaskFile()</span></code> <em>line to have any effect.</em></p>
 </section>
 <section id="datapath">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">DataPath</a><a class="headerlink" href="#datapath" title="Link to this heading">#</a></h3>
+<h3>DataPath<a class="headerlink" href="#datapath" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DataPath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -461,7 +437,7 @@ The directories that have been set in the <a class="reference internal" href="..
 or equivalently the <a class="reference internal" href="../concepts/PropertiesFile.html#properties-file"><span class="std std-ref">Mantid.user.properties</span></a> file, are also checked.</p>
 </section>
 <section id="maskfile">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">MaskFile</a><a class="headerlink" href="#maskfile" title="Link to this heading">#</a></h3>
+<h3>MaskFile<a class="headerlink" href="#maskfile" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">UserPath</span><span class="p">(</span><span class="s2">&quot;C:/SANS/masks&quot;</span><span class="p">)</span>
 <span class="n">MaskFile</span><span class="p">(</span><span class="s2">&quot;ExampleMask.toml&quot;</span><span class="p">)</span> <span class="c1"># or MaskFile(&quot;C:/SANS/masks/ExampleMask.toml&quot;)</span>
 </pre></div>
@@ -470,7 +446,7 @@ or equivalently the <a class="reference internal" href="../concepts/PropertiesFi
 The settings here are overridden by the commands listed below.</p>
 </section>
 <section id="assignsample">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">AssignSample</a><a class="headerlink" href="#assignsample" title="Link to this heading">#</a></h3>
+<h3>AssignSample<a class="headerlink" href="#assignsample" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AssignSample</span><span class="p">(</span><span class="n">sample_run</span><span class="p">,</span> <span class="n">reload</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -482,7 +458,7 @@ On calling this function the experimental run is <a class="reference internal" h
 Currently only <code class="docutils literal notranslate"><span class="pre">reload=true</span></code> is supported.</p>
 </section>
 <section id="transmissionsample">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">TransmissionSample</a><a class="headerlink" href="#transmissionsample" title="Link to this heading">#</a></h3>
+<h3>TransmissionSample<a class="headerlink" href="#transmissionsample" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TransmissionSample</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">direct</span><span class="p">,</span> <span class="n">relaod</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">period_t</span><span class="p">,</span> <span class="n">period_d</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -494,7 +470,7 @@ is loaded into the workspaces when this command is encountered. The transmission
 The <code class="docutils literal notranslate"><span class="pre">period_t</span></code> and <code class="docutils literal notranslate"><span class="pre">period_d</span></code> are used when there are multi-period files and specify the period to use for the sample and direct run respectively.</p>
 </section>
 <section id="assigncan">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">AssignCan</a><a class="headerlink" href="#assigncan" title="Link to this heading">#</a></h3>
+<h3>AssignCan<a class="headerlink" href="#assigncan" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AssignCan</span><span class="p">(</span><span class="n">can_run</span><span class="p">,</span> <span class="n">reload</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -504,7 +480,7 @@ On calling this function the run is loaded to a workspace and the detector banks
 Currently only <code class="docutils literal notranslate"><span class="pre">reload=true</span></code> is supported.</p>
 </section>
 <section id="transmissioncan">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">TransmissionCan</a><a class="headerlink" href="#transmissioncan" title="Link to this heading">#</a></h3>
+<h3>TransmissionCan<a class="headerlink" href="#transmissioncan" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TransmissionCan</span><span class="p">(</span><span class="n">can</span><span class="p">,</span> <span class="n">direct</span><span class="p">,</span> <span class="n">reload</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">period_t</span><span class="p">,</span> <span class="n">period_d</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -512,7 +488,7 @@ Currently only <code class="docutils literal notranslate"><span class="pre">relo
 The runs are loaded and with transmission <a class="reference internal" href="../concepts/InstrumentDefinitionFile.html#instrumentdefinitionfile"><span class="std std-ref">IDF</span></a>, if applicable, when Python encounters this command.</p>
 </section>
 <section id="setmonitorspectrum">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">SetMonitorSpectrum</a><a class="headerlink" href="#setmonitorspectrum" title="Link to this heading">#</a></h3>
+<h3>SetMonitorSpectrum<a class="headerlink" href="#setmonitorspectrum" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SetMonitorSpectrum</span><span class="p">(</span><span class="n">specNum</span><span class="p">,</span> <span class="n">interp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -520,7 +496,7 @@ The runs are loaded and with transmission <a class="reference internal" href="..
 This value will be used in the next reduction that is called (e.g. with <a class="reference internal" href="#sansscriptingwavrangereduction"><span class="std std-ref">WavRangeReduction()</span></a>).</p>
 </section>
 <section id="transfit">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">TransFit</a><a class="headerlink" href="#transfit" title="Link to this heading">#</a></h3>
+<h3>TransFit<a class="headerlink" href="#transfit" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TransFit</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">lambdamin</span><span class="p">,</span> <span class="n">lambdamax</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -530,7 +506,7 @@ There is an extra fit mode <code class="docutils literal notranslate"><span clas
 to be used and <code class="docutils literal notranslate"><span class="pre">lambdamin</span></code> or <code class="docutils literal notranslate"><span class="pre">lambdamax</span></code> then have no effect.</p>
 </section>
 <section id="detector">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Detector</a><a class="headerlink" href="#detector" title="Link to this heading">#</a></h3>
+<h3>Detector<a class="headerlink" href="#detector" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Detector</span><span class="p">(</span><span class="n">det_name</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -538,7 +514,7 @@ to be used and <code class="docutils literal notranslate"><span class="pre">lamb
 The lowest angle detector is assumed if this line is not given.</p>
 </section>
 <section id="setphilimit">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">SetPhiLimit</a><a class="headerlink" href="#setphilimit" title="Link to this heading">#</a></h3>
+<h3>SetPhiLimit<a class="headerlink" href="#setphilimit" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SetPhiLimit</span><span class="p">(</span><span class="n">phimin</span><span class="p">,</span> <span class="n">phimax</span><span class="p">,</span> <span class="n">use_mirror</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -547,7 +523,7 @@ The lowest angle detector is assumed if this line is not given.</p>
 Setting <code class="docutils literal notranslate"><span class="pre">use_mirror</span></code> to true causes the mirror sector to be included.</p>
 </section>
 <section id="wavrangereduction">
-<span id="sansscriptingwavrangereduction"></span><h3><a class="toc-backref" href="#id15" role="doc-backlink">WavRangeReduction</a><a class="headerlink" href="#wavrangereduction" title="Link to this heading">#</a></h3>
+<span id="sansscriptingwavrangereduction"></span><h3>WavRangeReduction<a class="headerlink" href="#wavrangereduction" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">WavRangeReduction</span><span class="p">(</span><span class="n">wav_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wav_end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full_trans_wav</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name_suffix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                   <span class="n">combineDet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saveAlgs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_as_zero_error_free</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">output_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                   <span class="n">output_mode</span><span class="o">=</span><span class="n">OutputMode</span><span class="o">.</span><span class="n">PUBLISH_TO_ADS</span><span class="p">,</span> <span class="n">use_reduction_mode_as_suffix</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -585,7 +561,7 @@ If this parameter is omitted, the default behaviour will be to publish the outpu
 </ul>
 </section>
 <section id="batchreduce">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">BatchReduce</a><a class="headerlink" href="#batchreduce" title="Link to this heading">#</a></h3>
+<h3>BatchReduce<a class="headerlink" href="#batchreduce" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BatchReduce</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">plotresults</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">saveAlgs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">centreit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">combineDet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_as_zero_error_Free</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">output_mode</span><span class="o">=</span><span class="n">OutputMode</span><span class="o">.</span><span class="n">PUBLISH_TO_ADS</span><span class="p">)</span>
@@ -612,7 +588,7 @@ The filename is a mandatory parameter:</p>
 <p>Function returns a dictionary with some values from the reduction (scale and shift as of now).</p>
 </section>
 <section id="addruns">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">AddRuns</a><a class="headerlink" href="#addruns" title="Link to this heading">#</a></h3>
+<h3>AddRuns<a class="headerlink" href="#addruns" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AddRuns</span><span class="p">(</span><span class="n">runs</span><span class="p">,</span> <span class="n">instrument</span> <span class="o">=</span><span class="s1">&#39;sans2d&#39;</span><span class="p">,</span> <span class="n">saveAsEvent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">binning</span> <span class="o">=</span> <span class="s2">&quot;Monitors&quot;</span><span class="p">,</span>
         <span class="n">isOverlay</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">time_shifts</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">defType</span><span class="o">=</span><span class="s1">&#39;.nxs&#39;</span><span class="p">,</span>
         <span class="n">rawTypes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;.raw&#39;</span><span class="p">,</span> <span class="s1">&#39;.s*&#39;</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span><span class="s1">&#39;.RAW&#39;</span><span class="p">),</span> <span class="n">lowMem</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -627,7 +603,7 @@ The <code class="docutils literal notranslate"><span class="pre">time_shifts</sp
 <em>Note that there has to be exactly one less time time shift than files to be added.</em></p>
 </section>
 <section id="phiranges">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">PhiRanges</a><a class="headerlink" href="#phiranges" title="Link to this heading">#</a></h3>
+<h3>PhiRanges<a class="headerlink" href="#phiranges" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PhiRanges</span><span class="p">(</span><span class="n">phis</span><span class="p">,</span> <span class="n">use_mirror</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 </pre></div>
 </div>
@@ -731,8 +707,8 @@ multiple phi limits. <code class="docutils literal notranslate"><span class="pre
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -766,7 +742,7 @@ multiple phi limits. <code class="docutils literal notranslate"><span class="pre
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
 </p></div>
       
     </div>

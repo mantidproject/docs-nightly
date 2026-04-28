@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.15.20260417.1728 documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.15.20260427.1738 documentation</title>
   
   
   
@@ -27,20 +27,20 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=468c6cff" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../../_static/documentation_options.js?v=00bfdd9b"></script>
+    <script src="../../_static/documentation_options.js?v=54bf448d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -65,7 +65,9 @@
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -720,9 +722,14 @@
 <section id="bugfixes">
 <h3>Bugfixes<a class="headerlink" href="#bugfixes" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><dl class="simple">
+<dt>The algorithm <cite>LoadEventNexus</cite> when loading a single bank on the TOPAZ or MANDI instruments</dt><dd><p>will no longer appear to hang, and will no longer throw an error on completion.
+The loaded instrument will contain only the specified bank, with no other components.</p>
+</dd>
+</dl>
+</li>
 <li><p>Algorithm <cite>LoadMask</cite> will now throw an error if given an invalid file.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/MaskBTP-v1.html#algm-maskbtp"><span class="std std-ref">MaskBTP</span></a> now supports name and short-name for instrument IMAGINE.</p></li>
-<li><p>The algorithm <cite>LoadEventNexus</cite> will no longer delete unused banks for the TOPAZ and MANDI instruments.  This feature had not truly worked since Mantid 6.6, and was causing long loading times or errors.</p></li>
 <li><p>Algorithm <a class="reference internal" href="../../algorithms/LoadEventAsWorkspace2D-v1.html#algm-loadeventasworkspace2d"><span class="std std-ref">LoadEventAsWorkspace2D</span></a> now updates the run duration log when using
 parameters <code class="docutils literal notranslate"><span class="pre">FilterByTimeStart</span></code> and/or <code class="docutils literal notranslate"><span class="pre">FilterByTimeStop</span></code>. The behaviour is now consistent with
 <a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a> when using the same parameters.</p></li>
@@ -738,6 +745,8 @@ range no longer causes the loading to hang due to an infinite loop.</p></li>
 <li><p><a class="reference internal" href="../../api/python/mantid/api/FileFinderImpl.html#mantid-api-filefinderimpl"><span class="std std-ref">FileFinder</span></a> has been update to more reliably determine the instrument from the hint particularly when the instrument name contains digits.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/ConjoinWorkspaces-v1.html#algm-conjoinworkspaces"><span class="std std-ref">ConjoinWorkspaces</span></a> no longer has a fencepost error when determining spectrum numbers.</p></li>
 <li><p>The <a class="reference internal" href="../../algorithms/SumSpectra-v1.html#algm-sumspectra"><span class="std std-ref">SumSpectra</span></a> algorithm has been updated to correctly propagate errors for weighted sum calculations.</p></li>
+<li><p>The algorithm <cite>BASISReduction</cite> has been updated to throw an error if a mask workspace cannot be found.</p></li>
+<li><p>The <a class="reference internal" href="../../algorithms/GenerateFlatCellWorkspaceLOQ-v1.html#algm-generateflatcellworkspaceloq"><span class="std std-ref">GenerateFlatCellWorkspaceLOQ</span></a> algorithm has been updated so that the output is prepended with the monitor spectrums. An option to save the output using <a class="reference internal" href="../../algorithms/SaveRKH-v1.html#algm-saverkh"><span class="std std-ref">SaveRKH</span></a> has also been added.</p></li>
 </ul>
 </section>
 <section id="deprecated">
@@ -766,6 +775,9 @@ range no longer causes the loading to hang due to an infinite loop.</p></li>
 <h2>Data Objects<a class="headerlink" href="#data-objects" title="Link to this heading">#</a></h2>
 <section id="id5">
 <h3>New features<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Sample Shapes generated from <code class="docutils literal notranslate"><span class="pre">.STL</span></code> mesh files can now be saved and loaded from nexus files.</p></li>
+</ul>
 </section>
 <section id="id6">
 <h3>Bugfixes<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
@@ -788,6 +800,9 @@ to record and playback an ADARA-packet stream.</p></li>
 </section>
 <section id="id8">
 <h3>Bugfixes<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Loading <a class="reference internal" href="../../tutorials/extending_mantid_with_python/expanding_data_interaction/04_loading_extensions_on_startup.html#loading-extensions-on-startup"><span class="std std-ref">Python extensions</span></a> does not allow to import hidden folders or Python files with protected names to avoid crashing Mantid on startup.</p></li>
+</ul>
 </section>
 </section>
 <section id="dependencies">
@@ -920,8 +935,8 @@ to record and playback an ADARA-packet stream.</p></li>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -955,7 +970,7 @@ to record and playback an ADARA-packet stream.</p></li>
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.1.
 </p></div>
       
     </div>

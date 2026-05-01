@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Diffraction Changes &#8212; MantidProject 6.15.20260428.1532 documentation</title>
+    <title>Diffraction Changes &#8212; MantidProject 6.15.20260430.2355 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../../_static/documentation_options.js?v=4c1bbf51"></script>
+    <script src="../../_static/documentation_options.js?v=fff0be64"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v6.16.0/diffraction';</script>
@@ -711,6 +711,7 @@
 <h3>New features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../algorithms/LoadDiffCal-v1.html#algm-loaddiffcal"><span class="std std-ref">LoadDiffCal v1</span></a> no longer requires the instrument to be resolvable. If the instrument definition file cannot be found or loaded, the grouping and mask workspaces are created directly from the detector IDs stored in the calibration file. This also includes a change to <a class="reference internal" href="../../algorithms/AlignAndFocusPowderSlim-v1.html#algm-alignandfocuspowderslim"><span class="std std-ref">AlignAndFocusPowderSlim v1</span></a> to skip the instrument for loading the calibration information.</p></li>
+<li><p>New algorithm <a class="reference internal" href="../../algorithms/CylinderAbsorptionCW-v1.html#algm-cylinderabsorptioncw"><span class="std std-ref">CylinderAbsorptionCW</span></a> for calculating absorption and multiple scattering corrections for cylindrical samples with constant wavelength and in-plane scattering only.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/FitPeaks-v1.html#algm-fitpeaks"><span class="std std-ref">FitPeaks v1</span></a> and <a class="reference internal" href="../../algorithms/PDCalibration-v1.html#algm-pdcalibration"><span class="std std-ref">PDCalibration v1</span></a> now take a boolean flag to optionally disable inheriting initial peak-shape parameters from the most recently successful peak fit within the same spectrum.</p></li>
 <li><p>The <a class="reference internal" href="../../techniques/ISISPowder-Polaris-v1.html#create-total-scattering-pdf-polaris-isis-powder-ref"><span class="std std-ref">POLARIS ISIS Powder Scripts</span></a> have a new option in
 <code class="docutils literal notranslate"><span class="pre">create_total_scattering_pdf</span></code>. Entering values for the <code class="docutils literal notranslate"><span class="pre">stitch_points</span></code>, <code class="docutils literal notranslate"><span class="pre">overlap_width</span></code>, and <code class="docutils literal notranslate"><span class="pre">stitch_lims</span></code>
@@ -734,6 +735,7 @@ parameters will allow the output workspace to be stitched without rebinning when
 <h3>Bugfixes<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> now honors the GSAS-II timeout value from the settings panel.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">TextureUtils.create_pf</span></code> with <code class="docutils literal notranslate"><span class="pre">save_ascii</span> <span class="pre">=</span> <span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">create_combined_output</span> <span class="pre">=</span> <span class="pre">True</span></code> an error is no longer thrown when spectra contain different sized histograms</p></li>
 <li><p>Fix bug where not having IDF for some of the pixels resulted in an exception. Now those events are skipped.</p></li>
 </ul>
 </section>

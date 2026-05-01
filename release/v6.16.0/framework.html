@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.15.20260428.1532 documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.15.20260430.2355 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../../_static/documentation_options.js?v=4c1bbf51"></script>
+    <script src="../../_static/documentation_options.js?v=fff0be64"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -744,6 +744,7 @@ The loaded instrument will contain only the specified bank, with no other compon
 <li><p><cite>EnggEstimateFocussedBackground</cite> will no longer throw an error related to writing to a read-only destination.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/LoadEmptyInstrument-v1.html#algm-loademptyinstrument"><span class="std std-ref">LoadEmptyInstrument</span></a> will now load instruments from a wider class of NeXus files.</p></li>
 <li><p>Fix performance issue in <a class="reference internal" href="../../algorithms/MaskDetectors-v1.html#algm-maskdetectors"><span class="std std-ref">MaskDetectors</span></a> using a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code> as the source of the mask</p></li>
+<li><p>Rebinning operations (such as in <code class="docutils literal notranslate"><span class="pre">Rebin</span></code> or <code class="docutils literal notranslate"><span class="pre">RebinRagged</span></code>) that specify a range with a start and end value that are not in the correct order (start &lt; end) will now throw an exception instead of silently producing incorrect results. This is to prevent users from accidentally specifying invalid rebinning parameters and getting unexpected outputs.</p></li>
 <li><p>The <a class="reference internal" href="../../algorithms/SumSpectra-v1.html#algm-sumspectra"><span class="std std-ref">SumSpectra</span></a> algorithm has been updated to correctly propagate errors for weighted sum calculations.</p></li>
 <li><p>Fix crash in <a class="reference internal" href="../../algorithms/SaveDiffCal-v1.html#algm-savediffcal"><span class="std std-ref">SaveDiffCal</span></a> produced by calibration tables with repeated entries.</p></li>
 <li><p>The algorithm <cite>BASISReduction</cite> has been updated to throw an error if a mask workspace cannot be found.</p></li>

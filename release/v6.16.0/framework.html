@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.15.20260430.2355 documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.15.20260501.2109 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../../_static/documentation_options.js?v=fff0be64"></script>
+    <script src="../../_static/documentation_options.js?v=3c78e32c"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -712,42 +712,43 @@
 <section id="new-features">
 <h3>New features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>MPI Algorithms <a class="reference internal" href="../../algorithms/BroadcastWorkspace-v1.html#algm-broadcastworkspace"><span class="std std-ref">BroadcastWorkspace</span></a> and <a class="reference internal" href="../../algorithms/GatherWorkspaces-v1.html#algm-gatherworkspaces"><span class="std std-ref">GatherWorkspaces</span></a> have been added to mantid to allow for MPI processing that is workspace friendly. These are available on linux in the <code class="docutils literal notranslate"><span class="pre">mantidmpi</span></code> package.</p></li>
-<li><p><a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction v1</span></a> now has logic for loading MIDAS data</p></li>
-<li><p><a class="reference internal" href="../../algorithms/SCDCalibratePanels-v2.html#algm-scdcalibratepanels-v2"><span class="std std-ref">SCDCalibratePanels v2</span></a> now writes the full name for bank components.</p></li>
-<li><p><a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction v1</span></a> now logs warnings for unset optional fields.</p></li>
 <li><p>Include IMAGINE instrument in <a class="reference internal" href="../../algorithms/MaskBTP-v1.html#algm-maskbtp"><span class="std std-ref">MaskBTP v1</span></a>.</p></li>
+<li><p>A new c++ algorithm type <code class="docutils literal notranslate"><span class="pre">TaskBasedAlgorithm</span></code> has been added. Such an algorithm consists of tasks, linked via an input-output dependency structure. A user can control the workflow by specifying a custom task execution order.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/SCDCalibratePanels-v2.html#algm-scdcalibratepanels-v2"><span class="std std-ref">SCDCalibratePanels v2</span></a> now writes the full name for bank components.</p></li>
+<li><p>MPI Algorithms <a class="reference internal" href="../../algorithms/BroadcastWorkspace-v1.html#algm-broadcastworkspace"><span class="std std-ref">BroadcastWorkspace</span></a> and <a class="reference internal" href="../../algorithms/GatherWorkspaces-v1.html#algm-gatherworkspaces"><span class="std std-ref">GatherWorkspaces</span></a> have been added to mantid to allow for MPI processing that is workspace friendly. These are available on linux in the <code class="docutils literal notranslate"><span class="pre">mantidmpi</span></code> package.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction v1</span></a> now logs warnings for unset optional fields.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction v1</span></a> now has logic for loading MIDAS data</p></li>
 </ul>
 </section>
 <section id="bugfixes">
 <h3>Bugfixes<a class="headerlink" href="#bugfixes" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference internal" href="../../algorithms/MaskBTP-v1.html#algm-maskbtp"><span class="std std-ref">MaskBTP</span></a> now supports name and short-name for instrument IMAGINE.</p></li>
-<li><p>Updated the <a class="reference internal" href="../../algorithms/SaveSESANS-v1.html#algm-savesesans"><span class="std std-ref">SaveSESANS</span></a> and <a class="reference internal" href="../../algorithms/SaveCanSAS1D-v2.html#algm-savecansas1d"><span class="std std-ref">SaveCanSAS1D</span></a> algorithms to include the decimal point if the data written to file is an integer.</p></li>
-<li><p>Algorithm <a class="reference internal" href="../../algorithms/LoadEventAsWorkspace2D-v1.html#algm-loadeventasworkspace2d"><span class="std std-ref">LoadEventAsWorkspace2D</span></a> now updates the run duration log when using
-parameters <code class="docutils literal notranslate"><span class="pre">FilterByTimeStart</span></code> and/or <code class="docutils literal notranslate"><span class="pre">FilterByTimeStop</span></code>. The behaviour is now consistent with
-<a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a> when using the same parameters.</p></li>
-<li><p>Loading with <a class="reference internal" href="../../algorithms/LoadEventAsWorkspace2D-v1.html#algm-loadeventasworkspace2d"><span class="std std-ref">LoadEventAsWorkspace2D</span></a> and
-<a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a> with time filtering when there are banks with no events in that time
-range no longer causes the loading to hang due to an infinite loop.</p></li>
-<li><p>Fixed a bug in <a class="reference internal" href="../../algorithms/WeightedMeanOfWorkspace-v1.html#algm-weightedmeanofworkspace"><span class="std std-ref">WeightedMeanOfWorkspace</span></a> where output errors were computed as <span class="math notranslate nohighlight">\(\sqrt{\mathrm{weightSum}}\)</span> instead of <span class="math notranslate nohighlight">\(1/\sqrt{\mathrm{weightSum}}\)</span>. This affects <a class="reference internal" href="../../algorithms/DgsReduction-v1.html#algm-dgsreduction"><span class="std std-ref">DgsReduction</span></a> (including the Absolute Units tab in the GUI), DPDFReduction, and <a class="reference internal" href="../../algorithms/MDNorm-v1.html#algm-mdnorm"><span class="std std-ref">MDNorm</span></a> workflows. <strong>Warning:</strong> Results from previous releases may contain inflated uncertainties and should be reprocessed.</p></li>
-<li><p>The <a class="reference internal" href="../../algorithms/GenerateFlatCellWorkspaceLOQ-v1.html#algm-generateflatcellworkspaceloq"><span class="std std-ref">GenerateFlatCellWorkspaceLOQ</span></a> algorithm has been updated so that the output is prepended with the monitor spectrums. An option to save the output using <a class="reference internal" href="../../algorithms/SaveRKH-v1.html#algm-saverkh"><span class="std std-ref">SaveRKH</span></a> has also been added.</p></li>
-<li><p><a class="reference internal" href="../../api/python/mantid/api/FileFinderImpl.html#mantid-api-filefinderimpl"><span class="std std-ref">FileFinder</span></a> has been update to more reliably determine the instrument from the hint particularly when the instrument name contains digits.</p></li>
-<li><p>Algorithm <cite>LoadMask</cite> will now throw an error if given an invalid file.</p></li>
 <li><dl class="simple">
 <dt>The algorithm <cite>LoadEventNexus</cite> when loading a single bank on the TOPAZ or MANDI instruments</dt><dd><p>will no longer appear to hang, and will no longer throw an error on completion.
 The loaded instrument will contain only the specified bank, with no other components.</p>
 </dd>
 </dl>
 </li>
-<li><p><a class="reference internal" href="../../algorithms/ConjoinWorkspaces-v1.html#algm-conjoinworkspaces"><span class="std std-ref">ConjoinWorkspaces</span></a> no longer has a fencepost error when determining spectrum numbers.</p></li>
-<li><p><cite>EnggEstimateFocussedBackground</cite> will no longer throw an error related to writing to a read-only destination.</p></li>
+<li><p>Algorithm <cite>LoadMask</cite> will now throw an error if given an invalid file.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/MaskBTP-v1.html#algm-maskbtp"><span class="std std-ref">MaskBTP</span></a> now supports name and short-name for instrument IMAGINE.</p></li>
+<li><p>Algorithm <a class="reference internal" href="../../algorithms/LoadEventAsWorkspace2D-v1.html#algm-loadeventasworkspace2d"><span class="std std-ref">LoadEventAsWorkspace2D</span></a> now updates the run duration log when using
+parameters <code class="docutils literal notranslate"><span class="pre">FilterByTimeStart</span></code> and/or <code class="docutils literal notranslate"><span class="pre">FilterByTimeStop</span></code>. The behaviour is now consistent with
+<a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a> when using the same parameters.</p></li>
+<li><p>Loading with <a class="reference internal" href="../../algorithms/LoadEventAsWorkspace2D-v1.html#algm-loadeventasworkspace2d"><span class="std std-ref">LoadEventAsWorkspace2D</span></a> and
+<a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a> with time filtering when there are banks with no events in that time
+range no longer causes the loading to hang due to an infinite loop.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/LoadEmptyInstrument-v1.html#algm-loademptyinstrument"><span class="std std-ref">LoadEmptyInstrument</span></a> will now load instruments from a wider class of NeXus files.</p></li>
+<li><p><cite>EnggEstimateFocussedBackground</cite> will no longer throw an error related to writing to a read-only destination.</p></li>
+<li><p>Fixed a bug in <a class="reference internal" href="../../algorithms/WeightedMeanOfWorkspace-v1.html#algm-weightedmeanofworkspace"><span class="std std-ref">WeightedMeanOfWorkspace</span></a> where output errors were computed as <span class="math notranslate nohighlight">\(\sqrt{\mathrm{weightSum}}\)</span> instead of <span class="math notranslate nohighlight">\(1/\sqrt{\mathrm{weightSum}}\)</span>. This affects <a class="reference internal" href="../../algorithms/DgsReduction-v1.html#algm-dgsreduction"><span class="std std-ref">DgsReduction</span></a> (including the Absolute Units tab in the GUI), DPDFReduction, and <a class="reference internal" href="../../algorithms/MDNorm-v1.html#algm-mdnorm"><span class="std std-ref">MDNorm</span></a> workflows. <strong>Warning:</strong> Results from previous releases may contain inflated uncertainties and should be reprocessed.</p></li>
+<li><p>Updated the <a class="reference internal" href="../../algorithms/SaveSESANS-v1.html#algm-savesesans"><span class="std std-ref">SaveSESANS</span></a> and <a class="reference internal" href="../../algorithms/SaveCanSAS1D-v2.html#algm-savecansas1d"><span class="std std-ref">SaveCanSAS1D</span></a> algorithms to include the decimal point if the data written to file is an integer.</p></li>
 <li><p>Fix performance issue in <a class="reference internal" href="../../algorithms/MaskDetectors-v1.html#algm-maskdetectors"><span class="std std-ref">MaskDetectors</span></a> using a <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code> as the source of the mask</p></li>
-<li><p>Rebinning operations (such as in <code class="docutils literal notranslate"><span class="pre">Rebin</span></code> or <code class="docutils literal notranslate"><span class="pre">RebinRagged</span></code>) that specify a range with a start and end value that are not in the correct order (start &lt; end) will now throw an exception instead of silently producing incorrect results. This is to prevent users from accidentally specifying invalid rebinning parameters and getting unexpected outputs.</p></li>
-<li><p>The <a class="reference internal" href="../../algorithms/SumSpectra-v1.html#algm-sumspectra"><span class="std std-ref">SumSpectra</span></a> algorithm has been updated to correctly propagate errors for weighted sum calculations.</p></li>
 <li><p>Fix crash in <a class="reference internal" href="../../algorithms/SaveDiffCal-v1.html#algm-savediffcal"><span class="std std-ref">SaveDiffCal</span></a> produced by calibration tables with repeated entries.</p></li>
+<li><p><a class="reference internal" href="../../api/python/mantid/api/FileFinderImpl.html#mantid-api-filefinderimpl"><span class="std std-ref">FileFinder</span></a> has been update to more reliably determine the instrument from the hint particularly when the instrument name contains digits.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/ConjoinWorkspaces-v1.html#algm-conjoinworkspaces"><span class="std std-ref">ConjoinWorkspaces</span></a> no longer has a fencepost error when determining spectrum numbers.</p></li>
+<li><p>The <a class="reference internal" href="../../algorithms/SumSpectra-v1.html#algm-sumspectra"><span class="std std-ref">SumSpectra</span></a> algorithm has been updated to correctly propagate errors for weighted sum calculations.</p></li>
 <li><p>The algorithm <cite>BASISReduction</cite> has been updated to throw an error if a mask workspace cannot be found.</p></li>
+<li><p>The <a class="reference internal" href="../../algorithms/GenerateFlatCellWorkspaceLOQ-v1.html#algm-generateflatcellworkspaceloq"><span class="std std-ref">GenerateFlatCellWorkspaceLOQ</span></a> algorithm has been updated so that the output is prepended with the monitor spectrums. An option to save the output using <a class="reference internal" href="../../algorithms/SaveRKH-v1.html#algm-saverkh"><span class="std std-ref">SaveRKH</span></a> has also been added.</p></li>
+<li><p>Rebinning operations (such as in <code class="docutils literal notranslate"><span class="pre">Rebin</span></code> or <code class="docutils literal notranslate"><span class="pre">RebinRagged</span></code>) that specify a range with a start and end value that are not in the correct order (start &lt; end) will now throw an exception instead of silently producing incorrect results. This is to prevent users from accidentally specifying invalid rebinning parameters and getting unexpected outputs.</p></li>
 </ul>
 </section>
 <section id="deprecated">
@@ -794,9 +795,9 @@ when saving/loading Mantid “processed” NeXus peak workspaces.</p></li>
 <h3>New features<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../api/python/mantid/dataobjects/SplittersWorkspace.html#mantid.dataobjects.SplittersWorkspace" title="mantid.dataobjects.SplittersWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SplittersWorkspaces</span></code></a> can now be created directly from python.</p></li>
-<li><p>First batch of concepts pages migrated to corresponding API pages</p></li>
 <li><p>ADARA-packet replay utility: for ORNL-facility instruments which use the ADARA system, it is now possible
 to record and playback an ADARA-packet stream.</p></li>
+<li><p>First batch of concepts pages migrated to corresponding API pages</p></li>
 </ul>
 </section>
 <section id="id8">
@@ -811,16 +812,16 @@ to record and playback an ADARA-packet stream.</p></li>
 <section id="id9">
 <h3>New features<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Add information for writing docs using MyST flavored markdown</p></li>
-<li><p>Upgraded python to 3.12. See the changes made to python <a class="reference external" href="https://docs.python.org/3/whatsnew/3.12.html">here</a>.</p></li>
-<li><p>Remove <code class="docutils literal notranslate"><span class="pre">python-dateutil</span></code> in favor of python’s <code class="docutils literal notranslate"><span class="pre">datetime</span></code> module</p></li>
 <li><p>Remove dependency <code class="docutils literal notranslate"><span class="pre">pytz</span></code> to prefer using python’s built-in <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code> for time zone information</p></li>
-<li><p>New configuration files have been added for GitHub Copilot.</p></li>
-<li><p>Updated Matplotlib from version 3.9 to version 3.10. The release notes for <a class="reference external" href="https://matplotlib.org/stable/users/prev_whats_new/whats_new_3.10.0.html">version 3.10 can be found in</a>.</p></li>
 <li><p>The memory allocator set by <code class="docutils literal notranslate"><span class="pre">LD_PRELOAD</span></code> has been change from jemalloc to tbbmalloc.</p></li>
-<li><p>Add <a class="reference external" href="https://developer.mantidproject.org/AlgorithmProfiler.html#algorithmprofiler" title="(in MantidProject main)"><span class="xref std std-ref">mantidprofiler</span></a> as a developer dependency on linux</p></li>
+<li><p>New configuration files have been added for GitHub Copilot.</p></li>
 <li><p>Add support for markdown in developer docs using <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/index.html">myst-parser</a></p></li>
+<li><p>Upgraded python to 3.12. See the changes made to python <a class="reference external" href="https://docs.python.org/3/whatsnew/3.12.html">here</a>.</p></li>
+<li><p>Add <a class="reference external" href="https://developer.mantidproject.org/AlgorithmProfiler.html#algorithmprofiler" title="(in MantidProject main)"><span class="xref std std-ref">mantidprofiler</span></a> as a developer dependency on linux</p></li>
 <li><p>Move to <a class="reference external" href="https://github.com/pace-neutrons/Euphonic">euphonic</a> v1.6.0</p></li>
+<li><p>Add information for writing docs using MyST flavored markdown</p></li>
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">python-dateutil</span></code> in favor of python’s <code class="docutils literal notranslate"><span class="pre">datetime</span></code> module</p></li>
+<li><p>Updated Matplotlib from version 3.9 to version 3.10. The release notes for <a class="reference external" href="https://matplotlib.org/stable/users/prev_whats_new/whats_new_3.10.0.html">version 3.10 can be found in</a>.</p></li>
 </ul>
 </section>
 <section id="id10">

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Texture Analysis Theory &#8212; MantidProject 6.15.20260518.1632 documentation</title>
+    <title>Texture Analysis Theory &#8212; MantidProject 6.15.20260519.1638 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../_static/documentation_options.js?v=92678267"></script>
+    <script src="../_static/documentation_options.js?v=bd362b81"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -914,7 +914,7 @@ ENGINX is concerned, grouping any more finely than the block level is mostly dim
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.texture.TextureUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_all_files</span><span class="p">,</span> <span class="n">run_focus_script</span><span class="p">,</span> <span class="n">mk</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.common.calibration_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalibrationInfo</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.EnggUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">GROUP</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.common.instrument_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_instr_config</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">string</span>
@@ -925,6 +925,8 @@ ENGINX is concerned, grouping any more finely than the block level is mostly dim
 
 <span class="c1"># First, you need to specify your file directories, If you are happy to use the same root, from experiment</span>
 <span class="c1"># to experiment, you can just change this experiment name.</span>
+
+<span class="n">instr</span> <span class="o">=</span> <span class="s2">&quot;ENGINX&quot;</span>
 
 <span class="n">exp_name</span> <span class="o">=</span> <span class="s2">&quot;Example&quot;</span>
 
@@ -940,6 +942,7 @@ ENGINX is concerned, grouping any more finely than the block level is mostly dim
 <span class="n">ceria_run</span> <span class="o">=</span> <span class="s2">&quot;305738&quot;</span>
 
 <span class="c1"># set the path to the grouping file created by calibration</span>
+<span class="n">GROUP</span> <span class="o">=</span> <span class="n">get_instr_config</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">group</span>
 <span class="n">prm_path</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># fr&quot;{root}\Calibration\ENGINX_305738_Texture30.prm&quot;</span>
 <span class="n">grouping</span> <span class="o">=</span> <span class="s2">&quot;Texture30&quot;</span> <span class="c1"># use &quot;Custom&quot; if you want to provide custom grouping</span>
 <span class="n">groupingfile_path</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># r&quot;C:\Users\Name\block.cal&quot; # if a custom cal/xml grouping file is desired</span>
@@ -956,7 +959,7 @@ ENGINX is concerned, grouping any more finely than the block level is mostly dim
 
 
 <span class="c1"># Define some file paths, can be found in the interface settings</span>
-<span class="n">full_instr_calib</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\mantid\scripts\Engineering\calib\ENGINX_full_instrument_calibration_193749.nxs&quot;</span>
+<span class="n">full_instr_calib</span> <span class="o">=</span> <span class="n">get_instr_config</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">full_instr_calib</span>
 
 <span class="c1">######################### RUN SCRIPT ########################################</span>
 
@@ -1008,7 +1011,7 @@ Additionally to fitting the peak, the table will also contain a numerical integr
 <span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">makedirs</span><span class="p">,</span> <span class="n">scandir</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.texture.TextureUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_all_files</span><span class="p">,</span> <span class="n">fit_all_peaks</span><span class="p">,</span> <span class="n">mk</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.common.calibration_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalibrationInfo</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.EnggUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">GROUP</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.common.instrument_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_instr_config</span>
 
 <span class="c1">############### ENGINEERING DIFFRACTION INTERFACE FITTING ANALOGUE #######################</span>
 
@@ -1016,6 +1019,8 @@ Additionally to fitting the peak, the table will also contain a numerical integr
 
 <span class="c1"># First, you need to specify your file directories, If you are happy to use the same root, from experiment</span>
 <span class="c1"># to experiment, you can just change this experiment name.</span>
+<span class="n">instr</span> <span class="o">=</span> <span class="s2">&quot;ENGINX&quot;</span>
+
 <span class="n">exp_name</span> <span class="o">=</span> <span class="s2">&quot;Example&quot;</span>
 
 <span class="c1"># otherwise set root directory here:</span>
@@ -1024,6 +1029,7 @@ Additionally to fitting the peak, the table will also contain a numerical integr
 <span class="c1"># Next the folder contraining the workspaces you want to fit</span>
 <span class="n">file_folder</span> <span class="o">=</span> <span class="s2">&quot;Focus&quot;</span>
 <span class="c1"># These are likely within a sub-folder specified by the detector grouping</span>
+<span class="n">GROUP</span> <span class="o">=</span> <span class="n">get_instr_config</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">group</span>
 <span class="n">grouping</span> <span class="o">=</span> <span class="s2">&quot;Texture30&quot;</span>
 <span class="n">prm_path</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">groupingfile_path</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1085,7 +1091,7 @@ of pole figures over a set of different peaks and parameters.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnalysisDataService</span> <span class="k">as</span> <span class="n">ADS</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.texture.TextureUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_all_files</span><span class="p">,</span> <span class="n">create_pf_loop</span><span class="p">,</span> <span class="n">get_xtal_structure</span><span class="p">,</span> <span class="n">mk</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.common.calibration_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalibrationInfo</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.EnggUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">GROUP</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">Engineering.common.instrument_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_instr_config</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="c1">############### ENGINEERING DIFFRACTION INTERFACE POLE FIGURE ANALOGUE #######################</span>
@@ -1093,6 +1099,8 @@ of pole figures over a set of different peaks and parameters.</p>
 <span class="c1">######################### EXPERIMENTAL INFORMATION ########################################</span>
 <span class="c1"># First, you need to specify your file directories, If you are happy to use the same root, from experiment</span>
 <span class="c1"># to experiment, you can just change this experiment name.</span>
+<span class="n">instr</span> <span class="o">=</span> <span class="s2">&quot;ENGINX&quot;</span>
+
 <span class="n">exp_name</span> <span class="o">=</span> <span class="s2">&quot;PostExp-SteelCentre&quot;</span>
 
 <span class="c1"># otherwise set root directory here:</span>
@@ -1107,6 +1115,7 @@ of pole figures over a set of different peaks and parameters.</p>
 <span class="c1"># define the columns you would like to create pole figures for</span>
 <span class="n">readout_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;X0&quot;</span><span class="p">]</span>
 <span class="c1"># you need to specify the detector grouping</span>
+<span class="n">GROUP</span> <span class="o">=</span> <span class="n">get_instr_config</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">group</span>
 <span class="n">grouping</span> <span class="o">=</span> <span class="s2">&quot;Texture30&quot;</span>
 <span class="c1"># and some grouping path if not using a standard</span>
 <span class="n">prm_path</span> <span class="o">=</span> <span class="kc">None</span>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FitPeaks v1 &#8212; MantidProject 6.15.20260518.1632 documentation</title>
+    <title>FitPeaks v1 &#8212; MantidProject 6.15.20260519.1638 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../_static/documentation_options.js?v=92678267"></script>
+    <script src="../_static/documentation_options.js?v=bd362b81"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1590,43 +1590,49 @@
 <td><p>True</p></td>
 <td><p>If true, initial peak parameters (with the exception of peak centre) may be copied from the last successfully fit peak in the spectra.</p></td>
 </tr>
-<tr class="row-even"><td><p>FittedPeaksWorkspace</p></td>
+<tr class="row-even"><td><p>RespectFixedPeakParameters</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>If true, peak function parameters that are marked as fixed (e.g. parameters calculated from the instrument geometry, such as A and B of a BackToBackExponential) remain fixed during fitting. If false (default), such parameters are unfixed so they can be refined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>FittedPeaksWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a></p></td>
 <td></td>
 <td><p>Name of the output matrix workspace with fitted peak. This output workspace has the same dimension as the input workspace.The Y values belonged to peaks to fit are replaced by fitted value. Values of estimated background are used if peak fails to be fit.</p></td>
 </tr>
-<tr class="row-odd"><td><p>OutputPeakParametersWorkspace</p></td>
+<tr class="row-even"><td><p>OutputPeakParametersWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/dataobjects/TableWorkspace.html#mantid.dataobjects.TableWorkspace" title="mantid.dataobjects.TableWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableWorkspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>Name of table workspace containing all fitted peak parameters.</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputParameterFitErrorsWorkspace</p></td>
+<tr class="row-odd"><td><p>OutputParameterFitErrorsWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/dataobjects/TableWorkspace.html#mantid.dataobjects.TableWorkspace" title="mantid.dataobjects.TableWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableWorkspace</span></code></a></p></td>
 <td></td>
 <td><p>Name of workspace containing all fitted peak parameters’ fitting error.It must be used along with FittedPeaksWorkspace and RawPeakParameters (True)</p></td>
 </tr>
-<tr class="row-odd"><td><p>RawPeakParameters</p></td>
+<tr class="row-even"><td><p>RawPeakParameters</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>false generates table with effective centre/width/height parameters. true generates a table with peak function parameters</p></td>
 </tr>
-<tr class="row-even"><td><p>MinimumSignalToNoiseRatio</p></td>
+<tr class="row-odd"><td><p>MinimumSignalToNoiseRatio</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
 <td><p>Used for validating peaks before fitting. If the signal-to-noise ratio is under this value, the peak will be marked as error. This does not apply to peaks for which the noise cannot be estimated.</p></td>
 </tr>
-<tr class="row-odd"><td><p>MinimumPeakTotalCount</p></td>
+<tr class="row-even"><td><p>MinimumPeakTotalCount</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Used for validating peaks before fitting. If the total peak window Y-value count is under this value, the peak will be excluded from fitting and calibration.</p></td>
 </tr>
-<tr class="row-even"><td><p>MinimumSignalToSigmaRatio</p></td>
+<tr class="row-odd"><td><p>MinimumSignalToSigmaRatio</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
@@ -2078,8 +2084,8 @@ Expected @ 1.076  Fitted @ 1.075
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/9e6d8164744de993f93a6ac7d29319c3dde8746f/Framework/Algorithms/inc/MantidAlgorithms/FitPeaks.h">FitPeaks.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/9e6d8164744de993f93a6ac7d29319c3dde8746f/Framework/Algorithms/src/FitPeaks.cpp">FitPeaks.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3a71426213e242aea3a4df22a0cd2666f7fb7d2b/Framework/Algorithms/inc/MantidAlgorithms/FitPeaks.h">FitPeaks.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/3a71426213e242aea3a4df22a0cd2666f7fb7d2b/Framework/Algorithms/src/FitPeaks.cpp">FitPeaks.cpp</a></p>
 </section>
 </section>
 

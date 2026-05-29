@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>HFIRPowderReduction v1 &#8212; MantidProject 6.15.20260521.2118 documentation</title>
+    <title>HFIRPowderReduction v1 &#8212; MantidProject 6.15.20260528.2024 documentation</title>
   
   
   
@@ -31,7 +31,7 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=468c6cff" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=562d7d41" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
   
   <!-- So that users can add custom icons -->
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
 
-    <script src="../_static/documentation_options.js?v=dc45c6ed"></script>
+    <script src="../_static/documentation_options.js?v=6152f01c"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/HFIRPowderReduction-v1';</script>
@@ -136,9 +136,6 @@
   </li>
   <li class="nav-item">
     <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
-  </li>
-  <li class="nav-item">
-    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
   </li>
   <li class="nav-item">
     <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
@@ -242,9 +239,6 @@
   </li>
   <li class="nav-item">
     <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
-  </li>
-  <li class="nav-item">
-    <a class="reference internal nav-link" href="https://forum.mantidproject.org/">Forums</a>
   </li>
   <li class="nav-item">
     <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
@@ -891,6 +885,7 @@
 <li class="toctree-l1"><a class="reference internal" href="LoadNexusProcessed-v2.html">LoadNexusProcessed v2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LoadPDFgetNFile-v1.html">LoadPDFgetNFile v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LoadPLN-v1.html">LoadPLN v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LoadPLNnxs-v1.html">LoadPLNnxs v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LoadPSIMuonBin-v1.html">LoadPSIMuonBin v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LoadParameterFile-v1.html">LoadParameterFile v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="LoadPreNexus-v1.html">LoadPreNexus v1</a></li>
@@ -1561,6 +1556,66 @@
 <td><p><em>Optional</em></p></td>
 <td><p>Vanadium rod diamter (cm)</p></td>
 </tr>
+<tr class="row-odd"><td><p>VanadiumHeight</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p>3</p></td>
+<td><p>Vanadium rod height (cm)</p></td>
+</tr>
+<tr class="row-even"><td><p>DoAttenuationCorrection</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>If True, apply sample attenuation (absorption) correction using CylinderAbsorptionCW</p></td>
+</tr>
+<tr class="row-odd"><td><p>DoMultipleScatteringCorrection</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>If True, calculate and apply multiple scattering correction for the sample</p></td>
+</tr>
+<tr class="row-even"><td><p>AbsoluteIntensityUnits</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>If True, output in absolute intensity units (mb/sr/f.u.)</p></td>
+</tr>
+<tr class="row-odd"><td><p>SampleChemicalFormula</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>Chemical formula of the sample (e.g. ‘Fe2O3’)</p></td>
+</tr>
+<tr class="row-even"><td><p>SampleCrystalDensity</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>Crystal density of the sample (g/cm3)</p></td>
+</tr>
+<tr class="row-odd"><td><p>SamplePackingFraction</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p>0.5</p></td>
+<td><p>Packing fraction for the sample powder (default 0.5)</p></td>
+</tr>
+<tr class="row-even"><td><p>SampleDiameter</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>Sample diameter (cm)</p></td>
+</tr>
+<tr class="row-odd"><td><p>SampleHeight</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p>0</p></td>
+<td><p>Sample height (cm). Required for multiple scattering and absolute intensity units.</p></td>
+</tr>
+<tr class="row-even"><td><p>SampleBackgroundScaleFactor</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p>1</p></td>
+<td><p>Scale factor (fB) applied to sample background before subtraction</p></td>
+</tr>
 <tr class="row-odd"><td><p>XUnits</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
@@ -1609,31 +1664,25 @@
 <td><p><em>Optional</em></p></td>
 <td><p>Out of plane (phi) angle above which data will be masked</p></td>
 </tr>
-<tr class="row-odd"><td><p>AttenuationmuR</p></td>
-<td><p>Input</p></td>
-<td><p>number</p></td>
-<td><p><em>Optional</em></p></td>
-<td><p>muR for sample attenuation correction</p></td>
-</tr>
-<tr class="row-even"><td><p>Sum</p></td>
+<tr class="row-odd"><td><p>Sum</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>Specifies either single output workspace or output group workspace containing several workspaces.</p></td>
 </tr>
-<tr class="row-odd"><td><p>OutputWorkspace</p></td>
+<tr class="row-even"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>Output Workspace</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputDirectory</p></td>
+<tr class="row-odd"><td><p>OutputDirectory</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>~/HFIRPowderReductionOutput</p></td>
 <td><p>Allowed extensions: [‘.dat’]</p></td>
 </tr>
-<tr class="row-odd"><td><p>Overwrite</p></td>
+<tr class="row-even"><td><p>Overwrite</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
@@ -1654,7 +1703,7 @@ and reduction steps are slightly modified.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4ae72e2fa4d346b1b0fdee426afdee9fb680ded1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/HFIRPowderReduction.py">HFIRPowderReduction.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4a8f14f6e88b71a799d27c55091365b606f57695/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/HFIRPowderReduction.py">HFIRPowderReduction.py</a></p>
 </section>
 </section>
 

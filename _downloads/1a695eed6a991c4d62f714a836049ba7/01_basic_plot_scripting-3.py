@@ -15,5 +15,5 @@ c = axes.imshow(data, origin = 'lower', cmap='viridis', aspect='auto')
 axes.contour(data, levels=np.linspace(10, 60, 6), colors='yellow', alpha=0.5)
 
 cbar=fig.colorbar(c)
-cbar.set_label('Counts ($\mu s$)$^{-1}$') #add text to colorbar
+cbar.set_label(r'Counts ($\mu s$)$^{-1}$') #add text to colorbar
 #fig.show()

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Diffraction Changes &#8212; MantidProject 6.15.20260604.1446 documentation</title>
+    <title>Diffraction Changes &#8212; MantidProject 6.15.20260609.1321 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
 
-    <script src="../../_static/documentation_options.js?v=cc19154d"></script>
+    <script src="../../_static/documentation_options.js?v=a6f3eef0"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v6.16.0/diffraction';</script>
@@ -718,16 +718,18 @@
 <section id="new-features">
 <h3>New features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41373">#41373</a>) Version 2 of <a class="reference internal" href="../../algorithms/PEARLTransfit-v2.html#algm-pearltransfit-v2"><span class="std std-ref">PEARLTransfit</span></a> algorithm, with improvements in input/output properties management.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41404">#41404</a>) Add <cite>get_profile_param</cite>/<cite>set_profile_param</cite> and <cite>get_profile_free_param</cite>/<cite>set_profile_free_param</cite> functions in <code class="docutils literal notranslate"><span class="pre">PawleyPattern</span></code> classes to support setting a profile parameters and fixing free parameters for a given phase through a profile parameter label.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41404">#41404</a>) Add <cite>get_phase_param</cite>/<cite>set_phase_param</cite> and <cite>get_phase_free_param</cite>/<cite>set_phase_free_param</cite> functions in <code class="docutils literal notranslate"><span class="pre">PawleyPattern</span></code> classes to support setting phase parameters and fixing free parameters for a given phase through a phase parameter label.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40842">#40842</a>) <a class="reference internal" href="../../algorithms/FitPeaks-v1.html#algm-fitpeaks"><span class="std std-ref">FitPeaks v1</span></a> and <a class="reference internal" href="../../algorithms/PDCalibration-v1.html#algm-pdcalibration"><span class="std std-ref">PDCalibration v1</span></a> now take a boolean flag <code class="docutils literal notranslate"><span class="pre">RespectFixedPeakParameters</span></code> to determine whether peak-shape parameters tagged as <code class="docutils literal notranslate"><span class="pre">&lt;\fixed&gt;</span></code> should remain fixed or be allowed to refine in the calibration fit (previously, this algorithm has operated under the now default value of <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41021">#41021</a>) <a class="reference internal" href="../../algorithms/FitPeaks-v1.html#algm-fitpeaks"><span class="std std-ref">FitPeaks v1</span></a> and <a class="reference internal" href="../../algorithms/PDCalibration-v1.html#algm-pdcalibration"><span class="std std-ref">PDCalibration v1</span></a> now take a boolean flag to optionally disable inheriting initial peak-shape parameters from the most recently successful peak fit within the same spectrum.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41035">#41035</a>) The <a class="reference internal" href="../../techniques/ISISPowder-Polaris-v1.html#create-total-scattering-pdf-polaris-isis-powder-ref"><span class="std std-ref">POLARIS ISIS Powder Scripts</span></a> have a new option in
-<code class="docutils literal notranslate"><span class="pre">create_total_scattering_pdf</span></code>. Entering values for the <code class="docutils literal notranslate"><span class="pre">stitch_points</span></code>, <code class="docutils literal notranslate"><span class="pre">overlap_width</span></code>, and <code class="docutils literal notranslate"><span class="pre">stitch_lims</span></code>
-parameters will allow the output workspace to be stitched without rebinning when <code class="docutils literal notranslate"><span class="pre">merge_banks</span></code> is set.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41373">#41373</a>) Version 2 of the <a class="reference internal" href="../../algorithms/PEARLTransfit-v2.html#algm-pearltransfit-v2"><span class="std std-ref">PEARLTransfit</span></a> algorithm has been added, with improvements in input/output properties management.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41404">#41404</a>) The <code class="docutils literal notranslate"><span class="pre">PawleyPattern</span></code> classes have some new getter/setter methods.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_profile_param</span></code>/<code class="docutils literal notranslate"><span class="pre">set_profile_param</span></code> and <code class="docutils literal notranslate"><span class="pre">get_profile_free_param</span></code>/<code class="docutils literal notranslate"><span class="pre">set_profile_free_param</span></code> functions to support setting profile parameters and fixing free parameters for a given phase through a profile parameter label.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_phase_param</span></code>/<code class="docutils literal notranslate"><span class="pre">set_phase_param</span></code> and <code class="docutils literal notranslate"><span class="pre">get_phase_free_param</span></code>/<code class="docutils literal notranslate"><span class="pre">set_phase_free_param</span></code> functions to support setting phase parameters and fixing free parameters for a given phase through a phase parameter label.</p></li>
+</ul>
+</li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40842">#40842</a>) The algorithms <a class="reference internal" href="../../algorithms/FitPeaks-v1.html#algm-fitpeaks"><span class="std std-ref">FitPeaks v1</span></a> and <a class="reference internal" href="../../algorithms/PDCalibration-v1.html#algm-pdcalibration"><span class="std std-ref">PDCalibration v1</span></a> now take a boolean flag <code class="docutils literal notranslate"><span class="pre">RespectFixedPeakParameters</span></code> to determine whether peak-shape parameters tagged as <code class="docutils literal notranslate"><span class="pre">&lt;\fixed&gt;</span></code> should remain fixed or be allowed to refine in the calibration fit (previously, this algorithm has operated under the, now default, value of <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41021">#41021</a>) The algorithms <a class="reference internal" href="../../algorithms/FitPeaks-v1.html#algm-fitpeaks"><span class="std std-ref">FitPeaks v1</span></a> and <a class="reference internal" href="../../algorithms/PDCalibration-v1.html#algm-pdcalibration"><span class="std std-ref">PDCalibration v1</span></a> now take a boolean flag <code class="docutils literal notranslate"><span class="pre">CopyLastGoodPeakParameters</span></code> to optionally disable (when set to <code class="docutils literal notranslate"><span class="pre">False</span></code>) inheriting initial peak-shape parameters from the most recently successful peak fit within the same spectrum.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41035">#41035</a>) The <a class="reference internal" href="../../techniques/ISISPowder-Polaris-v1.html#create-total-scattering-pdf-polaris-isis-powder-ref"><span class="std std-ref">POLARIS ISIS Powder Scripts</span></a> have a new option in <code class="docutils literal notranslate"><span class="pre">create_total_scattering_pdf</span></code>. Entering values for the <code class="docutils literal notranslate"><span class="pre">stitch_points</span></code>, <code class="docutils literal notranslate"><span class="pre">overlap_width</span></code>, and <code class="docutils literal notranslate"><span class="pre">stitch_lims</span></code> parameters will allow the output workspace to be stitched without rebinning when <code class="docutils literal notranslate"><span class="pre">merge_banks</span></code> is set.</p></li>
 <li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41070">#41070</a>) <a class="reference internal" href="../../algorithms/LoadDiffCal-v1.html#algm-loaddiffcal"><span class="std std-ref">LoadDiffCal v1</span></a> no longer requires the instrument to be resolvable. If the instrument definition file cannot be found or loaded, the grouping and mask workspaces are created directly from the detector IDs stored in the calibration file. This also includes a change to <a class="reference internal" href="../../algorithms/AlignAndFocusPowderSlim-v1.html#algm-alignandfocuspowderslim"><span class="std std-ref">AlignAndFocusPowderSlim v1</span></a> to skip the instrument for loading the calibration information.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41278">#41278</a>) New algorithm <a class="reference internal" href="../../algorithms/CylinderAbsorptionCW-v1.html#algm-cylinderabsorptioncw"><span class="std std-ref">CylinderAbsorptionCW</span></a> for calculating absorption and multiple scattering corrections for cylindrical samples with constant wavelength and in-plane scattering only.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41278">#41278</a>) The new algorithm <a class="reference internal" href="../../algorithms/CylinderAbsorptionCW-v1.html#algm-cylinderabsorptioncw"><span class="std std-ref">CylinderAbsorptionCW v1</span></a> was added for calculating absorption and multiple scattering corrections for cylindrical samples with constant wavelength and in-plane scattering only.</p></li>
 </ul>
 </section>
 <section id="bugfixes">
@@ -736,23 +738,23 @@ parameters will allow the output workspace to be stitched without rebinning when
 </section>
 <section id="engineering-diffraction">
 <h2>Engineering Diffraction<a class="headerlink" href="#engineering-diffraction" title="Link to this heading">#</a></h2>
-<section id="id9">
-<h3>New features<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="id8">
+<h3>New features<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41082">#41082</a>) The <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> GSAS-II tab allows filtering the region when loading focused data.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40842">#40842</a>) <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> now supports IMAT instrument selection.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40842">#40842</a>) <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> now supports <a class="reference internal" href="../../fitting/fitfunctions/IkedaCarpenterPV.html#func-ikedacarpenterpv"><span class="std std-ref">IkedaCarpenterPV</span></a> as a default peak option for calibration and fitting.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41167">#41167</a>) ENGINX now supports default starting parameters for the <a class="reference internal" href="../../fitting/fitfunctions/IkedaCarpenterPV.html#func-ikedacarpenterpv"><span class="std std-ref">IkedaCarpenterPV</span></a> peak function.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41243">#41243</a>) Add new IDF for new VULCAN instrument configuration</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41082">#41082</a>) The <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#ui-engineering-gsas"><span class="std std-ref">GSAS-II tab</span></a> now allows filtering of the region when loading focused data.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40842">#40842</a>) The <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> now supports IMAT instrument selection.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40842">#40842</a>) The <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> now supports <a class="reference internal" href="../../fitting/fitfunctions/IkedaCarpenterPV.html#func-ikedacarpenterpv"><span class="std std-ref">IkedaCarpenterPV</span></a> as a default peak option for calibration and fitting.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41167">#41167</a>) Fitting ENGINX data now supports default starting parameters for the <a class="reference internal" href="../../fitting/fitfunctions/IkedaCarpenterPV.html#func-ikedacarpenterpv"><span class="std std-ref">IkedaCarpenterPV</span></a> peak function.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41243">#41243</a>) Added a new IDF for the new VULCAN instrument configuration.</p></li>
 </ul>
 </section>
-<section id="id15">
-<h3>Bugfixes<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<section id="id14">
+<h3>Bugfixes<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41049">#41049</a>) The <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> now honors the GSAS-II timeout value from the settings panel.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41031">#41031</a>) Fix bug where not having IDF for some of the pixels resulted in an exception. Now those events are skipped.</p></li>
-<li><p>ENGIN-X data collected in Event Mode no longer throws exceptions upon focusing.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41313">#41313</a>) For <code class="docutils literal notranslate"><span class="pre">TextureUtils.create_pf</span></code> with <code class="docutils literal notranslate"><span class="pre">save_ascii</span> <span class="pre">=</span> <span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">create_combined_output</span> <span class="pre">=</span> <span class="pre">True</span></code> an error is no longer thrown when spectra contain different sized histograms</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41031">#41031</a>) A bug in the <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> where data from pixels that were not defined in the IDF resulted in an exception. Now those events are skipped.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41242">#41242</a>) ENGIN-X data collected in Event Mode no longer throws exceptions upon focusing.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41313">#41313</a>) For <code class="docutils literal notranslate"><span class="pre">TextureUtils.create_pf</span></code> with <code class="docutils literal notranslate"><span class="pre">save_ascii</span> <span class="pre">=</span> <span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">create_combined_output</span> <span class="pre">=</span> <span class="pre">True</span></code> an error is no longer thrown when spectra contain different sized histograms.</p></li>
 </ul>
 </section>
 </section>
@@ -761,19 +763,19 @@ parameters will allow the output workspace to be stitched without rebinning when
 <section id="id19">
 <h3>New features<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Updated IDF for MANDI with latest detector positions calibrated with garnet</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41375">#41375</a>) <a class="reference internal" href="../../algorithms/HB3AAdjustSampleNorm-v1.html#algm-hb3aadjustsamplenorm"><span class="std std-ref">HB3AAdjustSampleNorm v1</span></a> now supports an optional <code class="docutils literal notranslate"><span class="pre">OutputGroupingWorkspace</span></code> property
-that produces a <code class="docutils literal notranslate"><span class="pre">GroupingWorkspace</span></code> mapping each ungrouped detector to its pixel group
-when <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2x2</span></code> or <code class="docutils literal notranslate"><span class="pre">4x4</span></code>.</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41375">#41375</a>) <a class="reference internal" href="../../algorithms/LoadWANDSCD-v1.html#algm-loadwandscd"><span class="std std-ref">LoadWANDSCD v1</span></a> now supports an optional <code class="docutils literal notranslate"><span class="pre">OutputGroupingWorkspace</span></code> property
-that produces a <code class="docutils literal notranslate"><span class="pre">GroupingWorkspace</span></code> mapping each ungrouped detector to its pixel group
-when <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2x2</span></code> or <code class="docutils literal notranslate"><span class="pre">4x4</span></code>.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40901">#41375</a>)</p>
+<ul>
+<li><p>Updated the IDF for MANDI with the latest detector positions calibrated with garnet.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/HB3AAdjustSampleNorm-v1.html#algm-hb3aadjustsamplenorm"><span class="std std-ref">HB3AAdjustSampleNorm v1</span></a> now supports an optional <code class="docutils literal notranslate"><span class="pre">OutputGroupingWorkspace</span></code> property that produces a <code class="docutils literal notranslate"><span class="pre">GroupingWorkspace</span></code> mapping each ungrouped detector to its pixel group when <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2x2</span></code> or <code class="docutils literal notranslate"><span class="pre">4x4</span></code>.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/LoadWANDSCD-v1.html#algm-loadwandscd"><span class="std std-ref">LoadWANDSCD v1</span></a> now supports an optional <code class="docutils literal notranslate"><span class="pre">OutputGroupingWorkspace</span></code> property that produces a <code class="docutils literal notranslate"><span class="pre">GroupingWorkspace</span></code> mapping each ungrouped detector to its pixel group when <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> is set to <code class="docutils literal notranslate"><span class="pre">2x2</span></code> or <code class="docutils literal notranslate"><span class="pre">4x4</span></code>.</p></li>
+</ul>
+</li>
 </ul>
 </section>
-<section id="id22">
-<h3>Bugfixes<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<section id="id21">
+<h3>Bugfixes<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41005">#41005</a>) Algorithm <a class="reference internal" href="../../algorithms/IntegratePeaksMD-v2.html#algm-integratepeaksmd"><span class="std std-ref">IntegratePeaksMD v2</span></a> better handles un-indexed peaks in HKL mode, warnings are given and numeric issues with ellipse finding are avoided by falling back to spherical integration.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41005">#41005</a>) <a class="reference internal" href="../../algorithms/IntegratePeaksMD-v2.html#algm-integratepeaksmd"><span class="std std-ref">IntegratePeaksMD v2</span></a> now better handles un-indexed peaks in HKL mode, warnings are given and numeric issues with ellipse finding are avoided by falling back to spherical integration.</p></li>
 </ul>
 <p><a class="reference internal" href="index.html#v6-16-0"><span class="std std-ref">Release 6.16.0</span></a></p>
 </section>
@@ -833,13 +835,13 @@ when <code class="docutils literal notranslate"><span class="pre">Grouping</span
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engineering-diffraction">Engineering Diffraction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">New features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Bugfixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">New features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Bugfixes</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-crystal-diffraction">Single Crystal Diffraction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">New features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Bugfixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Bugfixes</a></li>
 </ul>
 </li>
 </ul>

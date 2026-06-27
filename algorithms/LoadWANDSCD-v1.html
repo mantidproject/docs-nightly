@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadWANDSCD v1 &#8212; MantidProject 6.15.20260616.1626 documentation</title>
+    <title>LoadWANDSCD v1 &#8212; MantidProject 6.16.20260626.1518 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../_static/documentation_options.js?v=5bd3719d"></script>
+    <script src="../_static/documentation_options.js?v=9f5e61c5"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/LoadWANDSCD-v1';</script>
@@ -1504,25 +1504,37 @@
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>None</p></td>
-<td><p>Normalize to Counts, Monitor, Time. Allowed values: [‘None’, ‘Counts’, ‘Monitor’, ‘Time’]</p></td>
+<td><p>Normalization flux. Valid options are Counts, Monitor, and Time. Allowed values: [‘None’, ‘Counts’, ‘Monitor’, ‘Time’]</p></td>
 </tr>
-<tr class="row-even"><td><p>Grouping</p></td>
+<tr class="row-even"><td><p>NormalizeData</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td><p>When False, skip normalization even if vanadium data is provided.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Grouping</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>None</p></td>
 <td><p>Group pixels (shared by input and normalization). Allowed values: [‘None’, ‘2x2’, ‘4x4’]</p></td>
 </tr>
-<tr class="row-odd"><td><p>ApplyGoniometerTilt</p></td>
+<tr class="row-even"><td><p>ApplyGoniometerTilt</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>Apply the goniometer sgl and sgu tilts to the UB-matrix. This is for backwards compatability only.</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputWorkspace</p></td>
+<tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
-<td><p>Output Workspace</p></td>
+<td><p>signal for each pixel and run index. May be normalized by flux and vanadium signal.</p></td>
+</tr>
+<tr class="row-even"><td><p>OutputNormalizationWorkspace</p></td>
+<td><p>Output</p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
+<td></td>
+<td><p>Optional: output the normalization workspace containing the product of flux and vanadium signal for each pixel and run index.</p></td>
 </tr>
 <tr class="row-odd"><td><p>OutputGroupingWorkspace</p></td>
 <td><p>Output</p></td>
@@ -1536,23 +1548,32 @@
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
-<p>This algorithm will load a series of runs into a MDHistoWorkspace that
-has dimensions x and y detector pixels vs scanIndex.
-The scanIndex is the omega rotation of the sample.
+<p>This algorithm will load a series of runs into a MDHistoWorkspace that has dimensions x and y detector pixels
+vs scanIndex. The scanIndex is the omega rotation of the sample.
 The instrument attached to the OutputWorkspace is directly copied from the FIRST run, therefore
 it is crucial to have the correct instrument attached to the first run.
 In addition the s1 (omega rotation), duration, run_number and monitor count is read from every
 file and included in the logs of the OutputWorkspace.</p>
-<p>During a recent feature expansion, normalization can be optionally performed in the same process
-provided that the necessary Vanadium data is specified.
-By default, the algorithm will try to locate the Vanadium data using IPTS and run number.
-If failed, it will check the Vanadium filename entry to see if the data can be loaded directly
-from file.
-If neither is provided, the algorithm will try to check if the Vanadium data is provided as a
-workspace in memory.
-Currently there are three normalization scheme supported: by Count, by Monitor and by Time.
-If None is selected, no normalization will be performed and all normalization related properties
-will be ignored (on the GUI end, they will be disabled instead).</p>
+<p>Normalization can be optionally performed in the same process, provided that the necessary Vanadium data is specified.
+There’s also the posibility of not normalizing the data but saving the normalization workspace
+alongside the main data workspace for later use in MDNorm.</p>
+<p>By default, the algorithm will try to locate the Vanadium data using IPTS and run number.
+If failed, it will check the Vanadium filename entry to see if the data can be loaded directly from file.
+If neither is provided, the algorithm will try to check if the Vanadium data is provided as a workspace in memory.</p>
+<p>Option <code class="docutils literal notranslate"><span class="pre">NormalizedBy</span></code> selects the data-to-Vanadium flux ratio as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Monitor</span></code>: ratio of data to Vanadium monitor counts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Time</span></code>: ratio of data to Vanadium duration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Counts</span></code>: 1.0 / mean Vanadium signal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: 1.0</p></li>
+</ul>
+<p>If option <code class="docutils literal notranslate"><span class="pre">NormalizeData</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, a normalization workspace is constructed and then divided from the data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">normalization_workspace</span> <span class="o">=</span> <span class="n">flux_ratio</span> <span class="o">*</span> <span class="n">vanadium_signal</span>
+<span class="n">normalized_data</span> <span class="o">=</span> <span class="n">sample_signal</span> <span class="o">/</span> <span class="n">normalization_workspace</span>
+</pre></div>
+</div>
+<p>If a workspace name is provided in <code class="docutils literal notranslate"><span class="pre">OutputNormalizationWorkspace</span></code>,
+then <code class="docutils literal notranslate"><span class="pre">normalization_workspace</span></code> will be saved, irrespective of the value of <code class="docutils literal notranslate"><span class="pre">NormalizeData</span></code>.</p>
 <p>If the “HB2C:CS:CrystalAlign:UBMatrix” property exists and apply goniometer tilt is true,
 it will be converted into the OrientedLattice on the OutputWorkspace.
 The goniometer tilts (sgu and sgl) are combined into the UB Matrix so that only omega (s1) needs to
@@ -1562,8 +1583,7 @@ be taken into account during rotation.</p>
 usage and speed up the later reduction steps.
 In most cases you will not see a difference in reduced data with 4x4 pixel grouping.
 Also, both input data and the Vanadium data will share the same grouping scheme.</p>
-<p>The loaded workspace is designed to be the input to
-<a class="reference internal" href="ConvertWANDSCDtoQ-v1.html#algm-convertwandscdtoq"><span class="std std-ref">ConvertWANDSCDtoQ v1</span></a>.</p>
+<p>The loaded workspace is designed to be the input to <a class="reference internal" href="ConvertWANDSCDtoQ-v1.html#algm-convertwandscdtoq"><span class="std std-ref">ConvertWANDSCDtoQ v1</span></a>.</p>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
@@ -1587,15 +1607,7 @@ Run end:  not available
 Sample: a 1.0, b 1.0, c 1.0; alpha 90, beta 90, gamma 90
 </pre></div>
 </div>
-<p><strong>Load data and Vanadium at the same time</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">LoadWANDSCD</span><span class="p">(</span>
-    <span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">&#39;26640-27944&#39;</span><span class="p">,</span>
-    <span class="n">VanadiumIPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">VanadiumRunNumber</span><span class="o">=</span><span class="mi">26509</span><span class="p">,</span>
-    <span class="n">NormalizedBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
-    <span class="p">)</span>
-</pre></div>
-</div>
-<p><strong>Load multiple data file</strong></p>
+<p><strong>Load multiple data files</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">&#39;26640-27944&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Memory used: </span><span class="si">{}</span><span class="s2">GiB&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">getMemorySize</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="mi">30</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
@@ -1623,6 +1635,64 @@ s2 = [-180,-179.9,-179.8,-179.7,-179.6,-179.5,-179.4,-179.3,-179.2,-179.1]
 monitor_count = [44571,44598,44567,44869,44453,44238,44611,44120,44762,44658]
 duration = [2.05,2.05,2.03333,2.05,2.03333,2.03333,2.05,2.01667,2.05,2.05]
 run_number = [26640,26641,26642,26643,26644,26645,26646,26647,26648,26649]
+</pre></div>
+</div>
+<p><strong>Load data and Vanadium, normalize data</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">LoadWANDSCD</span><span class="p">(</span>
+    <span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">&#39;26640-26700&#39;</span><span class="p">,</span>
+    <span class="n">VanadiumIPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">VanadiumRunNumber</span><span class="o">=</span><span class="mi">26509</span><span class="p">,</span>
+    <span class="n">NormalizedBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span> <span class="n">NormalizeData</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Load data and Vanadium. Don’t normalize the output data but output the normalization workspace</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">LoadWANDSCD</span><span class="p">(</span>
+    <span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">&#39;26640-26700&#39;</span><span class="p">,</span>
+    <span class="n">VanadiumIPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">VanadiumRunNumber</span><span class="o">=</span><span class="mi">26509</span><span class="p">,</span>
+    <span class="n">NormalizedBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span> <span class="n">NormalizeData</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">Grouping</span><span class="o">=</span><span class="s2">&quot;4x4&quot;</span><span class="p">,</span> <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span>
+    <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">norm</span><span class="o">.</span><span class="n">getDimension</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">getNBins</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">getNumDims</span><span class="p">())])</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;MDHistoWorkspace&#39;
+[128, 960, 61]
+</pre></div>
+</div>
+<p><strong>Load data and Vanadium. Normalize the output data and output the grouping workspace</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">LoadWANDSCD</span><span class="p">(</span>
+    <span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">&#39;26640-26700&#39;</span><span class="p">,</span>
+    <span class="n">VanadiumIPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">VanadiumRunNumber</span><span class="o">=</span><span class="mi">26509</span><span class="p">,</span>
+    <span class="n">Grouping</span><span class="o">=</span><span class="s1">&#39;2x2&#39;</span><span class="p">,</span>
+    <span class="n">NormalizedBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span> <span class="n">NormalizeData</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">OutputGroupingWorkspace</span><span class="o">=</span><span class="s1">&#39;grouping&#39;</span>
+    <span class="p">)</span>
+<span class="n">grouping</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;grouping&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">grouping</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">255</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>128
+</pre></div>
+</div>
+<p><strong>Load data and Vanadium. Don’t normalize the output data and output the normalization and grouping workspaces</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">grouping</span> <span class="o">=</span> <span class="n">LoadWANDSCD</span><span class="p">(</span>
+    <span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">&#39;26640-26700&#39;</span><span class="p">,</span>
+    <span class="n">VanadiumIPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">VanadiumRunNumber</span><span class="o">=</span><span class="mi">26509</span><span class="p">,</span>
+    <span class="n">Grouping</span><span class="o">=</span><span class="s1">&#39;2x2&#39;</span><span class="p">,</span>
+    <span class="n">NormalizedBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span> <span class="n">NormalizeData</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span>
+    <span class="n">OutputGroupingWorkspace</span><span class="o">=</span><span class="s1">&#39;grouping&#39;</span>
+    <span class="p">)</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">norm</span><span class="o">.</span><span class="n">getDimension</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">getNBins</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">getNumDims</span><span class="p">())])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">grouping</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">255</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[256, 1920, 61]
+128
 </pre></div>
 </div>
 <p><strong>Load with different grouping comparing memory usage</strong></p>
@@ -1679,7 +1749,7 @@ Sample: a 5.7, b 5.7, c 5.6; alpha 93, beta 90, gamma 98
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d29ac73df2ab6068e31f7240e905abd349ab859e/Framework/PythonInterface/plugins/algorithms/LoadWANDSCD.py">LoadWANDSCD.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4345f828b7db9954456b56344d6c31f071e78861/Framework/PythonInterface/plugins/algorithms/LoadWANDSCD.py">LoadWANDSCD.py</a></p>
 </section>
 </section>
 

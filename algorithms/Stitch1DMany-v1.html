@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Stitch1DMany v1 &#8212; MantidProject 6.15.20260616.1626 documentation</title>
+    <title>Stitch1DMany v1 &#8212; MantidProject 6.16.20260626.1518 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../_static/documentation_options.js?v=5bd3719d"></script>
+    <script src="../_static/documentation_options.js?v=9f5e61c5"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/Stitch1DMany-v1';</script>
@@ -1470,59 +1470,71 @@
 <td><p><em>Mandatory</em></p></td>
 <td><p>Stitched workspace.</p></td>
 </tr>
-<tr class="row-even"><td><p>Params</p></td>
+<tr class="row-even"><td><p>OutputWorkspaceSuffixes</p></td>
+<td><p>Input</p></td>
+<td><p>str list</p></td>
+<td></td>
+<td><p>Optional suffixes to use for child output workspaces when stitching workspace groups. The default is to use 1-based numeric suffixes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Params</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Rebinning Parameters, see Rebin algorithm for format.</p></td>
 </tr>
-<tr class="row-odd"><td><p>StartOverlaps</p></td>
+<tr class="row-even"><td><p>StartOverlaps</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Start overlaps for stitched workspaces (number of input workspaces minus one).</p></td>
 </tr>
-<tr class="row-even"><td><p>EndOverlaps</p></td>
+<tr class="row-odd"><td><p>EndOverlaps</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>End overlaps for stitched workspaces (number of input workspaces minus one).</p></td>
 </tr>
-<tr class="row-odd"><td><p>ScaleRHSWorkspace</p></td>
+<tr class="row-even"><td><p>ScaleRHSWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>optional boolean</p></td>
 <td><p>Unset</p></td>
 <td><p>Scaling either with respect to first (first hand side, LHS) or second (right hand side, RHS) workspace. This property no longer has an effect, please use the IndexOfReference property instead. Allowed values: [‘False’, ‘True’, ‘Unset’]</p></td>
 </tr>
-<tr class="row-even"><td><p>UseManualScaleFactors</p></td>
+<tr class="row-odd"><td><p>UseManualScaleFactors</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>True to use provided values for the scale factor.</p></td>
 </tr>
-<tr class="row-odd"><td><p>ManualScaleFactors</p></td>
+<tr class="row-even"><td><p>ManualScaleFactors</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Either a single scale factor which will be applied to all input workspaces or individual scale factors (number of input workspaces minus one)</p></td>
 </tr>
-<tr class="row-even"><td><p>OutScaleFactors</p></td>
+<tr class="row-odd"><td><p>OutScaleFactors</p></td>
 <td><p>Output</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>The actual used values for the scaling factors at each stitch step.</p></td>
 </tr>
-<tr class="row-odd"><td><p>ScaleFactorFromPeriod</p></td>
+<tr class="row-even"><td><p>ScaleFactorFromPeriod</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>1</p></td>
 <td><p>Provided index of period to obtain scale factor from; periods are indexed from 1 and used only if stitching group workspaces, UseManualScaleFactors is true and ManualScaleFactors is set to default.</p></td>
 </tr>
-<tr class="row-even"><td><p>IndexOfReference</p></td>
+<tr class="row-odd"><td><p>IndexOfReference</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
 <td><p>Index of the workspace to be used as reference for scaling, or -1 to choose the last workspace as the reference.</p></td>
+</tr>
+<tr class="row-even"><td><p>UseValidDataOnly</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>If true, invalid signal values do not contribute to overlap bins where another workspace has valid signal values.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1560,6 +1572,14 @@ specifying the desired index through <code class="docutils literal notranslate">
 The reference workspace will not be scaled, and the other workspaces will be scaled
 to match the reference. Note that this property should be used instead of
 <code class="docutils literal notranslate"><span class="pre">ScaleRHSWorkspace</span></code>, which no longer has any effect and will eventually be removed.</p>
+<p>When stitching workspace groups, the child workspaces in the output group use
+1-based numeric suffixes by default. <code class="docutils literal notranslate"><span class="pre">OutputWorkspaceSuffixes</span></code> can be
+provided to use custom suffixes for these child workspaces instead. The number
+of suffixes must match the number of child workspaces in each input group.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">UseValidDataOnly</span></code> is true, invalid signal values do not contribute
+to stitched overlap bins when another workspace has a valid signal value in the
+same bin. This can be used when input workspaces collectively provide full data
+coverage but individual workspaces contain NaN or infinite signal values.</p>
 </section>
 <section id="workflow">
 <h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h2>
@@ -1672,8 +1692,8 @@ omitted as they do not serve any purpose other than to be passed to the
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d29ac73df2ab6068e31f7240e905abd349ab859e/Framework/Algorithms/inc/MantidAlgorithms/Stitch1DMany.h">Stitch1DMany.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d29ac73df2ab6068e31f7240e905abd349ab859e/Framework/Algorithms/src/Stitch1DMany.cpp">Stitch1DMany.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4345f828b7db9954456b56344d6c31f071e78861/Framework/Algorithms/inc/MantidAlgorithms/Stitch1DMany.h">Stitch1DMany.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4345f828b7db9954456b56344d6c31f071e78861/Framework/Algorithms/src/Stitch1DMany.cpp">Stitch1DMany.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ISIS Reflectometry Interface &#8212; MantidProject 6.15.20260616.1626 documentation</title>
+    <title>ISIS Reflectometry Interface &#8212; MantidProject 6.16.20260626.1518 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../../_static/documentation_options.js?v=5bd3719d"></script>
+    <script src="../../_static/documentation_options.js?v=9f5e61c5"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1253,6 +1253,12 @@ and separate spectra, if required, can be specified for the transmission runs -
 if the latter are not specified then the <code class="docutils literal notranslate"><span class="pre">ROI</span></code> will also be used for
 the transmission runs. If both a First and Second tranmission input is
 specified, then they will be stitched using the options specified.</p>
+<p>When polarization corrections are enabled, the <strong>Input SpinState Order</strong> field can be used to specify the
+order of the input workspace group. For Fredrikze corrections use spin states such as <code class="docutils literal notranslate"><span class="pre">pa,</span> <span class="pre">ap,</span> <span class="pre">pp,</span> <span class="pre">aa</span></code>.
+For Wildes corrections use the flipper configuration, such as <code class="docutils literal notranslate"><span class="pre">00,</span> <span class="pre">01,</span> <span class="pre">10,</span> <span class="pre">11</span></code> or <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">1</span></code>. Leave the
+field empty to use the default from the instrument parameter file or correction algorithm. If the input uses
+Fredrikze spin states while Wildes correction is selected, or Wildes spin states while Fredrikze correction is
+selected, the reduction reports this mismatch.</p>
 <figure class="align-center" id="id15">
 <a class="screenshot reference internal image-reference" href="../../_images/transmission_runs.png"><img alt="Transmission run options" class="screenshot" src="../../_images/transmission_runs.png" style="width: 600px;" />
 </a>

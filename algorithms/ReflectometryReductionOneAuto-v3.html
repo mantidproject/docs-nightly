@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometryReductionOneAuto v3 &#8212; MantidProject 6.15.20260616.1626 documentation</title>
+    <title>ReflectometryReductionOneAuto v3 &#8212; MantidProject 6.16.20260626.1518 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../_static/documentation_options.js?v=5bd3719d"></script>
+    <script src="../_static/documentation_options.js?v=9f5e61c5"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ReflectometryReductionOneAuto-v3';</script>
@@ -1758,19 +1758,25 @@
 <td></td>
 <td><p>A workspace to be used for polarization analysis that contains the efficiency factors as histograms: P1, P2, F1 and F2 in the Wildes method and Pp, Ap, Rho and Alpha for Fredrikze.</p></td>
 </tr>
-<tr class="row-even"><td><p>FredrikzePolarizationSpinStateOrder</p></td>
+<tr class="row-even"><td><p>PolarizationCorrectionInputSpinStateOrder</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
-<td><p>The spin state order of the workspaces in the workspace group to be passed to PolarizationCorrectionsFredrikze. See the ‘Spin State Configurations’ -&gt; ‘InputSpinStates’ section of the PolarizationCorrectionsFredrikze v1 documentation for more details. This is only applied to Fredrikze corrections. Wildes flipper configurations are taken from the instrument’s parameter file.</p></td>
+<td><p>The order of spin states in the input workspace group. For Wildes corrections this is the flipper configuration, e.g. ‘00,01,10,11’ or ‘0,1’. For Fredrikze corrections this is the input spin state order, e.g. ‘pa,ap,pp,aa’ or ‘p,a’. If left empty, the correction default from the parameter file or child algorithm is used.</p></td>
 </tr>
-<tr class="row-odd"><td><p>ROIDetectorIDs</p></td>
+<tr class="row-odd"><td><p>FredrikzePolarizationSpinStateOrder</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>Deprecated. Use PolarizationCorrectionInputSpinStateOrder instead.</p></td>
+</tr>
+<tr class="row-even"><td><p>ROIDetectorIDs</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>When detector IDs are provided, the algorithm will attempt to sum counts across each row of a RectangularDetector after the flood correction step. Detectors not included in the given range will be masked before summing. This will only work correctly when the instrument definition file(IDF) contains a single RectangularDetector panel.</p></td>
 </tr>
-<tr class="row-even"><td><p>HideSummedWorkspaces</p></td>
+<tr class="row-odd"><td><p>HideSummedWorkspaces</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
@@ -1874,6 +1880,14 @@ is a group of size 2 or 4. For the Fredrikze algorithm, the polarization mode wi
 input workspace group has a size of 2 and PA if the size is 4. For Wildes, a workspace group of
 size 2 will use flipper configuration <code class="docutils literal notranslate"><span class="pre">'0,</span> <span class="pre">1'</span></code>, while a group of size 4 will use configuration
 <code class="docutils literal notranslate"><span class="pre">'00,</span> <span class="pre">01,</span> <span class="pre">10,</span> <span class="pre">11'</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">PolarizationCorrectionInputSpinStateOrder</span></code> property can be used to specify the order of the
+input workspace group. For Fredrikze corrections this is the input spin state order, such as
+<code class="docutils literal notranslate"><span class="pre">'pa,</span> <span class="pre">ap,</span> <span class="pre">pp,</span> <span class="pre">aa'</span></code>. For Wildes corrections this is the flipper configuration, such as
+<code class="docutils literal notranslate"><span class="pre">'00,</span> <span class="pre">01,</span> <span class="pre">10,</span> <span class="pre">11'</span></code> or <code class="docutils literal notranslate"><span class="pre">'0,</span> <span class="pre">1'</span></code>. If it is left empty, the default from the parameter
+file or correction algorithm is used. Fredrikze defaults are read from the
+<code class="docutils literal notranslate"><span class="pre">FredrikzeInputSpinStateOrderPA</span></code> or <code class="docutils literal notranslate"><span class="pre">FredrikzeInputSpinStateOrderPNR</span></code> instrument parameter,
+depending on the Fredrikze analysis mode. Wildes defaults are read from the <code class="docutils literal notranslate"><span class="pre">WildesFlipperConfig</span></code>
+instrument parameter when an efficiencies workspace is supplied.</p>
 <p>If a workspace is not provided for the <code class="docutils literal notranslate"><span class="pre">PolarizationEfficiencies</span></code> parameter then the
 method and values specified in the parameters file are used instead.</p>
 <p>The result of polarization analysis is a new workspace in wavelength, which will override the
@@ -1956,8 +1970,8 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d29ac73df2ab6068e31f7240e905abd349ab859e/Framework/Reflectometry/inc/MantidReflectometry/ReflectometryReductionOneAuto3.h">ReflectometryReductionOneAuto3.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d29ac73df2ab6068e31f7240e905abd349ab859e/Framework/Reflectometry/src/ReflectometryReductionOneAuto3.cpp">ReflectometryReductionOneAuto3.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4345f828b7db9954456b56344d6c31f071e78861/Framework/Reflectometry/inc/MantidReflectometry/ReflectometryReductionOneAuto3.h">ReflectometryReductionOneAuto3.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4345f828b7db9954456b56344d6c31f071e78861/Framework/Reflectometry/src/ReflectometryReductionOneAuto3.cpp">ReflectometryReductionOneAuto3.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ConvertToMD v1 &#8212; MantidProject 6.15.20260616.1626 documentation</title>
+    <title>ConvertToMD v1 &#8212; MantidProject 6.16.20260626.1518 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../_static/documentation_options.js?v=5bd3719d"></script>
+    <script src="../_static/documentation_options.js?v=9f5e61c5"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1520,97 +1520,103 @@
 <td><p>False</p></td>
 <td><p>Enabling this property forces the algorithm to ignore bins with zero signal for an input matrix workspace. Input event workspaces are not affected. This violates the data normalization but may substantially accelerate calculations in situations when the normalization is not important (e.g. peak finding).</p></td>
 </tr>
-<tr class="row-even"><td><p>Uproj</p></td>
+<tr class="row-even"><td><p>UseLogTimes</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>If true, and the input workspace is an EventWorkspace, this flag will use the value of logs at the pulse times of the events rather than their average values to define the sample rotation (Goniometer) and OtherDimensions.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Uproj</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Defines the first projection vector of the target Q coordinate system in <strong>Q3D</strong> mode - Default (1,0,0)</p></td>
 </tr>
-<tr class="row-odd"><td><p>Vproj</p></td>
+<tr class="row-even"><td><p>Vproj</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Defines the second projection vector of the target Q coordinate system in <strong>Q3D</strong> mode - Default (0,1,0).</p></td>
 </tr>
-<tr class="row-even"><td><p>Wproj</p></td>
+<tr class="row-odd"><td><p>Wproj</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Defines the third projection vector of the target Q coordinate system in <strong>Q3D</strong> mode. - Default (0,0,1)</p></td>
 </tr>
-<tr class="row-odd"><td><p>AbsMinQ</p></td>
+<tr class="row-even"><td><p>AbsMinQ</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
 <td><p>Do not add events to MD workspace that are closer to the origin in QSample radius than this value. Needed for 3Dviews to remove noise.</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputWorkspace</p></td>
+<tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/dataobjects/MDEventWorkspace1D.html#mantid.dataobjects.MDEventWorkspace1D" title="mantid.dataobjects.MDEventWorkspace1D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>Name of the output <em>MDEventWorkspace</em>.</p></td>
 </tr>
-<tr class="row-odd"><td><p>OverwriteExisting</p></td>
+<tr class="row-even"><td><p>OverwriteExisting</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>By default  (“1”), existing Output Workspace will be replaced. Select false (“0”) if you want to add new events to the workspace, which already exist.  Choosing “0” can be very inefficient for file-based workspaces</p></td>
 </tr>
-<tr class="row-even"><td><p>MinValues</p></td>
+<tr class="row-odd"><td><p>MinValues</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>It has to be N comma separated values, where N is the number of dimensions of the target workspace. Values smaller then specified here will not be added to workspace.  Number N is defined by properties 4,6 and 7 and described on <em>MD Transformation factory</em> page. See also <a class="reference internal" href="ConvertToMDMinMaxLocal-v1.html#algm-converttomdminmaxlocal"><span class="std std-ref">ConvertToMDMinMaxLocal v1</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>MaxValues</p></td>
+<tr class="row-even"><td><p>MaxValues</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>A list of the same size and the same units as MinValues list. Values higher or equal to the specified by this list will be ignored</p></td>
 </tr>
-<tr class="row-even"><td><p>SplitInto</p></td>
+<tr class="row-odd"><td><p>SplitInto</p></td>
 <td><p>Input</p></td>
 <td><p>int list</p></td>
 <td><p>5</p></td>
 <td><p>A comma separated list of into how many sub-grid elements each dimension should split; or just one to split into the same number for all dimensions. Default 5.</p></td>
 </tr>
-<tr class="row-odd"><td><p>SplitThreshold</p></td>
+<tr class="row-even"><td><p>SplitThreshold</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>1000</p></td>
 <td><p>How many events in a box before it should be split. Default 1000.</p></td>
 </tr>
-<tr class="row-even"><td><p>MaxRecursionDepth</p></td>
+<tr class="row-odd"><td><p>MaxRecursionDepth</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>20</p></td>
 <td><p>How many levels of box splitting recursion are allowed. The smallest box will have each side length <span class="math notranslate nohighlight">\(l = (extents) / (SplitInto^{MaxRecursionDepth}).\)</span> Default 20.</p></td>
 </tr>
-<tr class="row-odd"><td><p>MinRecursionDepth</p></td>
+<tr class="row-even"><td><p>MinRecursionDepth</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>1</p></td>
 <td><p>Optional. If specified, then all the boxes will be split to this minimum recursion depth. 0 = no splitting, 1 = one level of splitting, etc.   Be careful using this since it can quickly create a huge number of <span class="math notranslate nohighlight">\(boxes = SplitInto^{MinRercursionDepth \times NumDimensions}\)</span>.   But setting this property equal to MaxRecursionDepth is necessary if one wants to generate multiple file based workspaces in order to merge them later.</p></td>
 </tr>
-<tr class="row-even"><td><p>TopLevelSplitting</p></td>
+<tr class="row-odd"><td><p>TopLevelSplitting</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>This option causes a split of the top level, i.e. level0, of 50 for the first four dimensions.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Filename</p></td>
+<tr class="row-even"><td><p>Filename</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>The name of the Nexus file to write, as a full or relative path. Only used if FileBackEnd is true. Allowed extensions: [‘.nxs’]</p></td>
 </tr>
-<tr class="row-even"><td><p>FileBackEnd</p></td>
+<tr class="row-odd"><td><p>FileBackEnd</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>False</p></td>
 <td><p>If true, Filename must also be specified. The algorithm will create the specified file in addition to an output workspace. The workspace will load data from the file on demand in order to reduce memory use.</p></td>
 </tr>
-<tr class="row-odd"><td><p>ConverterType</p></td>
+<tr class="row-even"><td><p>ConverterType</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>Default</p></td>
@@ -1622,13 +1628,27 @@
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
-<p>The algorithm is used transform existing <a class="reference internal" href="../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects.EventWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventWorkspace</span></code></a>
+<p>The algorithm is used to transform existing <a class="reference internal" href="../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects.EventWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventWorkspace</span></code></a>
 or <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> into <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDWorkspace</span></code></a>.</p>
-<p>If  the target workspace does not exist, the algorithm creates <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a>
-with selected dimensions, e.g. the reciprocal space of momentums <strong>(Qx, Qy, Qz)</strong> or momentums modules <strong>|Q|</strong>, energy transfer <strong>dE</strong> if available
-and any other user specified log values which can be treated as dimensions. If the target workspace do exist,
-the <strong>MD Events</strong> are added to this workspace.</p>
-<p>Using the FileBackEnd and Filename properties the algorithm can produce a file-backed workspace.
+<p>If the target workspace does not exist, the algorithm creates a <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a>
+whose dimensions are determined by the settings of <cite>QDimensions</cite>, <cite>dEAnalysisMode</cite> and <cite>OtherDimensions</cite> properties:</p>
+<ul class="simple">
+<li><p>If <cite>QDimensions=’CopyToMD’</cite> then the existing workspace units (e.g. ToF, or ToF and <span class="math notranslate nohighlight">\(\mathbf{2 \theta}\)</span>
+if <cite>ConvertSpectrumAxis</cite> was run on the input workspace) are kept.</p></li>
+<li><p>If <cite>QDimensions=’Q3D’</cite> or <cite>QDimensions=’|Q|’</cite> then the ToF, detector position, Goniometer angles, and lattice
+information will be used to transform the bins or neutron events into momentum transfer coordinates
+<strong>(Qx, Qy, Qz)</strong> (for <cite>‘Q3D’</cite>) or momentum transfer modulus <strong>|Q|</strong>.</p></li>
+<li><p>If <cite>dEAnalysisMode=’Direct’</cite> or <cite>dEAnalysisMode=’Indirect’</cite> then an additional energy-transfer dimension will be added.</p></li>
+<li><p>If <cite>OtherDimensions</cite> is not empty then any corresponding log values will be added as extra dimensions.</p></li>
+</ul>
+<p>By default, the algorithm uses the average values of a time series log to compute the sample orientation
+(from the <a class="reference internal" href="../api/python/mantid/geometry/Goniometer.html#mantid.geometry.Goniometer" title="mantid.geometry.Goniometer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Goniometer</span></code></a>), or for extra <cite>OtherDimensions</cite>.
+However, if the input is an <a class="reference internal" href="../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects.EventWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventWorkspace</span></code></a>,
+setting the <cite>UseLogTimes</cite> property to <cite>True</cite> uses the value of the sample log at the pulse-times
+of each neutron event in computing sample orientation and for <cite>OtherDimensions</cite>.</p>
+<p>If the target workspace does exist and the property <cite>OverwriteExisting=False</cite> is set,
+then <strong>MD Events</strong> are added to this workspace.</p>
+<p>Using <cite>FileBackEnd=True</cite> and setting a non-empty <cite>Filename</cite> produces a file-backed workspace.
 Note that this will significantly increase the execution time of the algorithm.</p>
 </section>
 <section id="used-subalgorithms">
@@ -1639,8 +1659,7 @@ to the <a class="reference internal" href="../api/python/mantid/kernel/UnitFacto
 for transformation into correspondent <strong>MD Event workspace</strong>. It also uses
 <a class="reference internal" href="PreprocessDetectorsToMD-v1.html#algm-preprocessdetectorstomd"><span class="std std-ref">PreprocessDetectorsToMD v1</span></a> algorithm to help
 with transformation to reciprocal space.</p>
-<p>If min, max or both lists of values (properties 12 and 13) for the
-algorithm are not specified,
+<p>If either of the <cite>MinValues</cite> or <cite>MaxValues</cite> properties are not specified,
 <a class="reference internal" href="ConvertToMDMinMaxLocal-v1.html#algm-converttomdminmaxlocal"><span class="std std-ref">ConvertToMDMinMaxLocal v1</span></a> is used to estimate
 missing min-max values. This algorithm is also used to calculate min-max
 values if specified min-max values are deemed incorrect (e.g. less
@@ -1888,8 +1907,8 @@ Resulting MD workspace contains 605880 events and 3 dimensions
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d29ac73df2ab6068e31f7240e905abd349ab859e/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertToMD.h">ConvertToMD.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d29ac73df2ab6068e31f7240e905abd349ab859e/Framework/MDAlgorithms/src/ConvertToMD.cpp">ConvertToMD.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4345f828b7db9954456b56344d6c31f071e78861/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertToMD.h">ConvertToMD.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4345f828b7db9954456b56344d6c31f071e78861/Framework/MDAlgorithms/src/ConvertToMD.cpp">ConvertToMD.cpp</a></p>
 </section>
 </section>
 

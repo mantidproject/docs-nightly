@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometryReductionOneLiveData v1 &#8212; MantidProject 6.15.20260616.1626 documentation</title>
+    <title>ReflectometryReductionOneLiveData v1 &#8212; MantidProject 6.16.20260626.1518 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../_static/documentation_options.js?v=5bd3719d"></script>
+    <script src="../_static/documentation_options.js?v=9f5e61c5"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ReflectometryReductionOneLiveData-v1';</script>
@@ -1788,13 +1788,19 @@
 <td></td>
 <td><p>A workspace or file name containing the polarization efficiency factors for either the Wildes or Fredrikze correction methods.</p></td>
 </tr>
-<tr class="row-odd"><td><p>FredrikzePolarizationSpinStateOrder</p></td>
+<tr class="row-odd"><td><p>PolarizationCorrectionInputSpinStateOrder</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
-<td><p>The spin state order of the workspaces in the workspace group to be passed to PolarizationCorrectionsFredrikze. See the “Spin State Configurations” -&gt; “InputSpinStates” section of the PolarizationCorrectionsFredrikze v1 documentation for more details. This is only applied to Fredrikze corrections. Wildes flipper configurations are taken from the instrument’s parameter file.</p></td>
+<td><p>The order of spin states in the input workspace group. For Wildes corrections this is the flipper configuration, e.g. ‘00,01,10,11’ or ‘0,1’. For Fredrikze corrections this is the input spin state order, e.g. ‘pa,ap,pp,aa’ or ‘p,a’. If left empty, the correction default from the parameter file or child algorithm is used.</p></td>
 </tr>
-<tr class="row-even"><td><p>ROIDetectorIDs</p></td>
+<tr class="row-even"><td><p>FredrikzePolarizationSpinStateOrder</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>Deprecated. Use PolarizationCorrectionInputSpinStateOrder instead.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ROIDetectorIDs</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
@@ -1827,7 +1833,7 @@ AccumulationMethod=’Replace’,AccumulationWorkspace=’TOF_live’,OutputWork
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d29ac73df2ab6068e31f7240e905abd349ab859e/Framework/PythonInterface/plugins/algorithms/ReflectometryReductionOneLiveData.py">ReflectometryReductionOneLiveData.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4345f828b7db9954456b56344d6c31f071e78861/Framework/PythonInterface/plugins/algorithms/ReflectometryReductionOneLiveData.py">ReflectometryReductionOneLiveData.py</a></p>
 </section>
 </section>
 

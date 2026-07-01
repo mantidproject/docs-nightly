@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SNSPowderReduction v1 &#8212; MantidProject 6.16.20260629.1747 documentation</title>
+    <title>SNSPowderReduction v1 &#8212; MantidProject 6.16.20260630.1941 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=a95f357e85573c9b56d5" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=a95f357e85573c9b56d5" />
 
-    <script src="../_static/documentation_options.js?v=f37293b2"></script>
+    <script src="../_static/documentation_options.js?v=f5707fb9"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1556,23 +1556,11 @@
 <td><p>False</p></td>
 <td><p>Multiply each spectrum by sin(theta) where theta is half of the Bragg angle</p></td>
 </tr>
-<tr class="row-even"><td><p>UnwrapRef</p></td>
-<td><p>Input</p></td>
-<td><p>number</p></td>
-<td><p>0</p></td>
-<td><p>This property is deprecated (since v6.13).</p></td>
-</tr>
-<tr class="row-odd"><td><p>LowResRef</p></td>
-<td><p>Input</p></td>
-<td><p>number</p></td>
-<td><p>0</p></td>
-<td><p>Reference DIFC for resolution removal. Zero skips the correction</p></td>
-</tr>
 <tr class="row-even"><td><p>CropWavelengthMin</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
-<td><p>Crop the data at this minimum wavelength. Overrides LowResRef.</p></td>
+<td><p>Crop the data at this minimum wavelength.</p></td>
 </tr>
 <tr class="row-odd"><td><p>CropWavelengthMax</p></td>
 <td><p>Input</p></td>
@@ -1796,61 +1784,55 @@
 <td></td>
 <td><p>Name of table workspace containing information for splitters.</p></td>
 </tr>
-<tr class="row-even"><td><p>LowResolutionSpectraOffset</p></td>
-<td><p>Input</p></td>
-<td><p>number</p></td>
-<td><p>-1</p></td>
-<td><p>If larger and equal to 0, then process low resolution TOF and offset is the spectra number. Otherwise, ignored.</p></td>
-</tr>
-<tr class="row-odd"><td><p>NormalizeByCurrent</p></td>
+<tr class="row-even"><td><p>NormalizeByCurrent</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>Normalize by current</p></td>
 </tr>
-<tr class="row-even"><td><p>AllowSlimProcess</p></td>
+<tr class="row-odd"><td><p>AllowSlimProcess</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>Allow using the AlignAndFocusPowderSlim algorithm if the file and properties are compatible</p></td>
 </tr>
-<tr class="row-odd"><td><p>CompressTOFTolerance</p></td>
+<tr class="row-even"><td><p>CompressTOFTolerance</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0.01</p></td>
 <td><p>Tolerance to compress events in TOF.</p></td>
 </tr>
-<tr class="row-even"><td><p>CompressBinningMode</p></td>
+<tr class="row-odd"><td><p>CompressBinningMode</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>Default</p></td>
 <td><p>Optional.  Binning behavior can be specified in the usual way through sign of tolerance (‘Default’); or can be set to one of the allowed binning modes.  Allowed values: [‘Default’, ‘Linear’, ‘Logarithmic’]</p></td>
 </tr>
-<tr class="row-odd"><td><p>LogAllowList</p></td>
+<tr class="row-even"><td><p>LogAllowList</p></td>
 <td><p>Input</p></td>
 <td><p>str list</p></td>
 <td></td>
 <td><p>If specified, only these logs will be loaded from the file. This is passed to LoadEventNexus.</p></td>
 </tr>
-<tr class="row-even"><td><p>LogBlockList</p></td>
+<tr class="row-odd"><td><p>LogBlockList</p></td>
 <td><p>Input</p></td>
 <td><p>str list</p></td>
 <td><p>Phase\\*,Speed\\*,BL\\*:Chop:\\*,chopper\\*TDC</p></td>
 <td><p>If specified, these logs will not be loaded from the file. This is passed to LoadEventNexus.</p></td>
 </tr>
-<tr class="row-odd"><td><p>FrequencyLogNames</p></td>
+<tr class="row-even"><td><p>FrequencyLogNames</p></td>
 <td><p>Input</p></td>
 <td><p>str list</p></td>
 <td><p>SpeedRequest1,Speed1,frequency,skf1.speed</p></td>
 <td><p>Candidate log names for frequency</p></td>
 </tr>
-<tr class="row-even"><td><p>WaveLengthLogNames</p></td>
+<tr class="row-odd"><td><p>WaveLengthLogNames</p></td>
 <td><p>Input</p></td>
 <td><p>str list</p></td>
 <td><p>LambdaRequest,lambda,skf12.lambda,BL1B:Det:TH:BL:Lambda,freq</p></td>
 <td><p>Candidate log names for wave length</p></td>
 </tr>
-<tr class="row-odd"><td><p>InterpolateTargetTemp</p></td>
+<tr class="row-even"><td><p>InterpolateTargetTemp</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
@@ -1951,7 +1933,7 @@ unsupported. Sample usage can be found in the <a class="reference external" href
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/777473e8dcf8c6d2359deea17cf8caffff12cce6/Framework/PythonInterface/plugins/algorithms/SNSPowderReduction.py">SNSPowderReduction.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4faa33a5fe02419ace880350cf853b2dba4c374b/Framework/PythonInterface/plugins/algorithms/SNSPowderReduction.py">SNSPowderReduction.py</a></p>
 </section>
 </section>
 

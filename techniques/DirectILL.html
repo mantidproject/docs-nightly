@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Data reduction for ILL’s direct geometry instruments &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>Data reduction for ILL’s direct geometry instruments &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -471,7 +471,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
     <span class="n">DiagnosticsWorkspace</span><span class="o">=</span><span class="s1">&#39;diagnostics&#39;</span>
 <span class="p">)</span>
 <span class="n">SofQW</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;SofQW&#39;</span><span class="p">]</span>
-<span class="n">qAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Vertical axis</span>
+<span class="n">qAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Vertical axis</span>
 <span class="n">eAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Horizontal axis</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;S(Q,W): Q range: </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">A; W range </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">meV&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="n">qAxis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qAxis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMin</span><span class="p">(),</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMax</span><span class="p">()))</span>
@@ -699,7 +699,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
     <span class="n">DiagnosticsWorkspace</span><span class="o">=</span><span class="s1">&#39;diagnostics&#39;</span>
 <span class="p">)</span>
 <span class="n">SofQW</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;SofQW&#39;</span><span class="p">]</span>
-<span class="n">qAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Vertical axis</span>
+<span class="n">qAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Vertical axis</span>
 <span class="n">eAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Horizontal axis</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;S(Q,W): Q range: </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">A; W range </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">meV&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="n">qAxis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qAxis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMin</span><span class="p">(),</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMax</span><span class="p">()))</span>
@@ -727,8 +727,8 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;container&#39;</span><span class="p">,</span>
     <span class="n">IncidentEnergyWorkspace</span><span class="o">=</span><span class="s1">&#39;Ei&#39;</span>  <span class="c1"># Ensure same TOF binning.</span>
 <span class="p">)</span>
-<span class="n">x_sample</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">x_container</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;container&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x_sample</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x_container</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;container&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sample&#39;s TOF axis starts at </span><span class="si">{:.4}</span><span class="s2">mus, container&#39;s at </span><span class="si">{:.4}</span><span class="s2">mus&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="n">x_sample</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_container</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
@@ -821,7 +821,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
     <span class="n">DiagnosticsWorkspace</span><span class="o">=</span><span class="s1">&#39;diagnostics&#39;</span>
 <span class="p">)</span>
 <span class="n">SofQW</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;SofQW&#39;</span><span class="p">]</span>
-<span class="n">qAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Vertical axis</span>
+<span class="n">qAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Vertical axis</span>
 <span class="n">eAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Horizontal axis</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;S(Q,W): Q range: </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">A; W range </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">meV&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="n">qAxis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qAxis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMin</span><span class="p">(),</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMax</span><span class="p">()))</span>
@@ -1015,7 +1015,7 @@ For the correction to be taken into account, the <cite>EmptyContainerWorkspace</
 <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SofQW_1.5K&#39;</span><span class="p">,</span> <span class="s1">&#39;SofQW_50K&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">:</span>
     <span class="n">SofQW</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="n">output</span><span class="p">]</span>
-    <span class="n">qAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Vertical axis</span>
+    <span class="n">qAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Vertical axis</span>
     <span class="n">eAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Horizontal axis</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: Q range: </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">A; W range </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">meV&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
         <span class="n">output</span><span class="p">,</span> <span class="n">qAxis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qAxis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMin</span><span class="p">(),</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMax</span><span class="p">()))</span>
@@ -1101,7 +1101,7 @@ SofQW_50K: Q range: 0.0...9.19A; W range -96.6...7.62meV
 <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sample_SofQW_087294_Ei9meV_T1.5K&#39;</span><span class="p">,</span> <span class="s1">&#39;sample_SofQW_087283_Ei9meV_T50.0K&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">:</span>
     <span class="n">SofQW</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="n">output</span><span class="p">]</span>
-    <span class="n">qAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Vertical axis</span>
+    <span class="n">qAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Vertical axis</span>
     <span class="n">eAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Horizontal axis</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: Q range: </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">A; W range </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">meV&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
         <span class="n">output</span><span class="p">,</span> <span class="n">qAxis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qAxis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMin</span><span class="p">(),</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMax</span><span class="p">()))</span>

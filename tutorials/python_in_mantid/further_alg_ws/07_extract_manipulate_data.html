@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Extract and Manipulate Data: Examples &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>Extract and Manipulate Data: Examples &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../../../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/python_in_mantid/further_alg_ws/07_extract_manipulate_data';</script>
@@ -561,15 +561,15 @@
 <p>Using a loop, read and print the first value in all spectra</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">raw_workspace</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
     <span class="c1">#Note the round brackets followed by the square brackets</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">raw_workspace</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="n">index</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">raw_workspace</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">index</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Workspace data can be read as numpy arrays, spectrum by spectrum:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;HRP39182.RAW&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">e</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">readE</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -592,7 +592,7 @@ If you need x,y,e data to persist longer than the workspace, use the <em>extract
 </pre></div>
 </div>
 <p>Since the <em>extract</em> methods return multi-dimensional numpy arrays. So to use  <em>extract</em> in a similar way to <em>read</em>, you need to <a class="reference external" href="https://numpy.org/doc/1.18/reference/arrays.indexing.html">slice these arrays with indexing</a>.</p>
-<p>E.g. instead of <cite>ws.readX(5)</cite> you should use:</p>
+<p>E.g. instead of <cite>ws.x(5)</cite> you should use:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">.</span><span class="n">extractX</span><span class="p">()[</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
 
 <span class="n">xmat</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">extractX</span><span class="p">();</span> <span class="n">x</span> <span class="o">=</span> <span class="n">xmat</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
@@ -607,7 +607,7 @@ If you need x,y,e data to persist longer than the workspace, use the <em>extract
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="mf">1e4</span><span class="p">)</span> <span class="c1"># Rebin to make the looping more manageable.</span>
 <span class="c1"># Outer loop. Loop over spectrum</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">sum_counts</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="c1"># Inner loop. Loop over bins.</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()):</span>
@@ -631,9 +631,9 @@ If you need x,y,e data to persist longer than the workspace, use the <em>extract
 
 <span class="c1"># Load and Read data</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;HRP39182.RAW&quot;</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">readE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Alter the x data</span>
 <span class="n">new_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mf">1e-3</span>
@@ -669,7 +669,7 @@ If you need x,y,e data to persist longer than the workspace, use the <em>extract
     <span class="n">specNumber</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">getSpectrumNo</span><span class="p">()</span>
 
     <span class="c1"># read each spectrum, just the first bin</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="n">specNumber</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
 </pre></div>

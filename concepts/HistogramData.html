@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Transition to the HistogramData module &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>Transition to the HistogramData module &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/HistogramData';</script>
@@ -570,8 +570,11 @@ Please get in</strong> <a class="reference external" href="mailto:simon&#46;heyb
 <p>Basic changes have been merged (soon after the 3.7 release).
 We will then work on reducing the use of the old interface (<code class="docutils literal notranslate"><span class="pre">readX()</span></code>, <code class="docutils literal notranslate"><span class="pre">dataX()</span></code>, <code class="docutils literal notranslate"><span class="pre">readY()</span></code>, …) as much as possible.
 After that, more features will follow.</p>
-<p>We also want to expose most parts of the <code class="docutils literal notranslate"><span class="pre">HistogramData</span></code> module to Python, but no schedule has been decided yet.
-Parts of the old interface will be kept alive for now, in particular to maintain support for the old Python interface.</p>
+<p>The preferred <code class="docutils literal notranslate"><span class="pre">x()</span></code>/<code class="docutils literal notranslate"><span class="pre">y()</span></code>/<code class="docutils literal notranslate"><span class="pre">e()</span></code>/<code class="docutils literal notranslate"><span class="pre">dx()</span></code> and <code class="docutils literal notranslate"><span class="pre">mutableX()</span></code>/<code class="docutils literal notranslate"><span class="pre">mutableY()</span></code>/<code class="docutils literal notranslate"><span class="pre">mutableE()</span></code>/<code class="docutils literal notranslate"><span class="pre">mutableDx()</span></code>
+accessors are now also exposed to Python on <a class="reference internal" href="../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-class docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a>, replacing the legacy
+<code class="docutils literal notranslate"><span class="pre">readX()</span></code>/<code class="docutils literal notranslate"><span class="pre">dataX()</span></code> (etc.) interface there as well. Parts of the old interface will be kept alive for now,
+in particular to maintain support for existing Python scripts, but calling them now emits a
+<code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code> naming the replacement.</p>
 </section>
 <section id="overview">
 <h3>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h3>

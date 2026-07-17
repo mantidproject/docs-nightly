@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>NormaliseVanadium v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>NormaliseVanadium v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/NormaliseVanadium-v1';</script>
@@ -337,9 +337,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1487,7 +1485,7 @@ A.J.Schultz’s anvred, scales the vanadium spectra.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vanadium</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="s1">&#39;0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5&#39;</span><span class="p">,</span> <span class="n">DataY</span><span class="o">=</span><span class="s1">&#39;10.574151,10.873,11.07348,11.22903,11.42286,11.47365,11.37375,11.112,10.512181,10.653397&#39;</span><span class="p">,</span> <span class="n">UnitX</span><span class="o">=</span><span class="s1">&#39;wavelength&#39;</span><span class="p">)</span>
 <span class="n">LoadInstrument</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="n">vanadium</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;unit_testing/MINITOPAZ_Definition.xml&#39;</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">norm_van</span> <span class="o">=</span> <span class="n">NormaliseVanadium</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">vanadium</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wavelength =  </span><span class="si">{}</span><span class="s2">  Y =  </span><span class="si">{:.11f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">norm_van</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">2</span><span class="p">],</span> <span class="n">norm_van</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wavelength =  </span><span class="si">{}</span><span class="s2">  Y =  </span><span class="si">{:.11f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">norm_van</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">2</span><span class="p">],</span> <span class="n">norm_van</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1498,8 +1496,8 @@ A.J.Schultz’s anvred, scales the vanadium spectra.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Crystal/inc/MantidCrystal/NormaliseVanadium.h">NormaliseVanadium.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Crystal/src/NormaliseVanadium.cpp">NormaliseVanadium.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Crystal/inc/MantidCrystal/NormaliseVanadium.h">NormaliseVanadium.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Crystal/src/NormaliseVanadium.cpp">NormaliseVanadium.cpp</a></p>
 </section>
 </section>
 

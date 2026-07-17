@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SolidAngle v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>SolidAngle v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -339,9 +339,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1539,8 +1537,8 @@ A difference between this implementation and what is in literature, is that rath
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="n">wsOut</span> <span class="o">=</span> <span class="n">SolidAngle</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle of Spectra 1 in Bank 1: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle of Spectra 101 in Bank 2: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">100</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle of Spectra 1 in Bank 1: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle of Spectra 101 in Bank 2: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">100</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1555,11 +1553,11 @@ Solid angle of Spectra 101 in Bank 2: 1.60e-08
 <span class="n">wingDet</span> <span class="o">=</span> <span class="n">SolidAngle</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;BIOSANS&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;wing_detector&#39;</span><span class="p">,</span>
                      <span class="n">Method</span><span class="o">=</span><span class="s1">&#39;VerticalWing&#39;</span><span class="p">,</span> <span class="n">StartWorkspaceIndex</span><span class="o">=</span><span class="mi">49154</span><span class="p">,</span> <span class="n">EndWorkspaceIndex</span><span class="o">=</span><span class="mi">90113</span><span class="p">)</span>
 <span class="c1"># both are zero where nothing was calculated</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle where main was not calculated: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">mainDet</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle where wing was not calculated: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">wingDet</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle where main was not calculated: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">mainDet</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle where wing was not calculated: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">wingDet</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 <span class="c1"># both have values where they were calculated</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle where main was calculated: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">mainDet</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle where wing was calculated: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">wingDet</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">49155</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle where main was calculated: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">mainDet</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solid angle where wing was calculated: </span><span class="si">%.2e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">wingDet</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">49155</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1584,8 +1582,8 @@ Solid angle where wing was calculated: 1.30e-05
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/inc/MantidAlgorithms/SolidAngle.h">SolidAngle.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/src/SolidAngle.cpp">SolidAngle.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/inc/MantidAlgorithms/SolidAngle.h">SolidAngle.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/src/SolidAngle.cpp">SolidAngle.cpp</a></p>
 </section>
 </section>
 

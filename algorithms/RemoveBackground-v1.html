@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>RemoveBackground v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>RemoveBackground v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/RemoveBackground-v1';</script>
@@ -337,9 +337,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1542,7 +1540,7 @@ and estimate errors during removal.</p>
   <span class="n">ws1s</span> <span class="o">=</span> <span class="n">ExtractSingleSpectrum</span><span class="p">(</span><span class="n">wsParent</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
   <span class="n">ws1s</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws1s</span><span class="p">,</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span><span class="s1">&#39;Direct&#39;</span><span class="p">,</span><span class="n">Ei</span><span class="p">);</span>
   <span class="n">ws1s</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">ws1s</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="p">[</span><span class="n">e_min</span><span class="p">,</span><span class="n">dE</span><span class="p">,</span><span class="n">e_max</span><span class="p">]);</span>
-  <span class="n">e_bins</span> <span class="o">=</span> <span class="n">ws1s</span><span class="o">.</span><span class="n">dataX</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">e_bins</span> <span class="o">=</span> <span class="n">ws1s</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
   <span class="n">nBins</span> <span class="o">=</span> <span class="n">e_bins</span><span class="o">.</span><span class="n">size</span><span class="p">;</span>
 
   <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">e_bins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nBins</span><span class="p">)]</span>
@@ -1558,7 +1556,7 @@ and estimate errors during removal.</p>
   <span class="n">Tgrid</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;Tgrid&#39;</span><span class="p">];</span>
   <span class="n">eGrid</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;eGrid&#39;</span><span class="p">];</span>
   <span class="n">nHist</span> <span class="o">=</span> <span class="n">Tgrid</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">();</span>
-  <span class="n">nBins</span> <span class="o">=</span> <span class="n">Tgrid</span><span class="o">.</span><span class="n">dataX</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">;</span>
+  <span class="n">nBins</span> <span class="o">=</span> <span class="n">Tgrid</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">;</span>
 
 <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="s1">&#39;Bg&#39;</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">):</span>
   <span class="n">Bg</span><span class="o">=</span><span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">groupedFilename</span><span class="p">,</span>  <span class="n">Params</span><span class="o">=</span><span class="p">[</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1568,10 +1566,10 @@ and estimate errors during removal.</p>
 
 <span class="c1"># Assign constant background to the Time grid workspace, minding different time bin width</span>
 <span class="k">for</span> <span class="n">nspec</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nHist</span><span class="p">):</span>
-  <span class="n">bg</span>            <span class="o">=</span> <span class="n">Bg</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="n">nspec</span><span class="p">)</span>
+  <span class="n">bg</span>            <span class="o">=</span> <span class="n">Bg</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">nspec</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">bg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-     <span class="n">bgT</span>           <span class="o">=</span> <span class="n">Bg</span><span class="o">.</span><span class="n">dataX</span><span class="p">(</span><span class="n">nspec</span><span class="p">)</span>
-     <span class="n">TimeScale</span>     <span class="o">=</span> <span class="n">Tgrid</span><span class="o">.</span><span class="n">dataX</span><span class="p">(</span><span class="n">nspec</span><span class="p">);</span>
+     <span class="n">bgT</span>           <span class="o">=</span> <span class="n">Bg</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">nspec</span><span class="p">)</span>
+     <span class="n">TimeScale</span>     <span class="o">=</span> <span class="n">Tgrid</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">nspec</span><span class="p">);</span>
      <span class="c1"># Jacobian for the unit conversion</span>
      <span class="n">Jac</span>           <span class="o">=</span> <span class="p">(</span><span class="n">TimeScale</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">nBins</span><span class="p">]</span><span class="o">-</span><span class="n">TimeScale</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nBins</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">bg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">bgT</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">bgT</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
      <span class="n">error</span>         <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Jac</span><span class="p">);</span>
@@ -1667,14 +1665,14 @@ are identical:</p>
 <span class="n">Result</span>   <span class="o">=</span> <span class="n">RemoveBackground</span><span class="p">(</span><span class="n">Result</span><span class="p">,</span><span class="n">BkgWorkspace</span><span class="o">=</span><span class="s1">&#39;Bg&#39;</span><span class="p">,</span><span class="n">EMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">);</span>
 
 <span class="c1"># Get access to the results</span>
-<span class="n">XS</span> <span class="o">=</span> <span class="n">Sample</span><span class="o">.</span><span class="n">dataX</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="n">XR</span> <span class="o">=</span> <span class="n">Result</span> <span class="o">.</span><span class="n">dataX</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">XS</span> <span class="o">=</span> <span class="n">Sample</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">XR</span> <span class="o">=</span> <span class="n">Result</span> <span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
-<span class="n">YS</span> <span class="o">=</span> <span class="n">Sample</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="n">YR</span> <span class="o">=</span> <span class="n">Result</span> <span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">YS</span> <span class="o">=</span> <span class="n">Sample</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">YR</span> <span class="o">=</span> <span class="n">Result</span> <span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
-<span class="n">ES</span> <span class="o">=</span> <span class="n">Sample</span><span class="o">.</span><span class="n">dataE</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="n">ER</span> <span class="o">=</span> <span class="n">Result</span> <span class="o">.</span><span class="n">dataE</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">ES</span> <span class="o">=</span> <span class="n">Sample</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">ER</span> <span class="o">=</span> <span class="n">Result</span> <span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
 <span class="c1"># print first spectra, Note invalid error calculations</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| x sampl  | x result | S sample | S no bg  | Err samp | Err no_bg|&quot;</span><span class="p">)</span>
@@ -1709,8 +1707,8 @@ are identical:</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/inc/MantidAlgorithms/RemoveBackground.h">RemoveBackground.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/src/RemoveBackground.cpp">RemoveBackground.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/inc/MantidAlgorithms/RemoveBackground.h">RemoveBackground.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/src/RemoveBackground.cpp">RemoveBackground.cpp</a></p>
 </section>
 </section>
 

@@ -5,9 +5,9 @@ from mantid.plots._compatability import plotSpectrum
 
 # Load and Read data
 ws = Load(Filename="HRP39182.RAW")
-x = ws.readX(0)
-y = ws.readY(0)
-e = ws.readE(0)
+x = ws.x(0)
+y = ws.y(0)
+e = ws.e(0)
 
 # Alter the x data
 new_x = x * 1e-3

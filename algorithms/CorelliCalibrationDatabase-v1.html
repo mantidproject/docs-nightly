@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CorelliCalibrationDatabase v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>CorelliCalibrationDatabase v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/CorelliCalibrationDatabase-v1';</script>
@@ -337,9 +337,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1607,7 +1605,7 @@ produced with (hopefully) a row for each bank.</p>
             <span class="s2">&quot;# str , double , double , double , double , double , double , double</span><span class="se">\n</span><span class="s2">&quot;</span> \
             <span class="s2">&quot;20011117,1.0001,-2.0002,3.003,4,-23.3,98.02,0&quot;</span>
 
-<span class="n">calib_dir</span> <span class="o">=</span> <span class="s1">&#39;sim_corelli_cal&#39;</span>
+<span class="n">calib_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">],</span> <span class="s1">&#39;sim_corelli_cal&#39;</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">calib_dir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">calib_dir</span><span class="p">)</span>
 
@@ -1629,14 +1627,14 @@ produced with (hopefully) a row for each bank.</p>
 
 <span class="c1"># save for powder calibration database</span>
 <span class="n">CorelliCalibrationDatabase</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="n">InputCalibrationPatchWorkspace</span><span class="o">=</span><span class="s1">&#39;calib_table&#39;</span><span class="p">,</span>
-                                 <span class="n">DatabaseDirectory</span><span class="o">=</span><span class="s1">&#39;sim_corelli_cal&#39;</span><span class="p">,</span>
+                                 <span class="n">DatabaseDirectory</span><span class="o">=</span><span class="n">calib_dir</span><span class="p">,</span>
                                  <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;mergedcalibrationtable&#39;</span><span class="p">)</span>
 
 <span class="c1"># check</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of components = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;mergedcalibrationtable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
-<span class="n">bank1_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;sim_corelli_cal&#39;</span><span class="p">,</span> <span class="s1">&#39;bank1.csv&#39;</span><span class="p">)</span>
+<span class="n">bank1_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">calib_dir</span><span class="p">,</span> <span class="s1">&#39;bank1.csv&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;bank1 file </span><span class="si">{}</span><span class="s1"> exist = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bank1_file</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">bank1_file</span><span class="p">)))</span>
-<span class="n">calib_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;sim_corelli_cal&#39;</span><span class="p">,</span> <span class="s1">&#39;corelli_instrument_20200220.csv&#39;</span><span class="p">)</span>
+<span class="n">calib_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">calib_dir</span><span class="p">,</span> <span class="s1">&#39;corelli_instrument_20200220.csv&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;calibration file </span><span class="si">{}</span><span class="s1"> exist = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">calib_file</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">calib_file</span><span class="p">)))</span>
 </pre></div>
 </div>
@@ -1650,8 +1648,8 @@ calibration file ....csv exist = True
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/inc/MantidAlgorithms/CorelliCalibrationDatabase.h">CorelliCalibrationDatabase.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/src/CorelliCalibrationDatabase.cpp">CorelliCalibrationDatabase.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/inc/MantidAlgorithms/CorelliCalibrationDatabase.h">CorelliCalibrationDatabase.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/src/CorelliCalibrationDatabase.cpp">CorelliCalibrationDatabase.cpp</a></p>
 </section>
 </section>
 

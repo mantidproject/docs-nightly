@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MagFormFactorCorrection v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>MagFormFactorCorrection v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -339,9 +339,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1539,7 +1537,7 @@ of the build system where the above datafiles do not exist.</p>
 <span class="n">Q</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">extractValues</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">qv</span> <span class="o">=</span> <span class="p">(</span> <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">Q</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="mf">0.5</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">mutableY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">16</span><span class="o">*</span><span class="n">qv</span><span class="o">*</span><span class="n">qv</span><span class="p">)</span>
 <span class="n">ws_corr</span> <span class="o">=</span> <span class="n">MagFormFactorCorrection</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">IonName</span><span class="o">=</span><span class="s1">&#39;Fe3&#39;</span><span class="p">,</span> <span class="n">FormFactorWorkspace</span><span class="o">=</span><span class="s1">&#39;Fe3FF&#39;</span><span class="p">)</span>
 </pre></div>

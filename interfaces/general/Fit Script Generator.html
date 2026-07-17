@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Fit Script Generator &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>Fit Script Generator &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'interfaces/general/Fit Script Generator';</script>
@@ -550,9 +550,9 @@ each domain during a simultaneous fit.</p>
 <span class="n">irs26176_red</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;irs26176_graphite002_red.nxs&#39;</span><span class="p">)</span>
 
 <span class="c1"># Create a background workspace</span>
-<span class="n">y_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">irs26176_red</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">*</span> <span class="n">irs26176_red</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
-<span class="n">y_values</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">irs26176_red</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="mi">0</span><span class="p">))]</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">background</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">irs26176_red</span><span class="o">.</span><span class="n">dataX</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="n">y_values</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="n">irs26176_red</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">UnitX</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span> <span class="n">Distribution</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ParentWorkspace</span><span class="o">=</span><span class="s1">&#39;irs26176_red&#39;</span><span class="p">)</span>
+<span class="n">y_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">irs26176_red</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">*</span> <span class="n">irs26176_red</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
+<span class="n">y_values</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">irs26176_red</span><span class="o">.</span><span class="n">mutableY</span><span class="p">(</span><span class="mi">0</span><span class="p">))]</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">background</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">irs26176_red</span><span class="o">.</span><span class="n">mutableX</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">DataY</span><span class="o">=</span><span class="n">y_values</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="n">irs26176_red</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">UnitX</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span> <span class="n">Distribution</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ParentWorkspace</span><span class="o">=</span><span class="s1">&#39;irs26176_red&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add the background</span>
 <span class="n">Plus</span><span class="p">(</span><span class="n">LHSWorkspace</span><span class="o">=</span><span class="n">irs26176_red</span><span class="p">,</span> <span class="n">RHSWorkspace</span><span class="o">=</span><span class="s1">&#39;background&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;irs26176_red&#39;</span><span class="p">)</span>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ProcessBackground v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>ProcessBackground v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -339,9 +339,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1764,7 +1762,7 @@ from another reference workspace.</p>
 
 <span class="n">tbws</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of output workspace = </span><span class="si">{}</span><span class="s2">, Number of selected background points = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of output workspace = </span><span class="si">{}</span><span class="s2">, Number of selected background points = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitted background function: A0 = </span><span class="si">{:.5e}</span><span class="s2">, A1 = </span><span class="si">{:.5e}</span><span class="s2">, A2 = </span><span class="si">{:.5e}</span><span class="s2"> ...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tbws</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">tbws</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">tbws</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
 </pre></div>
 </div>
@@ -1803,7 +1801,7 @@ Fitted background function: A0 = 5.43859e-01, A1 = -5.20674e-05, A2 = 2.84119e-0
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">700</span><span class="p">]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X = </span><span class="si">{0:.5f}</span><span class="s2">, Input Y[</span><span class="si">{1}</span><span class="s2">] = </span><span class="si">{2:.5f}</span><span class="s2">, Reference Y[</span><span class="si">{1}</span><span class="s2">] = </span><span class="si">{3:.5f}</span><span class="s2">, Output Y[</span><span class="si">{1}</span><span class="s2">] = </span><span class="si">{4:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-           <span class="n">vecx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">,</span> <span class="n">ws1</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">ws2</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
+           <span class="n">vecx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">,</span> <span class="n">ws1</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">ws2</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1839,7 +1837,7 @@ X = 7.00000, Input Y[700] = 1.12037, Reference Y[700] = -1.12037, Output Y[700] 
 <span class="n">outputs</span> <span class="o">=</span> <span class="n">ProcessBackground</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws1</span><span class="p">,</span> <span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;ws2&quot;</span><span class="p">,</span> <span class="n">Options</span><span class="o">=</span><span class="s2">&quot;DeleteRegion&quot;</span><span class="p">,</span>
       <span class="n">LowerBound</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">UpperBound</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input has </span><span class="si">{}</span><span class="s2"> data points; Output has </span><span class="si">{}</span><span class="s2"> data points.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ws1</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input has </span><span class="si">{}</span><span class="s2"> data points; Output has </span><span class="si">{}</span><span class="s2"> data points.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ws1</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1880,7 +1878,7 @@ X = 7.00000, Input Y[700] = 1.12037, Reference Y[700] = -1.12037, Output Y[700] 
     <span class="n">OutputNormalisedCovarianceMatrix</span><span class="o">=</span><span class="s1">&#39;background_NormalisedCovarianceMatrix&#39;</span><span class="p">,</span> <span class="n">OutputParameters</span><span class="o">=</span><span class="s1">&#39;background_Parameters&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;background_Workspace&#39;</span><span class="p">)</span>
 
 <span class="n">outparws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;background_Parameters&quot;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input workspace has </span><span class="si">{}</span><span class="s2"> data points; Output workspace has </span><span class="si">{}</span><span class="s2"> data points.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input workspace has </span><span class="si">{}</span><span class="s2"> data points; Output workspace has </span><span class="si">{}</span><span class="s2"> data points.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitted background parameters: A0 = </span><span class="si">{:.5e}</span><span class="s2">, A1 = </span><span class="si">{:.5e}</span><span class="s2">, Chi-square = </span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">outparws</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">outparws</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">outparws</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
 </pre></div>
 </div>
@@ -1893,8 +1891,8 @@ Fitted background parameters: A0 = 3.90254e+00, A1 = 1.09284e-02, Chi-square = 0
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/CurveFitting/inc/MantidCurveFitting/Functions/ProcessBackground.h">ProcessBackground.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/CurveFitting/src/Functions/ProcessBackground.cpp">ProcessBackground.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/CurveFitting/inc/MantidCurveFitting/Functions/ProcessBackground.h">ProcessBackground.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/CurveFitting/src/Functions/ProcessBackground.cpp">ProcessBackground.cpp</a></p>
 </section>
 </section>
 

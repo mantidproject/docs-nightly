@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/framework';</script>
@@ -734,6 +734,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction v1</span></a> now attempts to autopopulate the sample absorption parameters if correct data is found in sample run files</p></li>
 <li><p><a class="reference internal" href="../../algorithms/SumSpectra-v1.html#algm-sumspectra"><span class="std std-ref">SumSpectra v1</span></a> algorithm has been optimized for better performance.</p></li>
+<li><p>The <a class="reference internal" href="../../algorithms/Fit-v1.html#algm-fit"><span class="std std-ref">Fit v1</span></a> algorithm now allows setting step sizes to customize the perturbation applied to each parameter value while fitting. Setting the <code class="docutils literal notranslate"><span class="pre">StepSizeMethod</span></code> to <code class="docutils literal notranslate"><span class="pre">Custom</span></code> will allow the step sizes list to be passed using the <code class="docutils literal notranslate"><span class="pre">CustomStepSizes</span></code> parameter.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction v1</span></a> now has an <code class="docutils literal notranslate"><span class="pre">IDFFilename</span></code> property to optionally override the instrument geometry from the sample file, and loads MIDAS data with <a class="reference internal" href="../../algorithms/LoadEventAsWorkspace2D-v1.html#algm-loadeventasworkspace2d"><span class="std std-ref">LoadEventAsWorkspace2D v1</span></a>.</p></li>
 <li><p>Algorithm <a class="reference internal" href="../../algorithms/ConvertToMD-v1.html#algm-converttomd"><span class="std std-ref">ConvertToMD v1</span></a> with option <cite>UseLogTimes</cite> can use the time series logs at event times as coordinates for extra dimensions when log names are added in <cite>OtherDimensions</cite> property.</p></li>
 <li><p><a class="reference internal" href="../../api/python/mantid/api/FileFinderImpl.html#mantid-api-filefinderimpl"><span class="std std-ref">FileFinder</span></a> and <a class="reference internal" href="../../api/python/mantid/api/MultipleFileProperty.html#mantid.api.MultipleFileProperty" title="mantid.api.MultipleFileProperty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultipleFileProperty</span></code></a> now resolve multi-run hint strings (ranges and lists) in a single batched archive lookup for HFIR and SNS data, replacing the previous per-run network round trips to ONCat.</p></li>
@@ -757,6 +758,9 @@
 </section>
 <section id="removed">
 <h3>Removed<a class="headerlink" href="#removed" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Removed the deprecated BayesQuasi and BayesStretch algorithms, which were based on the <code class="docutils literal notranslate"><span class="pre">quasielasticbayes</span></code> library. Users should now use the new <code class="docutils literal notranslate"><span class="pre">quickbayes</span></code> replacements, <a class="reference internal" href="../../algorithms/BayesQuasi2-v1.html#algm-bayesquasi2"><span class="std std-ref">BayesQuasi2 v1</span></a> and <a class="reference internal" href="../../algorithms/BayesStretch2-v1.html#algm-bayesstretch2"><span class="std std-ref">BayesStretch2 v1</span></a>, respectively.</p></li>
+</ul>
 </section>
 </section>
 <section id="fit-functions">
@@ -824,6 +828,9 @@ but otherwise leave most <code class="docutils literal notranslate"><span class=
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h2>
 <section id="id11">
 <h3>New features<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Removed dependence on the <code class="docutils literal notranslate"><span class="pre">quasielasticbayes</span></code> library to facilitate the upgrade to Qt6.</p></li>
+</ul>
 </section>
 <section id="id12">
 <h3>Bugfixes<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>

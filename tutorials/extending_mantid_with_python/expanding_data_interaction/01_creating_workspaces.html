@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Creating Workspaces &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>Creating Workspaces &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../../../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/extending_mantid_with_python/expanding_data_interaction/01_creating_workspaces';</script>
@@ -580,7 +580,7 @@ method called <code class="docutils literal notranslate"><span class="pre">creat
 <p>The above code will create a new 2D workspace filled with zeroes. The
 <code class="docutils literal notranslate"><span class="pre">setProperty</span></code> call is important as it is required for Mantid to store the
 workspace outside of the algorithm.</p>
-<p>To set the data in the workspace use the <code class="docutils literal notranslate"><span class="pre">data[X,Y,E]</span></code> member of the
+<p>To set the data in the workspace use the <code class="docutils literal notranslate"><span class="pre">mutable[X,Y,E]</span></code> member of the
 workspace like so:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...snipped...</span>
 <span class="c1"># A workspace with 5 rows with 9 bins &amp; 10 bin boundaries</span>
@@ -589,9 +589,9 @@ workspace like so:</p>
 <span class="n">output_ws</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;Workspace2D&quot;</span><span class="p">,</span> <span class="n">NVectors</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
                                     <span class="n">XLength</span><span class="o">=</span><span class="n">nbins</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">YLength</span><span class="o">=</span><span class="n">nbins</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
-    <span class="n">xdata</span> <span class="o">=</span> <span class="n">output_ws</span><span class="o">.</span><span class="n">dataX</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">ydata</span> <span class="o">=</span> <span class="n">output_ws</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">edata</span> <span class="o">=</span> <span class="n">output_ws</span><span class="o">.</span><span class="n">dataE</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">xdata</span> <span class="o">=</span> <span class="n">output_ws</span><span class="o">.</span><span class="n">mutableX</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ydata</span> <span class="o">=</span> <span class="n">output_ws</span><span class="o">.</span><span class="n">mutableY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">edata</span> <span class="o">=</span> <span class="n">output_ws</span><span class="o">.</span><span class="n">mutableE</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbins</span><span class="p">):</span>
         <span class="n">xdata</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
         <span class="n">ydata</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>

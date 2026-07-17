@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LineProfile v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>LineProfile v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -339,9 +339,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1545,9 +1543,9 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># line is a workspace created by LineProfile</span>
 <span class="n">axis</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">height</span> <span class="o">=</span> <span class="n">axis</span><span class="o">.</span><span class="n">getMax</span><span class="p">()</span> <span class="o">-</span> <span class="n">axis</span><span class="o">.</span><span class="n">getMin</span><span class="p">()</span>
-<span class="n">Ys</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Ys</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">mutableY</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">Ys</span> <span class="o">*=</span> <span class="n">height</span>
-<span class="n">Es</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">dataE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Es</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">mutableE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">Es</span> <span class="o">*=</span> <span class="n">height</span>
 </pre></div>
 </div>
@@ -1571,8 +1569,8 @@
     <span class="n">End</span><span class="o">=</span><span class="mi">13000</span>
 <span class="p">)</span>
 
-<span class="n">indexMax</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">horProfile</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">epp</span> <span class="o">=</span> <span class="n">horProfile</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">indexMax</span><span class="p">]</span>
+<span class="n">indexMax</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">horProfile</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">epp</span> <span class="o">=</span> <span class="n">horProfile</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">indexMax</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Elastic peak at </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epp</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1617,7 +1615,7 @@
     <span class="c1"># Notice the overlapping TOFs. This is because partial bins are</span>
     <span class="c1"># included in their entirety.</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average intensity between </span><span class="si">{}</span><span class="s1"> and </span><span class="si">{}</span><span class="s1"> microsec: </span><span class="si">{:.03}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-        <span class="n">tofStart</span><span class="p">,</span> <span class="n">tofEnd</span><span class="p">,</span> <span class="n">cut</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">tofStart</span><span class="p">,</span> <span class="n">tofEnd</span><span class="p">,</span> <span class="n">cut</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1649,10 +1647,10 @@ Average intensity between 6200.0 and 6800.0 microsec: 0.1
 <span class="k">for</span> <span class="n">iVert</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">wsInTheta</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
     <span class="k">for</span> <span class="n">iHor</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">wsInTheta</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()):</span>
         <span class="k">if</span> <span class="n">iVert</span> <span class="o">+</span> <span class="n">iHor</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>
-            <span class="n">ys</span> <span class="o">=</span> <span class="n">wsInTheta</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="n">iVert</span><span class="p">)</span>
+            <span class="n">ys</span> <span class="o">=</span> <span class="n">wsInTheta</span><span class="o">.</span><span class="n">mutableY</span><span class="p">(</span><span class="n">iVert</span><span class="p">)</span>
             <span class="n">ys</span><span class="p">[</span><span class="n">iHor</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nan</span>
         <span class="k">elif</span> <span class="n">iVert</span> <span class="o">+</span> <span class="n">iHor</span> <span class="o">&gt;</span> <span class="mi">120</span><span class="p">:</span>
-            <span class="n">ys</span> <span class="o">=</span> <span class="n">wsInTheta</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="n">iVert</span><span class="p">)</span>
+            <span class="n">ys</span> <span class="o">=</span> <span class="n">wsInTheta</span><span class="o">.</span><span class="n">mutableY</span><span class="p">(</span><span class="n">iVert</span><span class="p">)</span>
             <span class="n">ys</span><span class="p">[</span><span class="n">iHor</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nan</span>
 
 <span class="n">centre</span> <span class="o">=</span> <span class="mf">0.6</span>
@@ -1661,15 +1659,15 @@ Average intensity between 6200.0 and 6800.0 microsec: 0.1
 
 <span class="c1"># When no NaNs are present both modes give the same result.</span>
 <span class="n">iElastic</span> <span class="o">=</span> <span class="n">sumCutWS</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()</span> <span class="o">//</span> <span class="mi">2</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">sumCutWS</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">iElastic</span><span class="p">]</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">sumCutWS</span><span class="o">.</span><span class="n">readE</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">iElastic</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">sumCutWS</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">iElastic</span><span class="p">]</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">sumCutWS</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">iElastic</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sum profile at elastic peak: </span><span class="si">{:.8f}</span><span class="s1"> +/- </span><span class="si">{:.10f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
 
 <span class="c1"># The weighting is apparent when the profile crosses some</span>
 <span class="c1"># special values.</span>
 <span class="n">iEdge</span> <span class="o">=</span> <span class="n">sumCutWS</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()</span> <span class="o">//</span> <span class="mi">6</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">sumCutWS</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">iEdge</span><span class="p">]</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">sumCutWS</span><span class="o">.</span><span class="n">readE</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">iEdge</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">sumCutWS</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">iEdge</span><span class="p">]</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">sumCutWS</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">iEdge</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sum profile near NaNs: </span><span class="si">{:.11f}</span><span class="s1"> +/- </span><span class="si">{:.11f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1681,8 +1679,8 @@ Sum profile near NaNs: 1.60000001019 +/- 2.52982213619
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/inc/MantidAlgorithms/LineProfile.h">LineProfile.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/src/LineProfile.cpp">LineProfile.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/inc/MantidAlgorithms/LineProfile.h">LineProfile.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/src/LineProfile.cpp">LineProfile.cpp</a></p>
 </section>
 </section>
 

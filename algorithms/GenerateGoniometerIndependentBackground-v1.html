@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>GenerateGoniometerIndependentBackground v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>GenerateGoniometerIndependentBackground v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/GenerateGoniometerIndependentBackground-v1';</script>
@@ -337,9 +337,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1501,7 +1499,7 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create 4 sample workspaces with different intensities</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
     <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Event&#39;</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Flat background&#39;</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">NumEvents</span><span class="o">=</span><span class="n">n</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;w</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input workspace w</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> intensity = &quot;</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input workspace w</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> intensity = &quot;</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 
 <span class="c1"># create a grouping workspace, group by bank</span>
 <span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;w1&#39;</span><span class="p">,</span> <span class="n">GroupDetectorsBy</span><span class="o">=</span><span class="s1">&#39;bank&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;groups&#39;</span><span class="p">)</span>
@@ -1509,13 +1507,13 @@
 
 <span class="c1"># select only the lowest 25% intensity workspaces</span>
 <span class="n">background</span> <span class="o">=</span> <span class="n">GenerateGoniometerIndependentBackground</span><span class="p">(</span><span class="s1">&#39;w1,w2,w3,w4&#39;</span><span class="p">,</span> <span class="n">GroupingFile</span><span class="o">=</span><span class="s2">&quot;/tmp/groups.xml&quot;</span><span class="p">,</span> <span class="n">PercentMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">PercentMax</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Background intensity, lowest 25% =&quot;</span><span class="p">,</span> <span class="n">background</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Background intensity, lowest 25% =&quot;</span><span class="p">,</span> <span class="n">background</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 <span class="c1"># select only the highest 25% intensity workspaces</span>
 <span class="n">background</span> <span class="o">=</span> <span class="n">GenerateGoniometerIndependentBackground</span><span class="p">(</span><span class="s1">&#39;w1,w2,w3,w4&#39;</span><span class="p">,</span> <span class="n">GroupingFile</span><span class="o">=</span><span class="s2">&quot;/tmp/groups.xml&quot;</span><span class="p">,</span> <span class="n">PercentMin</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">PercentMax</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Background intensity, highest 25% =&quot;</span><span class="p">,</span> <span class="n">background</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Background intensity, highest 25% =&quot;</span><span class="p">,</span> <span class="n">background</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 <span class="c1"># select only the middle 50%intensity workspaces</span>
 <span class="n">background</span> <span class="o">=</span> <span class="n">GenerateGoniometerIndependentBackground</span><span class="p">(</span><span class="s1">&#39;w1,w2,w3,w4&#39;</span><span class="p">,</span> <span class="n">GroupingFile</span><span class="o">=</span><span class="s2">&quot;/tmp/groups.xml&quot;</span><span class="p">,</span> <span class="n">PercentMin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">PercentMax</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Background intensity, middle 50% =&quot;</span><span class="p">,</span> <span class="n">background</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Background intensity, middle 50% =&quot;</span><span class="p">,</span> <span class="n">background</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1532,8 +1530,8 @@ Background intensity, middle 50% = [1250. 1250.]
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/inc/MantidAlgorithms/GenerateGoniometerIndependentBackground.h">GenerateGoniometerIndependentBackground.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/src/GenerateGoniometerIndependentBackground.cpp">GenerateGoniometerIndependentBackground.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/inc/MantidAlgorithms/GenerateGoniometerIndependentBackground.h">GenerateGoniometerIndependentBackground.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/src/GenerateGoniometerIndependentBackground.cpp">GenerateGoniometerIndependentBackground.cpp</a></p>
 </section>
 </section>
 

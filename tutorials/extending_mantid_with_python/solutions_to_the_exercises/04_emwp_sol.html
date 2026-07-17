@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Exercise 4 Solutions &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>Exercise 4 Solutions &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../../../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/extending_mantid_with_python/solutions_to_the_exercises/04_emwp_sol';</script>
@@ -618,18 +618,18 @@ of the proper reduction done for the direct-geometry inelastic instruments.</p>
         <span class="c1"># Create the new output workspace</span>
         <span class="n">_summed</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">_tmpws</span><span class="p">,</span><span class="n">NVectors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="c1"># Set the X values for the new workspace</span>
-        <span class="n">_summed</span><span class="o">.</span><span class="n">setX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_tmpws</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">_summed</span><span class="o">.</span><span class="n">setX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_tmpws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 
         <span class="c1"># Sum the rows to a single row. Two methods demonstrated:</span>
 
         <span class="c1">#----- 1: Direct workspace access -----</span>
         <span class="c1"># Uses less memory as it avoids a copy of the data</span>
 
-        <span class="c1"># dataY returns an array we can modify on the new workspace</span>
+        <span class="c1"># mutableY returns an array we can modify on the new workspace</span>
         <span class="c1"># note _summed at this point has all its y-values = 0</span>
-        <span class="n">sumy</span> <span class="o">=</span> <span class="n">_summed</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># initialise sumy with zeros</span>
+        <span class="n">sumy</span> <span class="o">=</span> <span class="n">_summed</span><span class="o">.</span><span class="n">mutableY</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># initialise sumy with zeros</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">_tmpws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
-            <span class="n">sumy</span> <span class="o">+=</span> <span class="n">_tmpws</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">sumy</span> <span class="o">+=</span> <span class="n">_tmpws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
         <span class="c1">#----- 2: Extract to numpy and sum ----</span>
         <span class="c1"># Uses more memory as extract copies to data (uncomment to see working)</span>

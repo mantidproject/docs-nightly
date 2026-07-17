@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CreateBootstrapWorkspaces v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>CreateBootstrapWorkspaces v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/CreateBootstrapWorkspaces-v1';</script>
@@ -337,9 +337,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1498,7 +1496,7 @@ The Bootstrap replicas can be generated in two ways:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">BootstrapType=ErrorSampling</span></code>: This type of sampling changes the value of each Y data point by randomly sampling from a normal distribution with the mean at Y and deviation of the error at that datapoint, i.e. <code class="docutils literal notranslate"><span class="pre">newDataY</span> <span class="pre">=</span> <span class="pre">Gaussian(originalDataY,</span> <span class="pre">originalDataE)</span></code>. This means that data from one spectrum does not have any influence on the data from another spectrum, as the sampling is done point by point. The errors of the newly created workspaces are set to zero to conform with the theory of Bootstrap.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">BootstrapType=SpectraSampling</span></code>: This type of sampling samples the spectrum numbers with repetition. This means that each row of the workspace is equal to an original row picked at random from the input workspace. In practice, this means that each spectra is calculated as <code class="docutils literal notranslate"><span class="pre">boot_sample_ws.dataY(index)</span> <span class="pre">=</span> <span class="pre">input_ws.dataY(Uniform[0,</span> <span class="pre">numberOfHistograms])</span></code>. This kind of bootstrap might make sense when the input workspace contains spectra resulting from measurements of the same observable that, in the absence of noise and background, would have been supposed to have been identical. An example would be a collection of the momentum distributions of the same isotopic species measured by different detectors</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BootstrapType=SpectraSampling</span></code>: This type of sampling samples the spectrum numbers with repetition. This means that each row of the workspace is equal to an original row picked at random from the input workspace. In practice, this means that each spectra is calculated as <code class="docutils literal notranslate"><span class="pre">boot_sample_ws.mutableY(index)</span> <span class="pre">=</span> <span class="pre">input_ws.y(Uniform[0,</span> <span class="pre">numberOfHistograms])</span></code>. This kind of bootstrap might make sense when the input workspace contains spectra resulting from measurements of the same observable that, in the absence of noise and background, would have been supposed to have been identical. An example would be a collection of the momentum distributions of the same isotopic species measured by different detectors</p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -1563,8 +1561,8 @@ The Bootstrap replicas can be generated in two ways:</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/inc/MantidAlgorithms/CreateBootstrapWorkspaces.h">CreateBootstrapWorkspaces.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Algorithms/src/CreateBootstrapWorkspaces.cpp">CreateBootstrapWorkspaces.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/inc/MantidAlgorithms/CreateBootstrapWorkspaces.h">CreateBootstrapWorkspaces.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Algorithms/src/CreateBootstrapWorkspaces.cpp">CreateBootstrapWorkspaces.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometrySumInQ v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>ReflectometrySumInQ v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -339,9 +339,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1545,8 +1543,8 @@ lambda) direct beam data.</p>
     <span class="n">X</span><span class="o">=-</span><span class="mf">0.008</span> <span class="o">*</span> <span class="mf">4.5</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.008</span> <span class="o">*</span> <span class="mf">4.5</span><span class="p">,</span> <span class="n">Z</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
 <span class="c1"># Fill intensity for pixels in the beam</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">44</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">55</span><span class="p">]:</span>
-    <span class="n">direct</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
-    <span class="n">direct</span><span class="o">.</span><span class="n">dataE</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">direct</span><span class="o">.</span><span class="n">mutableY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
+    <span class="n">direct</span><span class="o">.</span><span class="n">mutableE</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="c1"># Group detectors to form a &#39;line detector&#39;. The line is vertical in this case.</span>
 <span class="n">groupingPattern</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
@@ -1574,12 +1572,12 @@ lambda) direct beam data.</p>
     <span class="n">ComponentName</span><span class="o">=</span><span class="s1">&#39;bank1&#39;</span><span class="p">,</span>
     <span class="n">X</span><span class="o">=-</span><span class="mf">0.008</span> <span class="o">*</span> <span class="mf">4.5</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span> <span class="mf">0.008</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">Z</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
 <span class="c1"># Create some fake reflected beam data.</span>
-<span class="n">Xs</span> <span class="o">=</span> <span class="n">reflected</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Xs</span> <span class="o">=</span> <span class="n">reflected</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">Xs</span> <span class="o">=</span> <span class="p">(</span><span class="n">Xs</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">Xs</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># Bin edges -&gt; points</span>
 <span class="n">decay</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">Xs</span> <span class="o">-</span> <span class="mf">4.</span><span class="p">)</span> <span class="o">/</span> <span class="mf">3.</span><span class="p">)</span>
 <span class="n">span</span> <span class="o">=</span> <span class="n">decay</span> <span class="o">&lt;</span> <span class="mf">1.</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">44</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">55</span><span class="p">]:</span>
-    <span class="n">Ys</span> <span class="o">=</span> <span class="n">reflected</span><span class="o">.</span><span class="n">dataY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">Ys</span> <span class="o">=</span> <span class="n">reflected</span><span class="o">.</span><span class="n">mutableY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">Ys</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
     <span class="n">Ys</span><span class="p">[</span><span class="n">span</span><span class="p">]</span> <span class="o">=</span> <span class="n">decay</span><span class="p">[</span><span class="n">span</span><span class="p">]</span>
 <span class="n">reflected</span> <span class="o">=</span> <span class="n">GroupDetectors</span><span class="p">(</span>
@@ -1627,8 +1625,8 @@ lambda) direct beam data.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Reflectometry/inc/MantidReflectometry/ReflectometrySumInQ.h">ReflectometrySumInQ.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/Reflectometry/src/ReflectometrySumInQ.cpp">ReflectometrySumInQ.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Reflectometry/inc/MantidReflectometry/ReflectometrySumInQ.h">ReflectometrySumInQ.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/Reflectometry/src/ReflectometrySumInQ.cpp">ReflectometrySumInQ.cpp</a></p>
 </section>
 </section>
 

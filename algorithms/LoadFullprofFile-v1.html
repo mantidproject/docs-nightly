@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadFullprofFile v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>LoadFullprofFile v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/LoadFullprofFile-v1';</script>
@@ -337,9 +337,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1523,7 +1521,7 @@ fit. The introduction can be found in the wiki page of
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;LaB6: A = B = C = </span><span class="si">{:.5f}</span><span class="s2">, Alpha = Beta = Gamma = </span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">infotablews</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)[</span><span class="n">infotablews</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)],</span>
                                                                        <span class="n">infotablews</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)[</span><span class="n">infotablews</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;Alpha&#39;</span><span class="p">)]))</span>
 
-<span class="n">maxy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dataws</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">maxy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dataws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum peak value (calculated) = </span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">maxy</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1543,7 +1541,7 @@ Maximum peak value (calculated) = 13.38550
 <span class="n">reftablews</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;LaB6_Ref_Table&quot;</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reflection table imported </span><span class="si">{}</span><span class="s2"> peaks.  Faked data workspace contains </span><span class="si">{}</span><span class="s2"> data points.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-    <span class="n">reftablews</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(),</span> <span class="nb">len</span><span class="p">(</span><span class="n">fakedataws</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
+    <span class="n">reftablews</span><span class="o">.</span><span class="n">rowCount</span><span class="p">(),</span> <span class="nb">len</span><span class="p">(</span><span class="n">fakedataws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
 
 <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Peak </span><span class="si">{}</span><span class="s2"> of (</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">): Alpha = </span><span class="si">{:.5f}</span><span class="s2">, Beta = </span><span class="si">{:.5f}</span><span class="s2">, FWHM = </span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">reftablews</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
@@ -1563,7 +1561,7 @@ Peak 75 of (9, 3, 0): Alpha = 0.25569, Beta = 0.13821, FWHM = 14.67480
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/PythonInterface/plugins/algorithms/LoadFullprofFile.py">LoadFullprofFile.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/PythonInterface/plugins/algorithms/LoadFullprofFile.py">LoadFullprofFile.py</a></p>
 </section>
 </section>
 

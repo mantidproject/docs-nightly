@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ComputeCalibrationCoefVan v1 &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>ComputeCalibrationCoefVan v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -339,9 +339,7 @@
 <li class="toctree-l1"><a class="reference internal" href="BASISDiffraction-v1.html">BASISDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISPowderDiffraction-v1.html">BASISPowderDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BASISReduction-v1.html">BASISReduction v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesQuasi-v1.html">BayesQuasi v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesQuasi2-v1.html">BayesQuasi2 v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BayesStretch-v1.html">BayesStretch v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BayesStretch2-v1.html">BayesStretch2 v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BilbySANSDataProcessor-v1.html">BilbySANSDataProcessor v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bin2DPowderDiffraction-v1.html">Bin2DPowderDiffraction v1</a></li>
@@ -1551,12 +1549,12 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <span class="n">epptable</span> <span class="o">=</span> <span class="n">FindEPP</span><span class="p">(</span><span class="n">wsVana</span><span class="p">)</span>
 <span class="c1"># calculate correction coefficients</span>
 <span class="n">wsCoefs</span> <span class="o">=</span> <span class="n">ComputeCalibrationCoefVan</span><span class="p">(</span><span class="n">wsVana</span><span class="p">,</span> <span class="n">epptable</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Spectrum 4 of the output workspace is filled with:  </span><span class="si">{</span><span class="n">wsCoefs</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">999</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Spectrum 4 of the output workspace is filled with:  </span><span class="si">{</span><span class="n">wsCoefs</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">999</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="c1"># wsCoefs can be used as rhs with Divide algorithm to apply correction to the data</span>
 <span class="n">wsCorr</span> <span class="o">=</span> <span class="n">wsVana</span><span class="o">/</span><span class="n">wsCoefs</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Spectrum 4 of the input workspace is filled with:  </span><span class="si">{</span><span class="n">wsVana</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">999</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Spectrum 4 of the corrected workspace is filled with:  </span><span class="si">{</span><span class="n">wsCorr</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">999</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.5f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Spectrum 4 of the input workspace is filled with:  </span><span class="si">{</span><span class="n">wsVana</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">999</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Spectrum 4 of the corrected workspace is filled with:  </span><span class="si">{</span><span class="n">wsCorr</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">999</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.5f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1579,7 +1577,7 @@ Spectrum 4 of the corrected workspace is filled with:  0.00015
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/0d530050469409c4c75ad289ab7c3ff457ef5b04/Framework/PythonInterface/plugins/algorithms/ComputeCalibrationCoefVan.py">ComputeCalibrationCoefVan.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/PythonInterface/plugins/algorithms/ComputeCalibrationCoefVan.py">ComputeCalibrationCoefVan.py</a></p>
 </section>
 </section>
 

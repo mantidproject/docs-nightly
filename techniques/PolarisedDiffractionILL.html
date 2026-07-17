@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Data reduction for D7 instrument at the ILL &#8212; MantidProject 6.16.20260714.0025 documentation</title>
+    <title>Data reduction for D7 instrument at the ILL &#8212; MantidProject 6.16.20260716.1934 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=9f542976"></script>
+    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -438,7 +438,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
           <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">&#39;TwoTheta&#39;</span><span class="p">)</span>
 
 <span class="n">SofQ</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;normalised_sample&#39;</span><span class="p">]</span>
-<span class="n">xAxis</span> <span class="o">=</span> <span class="n">SofQ</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">readX</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># TwoTheta axis</span>
+<span class="n">xAxis</span> <span class="o">=</span> <span class="n">SofQ</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># TwoTheta axis</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dS/dOmega (TwoTheta) detector position range: </span><span class="si">{:.2f}</span><span class="s1">...</span><span class="si">{:.2f}</span><span class="s1"> (degrees)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xAxis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xAxis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
@@ -538,7 +538,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
     <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
     <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;EmptyBeam&#39;</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cadmium absorber transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;cadmium_transmission_ws_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;beam_ws_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cadmium absorber transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;cadmium_transmission_ws_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;beam_ws_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 
 <span class="c1"># Quartz transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
@@ -548,7 +548,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
     <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
     <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Quartz transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;quartz_transmission_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Quartz transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;quartz_transmission_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -648,7 +648,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 
 <span class="n">SumSpectra</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections_ZPO_0&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span>
            <span class="n">StartWorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">EndWorkspaceIndex</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average polarisation efficiency in the Z direction is </span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">132.0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average polarisation efficiency in the Z direction is </span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">132.0</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -953,7 +953,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
     <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
     <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Vanadium transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;vanadium_transmission_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Vanadium transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;vanadium_transmission_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 
 <span class="c1"># Vanadium reduction</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
@@ -1192,7 +1192,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
     <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
     <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sample transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample_transmission_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">readY</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sample transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample_transmission_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 
 <span class="c1"># Sample reduction</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>

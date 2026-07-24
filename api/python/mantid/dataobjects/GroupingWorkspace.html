@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>GroupingWorkspace &#8212; MantidProject 6.16.20260716.1934 documentation</title>
+    <title>GroupingWorkspace &#8212; MantidProject 6.16.20260723.1140 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../../_static/documentation_options.js?v=e14c7a57"></script>
+    <script src="../../../../_static/documentation_options.js?v=7f7f8c44"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/dataobjects/GroupingWorkspace';</script>
@@ -1419,13 +1419,13 @@ Default is number of histograms in target workspace if other masks are present o
 <dl class="py method">
 <dt class="sig sig-object py" id="mantid.dataobjects.GroupingWorkspace.setDx">
 <span class="sig-name descname"><span class="pre">setDx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(MatrixWorkspace)self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(int)workspaceIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(object)dX</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.GroupingWorkspace.setDx" title="Link to this definition">#</a></dt>
-<dd><p>Set Dx values from a python list or numpy array. It performs a simple copy into the array.</p>
+<dd><p>Set Dx values from a python list or numpy array. It performs a simple copy into the array (deprecated, use <a class="reference internal" href="../api/MatrixWorkspace.html#mantid.api.MatrixWorkspace.setSharedDx" title="mantid.api.MatrixWorkspace.setSharedDx"><code class="xref py py-class docutils literal notranslate"><span class="pre">setSharedDx</span></code></a> instead)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mantid.dataobjects.GroupingWorkspace.setE">
 <span class="sig-name descname"><span class="pre">setE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(MatrixWorkspace)self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(int)workspaceIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(object)e</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.GroupingWorkspace.setE" title="Link to this definition">#</a></dt>
-<dd><p>Set E values from a python list or numpy array. It performs a simple copy into the array.</p>
+<dd><p>Set E values from a python list or numpy array. It performs a simple copy into the array (deprecated, use <a class="reference internal" href="../api/MatrixWorkspace.html#mantid.api.MatrixWorkspace.setSharedE" title="mantid.api.MatrixWorkspace.setSharedE"><code class="xref py py-class docutils literal notranslate"><span class="pre">setSharedE</span></code></a> instead)</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1468,6 +1468,30 @@ Default is number of histograms in target workspace if other masks are present o
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="mantid.dataobjects.GroupingWorkspace.setSharedDx">
+<span class="sig-name descname"><span class="pre">setSharedDx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(MatrixWorkspace)self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(int)workspaceIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(object)dX</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.GroupingWorkspace.setSharedDx" title="Link to this definition">#</a></dt>
+<dd><p>Set the Dx data at the given index by building a new copy-on-write array from a python list or numpy array and sharing it into the workspace.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mantid.dataobjects.GroupingWorkspace.setSharedE">
+<span class="sig-name descname"><span class="pre">setSharedE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(MatrixWorkspace)self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(int)workspaceIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(object)e</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.GroupingWorkspace.setSharedE" title="Link to this definition">#</a></dt>
+<dd><p>Set the E data at the given index by building a new copy-on-write array from a python list or numpy array and sharing it into the workspace.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mantid.dataobjects.GroupingWorkspace.setSharedX">
+<span class="sig-name descname"><span class="pre">setSharedX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(MatrixWorkspace)self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(int)workspaceIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(object)x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.GroupingWorkspace.setSharedX" title="Link to this definition">#</a></dt>
+<dd><p>Set the X data at the given index by building a new copy-on-write array from a python list or numpy array and sharing it into the workspace.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mantid.dataobjects.GroupingWorkspace.setSharedY">
+<span class="sig-name descname"><span class="pre">setSharedY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(MatrixWorkspace)self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(int)workspaceIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(object)y</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.GroupingWorkspace.setSharedY" title="Link to this definition">#</a></dt>
+<dd><p>Set the Y data at the given index by building a new copy-on-write array from a python list or numpy array and sharing it into the workspace.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="mantid.dataobjects.GroupingWorkspace.setTitle">
 <span class="sig-name descname"><span class="pre">setTitle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(Workspace)self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(str)title</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.GroupingWorkspace.setTitle" title="Link to this definition">#</a></dt>
 <dd><p>Set the title of the workspace</p>
@@ -1482,13 +1506,13 @@ Default is number of histograms in target workspace if other masks are present o
 <dl class="py method">
 <dt class="sig sig-object py" id="mantid.dataobjects.GroupingWorkspace.setX">
 <span class="sig-name descname"><span class="pre">setX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(MatrixWorkspace)self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(int)workspaceIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(object)x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.GroupingWorkspace.setX" title="Link to this definition">#</a></dt>
-<dd><p>Set X values from a python list or numpy array. It performs a simple copy into the array.</p>
+<dd><p>Set X values from a python list or numpy array. It performs a simple copy into the array (deprecated, use <a class="reference internal" href="../api/MatrixWorkspace.html#mantid.api.MatrixWorkspace.setSharedX" title="mantid.api.MatrixWorkspace.setSharedX"><code class="xref py py-class docutils literal notranslate"><span class="pre">setSharedX</span></code></a> instead)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mantid.dataobjects.GroupingWorkspace.setY">
 <span class="sig-name descname"><span class="pre">setY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(MatrixWorkspace)self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(int)workspaceIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(object)y</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.GroupingWorkspace.setY" title="Link to this definition">#</a></dt>
-<dd><p>Set Y values from a python list or numpy array. It performs a simple copy into the array.</p>
+<dd><p>Set Y values from a python list or numpy array. It performs a simple copy into the array (deprecated, use <a class="reference internal" href="../api/MatrixWorkspace.html#mantid.api.MatrixWorkspace.setSharedY" title="mantid.api.MatrixWorkspace.setSharedY"><code class="xref py py-class docutils literal notranslate"><span class="pre">setSharedY</span></code></a> instead)</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1720,6 +1744,10 @@ Default is number of histograms in target workspace if other masks are present o
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.GroupingWorkspace.setPlotType"><code class="docutils literal notranslate"><span class="pre">GroupingWorkspace.setPlotType()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.GroupingWorkspace.setRun"><code class="docutils literal notranslate"><span class="pre">GroupingWorkspace.setRun()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.GroupingWorkspace.setSample"><code class="docutils literal notranslate"><span class="pre">GroupingWorkspace.setSample()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.GroupingWorkspace.setSharedDx"><code class="docutils literal notranslate"><span class="pre">GroupingWorkspace.setSharedDx()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.GroupingWorkspace.setSharedE"><code class="docutils literal notranslate"><span class="pre">GroupingWorkspace.setSharedE()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.GroupingWorkspace.setSharedX"><code class="docutils literal notranslate"><span class="pre">GroupingWorkspace.setSharedX()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.GroupingWorkspace.setSharedY"><code class="docutils literal notranslate"><span class="pre">GroupingWorkspace.setSharedY()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.GroupingWorkspace.setTitle"><code class="docutils literal notranslate"><span class="pre">GroupingWorkspace.setTitle()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.GroupingWorkspace.setValue"><code class="docutils literal notranslate"><span class="pre">GroupingWorkspace.setValue()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.GroupingWorkspace.setX"><code class="docutils literal notranslate"><span class="pre">GroupingWorkspace.setX()</span></code></a></li>

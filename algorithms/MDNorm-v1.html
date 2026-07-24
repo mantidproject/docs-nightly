@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MDNorm v1 &#8212; MantidProject 6.16.20260716.1934 documentation</title>
+    <title>MDNorm v1 &#8212; MantidProject 6.16.20260723.1140 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=e14c7a57"></script>
+    <script src="../_static/documentation_options.js?v=7f7f8c44"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1215,6 +1215,7 @@
 <li class="toctree-l1"><a class="reference internal" href="SaveMD-v1.html">SaveMD v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SaveMD-v2.html">SaveMD v2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SaveMDHistoToVTK-v1.html">SaveMDHistoToVTK v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SaveMDToAscii-v1.html">SaveMDToAscii v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SaveMask-v1.html">SaveMask v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SaveNISTDAT-v1.html">SaveNISTDAT v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SaveNXSPE-v1.html">SaveNXSPE v1</a></li>
@@ -1367,6 +1368,7 @@
 <li class="toctree-l1"><a class="reference internal" href="VesuvioResolution-v1.html">VesuvioResolution v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="VesuvioTOFFit-v1.html">VesuvioTOFFit v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="VesuvioThickness-v1.html">VesuvioThickness v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VesuvioTransmission-v1.html">VesuvioTransmission v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ViewBOA-v1.html">ViewBOA v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="VisionReduction-v1.html">VisionReduction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="WANDPowderReduction-v1.html">WANDPowderReduction v1</a></li>
@@ -1444,7 +1446,7 @@
 <p>Bins multidimensional data and calculate the normalization on the same grid</p>
 <section id="see-also">
 <h3>See Also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h3>
-<p><a class="reference internal" href="CropWorkspaceForMDNorm-v1.html#algm-cropworkspaceformdnorm"><span class="std std-ref">CropWorkspaceForMDNorm</span></a>, <a class="reference internal" href="MDNormSCD-v1.html#algm-mdnormscd"><span class="std std-ref">MDNormSCD</span></a>, <a class="reference internal" href="MDNormDirectSC-v1.html#algm-mdnormdirectsc"><span class="std std-ref">MDNormDirectSC</span></a>, <a class="reference internal" href="RecalculateTrajectoriesExtents-v1.html#algm-recalculatetrajectoriesextents"><span class="std std-ref">RecalculateTrajectoriesExtents</span></a></p>
+<p><a class="reference internal" href="CropWorkspaceForMDNorm-v1.html#algm-cropworkspaceformdnorm"><span class="std std-ref">CropWorkspaceForMDNorm</span></a>, <a class="reference internal" href="MDNormSCD-v1.html#algm-mdnormscd"><span class="std std-ref">MDNormSCD</span></a>, <a class="reference internal" href="MDNormDirectSC-v1.html#algm-mdnormdirectsc"><span class="std std-ref">MDNormDirectSC</span></a>, <a class="reference internal" href="RecalculateTrajectoriesExtents-v1.html#algm-recalculatetrajectoriesextents"><span class="std std-ref">RecalculateTrajectoriesExtents</span></a>, <a class="reference internal" href="ConvertHFIRSCDtoMDE-v1.html#algm-converthfirscdtomde"><span class="std std-ref">ConvertHFIRSCDtoMDE</span></a></p>
 </section>
 </section>
 <section id="properties">
@@ -1507,133 +1509,139 @@
 <td></td>
 <td><p>An input workspace containing momentum dependent flux. Mandatory for diffraction. No effect on direct geometry inelastic</p></td>
 </tr>
-<tr class="row-even"><td><p>Dimension0Name</p></td>
+<tr class="row-even"><td><p>MonoSCDNormalizationWorkspace</p></td>
+<td><p>Input</p></td>
+<td><p><a class="reference internal" href="../api/python/mantid/dataobjects/MDEventWorkspace1D.html#mantid.dataobjects.MDEventWorkspace1D" title="mantid.dataobjects.MDEventWorkspace1D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a></p></td>
+<td></td>
+<td><p>An (optional) input MDEventWorkspace containing a pre-computed normalization for monochromatic single crystal diffraction (e.g. produced by ConvertHFIRSCDtoMDE). Must be in Q_sample frame with the same number of dimensions as InputWorkspace. Cannot be used together with SolidAngleWorkspace/FluxWorkspace or BackgroundWorkspace.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dimension0Name</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>QDimension0</p></td>
 <td><p>Name for the 0th dimension. Leave blank for NONE.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Dimension0Binning</p></td>
+<tr class="row-even"><td><p>Dimension0Binning</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Binning for the 0th dimension. - Leave blank for complete integration - One value is interpreted as step - Two values are interpreted integration interval - Three values are interpreted as min, step, max</p></td>
 </tr>
-<tr class="row-even"><td><p>Dimension1Name</p></td>
+<tr class="row-odd"><td><p>Dimension1Name</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>QDimension1</p></td>
 <td><p>Name for the 1th dimension. Leave blank for NONE.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Dimension1Binning</p></td>
+<tr class="row-even"><td><p>Dimension1Binning</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Binning for the 1th dimension. - Leave blank for complete integration - One value is interpreted as step - Two values are interpreted integration interval - Three values are interpreted as min, step, max</p></td>
 </tr>
-<tr class="row-even"><td><p>Dimension2Name</p></td>
+<tr class="row-odd"><td><p>Dimension2Name</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>QDimension2</p></td>
 <td><p>Name for the 2th dimension. Leave blank for NONE.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Dimension2Binning</p></td>
+<tr class="row-even"><td><p>Dimension2Binning</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Binning for the 2th dimension. - Leave blank for complete integration - One value is interpreted as step - Two values are interpreted integration interval - Three values are interpreted as min, step, max</p></td>
 </tr>
-<tr class="row-even"><td><p>Dimension3Name</p></td>
+<tr class="row-odd"><td><p>Dimension3Name</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>Name for the 3th dimension. Leave blank for NONE.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Dimension3Binning</p></td>
+<tr class="row-even"><td><p>Dimension3Binning</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Binning for the 3th dimension. - Leave blank for complete integration - One value is interpreted as step - Two values are interpreted integration interval - Three values are interpreted as min, step, max</p></td>
 </tr>
-<tr class="row-even"><td><p>Dimension4Name</p></td>
+<tr class="row-odd"><td><p>Dimension4Name</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>Name for the 4th dimension. Leave blank for NONE.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Dimension4Binning</p></td>
+<tr class="row-even"><td><p>Dimension4Binning</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Binning for the 4th dimension. - Leave blank for complete integration - One value is interpreted as step - Two values are interpreted integration interval - Three values are interpreted as min, step, max</p></td>
 </tr>
-<tr class="row-even"><td><p>Dimension5Name</p></td>
+<tr class="row-odd"><td><p>Dimension5Name</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>Name for the 5th dimension. Leave blank for NONE.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Dimension5Binning</p></td>
+<tr class="row-even"><td><p>Dimension5Binning</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>Binning for the 5th dimension. - Leave blank for complete integration - One value is interpreted as step - Two values are interpreted integration interval - Three values are interpreted as min, step, max</p></td>
 </tr>
-<tr class="row-even"><td><p>SymmetryOperations</p></td>
+<tr class="row-odd"><td><p>SymmetryOperations</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
 <td><p>If specified the symmetry will be applied, can be space group name, point group name, or list individual symmetries.</p></td>
 </tr>
-<tr class="row-odd"><td><p>TemporaryDataWorkspace</p></td>
+<tr class="row-even"><td><p>TemporaryDataWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>IMDHistoWorkspace</p></td>
 <td></td>
 <td><p>An (optional) input MDHistoWorkspace used to accumulate data from multiple MDEventWorkspaces. If unspecified a blank MDHistoWorkspace will be created.</p></td>
 </tr>
-<tr class="row-even"><td><p>TemporaryNormalizationWorkspace</p></td>
+<tr class="row-odd"><td><p>TemporaryNormalizationWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>IMDHistoWorkspace</p></td>
 <td></td>
 <td><p>An (optional) input MDHistoWorkspace used to accumulate normalization from multiple MDEventWorkspaces. If unspecified a blank MDHistoWorkspace will be created.</p></td>
 </tr>
-<tr class="row-odd"><td><p>TemporaryBackgroundDataWorkspace</p></td>
+<tr class="row-even"><td><p>TemporaryBackgroundDataWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>IMDHistoWorkspace</p></td>
 <td></td>
 <td><p>An (optional) input MDHistoWorkspace used to accumulate background from multiple background MDEventWorkspaces. If unspecified but BackgroundWorkspace is specified, a blank MDHistoWorkspace will be created.</p></td>
 </tr>
-<tr class="row-even"><td><p>TemporaryBackgroundNormalizationWorkspace</p></td>
+<tr class="row-odd"><td><p>TemporaryBackgroundNormalizationWorkspace</p></td>
 <td><p>Input</p></td>
 <td><p>IMDHistoWorkspace</p></td>
 <td></td>
 <td><p>An (optional) input MDHistoWorkspace used to accumulate background normalization from multiple background MDEventWorkspaces. If unspecified but BackgroundWorkspace is specified, a blank MDHistoWorkspace will be created.</p></td>
 </tr>
-<tr class="row-odd"><td><p>OutputWorkspace</p></td>
+<tr class="row-even"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>A name for the normalized output MDHistoWorkspace.</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputDataWorkspace</p></td>
+<tr class="row-odd"><td><p>OutputDataWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>A name for the output data MDHistoWorkspace.</p></td>
 </tr>
-<tr class="row-odd"><td><p>OutputNormalizationWorkspace</p></td>
+<tr class="row-even"><td><p>OutputNormalizationWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>A name for the output normalization MDHistoWorkspace.</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputBackgroundDataWorkspace</p></td>
+<tr class="row-odd"><td><p>OutputBackgroundDataWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td></td>
 <td><p>A name for the optional output background data MDHistoWorkspace.</p></td>
 </tr>
-<tr class="row-odd"><td><p>OutputBackgroundNormalizationWorkspace</p></td>
+<tr class="row-even"><td><p>OutputBackgroundNormalizationWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td></td>
@@ -1702,6 +1710,83 @@ and <cite>TemporaryNormalizationWorkspace</cite>.</p>
 <p>There are symmetrization options for the data. To achieve this option, one can use the <cite>SymmetryOperations</cite> parameter. It can accept
 a space group name, a point group name, or a list of symmetry operations. More information about symmetry operations can be found
 <a class="reference internal" href="../concepts/SymmetryGroups.html#symmetry-groups"><span class="std std-ref">here</span></a> and <a class="reference internal" href="../concepts/PointAndSpaceGroups.html#point-and-space-groups"><span class="std std-ref">here</span></a></p>
+</section>
+<section id="monochromatic-single-crystal-diffraction">
+<h2>Monochromatic Single Crystal Diffraction<a class="headerlink" href="#monochromatic-single-crystal-diffraction" title="Link to this heading">#</a></h2>
+<p>For monochromatic single crystal diffraction instruments (e.g. WAND, DEMAND), where there is no time-of-flight
+trajectory to integrate, the normalization can instead be supplied directly as a pre-computed
+<cite>MonoSCDNormalizationWorkspace</cite>. This must be an <a class="reference internal" href="../api/python/mantid/api/IMDEventWorkspace.html#mantid.api.IMDEventWorkspace" title="mantid.api.IMDEventWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a> in the
+<cite>Q_sample</cite> frame, with the same number of dimensions as <cite>InputWorkspace</cite>, typically produced by
+<a class="reference internal" href="ConvertHFIRSCDtoMDE-v1.html#algm-converthfirscdtomde"><span class="std std-ref">ConvertHFIRSCDtoMDE</span></a> from the same detector-space data used to build
+<cite>InputWorkspace</cite> (see <a class="reference internal" href="LoadWANDSCD-v1.html#algm-loadwandscd"><span class="std std-ref">LoadWANDSCD</span></a> and <a class="reference internal" href="HB3AAdjustSampleNorm-v1.html#algm-hb3aadjustsamplenorm"><span class="std std-ref">HB3AAdjustSampleNorm</span></a>,
+both of which can produce a matching normalization workspace).</p>
+<p><cite>MonoSCDNormalizationWorkspace</cite> is binned with the exact same basis vectors, extents, and symmetry operations as
+<cite>InputWorkspace</cite>, so the two end up on identical grids before dividing. It cannot be used together with
+<cite>SolidAngleWorkspace</cite>/<cite>FluxWorkspace</cite> (the two normalization methods are mutually exclusive), or with
+<cite>BackgroundWorkspace</cite> (background subtraction is not yet supported for this mode). <cite>InputWorkspace</cite> must not have a
+<cite>DeltaE</cite> dimension (monochromatic single crystal diffraction is elastic only), and must carry a <cite>wavelength</cite> sample
+log – set automatically by <cite>ConvertHFIRSCDtoMDE</cite> – confirming it originates from a monochromatic instrument.</p>
+<p>Unlike the time-of-flight case, there is no <cite>MDNorm_low</cite>/<cite>MDNorm_high</cite> log requirement (those are set by
+<a class="reference internal" href="CropWorkspaceForMDNorm-v1.html#algm-cropworkspaceformdnorm"><span class="std std-ref">CropWorkspaceForMDNorm</span></a>, a time-of-flight-only step), since each event already
+corresponds to a single measured <cite>Q_sample</cite> point rather than a trajectory to integrate. If <cite>RLU</cite> is <cite>True</cite> and a Q
+dimension’s binning is left unspecified (or given only a step size), its default extent is still estimated the same
+way as for time-of-flight data – scaled by the crystal’s lattice parameters – except the underlying momentum bound
+comes from the workspace’s own data-occupied extents (a box-tree bounding box) rather than an instrumental
+wavelength/time-of-flight window.</p>
+<p><strong>Example - MDNorm for WAND</strong></p>
+<p><cite>RLU=True</cite> requires a UB matrix on <cite>InputWorkspace</cite>, set here via <cite>SetUB</cite> for illustration.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">&#39;26640-26700&#39;</span><span class="p">,</span>
+                            <span class="n">VanadiumIPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">VanadiumRunNumber</span><span class="o">=</span><span class="mi">26509</span><span class="p">,</span>
+                            <span class="n">Grouping</span><span class="o">=</span><span class="s1">&#39;4x4&#39;</span><span class="p">,</span> <span class="n">NormalizedBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span> <span class="n">NormalizeData</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">)</span>
+<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s1">&#39;s1,0,1,0,1&#39;</span><span class="p">)</span>
+<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s1">&#39;s1,0,1,0,1&#39;</span><span class="p">)</span>
+<span class="n">ConvertHFIRSCDtoMDE</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">Wavelength</span><span class="o">=</span><span class="mf">1.488</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data_md&#39;</span><span class="p">)</span>
+<span class="n">ConvertHFIRSCDtoMDE</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="n">Wavelength</span><span class="o">=</span><span class="mf">1.488</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;norm_md&#39;</span><span class="p">)</span>
+<span class="n">SetUB</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;data_md&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">5.5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="s1">&#39;1,0,0&#39;</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="s1">&#39;0,1,0&#39;</span><span class="p">)</span>
+
+<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data_md&#39;</span><span class="p">,</span>
+       <span class="n">MonoSCDNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm_md&#39;</span><span class="p">,</span>
+       <span class="n">RLU</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">&#39;QDimension0&#39;</span><span class="p">,</span>
+       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
+       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">&#39;QDimension1&#39;</span><span class="p">,</span>
+       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
+       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">&#39;QDimension2&#39;</span><span class="p">,</span>
+       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
+       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;result&#39;</span><span class="p">,</span>
+       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">&#39;dataMD&#39;</span><span class="p">,</span>
+       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;normMD&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Example - MDNorm for DEMAND</strong></p>
+<p>DEMAND uses a single <cite>HB3AAdjustSampleNorm</cite> call (rather than WAND’s <cite>LoadWANDSCD</cite> +
+<cite>ConvertHFIRSCDtoMDE</cite> pair) to produce the data and normalization workspaces. As above,
+<cite>RLU=True</cite> requires a UB matrix on <cite>InputWorkspace</cite>, set here via <cite>SetUB</cite> for illustration.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">HB3AAdjustSampleNorm</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;HB3A_exp0724_scan0182.nxs, HB3A_exp0724_scan0183.nxs&#39;</span><span class="p">,</span>
+                                   <span class="n">VanadiumFile</span><span class="o">=</span><span class="s1">&#39;HB3A_exp0722_scan0220.nxs&#39;</span><span class="p">,</span>
+                                   <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span>
+                                   <span class="n">NormalizeData</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                   <span class="n">OutputType</span><span class="o">=</span><span class="s1">&#39;Q-sample events&#39;</span><span class="p">,</span>
+                                   <span class="n">MergeInputs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                   <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+                                   <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">)</span>
+<span class="n">SetUB</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">5.5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="s1">&#39;1,0,0&#39;</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="s1">&#39;0,1,0&#39;</span><span class="p">)</span>
+
+<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+       <span class="n">MonoSCDNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span>
+       <span class="n">RLU</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">&#39;QDimension0&#39;</span><span class="p">,</span>
+       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
+       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">&#39;QDimension1&#39;</span><span class="p">,</span>
+       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
+       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">&#39;QDimension2&#39;</span><span class="p">,</span>
+       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
+       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;result&#39;</span><span class="p">,</span>
+       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">&#39;dataMD&#39;</span><span class="p">,</span>
+       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;normMD&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="using-background">
 <h2>Using Background<a class="headerlink" href="#using-background" title="Link to this heading">#</a></h2>
@@ -1909,8 +1994,8 @@ information from both chunks.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/MDAlgorithms/inc/MantidMDAlgorithms/MDNorm.h">MDNorm.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c9847395f34ee1c0c3ece9662d35cf6fe0efe67a/Framework/MDAlgorithms/src/MDNorm.cpp">MDNorm.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b2376ee71b8f65b5e157b341ad992a4cb2d7e1e2/Framework/MDAlgorithms/inc/MantidMDAlgorithms/MDNorm.h">MDNorm.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b2376ee71b8f65b5e157b341ad992a4cb2d7e1e2/Framework/MDAlgorithms/src/MDNorm.cpp">MDNorm.cpp</a></p>
 </section>
 </section>
 
@@ -1967,6 +2052,7 @@ information from both chunks.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monochromatic-single-crystal-diffraction">Monochromatic Single Crystal Diffraction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-background">Using Background</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#source">Source</a></li>
 </ul>

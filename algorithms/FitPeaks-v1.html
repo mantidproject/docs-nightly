@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FitPeaks v1 &#8212; MantidProject 6.16.20260723.1140 documentation</title>
+    <title>FitPeaks v1 &#8212; MantidProject 6.16.20260730.2300+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=7f7f8c44"></script>
+    <script src="../_static/documentation_options.js?v=5db0caae"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -599,6 +599,7 @@
 <li class="toctree-l1"><a class="reference internal" href="EstimateFitParameters-v1.html">EstimateFitParameters v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EstimateMuonAsymmetryFromCounts-v1.html">EstimateMuonAsymmetryFromCounts v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EstimatePeakErrors-v1.html">EstimatePeakErrors v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EstimatePeakIntensities-v1.html">EstimatePeakIntensities v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EstimateResolutionDiffraction-v1.html">EstimateResolutionDiffraction v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EstimateScatteringVolumeCentreOfMass-v1.html">EstimateScatteringVolumeCentreOfMass v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EvaluateFunction-v1.html">EvaluateFunction v1</a></li>
@@ -1557,43 +1558,67 @@
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>Least squares</p></td>
-<td><p>Cost functions. Allowed values: [‘Least squares’, ‘Rwp’]</p></td>
+<td><p>Cost functions. Allowed values: [‘Least squares’, ‘Rwp’, ‘Unweighted least squares’]</p></td>
 </tr>
-<tr class="row-odd"><td><p>MaxFitIterations</p></td>
+<tr class="row-odd"><td><p>StrictConvergence</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td><p>If true, a peak fit is only accepted when the minimizer reports the exact status ‘success’. If false, fits that stop because the changes in function or parameter value have become too small are also accepted as converged.</p></td>
+</tr>
+<tr class="row-even"><td><p>MaxFitIterations</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>50</p></td>
 <td><p>Maximum number of function fitting iterations.</p></td>
 </tr>
-<tr class="row-even"><td><p>FindBackgroundSigma</p></td>
+<tr class="row-odd"><td><p>FindBackgroundSigma</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
 <td><p>Deprecated property. Use MinimumSignalToNoiseRatio instead.</p></td>
 </tr>
-<tr class="row-odd"><td><p>HighBackground</p></td>
+<tr class="row-even"><td><p>HighBackground</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>Flag whether the input data has high background compared to peak heights.</p></td>
 </tr>
-<tr class="row-even"><td><p>PositionTolerance</p></td>
+<tr class="row-odd"><td><p>PositionTolerance</p></td>
 <td><p>Input</p></td>
 <td><p>dbl list</p></td>
 <td></td>
 <td><p>List of tolerance on fitted peak positions against given peak positions.If there is only one value given, then</p></td>
 </tr>
-<tr class="row-odd"><td><p>MinimumPeakHeight</p></td>
+<tr class="row-even"><td><p>PositionToleranceMode</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p>Check</p></td>
+<td><p>How PositionTolerance is applied. ‘Check’ (default): the tolerance is only a post-fit acceptance criterion - a fitted centre further than the tolerance from its expected position is rejected. ‘Constrain’: the tolerance additionally bounds the peak centre during the fit (expected position +/- tolerance). Unlike ConstrainPeakPositions, the reported position error is recomputed free of the constraint penalty so it remains a genuine covariance error. Requires PositionTolerance to be specified. Allowed values: [‘Check’, ‘Constrain’]</p></td>
+</tr>
+<tr class="row-odd"><td><p>PositionToleranceFractional</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>If true, each PositionTolerance value is interpreted as a fraction of this peak’s fit window width rather than an absolute value: the effective tolerance becomes tolerance*(window_max - window_min). Because the fit window can differ per spectrum (e.g. via FitPeakWindowWorkspace), this gives a per-spectrum tolerance. Applies to both the ‘Check’ and ‘Constrain’ modes.</p></td>
+</tr>
+<tr class="row-even"><td><p>MinimumPeakHeight</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>0</p></td>
 <td><p>Used for validating peaks before and after fitting. If a peak’s observed/estimated or fitted height is under this value, the peak will be marked as error.</p></td>
 </tr>
-<tr class="row-even"><td><p>ConstrainPeakPositions</p></td>
+<tr class="row-odd"><td><p>ConstrainPeakPositions</p></td>
 <td><p>Input</p></td>
 <td><p>boolean</p></td>
 <td><p>True</p></td>
 <td><p>If true peak position will be constrained by estimated positions (highest Y value position) and the peak width either estimted by observation or calculate.</p></td>
+</tr>
+<tr class="row-even"><td><p>CalculateUnconstrainedErrors</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>If true, and a peak-position constraint is applied during fitting (ConstrainPeakPositions or PositionToleranceMode=’Constrain’), the reported parameter errors are recomputed from the unconstrained cost function at the fitted values. A position constraint contributes curvature to the Hessian that the error calculation inverts, which reduces the reported position error; enabling this option instead reports the covariance error from the data alone. Costs one extra (zero-iteration) fit per constrained peak.</p></td>
 </tr>
 <tr class="row-odd"><td><p>CopyLastGoodPeakParameters</p></td>
 <td><p>Input</p></td>
@@ -1835,12 +1860,46 @@ the peak widths, instead.</p>
 </section>
 <section id="tolerance-on-fitting-peaks-positions">
 <h3>Tolerance on Fitting Peaks Positions<a class="headerlink" href="#tolerance-on-fitting-peaks-positions" title="Link to this heading">#</a></h3>
-<p>Tolerance will be always checked!</p>
 <ul class="simple">
 <li><p>Uniform tolerance</p></li>
 <li><p>Non-uniform tolerance</p></li>
 <li><p>Case 2, 3 and 4</p></li>
 </ul>
+<section id="positiontolerancemode">
+<h4>PositionToleranceMode<a class="headerlink" href="#positiontolerancemode" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">PositionTolerance</span></code> can be applied in two ways, selected by <code class="docutils literal notranslate"><span class="pre">PositionToleranceMode</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Check</span></code> (default) — the tolerance is only a post-fit acceptance criterion. The peak
+centre is fit freely (within its fit window) and a fitted centre that ends up further than
+the tolerance from its expected position is rejected. This is the historical behaviour.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Constrain</span></code> — the tolerance additionally bounds the peak centre <em>during</em> the fit, to
+<code class="docutils literal notranslate"><span class="pre">expected</span> <span class="pre">position</span> <span class="pre">+/-</span> <span class="pre">tolerance</span></code>. This is useful when a well-determined expected position
+(e.g. carried forward from a higher-SNR fit) should keep a weak peak’s centre from wandering.
+<code class="docutils literal notranslate"><span class="pre">PositionTolerance</span></code> must be specified when using this mode, and <code class="docutils literal notranslate"><span class="pre">ConstrainPeakPositions</span></code>
+must be set to <code class="docutils literal notranslate"><span class="pre">false</span></code>: both bound the centre during the fit, so they are mutually exclusive.</p></li>
+</ul>
+</section>
+<section id="positiontolerancefractional">
+<h4>PositionToleranceFractional<a class="headerlink" href="#positiontolerancefractional" title="Link to this heading">#</a></h4>
+<p>By default each <code class="docutils literal notranslate"><span class="pre">PositionTolerance</span></code> value is an absolute distance in the fit’s x-unit. If
+<code class="docutils literal notranslate"><span class="pre">PositionToleranceFractional</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, each value is instead interpreted as a <em>fraction</em> of
+that peak’s fit window width, so the effective tolerance becomes
+<code class="docutils literal notranslate"><span class="pre">tolerance</span> <span class="pre">*</span> <span class="pre">(window_max</span> <span class="pre">-</span> <span class="pre">window_min)</span></code>. Because the fit window can differ per spectrum (for
+example when supplied via <code class="docutils literal notranslate"><span class="pre">FitPeakWindowWorkspace</span></code>), this yields a per-spectrum per-peak tolerance from a
+single fractional value — e.g. <code class="docutils literal notranslate"><span class="pre">PositionTolerance=[0.25]</span></code> bounds each peak’s centre to within
+a quarter of its own fit window width of the expected position. It applies to both the <code class="docutils literal notranslate"><span class="pre">Check</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Constrain</span></code> modes and defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</section>
+<section id="calculateunconstrainederrors">
+<h4>CalculateUnconstrainedErrors<a class="headerlink" href="#calculateunconstrainederrors" title="Link to this heading">#</a></h4>
+<p>When a peak-position constraint is applied during fitting — either <code class="docutils literal notranslate"><span class="pre">ConstrainPeakPositions</span></code> or
+<code class="docutils literal notranslate"><span class="pre">PositionToleranceMode='Constrain'</span></code> — the constraint contributes curvature to the Hessian that
+the error calculation inverts, so the reported position error reflects the constraint as well as
+the data. If <code class="docutils literal notranslate"><span class="pre">CalculateUnconstrainedErrors</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the parameter errors are recomputed
+from the unconstrained cost function at the fitted parameter values, i.e. the covariance error
+from the data alone. This costs one extra (zero-iteration) fit per constrained peak. It defaults
+to <code class="docutils literal notranslate"><span class="pre">False</span></code> and has no effect when no position constraint is applied.</p>
+</section>
 </section>
 <section id="algorithm-configurations">
 <h3>Algorithm Configurations<a class="headerlink" href="#algorithm-configurations" title="Link to this heading">#</a></h3>
@@ -2095,8 +2154,8 @@ Expected @ 1.076  Fitted @ 1.075
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b2376ee71b8f65b5e157b341ad992a4cb2d7e1e2/Framework/Algorithms/inc/MantidAlgorithms/FitPeaks.h">FitPeaks.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b2376ee71b8f65b5e157b341ad992a4cb2d7e1e2/Framework/Algorithms/src/FitPeaks.cpp">FitPeaks.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e62779f4f317eecf1513c3e6bdaf32f4c0783d6e/Framework/Algorithms/inc/MantidAlgorithms/FitPeaks.h">FitPeaks.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e62779f4f317eecf1513c3e6bdaf32f4c0783d6e/Framework/Algorithms/src/FitPeaks.cpp">FitPeaks.cpp</a></p>
 </section>
 </section>
 
@@ -2169,7 +2228,12 @@ Expected @ 1.076  Fitted @ 1.075
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-on-partial-spectra">Limitations on Partial Spectra</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peak-positions">Peak positions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-window">Fit Window</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tolerance-on-fitting-peaks-positions">Tolerance on Fitting Peaks Positions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tolerance-on-fitting-peaks-positions">Tolerance on Fitting Peaks Positions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#positiontolerancemode">PositionToleranceMode</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#positiontolerancefractional">PositionToleranceFractional</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculateunconstrainederrors">CalculateUnconstrainedErrors</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-configurations">Algorithm Configurations</a></li>
 </ul>
 </li>

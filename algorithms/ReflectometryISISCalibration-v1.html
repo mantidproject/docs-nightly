@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometryISISCalibration v1 &#8212; MantidProject 6.16.20260801.2118+uncommitted documentation</title>
+    <title>ReflectometryISISCalibration v1 &#8212; MantidProject 6.16.20260804.1536+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=c4c6baf9"></script>
+    <script src="../_static/documentation_options.js?v=ef46b203"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ReflectometryISISCalibration-v1';</script>
@@ -1442,7 +1442,7 @@
 <span id="algm-reflectometryisiscalibration"></span><span id="algm-reflectometryisiscalibration-v1"></span><h1>ReflectometryISISCalibration v1<a class="headerlink" href="#reflectometryisiscalibration-v1" title="Link to this heading">#</a></h1>
 <section id="summary">
 <span id="index-0"></span><h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<p>Corrects the positions of detector pixels by applying TwoTheta offsets provided in a calibration file.</p>
+<p>Corrects detector pixel positions using a calibration file and a selected instrument workflow.</p>
 <section id="see-also">
 <h3>See Also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h3>
 <p><a class="reference internal" href="ReflectometryISISLoadAndProcess-v1.html#algm-reflectometryisisloadandprocess"><span class="std std-ref">ReflectometryISISLoadAndProcess</span></a>, <a class="reference internal" href="SpecularReflectionPositionCorrect-v2.html#algm-specularreflectionpositioncorrect"><span class="std std-ref">SpecularReflectionPositionCorrect</span></a></p>
@@ -1470,9 +1470,27 @@
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
-<td><p>Calibration data file containing a list of detector IDs and twoTheta offsets (in degrees).These should be provided as two spaced-delimited columns, labelled detectorid and theta_offset. Allowed values: [‘dat’]</p></td>
+<td><p>Calibration data file containing detector IDs and offsets for the default workflow, or spectrum numbers and absolute theta values for the POLREF workflow. Allowed values: [‘dat’]</p></td>
 </tr>
-<tr class="row-even"><td><p>OutputWorkspace</p></td>
+<tr class="row-even"><td><p>InstrumentWorkflow</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p>Default</p></td>
+<td><p>The instrument workflow that defines how the calibration file should be interpreted. Allowed values: [‘Default’, ‘POLREF’]</p></td>
+</tr>
+<tr class="row-odd"><td><p>SpecularPixelSpectrumNo</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>The spectrum number of the specular pixel in the subject run. Required for the POLREF workflow.</p></td>
+</tr>
+<tr class="row-even"><td><p>ExperimentAngle</p></td>
+<td><p>Input</p></td>
+<td><p>number</p></td>
+<td><p><em>Optional</em></p></td>
+<td><p>The experiment theta angle in degrees. Required for the POLREF workflow.</p></td>
+</tr>
+<tr class="row-odd"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
@@ -1484,8 +1502,16 @@
 </section>
 <section id="reflectometryisiscalibration">
 <h2>ReflectometryISISCalibration<a class="headerlink" href="#reflectometryisiscalibration" title="Link to this heading">#</a></h2>
-<p>This algorithm adjusts the positions of individual detector pixels in a workspace based on the theta offset values provided in the calibration file. The algorithm takes a copy of the input workspace before applying the position changes, so the original workspace remains unchanged.</p>
-<p>A <code class="docutils literal notranslate"><span class="pre">.dat</span></code> calibration file must be provided via the <code class="docutils literal notranslate"><span class="pre">CalibrationFile</span></code> property. This file should contain two, space-delimited columns labelled <code class="docutils literal notranslate"><span class="pre">detectorid</span></code> and <code class="docutils literal notranslate"><span class="pre">theta_offset</span></code> (the labels are not case-sensitive). The detector IDs are the IDs for the detector pixels that should be moved. The theta offsets are the change required to the two theta value for each detector, in degrees. Any lines in the calibration file that begin with <code class="docutils literal notranslate"><span class="pre">#</span></code> will be ignored to allow metadata to be added to the file, if desired.</p>
+<p>This algorithm adjusts the positions of individual detector pixels in a workspace based on the calibration values provided in the calibration file. The algorithm takes a copy of the input workspace before applying the position changes, so the original workspace remains unchanged.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">.dat</span></code> calibration file must be provided via the <code class="docutils literal notranslate"><span class="pre">CalibrationFile</span></code> property. Lines beginning with <code class="docutils literal notranslate"><span class="pre">#</span></code> are ignored.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">InstrumentWorkflow</span></code> property controls the meaning of the calibration values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Default</span></code>: the file should contain two, space-delimited columns labelled <code class="docutils literal notranslate"><span class="pre">detectorid</span></code> and <code class="docutils literal notranslate"><span class="pre">theta_offset</span></code> (the labels are not case-sensitive). The detector IDs are the IDs for the detector pixels that should be moved. The theta offsets are the change required to the two theta value for each detector, in degrees.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">POLREF</span></code>: the file should contain two, space-delimited columns labelled <code class="docutils literal notranslate"><span class="pre">spectrumnumber</span></code> and <code class="docutils literal notranslate"><span class="pre">angle</span></code> (the labels are not case-sensitive). The spectrum number is matched against the spectrum number of each non-monitor detector spectrum in the input workspace. The angles are absolute detector theta values in degrees and are converted to two theta offsets internally.</p></li>
+</ul>
+<p>For the <code class="docutils literal notranslate"><span class="pre">POLREF</span></code> workflow, <code class="docutils literal notranslate"><span class="pre">ExperimentAngle</span></code> is the experiment theta angle in degrees, and <code class="docutils literal notranslate"><span class="pre">SpecularPixelSpectrumNo</span></code> is the fitted specular pixel spectrum number for the experiment. The same <code class="docutils literal notranslate"><span class="pre">SpecularPixelSpectrumNo</span></code> is used in the calibration-file spectrum-number coordinate system and in the input workspace spectrum-number coordinate system. It may be fractional, in which case linear interpolation is used on the calibration file.</p>
+<p>The selected <code class="docutils literal notranslate"><span class="pre">InstrumentWorkflow</span></code> controls how detector positions are corrected. The <code class="docutils literal notranslate"><span class="pre">Default</span></code> workflow applies detector corrections as vertical shifts. The <code class="docutils literal notranslate"><span class="pre">POLREF</span></code> workflow rotates detectors around the sample.</p>
+<p>The POLREF calibration map has an inverted angular coordinate relative to Mantid’s signed two theta coordinate for the workspace: in current POLREF maps, the calibration-file <code class="docutils literal notranslate"><span class="pre">angle</span></code> decreases as spectrum number increases, while the workspace signed two theta increases.</p>
 <p>The below is an example of a valid calibration file:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Optional header that can be used
 # to include any useful information
@@ -1497,6 +1523,14 @@ detectorid theta_offset
 </div>
 <p>For each detector pixel in the calibration file, the algorithm finds the existing two theta value in degrees and then adds the theta offset to calculate the new two theta value (so new two theta = existing two theta + theta offset). This new two theta is then passed to <a class="reference internal" href="SpecularReflectionPositionCorrect-v2.html#algm-specularreflectionpositioncorrect"><span class="std std-ref">SpecularReflectionPositionCorrect v2</span></a>, which converts it to cartesian co-ordinates and moves the detector pixel to the new location.</p>
 <p>Only the detectors specified in the file will be moved, all other detectors in the workspace will remain in their original positions.</p>
+<p>The below is an example of a valid POLREF calibration file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spectrumnumber angle
+11 3.074720743
+12 3.069434420
+13 3.063999483
+</pre></div>
+</div>
+<p>For POLREF input, all non-monitor detector spectra in the input workspace are considered. Only spectrum numbers covered by the calibration file range are moved; monitors and spectrum numbers outside the calibration range are left unchanged. Spectrum numbers in the calibration file must be integer. Missing spectrum numbers inside the calibration range, for example dead pixels, are supported by linear interpolation between the neighbouring spectrum-number rows. Fractional specular pixel spectrum numbers are also supported by the same interpolation.</p>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
@@ -1555,7 +1589,7 @@ Detector ID 3 two theta: 2.847673279376101
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/82a9eb943c3b0314a5c48fed9472d8bef5cb22ab/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryISISCalibration.py">ReflectometryISISCalibration.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c4623d7d7e3df815f5b36ddd5889e84519197966/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryISISCalibration.py">ReflectometryISISCalibration.py</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.16.20260801.2118+uncommitted documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.16.20260804.1536+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=c4c6baf9"></script>
+    <script src="../../_static/documentation_options.js?v=ef46b203"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/framework';</script>
@@ -758,6 +758,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="../../algorithms/SaveDaveGrp-v1.html#algm-savedavegrp"><span class="std std-ref">SaveDaveGrp v1</span></a> algorithm now optionally converts the spectrum numbers into <code class="docutils literal notranslate"><span class="pre">Q</span></code> values using <a class="reference internal" href="../../algorithms/GetQsInQENSData-v1.html#algm-getqsinqensdata"><span class="std std-ref">GetQsInQENSData v1</span></a> when creating the <code class="docutils literal notranslate"><span class="pre">.grp</span></code> file.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/CopySample-v1.html#algm-copysample"><span class="std std-ref">CopySample v1</span></a> no longer causes a crash when called with <code class="docutils literal notranslate"><span class="pre">CopyShape</span> <span class="pre">=</span> <span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">CopyMaterial</span> <span class="pre">=</span> <span class="pre">True</span></code> and an input workspace that is subsequently overwritten.</p></li>
+<li><p>Algorithm <cite>SaveYDA</cite> now correctly distinguishes between spectra and bin center axes when saving data.</p></li>
 <li><p>In <code class="docutils literal notranslate"><span class="pre">BeamProfileFactory</span></code> the auto-generated beam profile dimensions are now correct when the sample bounding box is offset from the origin. The beam half-extent is now taken from the furthest sample face on either side, so the beam remains valid for samples that are translated or rotated into a negative half-space.</p></li>
 <li><p>In <a class="reference internal" href="../../algorithms/EstimateScatteringVolumeCentreOfMass-v1.html#algm-estimatescatteringvolumecentreofmass"><span class="std std-ref">EstimateScatteringVolumeCentreOfMass</span></a> the shape object now accounts for the goniometer set on the workspace. Previously this was not the case which gave erroneous values in non-rotationally symmetric situations.</p></li>
 <li><p><a class="reference internal" href="../../api/python/mantid/api/FileFinderImpl.html#mantid-api-filefinderimpl"><span class="std std-ref">FileFinder</span></a> now recognises compound file extensions (e.g. <code class="docutils literal notranslate"><span class="pre">.nxs.h5</span></code>) listed in <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code> when expanding multi-run hints, so ranges such as <code class="docutils literal notranslate"><span class="pre">CNCS100:105.nxs.h5</span></code> resolve correctly instead of being misinterpreted as a stem ending in <code class="docutils literal notranslate"><span class="pre">.nxs</span></code> plus an <code class="docutils literal notranslate"><span class="pre">.h5</span></code> extension. As a consequence, a hint that explicitly specifies one extension (e.g. <code class="docutils literal notranslate"><span class="pre">BSS_24234_event.nxs</span></code> or <code class="docutils literal notranslate"><span class="pre">SXD30904.raw.md5</span></code>) no longer silently resolves to a file with a different extension; specify the run number without an extension to let the facility’s preferred extensions apply.</p></li>

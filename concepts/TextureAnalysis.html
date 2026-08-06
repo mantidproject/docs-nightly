@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Texture Analysis Theory &#8212; MantidProject 6.16.20260804.1536+uncommitted documentation</title>
+    <title>Texture Analysis Theory &#8212; MantidProject 6.16.20260805.2155+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=ef46b203"></script>
+    <script src="../_static/documentation_options.js?v=52e85c33"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -701,13 +701,13 @@ by providing either a series of fixed rotations around known axes (cradle) or by
 transformation (cybaman). The flag which controls this behaviour is <code class="docutils literal notranslate"><span class="pre">orient_file_is_euler</span></code>.</p>
 <p>If this is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the orientation file is expect to be a text file with a row for each run and, within each row, a rotation angle for each axis.
 An example snippet is shown below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">45</span>  <span class="mi">0</span>       <span class="mi">0</span>
-<span class="mi">45</span>  <span class="mi">30</span>      <span class="mi">180</span>
-<span class="mi">45</span>  <span class="mi">45</span>      <span class="mi">0</span>
-<span class="mi">45</span>  <span class="mi">45</span>      <span class="mi">180</span>
-<span class="mi">45</span>  <span class="mi">45</span>      <span class="mi">270</span>
-<span class="mi">45</span>  <span class="mi">55</span>      <span class="mi">100</span>
-<span class="mi">45</span>  <span class="mi">90</span>      <span class="mi">0</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">45  0       0</span>
+<span class="go">45  30      180</span>
+<span class="go">45  45      0</span>
+<span class="go">45  45      180</span>
+<span class="go">45  45      270</span>
+<span class="go">45  55      100</span>
+<span class="go">45  90      0</span>
 </pre></div>
 </div>
 <p>These axes are then defined by <code class="docutils literal notranslate"><span class="pre">euler_scheme</span></code>, taking a string of lab directions for the initial
@@ -716,13 +716,13 @@ one for each axis, where rotations are counter-clockwise (1) or clockwise (-1).<
 <p>If <code class="docutils literal notranslate"><span class="pre">orient_file_is_euler</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the orientation file is expected to be a text file with a row for each run and, within each row the first 9 values are expected to
 be a “C-style” (row-major) flattened 3x3 transformation matrix. An example is shown below for the equivalent if the above euler file
 (for <code class="docutils literal notranslate"><span class="pre">euler_scheme</span> <span class="pre">=</span> <span class="pre">YXY</span></code> and <code class="docutils literal notranslate"><span class="pre">euler_axes_sense</span> <span class="pre">=</span> <span class="pre">&quot;-1,-1,-1&quot;</span></code>)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.7071147</span><span class="p">,</span><span class="mf">2.05e-05</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7070989</span><span class="p">,</span><span class="mf">1.45e-05</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">4.35e-05</span><span class="p">,</span><span class="mf">0.7070989</span><span class="p">,</span><span class="o">-</span><span class="mf">4.1e-05</span><span class="p">,</span><span class="mf">0.7071147</span>
-<span class="o">-</span><span class="mf">0.707094</span><span class="p">,</span><span class="mf">0.3535975</span><span class="p">,</span><span class="mf">0.6123617</span><span class="p">,</span><span class="o">-</span><span class="mf">1.39e-05</span><span class="p">,</span><span class="mf">0.8659876</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5000654</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7071196</span><span class="p">,</span><span class="o">-</span><span class="mf">0.3536017</span><span class="p">,</span><span class="o">-</span><span class="mf">0.6123297</span>
-<span class="mf">0.707098</span><span class="p">,</span><span class="mf">0.4999857</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5000267</span><span class="p">,</span><span class="mf">2.63e-05</span><span class="p">,</span><span class="mf">0.7071172</span><span class="p">,</span><span class="mf">0.7070964</span><span class="p">,</span><span class="mf">0.7071155</span><span class="p">,</span><span class="o">-</span><span class="mf">0.4999996</span><span class="p">,</span><span class="mf">0.499988</span>
-<span class="o">-</span><span class="mf">0.7071186</span><span class="p">,</span><span class="mf">0.499997</span><span class="p">,</span><span class="mf">0.4999862</span><span class="p">,</span><span class="o">-</span><span class="mf">1.37e-05</span><span class="p">,</span><span class="mf">0.7070894</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7071242</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7070949</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5000275</span><span class="p">,</span><span class="o">-</span><span class="mf">0.4999892</span>
-<span class="mf">0.4999937</span><span class="p">,</span><span class="mf">0.4999759</span><span class="p">,</span><span class="mf">0.7071283</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7070834</span><span class="p">,</span><span class="mf">0.7071302</span><span class="p">,</span><span class="o">-</span><span class="mf">1.52e-05</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5000394</span><span class="p">,</span><span class="o">-</span><span class="mf">0.4999911</span><span class="p">,</span><span class="mf">0.7070852</span>
-<span class="o">-</span><span class="mf">0.5222607</span><span class="p">,</span><span class="mf">0.5792695</span><span class="p">,</span><span class="o">-</span><span class="mf">0.6258519</span><span class="p">,</span><span class="mf">0.8067115</span><span class="p">,</span><span class="mf">0.573551</span><span class="p">,</span><span class="o">-</span><span class="mf">0.1423229</span><span class="p">,</span><span class="mf">0.2765147</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5792116</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7668465</span>
-<span class="mf">0.7071052</span><span class="p">,</span><span class="mf">0.7071078</span><span class="p">,</span><span class="o">-</span><span class="mf">0.0008898</span><span class="p">,</span><span class="o">-</span><span class="mf">1.14e-05</span><span class="p">,</span><span class="mf">0.0012697</span><span class="p">,</span><span class="mf">0.9999992</span><span class="p">,</span><span class="mf">0.7071084</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7071046</span><span class="p">,</span><span class="mf">0.0009059</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">0.7071147,2.05e-05,-0.7070989,1.45e-05,1.0,4.35e-05,0.7070989,-4.1e-05,0.7071147</span>
+<span class="go">-0.707094,0.3535975,0.6123617,-1.39e-05,0.8659876,-0.5000654,-0.7071196,-0.3536017,-0.6123297</span>
+<span class="go">0.707098,0.4999857,-0.5000267,2.63e-05,0.7071172,0.7070964,0.7071155,-0.4999996,0.499988</span>
+<span class="go">-0.7071186,0.499997,0.4999862,-1.37e-05,0.7070894,-0.7071242,-0.7070949,-0.5000275,-0.4999892</span>
+<span class="go">0.4999937,0.4999759,0.7071283,-0.7070834,0.7071302,-1.52e-05,-0.5000394,-0.4999911,0.7070852</span>
+<span class="go">-0.5222607,0.5792695,-0.6258519,0.8067115,0.573551,-0.1423229,0.2765147,-0.5792116,-0.7668465</span>
+<span class="go">0.7071052,0.7071078,-0.0008898,-1.14e-05,0.0012697,0.9999992,0.7071084,-0.7071046,0.0009059</span>
 </pre></div>
 </div>
 <p>It is anticipated that this matrix would be extracted from the <cite>SscansS2</cite> software <a class="footnote-reference brackets" href="#sscanss" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, and a script is provided below for converted

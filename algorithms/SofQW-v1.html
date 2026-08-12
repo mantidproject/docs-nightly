@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SofQW v1 &#8212; MantidProject 6.16.20260805.2155+uncommitted documentation</title>
+    <title>SofQW v1 &#8212; MantidProject 6.16.20260811.1408+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=52e85c33"></script>
+    <script src="../_static/documentation_options.js?v=89905b29"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -49,7 +49,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="SofQWCentre v1" href="SofQWCentre-v1.html" />
+    <link rel="next" title="SofQWMoments v1" href="SofQWMoments-v1.html" />
     <link rel="prev" title="SmoothNeighbours v1" href="SmoothNeighbours-v1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -1285,11 +1285,9 @@
 <li class="toctree-l1"><a class="reference internal" href="SmoothMD-v1.html">SmoothMD v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SmoothNeighbours-v1.html">SmoothNeighbours v1</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">SofQW v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SofQWCentre-v1.html">SofQWCentre v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SofQWMoments-v1.html">SofQWMoments v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SofQWMomentsScan-v1.html">SofQWMomentsScan v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SofQWNormalisedPolygon-v1.html">SofQWNormalisedPolygon v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SofQWPolygon-v1.html">SofQWPolygon v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SofTwoThetaTOF-v1.html">SofTwoThetaTOF v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SolidAngle-v1.html">SolidAngle v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SortByQVectors-v1.html">SortByQVectors v1</a></li>
@@ -1444,14 +1442,11 @@
 <span id="algm-sofqw"></span><span id="algm-sofqw-v1"></span><h1>SofQW v1<a class="headerlink" href="#sofqw-v1" title="Link to this heading">#</a></h1>
 <section id="summary">
 <span id="index-0"></span><h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<p>Computes S(Q,w) using a either centre point or parallel-piped rebinning.
-The output from each method is:
-CentrePoint - centre-point rebin that takes no account of pixel curvature or area overlap</p>
-<p>Polygon - parallel-piped rebin, outputting a weighted-sum of overlapping polygons</p>
-<p>NormalisedPolygon - parallel-piped rebin, outputting a weighted-sum of overlapping polygons normalised by the fractional area of each overlap</p>
+<p>Computes S(Q,w) via the SofQWNormalisedPolygon algorithm.
+The output is a parallel-piped rebin, outputting a weighted-sum of overlapping polygons normalised by the fractional area of each overlap</p>
 <section id="see-also">
 <h3>See Also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h3>
-<p><a class="reference internal" href="SofQWCentre-v1.html#algm-sofqwcentre"><span class="std std-ref">SofQWCentre</span></a>, <a class="reference internal" href="SofQWPolygon-v1.html#algm-sofqwpolygon"><span class="std std-ref">SofQWPolygon</span></a>, <a class="reference internal" href="SofQWNormalisedPolygon-v1.html#algm-sofqwnormalisedpolygon"><span class="std std-ref">SofQWNormalisedPolygon</span></a>, <a class="reference internal" href="Rebin2D-v1.html#algm-rebin2d"><span class="std std-ref">Rebin2D</span></a></p>
+<p><a class="reference internal" href="SofQWNormalisedPolygon-v1.html#algm-sofqwnormalisedpolygon"><span class="std std-ref">SofQWNormalisedPolygon</span></a>, <a class="reference internal" href="Rebin2D-v1.html#algm-rebin2d"><span class="std std-ref">Rebin2D</span></a></p>
 </section>
 </section>
 <section id="properties">
@@ -1514,12 +1509,6 @@ CentrePoint - centre-point rebin that takes no account of pixel curvature or are
 <td></td>
 <td><p>A table workspace use by SofQWNormalisedPolygon containing a ‘Detector ID’ column as well as ‘Min two theta’ and ‘Max two theta’ columns listing the detector’s min and max scattering angles in radians.</p></td>
 </tr>
-<tr class="row-even"><td><p>Method</p></td>
-<td><p>Input</p></td>
-<td><p>string</p></td>
-<td><p>Centre</p></td>
-<td><p>Defines the method used to compute the output. Allowed values: [‘Centre’, ‘Polygon’, ‘NormalisedPolygon’]</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -1531,12 +1520,7 @@ input a workspace where the data’s been reduced to be in <a class="reference i
 of <strong>energy transfer</strong> against spectrum number (which can be seen as equivalent to
 angle, with the angle being taken from the detector(s) to which the
 spectrum pertains).</p>
-<p>This algorithm can operate in one of three modes. Each mode simply runs a different algorithm to perform the computation:</p>
-<ul class="simple">
-<li><p><em>Centre</em>: performs a basic centre-point rebinning, see <a class="reference internal" href="SofQWCentre-v1.html#algm-sofqwcentre"><span class="std std-ref">SofQWCentre v1</span></a></p></li>
-<li><p><em>Polygon</em>: performs a parallel-piped rebin, taking into account the curvature of the output bins, see <a class="reference internal" href="SofQWPolygon-v1.html#algm-sofqwpolygon"><span class="std std-ref">SofQWPolygon v1</span></a></p></li>
-<li><p><em>NormalisedPolygon</em>: performs the same rebin as <em>Polygon</em> but the output bins normalised by the contributing overlap area, see <a class="reference internal" href="SofQWNormalisedPolygon-v1.html#algm-sofqwnormalisedpolygon"><span class="std std-ref">SofQWNormalisedPolygon v1</span></a></p></li>
-</ul>
+<p>Since the removal of deprecated algorithms SofQWCentre and SofQWPolygon (release 7.0.0), this algorithm now simply wraps <a class="reference internal" href="SofQWNormalisedPolygon-v1.html#algm-sofqwnormalisedpolygon"><span class="std std-ref">SofQWNormalisedPolygon v1</span></a>.</p>
 <p>The energy binning will not be changed by this algorithm, so the input
 workspace should already have the desired bins (though this axis can be
 rebinned afterwards if desired). The EMode and EFixed parameters are
@@ -1571,16 +1555,16 @@ directions (i.e. will contain <strong>counts/meV/(1/Angstrom)</strong> ).</p>
 [-10.  -9.  -8.  -7.  -6.  -5.  -4.  -3.  -2.  -1.]
 [ 0.  1.  2.  3.  4.  5.  6.  7.  8.  9. 10.]
 The converted Y values are:
-[12. 18. 18. 18. 18. 21. 18. 18. 21. 12.]
-[18. 21. 24. 24. 24. 21. 24. 33. 39. 45.]
+[1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+[1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Inelastic/SofQW.html">Inelastic\SofQW</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6f4e0603c548ede18f513a336298fffe24d48b1c/Framework/Algorithms/inc/MantidAlgorithms/SofQW.h">SofQW.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6f4e0603c548ede18f513a336298fffe24d48b1c/Framework/Algorithms/src/SofQW.cpp">SofQW.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6a4a25fd5553d1b56f7054cef3c62eda230c420c/Framework/Algorithms/inc/MantidAlgorithms/SofQW.h">SofQW.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6a4a25fd5553d1b56f7054cef3c62eda230c420c/Framework/Algorithms/src/SofQW.cpp">SofQW.cpp</a></p>
 </section>
 </section>
 
@@ -1604,11 +1588,11 @@ The converted Y values are:
       </div>
     </a>
     <a class="right-next"
-       href="SofQWCentre-v1.html"
+       href="SofQWMoments-v1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">SofQWCentre v1</p>
+        <p class="prev-next-title">SofQWMoments v1</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

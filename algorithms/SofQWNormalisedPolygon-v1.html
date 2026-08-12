@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SofQWNormalisedPolygon v1 &#8212; MantidProject 6.16.20260805.2155+uncommitted documentation</title>
+    <title>SofQWNormalisedPolygon v1 &#8212; MantidProject 6.16.20260811.1408+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=52e85c33"></script>
+    <script src="../_static/documentation_options.js?v=89905b29"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -49,7 +49,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="SofQWPolygon v1" href="SofQWPolygon-v1.html" />
+    <link rel="next" title="SofTwoThetaTOF v1" href="SofTwoThetaTOF-v1.html" />
     <link rel="prev" title="SofQWMomentsScan v1" href="SofQWMomentsScan-v1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -1285,11 +1285,9 @@
 <li class="toctree-l1"><a class="reference internal" href="SmoothMD-v1.html">SmoothMD v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SmoothNeighbours-v1.html">SmoothNeighbours v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SofQW-v1.html">SofQW v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SofQWCentre-v1.html">SofQWCentre v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SofQWMoments-v1.html">SofQWMoments v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SofQWMomentsScan-v1.html">SofQWMomentsScan v1</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">SofQWNormalisedPolygon v1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SofQWPolygon-v1.html">SofQWPolygon v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SofTwoThetaTOF-v1.html">SofTwoThetaTOF v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SolidAngle-v1.html">SolidAngle v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SortByQVectors-v1.html">SortByQVectors v1</a></li>
@@ -1447,7 +1445,7 @@
 <p>Calculate the intensity as a function of momentum transfer and energy.</p>
 <section id="see-also">
 <h3>See Also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h3>
-<p><a class="reference internal" href="SofQW-v1.html#algm-sofqw"><span class="std std-ref">SofQW</span></a>, <a class="reference internal" href="SofQWPolygon-v1.html#algm-sofqwpolygon"><span class="std std-ref">SofQWPolygon</span></a>, <a class="reference internal" href="Rebin2D-v1.html#algm-rebin2d"><span class="std std-ref">Rebin2D</span></a></p>
+<p><a class="reference internal" href="SofQW-v1.html#algm-sofqw"><span class="std std-ref">SofQW</span></a>, <a class="reference internal" href="Rebin2D-v1.html#algm-rebin2d"><span class="std std-ref">Rebin2D</span></a></p>
 <p>This algorithm is also known as: <strong>SofQW3</strong></p>
 </section>
 </section>
@@ -1536,15 +1534,6 @@ instrument geometry. This mode is activated by placing the following named
 parameter in the instrument definition file: <em>detector-neighbour-offset</em>. The
 integer value of this parameter should be the number of pixels that separates
 two pixels at the same vertical position in adjacent tubes.</p>
-<p>See <a class="reference internal" href="SofQWCentre-v1.html#algm-sofqwcentre"><span class="std std-ref">SofQWCentre v1</span></a> for centre-point binning or <a class="reference internal" href="SofQWPolygon-v1.html#algm-sofqwpolygon"><span class="std std-ref">SofQWPolygon v1</span></a>
-for simpler and less precise but faster binning strategies. The speed-up
-is from ignoring the azimuthal positions of the detectors (as for the non-PSD
-mode in this algorithm) but in addition, <a class="reference internal" href="SofQWPolygon-v1.html#algm-sofqwpolygon"><span class="std std-ref">SofQWPolygon v1</span></a> treats
-all detectors as being the same, and characterised by a single width in
-scattering angle. Thereafter, it weights the signal and error by the fractional
-overlap, similarly to that shown in the first figure above, but then discards
-the summed weights, producing a <strong>Workspace2D</strong> rather than a
-<strong>RebinnedOutput</strong> workspace.</p>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
@@ -1575,8 +1564,8 @@ the summed weights, producing a <strong>Workspace2D</strong> rather than a
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6f4e0603c548ede18f513a336298fffe24d48b1c/Framework/Algorithms/inc/MantidAlgorithms/SofQWNormalisedPolygon.h">SofQWNormalisedPolygon.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6f4e0603c548ede18f513a336298fffe24d48b1c/Framework/Algorithms/src/SofQWNormalisedPolygon.cpp">SofQWNormalisedPolygon.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6a4a25fd5553d1b56f7054cef3c62eda230c420c/Framework/Algorithms/inc/MantidAlgorithms/SofQWNormalisedPolygon.h">SofQWNormalisedPolygon.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6a4a25fd5553d1b56f7054cef3c62eda230c420c/Framework/Algorithms/src/SofQWNormalisedPolygon.cpp">SofQWNormalisedPolygon.cpp</a></p>
 </section>
 </section>
 
@@ -1600,11 +1589,11 @@ the summed weights, producing a <strong>Workspace2D</strong> rather than a
       </div>
     </a>
     <a class="right-next"
-       href="SofQWPolygon-v1.html"
+       href="SofTwoThetaTOF-v1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">SofQWPolygon v1</p>
+        <p class="prev-next-title">SofTwoThetaTOF v1</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Engineering Diffraction &#8212; MantidProject 6.16.20260805.2155+uncommitted documentation</title>
+    <title>Engineering Diffraction &#8212; MantidProject 6.16.20260811.1408+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=52e85c33"></script>
+    <script src="../../_static/documentation_options.js?v=89905b29"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'interfaces/diffraction/Engineering Diffraction';</script>
@@ -442,16 +442,17 @@ and loading calibration files and focusing ENGINX run files.</p>
 <p>This interface is under active development.</p>
 <section id="general-options">
 <span id="engineering-diffraction-options-ref"></span><h3>General Options<a class="headerlink" href="#general-options" title="Link to this heading">#</a></h3>
-<dl class="simple">
+<dl>
 <dt>RB Number</dt><dd><p>The reference number for the output paths (usually an experiment reference
 number at ISIS). Leaving this field empty will result in no user directories
 being created, and only the general directory will be used for file storage.</p>
+<p>Additionally, some experiment specific settings will be saved relative to this RB Number.</p>
 </dd>
 <dt>Instrument</dt><dd><p>Select the instrument (ENGINX or IMAT). Currently only ENGINX is fully
 supported.</p>
 </dd>
 </dl>
-<dl class="simple">
+<dl>
 <dt>?</dt><dd><p>Show this documentation page.</p>
 </dd>
 <dt>Settings</dt><dd><p>Provides a range of options that apply across the entire interface, currently
@@ -462,6 +463,14 @@ specify a peak function to fit (limited to a subset of all peak functions that
 are recommended for the UI) which will be set on opening the interface. Note that
 the user can select any peak function to fit (even a non-recommended one) at a
 later point when adding a peak in the fitting tab.</p>
+<p>Settings are designed to persist across uses of the interface. Some settings are set
+globally, and so will not change based on the RB Number or the Instrument selected.</p>
+<p>Others will be saved relative to those choices.</p>
+<p>Full Instrument Calibration File and Default Peak Shape are instrument specific settings
+and so each instrument can retain a different saved value for these fields.</p>
+<p>The Texture Sample Directions, Orientation loading settings, Monte-Carlo Parameters,
+and pole figure settings are experiment specific settings and so each RB Number used
+can retain a different value for these fields.</p>
 </dd>
 <dt>Close</dt><dd><p>Close the interface.</p>
 </dd>

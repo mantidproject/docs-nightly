@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.16.20260805.2155+uncommitted documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.16.20260811.1408+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=52e85c33"></script>
+    <script src="../../_static/documentation_options.js?v=89905b29"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v6.15.0/framework';</script>
@@ -785,6 +785,8 @@ input the start and end index of the range to apply the mask on.</p></li>
 now use a lazy file descriptor to check for the correct loading algorithm, further reducing the time taken to load files.</p></li>
 <li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40444">#40444</a>) <a class="reference internal" href="../../algorithms/ApplyDetailedBalanceMD-v1.html#algm-applydetailedbalancemd"><span class="std std-ref">ApplyDetailedBalanceMD v1</span></a>
 has a new parameter, <code class="docutils literal notranslate"><span class="pre">RescaleToTemperature</span></code>, which allows the scaling of data from one temperature to another.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40570">#40570</a>) - <a class="reference internal" href="../../algorithms/Load-v1.html#algm-load"><span class="std std-ref">Load v1</span></a> and the file loader search process,
+now use a lazy file descriptor to check for the correct loading algorithm, further reducing time for <a class="reference internal" href="../../algorithms/Load-v1.html#algm-load"><span class="std std-ref">Load v1</span></a>.</p></li>
 </ul>
 </section>
 <section id="bugfixes">
@@ -810,8 +812,8 @@ Use <a class="reference internal" href="../../algorithms/LoadMcStas-v1.html#algm
 </section>
 <section id="fit-functions">
 <h2>Fit Functions<a class="headerlink" href="#fit-functions" title="Link to this heading">#</a></h2>
-<section id="id25">
-<h3>Bugfixes<a class="headerlink" href="#id25" title="Link to this heading">#</a></h3>
+<section id="id26">
+<h3>Bugfixes<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40267">#40267</a>) <a class="reference internal" href="../../fitting/fitfunctions/Gaussian.html#func-gaussian"><span class="std std-ref">Gaussian</span></a> has improved stability of fits
 by changing the internal ‘active’ parameter to <code class="docutils literal notranslate"><span class="pre">1/sigma</span></code> instead of <code class="docutils literal notranslate"><span class="pre">1/sigma^2</span></code>.</p></li>
@@ -823,16 +825,16 @@ by changing the internal ‘active’ parameter to <code class="docutils literal
 </section>
 <section id="data-objects">
 <h2>Data Objects<a class="headerlink" href="#data-objects" title="Link to this heading">#</a></h2>
-<section id="id28">
-<h3>New features<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
+<section id="id29">
+<h3>New features<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40054">#40054</a>) <a class="reference internal" href="../../api/python/mantid/api/ITableWorkspace.html#mantid.api.ITableWorkspace" title="mantid.api.ITableWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableWorkspaces</span></code></a> now support
 <a class="reference internal" href="../../api/python/mantid/api/ITableWorkspace.html#mantid.api.ITableWorkspace.columnArray" title="mantid.api.ITableWorkspace.columnArray"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mantid.api.ITableWorkspace.columnArray()</span></code></a> for retrieving a column as a NumPy array. For example, with
 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code>: <code class="docutils literal notranslate"><span class="pre">table_ws.columnArray(&quot;Index&quot;)</span></code> returns <code class="docutils literal notranslate"><span class="pre">np.array([0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3])</span></code>.</p></li>
 </ul>
 </section>
-<section id="id30">
-<h3>Bugfixes<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
+<section id="id31">
+<h3>Bugfixes<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40551">#40551</a>) <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace.getMemorySize()</span></code> now reports the
 correct value for a <a class="reference internal" href="../../concepts/Ragged_Workspace.html#ragged-workspace"><span class="std std-ref">Ragged Workspace</span></a>.</p></li>
@@ -841,8 +843,8 @@ correct value for a <a class="reference internal" href="../../concepts/Ragged_Wo
 </section>
 <section id="python">
 <h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
-<section id="id32">
-<h3>Bugfixes<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
+<section id="id33">
+<h3>Bugfixes<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40239">#40239</a>) <code class="docutils literal notranslate"><span class="pre">SampleShapePlot</span></code> (from
 <code class="docutils literal notranslate"><span class="pre">mantidqt/plotting/sample_shape</span></code>) no longer crashes upon being called from a script in workbench. Previously, this
@@ -850,13 +852,15 @@ would crash as the plotting methods expected to be on the user interface thread.
 <li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40545">#40545</a>) <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> has been removed from the conda
 activation scripts because it was causing crashes with unrelated applications on Linux due to <code class="docutils literal notranslate"><span class="pre">LD_PRELOAD</span></code> being set
 globally. Behaviour is now reverted to Mantid v6.13 where <code class="docutils literal notranslate"><span class="pre">jemalloc</span></code> is used only when launching <code class="docutils literal notranslate"><span class="pre">mantidworkbench</span></code>.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40494">#40494</a>) The Figure Options in the <a class="reference internal" href="../../workbench/plotwindow.html#workbenchplotwindow"><span class="std std-ref">Workbench Plot Window</span></a>
+no longer throw an error due to missing list entries.</p></li>
 </ul>
 </section>
 </section>
 <section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h2>
-<section id="id35">
-<h3>Bugfixes<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
+<section id="id37">
+<h3>Bugfixes<a class="headerlink" href="#id37" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40246">#40246</a>) Pin <code class="docutils literal notranslate"><span class="pre">occt</span></code> to 7.9.2 to avoid conda/rattler version
 number parsing issue with 7.9.1 (See <a class="reference external" href="https://github.com/conda-forge/occt-feedstock/pull/124">here</a>).</p></li>
@@ -865,8 +869,8 @@ number parsing issue with 7.9.1 (See <a class="reference external" href="https:/
 </section>
 <section id="kernel">
 <h2>Kernel<a class="headerlink" href="#kernel" title="Link to this heading">#</a></h2>
-<section id="id37">
-<h3>New features<a class="headerlink" href="#id37" title="Link to this heading">#</a></h3>
+<section id="id39">
+<h3>New features<a class="headerlink" href="#id39" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40343">#40343</a>) Created function <code class="docutils literal notranslate"><span class="pre">strmakef</span></code>, which allows
 developers to create <code class="docutils literal notranslate"><span class="pre">std::string</span></code> objects using C-style formatting strings.</p></li>
@@ -874,6 +878,16 @@ developers to create <code class="docutils literal notranslate"><span class="pre
 <a class="reference internal" href="../../api/python/mantid/kernel/IPropertyManager.html#mantid.kernel.IPropertyManager" title="mantid.kernel.IPropertyManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IPropertyManager</span></code></a> now support the application of multiple
 <a class="reference internal" href="../../api/python/mantid/kernel/IPropertySettings.html#mantid.kernel.IPropertySettings" title="mantid.kernel.IPropertySettings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IPropertySettings</span></code></a> instances to a single property instance. From Python, a
 property’s <code class="docutils literal notranslate"><span class="pre">getSettings</span></code> method will now return a <em>vector</em> of <code class="docutils literal notranslate"><span class="pre">IPropertySetting</span></code> when appropriate.</p></li>
+</ul>
+</section>
+</section>
+<section id="nexus">
+<h2>Nexus<a class="headerlink" href="#nexus" title="Link to this heading">#</a></h2>
+<section id="id42">
+<h3>Bugfixes<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/40629">#40629</a>) <a class="reference internal" href="../../algorithms/LoadEventNexus-v1.html#algm-loadeventnexus"><span class="std std-ref">LoadEventNexus</span></a> will
+no longer error when loading files originating outside of ISIS that contain the <code class="docutils literal notranslate"><span class="pre">detector_1_events</span></code> group.</p></li>
 </ul>
 </section>
 </section>
@@ -938,24 +952,28 @@ property’s <code class="docutils literal notranslate"><span class="pre">getSet
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-functions">Fit Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Bugfixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Bugfixes</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-objects">Data Objects</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">New features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">Bugfixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">New features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">Bugfixes</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">Bugfixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">Bugfixes</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies">Dependencies</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">Bugfixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">Bugfixes</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel">Kernel</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">New features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">New features</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nexus">Nexus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">Bugfixes</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantidworkbench">MantidWorkbench</a></li>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.16.20260805.2155+uncommitted documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.16.20260811.1408+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=52e85c33"></script>
+    <script src="../../_static/documentation_options.js?v=89905b29"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/framework';</script>
@@ -776,6 +776,7 @@
 <section id="removed">
 <h3>Removed<a class="headerlink" href="#removed" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>Removed SofQWCentre and SofQWPolygon (deprecated since release 6.12.0).</p></li>
 <li><p>Removed the deprecated BayesQuasi and BayesStretch algorithms, which were based on the <code class="docutils literal notranslate"><span class="pre">quasielasticbayes</span></code> library. Users should now use the new <code class="docutils literal notranslate"><span class="pre">quickbayes</span></code> replacements, <a class="reference internal" href="../../algorithms/BayesQuasi2-v1.html#algm-bayesquasi2"><span class="std std-ref">BayesQuasi2 v1</span></a> and <a class="reference internal" href="../../algorithms/BayesStretch2-v1.html#algm-bayesstretch2"><span class="std std-ref">BayesStretch2 v1</span></a>, respectively.</p></li>
 </ul>
 </section>
@@ -849,17 +850,50 @@ HKL and general frames; an HKL dimension accepts <code class="docutils literal n
 <li><p>Fixed a crash where a <code class="docutils literal notranslate"><span class="pre">Peak</span></code> retrieved from a <code class="docutils literal notranslate"><span class="pre">PeaksWorkspace</span></code> in Python could reference deleted memory after the owning workspace is deleted. Peaks now share ownership of their workspace, keeping it alive for as long as the peak is in use.</p></li>
 </ul>
 </section>
+<section id="id11">
+<h3>Deprecated<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-class docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> now exposes the preferred <code class="docutils literal notranslate"><span class="pre">Histogram</span></code> data accessors to python: <code class="docutils literal notranslate"><span class="pre">x()</span></code>, <code class="docutils literal notranslate"><span class="pre">y()</span></code>, <code class="docutils literal notranslate"><span class="pre">e()</span></code>, <code class="docutils literal notranslate"><span class="pre">dx()</span></code> (read-only numpy wrappers) and <code class="docutils literal notranslate"><span class="pre">mutableX()</span></code>, <code class="docutils literal notranslate"><span class="pre">mutableY()</span></code>, <code class="docutils literal notranslate"><span class="pre">mutableE()</span></code>, <code class="docutils literal notranslate"><span class="pre">mutableDx()</span></code> (writable numpy wrappers). These replace the legacy <code class="docutils literal notranslate"><span class="pre">readX()</span></code>/<code class="docutils literal notranslate"><span class="pre">readY()</span></code>/<code class="docutils literal notranslate"><span class="pre">readE()</span></code>/<code class="docutils literal notranslate"><span class="pre">readDx()</span></code> and <code class="docutils literal notranslate"><span class="pre">dataX()</span></code>/<code class="docutils literal notranslate"><span class="pre">dataY()</span></code>/<code class="docutils literal notranslate"><span class="pre">dataE()</span></code>/<code class="docutils literal notranslate"><span class="pre">dataDx()</span></code> methods, which are now deprecated and emit a <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code> naming the replacement, but continue to work and return the same data. See the <a class="reference internal" href="../../concepts/HistogramData.html#histogramdata"><span class="std std-ref">Transition to the HistogramData module</span></a> concept page for more information on the <code class="docutils literal notranslate"><span class="pre">Histogram</span></code> data model.</p></li>
+<li><p>The deprecation warnings above are emitted via <a class="reference external" href="https://docs.python.org/3/c-api/exceptions.html#c.PyExc_DeprecationWarning">PyErr_Warn(PyExc_DeprecationWarning, …)</a>, equivalent to <code class="docutils literal notranslate"><span class="pre">warnings.warn(message,</span> <span class="pre">DeprecationWarning)</span></code>, and follow Python’s standard warnings filtering: by default they are printed only for deprecated calls made directly from a user script or interactive session (<code class="docutils literal notranslate"><span class="pre">__main__</span></code>), once per call site, while calls from inside imported modules are silent. Run Python with <code class="docutils literal notranslate"><span class="pre">-W</span> <span class="pre">default</span></code> (or use <code class="docutils literal notranslate"><span class="pre">warnings.simplefilter(&quot;default&quot;)</span></code>) to surface every occurrence, or <code class="docutils literal notranslate"><span class="pre">error</span></code> in place of <code class="docutils literal notranslate"><span class="pre">default</span></code> to raise them as exceptions when hunting call sites in tests or CI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dx()</span></code>/<code class="docutils literal notranslate"><span class="pre">mutableDx()</span></code> behave the same way <code class="docutils literal notranslate"><span class="pre">readDx()</span></code>/<code class="docutils literal notranslate"><span class="pre">dataDx()</span></code> always have: if no Dx (x-error) data has been set on the spectrum, it is first initialized to zeros, so these methods are always safe to call without first checking <a class="reference internal" href="../../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace.hasDx" title="mantid.api.MatrixWorkspace.hasDx"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hasDx()</span></code></a>.</p></li>
+<li><p>Much of the legacy <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> object tree exposed to python is now deprecated in favour of the index-based <code class="docutils literal notranslate"><span class="pre">SpectrumInfo</span></code>/<code class="docutils literal notranslate"><span class="pre">DetectorInfo</span></code>/<code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code> access layers. Calling the deprecated members now emits a <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code> naming the replacement. Affected members include <a class="reference internal" href="../../api/python/mantid/api/ExperimentInfo.html#mantid.api.ExperimentInfo.getInstrument" title="mantid.api.ExperimentInfo.getInstrument"><code class="xref py py-meth docutils literal notranslate"><span class="pre">getInstrument()</span></code></a>, <code class="docutils literal notranslate"><span class="pre">Instrument.getComponentByName</span></code>/<code class="docutils literal notranslate"><span class="pre">getDetector</span></code>/<code class="docutils literal notranslate"><span class="pre">getSample</span></code>/<code class="docutils literal notranslate"><span class="pre">getSource</span></code>/<code class="docutils literal notranslate"><span class="pre">getNumberDetectors</span></code>/<code class="docutils literal notranslate"><span class="pre">findRectDetectors</span></code>/<code class="docutils literal notranslate"><span class="pre">findGridDetectors</span></code>, <code class="docutils literal notranslate"><span class="pre">IComponent.getPos</span></code>/<code class="docutils literal notranslate"><span class="pre">getName</span></code>/<code class="docutils literal notranslate"><span class="pre">getFullName</span></code>/<code class="docutils literal notranslate"><span class="pre">type</span></code>/<code class="docutils literal notranslate"><span class="pre">getRelativeRot</span></code>, <code class="docutils literal notranslate"><span class="pre">Component.getRotation</span></code>/<code class="docutils literal notranslate"><span class="pre">getRelativePos</span></code>, <code class="docutils literal notranslate"><span class="pre">ICompAssembly.nelements</span></code>/<code class="docutils literal notranslate"><span class="pre">__len__</span></code>/<code class="docutils literal notranslate"><span class="pre">__getitem__</span></code>, <code class="docutils literal notranslate"><span class="pre">IObjComponent.shape</span></code> and <code class="docutils literal notranslate"><span class="pre">IDetector.getID</span></code>/<code class="docutils literal notranslate"><span class="pre">solidAngle</span></code>/<code class="docutils literal notranslate"><span class="pre">getTwoTheta</span></code>/<code class="docutils literal notranslate"><span class="pre">getPhi</span></code>. The methods continue to work for now; see the <a class="reference internal" href="../../concepts/InstrumentAccessLayers.html#instrumentaccesslayers"><span class="std std-ref">Instrument Access via SpectrumInfo, DetectorInfo, ComponentInfo</span></a> concept page for the recommended replacements.</p></li>
+<li><p>The deprecation warnings above are emitted via <a class="reference external" href="https://docs.python.org/3/c-api/exceptions.html#c.PyExc_DeprecationWarning">PyErr_Warn(PyExc_DeprecationWarning, …)</a>, equivalent to <code class="docutils literal notranslate"><span class="pre">warnings.warn(message,</span> <span class="pre">DeprecationWarning)</span></code>, and follow Python’s standard warnings filtering: by default they are printed only for deprecated calls made directly from a user script or interactive session (<code class="docutils literal notranslate"><span class="pre">__main__</span></code>), once per call site, while calls from inside imported modules are silent. Run Python with <code class="docutils literal notranslate"><span class="pre">-W</span> <span class="pre">default</span></code> (or use <code class="docutils literal notranslate"><span class="pre">warnings.simplefilter(&quot;default&quot;)</span></code>) to surface every occurrence, or <code class="docutils literal notranslate"><span class="pre">error</span></code> in place of <code class="docutils literal notranslate"><span class="pre">default</span></code> to raise them as exceptions when hunting call sites in tests or CI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code> now exposes <code class="docutils literal notranslate"><span class="pre">solidAngle(index,</span> <span class="pre">observer)</span></code> and <code class="docutils literal notranslate"><span class="pre">componentType(index)</span></code> (returning a <code class="xref py py-class docutils literal notranslate"><span class="pre">ComponentType</span></code>) to python. These provide index-based replacements for <code class="docutils literal notranslate"><span class="pre">IDetector.solidAngle</span></code> and the <code class="docutils literal notranslate"><span class="pre">RectangularDetector</span></code>/<code class="docutils literal notranslate"><span class="pre">GridDetector</span></code> type checks, as part of the migration to the <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code>/<code class="docutils literal notranslate"><span class="pre">DetectorInfo</span></code> access layers.</p></li>
+<li><p><a class="reference internal" href="../../api/python/mantid/api/MatrixWorkspace.html#mantid.api.MatrixWorkspace" title="mantid.api.MatrixWorkspace"><code class="xref py py-class docutils literal notranslate"><span class="pre">MatrixWorkspace</span></code></a> now exposes
+the preferred <code class="docutils literal notranslate"><span class="pre">Histogram</span></code> data accessors to python:
+<code class="docutils literal notranslate"><span class="pre">x()</span></code>, <code class="docutils literal notranslate"><span class="pre">y()</span></code>, <code class="docutils literal notranslate"><span class="pre">e()</span></code>, <code class="docutils literal notranslate"><span class="pre">dx()</span></code> (read-only numpy wrappers) and
+<code class="docutils literal notranslate"><span class="pre">mutableX()</span></code>, <code class="docutils literal notranslate"><span class="pre">mutableY()</span></code>, <code class="docutils literal notranslate"><span class="pre">mutableE()</span></code>, <code class="docutils literal notranslate"><span class="pre">mutableDx()</span></code>
+(writable numpy wrappers). These replace the legacy <code class="docutils literal notranslate"><span class="pre">readX()</span></code>/<code class="docutils literal notranslate"><span class="pre">readY()</span></code>/<code class="docutils literal notranslate"><span class="pre">readE()</span></code>/<code class="docutils literal notranslate"><span class="pre">readDx()</span></code>
+and <code class="docutils literal notranslate"><span class="pre">dataX()</span></code>/<code class="docutils literal notranslate"><span class="pre">dataY()</span></code>/<code class="docutils literal notranslate"><span class="pre">dataE()</span></code>/<code class="docutils literal notranslate"><span class="pre">dataDx()</span></code> methods,
+which are now deprecated and emit a <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code> naming the replacement,
+but continue to work and return the same data.
+See the <a class="reference internal" href="../../concepts/HistogramData.html#histogramdata"><span class="std std-ref">Transition to the HistogramData module</span></a> concept page for more information on the <code class="docutils literal notranslate"><span class="pre">Histogram</span></code> data model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dx()</span></code>/<code class="docutils literal notranslate"><span class="pre">mutableDx()</span></code> behave the same way <code class="docutils literal notranslate"><span class="pre">readDx()</span></code>/<code class="docutils literal notranslate"><span class="pre">dataDx()</span></code> always have:
+if no Dx (x-error) data has been set on the spectrum, it is first initialized to zeros,
+so these methods are always safe to call.</p></li>
+<li><p>The deprecation warnings above are emitted via
+<a class="reference external" href="https://docs.python.org/3/c-api/exceptions.html#c.PyExc_DeprecationWarning">PyErr_Warn(PyExc_DeprecationWarning, …)</a>,
+equivalent to <code class="docutils literal notranslate"><span class="pre">warnings.warn(message,</span> <span class="pre">DeprecationWarning)</span></code>,
+and follow Python’s standard warnings filtering:
+by default they are printed only for deprecated calls made directly from a user script
+or interactive session (<code class="docutils literal notranslate"><span class="pre">__main__</span></code>), once per call site,
+while calls from inside imported modules are silent.
+Run Python with <code class="docutils literal notranslate"><span class="pre">-W</span> <span class="pre">default</span></code> (or use <code class="docutils literal notranslate"><span class="pre">warnings.simplefilter(&quot;default&quot;)</span></code>) to surface
+every occurrence, or <code class="docutils literal notranslate"><span class="pre">error</span></code> in place of <code class="docutils literal notranslate"><span class="pre">default</span></code> to raise them as exceptions
+when hunting call sites in tests or CI.</p></li>
+</ul>
+</section>
 </section>
 <section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h2>
-<section id="id11">
-<h3>New features<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<section id="id12">
+<h3>New features<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Removed dependence on the <code class="docutils literal notranslate"><span class="pre">quasielasticbayes</span></code> library to facilitate the upgrade to Qt6.</p></li>
 </ul>
 </section>
-<section id="id12">
-<h3>Bugfixes<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<section id="id13">
+<h3>Bugfixes<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 </section>
 </section>
 <section id="mantidworkbench">
@@ -943,11 +977,12 @@ HKL and general frames; an HKL dimension accepts <code class="docutils literal n
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">New features</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Bugfixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Deprecated</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies">Dependencies</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">New features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Bugfixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">New features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Bugfixes</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantidworkbench">MantidWorkbench</a></li>

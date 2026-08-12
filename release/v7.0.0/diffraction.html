@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Diffraction Changes &#8212; MantidProject 6.16.20260805.2155+uncommitted documentation</title>
+    <title>Diffraction Changes &#8212; MantidProject 6.16.20260811.1408+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=52e85c33"></script>
+    <script src="../../_static/documentation_options.js?v=89905b29"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/diffraction';</script>
@@ -742,6 +742,12 @@
 <li><p><a class="reference internal" href="../../techniques/ISISPowder-SampleDetails-v1.html#isis-powder-diffraction-sampledetails-ref"><span class="std std-ref">ISIS Powder SampleDetails</span></a> now accepts a <code class="docutils literal notranslate"><span class="pre">number_density_units</span></code> argument which can be set appropriately to fix issues where total scattering <code class="docutils literal notranslate"><span class="pre">S(Q)-1</span></code> does not tend to 0 at high Q when number density has been provided as: formula units per volume (see <a class="reference internal" href="../../techniques/ISISPowder-SampleDetails-v1.html#number-density-unit-sampledetails-isis-powder-diffraction-ref"><span class="std std-ref">number_density_unit</span></a>).</p></li>
 </ul>
 </section>
+<section id="removed">
+<h3>Removed<a class="headerlink" href="#removed" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The obsolete properties <code class="docutils literal notranslate"><span class="pre">UnwrapRef</span></code>, <code class="docutils literal notranslate"><span class="pre">LowResRef</span></code> and <code class="docutils literal notranslate"><span class="pre">LowResSpectrumOffset</span></code> have been removed from <a class="reference internal" href="../../algorithms/AlignAndFocusPowder-v1.html#algm-alignandfocuspowder"><span class="std std-ref">AlignAndFocusPowder</span></a>, <a class="reference internal" href="../../algorithms/AlignAndFocusPowderFromFiles-v1.html#algm-alignandfocuspowderfromfiles"><span class="std std-ref">AlignAndFocusPowderFromFiles</span></a> and <a class="reference internal" href="../../algorithms/SNSPowderReduction-v1.html#algm-snspowderreduction"><span class="std std-ref">SNSPowderReduction</span></a>.</p></li>
+</ul>
+</section>
 </section>
 <section id="engineering-diffraction">
 <h2>Engineering Diffraction<a class="headerlink" href="#engineering-diffraction" title="Link to this heading">#</a></h2>
@@ -749,6 +755,8 @@
 <h3>New features<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>New <a class="reference internal" href="../../interfaces/diffraction/Texture%20Planner.html#texture-planner-ref"><span class="std std-ref">Texture Planning User Interface</span></a> for aiding the user in planning and executing Texture Analysis experiments. See the linked docs for more information.</p></li>
+<li><p>In <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> the settings now supports saving experiment specific settings, based on RB Number. Previous behaviour was that every time a setting was changed it would overwrite the previous saved version of the setting, where as now, it will overwrite the previous version saved for that RB Number. This allows users to return to experiments and find have specific settings have been remembered.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">Engineering.EnggUtils</span></code>, focusing using the <code class="docutils literal notranslate"><span class="pre">focus_run</span></code> method will now adjust the calibration DIFCs per detector pixel to account for an offset in the scattering volume centre-of-mass (due to sample partially illuminated within the gauge volume). This is only done when both a Sample Shape and Gauge Volume are present on the Workspace.</p></li>
 <li><p>In <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> the <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#ui-engineering-gsas"><span class="std std-ref">GSASII tab</span></a> now supports CIF file selection from a list of defaults distributed with Mantid.</p></li>
 </ul>
 </section>
@@ -827,6 +835,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#powder-diffraction">Powder Diffraction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-features">New features</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bugfixes">Bugfixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#removed">Removed</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engineering-diffraction">Engineering Diffraction</a><ul class="nav section-nav flex-column">

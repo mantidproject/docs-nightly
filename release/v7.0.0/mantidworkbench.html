@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Mantid Workbench Changes &#8212; MantidProject 6.16.20260811.1408+uncommitted documentation</title>
+    <title>Mantid Workbench Changes &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=89905b29"></script>
+    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/mantidworkbench';</script>
@@ -741,8 +741,9 @@
 <ul class="simple">
 <li><p>Opening interfaces or changing default directories no longer unnecessarily rewrites and locks the Mantid Workbench settings file.</p></li>
 <li><p>The <a class="reference internal" href="../../concepts/ProjectRecovery.html#project-recovery"><span class="std std-ref">Project Recovery</span></a> feature is now guarded against a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> emanating from the <code class="docutils literal notranslate"><span class="pre">listdir_fullpath</span></code> method.</p></li>
-<li><p>The Error Reporter Dialog no longer updates saved contact information after clicking <code class="docutils literal notranslate"><span class="pre">Don't</span> <span class="pre">share</span> <span class="pre">any</span> <span class="pre">information</span></code> or when <code class="docutils literal notranslate"><span class="pre">Remember</span> <span class="pre">me</span></code> is disabled. Submitting unchanged contact
-information also leaves the Workbench settings file untouched.</p></li>
+<li><p>The Error Reporter Dialog now stores remembered contact information in its own settings file instead of the Workbench settings file. Previously saved Workbench contact information remains
+available as a read-only fallback for values not yet set in the new file. The dialog also avoids updating its settings after clicking <code class="docutils literal notranslate"><span class="pre">Don't</span> <span class="pre">share</span> <span class="pre">any</span> <span class="pre">information</span></code>, when <code class="docutils literal notranslate"><span class="pre">Remember</span> <span class="pre">me</span></code> is
+disabled, or when the submitted contact information is unchanged.</p></li>
 <li><p>In the ISIS Reflectometry interface, fixed a bug where the (new) Instrument View would not fill the available space in the dock when first opened. The view now correctly fills the dock area upon initial display.</p></li>
 <li><p>In the ALF View interface, fixed bug where the “Add ROI” button was not working. The button now correctly adds a new ROI to the view when clicked.</p></li>
 <li><p>In the ALF View interface, fixed an error on opening the interface.</p></li>
@@ -756,6 +757,7 @@ information also leaves the Workbench settings file untouched.</p></li>
 <ul class="simple">
 <li><p>In the new Instrument View, added an option to draw the sample position, and labelled the <code class="docutils literal notranslate"><span class="pre">Monitors</span></code> and <code class="docutils literal notranslate"><span class="pre">Sample</span></code> checkboxes with a coloured circle to indicate the colour of the drawn items.</p></li>
 <li><p>New Instrument View now allows for both rectangle zoom and scroll wheel zoom.</p></li>
+<li><p>New Instrument View now allows for zooming and panning in lineplot when adding/removing peaks.</p></li>
 <li><p>Sped up new Instrument View by creating the component tree lazily, i.e. only when a component in the tree is expanded. This will give a speed-up of a few seconds for large instruments.</p></li>
 <li><p>In the new Instrument View, when drawing the sample position, if there is a sample shape defined, then that shape will be drawn instead of a simple point.</p></li>
 </ul>

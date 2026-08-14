@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Transition to the HistogramData module &#8212; MantidProject 6.16.20260811.1408+uncommitted documentation</title>
+    <title>Transition to the HistogramData module &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=89905b29"></script>
+    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/HistogramData';</script>
@@ -939,6 +939,104 @@ The interface for Dx is mostly equivalent to that for E.</p>
 </pre></div>
 </div>
 </section>
+<section id="migrating-off-the-legacy-accessors">
+<h3>Migrating off the legacy accessors<a class="headerlink" href="#migrating-off-the-legacy-accessors" title="Link to this heading">#</a></h3>
+<p>The legacy accessors are deprecated. In C++ their declarations carry a
+<code class="docutils literal notranslate"><span class="pre">Deprecated,</span> <span class="pre">use</span> <span class="pre">...</span> <span class="pre">instead</span></code> comment; in Python they emit a <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code>
+naming the replacement. Use this table when migrating a call site:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Deprecated</p></th>
+<th class="head"><p>Replacement</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">readX/readY/readE/readDx</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x()</span></code>/<code class="docutils literal notranslate"><span class="pre">y()</span></code>/<code class="docutils literal notranslate"><span class="pre">e()</span></code>/<code class="docutils literal notranslate"><span class="pre">dx()</span></code></p></td>
+<td><p>read-only</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dataX/dataY/dataE/dataDx</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x()</span></code>/<code class="docutils literal notranslate"><span class="pre">y()</span></code>/<code class="docutils literal notranslate"><span class="pre">e()</span></code>/<code class="docutils literal notranslate"><span class="pre">dx()</span></code></p></td>
+<td><p>const overload; read-only</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dataX/dataY/dataE/dataDx</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mutableX()</span></code>/<code class="docutils literal notranslate"><span class="pre">mutableY()</span></code>/
+<code class="docutils literal notranslate"><span class="pre">mutableE()</span></code>/<code class="docutils literal notranslate"><span class="pre">mutableDx()</span></code></p></td>
+<td><p>non-const overload; in-place
+write</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">refX(i)</span></code> / <code class="docutils literal notranslate"><span class="pre">ptrX()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sharedX(i)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cow_ptr</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">setX(i,</span> <span class="pre">cow)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">setSharedX(i,</span> <span class="pre">cow)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cow_ptr</span></code> setter</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">setX/setY/setE/setDx</span></code>
+(Python)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">setSharedX()</span></code>/<code class="docutils literal notranslate"><span class="pre">setSharedY()</span></code>/
+<code class="docutils literal notranslate"><span class="pre">setSharedE()</span></code>/<code class="docutils literal notranslate"><span class="pre">setSharedDx()</span></code></p></td>
+<td><p>Python only</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Things to watch for while migrating:</p>
+<ul class="simple">
+<li><p><strong>Classify each ``data*`` site as a read or a write.</strong>
+In a non-<code class="docutils literal notranslate"><span class="pre">const</span></code> context <code class="docutils literal notranslate"><span class="pre">dataY(i)</span></code> binds to the <em>mutable</em> overload even when the
+code only reads, which detaches the copy-on-write pointer. Mapping such a site to
+<code class="docutils literal notranslate"><span class="pre">mutableY(i)</span></code> preserves that needless copy; mapping it to <code class="docutils literal notranslate"><span class="pre">y(i)</span></code> removes it.
+When in doubt map to the read-only accessor – if a write was in fact needed the
+compiler will reject it, whereas an over-eager <code class="docutils literal notranslate"><span class="pre">mutable*</span></code> is a silent performance
+regression.</p></li>
+<li><p><strong>``mutable*()`` is lvalue-ref-qualified</strong> (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>), so it must be called on a named
+lvalue rather than a temporary.</p></li>
+<li><p><strong>Individual arrays cannot be resized.</strong> <code class="docutils literal notranslate"><span class="pre">dataX().resize(n)</span></code> has no direct
+equivalent, by design. Use <code class="docutils literal notranslate"><span class="pre">MatrixWorkspace::resizeHistogram(i,</span> <span class="pre">n)</span></code> (which keeps X,
+Y and E consistent with the storage mode), or one of the <code class="docutils literal notranslate"><span class="pre">setHistogram()</span></code> /
+<code class="docutils literal notranslate"><span class="pre">setBinEdges()</span></code> / <code class="docutils literal notranslate"><span class="pre">setPoints()</span></code> / <code class="docutils literal notranslate"><span class="pre">setCounts()</span></code> setters.</p></li>
+<li><p><strong>``EventList``</strong> computes <code class="docutils literal notranslate"><span class="pre">y()</span></code>/<code class="docutils literal notranslate"><span class="pre">e()</span></code> from the events via the MRU cache, exactly as
+the legacy <code class="docutils literal notranslate"><span class="pre">dataY()</span></code>/<code class="docutils literal notranslate"><span class="pre">dataE()</span></code> const overloads did. The non-<code class="docutils literal notranslate"><span class="pre">const</span></code> <code class="docutils literal notranslate"><span class="pre">dataY()</span></code>
+throws, so there are no in-place <code class="docutils literal notranslate"><span class="pre">EventList</span></code> writes to migrate.</p></li>
+<li><p><strong>Code that genuinely needs a raw vector</strong> can use <code class="docutils literal notranslate"><span class="pre">x(i).rawData()</span></code>, which returns
+<code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">std::vector&lt;double&gt;</span> <span class="pre">&amp;</span></code>. There is deliberately no public route to a
+<em>modifiable</em> <code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span> <span class="pre">&amp;</span></code>; callees that require one should be given a
+<code class="docutils literal notranslate"><span class="pre">std::span</span></code>, iterator-range, or <code class="docutils literal notranslate"><span class="pre">HistogramX</span></code>/<code class="docutils literal notranslate"><span class="pre">HistogramY</span></code>/<code class="docutils literal notranslate"><span class="pre">HistogramE</span></code> overload
+instead. <code class="docutils literal notranslate"><span class="pre">Kernel::Unit::toTOF()</span></code>/<code class="docutils literal notranslate"><span class="pre">fromTOF()</span></code> provide such an iterator-range overload.</p></li>
+<li><p><strong>Prefer ``std::span`` for the parameters of Mantid-defined callees.</strong> All of the
+histogram data types satisfy <code class="docutils literal notranslate"><span class="pre">std::ranges::contiguous_range</span></code> and
+<code class="docutils literal notranslate"><span class="pre">std::ranges::sized_range</span></code>, so they convert implicitly to <code class="docutils literal notranslate"><span class="pre">std::span&lt;double</span> <span class="pre">const&gt;</span></code>
+(read-only) and <code class="docutils literal notranslate"><span class="pre">std::span&lt;double&gt;</span></code> (fixed-size in-place write). A plain
+<code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span></code> still converts too, so changing a parameter from
+<code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">std::vector&lt;double&gt;</span> <span class="pre">&amp;</span></code> to <code class="docutils literal notranslate"><span class="pre">std::span&lt;double</span> <span class="pre">const&gt;</span></code> breaks no existing caller
+while letting every histogram type be passed without <code class="docutils literal notranslate"><span class="pre">rawData()</span></code>.
+<code class="docutils literal notranslate"><span class="pre">Kernel::VectorHelper::rebin()</span></code>, <code class="docutils literal notranslate"><span class="pre">Kernel::EqualBinsChecker</span></code> and
+<code class="docutils literal notranslate"><span class="pre">DataObjects::FractionalRebinning</span></code> are examples. Two caveats:</p>
+<ul>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">std::span</span></code> parameter must <em>not</em> replace a <code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span> <span class="pre">&amp;</span></code> out-parameter
+that resizes its argument, and in C++20 <code class="docutils literal notranslate"><span class="pre">std::span</span></code> cannot be constructed from a
+braced initializer list, so callees invoked as <code class="docutils literal notranslate"><span class="pre">f({a,</span> <span class="pre">b,</span> <span class="pre">c})</span></code> must keep their vector
+parameter.</p></li>
+<li><p>Do not write <code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">&lt;typename</span> <span class="pre">T&gt;</span> <span class="pre">f(std::span&lt;T</span> <span class="pre">const&gt;)</span></code> in place of
+<code class="docutils literal notranslate"><span class="pre">f(const</span> <span class="pre">std::vector&lt;T&gt;</span> <span class="pre">&amp;)</span></code>: <code class="docutils literal notranslate"><span class="pre">T</span></code> is not deducible from a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> argument,
+so every existing caller would stop compiling. Add a non-template overload for the
+concrete element type instead, as <code class="docutils literal notranslate"><span class="pre">Kernel::getZscore()</span></code> does.</p></li>
+</ul>
+</li>
+<li><p><strong>Beware copy-on-write detachment when taking a span of the ``cow_ptr``-backed types.</strong>
+<code class="docutils literal notranslate"><span class="pre">BinEdges</span></code>, <code class="docutils literal notranslate"><span class="pre">Points</span></code>, <code class="docutils literal notranslate"><span class="pre">Counts</span></code>, <code class="docutils literal notranslate"><span class="pre">Frequencies</span></code> and friends reach <code class="docutils literal notranslate"><span class="pre">begin()</span></code>
+through <code class="docutils literal notranslate"><span class="pre">Iterable</span></code>, whose non-<code class="docutils literal notranslate"><span class="pre">const</span></code> overload calls <code class="docutils literal notranslate"><span class="pre">mutableData()</span></code> and therefore
+detaches the <code class="docutils literal notranslate"><span class="pre">cow_ptr</span></code>. <code class="docutils literal notranslate"><span class="pre">rawData()</span></code> is <code class="docutils literal notranslate"><span class="pre">const</span></code>-qualified and never did this, so
+binding a <strong>non-const</strong> lvalue of one of those types to <code class="docutils literal notranslate"><span class="pre">std::span&lt;double</span> <span class="pre">const&gt;</span></code> can
+introduce a silent copy where the old code had none. Bind such arguments through a
+<code class="docutils literal notranslate"><span class="pre">const</span></code> reference – or wrap them in <code class="docutils literal notranslate"><span class="pre">std::as_const()</span></code> – when they are read-only.
+<code class="docutils literal notranslate"><span class="pre">x(i)</span></code>, <code class="docutils literal notranslate"><span class="pre">y(i)</span></code> and <code class="docutils literal notranslate"><span class="pre">e(i)</span></code> already return <code class="docutils literal notranslate"><span class="pre">const</span></code> references, so the common case
+is safe; named <code class="docutils literal notranslate"><span class="pre">BinEdges</span></code>/<code class="docutils literal notranslate"><span class="pre">Points</span></code>/<code class="docutils literal notranslate"><span class="pre">Counts</span></code> locals are the ones to check.</p></li>
+</ul>
+</section>
 </section>
 <section id="rollout-status">
 <h2>Rollout status<a class="headerlink" href="#rollout-status" title="Link to this heading">#</a></h2>
@@ -1052,6 +1150,7 @@ If that is not possible, use the new setters such as <code class="docutils liter
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#legacy-interface">Legacy interface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#migrating-off-the-legacy-accessors">Migrating off the legacy accessors</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rollout-status">Rollout status</a></li>

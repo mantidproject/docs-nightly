@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Exercise 6 Solutions &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Exercise 6 Solutions &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/extending_mantid_with_python/solutions_to_the_exercises/06_emwp_sol';</script>
@@ -564,17 +564,17 @@ derivative.</p>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Tell Mantid about the 3 parameters that are involved in the function</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Amplitude"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Gamma"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">function1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
         <span class="c1"># xvals is a 1D numpy array that contains the X values for the defined fitting range.</span>
 
         <span class="c1"># Get the current values of the 3 parameters</span>
-        <span class="n">amp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span> <span class="c1"># Access current value during the fit</span>
-        <span class="n">half_gamma</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">)</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
+        <span class="n">amp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Amplitude"</span><span class="p">)</span> <span class="c1"># Access current value during the fit</span>
+        <span class="n">half_gamma</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Gamma"</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
 
         <span class="n">denom</span> <span class="o">=</span> <span class="p">(</span><span class="n">xvals</span> <span class="o">-</span> <span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">half_gamma</span><span class="o">*</span><span class="n">half_gamma</span>
         <span class="k">return</span> <span class="n">amp</span><span class="o">*</span><span class="n">INVERSE_PI</span><span class="o">*</span><span class="n">half_gamma</span><span class="o">/</span><span class="n">denom</span>
@@ -598,17 +598,17 @@ derivative.</p>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Tell Mantid about the 3 parameters that are involved in the function</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Amplitude"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Gamma"</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">function1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
         <span class="c1"># xvals is a 1D numpy array that contains the X values for the defined fitting range.</span>
 
         <span class="c1"># Get the current values of the 3 parameters</span>
-        <span class="n">amp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span> <span class="c1"># Access current value during the fit</span>
-        <span class="n">half_gamma</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">)</span>
-        <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
+        <span class="n">amp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Amplitude"</span><span class="p">)</span> <span class="c1"># Access current value during the fit</span>
+        <span class="n">half_gamma</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Gamma"</span><span class="p">)</span>
+        <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
 
         <span class="n">denom</span> <span class="o">=</span> <span class="p">(</span><span class="n">xvals</span> <span class="o">-</span> <span class="n">peak_centre</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">half_gamma</span><span class="o">*</span><span class="n">half_gamma</span>
         <span class="k">return</span> <span class="n">amp</span><span class="o">*</span><span class="n">INVERSE_PI</span><span class="o">*</span><span class="n">half_gamma</span><span class="o">/</span><span class="n">denom</span>
@@ -619,9 +619,9 @@ derivative.</p>
         <span class="c1"># w.r.t the parameters and x values to be stored here</span>
         <span class="c1"># Get the current values of the 3 parameters</span>
 
-        <span class="n">amplitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
-        <span class="n">peakCentre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
-        <span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">)</span>
+        <span class="n">amplitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Amplitude"</span><span class="p">)</span>
+        <span class="n">peakCentre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Gamma"</span><span class="p">)</span>
         <span class="n">halfGamma</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">gamma</span>
 
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">xval</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xvals</span><span class="p">):</span>
@@ -656,15 +656,15 @@ derivative.</p>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Tell Mantid about the 3 parameters that are involved in the function</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Amplitude"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Gamma"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">functionLocal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
         <span class="c1"># xvals is a 1D numpy array that contains the X values for the defined fitting range.</span>
-        <span class="n">half_gamma</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">)</span>
-        <span class="n">denom</span> <span class="o">=</span> <span class="p">(</span><span class="n">xvals</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">half_gamma</span><span class="o">*</span><span class="n">half_gamma</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span><span class="o">*</span><span class="n">INVERSE_PI</span><span class="o">*</span><span class="n">half_gamma</span><span class="o">/</span><span class="n">denom</span>
+        <span class="n">half_gamma</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Gamma"</span><span class="p">)</span>
+        <span class="n">denom</span> <span class="o">=</span> <span class="p">(</span><span class="n">xvals</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">half_gamma</span><span class="o">*</span><span class="n">half_gamma</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Amplitude"</span><span class="p">)</span><span class="o">*</span><span class="n">INVERSE_PI</span><span class="o">*</span><span class="n">half_gamma</span><span class="o">/</span><span class="n">denom</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">functionDerivLocal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
         <span class="c1"># xvals is a 1D numpy array that contains the X values for the defined fitting range.</span>
@@ -672,9 +672,9 @@ derivative.</p>
         <span class="c1"># w.r.t the parameters and x values to be stored here</span>
 
         <span class="c1"># Get the current parameter values</span>
-        <span class="n">amplitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
-        <span class="n">peakCentre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
-        <span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">)</span>
+        <span class="n">amplitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Amplitude"</span><span class="p">)</span>
+        <span class="n">peakCentre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Gamma"</span><span class="p">)</span>
         <span class="n">halfGamma</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">gamma</span>
 
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">xval</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xvals</span><span class="p">):</span>
@@ -692,27 +692,27 @@ derivative.</p>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">centre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Return a guess at the centre</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Return a guess at the height</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Amplitude"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">fwhm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Return a guess at the FWHM</span>
-        <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Gamma"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">setCentre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">):</span>
         <span class="c1"># Update centre guess when a new value is chosen from GUI</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">setHeight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_height</span><span class="p">):</span>
         <span class="c1"># Update Amplitude guess when a new height is chosen from GUI</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;Amplitude&quot;</span><span class="p">,</span> <span class="n">new_height</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">"Amplitude"</span><span class="p">,</span> <span class="n">new_height</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">setFwhm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_fwhm</span><span class="p">):</span>
         <span class="c1"># Update Gamma guess when a new width is chosen from GUI</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;Gamma&quot;</span><span class="p">,</span> <span class="n">new_fwhm</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">"Gamma"</span><span class="p">,</span> <span class="n">new_fwhm</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
 
 <span class="c1"># Register function with Mantid</span>
 <span class="n">FunctionFactory</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">LorentzPeak</span><span class="p">)</span>

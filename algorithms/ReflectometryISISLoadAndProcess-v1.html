@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometryISISLoadAndProcess v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ReflectometryISISLoadAndProcess v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ReflectometryISISLoadAndProcess-v1';</script>
@@ -1504,7 +1504,7 @@
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
-<td><p>When detector IDs are provided, the algorithm will attempt to sum counts across each row of a RectangularDetector after the flood correction step. Detectors not included in the given range will be masked before summing. This will only work correctly when the instrument definition file(IDF) contains a single RectangularDetector panel.</p></td>
+<td><p>When detector IDs are provided, the algorithm will attempt to sum counts across each row of a RectangularDetector for a matrix workspace or for each member of a workspace group. Detectors not included in the given range will be masked before summing. This will only work correctly when the instrument definition file(IDF) contains a single RectangularDetector panel.</p></td>
 </tr>
 <tr class="row-even"><td><p>SliceWorkspace</p></td>
 <td><p>Input</p></td>
@@ -1860,6 +1860,9 @@
 <p>If <code class="docutils literal notranslate"><span class="pre">SubtractBackground</span></code> is true, then background subtraction will be performed using the <a class="reference internal" href="ReflectometryBackgroundSubtraction-v1.html#algm-reflectometrybackgroundsubtraction"><span class="std std-ref">ReflectometryBackgroundSubtraction v1</span></a> algorithm. There are various options for specifying how the subtraction should be done.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">SliceWorkspace</span></code> is true, the time slicing will be performed using the <a class="reference internal" href="ReflectometrySliceEventWorkspace-v1.html#algm-reflectometrysliceeventworkspace"><span class="std std-ref">ReflectometrySliceEventWorkspace v1</span></a> algorithm. Various options are available for specifying the filter to use and slicing can be done by time or by log value.</p>
 <p>The reduction is performed using <a class="reference internal" href="ReflectometryReductionOneAuto-v3.html#algm-reflectometryreductiononeauto"><span class="std std-ref">ReflectometryReductionOneAuto v3</span></a>.</p>
+<p>When the input is a workspace group, <code class="docutils literal notranslate"><span class="pre">ROIDetectorIDs</span></code> can be used if every member contains a compatible single
+two-dimensional rectangular detector. Bank summing is applied independently to every group member while preserving
+the group order, including when polarization analysis is enabled.</p>
 <p>Finally, the TOF workspaces are cleaned up by grouping them into a workspace group named <code class="docutils literal notranslate"><span class="pre">TOF</span></code>. If a group by this name already exists then they will be added to that group.</p>
 </section>
 <section id="usage">
@@ -1872,59 +1875,59 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example: Run reduction on a single run</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ReflectometryISISLoadAndProcess</span><span class="p">(</span><span class="n">InputRunList</span><span class="o">=</span><span class="s1">&#39;INTER13460&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ReflectometryISISLoadAndProcess</span><span class="p">(</span><span class="n">InputRunList</span><span class="o">=</span><span class="s1">'INTER13460'</span><span class="p">)</span>
 <span class="n">names</span> <span class="o">=</span> <span class="n">mtd</span><span class="o">.</span><span class="n">getObjectNames</span><span class="p">()</span>
 <span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Workspaces in the ADS after reduction: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Workspaces in the ADS after reduction: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Workspaces in the ADS after reduction: [&#39;IvsQ_13460&#39;, &#39;IvsQ_binned_13460&#39;, &#39;TOF&#39;, &#39;TOF_13460&#39;]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Workspaces in the ADS after reduction: ['IvsQ_13460', 'IvsQ_binned_13460', 'TOF', 'TOF_13460']
 </pre></div>
 </div>
 <p><strong>Example: Sum multiple input runs</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ReflectometryISISLoadAndProcess</span><span class="p">(</span><span class="n">InputRunList</span><span class="o">=</span><span class="s1">&#39;INTER13460, INTER13462&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ReflectometryISISLoadAndProcess</span><span class="p">(</span><span class="n">InputRunList</span><span class="o">=</span><span class="s1">'INTER13460, INTER13462'</span><span class="p">)</span>
 <span class="n">names</span> <span class="o">=</span> <span class="n">mtd</span><span class="o">.</span><span class="n">getObjectNames</span><span class="p">()</span>
 <span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Workspaces in the ADS after reduction: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Workspaces in the ADS after reduction: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Workspaces in the ADS after reduction: [&#39;IvsQ_13460+13462&#39;, &#39;IvsQ_binned_13460+13462&#39;, &#39;TOF&#39;, &#39;TOF_13460&#39;, &#39;TOF_13460+13462&#39;, &#39;TOF_13462&#39;]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Workspaces in the ADS after reduction: ['IvsQ_13460+13462', 'IvsQ_binned_13460+13462', 'TOF', 'TOF_13460', 'TOF_13460+13462', 'TOF_13462']
 </pre></div>
 </div>
 <p><strong>Example: Sum multiple transmission runs into a single input</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ReflectometryISISLoadAndProcess</span><span class="p">(</span><span class="n">InputRunList</span><span class="o">=</span><span class="s1">&#39;INTER13460&#39;</span><span class="p">,</span><span class="n">FirstTransmissionRunList</span><span class="o">=</span><span class="s1">&#39;INTER13463,INTER13464&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ReflectometryISISLoadAndProcess</span><span class="p">(</span><span class="n">InputRunList</span><span class="o">=</span><span class="s1">'INTER13460'</span><span class="p">,</span><span class="n">FirstTransmissionRunList</span><span class="o">=</span><span class="s1">'INTER13463,INTER13464'</span><span class="p">)</span>
 <span class="n">names</span> <span class="o">=</span> <span class="n">mtd</span><span class="o">.</span><span class="n">getObjectNames</span><span class="p">()</span>
 <span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Workspaces in the ADS after reduction: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Workspaces in the ADS after reduction: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Workspaces in the ADS after reduction: [&#39;IvsQ_13460&#39;, &#39;IvsQ_binned_13460&#39;, &#39;TOF&#39;, &#39;TOF_13460&#39;, &#39;TRANS_13463&#39;, &#39;TRANS_13463+13464&#39;, &#39;TRANS_13464&#39;, &#39;TRANS_LAM_13463+13464&#39;]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Workspaces in the ADS after reduction: ['IvsQ_13460', 'IvsQ_binned_13460', 'TOF', 'TOF_13460', 'TRANS_13463', 'TRANS_13463+13464', 'TRANS_13464', 'TRANS_LAM_13463+13464']
 </pre></div>
 </div>
 <p><strong>Example: Two separate transmission run inputs</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ReflectometryISISLoadAndProcess</span><span class="p">(</span><span class="n">InputRunList</span><span class="o">=</span><span class="s1">&#39;INTER13460&#39;</span><span class="p">,</span><span class="n">FirstTransmissionRunList</span><span class="o">=</span><span class="s1">&#39;INTER13463&#39;</span><span class="p">,</span>
-                                <span class="n">SecondTransmissionRunList</span><span class="o">=</span><span class="s1">&#39;INTER13464&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ReflectometryISISLoadAndProcess</span><span class="p">(</span><span class="n">InputRunList</span><span class="o">=</span><span class="s1">'INTER13460'</span><span class="p">,</span><span class="n">FirstTransmissionRunList</span><span class="o">=</span><span class="s1">'INTER13463'</span><span class="p">,</span>
+                                <span class="n">SecondTransmissionRunList</span><span class="o">=</span><span class="s1">'INTER13464'</span><span class="p">)</span>
 <span class="n">names</span> <span class="o">=</span> <span class="n">mtd</span><span class="o">.</span><span class="n">getObjectNames</span><span class="p">()</span>
 <span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Workspaces in the ADS after reduction: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Workspaces in the ADS after reduction: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Workspaces in the ADS after reduction: [&#39;IvsQ_13460&#39;, &#39;IvsQ_binned_13460&#39;, &#39;TOF&#39;, &#39;TOF_13460&#39;, &#39;TRANS_13463&#39;, &#39;TRANS_13464&#39;, &#39;TRANS_LAM_13463_13464&#39;]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Workspaces in the ADS after reduction: ['IvsQ_13460', 'IvsQ_binned_13460', 'TOF', 'TOF_13460', 'TRANS_13463', 'TRANS_13464', 'TRANS_LAM_13463_13464']
 </pre></div>
 </div>
 <p><strong>Example: Slice input run</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ReflectometryISISLoadAndProcess</span><span class="p">(</span><span class="n">InputRunList</span><span class="o">=</span><span class="s1">&#39;INTER38415&#39;</span><span class="p">,</span> <span class="n">SliceWorkspace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">TimeInterval</span><span class="o">=</span><span class="mi">210</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ReflectometryISISLoadAndProcess</span><span class="p">(</span><span class="n">InputRunList</span><span class="o">=</span><span class="s1">'INTER38415'</span><span class="p">,</span> <span class="n">SliceWorkspace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">TimeInterval</span><span class="o">=</span><span class="mi">210</span><span class="p">)</span>
 <span class="n">names</span> <span class="o">=</span> <span class="n">mtd</span><span class="o">.</span><span class="n">getObjectNames</span><span class="p">()</span>
 <span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Workspaces in the ADS after reduction: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Workspaces in the ADS after reduction: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Workspaces in the ADS after reduction: [&#39;IvsLam_38415&#39;, &#39;IvsLam_38415_sliced_0_210&#39;, &#39;IvsLam_38415_sliced_210_420&#39;, &#39;IvsLam_38415_sliced_420_610&#39;, &#39;IvsQ_38415&#39;, &#39;IvsQ_38415_sliced_0_210&#39;, &#39;IvsQ_38415_sliced_210_420&#39;, &#39;IvsQ_38415_sliced_420_610&#39;, &#39;IvsQ_binned_38415&#39;, &#39;IvsQ_binned_38415_sliced_0_210&#39;, &#39;IvsQ_binned_38415_sliced_210_420&#39;, &#39;IvsQ_binned_38415_sliced_420_610&#39;, &#39;TOF&#39;, &#39;TOF_38415&#39;, &#39;TOF_38415_monitors&#39;, &#39;TOF_38415_sliced&#39;, &#39;TOF_38415_sliced_0_210&#39;, &#39;TOF_38415_sliced_210_420&#39;, &#39;TOF_38415_sliced_420_610&#39;]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Workspaces in the ADS after reduction: ['IvsLam_38415', 'IvsLam_38415_sliced_0_210', 'IvsLam_38415_sliced_210_420', 'IvsLam_38415_sliced_420_610', 'IvsQ_38415', 'IvsQ_38415_sliced_0_210', 'IvsQ_38415_sliced_210_420', 'IvsQ_38415_sliced_420_610', 'IvsQ_binned_38415', 'IvsQ_binned_38415_sliced_0_210', 'IvsQ_binned_38415_sliced_210_420', 'IvsQ_binned_38415_sliced_420_610', 'TOF', 'TOF_38415', 'TOF_38415_monitors', 'TOF_38415_sliced', 'TOF_38415_sliced_0_210', 'TOF_38415_sliced_210_420', 'TOF_38415_sliced_420_610']
 </pre></div>
 </div>
 <div class="admonition seealso">
@@ -1935,7 +1938,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryISISLoadAndProcess.py">ReflectometryISISLoadAndProcess.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryISISLoadAndProcess.py">ReflectometryISISLoadAndProcess.py</a></p>
 </section>
 </section>
 

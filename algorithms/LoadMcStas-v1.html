@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadMcStas v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>LoadMcStas v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/LoadMcStas-v1';</script>
@@ -1575,8 +1575,8 @@ events are loaded</p></td>
 scattering instruments and experiments visit the <a class="reference external" href="http://www.mcstas.org">McStas homepage</a> .</p>
 <p>For examples of how combined McStas and Mantid analyses can help
 instrument simulation and data treatment/analysis tasks see Nielsen., T.R. et al., McStas
-and Mantid integration, Journal of Neutron Research, vol. 18, no. 2-3, pp. 61-77, 2015
-<a class="reference external" href="http://dx.doi.org/10.3233/JNR-160026">DOI: 10.3233/JNR-160026</a>
+and Mantid integration, Journal of Neutron Research, vol. 18, no. 2-3, pp. 61-77, 2016
+<a class="reference external" href="https://doi.org/10.3233/JNR-160026">DOI: 10.3233/JNR-160026</a>
 [<a class="reference external" href="http://arxiv.org/abs/1607.02498">arXiv</a>].</p>
 </section>
 </section>
@@ -1591,19 +1591,19 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p><strong>Example - Load McStas data containing both event and histogram data:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the data into tuple</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadMcStas</span><span class="p">(</span><span class="s1">&#39;mcstas_event_hist.h5&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadMcStas</span><span class="p">(</span><span class="s1">'mcstas_event_hist.h5'</span><span class="p">)</span>
 
 <span class="c1"># workspace group is first entry in tuple</span>
-<span class="n">group</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;ws&#39;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of entries in group: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'ws'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of entries in group: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
 
-<span class="n">eventData</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;EventData_ws&#39;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of histograms in event data: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eventData</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name of event data: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eventData</span><span class="o">.</span><span class="n">getName</span><span class="p">()))</span>
+<span class="n">eventData</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'EventData_ws'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of histograms in event data: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eventData</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Name of event data: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eventData</span><span class="o">.</span><span class="n">getName</span><span class="p">()))</span>
 
-<span class="n">someHistogramData</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;Edet.dat_ws&#39;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of histograms in hist data: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">someHistogramData</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name of hist data: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">someHistogramData</span><span class="o">.</span><span class="n">getName</span><span class="p">()))</span>
+<span class="n">someHistogramData</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'Edet.dat_ws'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of histograms in hist data: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">someHistogramData</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Name of hist data: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">someHistogramData</span><span class="o">.</span><span class="n">getName</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1624,33 +1624,33 @@ workspace EventData_ws, which contains the sum of all event data entries in the
 McStas Nexus file. The example below performs a test to show that the summation
 of the workspaces has been executed correctly.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the data into tuple</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadMcStas</span><span class="p">(</span><span class="s1">&#39;mccode_multiple_scattering.h5&#39;</span><span class="p">,</span> <span class="n">OutputOnlySummedEventWorkspace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadMcStas</span><span class="p">(</span><span class="s1">'mccode_multiple_scattering.h5'</span><span class="p">,</span> <span class="n">OutputOnlySummedEventWorkspace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Calculate total of all event data entries</span>
-<span class="n">all_scattering_event_ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;EventData_ws&#39;</span><span class="p">]</span>
+<span class="n">all_scattering_event_ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'EventData_ws'</span><span class="p">]</span>
 <span class="n">total_all</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">all_scattering_event_ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
   <span class="n">total_all</span> <span class="o">+=</span> <span class="n">all_scattering_event_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The sum of all scattering spectra: </span><span class="si">{0:.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total_all</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The sum of all scattering spectra: </span><span class="si">{0:.6e}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total_all</span><span class="p">))</span>
 
 <span class="c1"># Calculate total scattering from the single event bank</span>
-<span class="n">single_scatter_event_ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;single_list_p_x_y_n_id_t_ws&#39;</span><span class="p">]</span>
+<span class="n">single_scatter_event_ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'single_list_p_x_y_n_id_t_ws'</span><span class="p">]</span>
 <span class="n">total_single</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">single_scatter_event_ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
   <span class="n">total_single</span> <span class="o">+=</span> <span class="n">single_scatter_event_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The sum of all single scattering spectra: </span><span class="si">{0:.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total_single</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The sum of all single scattering spectra: </span><span class="si">{0:.6e}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total_single</span><span class="p">))</span>
 
-<span class="c1"># Calculate total scattering from the &#39;k02&#39; detector bank</span>
-<span class="n">multiple_scatter_event_ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;multi_list_p_x_y_n_id_t_ws&#39;</span><span class="p">]</span>
+<span class="c1"># Calculate total scattering from the 'k02' detector bank</span>
+<span class="n">multiple_scatter_event_ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'multi_list_p_x_y_n_id_t_ws'</span><span class="p">]</span>
 <span class="n">total_multiple</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">multiple_scatter_event_ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
   <span class="n">total_multiple</span> <span class="o">+=</span> <span class="n">multiple_scatter_event_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The sum of all multiple scattering spectra: </span><span class="si">{0:.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total_multiple</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The sum of all multiple scattering spectra: </span><span class="si">{0:.6e}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total_multiple</span><span class="p">))</span>
 
 <span class="c1"># Check equality</span>
 <span class="n">sum_of_scattering</span> <span class="o">=</span> <span class="n">total_multiple</span> <span class="o">+</span> <span class="n">total_single</span>
 <span class="c1"># This is equal to the sum of all scattering spectra</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum of single and multiple scattering workspaces: </span><span class="si">{0:.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total_single</span> <span class="o">+</span> <span class="n">total_multiple</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Sum of single and multiple scattering workspaces: </span><span class="si">{0:.6e}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total_single</span> <span class="o">+</span> <span class="n">total_multiple</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1664,8 +1664,8 @@ Sum of single and multiple scattering workspaces: 2.038678e-11
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/LoadMcStas.h">LoadMcStas.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/LoadMcStas.cpp">LoadMcStas.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/LoadMcStas.h">LoadMcStas.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/LoadMcStas.cpp">LoadMcStas.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SCDCalibratePanels v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SCDCalibratePanels v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1640,26 +1640,26 @@ to, the OutputWorkspace.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Calibrate peaks file and load to workspace</span>
-<span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;MANDI_801.peaks&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
+<span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'MANDI_801.peaks'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">)</span>
 <span class="c1">#TimeOffset is not stored in xml file, so use DetCal output if you need TimeOffset</span>
-<span class="n">SCDCalibratePanels</span><span class="p">(</span><span class="n">PeakWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span><span class="n">DetCalFilename</span><span class="o">=</span><span class="s1">&#39;mandi_801.DetCal&#39;</span><span class="p">,</span><span class="n">XmlFilename</span><span class="o">=</span><span class="s1">&#39;mandi_801.xml&#39;</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">74</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mf">74.5</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mf">99.9</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-<span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">getInstrumentDirectory</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;MANDI_Definition_2013_08_01.xml&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;MANDI_801_event_DetCal&#39;</span><span class="p">)</span>
-<span class="n">CloneWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;MANDI_801_event_DetCal&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;MANDI_801_event_xml&#39;</span><span class="p">)</span>
-<span class="n">LoadParameterFile</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;MANDI_801_event_xml&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;mandi_801.xml&#39;</span><span class="p">)</span>
-<span class="n">LoadIsawDetCal</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;MANDI_801_event_DetCal&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;mandi_801.DetCal&#39;</span><span class="p">)</span>
-<span class="n">det1</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MANDI_801_event_DetCal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">327680</span><span class="p">)</span>
-<span class="n">det2</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MANDI_801_event_xml&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">327680</span><span class="p">)</span>
+<span class="n">SCDCalibratePanels</span><span class="p">(</span><span class="n">PeakWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">,</span><span class="n">DetCalFilename</span><span class="o">=</span><span class="s1">'mandi_801.DetCal'</span><span class="p">,</span><span class="n">XmlFilename</span><span class="o">=</span><span class="s1">'mandi_801.xml'</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">74</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mf">74.5</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mf">99.9</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">getInstrumentDirectory</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'MANDI_Definition_2013_08_01.xml'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'MANDI_801_event_DetCal'</span><span class="p">)</span>
+<span class="n">CloneWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'MANDI_801_event_DetCal'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'MANDI_801_event_xml'</span><span class="p">)</span>
+<span class="n">LoadParameterFile</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'MANDI_801_event_xml'</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">'mandi_801.xml'</span><span class="p">)</span>
+<span class="n">LoadIsawDetCal</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'MANDI_801_event_DetCal'</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">'mandi_801.DetCal'</span><span class="p">)</span>
+<span class="n">det1</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'MANDI_801_event_DetCal'</span><span class="p">]</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">327680</span><span class="p">)</span>
+<span class="n">det2</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'MANDI_801_event_xml'</span><span class="p">]</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">327680</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">det1</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span> <span class="o">==</span> <span class="n">det2</span><span class="o">.</span><span class="n">getPos</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;matches&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"matches"</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s1">&#39;MANDI_801_event_xml&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s1">&#39;MANDI_801_event_DetCal&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s1">'peaks'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s1">'MANDI_801_event_xml'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s1">'MANDI_801_event_DetCal'</span><span class="p">)</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="nn">mantid</span>
-<span class="n">filename</span><span class="o">=</span><span class="n">mantid</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;mandi_801.xml&quot;</span>
+<span class="n">filename</span><span class="o">=</span><span class="n">mantid</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s2">"defaultsave.directory"</span><span class="p">)</span><span class="o">+</span><span class="s2">"mandi_801.xml"</span>
 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-<span class="n">filename</span><span class="o">=</span><span class="n">mantid</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;mandi_801.DetCal&quot;</span>
+<span class="n">filename</span><span class="o">=</span><span class="n">mantid</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s2">"defaultsave.directory"</span><span class="p">)</span><span class="o">+</span><span class="s2">"mandi_801.DetCal"</span>
 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1671,8 +1671,8 @@ to, the OutputWorkspace.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/inc/MantidCrystal/SCDCalibratePanels.h">SCDCalibratePanels.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/src/SCDCalibratePanels.cpp">SCDCalibratePanels.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/inc/MantidCrystal/SCDCalibratePanels.h">SCDCalibratePanels.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/src/SCDCalibratePanels.cpp">SCDCalibratePanels.cpp</a></p>
 </section>
 </section>
 

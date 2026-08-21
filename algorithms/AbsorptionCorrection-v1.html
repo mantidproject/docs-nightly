@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>AbsorptionCorrection v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>AbsorptionCorrection v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1592,24 +1592,24 @@ defined because detector, source &amp; sample position are needed.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example: A simple spherical sample</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#setup the sample shape</span>
-<span class="n">sphere</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;&lt;sphere id=&quot;sample-sphere&quot;&gt;</span>
-<span class="s1">&lt;centre x=&quot;0&quot; y=&quot;0&quot; z=&quot;0&quot;/&gt;</span>
-<span class="s1">&lt;radius val=&quot;0.1&quot; /&gt;</span>
-<span class="s1">&lt;/sphere&gt;&#39;&#39;&#39;</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="s1">'''&lt;sphere id="sample-sphere"&gt;</span>
+<span class="s1">&lt;centre x="0" y="0" z="0"/&gt;</span>
+<span class="s1">&lt;radius val="0.1" /&gt;</span>
+<span class="s1">&lt;/sphere&gt;'''</span>
 
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">"Wavelength"</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">CreateSampleShape</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">sphere</span><span class="p">)</span>
-<span class="n">SetSampleMaterial</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">ChemicalFormula</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">)</span>
+<span class="n">SetSampleMaterial</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">ChemicalFormula</span><span class="o">=</span><span class="s2">"V"</span><span class="p">)</span>
 
 <span class="c1">#restrict the number of wavelength points to speed up the example</span>
 <span class="n">wsOut</span> <span class="o">=</span> <span class="n">AbsorptionCorrection</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">NumberOfWavelengthPoints</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ElementSize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">wsCorrected</span> <span class="o">=</span> <span class="n">ws</span> <span class="o">/</span> <span class="n">wsOut</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The created workspace has one entry for each spectra: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original y values:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Corrected y values:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsCorrected</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The created workspace has one entry for each spectra: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Original y values:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Corrected y values:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsCorrected</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1623,8 +1623,8 @@ Corrected y values:  [  818.39955533  2377.16206099 14230.46290595  9497.0839003
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/AnyShapeAbsorption.h">AnyShapeAbsorption.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/AnyShapeAbsorption.cpp">AnyShapeAbsorption.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/AnyShapeAbsorption.h">AnyShapeAbsorption.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/AnyShapeAbsorption.cpp">AnyShapeAbsorption.cpp</a></p>
 </section>
 </section>
 

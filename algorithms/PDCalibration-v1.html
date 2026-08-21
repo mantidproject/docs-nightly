@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PDCalibration v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PDCalibration v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/PDCalibration-v1';</script>
@@ -1681,22 +1681,22 @@ In this mode, the <code class="docutils literal notranslate"><span class="pre">C
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - PDCalibration</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you have an old calibration it can be used as the starting point</span>
-<span class="n">oldCal</span> <span class="o">=</span> <span class="s1">&#39;NOM_calibrate_d72460_2016_05_23.h5&#39;</span>
+<span class="n">oldCal</span> <span class="o">=</span> <span class="s1">'NOM_calibrate_d72460_2016_05_23.h5'</span>
 
 <span class="c1"># list of d values for diamond</span>
 <span class="n">dvalues</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.3117</span><span class="p">,</span><span class="mf">0.3257</span><span class="p">,</span><span class="mf">0.3499</span><span class="p">,</span><span class="mf">0.4205</span><span class="p">,</span><span class="mf">0.4645</span><span class="p">,</span><span class="mf">0.4768</span><span class="p">,</span><span class="mf">0.4996</span><span class="p">,</span><span class="mf">0.5150</span><span class="p">,</span><span class="mf">0.5441</span><span class="p">,</span><span class="mf">0.5642</span><span class="p">,</span><span class="mf">0.5947</span><span class="p">,</span><span class="mf">0.6307</span><span class="p">,</span><span class="mf">.6866</span><span class="p">,</span><span class="mf">.7283</span><span class="p">,</span><span class="mf">.8185</span><span class="p">,</span><span class="mf">.8920</span><span class="p">,</span><span class="mf">1.0758</span><span class="p">,</span><span class="mf">1.2615</span><span class="p">,</span><span class="mf">2.0599</span><span class="p">)</span>
 
-<span class="n">LoadEventNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;NOM_72460&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;NOM_72460&#39;</span><span class="p">)</span>
-<span class="n">PDCalibration</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;NOM_72460&#39;</span><span class="p">,</span>
+<span class="n">LoadEventNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'NOM_72460'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'NOM_72460'</span><span class="p">)</span>
+<span class="n">PDCalibration</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'NOM_72460'</span><span class="p">,</span>
               <span class="n">TofBinning</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">,</span><span class="o">-</span><span class="mf">.001</span><span class="p">,</span><span class="mf">16666.7</span><span class="p">],</span>
               <span class="n">PreviousCalibrationFile</span><span class="o">=</span><span class="n">oldCal</span><span class="p">,</span>
               <span class="n">PeakPositions</span><span class="o">=</span><span class="n">dvalues</span><span class="p">,</span>
               <span class="n">PeakWidthPercent</span><span class="o">=</span><span class="mf">.008</span><span class="p">,</span>
-              <span class="n">OutputCalibrationTable</span><span class="o">=</span><span class="s1">&#39;cal&#39;</span><span class="p">,</span>
-              <span class="n">DiagnosticWorkspaces</span><span class="o">=</span><span class="s1">&#39;diag&#39;</span><span class="p">)</span>
+              <span class="n">OutputCalibrationTable</span><span class="o">=</span><span class="s1">'cal'</span><span class="p">,</span>
+              <span class="n">DiagnosticWorkspaces</span><span class="o">=</span><span class="s1">'diag'</span><span class="p">)</span>
 
 <span class="c1"># Print the result</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The calibrated difc at detid </span><span class="si">{detid}</span><span class="s2"> is </span><span class="si">{difc}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;cal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">40000</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The calibrated difc at detid </span><span class="si">{detid}</span><span class="s2"> is </span><span class="si">{difc}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'cal'</span><span class="p">]</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">40000</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1705,25 +1705,25 @@ In this mode, the <code class="docutils literal notranslate"><span class="pre">C
 </div>
 <p><strong>Example - PDCalibration with BackToBackExponential fit function</strong></p>
 <p>The following example shows how to use PDCalibration with the BackToBackExponential fit function. The fit works best if sensible initial values for the parameters are specified in an instrument definition or parameter file (for more details, see the <a class="reference internal" href="../concepts/InstrumentDefinitionFile.html#using-fitting-parameter"><span class="std std-ref">fitting parameters</span></a> documentation):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;ENGINX00193749.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;193749&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">'ENGINX00193749.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'193749'</span><span class="p">)</span>
 <span class="n">dpks</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.913220892</span><span class="p">,</span> <span class="mf">1.631600313</span><span class="p">,</span>
         <span class="mf">1.562138267</span><span class="p">,</span> <span class="mf">1.352851554</span><span class="p">,</span> <span class="mf">1.104598643</span><span class="p">)</span>
 
 <span class="c1"># initial values for GSAS parameters A, B, S are in ENGINX parameters .xml</span>
 <span class="c1"># use log binning</span>
-<span class="n">PDCalibration</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;193749&#39;</span><span class="p">,</span>
+<span class="n">PDCalibration</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'193749'</span><span class="p">,</span>
               <span class="n">TofBinning</span><span class="o">=</span><span class="p">[</span><span class="mi">10000</span><span class="p">,</span><span class="o">-</span><span class="mf">0.0005</span><span class="p">,</span><span class="mi">46000</span><span class="p">],</span>
               <span class="n">PeakPositions</span><span class="o">=</span><span class="n">dpks</span><span class="p">,</span>
               <span class="n">PeakWindow</span> <span class="o">=</span> <span class="mf">0.03</span><span class="p">,</span>
               <span class="n">MinimumPeakHeight</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-              <span class="n">PeakFunction</span> <span class="o">=</span> <span class="s1">&#39;BackToBackExponential&#39;</span><span class="p">,</span>
-              <span class="n">CalibrationParameters</span> <span class="o">=</span> <span class="s1">&#39;DIFC&#39;</span><span class="p">,</span>
-              <span class="n">OutputCalibrationTable</span><span class="o">=</span><span class="s1">&#39;cal_B2B_DIFC_chisqTrue&#39;</span><span class="p">,</span>
-              <span class="n">DiagnosticWorkspaces</span> <span class="o">=</span> <span class="s1">&#39;diag_B2B_DIFC_chisqTrue&#39;</span><span class="p">,</span>
+              <span class="n">PeakFunction</span> <span class="o">=</span> <span class="s1">'BackToBackExponential'</span><span class="p">,</span>
+              <span class="n">CalibrationParameters</span> <span class="o">=</span> <span class="s1">'DIFC'</span><span class="p">,</span>
+              <span class="n">OutputCalibrationTable</span><span class="o">=</span><span class="s1">'cal_B2B_DIFC_chisqTrue'</span><span class="p">,</span>
+              <span class="n">DiagnosticWorkspaces</span> <span class="o">=</span> <span class="s1">'diag_B2B_DIFC_chisqTrue'</span><span class="p">,</span>
               <span class="n">UseChiSq</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Print the result</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The calibrated difc at detid </span><span class="si">{detid}</span><span class="s2"> is </span><span class="si">{difc}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;cal_B2B_DIFC_chisqTrue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">1000</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The calibrated difc at detid </span><span class="si">{detid}</span><span class="s2"> is </span><span class="si">{difc}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'cal_B2B_DIFC_chisqTrue'</span><span class="p">]</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">1000</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1734,8 +1734,8 @@ In this mode, the <code class="docutils literal notranslate"><span class="pre">C
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/PDCalibration.h">PDCalibration.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/PDCalibration.cpp">PDCalibration.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/PDCalibration.h">PDCalibration.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/PDCalibration.cpp">PDCalibration.cpp</a></p>
 </section>
 </section>
 

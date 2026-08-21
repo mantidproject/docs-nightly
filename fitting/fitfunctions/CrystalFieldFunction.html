@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CrystalFieldFunction &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CrystalFieldFunction &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'fitting/fitfunctions/CrystalFieldFunction';</script>
@@ -516,32 +516,32 @@ in Mantid and under active development. More documentation will follow as the de
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># Define two single site multi-spectrum functions to generate some data to fit to</span>
-<span class="n">fun1</span> <span class="o">=</span> <span class="s2">&quot;name=CrystalFieldMultiSpectrum,Ion=Ce,Temperatures=(4, 10), FWHMs=2,Background=</span><span class="se">\&quot;</span><span class="s2">name=LinearBackground,A0=20,A1=-0.11</span><span class="se">\&quot;</span><span class="s2">,&quot;</span>\
-       <span class="s2">&quot;ToleranceIntensity=0.001,B20=0.37737,B22=3.9770,B40=-0.031787,B42=-0.11611,B44=-0.12544,f1.f0.A0=10,f1.f0.A1=0.09&quot;</span>
+<span class="n">fun1</span> <span class="o">=</span> <span class="s2">"name=CrystalFieldMultiSpectrum,Ion=Ce,Temperatures=(4, 10), FWHMs=2,Background=</span><span class="se">\"</span><span class="s2">name=LinearBackground,A0=20,A1=-0.11</span><span class="se">\"</span><span class="s2">,"</span>\
+       <span class="s2">"ToleranceIntensity=0.001,B20=0.37737,B22=3.9770,B40=-0.031787,B42=-0.11611,B44=-0.12544,f1.f0.A0=10,f1.f0.A1=0.09"</span>
 
-<span class="n">fun2</span> <span class="o">=</span> <span class="s2">&quot;name=CrystalFieldMultiSpectrum,Ion=Pr, Symmetry=D4h,Temperatures=(4, 10), FWHMs=2,&quot;</span>\
-       <span class="s2">&quot;ToleranceIntensity=0.001,B20=0.4268, B40=0.001031, B44=-0.01996, B60=0.00005, B64=0.001563&quot;</span>
+<span class="n">fun2</span> <span class="o">=</span> <span class="s2">"name=CrystalFieldMultiSpectrum,Ion=Pr, Symmetry=D4h,Temperatures=(4, 10), FWHMs=2,"</span>\
+       <span class="s2">"ToleranceIntensity=0.001,B20=0.4268, B40=0.001031, B44=-0.01996, B60=0.00005, B64=0.001563"</span>
 
 <span class="c1"># Generate the data</span>
-<span class="n">EvaluateFunction</span><span class="p">(</span><span class="n">fun1</span> <span class="o">+</span> <span class="s1">&#39;;&#39;</span> <span class="o">+</span> <span class="n">fun2</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">InputWorkspace_1</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">EvaluateFunction</span><span class="p">(</span><span class="n">fun1</span> <span class="o">+</span> <span class="s1">';'</span> <span class="o">+</span> <span class="n">fun2</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">InputWorkspace_1</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">)</span>
 
-<span class="n">cf</span> <span class="o">=</span> <span class="s2">&quot;name=CrystalFieldFunction,Ions=(Ce, Pr),Symmetries=(C2v, D4h), FixAllPeaks=1,&quot;</span>\
-     <span class="s2">&quot;Temperatures=(4, 10),FWHMs=2.0,ToleranceIntensity=0.001,Background=</span><span class="se">\&quot;</span><span class="s2">name=LinearBackground,A0=20,</span><span class="se">\&quot;</span><span class="s2">,&quot;</span>\
-     <span class="s2">&quot;ion0.B20=0.37737,ion0.B22=3.9770,ion0.B40=-0.031787,ion0.B42=-0.11611,ion0.B44=-0.12544,&quot;</span>\
-     <span class="s2">&quot;ion1.B20=0.4268, ion1.B40=0.001031, ion1.B44=-0.01996, ion1.B60=0.00005, ion1.B64=0.001563,&quot;</span>\
-     <span class="s2">&quot;ties=(ion0.BmolX=0,ion0.BmolY=0,ion0.BmolZ=0,ion0.BextX=0,ion0.BextY=0,ion0.BextZ=0, ion0.B60=0,ion0.B62=0,ion0.B64=0,ion0.B66=0, ion0.IntensityScaling=1),&quot;</span>\
-     <span class="s2">&quot;ties=(ion1.BmolX=0,ion1.BmolY=0,ion1.BmolZ=0,ion1.BextX=0,ion1.BextY=0,ion1.BextZ=0, ion1.IntensityScaling=1),&quot;</span>\
-     <span class="s2">&quot;ties=(sp0.IntensityScaling=1, sp1.IntensityScaling=1),ties=(sp1.bg.A1 = -sp0.bg.A1)&quot;</span>
+<span class="n">cf</span> <span class="o">=</span> <span class="s2">"name=CrystalFieldFunction,Ions=(Ce, Pr),Symmetries=(C2v, D4h), FixAllPeaks=1,"</span>\
+     <span class="s2">"Temperatures=(4, 10),FWHMs=2.0,ToleranceIntensity=0.001,Background=</span><span class="se">\"</span><span class="s2">name=LinearBackground,A0=20,</span><span class="se">\"</span><span class="s2">,"</span>\
+     <span class="s2">"ion0.B20=0.37737,ion0.B22=3.9770,ion0.B40=-0.031787,ion0.B42=-0.11611,ion0.B44=-0.12544,"</span>\
+     <span class="s2">"ion1.B20=0.4268, ion1.B40=0.001031, ion1.B44=-0.01996, ion1.B60=0.00005, ion1.B64=0.001563,"</span>\
+     <span class="s2">"ties=(ion0.BmolX=0,ion0.BmolY=0,ion0.BmolZ=0,ion0.BextX=0,ion0.BextY=0,ion0.BextZ=0, ion0.B60=0,ion0.B62=0,ion0.B64=0,ion0.B66=0, ion0.IntensityScaling=1),"</span>\
+     <span class="s2">"ties=(ion1.BmolX=0,ion1.BmolY=0,ion1.BmolZ=0,ion1.BextX=0,ion1.BextY=0,ion1.BextZ=0, ion1.IntensityScaling=1),"</span>\
+     <span class="s2">"ties=(sp0.IntensityScaling=1, sp1.IntensityScaling=1),ties=(sp1.bg.A1 = -sp0.bg.A1)"</span>
 
-<span class="n">Fit</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Workspace_0&#39;</span><span class="p">,</span> <span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">InputWorkspace_1</span><span class="o">=</span><span class="s1">&#39;Workspace_1&#39;</span><span class="p">,</span> <span class="n">WorkspaceIndex_1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'Workspace_0'</span><span class="p">,</span> <span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">InputWorkspace_1</span><span class="o">=</span><span class="s1">'Workspace_1'</span><span class="p">,</span> <span class="n">WorkspaceIndex_1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">'fit'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/FitFunctions.html">FitFunctions</a> | <a class="reference external" href="categories/General.html">General</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/inc/MantidCurveFitting/Functions/CrystalFieldFunction.h">CrystalFieldFunction.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/src/Functions/CrystalFieldFunction.cpp">CrystalFieldFunction.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/inc/MantidCurveFitting/Functions/CrystalFieldFunction.h">CrystalFieldFunction.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/src/Functions/CrystalFieldFunction.cpp">CrystalFieldFunction.cpp</a></p>
 </section>
 </section>
 

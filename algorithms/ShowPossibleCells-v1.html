@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ShowPossibleCells v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ShowPossibleCells v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ShowPossibleCells-v1';</script>
@@ -1518,21 +1518,21 @@ from: <a class="reference external" href="http://nvlpubs.nist.gov/nistpubs/jres/
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="s2">&quot;TOPAZ_3007.peaks&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="s2">"TOPAZ_3007.peaks"</span><span class="p">)</span>
 <span class="n">FindUBUsingFFT</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">MinD</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span><span class="n">MaxD</span><span class="o">=</span><span class="mf">13.0</span><span class="p">)</span>
 <span class="n">number_of_cells</span><span class="p">,</span> <span class="n">cells</span> <span class="o">=</span> <span class="n">ShowPossibleCells</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Num Cells: </span><span class="si">{</span><span class="n">number_of_cells</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Num Cells: </span><span class="si">{</span><span class="n">number_of_cells</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">cell1</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">cell2</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">cells</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;First cell: Error=</span><span class="si">{</span><span class="n">cell1</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> FormNumber=</span><span class="si">{</span><span class="n">cell1</span><span class="p">[</span><span class="s1">&#39;FormNumber&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, CellType=</span><span class="si">{</span><span class="n">cell1</span><span class="p">[</span><span class="s1">&#39;CellType&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, Centering=</span><span class="si">{</span><span class="n">cell1</span><span class="p">[</span><span class="s1">&#39;Centering&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Second cell: Error=</span><span class="si">{</span><span class="n">cell2</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> FormNumber=</span><span class="si">{</span><span class="n">cell2</span><span class="p">[</span><span class="s1">&#39;FormNumber&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, CellType=</span><span class="si">{</span><span class="n">cell2</span><span class="p">[</span><span class="s1">&#39;CellType&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, Centering=</span><span class="si">{</span><span class="n">cell2</span><span class="p">[</span><span class="s1">&#39;Centering&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"First cell: Error=</span><span class="si">{</span><span class="n">cell1</span><span class="p">[</span><span class="s1">'Error'</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> FormNumber=</span><span class="si">{</span><span class="n">cell1</span><span class="p">[</span><span class="s1">'FormNumber'</span><span class="p">]</span><span class="si">}</span><span class="s2">, CellType=</span><span class="si">{</span><span class="n">cell1</span><span class="p">[</span><span class="s1">'CellType'</span><span class="p">]</span><span class="si">}</span><span class="s2">, Centering=</span><span class="si">{</span><span class="n">cell1</span><span class="p">[</span><span class="s1">'Centering'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Second cell: Error=</span><span class="si">{</span><span class="n">cell2</span><span class="p">[</span><span class="s1">'Error'</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> FormNumber=</span><span class="si">{</span><span class="n">cell2</span><span class="p">[</span><span class="s1">'FormNumber'</span><span class="p">]</span><span class="si">}</span><span class="s2">, CellType=</span><span class="si">{</span><span class="n">cell2</span><span class="p">[</span><span class="s1">'CellType'</span><span class="p">]</span><span class="si">}</span><span class="s2">, Centering=</span><span class="si">{</span><span class="n">cell2</span><span class="p">[</span><span class="s1">'Centering'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="c1"># the output can then be used by SelectCellOfType</span>
-<span class="n">SelectCellOfType</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">CellType</span><span class="o">=</span><span class="n">cell1</span><span class="p">[</span><span class="s1">&#39;CellType&#39;</span><span class="p">],</span> <span class="n">Centering</span><span class="o">=</span><span class="n">cell1</span><span class="p">[</span><span class="s1">&#39;Centering&#39;</span><span class="p">],</span> <span class="n">Apply</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">SelectCellOfType</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">CellType</span><span class="o">=</span><span class="n">cell1</span><span class="p">[</span><span class="s1">'CellType'</span><span class="p">],</span> <span class="n">Centering</span><span class="o">=</span><span class="n">cell1</span><span class="p">[</span><span class="s1">'Centering'</span><span class="p">],</span> <span class="n">Apply</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># or SelectCellWithForm</span>
-<span class="n">SelectCellWithForm</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">FormNumber</span><span class="o">=</span><span class="n">cell1</span><span class="p">[</span><span class="s1">&#39;FormNumber&#39;</span><span class="p">],</span> <span class="n">Apply</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">SelectCellWithForm</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">FormNumber</span><span class="o">=</span><span class="n">cell1</span><span class="p">[</span><span class="s1">'FormNumber'</span><span class="p">],</span> <span class="n">Apply</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># or SetUB</span>
-<span class="n">SetUB</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">UB</span><span class="o">=</span><span class="n">cell1</span><span class="p">[</span><span class="s2">&quot;UB&quot;</span><span class="p">])</span>
+<span class="n">SetUB</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">UB</span><span class="o">=</span><span class="n">cell1</span><span class="p">[</span><span class="s2">"UB"</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1545,8 +1545,8 @@ Second cell: Error=0.000 FormNumber=44, CellType=Triclinic, Centering=P
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/inc/MantidCrystal/ShowPossibleCells.h">ShowPossibleCells.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/src/ShowPossibleCells.cpp">ShowPossibleCells.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/inc/MantidCrystal/ShowPossibleCells.h">ShowPossibleCells.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/src/ShowPossibleCells.cpp">ShowPossibleCells.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CreatePSDBleedMask v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CreatePSDBleedMask v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/CreatePSDBleedMask-v1';</script>
@@ -1538,13 +1538,13 @@ show bleeding signal, so no bleeding corrections applied to it.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">ws</span><span class="o">=</span><span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">&quot;goodfrm&quot;</span><span class="p">,</span><span class="s2">&quot;10&quot;</span><span class="p">,</span><span class="s2">&quot;Number&quot;</span><span class="p">)</span>
+<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">"goodfrm"</span><span class="p">,</span><span class="s2">"10"</span><span class="p">,</span><span class="s2">"Number"</span><span class="p">)</span>
 <span class="n">noisyY</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">noisyY</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">1e20</span>
 <span class="n">ws</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="n">noisyY</span><span class="p">)</span>
 <span class="p">(</span><span class="n">wsOut</span><span class="p">,</span> <span class="n">numFailures</span><span class="p">)</span> <span class="o">=</span> <span class="n">CreatePSDBleedMask</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">MaxTubeFramerate</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">NIgnoredCentralPixels</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> spectra have been masked in wsOut&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numFailures</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{}</span><span class="s2"> spectra have been masked in wsOut"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numFailures</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1555,8 +1555,8 @@ show bleeding signal, so no bleeding corrections applied to it.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/CreatePSDBleedMask.h">CreatePSDBleedMask.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/CreatePSDBleedMask.cpp">CreatePSDBleedMask.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/CreatePSDBleedMask.h">CreatePSDBleedMask.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/CreatePSDBleedMask.cpp">CreatePSDBleedMask.cpp</a></p>
 </section>
 </section>
 

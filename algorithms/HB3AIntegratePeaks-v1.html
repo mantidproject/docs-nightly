@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>HB3AIntegratePeaks v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>HB3AIntegratePeaks v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/HB3AIntegratePeaks-v1';</script>
@@ -1550,7 +1550,7 @@ new UB you can use it to predict all expected peaks with
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - DEMAND Workflow predicting peaks</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input detector scan data to use. Can be a list of files, or workspaces - see HB3AAdjustSampleNorm for details</span>
-<span class="n">data_files</span> <span class="o">=</span> <span class="s2">&quot;HB3A_exp0724_scan0182.nxs, HB3A_exp0724_scan0183.nxs&quot;</span>
+<span class="n">data_files</span> <span class="o">=</span> <span class="s2">"HB3A_exp0724_scan0182.nxs, HB3A_exp0724_scan0183.nxs"</span>
 
 <span class="c1"># Converts to MDEventWorkspace</span>
 <span class="c1">#  If needed, the sample position can be adjusted by a height and distance - see the HB3AAdjustSampleNorm docs</span>
@@ -1559,19 +1559,19 @@ new UB you can use it to predict all expected peaks with
 <span class="c1"># Finds peaks on the combined workspace, optimizing the UB matrix for the given cell type parameters</span>
 <span class="c1">#  lattice parameters can be optionally specified to calculate the UB matrix (see docs for HB3AFindPeaks)</span>
 <span class="n">peaks</span> <span class="o">=</span> <span class="n">HB3APredictPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
-                         <span class="n">ReflectionCondition</span><span class="o">=</span><span class="s1">&#39;B-face centred&#39;</span><span class="p">)</span>
+                         <span class="n">ReflectionCondition</span><span class="o">=</span><span class="s1">'B-face centred'</span><span class="p">)</span>
 
 <span class="c1"># Integrate the predicted peaks from the workspace above</span>
 <span class="n">integrated_peaks</span> <span class="o">=</span> <span class="n">HB3AIntegratePeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="n">peaks</span><span class="p">,</span>
                                       <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
-                                      <span class="n">OutputFile</span><span class="o">=</span><span class="s2">&quot;./integrated_peaks.hkl&quot;</span><span class="p">)</span>
+                                      <span class="n">OutputFile</span><span class="o">=</span><span class="s2">"./integrated_peaks.hkl"</span><span class="p">)</span>
 
 <span class="c1"># To visualize the combined data sets you can merge them together and overlay the integrated peaks in sliceviewer</span>
 <span class="n">merged</span> <span class="o">=</span> <span class="n">MergeMD</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="c1"># You can also convert the merged data in HKL to visualize the HKL data and overlay the integrated peaks in sliceviewer, see figure below</span>
 <span class="n">HKL</span> <span class="o">=</span> <span class="n">ConvertQtoHKLMDHisto</span><span class="p">(</span><span class="n">merged</span><span class="p">,</span>
-                           <span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;-5.1,5.1,-2.1,2.1,-20.1,20.1&#39;</span><span class="p">,</span>
-                           <span class="n">Bins</span><span class="o">=</span><span class="s1">&#39;251,101,1001&#39;</span><span class="p">)</span>
+                           <span class="n">Extents</span><span class="o">=</span><span class="s1">'-5.1,5.1,-2.1,2.1,-20.1,20.1'</span><span class="p">,</span>
+                           <span class="n">Bins</span><span class="o">=</span><span class="s1">'251,101,1001'</span><span class="p">)</span>
 </pre></div>
 </div>
 <figure class="align-default">
@@ -1581,15 +1581,15 @@ new UB you can use it to predict all expected peaks with
 <p>Following on from the previous example we will predict some (fictional) satellite peaks.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using a modulation vector of ±0.4H.</span>
 <span class="n">satellites_peaks</span> <span class="o">=</span> <span class="n">HB3APredictPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
-                                    <span class="n">ReflectionCondition</span><span class="o">=</span><span class="s1">&#39;B-face centred&#39;</span><span class="p">,</span>
+                                    <span class="n">ReflectionCondition</span><span class="o">=</span><span class="s1">'B-face centred'</span><span class="p">,</span>
                                     <span class="n">SatellitePeaks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                    <span class="n">ModVector1</span><span class="o">=</span><span class="s1">&#39;0.4,0,0&#39;</span><span class="p">,</span>
+                                    <span class="n">ModVector1</span><span class="o">=</span><span class="s1">'0.4,0,0'</span><span class="p">,</span>
                                     <span class="n">MaxOrder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                                     <span class="n">IncludeIntegerHKL</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">integrated_satellites_peaks</span> <span class="o">=</span> <span class="n">HB3AIntegratePeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="n">satellites_peaks</span><span class="p">,</span>
                                                  <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>
-                                                 <span class="n">OutputFormat</span><span class="o">=</span><span class="s2">&quot;Fullprof&quot;</span><span class="p">,</span>
-                                                 <span class="n">OutputFile</span><span class="o">=</span><span class="s2">&quot;./integrated_satellite_peaks.hkl&quot;</span><span class="p">)</span>
+                                                 <span class="n">OutputFormat</span><span class="o">=</span><span class="s2">"Fullprof"</span><span class="p">,</span>
+                                                 <span class="n">OutputFile</span><span class="o">=</span><span class="s2">"./integrated_satellite_peaks.hkl"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You will see the modulation vectors in the output file</p>
@@ -1620,7 +1620,7 @@ new UB you can use it to predict all expected peaks with
 </figure>
 <p><strong>Example - DEMAND Workflow finding peaks and determining the UB</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input detector scan data to use. Can be a list of files, or workspaces - see HB3AAdjustSampleNorm for details</span>
-<span class="n">data_files</span> <span class="o">=</span> <span class="s2">&quot;HB3A_exp0724_scan0182.nxs, HB3A_exp0724_scan0183.nxs&quot;</span>
+<span class="n">data_files</span> <span class="o">=</span> <span class="s2">"HB3A_exp0724_scan0182.nxs, HB3A_exp0724_scan0183.nxs"</span>
 
 <span class="c1"># Converts to MDEventWorkspace</span>
 <span class="c1">#  If needed, the sample position can be adjusted by a height and distance - see the HB3AAdjustSampleNorm docs</span>
@@ -1629,30 +1629,30 @@ new UB you can use it to predict all expected peaks with
 <span class="c1"># Finds peaks on the combined workspace, optimizing the UB matrix for the given cell type parameters</span>
 <span class="c1">#  lattice parameters can be optionally specified to calculate the UB matrix (see docs for HB3AFindPeaks)</span>
 <span class="n">peaks</span> <span class="o">=</span> <span class="n">HB3AFindPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
-                      <span class="n">CellType</span><span class="o">=</span><span class="s2">&quot;Orthorhombic&quot;</span><span class="p">,</span>
-                      <span class="n">Centering</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+                      <span class="n">CellType</span><span class="o">=</span><span class="s2">"Orthorhombic"</span><span class="p">,</span>
+                      <span class="n">Centering</span><span class="o">=</span><span class="s2">"F"</span><span class="p">)</span>
 
 <span class="c1"># Integrate the peaks from the optimized peaks workspace above</span>
 <span class="n">integrated_peaks</span> <span class="o">=</span> <span class="n">HB3AIntegratePeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
                                       <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="n">peaks</span><span class="p">,</span>
                                       <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
-                                      <span class="n">OutputFile</span><span class="o">=</span><span class="s2">&quot;./integrated_peaks.hkl&quot;</span><span class="p">)</span>
+                                      <span class="n">OutputFile</span><span class="o">=</span><span class="s2">"./integrated_peaks.hkl"</span><span class="p">)</span>
 
 <span class="c1"># Alternatively, predict the peaks using the newly found UB, then integrate</span>
 <span class="n">predicted_peaks</span> <span class="o">=</span> <span class="n">HB3APredictPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
                                    <span class="n">UBWorkspace</span><span class="o">=</span><span class="n">peaks</span><span class="p">,</span>
-                                   <span class="n">ReflectionCondition</span><span class="o">=</span><span class="s1">&#39;B-face centred&#39;</span><span class="p">)</span>
+                                   <span class="n">ReflectionCondition</span><span class="o">=</span><span class="s1">'B-face centred'</span><span class="p">)</span>
 <span class="n">integrated_predicted_peaks</span> <span class="o">=</span> <span class="n">HB3AIntegratePeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
                                                 <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="n">predicted_peaks</span><span class="p">,</span>
                                                 <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
-                                                <span class="n">OutputFile</span><span class="o">=</span><span class="s2">&quot;./integrated_peaks.hkl&quot;</span><span class="p">)</span>
+                                                <span class="n">OutputFile</span><span class="o">=</span><span class="s2">"./integrated_peaks.hkl"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Crystal/Integration.html">Crystal\Integration</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/HB3AIntegratePeaks.py">HB3AIntegratePeaks.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/HB3AIntegratePeaks.py">HB3AIntegratePeaks.py</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ConvertCWSDMDtoHKL v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ConvertCWSDMDtoHKL v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ConvertCWSDMDtoHKL-v1';</script>
@@ -1536,31 +1536,31 @@ Meanwhile, the algorithm is able to export the MDEvents to file.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Convert detector counts of an HB3A’s measurement to HKL.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create input table workspaces for experiment information and virtual instrument parameters</span>
-<span class="n">CollectHB3AExperimentInfo</span><span class="p">(</span><span class="n">ExperimentNumber</span><span class="o">=</span><span class="s1">&#39;406&#39;</span><span class="p">,</span> <span class="n">ScanList</span><span class="o">=</span><span class="s1">&#39;298&#39;</span><span class="p">,</span> <span class="n">PtLists</span><span class="o">=</span><span class="s1">&#39;-1,22&#39;</span><span class="p">,</span>
-    <span class="n">DataDirectory</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="n">CollectHB3AExperimentInfo</span><span class="p">(</span><span class="n">ExperimentNumber</span><span class="o">=</span><span class="s1">'406'</span><span class="p">,</span> <span class="n">ScanList</span><span class="o">=</span><span class="s1">'298'</span><span class="p">,</span> <span class="n">PtLists</span><span class="o">=</span><span class="s1">'-1,22'</span><span class="p">,</span>
+    <span class="n">DataDirectory</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span>
     <span class="n">GenerateVirtualInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ExpInfoTable&#39;</span><span class="p">,</span> <span class="n">DetectorTableWorkspace</span><span class="o">=</span><span class="s1">&#39;VirtualInstrumentTable&#39;</span><span class="p">)</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'ExpInfoTable'</span><span class="p">,</span> <span class="n">DetectorTableWorkspace</span><span class="o">=</span><span class="s1">'VirtualInstrumentTable'</span><span class="p">)</span>
 
 <span class="c1"># Convert to MDWorkspace</span>
-<span class="n">ConvertCWSDExpToMomentum</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ExpInfoTable&#39;</span><span class="p">,</span> <span class="n">CreateVirtualInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;QSampleMD&#39;</span><span class="p">,</span>
-    <span class="n">Directory</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ConvertCWSDExpToMomentum</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'ExpInfoTable'</span><span class="p">,</span> <span class="n">CreateVirtualInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'QSampleMD'</span><span class="p">,</span>
+    <span class="n">Directory</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>
 
-<span class="n">ConvertCWSDMDtoHKL</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;QSampleMD&#39;</span><span class="p">,</span>
-              <span class="n">UBMatrix</span><span class="o">=</span><span class="s1">&#39;0.13329061, 0.07152342, -0.04215966, 0.01084569, -0.1620849, 0.0007607, -0.14018499, -0.07841385, -0.04002737&#39;</span><span class="p">,</span>
-              <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;HKLMD&#39;</span><span class="p">)</span>
+<span class="n">ConvertCWSDMDtoHKL</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'QSampleMD'</span><span class="p">,</span>
+              <span class="n">UBMatrix</span><span class="o">=</span><span class="s1">'0.13329061, 0.07152342, -0.04215966, 0.01084569, -0.1620849, 0.0007607, -0.14018499, -0.07841385, -0.04002737'</span><span class="p">,</span>
+              <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'HKLMD'</span><span class="p">)</span>
 
 
 <span class="c1"># Examine</span>
-<span class="n">mdws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;QSampleMD&#39;</span><span class="p">]</span>
-<span class="n">hklws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;HKLMD&#39;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output QSample and HKL workspaces have </span><span class="si">%d</span><span class="s1"> and </span><span class="si">%d</span><span class="s1"> events.&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">mdws</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">(),</span> <span class="n">hklws</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">()))</span>
+<span class="n">mdws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'QSampleMD'</span><span class="p">]</span>
+<span class="n">hklws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'HKLMD'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Output QSample and HKL workspaces have </span><span class="si">%d</span><span class="s1"> and </span><span class="si">%d</span><span class="s1"> events.'</span><span class="o">%</span><span class="p">(</span><span class="n">mdws</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">(),</span> <span class="n">hklws</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">()))</span>
 
-<span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;HKLMD&#39;</span><span class="p">,</span> <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">&#39;H,-0.3,0.3,60&#39;</span><span class="p">,</span> <span class="n">AlignedDim1</span><span class="o">=</span><span class="s1">&#39;K,-0.4,0.5,90&#39;</span><span class="p">,</span> <span class="n">AlignedDim2</span><span class="o">=</span><span class="s1">&#39;L,4,8,10&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;BinndHKL&#39;</span><span class="p">)</span>
-<span class="n">histws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;BinndHKL&#39;</span><span class="p">]</span>
+<span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'HKLMD'</span><span class="p">,</span> <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">'H,-0.3,0.3,60'</span><span class="p">,</span> <span class="n">AlignedDim1</span><span class="o">=</span><span class="s1">'K,-0.4,0.5,90'</span><span class="p">,</span> <span class="n">AlignedDim2</span><span class="o">=</span><span class="s1">'L,4,8,10'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'BinndHKL'</span><span class="p">)</span>
+<span class="n">histws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'BinndHKL'</span><span class="p">]</span>
 <span class="n">events_array</span> <span class="o">=</span> <span class="n">histws</span><span class="o">.</span><span class="n">getNumEventsArray</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;events[22, 53, 5] = </span><span class="si">{:.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">events_array</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;events[30, 40, 5] = </span><span class="si">{:.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">events_array</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'events[22, 53, 5] = </span><span class="si">{:.1f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">events_array</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'events[30, 40, 5] = </span><span class="si">{:.1f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">events_array</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1573,8 +1573,8 @@ events[30, 40, 5] = 38.0
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertCWSDMDtoHKL.h">ConvertCWSDMDtoHKL.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/src/ConvertCWSDMDtoHKL.cpp">ConvertCWSDMDtoHKL.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertCWSDMDtoHKL.h">ConvertCWSDMDtoHKL.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/src/ConvertCWSDMDtoHKL.cpp">ConvertCWSDMDtoHKL.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>QueryMDWorkspace v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>QueryMDWorkspace v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/QueryMDWorkspace-v1';</script>
@@ -1519,11 +1519,11 @@ basis for plotting.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - query MD workspace and look at the result:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create sample inelastic workspace for MARI instrument containing 1 at all spectra</span>
-<span class="n">ws1</span> <span class="o">=</span> <span class="n">CreateSimulationWorkspace</span><span class="p">(</span><span class="n">Instrument</span><span class="o">=</span><span class="s1">&#39;MAR&#39;</span><span class="p">,</span> <span class="n">BinParams</span><span class="o">=</span><span class="s1">&#39;-10,1,10&#39;</span><span class="p">,</span> <span class="n">UnitX</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">)</span>
-<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">ws1</span><span class="p">,</span> <span class="s1">&#39;Ei&#39;</span><span class="p">,</span> <span class="s1">&#39;12.&#39;</span><span class="p">,</span> <span class="s1">&#39;Number&#39;</span><span class="p">)</span>
+<span class="n">ws1</span> <span class="o">=</span> <span class="n">CreateSimulationWorkspace</span><span class="p">(</span><span class="n">Instrument</span><span class="o">=</span><span class="s1">'MAR'</span><span class="p">,</span> <span class="n">BinParams</span><span class="o">=</span><span class="s1">'-10,1,10'</span><span class="p">,</span> <span class="n">UnitX</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">)</span>
+<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">ws1</span><span class="p">,</span> <span class="s1">'Ei'</span><span class="p">,</span> <span class="s1">'12.'</span><span class="p">,</span> <span class="s1">'Number'</span><span class="p">)</span>
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">ws1</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
 <span class="c1"># Convert to MD</span>
-<span class="n">mdWs1</span> <span class="o">=</span> <span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws1</span><span class="p">,</span> <span class="n">QDimensions</span><span class="o">=</span><span class="s1">&#39;|Q|&#39;</span><span class="p">,</span> <span class="n">QConversionScales</span><span class="o">=</span><span class="s1">&#39;Q in A^-1&#39;</span><span class="p">,</span> <span class="n">SplitInto</span><span class="o">=</span><span class="s1">&#39;10,10&#39;</span><span class="p">,</span> <span class="n">MaxRecursionDepth</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="n">mdWs1</span> <span class="o">=</span> <span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws1</span><span class="p">,</span> <span class="n">QDimensions</span><span class="o">=</span><span class="s1">'|Q|'</span><span class="p">,</span> <span class="n">QConversionScales</span><span class="o">=</span><span class="s1">'Q in A^-1'</span><span class="p">,</span> <span class="n">SplitInto</span><span class="o">=</span><span class="s1">'10,10'</span><span class="p">,</span> <span class="n">MaxRecursionDepth</span><span class="o">=</span><span class="s1">'1'</span><span class="p">)</span>
 
 <span class="c1"># get the query</span>
 <span class="n">table</span> <span class="o">=</span> <span class="n">QueryMDWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">mdWs1</span><span class="p">)</span>
@@ -1532,14 +1532,14 @@ basis for plotting.</p>
 <span class="n">col_names</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">keys</span><span class="p">();</span>
 <span class="n">name0</span> <span class="o">=</span> <span class="n">col_names</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="n">nRows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">name0</span><span class="p">));</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Table contains </span><span class="si">{0}</span><span class="s2"> rows&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nRows</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;first 11 of them are:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------------------------------------------------------------------------------------&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;| </span><span class="si">{0:19}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">col_names</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; |&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Table contains </span><span class="si">{0}</span><span class="s2"> rows"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nRows</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"first 11 of them are:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"--------------------------------------------------------------------------------------------------------------"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'| </span><span class="si">{0:19}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">col_names</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' |'</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------------------------------------------------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"--------------------------------------------------------------------------------------------------------------"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
-   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;| </span><span class="si">{0:&gt;19.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">name</span><span class="p">)[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">col_names</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; |&#39;</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'| </span><span class="si">{0:&gt;19.4f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">name</span><span class="p">)[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">col_names</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' |'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
@@ -1565,8 +1565,8 @@ first 11 of them are:
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/inc/MantidMDAlgorithms/QueryMDWorkspace.h">QueryMDWorkspace.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/src/QueryMDWorkspace.cpp">QueryMDWorkspace.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/inc/MantidMDAlgorithms/QueryMDWorkspace.h">QueryMDWorkspace.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/src/QueryMDWorkspace.cpp">QueryMDWorkspace.cpp</a></p>
 </section>
 </section>
 

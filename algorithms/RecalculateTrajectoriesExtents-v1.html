@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>RecalculateTrajectoriesExtents v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>RecalculateTrajectoriesExtents v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1513,29 +1513,29 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p><strong>Example - RecalculateTrajectoriesExtents</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a host workspace</span>
-<span class="n">event</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;CNCS_7860_event.nxs&#39;</span><span class="p">)</span>
-<span class="n">event</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">event</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span> <span class="n">EMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">,</span> <span class="n">EFixed</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">event</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'CNCS_7860_event.nxs'</span><span class="p">)</span>
+<span class="n">event</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">event</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span> <span class="n">EMode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">,</span> <span class="n">EFixed</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">event</span> <span class="o">=</span> <span class="n">CropWorkspaceForMDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">event</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="n">event</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s1">&#39;0,0,1,0,1&#39;</span><span class="p">)</span>
+<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="n">event</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s1">'0,0,1,0,1'</span><span class="p">)</span>
 <span class="n">md</span> <span class="o">=</span> <span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">event</span><span class="p">,</span>
-                 <span class="n">QDimensions</span><span class="o">=</span><span class="s1">&#39;Q3D&#39;</span><span class="p">,</span>
-                 <span class="n">Q3DFrames</span><span class="o">=</span><span class="s1">&#39;Q_sample&#39;</span><span class="p">,</span>
-                 <span class="n">OtherDimensions</span><span class="o">=</span><span class="s1">&#39;SampleTemp&#39;</span><span class="p">,</span>
-                 <span class="n">MinValues</span><span class="o">=</span><span class="s1">&#39;0.8,-2,-2,-2,-2&#39;</span><span class="p">,</span>
-                 <span class="n">MaxValues</span><span class="o">=</span><span class="s1">&#39;1.,0,2,2,500&#39;</span><span class="p">)</span>
+                 <span class="n">QDimensions</span><span class="o">=</span><span class="s1">'Q3D'</span><span class="p">,</span>
+                 <span class="n">Q3DFrames</span><span class="o">=</span><span class="s1">'Q_sample'</span><span class="p">,</span>
+                 <span class="n">OtherDimensions</span><span class="o">=</span><span class="s1">'SampleTemp'</span><span class="p">,</span>
+                 <span class="n">MinValues</span><span class="o">=</span><span class="s1">'0.8,-2,-2,-2,-2'</span><span class="p">,</span>
+                 <span class="n">MaxValues</span><span class="o">=</span><span class="s1">'1.,0,2,2,500'</span><span class="p">)</span>
 <span class="n">recalculated</span> <span class="o">=</span> <span class="n">RecalculateTrajectoriesExtents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">md</span><span class="p">)</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="c1">#Original workspace</span>
-<span class="n">high</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">getExperimentInfo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()[</span><span class="s1">&#39;MDNorm_high&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="n">low</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">getExperimentInfo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()[</span><span class="s1">&#39;MDNorm_low&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="n">high</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">getExperimentInfo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()[</span><span class="s1">'MDNorm_high'</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="n">low</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">getExperimentInfo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()[</span><span class="s1">'MDNorm_low'</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">high</span><span class="p">[</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of trajectories in original workspace with length of more than 1meV: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of trajectories in original workspace with length of more than 1meV: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 <span class="c1">#Recalculated workspace</span>
-<span class="n">high</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">recalculated</span><span class="o">.</span><span class="n">getExperimentInfo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()[</span><span class="s1">&#39;MDNorm_high&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="n">low</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">recalculated</span><span class="o">.</span><span class="n">getExperimentInfo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()[</span><span class="s1">&#39;MDNorm_low&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="n">high</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">recalculated</span><span class="o">.</span><span class="n">getExperimentInfo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()[</span><span class="s1">'MDNorm_high'</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="n">low</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">recalculated</span><span class="o">.</span><span class="n">getExperimentInfo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()[</span><span class="s1">'MDNorm_low'</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">high</span><span class="p">[</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of trajectories in recalculated workspace with length of more than 1meV: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of trajectories in recalculated workspace with length of more than 1meV: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1547,8 +1547,8 @@ Number of trajectories in recalculated workspace with length of more than 1meV: 
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/inc/MantidMDAlgorithms/RecalculateTrajectoriesExtents.h">RecalculateTrajectoriesExtents.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/src/RecalculateTrajectoriesExtents.cpp">RecalculateTrajectoriesExtents.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/inc/MantidMDAlgorithms/RecalculateTrajectoriesExtents.h">RecalculateTrajectoriesExtents.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/src/RecalculateTrajectoriesExtents.cpp">RecalculateTrajectoriesExtents.cpp</a></p>
 </section>
 </section>
 

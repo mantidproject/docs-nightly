@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>RotateSource v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>RotateSource v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/RotateSource-v1';</script>
@@ -1492,22 +1492,22 @@ corresponds to a clockwise or counterclockwise rotation.</p>
 <span class="n">sourcePos</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">getSource</span><span class="p">()</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">pos3D_as_str</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">digits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">  </span><span class="sd">"""</span>
 <span class="sd">  Produce a string with a human readable version of a V3D position (x, y, z),</span>
 <span class="sd">  from a V3D object, using a fixed limited number of digits (for robust string</span>
 <span class="sd">  comparisons).</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+<span class="sd">  """</span>
   <span class="k">def</span><span class="w"> </span><span class="nf">nz</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-<span class="w">     </span><span class="sd">&quot;&quot;&quot; Handles potential issues with +-0 (tiny values) &quot;&quot;&quot;</span>
+<span class="w">     </span><span class="sd">""" Handles potential issues with +-0 (tiny values) """</span>
      <span class="k">return</span> <span class="mf">0.0</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tolerance</span> <span class="k">else</span> <span class="n">value</span>
 
   <span class="n">precision</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
-  <span class="n">format_str</span> <span class="o">=</span> <span class="s1">&#39;[{0:.&#39;</span><span class="o">+</span><span class="n">precision</span><span class="o">+</span><span class="s1">&#39;f}, {1:.&#39;</span><span class="o">+</span><span class="n">precision</span><span class="o">+</span><span class="s1">&#39;f}, {2:.&#39;</span><span class="o">+</span><span class="n">precision</span><span class="o">+</span><span class="s1">&#39;f}]&#39;</span>
+  <span class="n">format_str</span> <span class="o">=</span> <span class="s1">'[{0:.'</span><span class="o">+</span><span class="n">precision</span><span class="o">+</span><span class="s1">'f}, {1:.'</span><span class="o">+</span><span class="n">precision</span><span class="o">+</span><span class="s1">'f}, {2:.'</span><span class="o">+</span><span class="n">precision</span><span class="o">+</span><span class="s1">'f}]'</span>
   <span class="n">result</span> <span class="o">=</span> <span class="n">format_str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nz</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">getX</span><span class="p">()),</span> <span class="n">nz</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">getY</span><span class="p">()),</span> <span class="n">nz</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">getZ</span><span class="p">()))</span>
   <span class="k">return</span> <span class="n">result</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original position of the sample: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pos3D_as_str</span><span class="p">(</span><span class="n">samplePos</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original position of the source: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pos3D_as_str</span><span class="p">(</span><span class="n">sourcePos</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Original position of the sample: </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pos3D_as_str</span><span class="p">(</span><span class="n">samplePos</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Original position of the source: </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pos3D_as_str</span><span class="p">(</span><span class="n">sourcePos</span><span class="p">)))</span>
 
 <span class="c1"># Move (rotate) the source around X axis</span>
 <span class="n">RotateSource</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">)</span>
@@ -1515,8 +1515,8 @@ corresponds to a clockwise or counterclockwise rotation.</p>
 <span class="c1"># New positions</span>
 <span class="n">samplePos</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">getSample</span><span class="p">()</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
 <span class="n">sourcePos</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">getSource</span><span class="p">()</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New position of the sample: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pos3D_as_str</span><span class="p">(</span><span class="n">samplePos</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New position of the source: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pos3D_as_str</span><span class="p">(</span><span class="n">sourcePos</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"New position of the sample: </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pos3D_as_str</span><span class="p">(</span><span class="n">samplePos</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"New position of the source: </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pos3D_as_str</span><span class="p">(</span><span class="n">sourcePos</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1530,8 +1530,8 @@ New position of the source: [0.0, 10.0, 0.0]
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/RotateSource.h">RotateSource.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/RotateSource.cpp">RotateSource.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/RotateSource.h">RotateSource.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/RotateSource.cpp">RotateSource.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PreprocessDetectorsToMD v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PreprocessDetectorsToMD v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/PreprocessDetectorsToMD-v1';</script>
@@ -1565,22 +1565,22 @@ for composite detectors and other algorithms can substantially benefit from usin
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Find min-max values for |Q| transformation :</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulates Load of a workspace with all necessary parameters #################</span>
-<span class="n">detWS</span> <span class="o">=</span> <span class="n">CreateSimulationWorkspace</span><span class="p">(</span><span class="n">Instrument</span><span class="o">=</span><span class="s1">&#39;MAR&#39;</span><span class="p">,</span><span class="n">BinParams</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span><span class="n">UnitX</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">)</span>
-<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">detWS</span><span class="p">,</span><span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;Ei&#39;</span><span class="p">,</span><span class="n">LogText</span><span class="o">=</span><span class="s1">&#39;52.&#39;</span><span class="p">,</span><span class="n">LogType</span><span class="o">=</span><span class="s1">&#39;Number&#39;</span><span class="p">);</span>
+<span class="n">detWS</span> <span class="o">=</span> <span class="n">CreateSimulationWorkspace</span><span class="p">(</span><span class="n">Instrument</span><span class="o">=</span><span class="s1">'MAR'</span><span class="p">,</span><span class="n">BinParams</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span><span class="n">UnitX</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">)</span>
+<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">detWS</span><span class="p">,</span><span class="n">LogName</span><span class="o">=</span><span class="s1">'Ei'</span><span class="p">,</span><span class="n">LogText</span><span class="o">=</span><span class="s1">'52.'</span><span class="p">,</span><span class="n">LogType</span><span class="o">=</span><span class="s1">'Number'</span><span class="p">);</span>
 <span class="c1">#</span>
 <span class="n">preprDetWS</span> <span class="o">=</span> <span class="n">PreprocessDetectorsToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">detWS</span><span class="p">,</span><span class="n">GetMaskState</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">GetEFixed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># Look at sample results:</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The resulting table has the following columns:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The resulting table has the following columns:"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">preprDetWS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of rows in the workspace is :  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">preprDetWS</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;L2&#39;</span><span class="p">))))</span>
-<span class="n">polar</span> <span class="o">=</span> <span class="n">preprDetWS</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;TwoTheta&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The polar angle for detector N </span><span class="si">{0}</span><span class="s2"> is </span><span class="si">{1:5f}</span><span class="s2"> rad&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">polar</span><span class="p">[</span><span class="mi">10</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The table workspace logs (properties) are currently not available from python&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The number of rows in the workspace is :  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">preprDetWS</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'L2'</span><span class="p">))))</span>
+<span class="n">polar</span> <span class="o">=</span> <span class="n">preprDetWS</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'TwoTheta'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The polar angle for detector N </span><span class="si">{0}</span><span class="s2"> is </span><span class="si">{1:5f}</span><span class="s2"> rad"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">polar</span><span class="p">[</span><span class="mi">10</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The table workspace logs (properties) are currently not available from python"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The resulting table has the following columns:
-[&#39;DetDirections&#39;, &#39;L2&#39;, &#39;TwoTheta&#39;, &#39;Azimuthal&#39;, &#39;DetectorID&#39;, &#39;detIDMap&#39;, &#39;spec2detMap&#39;, &#39;detMask&#39;, &#39;eFixed&#39;, &#39;DIFA&#39;, &#39;DIFC&#39;, &#39;TZERO&#39;]
+['DetDirections', 'L2', 'TwoTheta', 'Azimuthal', 'DetectorID', 'detIDMap', 'spec2detMap', 'detMask', 'eFixed', 'DIFA', 'DIFC', 'TZERO']
 The number of rows in the workspace is :  918
 The polar angle for detector N 10 is 0.314159 rad
 The table workspace logs (properties) are currently not available from python
@@ -1590,8 +1590,8 @@ The table workspace logs (properties) are currently not available from python
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/inc/MantidMDAlgorithms/PreprocessDetectorsToMD.h">PreprocessDetectorsToMD.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/src/PreprocessDetectorsToMD.cpp">PreprocessDetectorsToMD.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/inc/MantidMDAlgorithms/PreprocessDetectorsToMD.h">PreprocessDetectorsToMD.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/src/PreprocessDetectorsToMD.cpp">PreprocessDetectorsToMD.cpp</a></p>
 </section>
 </section>
 

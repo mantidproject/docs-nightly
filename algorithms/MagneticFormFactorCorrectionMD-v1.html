@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MagneticFormFactorCorrectionMD v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MagneticFormFactorCorrectionMD v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1496,20 +1496,20 @@ It is assumed that the Q dimensions come first follow by any number of other dim
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - MagneticFormFactorCorrectionMD</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a test MD workspace</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;1,4&#39;</span><span class="p">,</span>
-                       <span class="n">Names</span><span class="o">=</span><span class="s1">&#39;|Q|&#39;</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">'1'</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">'1,4'</span><span class="p">,</span>
+                       <span class="n">Names</span><span class="o">=</span><span class="s1">'|Q|'</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">'A'</span><span class="p">)</span>
 <span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">UniformParams</span><span class="o">=-</span><span class="mi">6000</span><span class="p">)</span>
 
 <span class="c1"># Run the algorithm</span>
-<span class="n">wsOut</span> <span class="o">=</span> <span class="n">MagneticFormFactorCorrectionMD</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">IonName</span><span class="o">=</span><span class="s2">&quot;U5&quot;</span><span class="p">)</span>
+<span class="n">wsOut</span> <span class="o">=</span> <span class="n">MagneticFormFactorCorrectionMD</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">IonName</span><span class="o">=</span><span class="s2">"U5"</span><span class="p">)</span>
 
 <span class="c1"># Bin the result so that it can be printed</span>
-<span class="n">wsOut</span> <span class="o">=</span> <span class="n">BinMD</span><span class="p">(</span><span class="n">wsOut</span><span class="p">,</span> <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">&#39;|Q|,1,4,6&#39;</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">BinMD</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">&#39;|Q|,1,4,6&#39;</span><span class="p">)</span>
+<span class="n">wsOut</span> <span class="o">=</span> <span class="n">BinMD</span><span class="p">(</span><span class="n">wsOut</span><span class="p">,</span> <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">'|Q|,1,4,6'</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">BinMD</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">'|Q|,1,4,6'</span><span class="p">)</span>
 
 <span class="c1"># Print the result</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input signal:    &quot;</span><span class="p">,</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ws</span><span class="o">.</span><span class="n">getSignalArray</span><span class="p">()])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Corrected signal:&quot;</span><span class="p">,</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">getSignalArray</span><span class="p">()])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Input signal:    "</span><span class="p">,</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ws</span><span class="o">.</span><span class="n">getSignalArray</span><span class="p">()])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Corrected signal:"</span><span class="p">,</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">getSignalArray</span><span class="p">()])</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1521,8 +1521,8 @@ Corrected signal: [1137, 1281, 1498, 1813, 2270, 2937]
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/inc/MantidMDAlgorithms/MagneticFormFactorCorrectionMD.h">MagneticFormFactorCorrectionMD.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/src/MagneticFormFactorCorrectionMD.cpp">MagneticFormFactorCorrectionMD.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/inc/MantidMDAlgorithms/MagneticFormFactorCorrectionMD.h">MagneticFormFactorCorrectionMD.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/src/MagneticFormFactorCorrectionMD.cpp">MagneticFormFactorCorrectionMD.cpp</a></p>
 </section>
 </section>
 

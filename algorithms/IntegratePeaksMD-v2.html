@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>IntegratePeaksMD v2 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>IntegratePeaksMD v2 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1754,36 +1754,36 @@ is true and the minimum dv is less than PeakRadius or BackgroundOuterRadius.</p>
 event nexus file instead of <strong>TOPAZ_3132_event.nxs</strong> used within this example. The original <strong>TOPAZ_3132_event.nxs</strong>
 file is available in <a class="reference external" href="https://github.com/mantidproject/systemtests/tree/master/Data/TOPAZ_3132_event.nxs">Mantid system tests repository</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span><span class="w"> </span><span class="nf">print_tableWS</span><span class="p">(</span><span class="n">pTWS</span><span class="p">,</span><span class="n">nRows</span><span class="p">):</span>
-<span class="linenos"> 2</span><span class="w">    </span><span class="sd">&#39;&#39;&#39; Method to print part of the table workspace &#39;&#39;&#39;</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="sd">''' Method to print part of the table workspace '''</span>
 <span class="linenos"> 3</span>    <span class="n">tab_names</span><span class="o">=</span><span class="n">pTWS</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-<span class="linenos"> 4</span>    <span class="n">row</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="linenos"> 4</span>    <span class="n">row</span> <span class="o">=</span> <span class="s2">""</span>
 <span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tab_names</span><span class="p">:</span>
 <span class="linenos"> 6</span>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">8</span><span class="p">:</span>
 <span class="linenos"> 7</span>           <span class="n">name</span><span class="o">=</span> <span class="n">name</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
-<span class="linenos"> 8</span>        <span class="n">row</span> <span class="o">+=</span> <span class="s2">&quot;| </span><span class="si">{:8}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span> <span class="o">+</span> <span class="s2">&quot;|&quot;</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">row</span> <span class="o">+=</span> <span class="s2">"| </span><span class="si">{:8}</span><span class="s2"> "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span> <span class="o">+</span> <span class="s2">"|"</span><span class="p">)</span>
 <span class="linenos">10</span>
 <span class="linenos">11</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRows</span><span class="p">):</span>
-<span class="linenos">12</span>        <span class="n">row</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="linenos">12</span>        <span class="n">row</span> <span class="o">=</span> <span class="s2">""</span>
 <span class="linenos">13</span>        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tab_names</span><span class="p">:</span>
 <span class="linenos">14</span>              <span class="n">col</span> <span class="o">=</span> <span class="n">pTWS</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
 <span class="linenos">15</span>              <span class="n">data2pr</span><span class="o">=</span><span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 <span class="linenos">16</span>              <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">data2pr</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
-<span class="linenos">17</span>                  <span class="n">row</span> <span class="o">+=</span> <span class="s2">&quot;| </span><span class="si">{:8.1f}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data2pr</span><span class="p">)</span>
+<span class="linenos">17</span>                  <span class="n">row</span> <span class="o">+=</span> <span class="s2">"| </span><span class="si">{:8.1f}</span><span class="s2"> "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data2pr</span><span class="p">)</span>
 <span class="linenos">18</span>              <span class="k">else</span><span class="p">:</span>
-<span class="linenos">19</span>                  <span class="n">row</span> <span class="o">+=</span> <span class="s2">&quot;| </span><span class="si">{:8}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data2pr</span><span class="p">))</span>
-<span class="linenos">20</span>        <span class="nb">print</span><span class="p">(</span><span class="n">row</span> <span class="o">+</span> <span class="s2">&quot;|&quot;</span><span class="p">)</span>
+<span class="linenos">19</span>                  <span class="n">row</span> <span class="o">+=</span> <span class="s2">"| </span><span class="si">{:8}</span><span class="s2"> "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data2pr</span><span class="p">))</span>
+<span class="linenos">20</span>        <span class="nb">print</span><span class="p">(</span><span class="n">row</span> <span class="o">+</span> <span class="s2">"|"</span><span class="p">)</span>
 <span class="linenos">21</span>
 <span class="linenos">22</span> <span class="c1"># Load a SCD data set and find the peaks</span>
-<span class="linenos">23</span><span class="n">LoadEventNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;TOPAZ_3132_event.nxs&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_nxs&#39;</span><span class="p">)</span>
-<span class="linenos">24</span><span class="n">ConvertToDiffractionMDWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_nxs&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_md&#39;</span><span class="p">,</span><span class="n">LorentzCorrection</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
-<span class="linenos">25</span><span class="n">FindPeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_md&#39;</span><span class="p">,</span><span class="n">PeakDistanceThreshold</span><span class="o">=</span><span class="s1">&#39;0.15&#39;</span><span class="p">,</span><span class="n">MaxPeaks</span><span class="o">=</span><span class="s1">&#39;100&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
-<span class="linenos">26</span><span class="n">FindUBUsingFFT</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span><span class="n">MinD</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="n">MaxD</span><span class="o">=</span><span class="s1">&#39;16&#39;</span><span class="p">)</span>
+<span class="linenos">23</span><span class="n">LoadEventNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">'TOPAZ_3132_event.nxs'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_nxs'</span><span class="p">)</span>
+<span class="linenos">24</span><span class="n">ConvertToDiffractionMDWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_nxs'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_md'</span><span class="p">,</span><span class="n">LorentzCorrection</span><span class="o">=</span><span class="s1">'1'</span><span class="p">)</span>
+<span class="linenos">25</span><span class="n">FindPeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_md'</span><span class="p">,</span><span class="n">PeakDistanceThreshold</span><span class="o">=</span><span class="s1">'0.15'</span><span class="p">,</span><span class="n">MaxPeaks</span><span class="o">=</span><span class="s1">'100'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">)</span>
+<span class="linenos">26</span><span class="n">FindUBUsingFFT</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">,</span><span class="n">MinD</span><span class="o">=</span><span class="s1">'2'</span><span class="p">,</span><span class="n">MaxD</span><span class="o">=</span><span class="s1">'16'</span><span class="p">)</span>
 <span class="linenos">27</span>
-<span class="linenos">28</span> <span class="c1"># Perform the peak integration, in-place in the &#39;peaks&#39; workspace.</span>
-<span class="linenos">29</span><span class="n">peaks</span><span class="o">=</span> <span class="n">IntegratePeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_md&#39;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span>\
+<span class="linenos">28</span> <span class="c1"># Perform the peak integration, in-place in the 'peaks' workspace.</span>
+<span class="linenos">29</span><span class="n">peaks</span><span class="o">=</span> <span class="n">IntegratePeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_md'</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">,</span>\
 <span class="linenos">30</span>     <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">BackgroundOuterRadius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">BackgroundInnerRadius</span><span class="o">=</span><span class="mf">0.16</span><span class="p">,</span>\
-<span class="linenos">31</span>     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
+<span class="linenos">31</span>     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">)</span>
 <span class="linenos">32</span>
 <span class="linenos">33</span><span class="c1"># print the integration results</span>
 <span class="linenos">34</span><span class="n">print_tableWS</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
@@ -1807,8 +1807,8 @@ file is available in <a class="reference external" href="https://github.com/mant
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/inc/MantidMDAlgorithms/IntegratePeaksMD2.h">IntegratePeaksMD2.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/src/IntegratePeaksMD2.cpp">IntegratePeaksMD2.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/inc/MantidMDAlgorithms/IntegratePeaksMD2.h">IntegratePeaksMD2.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/src/IntegratePeaksMD2.cpp">IntegratePeaksMD2.cpp</a></p>
 </section>
 </section>
 

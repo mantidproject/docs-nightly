@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ExportSampleLogsToHDF5 v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ExportSampleLogsToHDF5 v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ExportSampleLogsToHDF5-v1';</script>
@@ -1496,24 +1496,24 @@ units, the units are saved in the dataset’s metadata.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="c1"># The following is needed as strings read from h5py are formatted differently between Python 2 and 3</span>
-<span class="n">run_number_output</span> <span class="o">=</span> <span class="s2">&quot;Run number (read from file): </span><span class="si">{}</span><span class="s2">&quot;</span>
+<span class="n">run_number_output</span> <span class="o">=</span> <span class="s2">"Run number (read from file): </span><span class="si">{}</span><span class="s2">"</span>
 <span class="n">format_run_number</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">run_number</span><span class="p">:</span> <span class="n">run_number_output</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">run_number</span><span class="o">.</span><span class="n">tostring</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
 
-<span class="n">input_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;ENGINX00213855.nxs&quot;</span><span class="p">)</span>
+<span class="n">input_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"ENGINX00213855.nxs"</span><span class="p">)</span>
 
-<span class="n">output_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">],</span>
-                               <span class="s2">&quot;ExportSampleLogsToHDF5DocTest.hdf5&quot;</span><span class="p">)</span>
+<span class="n">output_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">"defaultsave.directory"</span><span class="p">],</span>
+                               <span class="s2">"ExportSampleLogsToHDF5DocTest.hdf5"</span><span class="p">)</span>
 
 <span class="n">ExportSampleLogsToHDF5</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">input_ws</span><span class="p">,</span>
                        <span class="n">Filename</span><span class="o">=</span><span class="n">output_filename</span><span class="p">,</span>
-                       <span class="n">Blacklist</span><span class="o">=</span><span class="s2">&quot;nspectra&quot;</span><span class="p">)</span>
+                       <span class="n">Blacklist</span><span class="o">=</span><span class="s2">"nspectra"</span><span class="p">)</span>
 
-<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">sample_logs_group</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;Sample Logs&quot;</span><span class="p">]</span>
+<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">sample_logs_group</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"Sample Logs"</span><span class="p">]</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proton charge saved to file: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;tot_prtn_chrg&quot;</span> <span class="ow">in</span> <span class="n">sample_logs_group</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">format_run_number</span><span class="p">(</span><span class="n">sample_logs_group</span><span class="p">[</span><span class="s2">&quot;run_number&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nspectra (blacklisted) saved to file: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;nspectra&quot;</span> <span class="ow">in</span> <span class="n">sample_logs_group</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Proton charge saved to file: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">"tot_prtn_chrg"</span> <span class="ow">in</span> <span class="n">sample_logs_group</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">format_run_number</span><span class="p">(</span><span class="n">sample_logs_group</span><span class="p">[</span><span class="s2">"run_number"</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"nspectra (blacklisted) saved to file: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">"nspectra"</span> <span class="ow">in</span> <span class="n">sample_logs_group</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1526,7 +1526,7 @@ nspectra (blacklisted) saved to file: False
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/ExportSampleLogsToHDF5.py">ExportSampleLogsToHDF5.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/ExportSampleLogsToHDF5.py">ExportSampleLogsToHDF5.py</a></p>
 </section>
 </section>
 

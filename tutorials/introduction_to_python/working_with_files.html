@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Working With Files &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Working With Files &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/introduction_to_python/working_with_files';</script>
@@ -557,7 +557,7 @@ controlled through strings.</p></li>
 <li><p>To be able to read a file we must first open a “handle” to it through
 the open command,</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;filename.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'filename.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -590,7 +590,7 @@ file has been reached, e.g.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">line</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
         <span class="k">break</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -614,7 +614,7 @@ which encapsulates a set of preparation and cleanup tasks into a single
 statement. This approach leads to the following code for printing out the
 contents of a file:</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="p">(</span><span class="s1">&#39;filename.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="p">(</span><span class="s1">'filename.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 <span class="c1"># file leaves the scope, which initiates cleanup operations (i.e closing the file)</span>
@@ -630,20 +630,20 @@ of the string</p></li>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># First we will write a file to read in</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;MyFile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;ID WIDTH THICK HEIGHT</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;a  1.0   2.0   3.0 </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;b  2.0   3.6   1.2 </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'MyFile.txt'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'ID WIDTH THICK HEIGHT</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'a  1.0   2.0   3.0 </span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'b  2.0   3.6   1.2 </span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
 <span class="c1"># Now read it in</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;MyFile.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'MyFile.txt'</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 
 <span class="c1">#Second try</span>
 
 <span class="c1">#Reading agiain, but with rstrip</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;MyFile.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'MyFile.txt'</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
@@ -669,10 +669,10 @@ the line formatting and using write does not automatically include a
 new line,</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;NewFile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;1 2 3 4 5 6</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;7 8 9 10 11</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;NewFile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'NewFile.txt'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'1 2 3 4 5 6</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'7 8 9 10 11</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'NewFile.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
      <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </pre></div>
 </div>

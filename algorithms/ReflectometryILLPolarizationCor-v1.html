@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometryILLPolarizationCor v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ReflectometryILLPolarizationCor v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ReflectometryILLPolarizationCor-v1';</script>
@@ -1507,27 +1507,27 @@
 <p><strong>Example - analyzerless corrections</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use same foreground and background settings for direct and reflected</span>
 <span class="c1"># beams.</span>
-<span class="c1"># Python dictionaries can be passed to algorithms as &#39;keyword arguments&#39;.</span>
+<span class="c1"># Python dictionaries can be passed to algorithms as 'keyword arguments'.</span>
 <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;ForegroundHalfWidth&#39;</span><span class="p">:[</span><span class="mi">5</span><span class="p">],</span>
-    <span class="s1">&#39;LowAngleBkgOffset&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s1">&#39;LowAngleBkgWidth&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="s1">&#39;HighAngleBkgOffset&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s1">&#39;HighAngleBkgWidth&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s1">'ForegroundHalfWidth'</span><span class="p">:[</span><span class="mi">5</span><span class="p">],</span>
+    <span class="s1">'LowAngleBkgOffset'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">'LowAngleBkgWidth'</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s1">'HighAngleBkgOffset'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">'HighAngleBkgWidth'</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="c1"># Direct beam</span>
 <span class="n">direct</span> <span class="o">=</span> <span class="n">ReflectometryILLPreprocess</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/D17/317369.nxs&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/D17/317369.nxs'</span><span class="p">,</span>
     <span class="o">**</span><span class="n">settings</span>
 <span class="p">)</span>
 
 <span class="n">directFgd</span> <span class="o">=</span> <span class="n">ReflectometryILLSumForeground</span><span class="p">(</span><span class="n">direct</span><span class="p">)</span>
 
-<span class="c1"># Reflected beam. Flippers set to &#39;++&#39;</span>
+<span class="c1"># Reflected beam. Flippers set to '++'</span>
 <span class="n">reflected11</span> <span class="o">=</span> <span class="n">ReflectometryILLPreprocess</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/D17/317370.nxs&#39;</span><span class="p">,</span>
-    <span class="n">Measurement</span><span class="o">=</span><span class="s1">&#39;ReflectedBeam&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/D17/317370.nxs'</span><span class="p">,</span>
+    <span class="n">Measurement</span><span class="o">=</span><span class="s1">'ReflectedBeam'</span><span class="p">,</span>
     <span class="o">**</span><span class="n">settings</span>
 <span class="p">)</span>
 
@@ -1537,10 +1537,10 @@
     <span class="n">DirectLineWorkspace</span><span class="o">=</span><span class="n">direct</span><span class="p">,</span>
     <span class="n">WavelengthRange</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
 <span class="p">)</span>
-<span class="c1"># Reload the reflected be. We will fake the &#39;--&#39; flipper settings</span>
+<span class="c1"># Reload the reflected be. We will fake the '--' flipper settings</span>
 <span class="n">reflected00</span> <span class="o">=</span> <span class="n">ReflectometryILLPreprocess</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/D17/317370.nxs&#39;</span><span class="p">,</span>
-    <span class="n">Measurement</span><span class="o">=</span><span class="s1">&#39;ReflectedBeam&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/D17/317370.nxs'</span><span class="p">,</span>
+    <span class="n">Measurement</span><span class="o">=</span><span class="s1">'ReflectedBeam'</span><span class="p">,</span>
     <span class="o">**</span><span class="n">settings</span>
 <span class="p">)</span>
 
@@ -1553,26 +1553,26 @@
 <span class="c1"># Overwrite sample logs</span>
 <span class="n">replace</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">logs</span> <span class="o">=</span> <span class="n">reflectivity00</span><span class="o">.</span><span class="n">mutableRun</span><span class="p">()</span>
-<span class="n">logs</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">&#39;Flipper1.state&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">replace</span><span class="p">)</span>
-<span class="n">logs</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">&#39;Flipper1.stateint&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">replace</span><span class="p">)</span>
-<span class="n">logs</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">&#39;Flipper2.state&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">replace</span><span class="p">)</span>
-<span class="n">logs</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">&#39;Flipper2.stateint&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">replace</span><span class="p">)</span>
+<span class="n">logs</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">'Flipper1.state'</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">replace</span><span class="p">)</span>
+<span class="n">logs</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">'Flipper1.stateint'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">replace</span><span class="p">)</span>
+<span class="n">logs</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">'Flipper2.state'</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">replace</span><span class="p">)</span>
+<span class="n">logs</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">'Flipper2.stateint'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">replace</span><span class="p">)</span>
 
 <span class="c1"># Polarization efficiency correction</span>
 <span class="c1"># The algorithm will think that the analyzer was off.</span>
 <span class="n">ReflectometryILLPolarizationCor</span><span class="p">(</span>
-    <span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">&#39;reflectivity00, reflectivity11&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrected&#39;</span><span class="p">,</span>  <span class="c1"># Name of the group workspace</span>
-    <span class="n">EfficiencyFile</span><span class="o">=</span><span class="s1">&#39;ILL/D17/PolarizationFactors.txt&#39;</span>
+    <span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">'reflectivity00, reflectivity11'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'pol_corrected'</span><span class="p">,</span>  <span class="c1"># Name of the group workspace</span>
+    <span class="n">EfficiencyFile</span><span class="o">=</span><span class="s1">'ILL/D17/PolarizationFactors.txt'</span>
 <span class="p">)</span>
 <span class="c1"># The polarization corrected workspaces get automatically generated names</span>
-<span class="n">polcorr00</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;pol_corrected_--&#39;</span><span class="p">]</span>
-<span class="n">polcorr11</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;pol_corrected_++&#39;</span><span class="p">]</span>
+<span class="n">polcorr00</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'pol_corrected_--'</span><span class="p">]</span>
+<span class="n">polcorr11</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'pol_corrected_++'</span><span class="p">]</span>
 <span class="c1"># The output is almost the same as from ReflectometryILLSumForeground</span>
 <span class="c1"># except for small difference due to the polarization corrections.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Histograms in 00 workspace: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">polcorr00</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Histograms in 11 workspace: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">polcorr11</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X unit: &#39;</span> <span class="o">+</span> <span class="n">polcorr00</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">unitID</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Histograms in 00 workspace: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">polcorr00</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Histograms in 11 workspace: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">polcorr11</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'X unit: '</span> <span class="o">+</span> <span class="n">polcorr00</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">unitID</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1585,7 +1585,7 @@ X unit: Wavelength
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryILLPolarizationCor.py">ReflectometryILLPolarizationCor.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryILLPolarizationCor.py">ReflectometryILLPolarizationCor.py</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Fit Functions In Python &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Fit Functions In Python &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/FitFunctionsInPython';</script>
@@ -459,8 +459,8 @@
 </pre></div>
 </div>
 <p>One can get and set function parameters and attributes, by array operations, for example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gSigma</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">&quot;Sigma&quot;</span><span class="p">]</span>
-<span class="n">g</span><span class="p">[</span><span class="s2">&quot;Height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.5</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gSigma</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">"Sigma"</span><span class="p">]</span>
+<span class="n">g</span><span class="p">[</span><span class="s2">"Height"</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.5</span>
 </pre></div>
 </div>
 <p>One can also get and set function parameters and attributes, by dot operations, for example:</p>
@@ -476,7 +476,7 @@ individual functions can be accessed by array index operations.
 For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spectrum</span> <span class="o">=</span> <span class="n">LinearBackground</span><span class="p">()</span> <span class="o">+</span> <span class="n">Gaussian</span><span class="p">(</span><span class="n">PeakCentre</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">Gaussian</span><span class="p">(</span><span class="n">PeakCentre</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">peak1</span> <span class="o">=</span> <span class="n">spectrum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">peak1</span><span class="p">[</span><span class="s1">&#39;Sigma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.123</span>
+<span class="n">peak1</span><span class="p">[</span><span class="s1">'Sigma'</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.123</span>
 <span class="n">spectrum</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lorentzian</span><span class="p">(</span><span class="n">PeakCentre</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -487,8 +487,8 @@ For example:</p>
 </div>
 <p>One can get and set the parameters of a composite function, by array operations,
 but not by dot operations because the parameter name already contains a dot, for example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f1Sigma</span> <span class="o">=</span> <span class="n">spectrum</span><span class="p">[</span><span class="s2">&quot;f1.Sigma&quot;</span><span class="p">]</span>
-<span class="n">spectrum</span><span class="p">[</span><span class="s2">&quot;f1.Height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.5</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f1Sigma</span> <span class="o">=</span> <span class="n">spectrum</span><span class="p">[</span><span class="s2">"f1.Sigma"</span><span class="p">]</span>
+<span class="n">spectrum</span><span class="p">[</span><span class="s2">"f1.Height"</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.5</span>
 </pre></div>
 </div>
 <p>One can add a function by the <code class="docutils literal notranslate"><span class="pre">+-</span></code> operator or remove be the <code class="docutils literal notranslate"><span class="pre">del</span></code> function.</p>
@@ -514,7 +514,7 @@ Instead you may use:</p>
 <section id="multi-domain-functions">
 <h2>Multi-Domain Functions<a class="headerlink" href="#multi-domain-functions" title="Link to this heading">#</a></h2>
 <p>Multi-Domain functions can be constructed like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">md_fun</span> <span class="o">=</span> <span class="n">MultiDomainFunction</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">PeakCentre</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">Gaussian</span><span class="p">(</span><span class="n">PeakCentre</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span> <span class="o">...</span><span class="p">,</span> <span class="n">Global</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">md_fun</span> <span class="o">=</span> <span class="n">MultiDomainFunction</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">PeakCentre</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">Gaussian</span><span class="p">(</span><span class="n">PeakCentre</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span> <span class="o">...</span><span class="p">,</span> <span class="n">Global</span><span class="o">=</span><span class="p">[</span><span class="s1">'Height'</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>
@@ -522,22 +522,22 @@ Instead you may use:</p>
 <h2>Setting Ties<a class="headerlink" href="#setting-ties" title="Link to this heading">#</a></h2>
 <p>The parameters of functions can be tied or fixed like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">func1</span><span class="o">.</span><span class="n">tie</span><span class="p">(</span><span class="n">A0</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
-<span class="n">func2</span><span class="o">.</span><span class="n">tie</span><span class="p">({</span><span class="s1">&#39;f1.A2&#39;</span><span class="p">:</span> <span class="s1">&#39;2*f0.A1&#39;</span><span class="p">,</span> <span class="s1">&#39;f2.A2&#39;</span><span class="p">:</span> <span class="s1">&#39;3*f0.A1 + 1&#39;</span><span class="p">})</span>
-<span class="n">func3</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="s1">&#39;A0&#39;</span><span class="p">)</span>
-<span class="n">func4</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="s1">&#39;f2.A2&#39;</span><span class="p">)</span>
+<span class="n">func2</span><span class="o">.</span><span class="n">tie</span><span class="p">({</span><span class="s1">'f1.A2'</span><span class="p">:</span> <span class="s1">'2*f0.A1'</span><span class="p">,</span> <span class="s1">'f2.A2'</span><span class="p">:</span> <span class="s1">'3*f0.A1 + 1'</span><span class="p">})</span>
+<span class="n">func3</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="s1">'A0'</span><span class="p">)</span>
+<span class="n">func4</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="s1">'f2.A2'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Both fixes and ties can be removed by <code class="docutils literal notranslate"><span class="pre">untie</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="o">.</span><span class="n">untie</span><span class="p">(</span><span class="s1">&#39;f3.Sigma&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="o">.</span><span class="n">untie</span><span class="p">(</span><span class="s1">'f3.Sigma'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To tie all parameters of the same local name in a composite function, one can use <code class="docutils literal notranslate"><span class="pre">TieAll</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="o">.</span><span class="n">tieAll</span><span class="p">(</span><span class="s1">&#39;Sigma&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="o">.</span><span class="n">tieAll</span><span class="p">(</span><span class="s1">'Sigma'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>All members of the composite function must have this parameter (in this case <code class="docutils literal notranslate"><span class="pre">Sigma</span></code>).
 Similarly with fixing:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spectrum1</span><span class="o">.</span><span class="n">fixAll</span><span class="p">(</span><span class="s1">&#39;FWHM&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spectrum1</span><span class="o">.</span><span class="n">fixAll</span><span class="p">(</span><span class="s1">'FWHM'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Also parameters of a function can be fixed with <code class="docutils literal notranslate"><span class="pre">fixAllParameters</span></code> and unfixed with <code class="docutils literal notranslate"><span class="pre">untieAllParameters</span></code>.</p>
@@ -550,22 +550,22 @@ Similarly with fixing:</p>
 <section id="setting-constraints">
 <h2>Setting Constraints<a class="headerlink" href="#setting-constraints" title="Link to this heading">#</a></h2>
 <p>One can set and remove constraints as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">constrain</span><span class="p">(</span><span class="s2">&quot;Sigma &lt; 2.0, Height &gt; 7.0&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">constrain</span><span class="p">(</span><span class="s2">"Sigma &lt; 2.0, Height &gt; 7.0"</span><span class="p">)</span>
 <span class="o">...</span>
-<span class="n">g</span><span class="o">.</span><span class="n">unconstrain</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">unconstrain</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">unconstrain</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">unconstrain</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">)</span>
 
-<span class="n">comp</span><span class="o">.</span><span class="n">constrain</span><span class="p">(</span><span class="s2">&quot;f1.Sigma &lt; 2, f0.Height &gt; 7&quot;</span><span class="p">)</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">constrain</span><span class="p">(</span><span class="s2">"f1.Sigma &lt; 2, f0.Height &gt; 7"</span><span class="p">)</span>
 <span class="o">...</span>
-<span class="n">comp</span><span class="o">.</span><span class="n">unconstrain</span><span class="p">(</span><span class="s2">&quot;f1.Sigma&quot;</span><span class="p">)</span>
-<span class="n">comp</span><span class="o">.</span><span class="n">unconstrain</span><span class="p">(</span><span class="s2">&quot;f0.Height&quot;</span><span class="p">)</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">unconstrain</span><span class="p">(</span><span class="s2">"f1.Sigma"</span><span class="p">)</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">unconstrain</span><span class="p">(</span><span class="s2">"f0.Height"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>One can all constrain a given parameter in all members of a composite function that have this parameter
 and also remove such constraints.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span><span class="o">.</span><span class="n">constrainAll</span><span class="p">(</span><span class="s2">&quot;Sigma &lt; 1.8&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span><span class="o">.</span><span class="n">constrainAll</span><span class="p">(</span><span class="s2">"Sigma &lt; 1.8"</span><span class="p">)</span>
 <span class="o">...</span>
-<span class="n">comp</span><span class="o">.</span><span class="n">unconstrainAll</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">unconstrainAll</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -609,7 +609,7 @@ on <code class="docutils literal notranslate"><span class="pre">A1</span></code>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the parameter error by index</span>
 <span class="n">error_A1</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">getError</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># Find the parameter error by name</span>
-<span class="n">error_A1</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">getError</span><span class="p">(</span><span class="s1">&#39;A1&#39;</span><span class="p">)</span>
+<span class="n">error_A1</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">getError</span><span class="p">(</span><span class="s1">'A1'</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -623,7 +623,7 @@ on <code class="docutils literal notranslate"><span class="pre">A1</span></code>
 <span class="n">f</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">startX</span><span class="o">=</span><span class="n">xmin</span><span class="p">,</span> <span class="n">endX</span><span class="o">=</span><span class="n">xmax</span><span class="p">)</span>  <span class="c1"># for 20 x-values between xmin and xmax</span>
 <span class="n">f</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">startX</span><span class="o">=</span><span class="n">xmin</span><span class="p">,</span> <span class="n">endX</span><span class="o">=</span><span class="n">xmax</span><span class="p">,</span> <span class="n">nSteps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># for 10 x-values between xmin and xmax</span>
 <span class="n">f</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">workspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">startX</span><span class="o">=</span><span class="n">xmin</span><span class="p">,</span> <span class="n">endX</span><span class="o">=</span><span class="n">xmax</span><span class="p">)</span> <span class="c1"># for x-values of ws between xmin &amp; xmax</span>
-<span class="n">f</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">workspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Fred&#39;</span><span class="p">)</span> <span class="c1"># for plot &amp; its workspace to be called &#39;Fred&#39;</span>
+<span class="n">f</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">workspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'Fred'</span><span class="p">)</span> <span class="c1"># for plot &amp; its workspace to be called 'Fred'</span>
 </pre></div>
 </div>
 <p>If you use <code class="docutils literal notranslate"><span class="pre">xValues</span></code>, then the list of x values must be in numerical order.

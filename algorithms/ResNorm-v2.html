@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ResNorm v2 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ResNorm v2 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ResNorm-v2';</script>
@@ -1520,17 +1520,17 @@ unity and performing a linear fit with the vanadium.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - a basic example using ResNorm.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">createSampleWorkspace</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">num_spec</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">  </span><span class="sd">"""</span>
 <span class="sd">  Creates a sample workspace with a single lorentzian that looks like IRIS data</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+<span class="sd">  """</span>
   <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
   <span class="c1"># Create sample data</span>
-  <span class="n">function</span> <span class="o">=</span> <span class="s2">&quot;name=Lorentzian,Amplitude=8,PeakCentre=5,FWHM=0.7&quot;</span>
-  <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span>
-                             <span class="n">Function</span><span class="o">=</span><span class="s2">&quot;User Defined&quot;</span><span class="p">,</span>
+  <span class="n">function</span> <span class="o">=</span> <span class="s2">"name=Lorentzian,Amplitude=8,PeakCentre=5,FWHM=0.7"</span>
+  <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span>
+                             <span class="n">Function</span><span class="o">=</span><span class="s2">"User Defined"</span><span class="p">,</span>
                              <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">function</span><span class="p">,</span>
-                             <span class="n">XUnit</span><span class="o">=</span><span class="s2">&quot;DeltaE&quot;</span><span class="p">,</span>
+                             <span class="n">XUnit</span><span class="o">=</span><span class="s2">"DeltaE"</span><span class="p">,</span>
                              <span class="n">Random</span><span class="o">=</span><span class="n">random</span><span class="p">,</span>
                              <span class="n">XMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                              <span class="n">XMax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
@@ -1541,20 +1541,20 @@ unity and performing a linear fit with the vanadium.</p>
                      <span class="n">StartWorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                      <span class="n">EndWorkspaceIndex</span><span class="o">=</span><span class="n">num_spec</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-  <span class="n">ws</span> <span class="o">=</span> <span class="n">ScaleX</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Add&quot;</span><span class="p">)</span>
-  <span class="n">ws</span> <span class="o">=</span> <span class="n">ScaleX</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;Multiply&quot;</span><span class="p">)</span>
+  <span class="n">ws</span> <span class="o">=</span> <span class="n">ScaleX</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"Add"</span><span class="p">)</span>
+  <span class="n">ws</span> <span class="o">=</span> <span class="n">ScaleX</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">"Multiply"</span><span class="p">)</span>
 
   <span class="c1"># Load instrument and instrument parameters</span>
-  <span class="n">LoadInstrument</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">InstrumentName</span><span class="o">=</span><span class="s1">&#39;IRIS&#39;</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-  <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;instrumentDefinition.directory&#39;</span><span class="p">],</span> <span class="s1">&#39;IRIS_graphite_002_Parameters.xml&#39;</span><span class="p">)</span>
+  <span class="n">LoadInstrument</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">InstrumentName</span><span class="o">=</span><span class="s1">'IRIS'</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">'instrumentDefinition.directory'</span><span class="p">],</span> <span class="s1">'IRIS_graphite_002_Parameters.xml'</span><span class="p">)</span>
   <span class="n">LoadParameterFile</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
   <span class="n">ws</span> <span class="o">=</span> <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
   <span class="k">return</span> <span class="n">ws</span>
 
 
-<span class="n">van</span> <span class="o">=</span> <span class="n">createSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;irs26173_graphite002_red&quot;</span><span class="p">,</span> <span class="n">random</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">createSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;irs26173_graphite002_res&quot;</span><span class="p">,</span> <span class="n">num_spec</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">van</span> <span class="o">=</span> <span class="n">createSampleWorkspace</span><span class="p">(</span><span class="s2">"irs26173_graphite002_red"</span><span class="p">,</span> <span class="n">random</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">createSampleWorkspace</span><span class="p">(</span><span class="s2">"irs26173_graphite002_res"</span><span class="p">,</span> <span class="n">num_spec</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">res_norm</span> <span class="o">=</span> <span class="n">ResNorm</span><span class="p">(</span><span class="n">ResolutionWorkspace</span><span class="o">=</span><span class="n">res</span><span class="p">,</span>
                    <span class="n">VanadiumWorkspace</span><span class="o">=</span><span class="n">van</span><span class="p">,</span>
@@ -1565,7 +1565,7 @@ unity and performing a linear fit with the vanadium.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ResNorm2.py">ResNorm2.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ResNorm2.py">ResNorm2.py</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DateAndTime &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>DateAndTime &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/kernel/DateAndTime';</script>
@@ -653,11 +653,11 @@ reason, there is an additional method
 <p>To convert an array of <a class="reference internal" href="#mantid.kernel.DateAndTime" title="mantid.kernel.DateAndTime"><code class="xref py py-class docutils literal notranslate"><span class="pre">mantid.kernel.DateAndTime</span></code></a>, analogous to
 what <a class="reference internal" href="FloatTimeSeriesProperty.html#mantid.kernel.FloatTimeSeriesProperty.times" title="mantid.kernel.FloatTimeSeriesProperty.times"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mantid.kernel.FloatTimeSeriesProperty.times()</span></code></a> does
 internally, use the code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;ns&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1990-01-01T00:00&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">'ns'</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">'1990-01-01T00:00'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>With <a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.datetime64" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.datetime64</span></code></a>, finding the number of seconds between two times is simply</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">timeArray</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">timeArray</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">timeArray</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">timeArray</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'s'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>For converting <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html">numpy.datetime64</a> data to a string for the default facilty, use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.datetime_as_string.html#numpy.datetime_as_string" title="(in NumPy v2.5)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.datetime_as_string()</span></code></a> explicitly (assuming the times are a variable named <code class="docutils literal notranslate"><span class="pre">times</span></code>)</p>
@@ -670,8 +670,8 @@ internally, use the code:</p>
 <section id="converting-strings-to-datetime64">
 <h2>Converting strings to <code class="docutils literal notranslate"><span class="pre">datetime64</span></code><a class="headerlink" href="#converting-strings-to-datetime64" title="Link to this heading">#</a></h2>
 <p>How strings are interpreted by <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html">numpy.datetime64</a>  <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html#changes-with-numpy-1-11">changed in version 1.11</a>. Before this point, a string without timezone designation was assumed to be in local timezone. After this point it is assumed to be in UTC. Additionally as of version 1.11, NumPy started warning if a string was supplied with timezone designation. This means that on rhel7 (in EDT)</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">repr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1990-01-01T00:00Z&#39;</span><span class="p">))</span>
-<span class="nb">repr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1990-01-01T00:00&#39;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">repr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">'1990-01-01T00:00Z'</span><span class="p">))</span>
+<span class="nb">repr</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">'1990-01-01T00:00'</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>result in <code class="docutils literal notranslate"><span class="pre">&quot;numpy.datetime64('1989-12-31T19:00-0500')&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;numpy.datetime64('1990-01-01T00:00-0500')&quot;</span></code> respectively. However, in “newer” python results <code class="docutils literal notranslate"><span class="pre">&quot;numpy.datetime64('1990-01-01T00:00')&quot;</span></code>, but the first version results in a <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code>.</p>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>IntegratePeaksShoeboxTOF v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>IntegratePeaksShoeboxTOF v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/IntegratePeaksShoeboxTOF-v1';</script>
@@ -1622,14 +1622,14 @@ each dimension like so</p>
 <p><strong>Example - IntegratePeaksShoeboxTOF</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;SXD23767.raw&quot;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;SXD23767&quot;</span><span class="p">)</span>
-<span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="s2">&quot;SXD23767&quot;</span><span class="p">,</span> <span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">)</span>
-<span class="n">AddPeak</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">,</span> <span class="n">RunWorkspace</span><span class="o">=</span><span class="s2">&quot;SXD23767&quot;</span><span class="p">,</span> <span class="n">TOF</span><span class="o">=</span><span class="mf">8303.3735339704781</span><span class="p">,</span> <span class="n">DetectorID</span><span class="o">=</span><span class="mi">7646</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"SXD23767.raw"</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"SXD23767"</span><span class="p">)</span>
+<span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="s2">"SXD23767"</span><span class="p">,</span> <span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"peaks"</span><span class="p">)</span>
+<span class="n">AddPeak</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s2">"peaks"</span><span class="p">,</span> <span class="n">RunWorkspace</span><span class="o">=</span><span class="s2">"SXD23767"</span><span class="p">,</span> <span class="n">TOF</span><span class="o">=</span><span class="mf">8303.3735339704781</span><span class="p">,</span> <span class="n">DetectorID</span><span class="o">=</span><span class="mi">7646</span><span class="p">)</span>
 
-<span class="n">peaks_out</span> <span class="o">=</span> <span class="n">IntegratePeaksShoeboxTOF</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">&quot;SXD23767&quot;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">,</span>
+<span class="n">peaks_out</span> <span class="o">=</span> <span class="n">IntegratePeaksShoeboxTOF</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">"SXD23767"</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s2">"peaks"</span><span class="p">,</span>
                                      <span class="n">GetNBinsFromBackToBackParams</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">WeakPeakThreshold</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">LorentzCorrection</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I/sigma = </span><span class="si">{</span><span class="n">peaks_out</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getIntensityOverSigma</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"I/sigma = </span><span class="si">{</span><span class="n">peaks_out</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getIntensityOverSigma</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
@@ -1654,7 +1654,7 @@ each dimension like so</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/IntegratePeaksShoeboxTOF.py">IntegratePeaksShoeboxTOF.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/IntegratePeaksShoeboxTOF.py">IntegratePeaksShoeboxTOF.py</a></p>
 </section>
 </section>
 

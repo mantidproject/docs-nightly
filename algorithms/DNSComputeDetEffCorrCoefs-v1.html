@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DNSComputeDetEffCorrCoefs v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>DNSComputeDetEffCorrCoefs v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1537,31 +1537,31 @@ removed without a notification, should instrument scientists decide to do so.</p
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Calculate coefficients and apply correction to a single run:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load Vanadium and background data</span>
-<span class="n">curtable</span> <span class="o">=</span> <span class="s1">&#39;currents.txt&#39;</span>
+<span class="n">curtable</span> <span class="o">=</span> <span class="s1">'currents.txt'</span>
 
-<span class="n">vana_sf</span> <span class="o">=</span> <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="s1">&#39;dn134011vana.d_dat&#39;</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">curtable</span><span class="p">)</span>
-<span class="n">vana_nsf</span> <span class="o">=</span> <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="s1">&#39;dn134012vana.d_dat&#39;</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">curtable</span><span class="p">)</span>
-<span class="n">bkgr_sf</span> <span class="o">=</span> <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="s1">&#39;dn134037leer.d_dat&#39;</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">curtable</span><span class="p">)</span>
-<span class="n">bkgr_nsf</span> <span class="o">=</span> <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="s1">&#39;dn134038leer.d_dat&#39;</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">curtable</span><span class="p">)</span>
+<span class="n">vana_sf</span> <span class="o">=</span> <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="s1">'dn134011vana.d_dat'</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">'duration'</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">curtable</span><span class="p">)</span>
+<span class="n">vana_nsf</span> <span class="o">=</span> <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="s1">'dn134012vana.d_dat'</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">'duration'</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">curtable</span><span class="p">)</span>
+<span class="n">bkgr_sf</span> <span class="o">=</span> <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="s1">'dn134037leer.d_dat'</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">'duration'</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">curtable</span><span class="p">)</span>
+<span class="n">bkgr_nsf</span> <span class="o">=</span> <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="s1">'dn134038leer.d_dat'</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">'duration'</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">curtable</span><span class="p">)</span>
 
-<span class="c1"># Mask &#39;bad&#39; detectors</span>
+<span class="c1"># Mask 'bad' detectors</span>
 <span class="n">MaskDetectors</span><span class="p">(</span><span class="n">vana_nsf</span><span class="p">,</span> <span class="n">DetectorList</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="c1"># Calculate correction coefficients</span>
 <span class="n">coefs</span> <span class="o">=</span> <span class="n">DNSComputeDetEffCorrCoefs</span><span class="p">([</span><span class="n">vana_sf</span><span class="p">,</span> <span class="n">vana_nsf</span><span class="p">],</span> <span class="p">[</span><span class="n">bkgr_sf</span><span class="p">,</span> <span class="n">bkgr_nsf</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 3 correction coefficients: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First 3 correction coefficients: "</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
      <span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">coefs</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is first detector masked? </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">coefs</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Is first detector masked? </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">coefs</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
 
 <span class="c1"># load sample data</span>
-<span class="n">rawdata</span> <span class="o">=</span> <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="s1">&#39;oi196012pbi.d_dat&#39;</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">curtable</span><span class="p">)</span>
+<span class="n">rawdata</span> <span class="o">=</span> <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="s1">'oi196012pbi.d_dat'</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">'duration'</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">curtable</span><span class="p">)</span>
 
 <span class="c1"># apply correction</span>
 <span class="n">corrected_data</span> <span class="o">=</span> <span class="n">rawdata</span><span class="o">/</span><span class="n">coefs</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 3 corrected data points&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First 3 corrected data points"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
      <span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">corrected_data</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
@@ -1590,7 +1590,7 @@ First 3 corrected data points
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/DNSComputeDetEffCorrCoefs.py">DNSComputeDetEffCorrCoefs.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/DNSComputeDetEffCorrCoefs.py">DNSComputeDetEffCorrCoefs.py</a></p>
 </section>
 </section>
 

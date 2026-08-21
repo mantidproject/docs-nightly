@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CorrectTOFAxis v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CorrectTOFAxis v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1545,7 +1545,7 @@
 <span class="n">L1</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="c1"># in metres.</span>
 <span class="n">L2</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">Ei</span> <span class="o">=</span> <span class="mf">55.0</span> <span class="c1"># in meV</span>
-<span class="n">elasticTOF</span> <span class="o">=</span> <span class="n">UnitConversion</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+<span class="n">elasticTOF</span> <span class="o">=</span> <span class="n">UnitConversion</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">'Energy'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
                                 <span class="n">srcValue</span><span class="o">=</span><span class="n">Ei</span><span class="p">,</span>
                                 <span class="n">l1</span><span class="o">=</span><span class="n">L1</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="n">L2</span><span class="p">,</span>
                                 <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">emode</span><span class="o">=</span><span class="n">DeltaEModeType</span><span class="o">.</span><span class="n">Direct</span><span class="p">,</span> <span class="n">efixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
@@ -1558,12 +1558,12 @@
 <span class="n">elasticBinIndex</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(((</span><span class="n">TOFMax</span> <span class="o">-</span> <span class="n">TOFMin</span><span class="p">)</span> <span class="o">/</span> <span class="n">binWidth</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
 <span class="c1"># Build a Gaussian elastic peak in the workspace.</span>
 <span class="n">peakCentre</span> <span class="o">=</span> <span class="n">TOFMin</span> <span class="o">+</span> <span class="n">elasticBinIndex</span> <span class="o">*</span> <span class="n">binWidth</span>
-<span class="n">spectrumDescription</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;name=Gaussian, PeakCentre=</span><span class="si">{0}</span><span class="s1">,</span>
-<span class="s1">Height=100, Sigma=</span><span class="si">{1}</span><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakCentre</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">peakCentre</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span>
+<span class="n">spectrumDescription</span> <span class="o">=</span> <span class="s1">'''name=Gaussian, PeakCentre=</span><span class="si">{0}</span><span class="s1">,</span>
+<span class="s1">Height=100, Sigma=</span><span class="si">{1}</span><span class="s1">'''</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakCentre</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">peakCentre</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span>
     <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span>
+    <span class="n">Function</span><span class="o">=</span><span class="s1">'User Defined'</span><span class="p">,</span>
     <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">spectrumDescription</span><span class="p">,</span>
     <span class="n">BankDistanceFromSample</span><span class="o">=</span><span class="n">L2</span><span class="p">,</span>
     <span class="n">SourceDistanceFromSample</span><span class="o">=</span><span class="n">L1</span><span class="p">,</span>
@@ -1573,21 +1573,21 @@
 
 <span class="c1"># Do the correction.</span>
 <span class="n">correctedWs</span> <span class="o">=</span> <span class="n">CorrectTOFAxis</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span>
-    <span class="n">IndexType</span><span class="o">=</span><span class="s1">&#39;Workspace Index&#39;</span><span class="p">,</span>
+    <span class="n">IndexType</span><span class="o">=</span><span class="s1">'Workspace Index'</span><span class="p">,</span>
     <span class="n">ElasticBinIndex</span><span class="o">=</span><span class="n">elasticBinIndex</span><span class="p">,</span>
     <span class="n">EFixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">,</span>
     <span class="n">L2</span><span class="o">=</span><span class="n">L2</span><span class="p">)</span>
 
 <span class="c1"># Convert TOF to energy transfer.</span>
 <span class="n">convertedWs</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">correctedWs</span><span class="p">,</span>
-    <span class="n">Target</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span>
-    <span class="n">EMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">)</span>
+    <span class="n">Target</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span>
+    <span class="n">EMode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">)</span>
 
 <span class="c1"># Check results</span>
 <span class="c1"># Zero energy transfer should be around elasticBinIndex.</span>
 <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">elasticBinIndex</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">elasticBinIndex</span><span class="o">+</span><span class="mi">2</span><span class="p">):</span>
     <span class="n">binCentre</span> <span class="o">=</span> <span class="p">(</span><span class="n">convertedWs</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">convertedWs</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">index</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;DeltaE at the centre of bin </span><span class="si">{0}</span><span class="s1">: </span><span class="si">{1:0.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="n">binCentre</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'DeltaE at the centre of bin </span><span class="si">{0}</span><span class="s1">: </span><span class="si">{1:0.4f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="n">binCentre</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1602,7 +1602,7 @@ DeltaE at the centre of bin 101: 0.0891
 <span class="n">L1</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="c1"># in metres.</span>
 <span class="n">L2</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">Ei</span> <span class="o">=</span> <span class="mf">55.0</span> <span class="c1"># in meV</span>
-<span class="n">elasticTOF</span> <span class="o">=</span> <span class="n">UnitConversion</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+<span class="n">elasticTOF</span> <span class="o">=</span> <span class="n">UnitConversion</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">'Energy'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
                                 <span class="n">srcValue</span><span class="o">=</span><span class="n">Ei</span><span class="p">,</span>
                                 <span class="n">l1</span><span class="o">=</span><span class="n">L1</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="n">L2</span><span class="p">,</span>
                                 <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">emode</span><span class="o">=</span><span class="n">DeltaEModeType</span><span class="o">.</span><span class="n">Direct</span><span class="p">,</span> <span class="n">efixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
@@ -1615,12 +1615,12 @@ DeltaE at the centre of bin 101: 0.0891
 <span class="n">elasticBinIndex</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(((</span><span class="n">TOFMax</span> <span class="o">-</span> <span class="n">TOFMin</span><span class="p">)</span> <span class="o">/</span> <span class="n">binWidth</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
 <span class="c1"># Build a Gaussian elastic peak in the workspace.</span>
 <span class="n">peakCentre</span> <span class="o">=</span> <span class="n">TOFMin</span> <span class="o">+</span> <span class="n">elasticBinIndex</span> <span class="o">*</span> <span class="n">binWidth</span>
-<span class="n">spectrumDescription</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;name=Gaussian, PeakCentre=</span><span class="si">{0}</span><span class="s1">,</span>
-<span class="s1">Height=100, Sigma=</span><span class="si">{1}</span><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakCentre</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">peakCentre</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span>
+<span class="n">spectrumDescription</span> <span class="o">=</span> <span class="s1">'''name=Gaussian, PeakCentre=</span><span class="si">{0}</span><span class="s1">,</span>
+<span class="s1">Height=100, Sigma=</span><span class="si">{1}</span><span class="s1">'''</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakCentre</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">peakCentre</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span>
     <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span>
+    <span class="n">Function</span><span class="o">=</span><span class="s1">'User Defined'</span><span class="p">,</span>
     <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">spectrumDescription</span><span class="p">,</span>
     <span class="n">BankDistanceFromSample</span><span class="o">=</span><span class="n">L2</span><span class="p">,</span>
     <span class="n">SourceDistanceFromSample</span><span class="o">=</span><span class="n">L1</span><span class="p">,</span>
@@ -1630,21 +1630,21 @@ DeltaE at the centre of bin 101: 0.0891
 
 <span class="c1"># Do the correction.</span>
 <span class="n">correctedWs</span> <span class="o">=</span> <span class="n">CorrectTOFAxis</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span>
-    <span class="n">IndexType</span><span class="o">=</span><span class="s1">&#39;Workspace Index&#39;</span><span class="p">,</span>
-    <span class="n">ReferenceSpectra</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span>
+    <span class="n">IndexType</span><span class="o">=</span><span class="s1">'Workspace Index'</span><span class="p">,</span>
+    <span class="n">ReferenceSpectra</span><span class="o">=</span><span class="s1">'0'</span><span class="p">,</span>
     <span class="n">ElasticBinIndex</span><span class="o">=</span><span class="n">elasticBinIndex</span><span class="p">,</span>
     <span class="n">EFixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
 
 <span class="c1"># Convert TOF to energy transfer.</span>
 <span class="n">convertedWs</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">correctedWs</span><span class="p">,</span>
-    <span class="n">Target</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span>
-    <span class="n">EMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">)</span>
+    <span class="n">Target</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span>
+    <span class="n">EMode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">)</span>
 
 <span class="c1"># Check results</span>
 <span class="c1"># Zero energy transfer should be around elasticBinIndex.</span>
 <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">elasticBinIndex</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">elasticBinIndex</span><span class="o">+</span><span class="mi">2</span><span class="p">):</span>
     <span class="n">binCentre</span> <span class="o">=</span> <span class="p">(</span><span class="n">convertedWs</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">convertedWs</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">index</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;DeltaE at the centre of bin </span><span class="si">{0}</span><span class="s1">: </span><span class="si">{1:0.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="n">binCentre</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'DeltaE at the centre of bin </span><span class="si">{0}</span><span class="s1">: </span><span class="si">{1:0.4f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="n">binCentre</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1660,7 +1660,7 @@ DeltaE at the centre of bin 101: 0.0891
 <span class="n">L1</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="c1"># in metres</span>
 <span class="n">L2</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">Ei</span> <span class="o">=</span> <span class="mf">55.0</span> <span class="c1"># in meV</span>
-<span class="n">elasticTOF</span> <span class="o">=</span> <span class="n">UnitConversion</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+<span class="n">elasticTOF</span> <span class="o">=</span> <span class="n">UnitConversion</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">'Energy'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
                                 <span class="n">srcValue</span><span class="o">=</span><span class="n">Ei</span><span class="p">,</span>
                                 <span class="n">l1</span><span class="o">=</span><span class="n">L1</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="n">L2</span><span class="p">,</span>
                                 <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">emode</span><span class="o">=</span><span class="n">DeltaEModeType</span><span class="o">.</span><span class="n">Direct</span><span class="p">,</span> <span class="n">efixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
@@ -1670,12 +1670,12 @@ DeltaE at the centre of bin 101: 0.0891
 <span class="n">TOFMax</span> <span class="o">=</span> <span class="mf">100.0</span>
 <span class="c1"># Build a Gaussian elastic peak in the workspace.</span>
 <span class="n">peakCentre</span> <span class="o">=</span> <span class="n">TOFMin</span> <span class="o">+</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">TOFMax</span> <span class="o">-</span> <span class="n">TOFMin</span><span class="p">)</span> <span class="o">/</span> <span class="mf">3.0</span>
-<span class="n">spectrumDescription</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;name=Gaussian, PeakCentre=</span><span class="si">{0}</span><span class="s1">,</span>
-<span class="s1">Height=100, Sigma=</span><span class="si">{1}</span><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakCentre</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">peakCentre</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span>
+<span class="n">spectrumDescription</span> <span class="o">=</span> <span class="s1">'''name=Gaussian, PeakCentre=</span><span class="si">{0}</span><span class="s1">,</span>
+<span class="s1">Height=100, Sigma=</span><span class="si">{1}</span><span class="s1">'''</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakCentre</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">peakCentre</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span>
        <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
        <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-       <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span>
+       <span class="n">Function</span><span class="o">=</span><span class="s1">'User Defined'</span><span class="p">,</span>
        <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">spectrumDescription</span><span class="p">,</span>
        <span class="n">BankDistanceFromSample</span><span class="o">=</span><span class="n">L2</span><span class="p">,</span>
        <span class="n">SourceDistanceFromSample</span><span class="o">=</span><span class="n">L1</span><span class="p">,</span>
@@ -1689,16 +1689,16 @@ DeltaE at the centre of bin 101: 0.0891
 <span class="c1"># Do the correction.</span>
 <span class="n">correctedWs</span> <span class="o">=</span> <span class="n">CorrectTOFAxis</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span>
     <span class="n">EPPTable</span><span class="o">=</span><span class="n">EPPTable</span><span class="p">,</span>
-    <span class="n">IndexType</span><span class="o">=</span><span class="s1">&#39;Workspace Index&#39;</span><span class="p">,</span>
-    <span class="n">ReferenceSpectra</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span>
+    <span class="n">IndexType</span><span class="o">=</span><span class="s1">'Workspace Index'</span><span class="p">,</span>
+    <span class="n">ReferenceSpectra</span><span class="o">=</span><span class="s1">'0'</span><span class="p">,</span>
     <span class="n">EFixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
 
 <span class="c1"># Check results.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original TOF for the elastic peak: </span><span class="si">{0:0.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Original TOF for the elastic peak: </span><span class="si">{0:0.1f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="n">ws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Corrected TOF for the elastic peak: </span><span class="si">{0:0.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Corrected TOF for the elastic peak: </span><span class="si">{0:0.1f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="n">correctedWs</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">correctedWs</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Actual elastic TOF: </span><span class="si">{0:0.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">elasticTOF</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Actual elastic TOF: </span><span class="si">{0:0.1f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">elasticTOF</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1714,7 +1714,7 @@ Actual elastic TOF: 1233.1
 <span class="n">L1</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">L2</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">Ei</span> <span class="o">=</span> <span class="mf">55.0</span> <span class="c1"># in meV</span>
-<span class="n">elasticTOF</span> <span class="o">=</span> <span class="n">UnitConversion</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+<span class="n">elasticTOF</span> <span class="o">=</span> <span class="n">UnitConversion</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">'Energy'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
                                 <span class="n">srcValue</span><span class="o">=</span><span class="n">Ei</span><span class="p">,</span>
                                 <span class="n">l1</span><span class="o">=</span><span class="n">L1</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="n">L2</span><span class="p">,</span>
                                 <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">emode</span><span class="o">=</span><span class="n">DeltaEModeType</span><span class="o">.</span><span class="n">Direct</span><span class="p">,</span> <span class="n">efixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
@@ -1724,12 +1724,12 @@ Actual elastic TOF: 1233.1
 <span class="n">TOFMax</span> <span class="o">=</span> <span class="mf">100.0</span>
 <span class="n">peakCentre</span> <span class="o">=</span> <span class="n">TOFMin</span> <span class="o">+</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">TOFMax</span> <span class="o">-</span> <span class="n">TOFMin</span><span class="p">)</span> <span class="o">/</span> <span class="mf">3.0</span>
 <span class="c1"># Build a Gaussian elastic peak in the first workspace.</span>
-<span class="n">spectrumDescription</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;name=Gaussian, PeakCentre=</span><span class="si">{0}</span><span class="s1">,</span>
-<span class="s1">Height=100, Sigma=</span><span class="si">{1}</span><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakCentre</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">peakCentre</span><span class="p">)</span>
-<span class="n">ws1</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span>
+<span class="n">spectrumDescription</span> <span class="o">=</span> <span class="s1">'''name=Gaussian, PeakCentre=</span><span class="si">{0}</span><span class="s1">,</span>
+<span class="s1">Height=100, Sigma=</span><span class="si">{1}</span><span class="s1">'''</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakCentre</span><span class="p">,</span> <span class="mf">0.03</span> <span class="o">*</span> <span class="n">peakCentre</span><span class="p">)</span>
+<span class="n">ws1</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span>
     <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span>
+    <span class="n">Function</span><span class="o">=</span><span class="s1">'User Defined'</span><span class="p">,</span>
     <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">spectrumDescription</span><span class="p">,</span>
     <span class="n">BankDistanceFromSample</span><span class="o">=</span><span class="n">L2</span><span class="p">,</span>
     <span class="n">SourceDistanceFromSample</span><span class="o">=</span><span class="n">L1</span><span class="p">,</span>
@@ -1737,12 +1737,12 @@ Actual elastic TOF: 1233.1
     <span class="n">XMax</span><span class="o">=</span><span class="n">TOFMax</span><span class="p">,</span>
     <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="c1"># Build a second workspace with slightly different Gaussian.</span>
-<span class="n">spectrumDescription</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;name=Gaussian, PeakCentre=</span><span class="si">{0}</span><span class="s1">,</span>
-<span class="s1">Height=100, Sigma=</span><span class="si">{1}</span><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakCentre</span><span class="p">,</span> <span class="mf">0.06</span> <span class="o">*</span> <span class="n">peakCentre</span><span class="p">)</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span>
+<span class="n">spectrumDescription</span> <span class="o">=</span> <span class="s1">'''name=Gaussian, PeakCentre=</span><span class="si">{0}</span><span class="s1">,</span>
+<span class="s1">Height=100, Sigma=</span><span class="si">{1}</span><span class="s1">'''</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakCentre</span><span class="p">,</span> <span class="mf">0.06</span> <span class="o">*</span> <span class="n">peakCentre</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span>
 <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
 <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span>
+<span class="n">Function</span><span class="o">=</span><span class="s1">'User Defined'</span><span class="p">,</span>
 <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">spectrumDescription</span><span class="p">,</span>
 <span class="n">BankDistanceFromSample</span><span class="o">=</span><span class="n">L2</span><span class="p">,</span>
 <span class="n">SourceDistanceFromSample</span><span class="o">=</span><span class="n">L1</span><span class="p">,</span>
@@ -1756,8 +1756,8 @@ Actual elastic TOF: 1233.1
 <span class="c1"># Do the correction.</span>
 <span class="n">correctedWs1</span> <span class="o">=</span> <span class="n">CorrectTOFAxis</span><span class="p">(</span><span class="n">ws1</span><span class="p">,</span>
     <span class="n">EPPTable</span><span class="o">=</span><span class="n">EPPTable</span><span class="p">,</span>
-    <span class="n">IndexType</span><span class="o">=</span><span class="s1">&#39;Workspace Index&#39;</span><span class="p">,</span>
-    <span class="n">ReferenceSpectra</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span>
+    <span class="n">IndexType</span><span class="o">=</span><span class="s1">'Workspace Index'</span><span class="p">,</span>
+    <span class="n">ReferenceSpectra</span><span class="o">=</span><span class="s1">'0'</span><span class="p">,</span>
     <span class="n">EFixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
 
 <span class="c1"># Correct the second workspace by using the first as a reference.</span>
@@ -1765,11 +1765,11 @@ Actual elastic TOF: 1233.1
     <span class="n">ReferenceWorkspace</span><span class="o">=</span><span class="n">correctedWs1</span><span class="p">)</span>
 
 <span class="c1"># Check results</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;First workspace original TOF for the elastic peak: </span><span class="si">{0:0.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'First workspace original TOF for the elastic peak: </span><span class="si">{0:0.1f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="n">ws1</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ws1</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EPP table corrected TOF for the elastic peak: </span><span class="si">{0:0.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'EPP table corrected TOF for the elastic peak: </span><span class="si">{0:0.1f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="n">correctedWs1</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">correctedWs1</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Elastic TOF for the corrected second workspace: </span><span class="si">{0:0.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Elastic TOF for the corrected second workspace: </span><span class="si">{0:0.1f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="n">correctedWs2</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">correctedWs2</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))]))</span>
 </pre></div>
 </div>
@@ -1783,8 +1783,8 @@ Elastic TOF for the corrected second workspace: ...
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/CorrectTOFAxis.h">CorrectTOFAxis.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/CorrectTOFAxis.cpp">CorrectTOFAxis.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/CorrectTOFAxis.h">CorrectTOFAxis.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/CorrectTOFAxis.cpp">CorrectTOFAxis.cpp</a></p>
 </section>
 </section>
 

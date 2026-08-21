@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>EnggFocus v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>EnggFocus v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/EnggFocus-v1';</script>
@@ -1572,22 +1572,22 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p><strong>Example - Simple focussing of an EnginX data file:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the algorithm on an EnginX file</span>
-<span class="n">data_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ENGINX00213855.nxs&#39;</span><span class="p">)</span>
+<span class="n">data_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'ENGINX00213855.nxs'</span><span class="p">)</span>
 
 <span class="c1"># Using precalculated Vanadium corrections. To calculate from scratch see EnggVanadiumCorrections</span>
-<span class="n">van_integ_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ENGINX_precalculated_vanadium_run000236516_integration.nxs&#39;</span><span class="p">)</span>
-<span class="n">van_curves_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ENGINX_precalculated_vanadium_run000236516_bank_curves.nxs&#39;</span><span class="p">)</span>
+<span class="n">van_integ_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'ENGINX_precalculated_vanadium_run000236516_integration.nxs'</span><span class="p">)</span>
+<span class="n">van_curves_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'ENGINX_precalculated_vanadium_run000236516_bank_curves.nxs'</span><span class="p">)</span>
 
 <span class="n">focussed_ws</span> <span class="o">=</span> <span class="n">EnggFocus</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data_ws</span><span class="p">,</span>
                         <span class="n">VanIntegrationWorkspace</span><span class="o">=</span><span class="n">van_integ_ws</span><span class="p">,</span>
                         <span class="n">VanCurvesWorkspace</span><span class="o">=</span><span class="n">van_curves_ws</span><span class="p">,</span>
-                        <span class="n">Bank</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+                        <span class="n">Bank</span><span class="o">=</span><span class="s1">'1'</span><span class="p">)</span>
 
 <span class="c1"># Should have one spectrum only</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No. of spectra: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">focussed_ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"No. of spectra: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">focussed_ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 
 <span class="c1"># Print a few arbitrary bins where higher intensities are expected</span>
-<span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;For TOF of </span><span class="si">{0:.3f}</span><span class="s2"> normalized intensity is </span><span class="si">{1:.3f}</span><span class="s2">&quot;</span>
+<span class="n">fmt</span> <span class="o">=</span> <span class="s2">"For TOF of </span><span class="si">{0:.3f}</span><span class="s2"> normalized intensity is </span><span class="si">{1:.3f}</span><span class="s2">"</span>
 <span class="k">for</span> <span class="nb">bin</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3169</span><span class="p">,</span> <span class="mi">6037</span><span class="p">,</span> <span class="mi">7124</span><span class="p">]:</span>
   <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">focussed_ws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="nb">bin</span><span class="p">],</span> <span class="n">focussed_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="nb">bin</span><span class="p">]))</span>
 </pre></div>
@@ -1603,7 +1603,7 @@ For TOF of 38619.804 normalized intensity is 5.181
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/EnggFocus.py">EnggFocus.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/EnggFocus.py">EnggFocus.py</a></p>
 </section>
 </section>
 

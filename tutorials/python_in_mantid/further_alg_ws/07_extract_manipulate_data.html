@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Extract and Manipulate Data: Examples &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Extract and Manipulate Data: Examples &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/python_in_mantid/further_alg_ws/07_extract_manipulate_data';</script>
@@ -565,7 +565,7 @@
 </pre></div>
 </div>
 <p>Workspace data can be read as numpy arrays, spectrum by spectrum:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;HRP39182.RAW&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"HRP39182.RAW"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -581,7 +581,7 @@ If you need x,y,e data to persist longer than the workspace, use the <em>extract
 <section id="extract">
 <h3>Extract<a class="headerlink" href="#extract" title="Link to this heading">#</a></h3>
 <p>The data from all spectra can be obtained as a mutable multi-dimensional array in one-call using the extract methods.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;HRP39182.RAW&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"HRP39182.RAW"</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">extractX</span><span class="p">()</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">extractY</span><span class="p">()</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">extractE</span><span class="p">()</span>
@@ -603,7 +603,7 @@ If you need x,y,e data to persist longer than the workspace, use the <em>extract
 <section id="nested-looping">
 <h2>Nested Looping<a class="headerlink" href="#nested-looping" title="Link to this heading">#</a></h2>
 <p>This allows access to the individual bins in each spectrum. E.g. to sum the y-values in each spectrum:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;HRP39182.RAW&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"HRP39182.RAW"</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="mf">1e4</span><span class="p">)</span> <span class="c1"># Rebin to make the looping more manageable.</span>
 <span class="c1"># Outer loop. Loop over spectrum</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
@@ -613,7 +613,7 @@ If you need x,y,e data to persist longer than the workspace, use the <em>extract
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()):</span>
         <span class="n">sum_counts</span> <span class="o">+=</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
     <span class="c1"># Display spectrum number against sum_counts</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Spectrum Number: </span><span class="si">{0}</span><span class="s2">, Total Counts: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">getSpectrumNo</span><span class="p">(),</span> <span class="n">sum_counts</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Spectrum Number: </span><span class="si">{0}</span><span class="s2">, Total Counts: </span><span class="si">{1}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">getSpectrumNo</span><span class="p">(),</span> <span class="n">sum_counts</span><span class="p">))</span>
 </pre></div>
 </div>
 </section>
@@ -630,7 +630,7 @@ If you need x,y,e data to persist longer than the workspace, use the <em>extract
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.plots._compatability</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotSpectrum</span>
 
 <span class="c1"># Load and Read data</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;HRP39182.RAW&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"HRP39182.RAW"</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -639,11 +639,11 @@ If you need x,y,e data to persist longer than the workspace, use the <em>extract
 <span class="n">new_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mf">1e-3</span>
 
 <span class="c1"># Create a new Matrix Workspace with the altered data</span>
-<span class="n">new_ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">new_x</span><span class="p">,</span> <span class="n">DataY</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">DataE</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">UnitX</span><span class="o">=</span><span class="s1">&#39;Label&#39;</span><span class="p">)</span>
+<span class="n">new_ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">new_x</span><span class="p">,</span> <span class="n">DataY</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">DataE</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">UnitX</span><span class="o">=</span><span class="s1">'Label'</span><span class="p">)</span>
 
 <span class="c1"># Set the Label for the AxisUnit</span>
 <span class="n">unit</span> <span class="o">=</span> <span class="n">new_ws</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span>
-<span class="n">unit</span><span class="o">.</span><span class="n">setLabel</span><span class="p">(</span><span class="s2">&quot;Time-of-flight&quot;</span><span class="p">,</span> <span class="s2">&quot;Milliseconds&quot;</span><span class="p">)</span>
+<span class="n">unit</span><span class="o">.</span><span class="n">setLabel</span><span class="p">(</span><span class="s2">"Time-of-flight"</span><span class="p">,</span> <span class="s2">"Milliseconds"</span><span class="p">)</span>
 
 <span class="c1"># Plot the new workspace</span>
 <span class="n">plotSpectrum</span><span class="p">(</span><span class="n">new_ws</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
@@ -658,11 +658,11 @@ If you need x,y,e data to persist longer than the workspace, use the <em>extract
 <h3>Creating a TableWorkspace<a class="headerlink" href="#creating-a-tableworkspace" title="Link to this heading">#</a></h3>
 <p>Use <a class="reference internal" href="../../../algorithms/CreateEmptyTableWorkspace-v1.html#algm-createemptytableworkspace"><span class="std std-ref">CreateEmptyTableWorkspace v1</span></a> and <cite>addColumn()</cite> and <cite>addRow()</cite> as needed. Refer back to <a class="reference internal" href="../algorithms_and_workspaces/04_table_ws_py.html#table-ws-py"><span class="std std-ref">TableWorkspace with Python</span></a></p>
 <p>E.g. To read out the value in the first bin for each spectrum:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;GEM40979.RAW&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"GEM40979.RAW"</span><span class="p">)</span>
 
 <span class="n">table</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;Spectrum Number&#39;</span><span class="p">)</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="s1">&#39;First Bin Value&#39;</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'int'</span><span class="p">,</span> <span class="s1">'Spectrum Number'</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'double'</span><span class="p">,</span> <span class="s1">'First Bin Value'</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
 

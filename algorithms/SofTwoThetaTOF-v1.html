@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SofTwoThetaTOF v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SofTwoThetaTOF v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1503,9 +1503,9 @@
 <p><strong>Example - Applying SofTwoThetaTOF and plotting the result</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">directtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Quasielastic Tunnelling&#39;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">&#39;wavelength&#39;</span><span class="p">,</span> <span class="s1">&#39;6.26&#39;</span><span class="p">,</span> <span class="s1">&#39;Number&#39;</span><span class="p">,</span> <span class="s1">&#39;Angstrom&#39;</span><span class="p">)</span>
-<span class="n">SetInstrumentParameter</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ParameterName</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span> <span class="n">ParameterType</span><span class="o">=</span><span class="s1">&#39;String&#39;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="s1">&#39;5&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">'Quasielastic Tunnelling'</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">'wavelength'</span><span class="p">,</span> <span class="s1">'6.26'</span><span class="p">,</span> <span class="s1">'Number'</span><span class="p">,</span> <span class="s1">'Angstrom'</span><span class="p">)</span>
+<span class="n">SetInstrumentParameter</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ParameterName</span><span class="o">=</span><span class="s1">'l2'</span><span class="p">,</span> <span class="n">ParameterType</span><span class="o">=</span><span class="s1">'String'</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="s1">'5'</span><span class="p">)</span>
 <span class="n">SofTT</span> <span class="o">=</span> <span class="n">SofTwoThetaTOF</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">AngleStep</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">axes</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">SofTT</span><span class="p">)</span>
@@ -1522,8 +1522,8 @@
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/WorkflowAlgorithms/inc/MantidWorkflowAlgorithms/SofTwoThetaTOF.h">SofTwoThetaTOF.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/WorkflowAlgorithms/src/SofTwoThetaTOF.cpp">SofTwoThetaTOF.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/WorkflowAlgorithms/inc/MantidWorkflowAlgorithms/SofTwoThetaTOF.h">SofTwoThetaTOF.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/WorkflowAlgorithms/src/SofTwoThetaTOF.cpp">SofTwoThetaTOF.cpp</a></p>
 </section>
 </section>
 

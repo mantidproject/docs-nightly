@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SaveGEMMAUDParamFile v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SaveGEMMAUDParamFile v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/SaveGEMMAUDParamFile-v1';</script>
@@ -1562,26 +1562,26 @@ Laboratory Report LAUR 86-748</p>
     <span class="k">return</span> <span class="n">param_values</span>
 
 <span class="c1"># Banks 1 to 4 of a previous texture focus in isis_powder</span>
-<span class="c1"># We don&#39;t use the full 160 banks as the test becomes too slow</span>
-<span class="n">input_group</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;GEM61785_D_texture_banks_1_to_4.nxs&quot;</span><span class="p">,</span>
-                   <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;SaveGEMMAUDParamFiletest_GEM61785&quot;</span><span class="p">)</span>
+<span class="c1"># We don't use the full 160 banks as the test becomes too slow</span>
+<span class="n">input_group</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"GEM61785_D_texture_banks_1_to_4.nxs"</span><span class="p">,</span>
+                   <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"SaveGEMMAUDParamFiletest_GEM61785"</span><span class="p">)</span>
 
-<span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">],</span> <span class="s2">&quot;GEM61785.maud&quot;</span><span class="p">)</span>
+<span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">"defaultsave.directory"</span><span class="p">],</span> <span class="s2">"GEM61785.maud"</span><span class="p">)</span>
 <span class="n">SaveGEMMAUDParamFile</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">input_group</span><span class="p">,</span>
                      <span class="n">OutputFilename</span><span class="o">=</span><span class="n">output_file</span><span class="p">,</span>
-                     <span class="n">GSASParamFile</span><span class="o">=</span><span class="s2">&quot;GEM_PF1_PROFILE.IPF&quot;</span><span class="p">,</span>
+                     <span class="n">GSASParamFile</span><span class="o">=</span><span class="s2">"GEM_PF1_PROFILE.IPF"</span><span class="p">,</span>
                      <span class="c1"># Assign spectra 1, 2 and 3 to bank 2 in calib file,</span>
                      <span class="c1"># and spectrum 4 to bank 3</span>
                      <span class="n">GroupingScheme</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">file_contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file_contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="n">difcs</span> <span class="o">=</span> <span class="n">collect_parameter</span><span class="p">(</span><span class="s2">&quot;_instrument_bank_difc&quot;</span><span class="p">,</span> <span class="n">file_contents</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DIFC values: &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">difc</span><span class="p">)</span> <span class="k">for</span> <span class="n">difc</span> <span class="ow">in</span> <span class="n">difcs</span><span class="p">))</span>
+<span class="n">difcs</span> <span class="o">=</span> <span class="n">collect_parameter</span><span class="p">(</span><span class="s2">"_instrument_bank_difc"</span><span class="p">,</span> <span class="n">file_contents</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"DIFC values: "</span> <span class="o">+</span> <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">difc</span><span class="p">)</span> <span class="k">for</span> <span class="n">difc</span> <span class="ow">in</span> <span class="n">difcs</span><span class="p">))</span>
 
-<span class="n">thetas</span> <span class="o">=</span> <span class="n">collect_parameter</span><span class="p">(</span><span class="s2">&quot;_instrument_bank_tof_theta&quot;</span><span class="p">,</span> <span class="n">file_contents</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Theta values: &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">thetas</span><span class="p">))</span>
+<span class="n">thetas</span> <span class="o">=</span> <span class="n">collect_parameter</span><span class="p">(</span><span class="s2">"_instrument_bank_tof_theta"</span><span class="p">,</span> <span class="n">file_contents</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Theta values: "</span> <span class="o">+</span> <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">thetas</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>

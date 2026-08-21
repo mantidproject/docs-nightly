@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SaveIsawUB v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SaveIsawUB v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/SaveIsawUB-v1';</script>
@@ -1495,23 +1495,23 @@ coordinate system where x is the beam direction and z is vertically upward.
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#A workspace with some UB matrix</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">CreateSingleValuedWorkspace</span><span class="p">()</span>
-<span class="n">SetUB</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="s2">&quot;0,0,1&quot;</span><span class="p">,</span> <span class="s2">&quot;1,0,0&quot;</span><span class="p">)</span>
+<span class="n">SetUB</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="s2">"0,0,1"</span><span class="p">,</span> <span class="s2">"1,0,0"</span><span class="p">)</span>
 <span class="c1">#run the algorithm</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">mantid</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="n">mantid</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;saveIsawUBTest.mat&quot;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">mantid</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s2">"defaultsave.directory"</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"saveIsawUBTest.mat"</span>
 <span class="n">SaveIsawUB</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
 
 <span class="c1">#check if the correct results are written in the file</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span>
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">y</span><span class="o">==</span><span class="mf">0.5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">z</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The first line is 0 0.5 0&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"The first line is 0 0.5 0"</span><span class="p">)</span>
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">z</span><span class="o">==</span><span class="mf">0.25</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The second line is 0 0 0.25&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"The second line is 0 0 0.25"</span><span class="p">)</span>
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mf">0.2</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">z</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The third line is 0.2 0 0&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"The third line is 0.2 0 0"</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1525,8 +1525,8 @@ The third line is 0.2 0 0
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/inc/MantidCrystal/SaveIsawUB.h">SaveIsawUB.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/src/SaveIsawUB.cpp">SaveIsawUB.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/inc/MantidCrystal/SaveIsawUB.h">SaveIsawUB.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/src/SaveIsawUB.cpp">SaveIsawUB.cpp</a></p>
 </section>
 </section>
 

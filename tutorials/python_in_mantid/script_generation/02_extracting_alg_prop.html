@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Extracting Algorithm Properties &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Extracting Algorithm Properties &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/python_in_mantid/script_generation/02_extracting_alg_prop';</script>
@@ -552,20 +552,20 @@
 <span id="extracting-alg-prop"></span><h1>Extracting Algorithm Properties<a class="headerlink" href="#extracting-algorithm-properties" title="Link to this heading">#</a></h1>
 <p>After an algorithm has been executed, the properties remain accessible for as long as the output workspace exists.
 Algorithms return their output properties as a tuple, which python can unpack automatically, for example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;MAR11015.raw&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'MAR11015.raw'</span><span class="p">)</span>
 <span class="n">ei</span><span class="p">,</span> <span class="n">mon_peak</span><span class="p">,</span> <span class="n">mon_index</span><span class="p">,</span> <span class="n">tzero</span> <span class="o">=</span> <span class="n">GetEi</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">Monitor1Spec</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">Monitor2Spec</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">EnergyEstimate</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">sample</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span> <span class="n">Emode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="n">ei</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span> <span class="n">Emode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="n">ei</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To access input properties, use the <a class="reference internal" href="../../../concepts/WorkingWithWorspaces.html#workspace-workspace-history"><span class="std std-ref">workspace history</span></a>. Using this handle allows the properties to be extracted by their name using the <cite>getPropertyValue()</cite> function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;MAR11015.raw&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'MAR11015.raw'</span><span class="p">)</span>
 <span class="n">algorithm</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">getHistory</span><span class="p">()</span><span class="o">.</span><span class="n">lastAlgorithm</span><span class="p">()</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s2">&quot;Filename&quot;</span><span class="p">)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s2">"Filename"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>For some algorithms, such as <a class="reference internal" href="../../../algorithms/Rebin-v1.html#algm-rebin"><span class="std std-ref">Rebin v1</span></a>, you can get properties without accessing algorithm history.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rebin_alg</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="s1">&#39;input_ws&#39;</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">&#39;1,5,100&#39;</span><span class="p">)</span>
-<span class="n">params</span> <span class="o">=</span> <span class="n">rebin_alg</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;Params&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rebin_alg</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="s1">'input_ws'</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">'1,5,100'</span><span class="p">)</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">rebin_alg</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'Params'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
 </section>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ConvertCWPDMDToSpectra v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ConvertCWPDMDToSpectra v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1641,39 +1641,39 @@ that is able to reflect all the information of the epxeriment,
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - reduce a SPICE file for HB2A to Fullprof file:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create table workspace and parent log workspace</span>
-<span class="n">LoadSpiceAscii</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;HB2A_exp0231_scan0001.dat&#39;</span><span class="p">,</span>
-      <span class="n">IntegerSampleLogNames</span><span class="o">=</span><span class="s2">&quot;Sum of Counts, scan, mode, experiment_number&quot;</span><span class="p">,</span>
-      <span class="n">FloatSampleLogNames</span><span class="o">=</span><span class="s2">&quot;samplemosaic, preset_value, Full Width Half-Maximum, Center of Mass&quot;</span><span class="p">,</span>
-      <span class="n">DateAndTimeLog</span><span class="o">=</span><span class="s1">&#39;date,MM/DD/YYYY,time,HH:MM:SS AM&#39;</span><span class="p">,</span>
-      <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Exp0231DataTable&#39;</span><span class="p">,</span>
-      <span class="n">RunInfoWorkspace</span><span class="o">=</span><span class="s1">&#39;Exp0231ParentWS&#39;</span><span class="p">)</span>
+<span class="n">LoadSpiceAscii</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'HB2A_exp0231_scan0001.dat'</span><span class="p">,</span>
+      <span class="n">IntegerSampleLogNames</span><span class="o">=</span><span class="s2">"Sum of Counts, scan, mode, experiment_number"</span><span class="p">,</span>
+      <span class="n">FloatSampleLogNames</span><span class="o">=</span><span class="s2">"samplemosaic, preset_value, Full Width Half-Maximum, Center of Mass"</span><span class="p">,</span>
+      <span class="n">DateAndTimeLog</span><span class="o">=</span><span class="s1">'date,MM/DD/YYYY,time,HH:MM:SS AM'</span><span class="p">,</span>
+      <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'Exp0231DataTable'</span><span class="p">,</span>
+      <span class="n">RunInfoWorkspace</span><span class="o">=</span><span class="s1">'Exp0231ParentWS'</span><span class="p">)</span>
 
 <span class="c1"># load for HB2A</span>
-<span class="n">ConvertSpiceDataToRealSpace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;Exp0231DataTable&#39;</span><span class="p">,</span>
-      <span class="n">RunInfoWorkspace</span><span class="o">=</span><span class="s1">&#39;Exp0231ParentWS&#39;</span><span class="p">,</span>
-      <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Exp0231DataMD&#39;</span><span class="p">,</span>
-      <span class="n">OutputMonitorWorkspace</span><span class="o">=</span><span class="s1">&#39;Exp0231MonitorMD&#39;</span><span class="p">)</span>
+<span class="n">ConvertSpiceDataToRealSpace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'Exp0231DataTable'</span><span class="p">,</span>
+      <span class="n">RunInfoWorkspace</span><span class="o">=</span><span class="s1">'Exp0231ParentWS'</span><span class="p">,</span>
+      <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'Exp0231DataMD'</span><span class="p">,</span>
+      <span class="n">OutputMonitorWorkspace</span><span class="o">=</span><span class="s1">'Exp0231MonitorMD'</span><span class="p">)</span>
 
 <span class="c1"># Convert from real-space MD to Fullprof data</span>
 <span class="n">ConvertCWPDMDToSpectra</span><span class="p">(</span>
-      <span class="n">InputWorkspace</span> <span class="o">=</span> <span class="s1">&#39;Exp0231DataMD&#39;</span><span class="p">,</span>
-      <span class="n">InputMonitorWorkspace</span> <span class="o">=</span> <span class="s1">&#39;Exp0231MonitorMD&#39;</span><span class="p">,</span>
-      <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s1">&#39;Exp0231Reduced&#39;</span><span class="p">,</span>
-      <span class="n">BinningParams</span> <span class="o">=</span> <span class="s1">&#39;5, 0.1, 150&#39;</span><span class="p">,</span>
-      <span class="n">UnitOutput</span> <span class="o">=</span> <span class="s1">&#39;2theta&#39;</span><span class="p">,</span>
+      <span class="n">InputWorkspace</span> <span class="o">=</span> <span class="s1">'Exp0231DataMD'</span><span class="p">,</span>
+      <span class="n">InputMonitorWorkspace</span> <span class="o">=</span> <span class="s1">'Exp0231MonitorMD'</span><span class="p">,</span>
+      <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s1">'Exp0231Reduced'</span><span class="p">,</span>
+      <span class="n">BinningParams</span> <span class="o">=</span> <span class="s1">'5, 0.1, 150'</span><span class="p">,</span>
+      <span class="n">UnitOutput</span> <span class="o">=</span> <span class="s1">'2theta'</span><span class="p">,</span>
       <span class="n">ScaleFactor</span> <span class="o">=</span> <span class="mf">100.</span><span class="p">,</span>
       <span class="n">LinearInterpolateZeroCounts</span> <span class="o">=</span> <span class="kc">True</span>
       <span class="p">)</span>
 
 <span class="c1"># output</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;Exp0231Reduced&quot;</span><span class="p">]</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"Exp0231Reduced"</span><span class="p">]</span>
 
 <span class="n">vecx</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">vecy</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">vece</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1101</span><span class="p">,</span> <span class="mi">1228</span><span class="p">]:</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2theta = </span><span class="si">{:.6f}</span><span class="s2">, Y = </span><span class="si">{:.6f}</span><span class="s2">, E = </span><span class="si">{:.6f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vecx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">vecy</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">vece</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">"2theta = </span><span class="si">{:.6f}</span><span class="s2">, Y = </span><span class="si">{:.6f}</span><span class="s2">, E = </span><span class="si">{:.6f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vecx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">vecy</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">vece</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1687,8 +1687,8 @@ that is able to reflect all the information of the epxeriment,
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertCWPDMDToSpectra.h">ConvertCWPDMDToSpectra.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/src/ConvertCWPDMDToSpectra.cpp">ConvertCWPDMDToSpectra.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertCWPDMDToSpectra.h">ConvertCWPDMDToSpectra.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/src/ConvertCWPDMDToSpectra.cpp">ConvertCWPDMDToSpectra.cpp</a></p>
 </section>
 </section>
 

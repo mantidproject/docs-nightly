@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CalculateCountRate v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CalculateCountRate v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/CalculateCountRate-v1';</script>
@@ -1567,28 +1567,28 @@ is just the sum of all values of the log used for normalization falling within t
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Calculate Count Rate</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s2">&quot;LogTest&quot;</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">:</span>
-    <span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s2">&quot;LogTest&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s2">"LogTest"</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">:</span>
+    <span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s2">"LogTest"</span><span class="p">)</span>
 <span class="c1"># Create sample workspace with events</span>
-<span class="n">LogTest</span><span class="o">=</span><span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Event&#39;</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Flat background&#39;</span><span class="p">)</span>
-<span class="n">log_name</span> <span class="o">=</span> <span class="s1">&#39;block_count_rate&#39;</span><span class="p">;</span>
+<span class="n">LogTest</span><span class="o">=</span><span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Event'</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="s1">'Flat background'</span><span class="p">)</span>
+<span class="n">log_name</span> <span class="o">=</span> <span class="s1">'block_count_rate'</span><span class="p">;</span>
 
 <span class="c1"># no rate log found:</span>
 <span class="n">rez</span> <span class="o">=</span> <span class="n">CheckForSampleLogs</span><span class="p">(</span><span class="n">LogTest</span><span class="p">,</span><span class="n">log_name</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initially, </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rez</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Initially, </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rez</span><span class="p">))</span>
 
 <span class="c1"># calculate number of events in the workspace</span>
 <span class="n">CalculateCountRate</span><span class="p">(</span><span class="n">LogTest</span><span class="p">,</span><span class="n">CountRateLogName</span><span class="o">=</span> <span class="n">log_name</span><span class="p">)</span>
 
 <span class="n">rez</span> <span class="o">=</span> <span class="n">CheckForSampleLogs</span><span class="p">(</span><span class="n">LogTest</span><span class="p">,</span><span class="n">log_name</span><span class="p">)</span>
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rez</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Algorithm produced log: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">log_name</span><span class="p">))</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">"The Algorithm produced log: </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">log_name</span><span class="p">))</span>
      <span class="n">log</span> <span class="o">=</span> <span class="n">LogTest</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="n">log_name</span><span class="p">)</span>
-     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;log </span><span class="si">{0}</span><span class="s2"> contains </span><span class="si">{1}</span><span class="s2"> entries&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">log_name</span><span class="p">,</span> <span class="n">log</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span>
-     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;log starts at </span><span class="si">{0}</span><span class="s2"> and records value: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">firstTime</span><span class="p">(),</span> <span class="n">log</span><span class="o">.</span><span class="n">firstValue</span><span class="p">()))</span>
-     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;log ends   at </span><span class="si">{0}</span><span class="s2"> and records value: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">lastTime</span><span class="p">(),</span> <span class="n">log</span><span class="o">.</span><span class="n">lastValue</span><span class="p">()))</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">"log </span><span class="si">{0}</span><span class="s2"> contains </span><span class="si">{1}</span><span class="s2"> entries"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">log_name</span><span class="p">,</span> <span class="n">log</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">"log starts at </span><span class="si">{0}</span><span class="s2"> and records value: </span><span class="si">{1}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">firstTime</span><span class="p">(),</span> <span class="n">log</span><span class="o">.</span><span class="n">firstValue</span><span class="p">()))</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">"log ends   at </span><span class="si">{0}</span><span class="s2"> and records value: </span><span class="si">{1}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">lastTime</span><span class="p">(),</span> <span class="n">log</span><span class="o">.</span><span class="n">lastValue</span><span class="p">()))</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rez</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rez</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> Initially, Property block_count_rate not found
@@ -1602,8 +1602,8 @@ is just the sum of all values of the log used for normalization falling within t
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/CalculateCountRate.h">CalculateCountRate.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/CalculateCountRate.cpp">CalculateCountRate.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/CalculateCountRate.h">CalculateCountRate.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/CalculateCountRate.cpp">CalculateCountRate.cpp</a></p>
 </section>
 </section>
 

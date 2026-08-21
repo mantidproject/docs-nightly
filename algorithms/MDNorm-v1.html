@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MDNorm v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MDNorm v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1734,56 +1734,56 @@ comes from the workspace’s own data-occupied extents (a box-tree bounding box)
 wavelength/time-of-flight window.</p>
 <p><strong>Example - MDNorm for WAND</strong></p>
 <p><cite>RLU=True</cite> requires a UB matrix on <cite>InputWorkspace</cite>, set here via <cite>SetUB</cite> for illustration.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">&#39;26640-26700&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">'26640-26700'</span><span class="p">,</span>
                             <span class="n">VanadiumIPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">VanadiumRunNumber</span><span class="o">=</span><span class="mi">26509</span><span class="p">,</span>
-                            <span class="n">Grouping</span><span class="o">=</span><span class="s1">&#39;4x4&#39;</span><span class="p">,</span> <span class="n">NormalizedBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span> <span class="n">NormalizeData</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">)</span>
-<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s1">&#39;s1,0,1,0,1&#39;</span><span class="p">)</span>
-<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s1">&#39;s1,0,1,0,1&#39;</span><span class="p">)</span>
-<span class="n">ConvertHFIRSCDtoMDE</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">Wavelength</span><span class="o">=</span><span class="mf">1.488</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data_md&#39;</span><span class="p">)</span>
-<span class="n">ConvertHFIRSCDtoMDE</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="n">Wavelength</span><span class="o">=</span><span class="mf">1.488</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;norm_md&#39;</span><span class="p">)</span>
-<span class="n">SetUB</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;data_md&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">5.5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="s1">&#39;1,0,0&#39;</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="s1">&#39;0,1,0&#39;</span><span class="p">)</span>
+                            <span class="n">Grouping</span><span class="o">=</span><span class="s1">'4x4'</span><span class="p">,</span> <span class="n">NormalizedBy</span><span class="o">=</span><span class="s1">'Monitor'</span><span class="p">,</span> <span class="n">NormalizeData</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span> <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">'norm'</span><span class="p">)</span>
+<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s1">'s1,0,1,0,1'</span><span class="p">)</span>
+<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'norm'</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s1">'s1,0,1,0,1'</span><span class="p">)</span>
+<span class="n">ConvertHFIRSCDtoMDE</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span> <span class="n">Wavelength</span><span class="o">=</span><span class="mf">1.488</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'data_md'</span><span class="p">)</span>
+<span class="n">ConvertHFIRSCDtoMDE</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'norm'</span><span class="p">,</span> <span class="n">Wavelength</span><span class="o">=</span><span class="mf">1.488</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'norm_md'</span><span class="p">)</span>
+<span class="n">SetUB</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'data_md'</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">5.5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="s1">'1,0,0'</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="s1">'0,1,0'</span><span class="p">)</span>
 
-<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data_md&#39;</span><span class="p">,</span>
-       <span class="n">MonoSCDNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm_md&#39;</span><span class="p">,</span>
+<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'data_md'</span><span class="p">,</span>
+       <span class="n">MonoSCDNormalizationWorkspace</span><span class="o">=</span><span class="s1">'norm_md'</span><span class="p">,</span>
        <span class="n">RLU</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">&#39;QDimension0&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">&#39;QDimension1&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">&#39;QDimension2&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;result&#39;</span><span class="p">,</span>
-       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">&#39;dataMD&#39;</span><span class="p">,</span>
-       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;normMD&#39;</span><span class="p">)</span>
+       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">'QDimension0'</span><span class="p">,</span>
+       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">'QDimension1'</span><span class="p">,</span>
+       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">'QDimension2'</span><span class="p">,</span>
+       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'result'</span><span class="p">,</span>
+       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">'dataMD'</span><span class="p">,</span>
+       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">'normMD'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Example - MDNorm for DEMAND</strong></p>
 <p>DEMAND uses a single <cite>HB3AAdjustSampleNorm</cite> call (rather than WAND’s <cite>LoadWANDSCD</cite> +
 <cite>ConvertHFIRSCDtoMDE</cite> pair) to produce the data and normalization workspaces. As above,
 <cite>RLU=True</cite> requires a UB matrix on <cite>InputWorkspace</cite>, set here via <cite>SetUB</cite> for illustration.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">HB3AAdjustSampleNorm</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;HB3A_exp0724_scan0182.nxs, HB3A_exp0724_scan0183.nxs&#39;</span><span class="p">,</span>
-                                   <span class="n">VanadiumFile</span><span class="o">=</span><span class="s1">&#39;HB3A_exp0722_scan0220.nxs&#39;</span><span class="p">,</span>
-                                   <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">HB3AAdjustSampleNorm</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'HB3A_exp0724_scan0182.nxs, HB3A_exp0724_scan0183.nxs'</span><span class="p">,</span>
+                                   <span class="n">VanadiumFile</span><span class="o">=</span><span class="s1">'HB3A_exp0722_scan0220.nxs'</span><span class="p">,</span>
+                                   <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">'Time'</span><span class="p">,</span>
                                    <span class="n">NormalizeData</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                   <span class="n">OutputType</span><span class="o">=</span><span class="s1">&#39;Q-sample events&#39;</span><span class="p">,</span>
+                                   <span class="n">OutputType</span><span class="o">=</span><span class="s1">'Q-sample events'</span><span class="p">,</span>
                                    <span class="n">MergeInputs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                   <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
-                                   <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">)</span>
-<span class="n">SetUB</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">5.5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="s1">&#39;1,0,0&#39;</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="s1">&#39;0,1,0&#39;</span><span class="p">)</span>
+                                   <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span>
+                                   <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">'norm'</span><span class="p">)</span>
+<span class="n">SetUB</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">5.5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="s1">'1,0,0'</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="s1">'0,1,0'</span><span class="p">)</span>
 
-<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
-       <span class="n">MonoSCDNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span>
+<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span>
+       <span class="n">MonoSCDNormalizationWorkspace</span><span class="o">=</span><span class="s1">'norm'</span><span class="p">,</span>
        <span class="n">RLU</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">&#39;QDimension0&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">&#39;QDimension1&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">&#39;QDimension2&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;result&#39;</span><span class="p">,</span>
-       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">&#39;dataMD&#39;</span><span class="p">,</span>
-       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;normMD&#39;</span><span class="p">)</span>
+       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">'QDimension0'</span><span class="p">,</span>
+       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">'QDimension1'</span><span class="p">,</span>
+       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">'QDimension2'</span><span class="p">,</span>
+       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'result'</span><span class="p">,</span>
+       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">'dataMD'</span><span class="p">,</span>
+       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">'normMD'</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1803,46 +1803,46 @@ The output is given by:</p>
 </ol>
 <p><strong>Example - MDNorm</strong></p>
 <p>For diffraction measurements a sample code is found below:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;CORELLI_29782.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;SingleCrystalDiffuseReduction_SA.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;SolidAngle&#39;</span><span class="p">)</span>
-<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;SingleCrystalDiffuseReduction_Flux.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span> <span class="s1">&#39;Flux&#39;</span><span class="p">)</span>
-<span class="n">MaskDetectors</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">MaskedWorkspace</span><span class="o">=</span><span class="s1">&#39;SolidAngle&#39;</span><span class="p">)</span>
-<span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s1">&#39;Momentum&#39;</span><span class="p">)</span>
-<span class="n">CropWorkspaceForMDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'CORELLI_29782.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'SingleCrystalDiffuseReduction_SA.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'SolidAngle'</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'SingleCrystalDiffuseReduction_Flux.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span> <span class="s1">'Flux'</span><span class="p">)</span>
+<span class="n">MaskDetectors</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span> <span class="n">MaskedWorkspace</span><span class="o">=</span><span class="s1">'SolidAngle'</span><span class="p">)</span>
+<span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s1">'Momentum'</span><span class="p">)</span>
+<span class="n">CropWorkspaceForMDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span>
                        <span class="n">XMin</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
                        <span class="n">XMax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-                       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-<span class="n">LoadIsawUB</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;SingleCrystalDiffuseReduction_UB.mat&#39;</span><span class="p">)</span>
-<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="n">Axis0</span><span class="o">=</span><span class="s1">&#39;BL9:Mot:Sample:Axis1,0,1,0,1&#39;</span><span class="p">)</span>
-<span class="n">min_vals</span><span class="p">,</span><span class="n">max_vals</span><span class="o">=</span><span class="n">ConvertToMDMinMaxGlobal</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
-                                          <span class="n">QDimensions</span><span class="o">=</span><span class="s1">&#39;Q3D&#39;</span><span class="p">,</span>
-                                          <span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s1">&#39;Elastic&#39;</span><span class="p">,</span>
-                                          <span class="n">Q3DFrames</span><span class="o">=</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span>
-<span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
-            <span class="n">QDimensions</span><span class="o">=</span><span class="s1">&#39;Q3D&#39;</span><span class="p">,</span>
-            <span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s1">&#39;Elastic&#39;</span><span class="p">,</span>
-            <span class="n">Q3DFrames</span><span class="o">=</span><span class="s1">&#39;Q_sample&#39;</span><span class="p">,</span>
-            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;md&#39;</span><span class="p">,</span>
+                       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">)</span>
+<span class="n">LoadIsawUB</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'SingleCrystalDiffuseReduction_UB.mat'</span><span class="p">)</span>
+<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span><span class="n">Axis0</span><span class="o">=</span><span class="s1">'BL9:Mot:Sample:Axis1,0,1,0,1'</span><span class="p">)</span>
+<span class="n">min_vals</span><span class="p">,</span><span class="n">max_vals</span><span class="o">=</span><span class="n">ConvertToMDMinMaxGlobal</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span>
+                                          <span class="n">QDimensions</span><span class="o">=</span><span class="s1">'Q3D'</span><span class="p">,</span>
+                                          <span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s1">'Elastic'</span><span class="p">,</span>
+                                          <span class="n">Q3DFrames</span><span class="o">=</span><span class="s1">'Q'</span><span class="p">)</span>
+<span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span>
+            <span class="n">QDimensions</span><span class="o">=</span><span class="s1">'Q3D'</span><span class="p">,</span>
+            <span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s1">'Elastic'</span><span class="p">,</span>
+            <span class="n">Q3DFrames</span><span class="o">=</span><span class="s1">'Q_sample'</span><span class="p">,</span>
+            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'md'</span><span class="p">,</span>
             <span class="n">MinValues</span><span class="o">=</span><span class="n">min_vals</span><span class="p">,</span>
             <span class="n">MaxValues</span><span class="o">=</span><span class="n">max_vals</span><span class="p">)</span>
-<span class="n">RecalculateTrajectoriesExtents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span> <span class="s1">&#39;md&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;md&#39;</span><span class="p">)</span>
+<span class="n">RecalculateTrajectoriesExtents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span> <span class="s1">'md'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'md'</span><span class="p">)</span>
 
-<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;md&#39;</span><span class="p">,</span>
-       <span class="n">SolidAngleWorkspace</span><span class="o">=</span><span class="s1">&#39;SolidAngle&#39;</span><span class="p">,</span>
-       <span class="n">FluxWorkspace</span><span class="o">=</span><span class="s1">&#39;Flux&#39;</span><span class="p">,</span>
-       <span class="n">QDimension0</span><span class="o">=</span><span class="s1">&#39;1,1,0&#39;</span><span class="p">,</span>
-       <span class="n">QDimension1</span><span class="o">=</span><span class="s1">&#39;1,-1,0&#39;</span><span class="p">,</span>
-       <span class="n">QDimension2</span><span class="o">=</span><span class="s1">&#39;0,0,1&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">&#39;QDimension0&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">&#39;-10.0,0.1,10.0&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">&#39;QDimension1&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">&#39;-10.0,0.1,10.0&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">&#39;QDimension2&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">&#39;-0.1,0.1&#39;</span><span class="p">,</span>
-       <span class="n">SymmetryOperations</span><span class="o">=</span><span class="s1">&#39;P 31 2 1&#39;</span><span class="p">,</span>
-       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;result&#39;</span><span class="p">,</span>
-       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">&#39;dataMD&#39;</span><span class="p">,</span>
-       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;normMD&#39;</span><span class="p">)</span>
+<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'md'</span><span class="p">,</span>
+       <span class="n">SolidAngleWorkspace</span><span class="o">=</span><span class="s1">'SolidAngle'</span><span class="p">,</span>
+       <span class="n">FluxWorkspace</span><span class="o">=</span><span class="s1">'Flux'</span><span class="p">,</span>
+       <span class="n">QDimension0</span><span class="o">=</span><span class="s1">'1,1,0'</span><span class="p">,</span>
+       <span class="n">QDimension1</span><span class="o">=</span><span class="s1">'1,-1,0'</span><span class="p">,</span>
+       <span class="n">QDimension2</span><span class="o">=</span><span class="s1">'0,0,1'</span><span class="p">,</span>
+       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">'QDimension0'</span><span class="p">,</span>
+       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">'-10.0,0.1,10.0'</span><span class="p">,</span>
+       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">'QDimension1'</span><span class="p">,</span>
+       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">'-10.0,0.1,10.0'</span><span class="p">,</span>
+       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">'QDimension2'</span><span class="p">,</span>
+       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">'-0.1,0.1'</span><span class="p">,</span>
+       <span class="n">SymmetryOperations</span><span class="o">=</span><span class="s1">'P 31 2 1'</span><span class="p">,</span>
+       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'result'</span><span class="p">,</span>
+       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">'dataMD'</span><span class="p">,</span>
+       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">'normMD'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The output would look like:</p>
@@ -1850,60 +1850,60 @@ The output is given by:</p>
 <img alt="../_images/MDNorm_elastic_sym.png" src="../_images/MDNorm_elastic_sym.png" />
 </figure>
 <p>Here is a sample code for inelastic data:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;HYS_13656-13658&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
-<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s1">&#39;s1,0,1,0,1&#39;</span><span class="p">)</span>
-<span class="n">GenerateEventsFilter</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span>
-                     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;splboth&#39;</span><span class="p">,</span>
-                     <span class="n">InformationWorkspace</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">,</span>
-                     <span class="n">UnitOfTime</span><span class="o">=</span><span class="s1">&#39;Nanoseconds&#39;</span><span class="p">,</span>
-                     <span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;s1&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'HYS_13656-13658'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'sum'</span><span class="p">)</span>
+<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'sum'</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s1">'s1,0,1,0,1'</span><span class="p">)</span>
+<span class="n">GenerateEventsFilter</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'sum'</span><span class="p">,</span>
+                     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'splboth'</span><span class="p">,</span>
+                     <span class="n">InformationWorkspace</span><span class="o">=</span><span class="s1">'info'</span><span class="p">,</span>
+                     <span class="n">UnitOfTime</span><span class="o">=</span><span class="s1">'Nanoseconds'</span><span class="p">,</span>
+                     <span class="n">LogName</span><span class="o">=</span><span class="s1">'s1'</span><span class="p">,</span>
                      <span class="n">MaximumLogValue</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
                      <span class="n">LogValueInterval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">FilterEvents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span>
-             <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">&#39;splboth&#39;</span><span class="p">,</span>
-             <span class="n">InformationWorkspace</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">,</span>
+<span class="n">FilterEvents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'sum'</span><span class="p">,</span>
+             <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">'splboth'</span><span class="p">,</span>
+             <span class="n">InformationWorkspace</span><span class="o">=</span><span class="s1">'info'</span><span class="p">,</span>
              <span class="n">FilterByPulseTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
              <span class="n">GroupWorkspaces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
              <span class="n">OutputWorkspaceIndexedFrom1</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-             <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">&#39;split&#39;</span><span class="p">)</span>
-<span class="n">DgsReduction</span><span class="p">(</span><span class="n">SampleInputWorkspace</span><span class="o">=</span><span class="s1">&#39;split&#39;</span><span class="p">,</span>
-             <span class="n">SampleInputMonitorWorkspace</span><span class="o">=</span><span class="s1">&#39;split_1&#39;</span><span class="p">,</span>
+             <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">'split'</span><span class="p">)</span>
+<span class="n">DgsReduction</span><span class="p">(</span><span class="n">SampleInputWorkspace</span><span class="o">=</span><span class="s1">'split'</span><span class="p">,</span>
+             <span class="n">SampleInputMonitorWorkspace</span><span class="o">=</span><span class="s1">'split_1'</span><span class="p">,</span>
              <span class="n">IncidentEnergyGuess</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
              <span class="n">SofPhiEIsDistribution</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
              <span class="n">TimeIndepBackgroundSub</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
              <span class="n">TibTofRangeStart</span><span class="o">=</span><span class="mi">10400</span><span class="p">,</span>
              <span class="n">TibTofRangeEnd</span><span class="o">=</span><span class="mi">12400</span><span class="p">,</span>
-             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">)</span>
-<span class="n">SetUB</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">,</span>
+             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'reduced'</span><span class="p">)</span>
+<span class="n">SetUB</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'reduced'</span><span class="p">,</span>
       <span class="n">a</span><span class="o">=</span><span class="mf">5.823</span><span class="p">,</span>
       <span class="n">b</span><span class="o">=</span><span class="mf">6.475</span><span class="p">,</span>
       <span class="n">c</span><span class="o">=</span><span class="mf">3.186</span><span class="p">,</span>
-      <span class="n">u</span><span class="o">=</span><span class="s1">&#39;0,1,0&#39;</span><span class="p">,</span>
-      <span class="n">v</span><span class="o">=</span><span class="s1">&#39;0,0,1&#39;</span><span class="p">)</span>
-<span class="n">CropWorkspaceForMDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">,</span>
+      <span class="n">u</span><span class="o">=</span><span class="s1">'0,1,0'</span><span class="p">,</span>
+      <span class="n">v</span><span class="o">=</span><span class="s1">'0,0,1'</span><span class="p">)</span>
+<span class="n">CropWorkspaceForMDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'reduced'</span><span class="p">,</span>
                        <span class="n">XMin</span><span class="o">=-</span><span class="mi">25</span><span class="p">,</span>
                        <span class="n">XMax</span><span class="o">=</span><span class="mi">49</span><span class="p">,</span>
-                       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">)</span>
-<span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">,</span>
-            <span class="n">QDimensions</span><span class="o">=</span><span class="s1">&#39;Q3D&#39;</span><span class="p">,</span>
-            <span class="n">Q3DFrames</span><span class="o">=</span><span class="s1">&#39;Q_sample&#39;</span><span class="p">,</span>
-            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;md&#39;</span><span class="p">,</span>
-            <span class="n">MinValues</span><span class="o">=</span><span class="s1">&#39;-11,-11,-11,-25&#39;</span><span class="p">,</span>
-            <span class="n">MaxValues</span><span class="o">=</span><span class="s1">&#39;11,11,11,49&#39;</span><span class="p">)</span>
-<span class="n">MergeMD</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">&#39;md&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;merged&#39;</span><span class="p">)</span>
-<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;merged&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">&#39;QDimension1&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">&#39;QDimension2&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">&#39;-2,2&#39;</span><span class="p">,</span>
-       <span class="n">Dimension3Name</span><span class="o">=</span><span class="s1">&#39;QDimension0&#39;</span><span class="p">,</span>
-       <span class="n">Dimension3Binning</span><span class="o">=</span><span class="s1">&#39;-0.5,0.5&#39;</span><span class="p">,</span>
-       <span class="n">SymmetryOperations</span><span class="o">=</span><span class="s1">&#39;x,y,z;x,-y,z;x,y,-z;x,-y,-z&#39;</span><span class="p">,</span>
-       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;result&#39;</span><span class="p">,</span>
-       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">&#39;dataMD&#39;</span><span class="p">,</span>
-       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;normMD&#39;</span><span class="p">)</span>
+                       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'reduced'</span><span class="p">)</span>
+<span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'reduced'</span><span class="p">,</span>
+            <span class="n">QDimensions</span><span class="o">=</span><span class="s1">'Q3D'</span><span class="p">,</span>
+            <span class="n">Q3DFrames</span><span class="o">=</span><span class="s1">'Q_sample'</span><span class="p">,</span>
+            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'md'</span><span class="p">,</span>
+            <span class="n">MinValues</span><span class="o">=</span><span class="s1">'-11,-11,-11,-25'</span><span class="p">,</span>
+            <span class="n">MaxValues</span><span class="o">=</span><span class="s1">'11,11,11,49'</span><span class="p">)</span>
+<span class="n">MergeMD</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">'md'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'merged'</span><span class="p">)</span>
+<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'merged'</span><span class="p">,</span>
+       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">'QDimension1'</span><span class="p">,</span>
+       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">'QDimension2'</span><span class="p">,</span>
+       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span>
+       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">'-2,2'</span><span class="p">,</span>
+       <span class="n">Dimension3Name</span><span class="o">=</span><span class="s1">'QDimension0'</span><span class="p">,</span>
+       <span class="n">Dimension3Binning</span><span class="o">=</span><span class="s1">'-0.5,0.5'</span><span class="p">,</span>
+       <span class="n">SymmetryOperations</span><span class="o">=</span><span class="s1">'x,y,z;x,-y,z;x,y,-z;x,-y,-z'</span><span class="p">,</span>
+       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'result'</span><span class="p">,</span>
+       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">'dataMD'</span><span class="p">,</span>
+       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">'normMD'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and the corresponding output:</p>
@@ -1913,31 +1913,31 @@ The output is given by:</p>
 <p>To subtract background one must create the background workspace in <span class="math notranslate nohighlight">\(Q_{lab}\)</span> frame.
 For example, in the previous script one can use <cite>reduced_3</cite> workspace as a background.
 Add the following lines</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;reduced_3&#39;</span><span class="p">,</span>
-            <span class="n">QDimensions</span><span class="o">=</span><span class="s1">&#39;Q3D&#39;</span><span class="p">,</span>
-            <span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">,</span>
-            <span class="n">Q3DFrames</span><span class="o">=</span><span class="s2">&quot;Q_lab&quot;</span><span class="p">,</span>
-            <span class="n">MinValues</span><span class="o">=</span><span class="s1">&#39;-11,-11,-11,-25&#39;</span><span class="p">,</span>
-            <span class="n">MaxValues</span><span class="o">=</span><span class="s1">&#39;11,11,11,49&#39;</span><span class="p">,</span>
-            <span class="n">PreprocDetectorsWS</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
-            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;background_MDE_lab&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'reduced_3'</span><span class="p">,</span>
+            <span class="n">QDimensions</span><span class="o">=</span><span class="s1">'Q3D'</span><span class="p">,</span>
+            <span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">,</span>
+            <span class="n">Q3DFrames</span><span class="o">=</span><span class="s2">"Q_lab"</span><span class="p">,</span>
+            <span class="n">MinValues</span><span class="o">=</span><span class="s1">'-11,-11,-11,-25'</span><span class="p">,</span>
+            <span class="n">MaxValues</span><span class="o">=</span><span class="s1">'11,11,11,49'</span><span class="p">,</span>
+            <span class="n">PreprocDetectorsWS</span><span class="o">=</span><span class="s1">'-'</span><span class="p">,</span>
+            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'background_MDE_lab'</span><span class="p">)</span>
 
-<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;merged&#39;</span><span class="p">,</span>
-       <span class="n">BackgroundWorkspace</span><span class="o">=</span><span class="s1">&#39;background_MDE_lab&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">&#39;QDimension1&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">&#39;QDimension2&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">&#39;-2,2&#39;</span><span class="p">,</span>
-       <span class="n">Dimension3Name</span><span class="o">=</span><span class="s1">&#39;QDimension0&#39;</span><span class="p">,</span>
-       <span class="n">Dimension3Binning</span><span class="o">=</span><span class="s1">&#39;-0.5,0.5&#39;</span><span class="p">,</span>
-       <span class="n">SymmetryOperations</span><span class="o">=</span><span class="s1">&#39;x,y,z;x,-y,z;x,y,-z;x,-y,-z&#39;</span><span class="p">,</span>
-       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;result&#39;</span><span class="p">,</span>
-       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">&#39;dataMD&#39;</span><span class="p">,</span>
-       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;normMD&#39;</span><span class="p">,</span>
-       <span class="n">OutputBackgroundDataWorkspace</span><span class="o">=</span><span class="s1">&#39;bkgDataMD&#39;</span><span class="p">,</span>
-       <span class="n">OutputBackgroundNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;bkgNormMD&#39;</span><span class="p">)</span>
+<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'merged'</span><span class="p">,</span>
+       <span class="n">BackgroundWorkspace</span><span class="o">=</span><span class="s1">'background_MDE_lab'</span><span class="p">,</span>
+       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">'QDimension1'</span><span class="p">,</span>
+       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">'QDimension2'</span><span class="p">,</span>
+       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span>
+       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">'-2,2'</span><span class="p">,</span>
+       <span class="n">Dimension3Name</span><span class="o">=</span><span class="s1">'QDimension0'</span><span class="p">,</span>
+       <span class="n">Dimension3Binning</span><span class="o">=</span><span class="s1">'-0.5,0.5'</span><span class="p">,</span>
+       <span class="n">SymmetryOperations</span><span class="o">=</span><span class="s1">'x,y,z;x,-y,z;x,y,-z;x,-y,-z'</span><span class="p">,</span>
+       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'result'</span><span class="p">,</span>
+       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">'dataMD'</span><span class="p">,</span>
+       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">'normMD'</span><span class="p">,</span>
+       <span class="n">OutputBackgroundDataWorkspace</span><span class="o">=</span><span class="s1">'bkgDataMD'</span><span class="p">,</span>
+       <span class="n">OutputBackgroundNormalizationWorkspace</span><span class="o">=</span><span class="s1">'bkgNormMD'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Not always can data be processed in one chunk. We sometimes just want to add a few more files to a final image.
@@ -1945,46 +1945,46 @@ In the previous script, let’s assume that the first 30 MDEvent workspaces corr
 and the remaining workspaces correspond to chunk 2. The output histograms for data, normalization,
 background data, and background normalization when running the algorithm on the first chunk will be used as temporary
 workspaces for the second chunk:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MergeMD</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;md_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">)])</span> <span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;merged_1&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MergeMD</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">'md_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">)])</span> <span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'merged_1'</span><span class="p">)</span>
 
-<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;merged_1&#39;</span><span class="p">,</span>
-       <span class="n">BackgroundWorkspace</span><span class="o">=</span><span class="s1">&#39;background_MDE_lab&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">&#39;QDimension1&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">&#39;QDimension2&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">&#39;-2,2&#39;</span><span class="p">,</span>
-       <span class="n">Dimension3Name</span><span class="o">=</span><span class="s1">&#39;QDimension0&#39;</span><span class="p">,</span>
-       <span class="n">Dimension3Binning</span><span class="o">=</span><span class="s1">&#39;-0.5,0.5&#39;</span><span class="p">,</span>
-       <span class="n">SymmetryOperations</span><span class="o">=</span><span class="s1">&#39;x,y,z;x,-y,z;x,y,-z;x,-y,-z&#39;</span><span class="p">,</span>
-       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;result_1&#39;</span><span class="p">,</span>
-       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">&#39;dataMD_1&#39;</span><span class="p">,</span>
-       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;normMD_1&#39;</span><span class="p">,</span>
-       <span class="n">OutputBackgroundDataWorkspace</span><span class="o">=</span><span class="s1">&#39;bkgData_1&#39;</span><span class="p">,</span>
-       <span class="n">OutputBackgroundNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;bkgNorm_1&#39;</span><span class="p">)</span>
+<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'merged_1'</span><span class="p">,</span>
+       <span class="n">BackgroundWorkspace</span><span class="o">=</span><span class="s1">'background_MDE_lab'</span><span class="p">,</span>
+       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">'QDimension1'</span><span class="p">,</span>
+       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">'QDimension2'</span><span class="p">,</span>
+       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span>
+       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">'-2,2'</span><span class="p">,</span>
+       <span class="n">Dimension3Name</span><span class="o">=</span><span class="s1">'QDimension0'</span><span class="p">,</span>
+       <span class="n">Dimension3Binning</span><span class="o">=</span><span class="s1">'-0.5,0.5'</span><span class="p">,</span>
+       <span class="n">SymmetryOperations</span><span class="o">=</span><span class="s1">'x,y,z;x,-y,z;x,y,-z;x,-y,-z'</span><span class="p">,</span>
+       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'result_1'</span><span class="p">,</span>
+       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">'dataMD_1'</span><span class="p">,</span>
+       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">'normMD_1'</span><span class="p">,</span>
+       <span class="n">OutputBackgroundDataWorkspace</span><span class="o">=</span><span class="s1">'bkgData_1'</span><span class="p">,</span>
+       <span class="n">OutputBackgroundNormalizationWorkspace</span><span class="o">=</span><span class="s1">'bkgNorm_1'</span><span class="p">)</span>
 
-<span class="n">MergeMD</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;md_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">93</span><span class="p">)])</span> <span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;merged_2&#39;</span><span class="p">)</span>
-<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;merged_2&#39;</span><span class="p">,</span>
-       <span class="n">BackgroundWorkspace</span><span class="o">=</span><span class="s1">&#39;background_MDE_lab&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">&#39;QDimension1&#39;</span><span class="p">,</span>
-       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">&#39;QDimension2&#39;</span><span class="p">,</span>
-       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">&#39;-5,0.05,5&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span>
-       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">&#39;-2,2&#39;</span><span class="p">,</span>
-       <span class="n">Dimension3Name</span><span class="o">=</span><span class="s1">&#39;QDimension0&#39;</span><span class="p">,</span>
-       <span class="n">Dimension3Binning</span><span class="o">=</span><span class="s1">&#39;-0.5,0.5&#39;</span><span class="p">,</span>
-       <span class="n">SymmetryOperations</span><span class="o">=</span><span class="s1">&#39;x,y,z;x,-y,z;x,y,-z;x,-y,-z&#39;</span><span class="p">,</span>
-       <span class="n">TemporaryDataWorkspace</span><span class="o">=</span><span class="s1">&#39;dataMD_1&#39;</span><span class="p">,</span>
-       <span class="n">TemporaryNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;normMD_1&#39;</span><span class="p">,</span>
-       <span class="n">TemporaryBackgroundDataWorkspace</span><span class="o">=</span><span class="s1">&#39;bkgData_1&#39;</span><span class="p">,</span>
-       <span class="n">TemporaryBackgroundNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;bkgNorm_1&#39;</span><span class="p">,</span>
-       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;result_2&#39;</span><span class="p">,</span>
-       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">&#39;dataMD_2&#39;</span><span class="p">,</span>
-       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;normMD_2&#39;</span><span class="p">,</span>
-       <span class="n">OutputBackgroundDataWorkspace</span><span class="o">=</span><span class="s1">&#39;bkgData_2&#39;</span><span class="p">,</span>
-       <span class="n">OutputBackgroundNormalizationWorkspace</span><span class="o">=</span><span class="s1">&#39;bkgNorm2&#39;</span><span class="p">)</span>
+<span class="n">MergeMD</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">'md_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">93</span><span class="p">)])</span> <span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'merged_2'</span><span class="p">)</span>
+<span class="n">MDNorm</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'merged_2'</span><span class="p">,</span>
+       <span class="n">BackgroundWorkspace</span><span class="o">=</span><span class="s1">'background_MDE_lab'</span><span class="p">,</span>
+       <span class="n">Dimension0Name</span><span class="o">=</span><span class="s1">'QDimension1'</span><span class="p">,</span>
+       <span class="n">Dimension0Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension1Name</span><span class="o">=</span><span class="s1">'QDimension2'</span><span class="p">,</span>
+       <span class="n">Dimension1Binning</span><span class="o">=</span><span class="s1">'-5,0.05,5'</span><span class="p">,</span>
+       <span class="n">Dimension2Name</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span>
+       <span class="n">Dimension2Binning</span><span class="o">=</span><span class="s1">'-2,2'</span><span class="p">,</span>
+       <span class="n">Dimension3Name</span><span class="o">=</span><span class="s1">'QDimension0'</span><span class="p">,</span>
+       <span class="n">Dimension3Binning</span><span class="o">=</span><span class="s1">'-0.5,0.5'</span><span class="p">,</span>
+       <span class="n">SymmetryOperations</span><span class="o">=</span><span class="s1">'x,y,z;x,-y,z;x,y,-z;x,-y,-z'</span><span class="p">,</span>
+       <span class="n">TemporaryDataWorkspace</span><span class="o">=</span><span class="s1">'dataMD_1'</span><span class="p">,</span>
+       <span class="n">TemporaryNormalizationWorkspace</span><span class="o">=</span><span class="s1">'normMD_1'</span><span class="p">,</span>
+       <span class="n">TemporaryBackgroundDataWorkspace</span><span class="o">=</span><span class="s1">'bkgData_1'</span><span class="p">,</span>
+       <span class="n">TemporaryBackgroundNormalizationWorkspace</span><span class="o">=</span><span class="s1">'bkgNorm_1'</span><span class="p">,</span>
+       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'result_2'</span><span class="p">,</span>
+       <span class="n">OutputDataWorkspace</span><span class="o">=</span><span class="s1">'dataMD_2'</span><span class="p">,</span>
+       <span class="n">OutputNormalizationWorkspace</span><span class="o">=</span><span class="s1">'normMD_2'</span><span class="p">,</span>
+       <span class="n">OutputBackgroundDataWorkspace</span><span class="o">=</span><span class="s1">'bkgData_2'</span><span class="p">,</span>
+       <span class="n">OutputBackgroundNormalizationWorkspace</span><span class="o">=</span><span class="s1">'bkgNorm2'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Note that the output workspaces after the second call to the algorithm will contain procesed
@@ -1993,8 +1993,8 @@ information from both chunks.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/inc/MantidMDAlgorithms/MDNorm.h">MDNorm.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/src/MDNorm.cpp">MDNorm.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/inc/MantidMDAlgorithms/MDNorm.h">MDNorm.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/src/MDNorm.cpp">MDNorm.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DgsReduction v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>DgsReduction v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/DgsReduction-v1';</script>
@@ -1956,18 +1956,18 @@ Not all output workspaces are subsequently used by other algorithms.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Simplest SNS Script</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;default.facility&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;SNS&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">[</span><span class="s1">'default.facility'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"SNS"</span>
 <span class="c1"># SNS reduction does not require IncidentEnergyGuess since the NeXus</span>
 <span class="c1"># files contain an EnergyRequest log.</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">DgsReduction</span><span class="p">(</span><span class="n">SampleInputFile</span><span class="o">=</span><span class="s2">&quot;CNCS_7860_event.nxs&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">DgsReduction</span><span class="p">(</span><span class="n">SampleInputFile</span><span class="o">=</span><span class="s2">"CNCS_7860_event.nxs"</span><span class="p">)</span>
 <span class="c1"># More than one output from DgsReduction</span>
 <span class="c1"># (E vs Phi Workspace, Name of Property Manager)</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="c1"># Check the conversion</span>
 <span class="n">xaxis</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X axis = </span><span class="si">{}</span><span class="s2"> / </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xaxis</span><span class="o">.</span><span class="n">caption</span><span class="p">(),</span> <span class="n">xaxis</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Energy mode = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">getEMode</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace type = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"X axis = </span><span class="si">{}</span><span class="s2"> / </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xaxis</span><span class="o">.</span><span class="n">caption</span><span class="p">(),</span> <span class="n">xaxis</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Energy mode = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">getEMode</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1977,19 +1977,19 @@ Workspace type = Workspace2D
 </pre></div>
 </div>
 <p><strong>Example - Simplest ISIS Script</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;default.facility&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ISIS&quot;</span>
-<span class="c1"># ISIS reduction required IncidentEnergyGuess since RAW files don&#39;t</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">[</span><span class="s1">'default.facility'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"ISIS"</span>
+<span class="c1"># ISIS reduction required IncidentEnergyGuess since RAW files don't</span>
 <span class="c1"># have a corresponding log.</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">DgsReduction</span><span class="p">(</span><span class="n">SampleInputFile</span><span class="o">=</span><span class="s2">&quot;MAR11001.raw&quot;</span><span class="p">,</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">DgsReduction</span><span class="p">(</span><span class="n">SampleInputFile</span><span class="o">=</span><span class="s2">"MAR11001.raw"</span><span class="p">,</span>
                   <span class="n">IncidentEnergyGuess</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="c1"># More than one output from DgsRedution</span>
 <span class="c1"># (E vs Phi Workspace, Name of Property Manager)</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="c1"># Check the conversion</span>
 <span class="n">xaxis</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X axis = </span><span class="si">{}</span><span class="s2"> / </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xaxis</span><span class="o">.</span><span class="n">caption</span><span class="p">(),</span> <span class="n">xaxis</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Energy mode = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">getEMode</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace type = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"X axis = </span><span class="si">{}</span><span class="s2"> / </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xaxis</span><span class="o">.</span><span class="n">caption</span><span class="p">(),</span> <span class="n">xaxis</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Energy mode = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">getEMode</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -2001,13 +2001,13 @@ Workspace type = Workspace2D
 <p><strong>Example - Get as Eventworkspace for SNS</strong></p>
 <p>The following shows that event data can be the result of the redcuction instead of
 histogram data.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;default.facility&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;SNS&quot;</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">DgsReduction</span><span class="p">(</span><span class="n">SampleInputFile</span><span class="o">=</span><span class="s2">&quot;CNCS_7860_event.nxs&quot;</span><span class="p">,</span>
-                  <span class="n">IncidentBeamNormalisation</span><span class="o">=</span><span class="s2">&quot;ByCurrent&quot;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">[</span><span class="s1">'default.facility'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"SNS"</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">DgsReduction</span><span class="p">(</span><span class="n">SampleInputFile</span><span class="o">=</span><span class="s2">"CNCS_7860_event.nxs"</span><span class="p">,</span>
+                  <span class="n">IncidentBeamNormalisation</span><span class="o">=</span><span class="s2">"ByCurrent"</span><span class="p">,</span>
                   <span class="n">SofPhiEIsDistribution</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace type = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of events = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of events = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -2020,19 +2020,19 @@ Number of events = 78037
 corrected and/or filtered before passing it to the algorithm. The key here is that
 the *InputWorkspace properties must be used. It also shows a couple of more
 properties being used.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;default.facility&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;SNS&quot;</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;CNCS_7860_event.nxs&quot;</span><span class="p">,</span> <span class="n">LoadMonitors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">[</span><span class="s1">'default.facility'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"SNS"</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"CNCS_7860_event.nxs"</span><span class="p">,</span> <span class="n">LoadMonitors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">monitor</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">valC3</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getRun</span><span class="p">()[</span><span class="s1">&#39;Phase3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getStatistics</span><span class="p">()</span><span class="o">.</span><span class="n">median</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">FilterByLogValue</span><span class="p">(</span><span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">LogName</span><span class="o">=</span><span class="s2">&quot;Phase3&quot;</span><span class="p">,</span> <span class="n">MinimumValue</span><span class="o">=</span><span class="n">valC3</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span>
+<span class="n">valC3</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getRun</span><span class="p">()[</span><span class="s1">'Phase3'</span><span class="p">]</span><span class="o">.</span><span class="n">getStatistics</span><span class="p">()</span><span class="o">.</span><span class="n">median</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">FilterByLogValue</span><span class="p">(</span><span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">LogName</span><span class="o">=</span><span class="s2">"Phase3"</span><span class="p">,</span> <span class="n">MinimumValue</span><span class="o">=</span><span class="n">valC3</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span>
                       <span class="n">MaximumValue</span><span class="o">=</span><span class="n">valC3</span><span class="o">+</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="c1"># Although CNCS doesn&#39;t use its monitors, this is how instruments that do need</span>
+<span class="c1"># Although CNCS doesn't use its monitors, this is how instruments that do need</span>
 <span class="c1"># to call the algorithm.</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">DgsReduction</span><span class="p">(</span><span class="n">SampleInputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">SampleInputMonitorWorkspace</span><span class="o">=</span><span class="n">monitor</span><span class="p">,</span>
-                  <span class="n">IncidentBeamNormalisation</span><span class="o">=</span><span class="s2">&quot;ByCurrent&quot;</span><span class="p">,</span> <span class="n">SofPhiEIsDistribution</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                  <span class="n">IncidentBeamNormalisation</span><span class="o">=</span><span class="s2">"ByCurrent"</span><span class="p">,</span> <span class="n">SofPhiEIsDistribution</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace type = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of events = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of events = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -2044,8 +2044,8 @@ Number of events = 2178
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/WorkflowAlgorithms/inc/MantidWorkflowAlgorithms/DgsReduction.h">DgsReduction.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/WorkflowAlgorithms/src/DgsReduction.cpp">DgsReduction.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/WorkflowAlgorithms/inc/MantidWorkflowAlgorithms/DgsReduction.h">DgsReduction.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/WorkflowAlgorithms/src/DgsReduction.cpp">DgsReduction.cpp</a></p>
 </section>
 </section>
 

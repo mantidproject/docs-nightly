@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Basic Properties &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Basic Properties &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/extending_mantid_with_python/python_algorithms/02_basic_properties';</script>
@@ -555,7 +555,7 @@ This is achieved through declaring named <a class="reference internal" href="../
 <p>The inputs/outputs for the algorithm are specified in the <code class="docutils literal notranslate"><span class="pre">PyInit</span></code> section using a method called <code class="docutils literal notranslate"><span class="pre">declareProperty</span></code> that is defined on the <a class="reference internal" href="../../../api/python/mantid/api/Algorithm.html#mantid.api.Algorithm" title="mantid.api.Algorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PythonAlgorithm</span></code></a> super class.</p>
 <p>Basic type properties such as <em>numbers</em>, <em>booleans</em> and <em>strings</em> are declared using <code class="docutils literal notranslate"><span class="pre">declareProperty</span></code> and a default value, e.g.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s1">&#39;InputValue&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s1">'InputValue'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This will create an <code class="docutils literal notranslate"><span class="pre">int</span></code> input property called <em>InputValue</em> with a default value of -1.</p>
@@ -567,16 +567,16 @@ To change this, use the <code class="docutils literal notranslate"><span class="
 
 <span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1"># input direction specified explicitly</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s1">&#39;InputValue&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">Input</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s1">'InputValue'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">Input</span><span class="p">)</span>
     <span class="c1"># output direction specified explicitly</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s1">&#39;OutputValue&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">Output</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s1">'OutputValue'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">Output</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Documentation can be provided using the <code class="docutils literal notranslate"><span class="pre">doc</span></code> keyword.
 This sets the text in the tooltip on the GUI:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s1">&#39;InputValue&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">Input</span><span class="p">,</span>
-                         <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;A input value for this algorithm. Extra details.&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="s1">'InputValue'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">Input</span><span class="p">,</span>
+                         <span class="n">doc</span><span class="o">=</span><span class="s2">"A input value for this algorithm. Extra details."</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Everything until the first “.” of the docstring will appear in the automated GUI as the mouseover help.

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Data reduction for D7 instrument at the ILL &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Data reduction for D7 instrument at the ILL &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -415,31 +415,31 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <li><p>Run normalisation with vanadium reduction output as input.</p></li>
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define vanadium properties:</span>
-<span class="n">vanadiumProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="mf">8.54</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="mf">50.94</span><span class="p">}</span>
+<span class="n">vanadiumProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span> <span class="mf">8.54</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span> <span class="mf">50.94</span><span class="p">}</span>
 
 <span class="c1"># Vanadium reduction</span>
-<span class="n">PolDiffILLReduction</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396993&#39;</span><span class="p">,</span> <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span><span class="p">,</span> <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">,</span>
-                    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;reduced_vanadium&#39;</span><span class="p">,</span>
+<span class="n">PolDiffILLReduction</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">'396993'</span><span class="p">,</span> <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Vanadium'</span><span class="p">,</span> <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'Sum'</span><span class="p">,</span>
+                    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'reduced_vanadium'</span><span class="p">,</span>
                     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">vanadiumProperties</span><span class="p">)</span>
 
 <span class="c1"># Define the number of formula units for the sample</span>
-<span class="n">sampleProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="mf">2.932</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="mf">182.54</span><span class="p">}</span>
+<span class="n">sampleProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span> <span class="mf">2.932</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span> <span class="mf">182.54</span><span class="p">}</span>
 <span class="c1"># Sample reduction</span>
-<span class="n">PolDiffILLReduction</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;397004&#39;</span><span class="p">,</span> <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;reduced_sample&#39;</span><span class="p">,</span>
+<span class="n">PolDiffILLReduction</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">'397004'</span><span class="p">,</span> <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Sample'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'reduced_sample'</span><span class="p">,</span>
                         <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sampleProperties</span><span class="p">)</span>
 
 <span class="c1"># normalise sample and set the output to absolute units with vanadium</span>
 <span class="n">D7AbsoluteCrossSections</span><span class="p">(</span>
-          <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;reduced_sample&#39;</span><span class="p">,</span>
-          <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;normalised_sample&#39;</span><span class="p">,</span>
+          <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'reduced_sample'</span><span class="p">,</span>
+          <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'normalised_sample'</span><span class="p">,</span>
           <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sampleProperties</span><span class="p">,</span>
-          <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span><span class="p">,</span>
-          <span class="n">VanadiumInputWorkspace</span><span class="o">=</span><span class="s1">&#39;reduced_vanadium&#39;</span><span class="p">,</span>
-          <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">&#39;TwoTheta&#39;</span><span class="p">)</span>
+          <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">'Vanadium'</span><span class="p">,</span>
+          <span class="n">VanadiumInputWorkspace</span><span class="o">=</span><span class="s1">'reduced_vanadium'</span><span class="p">,</span>
+          <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">'TwoTheta'</span><span class="p">)</span>
 
-<span class="n">SofQ</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;normalised_sample&#39;</span><span class="p">]</span>
+<span class="n">SofQ</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'normalised_sample'</span><span class="p">]</span>
 <span class="n">xAxis</span> <span class="o">=</span> <span class="n">SofQ</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># TwoTheta axis</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dS/dOmega (TwoTheta) detector position range: </span><span class="si">{:.2f}</span><span class="s1">...</span><span class="si">{:.2f}</span><span class="s1"> (degrees)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xAxis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xAxis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'dS/dOmega (TwoTheta) detector position range: </span><span class="si">{:.2f}</span><span class="s1">...</span><span class="si">{:.2f}</span><span class="s1"> (degrees)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xAxis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xAxis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -460,33 +460,33 @@ As long as this d-spacing list is sufficient and does not require changes, the <
 <p>It is strongly advised to first run the <a class="reference internal" href="../algorithms/D7YIGPositionCalibration-v1.html#algm-d7yigpositioncalibration"><span class="std std-ref">D7YIGPositionCalibration</span></a> algorithm with the <cite>FittingMethod</cite> set to <cite>None</cite>, so that the initial guesses for the positions of the YIG Bragg peaks can be inspected and corrected if needed. Assuming the first python code-block below is used for this purpose, the workspace name to use for inspection of the initial guesses is named <cite>peak_fits_fitting_test</cite>. There, the initial guesses for individual detectors can be checked against the measured YIG Bragg peaks distribution. The correction can be done by changing the bank offsets, changing the desired peaks width and the minimal distance between them.</p>
 <p>To save time in this iterative process, <cite>InputWorkspace</cite> property can be specified instead of <cite>Filenames</cite>. This way, the 2D distribution of measured intensities does not have to be created each time from loaded data but can be cached and reused for time saving. To profit from this feature, comment the <cite>Filenames</cite> property and uncomment the <cite>InputWorkspace</cite> in the first example below.</p>
 <p><strong>Example - D7YIGPositionCalibration - initial guess check before fitting at the shortest wavelength</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">approximate_wavelength</span> <span class="o">=</span> <span class="s1">&#39;3.1&#39;</span> <span class="c1"># Angstrom</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">approximate_wavelength</span> <span class="o">=</span> <span class="s1">'3.1'</span> <span class="c1"># Angstrom</span>
 <span class="n">D7YIGPositionCalibration</span><span class="p">(</span>
-             <span class="n">Filenames</span><span class="o">=</span><span class="s1">&#39;402652:403041&#39;</span><span class="p">,</span>
-<span class="c1">#            InputWorkspace=&#39;conjoined_input_fitting_test&#39;,</span>
+             <span class="n">Filenames</span><span class="o">=</span><span class="s1">'402652:403041'</span><span class="p">,</span>
+<span class="c1">#            InputWorkspace='conjoined_input_fitting_test',</span>
              <span class="n">ApproximateWavelength</span><span class="o">=</span><span class="n">approximate_wavelength</span><span class="p">,</span>
-             <span class="n">YIGPeaksFile</span><span class="o">=</span><span class="s1">&#39;D7_YIG_peaks.xml&#39;</span><span class="p">,</span>
+             <span class="n">YIGPeaksFile</span><span class="o">=</span><span class="s1">'D7_YIG_peaks.xml'</span><span class="p">,</span>
              <span class="n">MinimalDistanceBetweenPeaks</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
              <span class="n">BraggPeakWidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
              <span class="n">BankOffsets</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
              <span class="n">MaskedBinsRange</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
-             <span class="n">FittingMethod</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
+             <span class="n">FittingMethod</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
              <span class="n">ClearCache</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-             <span class="n">FitOutputWorkspace</span><span class="o">=</span><span class="s1">&#39;fitting_test&#39;</span><span class="p">)</span>
+             <span class="n">FitOutputWorkspace</span><span class="o">=</span><span class="s1">'fitting_test'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Example - D7YIGPositionCalibration - calibration at the shortest wavelength</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">approximate_wavelength</span> <span class="o">=</span> <span class="s1">&#39;3.1&#39;</span> <span class="c1"># Angstrom</span>
-<span class="n">D7YIGPositionCalibration</span><span class="p">(</span><span class="n">Filenames</span><span class="o">=</span><span class="s1">&#39;402652:403041&#39;</span><span class="p">,</span> <span class="n">ApproximateWavelength</span><span class="o">=</span><span class="n">approximate_wavelength</span><span class="p">,</span>
-                            <span class="n">YIGPeaksFile</span><span class="o">=</span><span class="s1">&#39;D7_YIG_peaks.xml&#39;</span><span class="p">,</span> <span class="n">CalibrationOutputFile</span><span class="o">=</span><span class="s1">&#39;test_shortWavelength.xml&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">approximate_wavelength</span> <span class="o">=</span> <span class="s1">'3.1'</span> <span class="c1"># Angstrom</span>
+<span class="n">D7YIGPositionCalibration</span><span class="p">(</span><span class="n">Filenames</span><span class="o">=</span><span class="s1">'402652:403041'</span><span class="p">,</span> <span class="n">ApproximateWavelength</span><span class="o">=</span><span class="n">approximate_wavelength</span><span class="p">,</span>
+                            <span class="n">YIGPeaksFile</span><span class="o">=</span><span class="s1">'D7_YIG_peaks.xml'</span><span class="p">,</span> <span class="n">CalibrationOutputFile</span><span class="o">=</span><span class="s1">'test_shortWavelength.xml'</span><span class="p">,</span>
                             <span class="n">MinimalDistanceBetweenPeaks</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">BankOffsets</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
-                            <span class="n">MaskedBinsRange</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="n">FittingMethod</span><span class="o">=</span><span class="s1">&#39;Global&#39;</span><span class="p">,</span> <span class="n">ClearCache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                            <span class="n">FitOutputWorkspace</span><span class="o">=</span><span class="s1">&#39;shortWavelength&#39;</span><span class="p">)</span>
+                            <span class="n">MaskedBinsRange</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="n">FittingMethod</span><span class="o">=</span><span class="s1">'Global'</span><span class="p">,</span> <span class="n">ClearCache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">FitOutputWorkspace</span><span class="o">=</span><span class="s1">'shortWavelength'</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The calibrated wavelength is: </span><span class="si">{0:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">approximate_wavelength</span><span class="p">)</span><span class="o">*</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;shortWavelength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The bank2 gradient is: </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;shortWavelength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The bank3 gradient is: </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;shortWavelength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">176</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The bank4 gradient is: </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;shortWavelength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">352</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'The calibrated wavelength is: </span><span class="si">{0:.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">approximate_wavelength</span><span class="p">)</span><span class="o">*</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'shortWavelength'</span><span class="p">]</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'The bank2 gradient is: </span><span class="si">{0:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'shortWavelength'</span><span class="p">]</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'The bank3 gradient is: </span><span class="si">{0:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'shortWavelength'</span><span class="p">]</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">176</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'The bank4 gradient is: </span><span class="si">{0:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'shortWavelength'</span><span class="p">]</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">352</span><span class="p">]))</span>
 </pre></div>
 </div>
 </section>
@@ -527,28 +527,28 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <p><strong>Example - transmission calculation for quartz sample</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Beam with cadmium absorber, used for transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396991&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;BeamWithCadmium&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396991'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'BeamWithCadmium'</span>
 <span class="p">)</span>
 <span class="c1"># Beam measurement for transmisison</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396983&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;EmptyBeam&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396983'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'EmptyBeam'</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cadmium absorber transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;cadmium_transmission_ws_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;beam_ws_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Cadmium absorber transmission is </span><span class="si">{0:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'cadmium_transmission_ws_1'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'beam_ws_1'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 
 <span class="c1"># Quartz transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396985&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;quartz_transmission&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396985'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'quartz_transmission'</span><span class="p">,</span>
+    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Transmission'</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Quartz transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;quartz_transmission_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Quartz transmission is </span><span class="si">{0:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'quartz_transmission_1'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -599,56 +599,56 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <p><strong>Example - full treatment of a sample</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Beam with cadmium absorber, used for transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396991&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;BeamWithCadmium&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396991'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'BeamWithCadmium'</span>
 <span class="p">)</span>
 
 <span class="c1"># Beam measurement for transmisison</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396983&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;EmptyBeam&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396983'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'EmptyBeam'</span>
 <span class="p">)</span>
 
 <span class="c1"># Quartz transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396985&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;quartz_transmission&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396985'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'quartz_transmission'</span><span class="p">,</span>
+    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Transmission'</span>
 <span class="p">)</span>
 
 <span class="c1"># Empty container</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396917&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;empty_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396917'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'empty_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Empty'</span>
 <span class="p">)</span>
 
 <span class="c1"># Absorber</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396928&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Cadmium&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396928'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'cadmium_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Cadmium'</span>
 <span class="p">)</span>
 
 <span class="c1"># Polarisation correction</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396939&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;empty_ws&#39;</span><span class="p">,</span>
-    <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;quartz_transmission&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;AveragePol&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Quartz&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396939'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'pol_corrections'</span><span class="p">,</span>
+    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">'cadmium_ws'</span><span class="p">,</span>
+    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'empty_ws'</span><span class="p">,</span>
+    <span class="n">Transmission</span><span class="o">=</span><span class="s1">'quartz_transmission'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'AveragePol'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Quartz'</span>
 <span class="p">)</span>
 
-<span class="n">SumSpectra</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections_ZPO_0&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span>
+<span class="n">SumSpectra</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'pol_corrections_ZPO_0'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'sum'</span><span class="p">,</span>
            <span class="n">StartWorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">EndWorkspaceIndex</span><span class="o">=</span><span class="mi">131</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average polarisation efficiency in the Z direction is </span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">132.0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The average polarisation efficiency in the Z direction is </span><span class="si">{0:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'sum'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">132.0</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -889,89 +889,89 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - Vanadium reduction with annulus geometry</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span><span class="mf">8.54</span><span class="p">,</span><span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span><span class="mf">50.94</span><span class="p">,</span><span class="s1">&#39;SampleChemicalFormula&#39;</span><span class="p">:</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
-                       <span class="s1">&#39;Height&#39;</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span><span class="s1">&#39;SampleDensity&#39;</span><span class="p">:</span><span class="mf">6.1</span><span class="p">,</span><span class="s1">&#39;SampleInnerRadius&#39;</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;SampleOuterRadius&#39;</span><span class="p">:</span><span class="mf">2.49</span><span class="p">,</span>
-                       <span class="s1">&#39;BeamWidth&#39;</span><span class="p">:</span><span class="mf">2.5</span><span class="p">,</span><span class="s1">&#39;BeamHeight&#39;</span><span class="p">:</span><span class="mf">2.5</span><span class="p">,</span>
-                       <span class="s1">&#39;ContainerChemicalFormula&#39;</span><span class="p">:</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span><span class="s1">&#39;ContainerDensity&#39;</span><span class="p">:</span><span class="mf">2.7</span><span class="p">,</span><span class="s1">&#39;ContainerOuterRadius&#39;</span><span class="p">:</span><span class="mf">2.52</span><span class="p">,</span>
-                       <span class="s1">&#39;ContainerInnerRadius&#39;</span><span class="p">:</span><span class="mf">1.99</span><span class="p">,</span> <span class="s1">&#39;EventsPerPoint&#39;</span><span class="p">:</span><span class="mi">1000</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span><span class="mf">8.54</span><span class="p">,</span><span class="s1">'FormulaUnitMass'</span><span class="p">:</span><span class="mf">50.94</span><span class="p">,</span><span class="s1">'SampleChemicalFormula'</span><span class="p">:</span><span class="s1">'V'</span><span class="p">,</span>
+                       <span class="s1">'Height'</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span><span class="s1">'SampleDensity'</span><span class="p">:</span><span class="mf">6.1</span><span class="p">,</span><span class="s1">'SampleInnerRadius'</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span> <span class="s1">'SampleOuterRadius'</span><span class="p">:</span><span class="mf">2.49</span><span class="p">,</span>
+                       <span class="s1">'BeamWidth'</span><span class="p">:</span><span class="mf">2.5</span><span class="p">,</span><span class="s1">'BeamHeight'</span><span class="p">:</span><span class="mf">2.5</span><span class="p">,</span>
+                       <span class="s1">'ContainerChemicalFormula'</span><span class="p">:</span><span class="s1">'Al'</span><span class="p">,</span><span class="s1">'ContainerDensity'</span><span class="p">:</span><span class="mf">2.7</span><span class="p">,</span><span class="s1">'ContainerOuterRadius'</span><span class="p">:</span><span class="mf">2.52</span><span class="p">,</span>
+                       <span class="s1">'ContainerInnerRadius'</span><span class="p">:</span><span class="mf">1.99</span><span class="p">,</span> <span class="s1">'EventsPerPoint'</span><span class="p">:</span><span class="mi">1000</span><span class="p">}</span>
 
-<span class="n">calibration_file</span><span class="o">=</span><span class="s1">&#39;D7_YIG_calibration.xml&#39;</span> <span class="c1"># example calibration file</span>
+<span class="n">calibration_file</span><span class="o">=</span><span class="s1">'D7_YIG_calibration.xml'</span> <span class="c1"># example calibration file</span>
 
 <span class="c1"># Beam with cadmium absorber, used for transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396991&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;BeamWithCadmium&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396991'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'BeamWithCadmium'</span>
 <span class="p">)</span>
 <span class="c1"># Beam measurement for transmisison</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396983&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;EmptyBeam&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396983'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'EmptyBeam'</span>
 <span class="p">)</span>
 
 <span class="c1"># Quartz transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396985&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;quartz_transmission&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396985'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'quartz_transmission'</span><span class="p">,</span>
+    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Transmission'</span>
 <span class="p">)</span>
 
 <span class="c1"># Empty container</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396917&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;empty_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396917'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'empty_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Empty'</span>
 <span class="p">)</span>
 
 <span class="c1"># Absorber</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396928&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Cadmium&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396928'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'cadmium_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Cadmium'</span>
 <span class="p">)</span>
 
 <span class="c1"># Polarisation correction</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396939&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;empty_ws&#39;</span><span class="p">,</span>
-    <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;quartz_transmission&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;AveragePol&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Quartz&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396939'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'pol_corrections'</span><span class="p">,</span>
+    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">'cadmium_ws'</span><span class="p">,</span>
+    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'empty_ws'</span><span class="p">,</span>
+    <span class="n">Transmission</span><span class="o">=</span><span class="s1">'quartz_transmission'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'AveragePol'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Quartz'</span>
 <span class="p">)</span>
 
 <span class="c1"># Vanadium transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396990&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_transmission&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396990'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_transmission'</span><span class="p">,</span>
+    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Transmission'</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Vanadium transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;vanadium_transmission_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Vanadium transmission is </span><span class="si">{0:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'vanadium_transmission_1'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 
 <span class="c1"># Vanadium reduction</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396993&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;empty_ws&#39;</span><span class="p">,</span>
-    <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;vanadium_transmission&#39;</span><span class="p">,</span>
-    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">,</span>
-    <span class="n">SelfAttenuationMethod</span><span class="o">=</span><span class="s1">&#39;MonteCarlo&#39;</span><span class="p">,</span>
-    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">&#39;Annulus&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396993'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_ws'</span><span class="p">,</span>
+    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">'cadmium_ws'</span><span class="p">,</span>
+    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'empty_ws'</span><span class="p">,</span>
+    <span class="n">Transmission</span><span class="o">=</span><span class="s1">'vanadium_transmission'</span><span class="p">,</span>
+    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">'pol_corrections'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'Sum'</span><span class="p">,</span>
+    <span class="n">SelfAttenuationMethod</span><span class="o">=</span><span class="s1">'MonteCarlo'</span><span class="p">,</span>
+    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">'Annulus'</span><span class="p">,</span>
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">vanadium_dictionary</span><span class="p">,</span>
     <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">calibration_file</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Vanadium'</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The vanadium reduction output contains </span><span class="si">{}</span><span class="s2"> entry with </span><span class="si">{}</span><span class="s2"> spectra and </span><span class="si">{}</span><span class="s2"> bin.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">(),</span>
-          <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The vanadium reduction output contains </span><span class="si">{}</span><span class="s2"> entry with </span><span class="si">{}</span><span class="s2"> spectra and </span><span class="si">{}</span><span class="s2"> bin."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'vanadium_ws'</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">(),</span>
+          <span class="n">mtd</span><span class="p">[</span><span class="s1">'vanadium_ws'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'vanadium_ws'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -980,26 +980,26 @@ The vanadium reduction output contains 1 entry with 132 spectra and 1 bin.
 </pre></div>
 </div>
 <p><strong>Example - Vanadium reduction in the TOF mode</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="mf">8.54</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="mf">50.94</span><span class="p">}</span>
-<span class="n">calibration_file</span><span class="o">=</span><span class="s1">&#39;D7_YIG_calibration_TOF.xml&#39;</span> <span class="c1"># example calibration file</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span> <span class="mf">8.54</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span> <span class="mf">50.94</span><span class="p">}</span>
+<span class="n">calibration_file</span><span class="o">=</span><span class="s1">'D7_YIG_calibration_TOF.xml'</span> <span class="c1"># example calibration file</span>
 
 <span class="c1"># Vanadium reduction</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396016&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">,</span>
-    <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;0.945&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">,</span>
-    <span class="n">SelfAttenuationMethod</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
-    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396016'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_ws'</span><span class="p">,</span>
+    <span class="n">Transmission</span><span class="o">=</span><span class="s1">'0.945'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'Sum'</span><span class="p">,</span>
+    <span class="n">SelfAttenuationMethod</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
+    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">vanadium_dictionary</span><span class="p">,</span>
     <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">calibration_file</span><span class="p">,</span>
-    <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span>
+    <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Vanadium'</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The vanadium reduction output contains </span><span class="si">{}</span><span class="s2"> entry with </span><span class="si">{}</span><span class="s2"> spectra and </span><span class="si">{}</span><span class="s2"> bin.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">(),</span>
-          <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
-<span class="n">ep_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;vanadium_ws_elastic&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;PeakCentre&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average vanadium-derived elastic peak position falls at </span><span class="si">{0:.0f}</span><span class="s2"> microseconds.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ep_positions</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The vanadium reduction output contains </span><span class="si">{}</span><span class="s2"> entry with </span><span class="si">{}</span><span class="s2"> spectra and </span><span class="si">{}</span><span class="s2"> bin."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'vanadium_ws'</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">(),</span>
+          <span class="n">mtd</span><span class="p">[</span><span class="s1">'vanadium_ws'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'vanadium_ws'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
+<span class="n">ep_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'vanadium_ws_elastic'</span><span class="p">]</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'PeakCentre'</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The average vanadium-derived elastic peak position falls at </span><span class="si">{0:.0f}</span><span class="s2"> microseconds."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ep_positions</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1093,142 +1093,142 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - Complete sample reduction with normalisation</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span><span class="mf">8.54</span><span class="p">,</span><span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span><span class="mf">50.94</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span><span class="mf">8.54</span><span class="p">,</span><span class="s1">'FormulaUnitMass'</span><span class="p">:</span><span class="mf">50.94</span><span class="p">}</span>
 
-<span class="n">sample_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span><span class="mf">2.932</span><span class="p">,</span><span class="s1">&#39;SampleDensity&#39;</span><span class="p">:</span><span class="mf">7.8</span><span class="p">,</span><span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span><span class="mf">182.56</span><span class="p">,</span>
-                     <span class="s1">&#39;SampleChemicalFormula&#39;</span><span class="p">:</span><span class="s1">&#39;Mn0.5-Fe0.5-P-S3&#39;</span><span class="p">,</span><span class="s1">&#39;Height&#39;</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span>
-                     <span class="s1">&#39;SampleInnerRadius&#39;</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;SampleOuterRadius&#39;</span><span class="p">:</span><span class="mf">2.49</span><span class="p">,</span><span class="s1">&#39;BeamWidth&#39;</span><span class="p">:</span><span class="mf">2.5</span><span class="p">,</span><span class="s1">&#39;BeamHeight&#39;</span><span class="p">:</span><span class="mf">2.5</span><span class="p">,</span>
-                     <span class="s1">&#39;ContainerChemicalFormula&#39;</span><span class="p">:</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span><span class="s1">&#39;ContainerDensity&#39;</span><span class="p">:</span><span class="mf">2.7</span><span class="p">,</span><span class="s1">&#39;ContainerOuterRadius&#39;</span><span class="p">:</span><span class="mf">2.52</span><span class="p">,</span>
-                     <span class="s1">&#39;ContainerInnerRadius&#39;</span><span class="p">:</span><span class="mf">1.99</span><span class="p">,</span> <span class="s1">&#39;ElementSize&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}</span>
+<span class="n">sample_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span><span class="mf">2.932</span><span class="p">,</span><span class="s1">'SampleDensity'</span><span class="p">:</span><span class="mf">7.8</span><span class="p">,</span><span class="s1">'FormulaUnitMass'</span><span class="p">:</span><span class="mf">182.56</span><span class="p">,</span>
+                     <span class="s1">'SampleChemicalFormula'</span><span class="p">:</span><span class="s1">'Mn0.5-Fe0.5-P-S3'</span><span class="p">,</span><span class="s1">'Height'</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span>
+                     <span class="s1">'SampleInnerRadius'</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span> <span class="s1">'SampleOuterRadius'</span><span class="p">:</span><span class="mf">2.49</span><span class="p">,</span><span class="s1">'BeamWidth'</span><span class="p">:</span><span class="mf">2.5</span><span class="p">,</span><span class="s1">'BeamHeight'</span><span class="p">:</span><span class="mf">2.5</span><span class="p">,</span>
+                     <span class="s1">'ContainerChemicalFormula'</span><span class="p">:</span><span class="s1">'Al'</span><span class="p">,</span><span class="s1">'ContainerDensity'</span><span class="p">:</span><span class="mf">2.7</span><span class="p">,</span><span class="s1">'ContainerOuterRadius'</span><span class="p">:</span><span class="mf">2.52</span><span class="p">,</span>
+                     <span class="s1">'ContainerInnerRadius'</span><span class="p">:</span><span class="mf">1.99</span><span class="p">,</span> <span class="s1">'ElementSize'</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}</span>
 
-<span class="n">calibration_file</span> <span class="o">=</span> <span class="s1">&#39;D7_YIG_calibration.xml&#39;</span>
+<span class="n">calibration_file</span> <span class="o">=</span> <span class="s1">'D7_YIG_calibration.xml'</span>
 
 <span class="c1"># Beam with cadmium absorber, used for transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396991&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;BeamWithCadmium&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396991'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">'Monitor'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'BeamWithCadmium'</span>
 <span class="p">)</span>
 <span class="c1"># Beam measurement for transmisison</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396983&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;EmptyBeam&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396983'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">'Monitor'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'EmptyBeam'</span>
 <span class="p">)</span>
 
 <span class="c1"># Quartz transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396985, 396986&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;quartz_transmission&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396985, 396986'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'quartz_transmission'</span><span class="p">,</span>
+    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">'Monitor'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Transmission'</span>
 <span class="p">)</span>
 
 <span class="c1"># Empty container</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396917, 396918&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;empty_ws&#39;</span><span class="p">,</span>
-    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396917, 396918'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'empty_ws'</span><span class="p">,</span>
+    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">'Monitor'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Empty'</span>
 <span class="p">)</span>
 
 <span class="c1"># Cadmium absorber</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396928, 396929&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_ws&#39;</span><span class="p">,</span>
-    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Cadmium&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396928, 396929'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'cadmium_ws'</span><span class="p">,</span>
+    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">'Monitor'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Cadmium'</span>
 <span class="p">)</span>
 
 <span class="c1"># Polarisation correction</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396939, 396940&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;empty_ws&#39;</span><span class="p">,</span>
-    <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;quartz_transmission&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;AveragePol&#39;</span><span class="p">,</span>
-    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Quartz&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396939, 396940'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'pol_corrections'</span><span class="p">,</span>
+    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">'cadmium_ws'</span><span class="p">,</span>
+    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'empty_ws'</span><span class="p">,</span>
+    <span class="n">Transmission</span><span class="o">=</span><span class="s1">'quartz_transmission'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'AveragePol'</span><span class="p">,</span>
+    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">'Monitor'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Quartz'</span>
 <span class="p">)</span>
 
 <span class="c1"># Vanadium transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396990&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_transmission&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396990'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_transmission'</span><span class="p">,</span>
+    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">'Monitor'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Transmission'</span>
 <span class="p">)</span>
 
 <span class="c1"># Vanadium reduction</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396993, 396994&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;empty_ws&#39;</span><span class="p">,</span>
-    <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;vanadium_transmission&#39;</span><span class="p">,</span>
-    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">,</span>
-    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396993, 396994'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_ws'</span><span class="p">,</span>
+    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">'cadmium_ws'</span><span class="p">,</span>
+    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'empty_ws'</span><span class="p">,</span>
+    <span class="n">Transmission</span><span class="o">=</span><span class="s1">'vanadium_transmission'</span><span class="p">,</span>
+    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">'pol_corrections'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'Sum'</span><span class="p">,</span>
+    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">vanadium_dictionary</span><span class="p">,</span>
     <span class="n">AbsoluteNormalisation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">calibration_file</span><span class="p">,</span>
-    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span>
+    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">'Monitor'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Vanadium'</span>
 <span class="p">)</span>
 <span class="c1"># Sample transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396986, 396987&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sample_transmission&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_transmission_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'396986, 396987'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'sample_transmission'</span><span class="p">,</span>
+    <span class="n">CadmiumTransmissionWorkspace</span><span class="o">=</span><span class="s1">'cadmium_transmission_ws'</span><span class="p">,</span>
+    <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">'Monitor'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Transmission'</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sample transmission is </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample_transmission_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Sample transmission is </span><span class="si">{0:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'sample_transmission_1'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 
 <span class="c1"># Sample reduction</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;397004, 397005&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sample_ws&#39;</span><span class="p">,</span>
-    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">&#39;cadmium_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;empty_ws&#39;</span><span class="p">,</span>
-    <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;sample_transmission&#39;</span><span class="p">,</span>
-    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;Individual&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'397004, 397005'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'sample_ws'</span><span class="p">,</span>
+    <span class="n">CadmiumWorkspace</span><span class="o">=</span><span class="s1">'cadmium_ws'</span><span class="p">,</span>
+    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'empty_ws'</span><span class="p">,</span>
+    <span class="n">Transmission</span><span class="o">=</span><span class="s1">'sample_transmission'</span><span class="p">,</span>
+    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">'pol_corrections'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'Individual'</span><span class="p">,</span>
     <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">calibration_file</span><span class="p">,</span>
-    <span class="n">SelfAttenuationMethod</span><span class="o">=</span><span class="s1">&#39;Numerical&#39;</span><span class="p">,</span>
-    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">&#39;Annulus&#39;</span><span class="p">,</span>
+    <span class="n">SelfAttenuationMethod</span><span class="o">=</span><span class="s1">'Numerical'</span><span class="p">,</span>
+    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">'Annulus'</span><span class="p">,</span>
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sample_dictionary</span><span class="p">,</span>
-    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span>
+    <span class="n">NormaliseBy</span><span class="o">=</span><span class="s1">'Monitor'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Sample'</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The reduced sample data contains </span><span class="si">{}</span><span class="s2"> entries with </span><span class="si">{}</span><span class="s2"> spectra and </span><span class="si">{}</span><span class="s2"> bins.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample_ws&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">(),</span>
-          <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample_ws&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample_ws&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The reduced sample data contains </span><span class="si">{}</span><span class="s2"> entries with </span><span class="si">{}</span><span class="s2"> spectra and </span><span class="si">{}</span><span class="s2"> bins."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'sample_ws'</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">(),</span>
+          <span class="n">mtd</span><span class="p">[</span><span class="s1">'sample_ws'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'sample_ws'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
 
 <span class="c1"># Normalise sample data</span>
 <span class="n">D7AbsoluteCrossSections</span><span class="p">(</span>
-    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;sample_ws&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sample_norm&#39;</span><span class="p">,</span>
-    <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
-    <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span><span class="p">,</span>
-    <span class="n">VanadiumInputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;Merge&#39;</span><span class="p">,</span>
-    <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">&#39;TwoTheta&#39;</span><span class="p">,</span>
+    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'sample_ws'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'sample_norm'</span><span class="p">,</span>
+    <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
+    <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">'Vanadium'</span><span class="p">,</span>
+    <span class="n">VanadiumInputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_ws'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'Merge'</span><span class="p">,</span>
+    <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">'TwoTheta'</span><span class="p">,</span>
     <span class="n">ScatteringAngleBinSize</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="c1"># degrees</span>
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sample_dictionary</span><span class="p">,</span>
     <span class="n">AbsoluteUnitsNormalisation</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The normalised sample data contains </span><span class="si">{}</span><span class="s2"> entries with </span><span class="si">{}</span><span class="s2"> spectrum and </span><span class="si">{}</span><span class="s2"> bins.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample_norm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">(),</span>
-          <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample_norm&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample_norm&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The normalised sample data contains </span><span class="si">{}</span><span class="s2"> entries with </span><span class="si">{}</span><span class="s2"> spectrum and </span><span class="si">{}</span><span class="s2"> bins."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'sample_norm'</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">(),</span>
+          <span class="n">mtd</span><span class="p">[</span><span class="s1">'sample_norm'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'sample_norm'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1241,110 +1241,110 @@ The normalised sample data contains 6 entries with 1 spectrum and 134 bins.
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="n">vanadium_mass</span> <span class="o">=</span> <span class="mf">8.535</span>
  <span class="n">sample_formula_mass</span> <span class="o">=</span> <span class="mf">137.33</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">+</span> <span class="mf">54.93</span> <span class="o">+</span> <span class="mf">127.6</span> <span class="o">+</span> <span class="mf">15.999</span> <span class="o">*</span> <span class="mf">6.0</span>
  <span class="n">sample_mass</span> <span class="o">=</span> <span class="mf">7.83</span>
- <span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="n">vanadium_mass</span><span class="p">,</span> <span class="s1">&#39;FormulaUnits&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="mf">50.942</span><span class="p">}</span>
- <span class="n">sample_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="n">sample_mass</span><span class="p">,</span> <span class="s1">&#39;FormulaUnits&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="n">sample_formula_mass</span><span class="p">,</span>
-                          <span class="s1">&#39;KiXAngle&#39;</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">,</span> <span class="s1">&#39;OmegaShift&#39;</span><span class="p">:</span> <span class="mf">52.5</span><span class="p">}</span>
- <span class="n">calibration_file</span> <span class="o">=</span> <span class="s2">&quot;D7_YIG_calibration.xml&quot;</span>
+ <span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span> <span class="n">vanadium_mass</span><span class="p">,</span> <span class="s1">'FormulaUnits'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span> <span class="mf">50.942</span><span class="p">}</span>
+ <span class="n">sample_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span> <span class="n">sample_mass</span><span class="p">,</span> <span class="s1">'FormulaUnits'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span> <span class="n">sample_formula_mass</span><span class="p">,</span>
+                          <span class="s1">'KiXAngle'</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">,</span> <span class="s1">'OmegaShift'</span><span class="p">:</span> <span class="mf">52.5</span><span class="p">}</span>
+ <span class="n">calibration_file</span> <span class="o">=</span> <span class="s2">"D7_YIG_calibration.xml"</span>
 
  <span class="c1"># Empty container for quartz and vanadium</span>
  <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-     <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;450747:450748&#39;</span><span class="p">,</span>
-         <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;container_ws&#39;</span><span class="p">,</span>
-         <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span>
+     <span class="n">Run</span><span class="o">=</span><span class="s1">'450747:450748'</span><span class="p">,</span>
+         <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'container_ws'</span><span class="p">,</span>
+         <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Empty'</span>
 <span class="p">)</span>
 
 <span class="c1"># Empty container for bank position 1 (bt1), tth=79.5</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;397406:397407&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;AveragePol&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;container_bt1_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'397406:397407'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'AveragePol'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'container_bt1_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Empty'</span>
 <span class="p">)</span>
 <span class="c1"># empty container for bt2, tth=75</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;397397:397398&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;AveragePol&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;container_bt2_ws&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'397397:397398'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'AveragePol'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'container_bt2_ws'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Empty'</span>
 <span class="p">)</span>
 
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;450769:450770&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections&#39;</span><span class="p">,</span>
-    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;container_ws&#39;</span><span class="p">,</span>
-    <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;0.9&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;AveragePol&#39;</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Quartz&#39;</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'450769:450770'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'pol_corrections'</span><span class="p">,</span>
+    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'container_ws'</span><span class="p">,</span>
+    <span class="n">Transmission</span><span class="o">=</span><span class="s1">'0.9'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'AveragePol'</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Quartz'</span>
 <span class="p">)</span>
 
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;450835:450836&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">,</span>
-    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;container_ws&#39;</span><span class="p">,</span>
-    <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;0.89&#39;</span><span class="p">,</span>
-    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">,</span>
-    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
-    <span class="n">SelfAttenuationMethod</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'450835:450836'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_ws'</span><span class="p">,</span>
+    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'container_ws'</span><span class="p">,</span>
+    <span class="n">Transmission</span><span class="o">=</span><span class="s1">'0.89'</span><span class="p">,</span>
+    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">'pol_corrections'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'Sum'</span><span class="p">,</span>
+    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
+    <span class="n">SelfAttenuationMethod</span><span class="o">=</span><span class="s1">'Transmission'</span><span class="p">,</span>
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">vanadium_dictionary</span><span class="p">,</span>
     <span class="n">AbsoluteNormalisation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">calibration_file</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Vanadium'</span>
 <span class="p">)</span>
 
 <span class="c1"># bank position 1, tth=79.5</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;399451:399452&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;bt1&#39;</span><span class="p">,</span>
-    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;container_bt1_ws&#39;</span><span class="p">,</span>
-    <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;0.95&#39;</span><span class="p">,</span>
-    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;Individual&#39;</span><span class="p">,</span>
-    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'399451:399452'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'bt1'</span><span class="p">,</span>
+    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'container_bt1_ws'</span><span class="p">,</span>
+    <span class="n">Transmission</span><span class="o">=</span><span class="s1">'0.95'</span><span class="p">,</span>
+    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">'pol_corrections'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'Individual'</span><span class="p">,</span>
+    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sample_dictionary</span><span class="p">,</span>
-    <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;SingleCrystal&#39;</span><span class="p">,</span>
+    <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">'SingleCrystal'</span><span class="p">,</span>
     <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">calibration_file</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Sample'</span>
 <span class="p">)</span>
 <span class="c1"># bank position 2, tth=75</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;400287:400288&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;bt2&#39;</span><span class="p">,</span>
-    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;container_bt2_ws&#39;</span><span class="p">,</span>
-    <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;0.95&#39;</span><span class="p">,</span>
-    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">&#39;pol_corrections&#39;</span><span class="p">,</span>
-    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;Individual&#39;</span><span class="p">,</span>
-    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'400287:400288'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'bt2'</span><span class="p">,</span>
+    <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'container_bt2_ws'</span><span class="p">,</span>
+    <span class="n">Transmission</span><span class="o">=</span><span class="s1">'0.95'</span><span class="p">,</span>
+    <span class="n">QuartzWorkspace</span><span class="o">=</span><span class="s1">'pol_corrections'</span><span class="p">,</span>
+    <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'Individual'</span><span class="p">,</span>
+    <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sample_dictionary</span><span class="p">,</span>
-    <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;SingleCrystal&#39;</span><span class="p">,</span>
+    <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">'SingleCrystal'</span><span class="p">,</span>
     <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">calibration_file</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Sample'</span>
 <span class="p">)</span>
-<span class="n">appended_ws</span> <span class="o">=</span> <span class="s1">&#39;appended_ws&#39;</span>
-<span class="n">AppendSpectra</span><span class="p">(</span><span class="n">InputWorkspace1</span><span class="o">=</span><span class="s1">&#39;bt1&#39;</span><span class="p">,</span> <span class="n">InputWorkspace2</span><span class="o">=</span><span class="s1">&#39;bt2&#39;</span><span class="p">,</span>
+<span class="n">appended_ws</span> <span class="o">=</span> <span class="s1">'appended_ws'</span>
+<span class="n">AppendSpectra</span><span class="p">(</span><span class="n">InputWorkspace1</span><span class="o">=</span><span class="s1">'bt1'</span><span class="p">,</span> <span class="n">InputWorkspace2</span><span class="o">=</span><span class="s1">'bt2'</span><span class="p">,</span>
 <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">appended_ws</span><span class="p">)</span>
 <span class="c1"># names need to be re-set, AppendSpectra just concatenates them</span>
-<span class="n">possible_polarisations</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ZPO_ON&#39;</span><span class="p">,</span> <span class="s1">&#39;ZPO_OFF&#39;</span><span class="p">,</span> <span class="s1">&#39;XPO_ON&#39;</span><span class="p">,</span> <span class="s1">&#39;XPO_OFF&#39;</span><span class="p">,</span> <span class="s1">&#39;YPO_ON&#39;</span><span class="p">,</span> <span class="s1">&#39;YPO_OFF&#39;</span><span class="p">]</span>
-<span class="n">polarisation</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">possible_polarisations</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'ZPO_ON'</span><span class="p">,</span> <span class="s1">'ZPO_OFF'</span><span class="p">,</span> <span class="s1">'XPO_ON'</span><span class="p">,</span> <span class="s1">'XPO_OFF'</span><span class="p">,</span> <span class="s1">'YPO_ON'</span><span class="p">,</span> <span class="s1">'YPO_OFF'</span><span class="p">]</span>
+<span class="n">polarisation</span> <span class="o">=</span> <span class="s2">""</span>
 <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">[</span><span class="n">appended_ws</span><span class="p">]:</span>
     <span class="n">entry_name</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">polarisation</span> <span class="ow">in</span> <span class="n">possible_polarisations</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">polarisation</span> <span class="ow">in</span> <span class="n">entry_name</span><span class="p">:</span>
             <span class="k">break</span>
-    <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">entry</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">appended_ws</span><span class="p">,</span> <span class="n">polarisation</span><span class="p">))</span>
+    <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">entry</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">appended_ws</span><span class="p">,</span> <span class="n">polarisation</span><span class="p">))</span>
 
 
 <span class="n">D7AbsoluteCrossSections</span><span class="p">(</span>
     <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">appended_ws</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;normalized_single_crystal_XYZ&#39;</span><span class="p">,</span>
-    <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span>
-    <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span><span class="p">,</span>
-    <span class="n">VanadiumInputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">,</span>
-    <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">&#39;Qxy&#39;</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'normalized_single_crystal_XYZ'</span><span class="p">,</span>
+    <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">'XYZ'</span><span class="p">,</span>
+    <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">'Vanadium'</span><span class="p">,</span>
+    <span class="n">VanadiumInputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_ws'</span><span class="p">,</span>
+    <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">'Qxy'</span><span class="p">,</span>
     <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sample_dictionary</span><span class="p">,</span>
     <span class="n">AbsoluteUnitsNormalisation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">IsotropicMagnetism</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;SingleCrystal&#39;</span><span class="p">,</span>
+    <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">'SingleCrystal'</span><span class="p">,</span>
     <span class="n">ClearCache</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 </pre></div>
@@ -1355,33 +1355,33 @@ The normalised sample data contains 6 entries with 1 spectrum and 134 bins.
 <span class="n">vanadium_mass</span> <span class="o">=</span> <span class="mf">6.11</span> <span class="o">*</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.6</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">0.4</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">formula_weight_H2O</span> <span class="o">=</span> <span class="mf">1.008</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">15.999</span> <span class="c1"># NIST</span>
 <span class="n">sample_mass_H2O</span> <span class="o">=</span> <span class="mf">0.874</span>
-<span class="n">sample_formula_H2O</span> <span class="o">=</span> <span class="s1">&#39;H2O&#39;</span>
+<span class="n">sample_formula_H2O</span> <span class="o">=</span> <span class="s1">'H2O'</span>
 <span class="n">sample_thickness_H2O</span> <span class="o">=</span> <span class="mf">1.95</span>
 <span class="n">max_tof_channel</span> <span class="o">=</span> <span class="mi">511</span>
-<span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span><span class="n">vanadium_mass</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span><span class="mf">50.942</span><span class="p">}</span>
-<span class="n">sample_dictionary_H2O</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span><span class="n">sample_mass_H2O</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span><span class="n">formula_weight_H2O</span><span class="p">,</span> <span class="s1">&#39;SampleChemicalFormula&#39;</span><span class="p">:</span><span class="n">sample_formula_H2O</span><span class="p">}</span>
+<span class="n">vanadium_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span><span class="n">vanadium_mass</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span><span class="mf">50.942</span><span class="p">}</span>
+<span class="n">sample_dictionary_H2O</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span><span class="n">sample_mass_H2O</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span><span class="n">formula_weight_H2O</span><span class="p">,</span> <span class="s1">'SampleChemicalFormula'</span><span class="p">:</span><span class="n">sample_formula_H2O</span><span class="p">}</span>
 <span class="n">masked_detectors</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">yig_calibration_file</span> <span class="o">=</span> <span class="s2">&quot;D7_YIG_calibration_TOF.xml&quot;</span>
+<span class="n">yig_calibration_file</span> <span class="o">=</span> <span class="s2">"D7_YIG_calibration_TOF.xml"</span>
 
 <span class="c1"># Beam measurement for transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-             <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;395557&#39;</span><span class="p">,</span>
-             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;EmptyBeam&#39;</span>
+             <span class="n">Run</span><span class="o">=</span><span class="s1">'395557'</span><span class="p">,</span>
+             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'EmptyBeam'</span>
 <span class="p">)</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-             <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;395566&#39;</span><span class="p">,</span>
-             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws_2&#39;</span><span class="p">,</span>
-             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;EmptyBeam&#39;</span>
+             <span class="n">Run</span><span class="o">=</span><span class="s1">'395566'</span><span class="p">,</span>
+             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'beam_ws_2'</span><span class="p">,</span>
+             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'EmptyBeam'</span>
 <span class="p">)</span>
 
 <span class="c1"># empty container</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-             <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396036:396155&#39;</span><span class="p">,</span>
-             <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;AveragePol&#39;</span><span class="p">,</span>
-             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;container_ws&#39;</span><span class="p">,</span>
-             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span><span class="p">,</span>
-             <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+             <span class="n">Run</span><span class="o">=</span><span class="s1">'396036:396155'</span><span class="p">,</span>
+             <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'AveragePol'</span><span class="p">,</span>
+             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'container_ws'</span><span class="p">,</span>
+             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Empty'</span><span class="p">,</span>
+             <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
              <span class="n">MaxTOFChannel</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
              <span class="n">MaskDetectors</span><span class="o">=</span><span class="n">masked_detectors</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1390,26 +1390,26 @@ The normalised sample data contains 6 entries with 1 spectrum and 134 bins.
 
 <span class="c1"># Vanadium transmission</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-             <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;395564&#39;</span><span class="p">,</span>
-             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_tr&#39;</span><span class="p">,</span>
-             <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
+             <span class="n">Run</span><span class="o">=</span><span class="s1">'395564'</span><span class="p">,</span>
+             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_tr'</span><span class="p">,</span>
+             <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Transmission'</span>
 <span class="p">)</span>
 
 <span class="c1"># Vanadium reduction</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-             <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;396016:396034&#39;</span><span class="p">,</span>
-             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">,</span>
-             <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;container_ws&#39;</span><span class="p">,</span>
-             <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;vanadium_tr&#39;</span><span class="p">,</span>
-             <span class="n">SubtractTOFBackgroundMethod</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span>
-             <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">,</span>
-             <span class="n">SelfAttenuationMethod</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
-             <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
+             <span class="n">Run</span><span class="o">=</span><span class="s1">'396016:396034'</span><span class="p">,</span>
+             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_ws'</span><span class="p">,</span>
+             <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'container_ws'</span><span class="p">,</span>
+             <span class="n">Transmission</span><span class="o">=</span><span class="s1">'vanadium_tr'</span><span class="p">,</span>
+             <span class="n">SubtractTOFBackgroundMethod</span><span class="o">=</span><span class="s1">'Data'</span><span class="p">,</span>
+             <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'Sum'</span><span class="p">,</span>
+             <span class="n">SelfAttenuationMethod</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
+             <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
              <span class="n">AbsoluteNormalisation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
              <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">vanadium_dictionary</span><span class="p">,</span>
-             <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
-             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span><span class="p">,</span>
+             <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
+             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Vanadium'</span><span class="p">,</span>
              <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">yig_calibration_file</span><span class="p">,</span>
              <span class="n">MaskDetectors</span><span class="o">=</span><span class="n">masked_detectors</span><span class="p">,</span>
              <span class="n">MaxTOFChannel</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
@@ -1421,45 +1421,45 @@ The normalised sample data contains 6 entries with 1 spectrum and 134 bins.
 
 <span class="c1"># H2O transmissions</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-             <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;395560,395561&#39;</span><span class="p">,</span> <span class="c1"># 0 and 90 degrees</span>
-             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;h2O_1cm_tr&#39;</span><span class="p">,</span>
-             <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">&#39;beam_ws&#39;</span><span class="p">,</span>
-             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Transmission&#39;</span>
+             <span class="n">Run</span><span class="o">=</span><span class="s1">'395560,395561'</span><span class="p">,</span> <span class="c1"># 0 and 90 degrees</span>
+             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'h2O_1cm_tr'</span><span class="p">,</span>
+             <span class="n">EmptyBeamWorkspace</span><span class="o">=</span><span class="s1">'beam_ws'</span><span class="p">,</span>
+             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Transmission'</span>
 <span class="p">)</span>
 
 <span class="c1"># Sample reduction</span>
 
 <span class="c1"># water reduction</span>
 <span class="n">PolDiffILLReduction</span><span class="p">(</span>
-             <span class="n">Run</span><span class="o">=</span><span class="s2">&quot;395639:395798&quot;</span><span class="p">,</span>
-             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;h2O_ws&#39;</span><span class="p">,</span>
-             <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">&#39;container_ws&#39;</span><span class="p">,</span>
-             <span class="n">Transmission</span><span class="o">=</span><span class="s1">&#39;h2O_1cm_tr&#39;</span><span class="p">,</span>
-             <span class="n">SubtractTOFBackgroundMethod</span><span class="o">=</span><span class="s1">&#39;Gaussian&#39;</span><span class="p">,</span>
-             <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;AveragePol&#39;</span><span class="p">,</span>
-             <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
+             <span class="n">Run</span><span class="o">=</span><span class="s2">"395639:395798"</span><span class="p">,</span>
+             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'h2O_ws'</span><span class="p">,</span>
+             <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="s1">'container_ws'</span><span class="p">,</span>
+             <span class="n">Transmission</span><span class="o">=</span><span class="s1">'h2O_1cm_tr'</span><span class="p">,</span>
+             <span class="n">SubtractTOFBackgroundMethod</span><span class="o">=</span><span class="s1">'Gaussian'</span><span class="p">,</span>
+             <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'AveragePol'</span><span class="p">,</span>
+             <span class="n">SampleGeometry</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
              <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sample_dictionary_H2O</span><span class="p">,</span>
-             <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+             <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
              <span class="n">InstrumentCalibration</span><span class="o">=</span><span class="n">yig_calibration_file</span><span class="p">,</span>
-             <span class="n">ElasticChannelsWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_ws_elastic&#39;</span><span class="p">,</span>
+             <span class="n">ElasticChannelsWorkspace</span><span class="o">=</span><span class="s1">'vanadium_ws_elastic'</span><span class="p">,</span>
              <span class="n">MaskDetectors</span><span class="o">=</span><span class="n">masked_detectors</span><span class="p">,</span>
              <span class="n">MaxTOFChannel</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
              <span class="n">FrameOverlapCorrection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
              <span class="n">DetectorEnergyEfficiencyCorrection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
              <span class="n">ConvertToEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span>
+             <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Sample'</span>
 <span class="p">)</span>
 
 <span class="n">D7AbsoluteCrossSections</span><span class="p">(</span>
-             <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;h2O_ws&#39;</span><span class="p">,</span>
-             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;h2O_red&#39;</span><span class="p">,</span>
-             <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">&#39;Uniaxial&#39;</span><span class="p">,</span>
-             <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span><span class="p">,</span>
-             <span class="n">VanadiumInputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_ws&#39;</span><span class="p">,</span>
-             <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">&#39;Qw&#39;</span><span class="p">,</span>
+             <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'h2O_ws'</span><span class="p">,</span>
+             <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'h2O_red'</span><span class="p">,</span>
+             <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">'Uniaxial'</span><span class="p">,</span>
+             <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">'Vanadium'</span><span class="p">,</span>
+             <span class="n">VanadiumInputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_ws'</span><span class="p">,</span>
+             <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">'Qw'</span><span class="p">,</span>
              <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sample_dictionary_H2O</span><span class="p">,</span>
              <span class="n">AbsoluteUnitsNormalisation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-             <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+             <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
              <span class="n">ClearCache</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 </pre></div>

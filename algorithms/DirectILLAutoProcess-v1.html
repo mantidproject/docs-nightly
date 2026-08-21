@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DirectILLAutoProcess v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>DirectILLAutoProcess v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1885,45 +1885,45 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - full treatment of a sample at 2 different temperatures in IN4</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vanadium_runs</span> <span class="o">=</span> <span class="s1">&#39;ILL/IN4/085801-085802&#39;</span>
-<span class="n">sample_runs</span> <span class="o">=</span> <span class="s1">&#39;ILL/IN4/087294+087295.nxs,ILL/IN4/087283-087290.nxs&#39;</span>
-<span class="n">container_runs</span> <span class="o">=</span> <span class="s1">&#39;ILL/IN4/087306-087309.nxs,ILL/IN4/087311-087314.nxs&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vanadium_runs</span> <span class="o">=</span> <span class="s1">'ILL/IN4/085801-085802'</span>
+<span class="n">sample_runs</span> <span class="o">=</span> <span class="s1">'ILL/IN4/087294+087295.nxs,ILL/IN4/087283-087290.nxs'</span>
+<span class="n">container_runs</span> <span class="o">=</span> <span class="s1">'ILL/IN4/087306-087309.nxs,ILL/IN4/087311-087314.nxs'</span>
 
-<span class="n">vanadium_ws</span> <span class="o">=</span> <span class="s1">&#39;vanadium_auto&#39;</span>
-<span class="n">container_ws</span> <span class="o">=</span> <span class="s1">&#39;container&#39;</span>
-<span class="n">sample_ws</span> <span class="o">=</span> <span class="s1">&#39;sample&#39;</span>
+<span class="n">vanadium_ws</span> <span class="o">=</span> <span class="s1">'vanadium_auto'</span>
+<span class="n">container_ws</span> <span class="o">=</span> <span class="s1">'container'</span>
+<span class="n">sample_ws</span> <span class="o">=</span> <span class="s1">'sample'</span>
 
 <span class="c1"># Sample self-shielding and container subtraction.</span>
 <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;HollowCylinder&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
-    <span class="s1">&#39;InnerRadius&#39;</span><span class="p">:</span> <span class="mf">1.9</span><span class="p">,</span>
-    <span class="s1">&#39;OuterRadius&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>
-    <span class="s1">&#39;Center&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+    <span class="s1">'Shape'</span><span class="p">:</span> <span class="s1">'HollowCylinder'</span><span class="p">,</span>
+    <span class="s1">'Height'</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+    <span class="s1">'InnerRadius'</span><span class="p">:</span> <span class="mf">1.9</span><span class="p">,</span>
+    <span class="s1">'OuterRadius'</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="s1">'Center'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 <span class="p">}</span>
 <span class="n">material</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;ChemicalFormula&#39;</span><span class="p">:</span> <span class="s1">&#39;Cd S&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;SampleNumberDensity&#39;</span><span class="p">:</span> <span class="mf">0.01</span>
+    <span class="s1">'ChemicalFormula'</span><span class="p">:</span> <span class="s1">'Cd S'</span><span class="p">,</span>
+    <span class="s1">'SampleNumberDensity'</span><span class="p">:</span> <span class="mf">0.01</span>
 <span class="p">}</span>
 <span class="n">Ei</span> <span class="o">=</span> <span class="mf">8.804337831263577</span>
 
 <span class="n">DirectILLAutoProcess</span><span class="p">(</span>
     <span class="n">Runs</span><span class="o">=</span><span class="n">vanadium_runs</span><span class="p">,</span>
     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">vanadium_ws</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span><span class="p">,</span>
-    <span class="n">ReductionType</span><span class="o">=</span><span class="s1">&#39;Powder&#39;</span><span class="p">,</span>
-    <span class="n">FlatBkg</span> <span class="o">=</span> <span class="s1">&#39;Flat Bkg ON&#39;</span><span class="p">,</span>
-    <span class="n">ElasticChannel</span><span class="o">=</span><span class="s1">&#39;Elastic Channel AUTO&#39;</span><span class="p">,</span>
-    <span class="n">EPPCreationMethod</span><span class="o">=</span><span class="s1">&#39;Fit EPP&#39;</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Vanadium'</span><span class="p">,</span>
+    <span class="n">ReductionType</span><span class="o">=</span><span class="s1">'Powder'</span><span class="p">,</span>
+    <span class="n">FlatBkg</span> <span class="o">=</span> <span class="s1">'Flat Bkg ON'</span><span class="p">,</span>
+    <span class="n">ElasticChannel</span><span class="o">=</span><span class="s1">'Elastic Channel AUTO'</span><span class="p">,</span>
+    <span class="n">EPPCreationMethod</span><span class="o">=</span><span class="s1">'Fit EPP'</span><span class="p">,</span>
     <span class="n">SaveOutput</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">DirectILLAutoProcess</span><span class="p">(</span>
     <span class="n">Runs</span><span class="o">=</span><span class="n">container_runs</span><span class="p">,</span>
     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">container_ws</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Empty&#39;</span><span class="p">,</span>
-    <span class="n">ReductionType</span><span class="o">=</span><span class="s1">&#39;Powder&#39;</span><span class="p">,</span>
-    <span class="n">IncidentEnergyCalibration</span><span class="o">=</span><span class="s2">&quot;Energy Calibration ON&quot;</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Empty'</span><span class="p">,</span>
+    <span class="n">ReductionType</span><span class="o">=</span><span class="s1">'Powder'</span><span class="p">,</span>
+    <span class="n">IncidentEnergyCalibration</span><span class="o">=</span><span class="s2">"Energy Calibration ON"</span><span class="p">,</span>
     <span class="n">IncidentEnergy</span><span class="o">=</span><span class="n">Ei</span><span class="p">,</span>
     <span class="n">SaveOutput</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1934,21 +1934,21 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <span class="n">DT</span> <span class="o">=</span> <span class="n">T1</span> <span class="o">-</span> <span class="n">T0</span>
 <span class="n">Ts</span> <span class="o">=</span> <span class="mf">50.0</span> <span class="c1"># Target T</span>
 <span class="n">RebinToWorkspace</span><span class="p">(</span>
-    <span class="n">WorkspaceToRebin</span><span class="o">=</span><span class="s1">&#39;container_087311_Ei9meV_T100.0K&#39;</span><span class="p">,</span>
-    <span class="n">WorkspaceToMatch</span><span class="o">=</span><span class="s1">&#39;container_087306_Ei9meV_T1.5K&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;container_087311_Ei9meV_T100.0K&#39;</span>
+    <span class="n">WorkspaceToRebin</span><span class="o">=</span><span class="s1">'container_087311_Ei9meV_T100.0K'</span><span class="p">,</span>
+    <span class="n">WorkspaceToMatch</span><span class="o">=</span><span class="s1">'container_087306_Ei9meV_T1.5K'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'container_087311_Ei9meV_T100.0K'</span>
 <span class="p">)</span>
-<span class="n">container_Ei9meV_50K</span> <span class="o">=</span> <span class="p">(</span><span class="n">T1</span> <span class="o">-</span> <span class="n">Ts</span><span class="p">)</span> <span class="o">/</span> <span class="n">DT</span> <span class="o">*</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;container_087306_Ei9meV_T1.5K&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">Ts</span> <span class="o">-</span> <span class="n">T0</span><span class="p">)</span> <span class="o">/</span> <span class="n">DT</span> <span class="o">*</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;container_087311_Ei9meV_T100.0K&#39;</span><span class="p">]</span>
-<span class="n">mtd</span><span class="p">[</span><span class="n">container_ws</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;container_Ei9meV_50K&#39;</span><span class="p">)</span>
+<span class="n">container_Ei9meV_50K</span> <span class="o">=</span> <span class="p">(</span><span class="n">T1</span> <span class="o">-</span> <span class="n">Ts</span><span class="p">)</span> <span class="o">/</span> <span class="n">DT</span> <span class="o">*</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'container_087306_Ei9meV_T1.5K'</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">Ts</span> <span class="o">-</span> <span class="n">T0</span><span class="p">)</span> <span class="o">/</span> <span class="n">DT</span> <span class="o">*</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'container_087311_Ei9meV_T100.0K'</span><span class="p">]</span>
+<span class="n">mtd</span><span class="p">[</span><span class="n">container_ws</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">'container_Ei9meV_50K'</span><span class="p">)</span>
 
 <span class="n">DirectILLAutoProcess</span><span class="p">(</span>
     <span class="n">Runs</span><span class="o">=</span><span class="n">sample_runs</span><span class="p">,</span>
     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">sample_ws</span><span class="p">,</span>
-    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">&#39;Sample&#39;</span><span class="p">,</span>
-    <span class="n">ReductionType</span><span class="o">=</span><span class="s1">&#39;Powder&#39;</span><span class="p">,</span>
+    <span class="n">ProcessAs</span><span class="o">=</span><span class="s1">'Sample'</span><span class="p">,</span>
+    <span class="n">ReductionType</span><span class="o">=</span><span class="s1">'Powder'</span><span class="p">,</span>
     <span class="n">VanadiumWorkspace</span><span class="o">=</span><span class="n">vanadium_ws</span><span class="p">,</span>
     <span class="n">EmptyContainerWorkspace</span><span class="o">=</span><span class="n">container_ws</span><span class="p">,</span>
-    <span class="n">IncidentEnergyCalibration</span><span class="o">=</span><span class="s2">&quot;Energy Calibration ON&quot;</span><span class="p">,</span>
+    <span class="n">IncidentEnergyCalibration</span><span class="o">=</span><span class="s2">"Energy Calibration ON"</span><span class="p">,</span>
     <span class="n">IncidentEnergy</span><span class="o">=</span><span class="n">Ei</span><span class="p">,</span>
     <span class="n">SampleMaterial</span><span class="o">=</span><span class="n">material</span><span class="p">,</span>
     <span class="n">SampleGeometry</span><span class="o">=</span><span class="n">geometry</span><span class="p">,</span>
@@ -1956,12 +1956,12 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
     <span class="n">ClearCache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sample_SofQW_087294_Ei9meV_T1.5K&#39;</span><span class="p">,</span> <span class="s1">&#39;sample_SofQW_087283_Ei9meV_T50.0K&#39;</span><span class="p">]</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'sample_SofQW_087294_Ei9meV_T1.5K'</span><span class="p">,</span> <span class="s1">'sample_SofQW_087283_Ei9meV_T50.0K'</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">:</span>
     <span class="n">SofQW</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="n">output</span><span class="p">]</span>
     <span class="n">qAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Vertical axis</span>
     <span class="n">eAxis</span> <span class="o">=</span> <span class="n">SofQW</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Horizontal axis</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: Q range: </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">A; W range </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">meV&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="si">{}</span><span class="s1">: Q range: </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">A; W range </span><span class="si">{:.3}</span><span class="s1">...</span><span class="si">{:.3}</span><span class="s1">meV'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
         <span class="n">output</span><span class="p">,</span> <span class="n">qAxis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qAxis</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMin</span><span class="p">(),</span> <span class="n">eAxis</span><span class="o">.</span><span class="n">getMax</span><span class="p">()))</span>
 </pre></div>
 </div>
@@ -1975,7 +1975,7 @@ sample_SofQW_087283_Ei9meV_T50.0K: Q range: 0.0...9.19A; W range -96.6...7.62meV
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/DirectILLAutoProcess.py">DirectILLAutoProcess.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/DirectILLAutoProcess.py">DirectILLAutoProcess.py</a></p>
 </section>
 </section>
 

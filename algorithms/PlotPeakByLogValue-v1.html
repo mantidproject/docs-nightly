@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PlotPeakByLogValue v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PlotPeakByLogValue v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/PlotPeakByLogValue-v1';</script>
@@ -1705,7 +1705,7 @@ masked.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - fitting a single spectrum of in a workspace:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="n">function</span> <span class="o">=</span> <span class="s2">&quot;name=Gaussian,Height=10.0041,PeakCentre=10098.6,Sigma=48.8581;name=FlatBackground,A0=0.3&quot;</span>
+<span class="n">function</span> <span class="o">=</span> <span class="s2">"name=Gaussian,Height=10.0041,PeakCentre=10098.6,Sigma=48.8581;name=FlatBackground,A0=0.3"</span>
 <span class="n">peaks</span> <span class="o">=</span> <span class="n">PlotPeakByLogValue</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">Spectrum</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1713,16 +1713,16 @@ masked.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="n">function</span> <span class="o">=</span> <span class="s2">&quot;name=Gaussian,Height=10.0041,PeakCentre=10098.6,Sigma=48.8581;name=FlatBackground,A0=0.3&quot;</span>
+<span class="n">function</span> <span class="o">=</span> <span class="s2">"name=Gaussian,Height=10.0041,PeakCentre=10098.6,Sigma=48.8581;name=FlatBackground,A0=0.3"</span>
 
 <span class="c1">#create string of workspaces to fit (ws,i0; ws,i1, ws,i2 ...)</span>
-<span class="n">workspaces</span> <span class="o">=</span> <span class="p">[</span><span class="n">ws</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;,i</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())]</span>
-<span class="n">workspaces</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspaces</span><span class="p">)</span>
+<span class="n">workspaces</span> <span class="o">=</span> <span class="p">[</span><span class="n">ws</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s1">',i</span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())]</span>
+<span class="n">workspaces</span> <span class="o">=</span> <span class="s1">';'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspaces</span><span class="p">)</span>
 
 <span class="n">peaks</span> <span class="o">=</span> <span class="n">PlotPeakByLogValue</span><span class="p">(</span><span class="n">workspaces</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">Spectrum</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1">#get peak centres for comparison</span>
-<span class="n">peak_centres</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;f0.PeakCentre&#39;</span><span class="p">)</span>
+<span class="n">peak_centres</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'f0.PeakCentre'</span><span class="p">)</span>
 <span class="n">ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">peak_centres</span><span class="p">))</span>
 <span class="n">ref</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">10098.6</span><span class="p">)</span>
 
@@ -1737,21 +1737,21 @@ masked.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="n">function</span> <span class="o">=</span> <span class="s2">&quot;name=Gaussian,Height=10.0041,PeakCentre=10098.6,Sigma=48.8581;name=FlatBackground,A0=0.3&quot;</span>
+<span class="n">function</span> <span class="o">=</span> <span class="s2">"name=Gaussian,Height=10.0041,PeakCentre=10098.6,Sigma=48.8581;name=FlatBackground,A0=0.3"</span>
 
 <span class="c1">#create string of workspaces to fit (ws,i0; ws,i1, ws,i2 ...)</span>
-<span class="n">workspaces</span> <span class="o">=</span> <span class="p">[</span><span class="n">ws</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;,i</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())]</span>
-<span class="n">workspaces</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspaces</span><span class="p">)</span>
+<span class="n">workspaces</span> <span class="o">=</span> <span class="p">[</span><span class="n">ws</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s1">',i</span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())]</span>
+<span class="n">workspaces</span> <span class="o">=</span> <span class="s1">';'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspaces</span><span class="p">)</span>
 
 <span class="n">peaks</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">chi2</span> <span class="o">=</span> <span class="n">PlotPeakByLogValue</span><span class="p">(</span><span class="n">workspaces</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">Spectrum</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">OutputFitStatus</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Print status of first 10 fits</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fit status = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fit chi2 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chi2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fit status = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fit chi2 = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chi2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Fit status = [&#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Fit status = ['success', 'success', 'success', 'success', 'success', 'success', 'success', 'success', 'success', 'success']
 Fit chi2 = [1.66303097e-17 1.83229176e-21 1.45413085e-21 1.39794468e-21
  1.34393992e-21 1.29204641e-21 1.24218669e-21 1.19427939e-21
  1.14824806e-21 1.10402028e-21]
@@ -1759,21 +1759,21 @@ Fit chi2 = [1.66303097e-17 1.83229176e-21 1.45413085e-21 1.39794468e-21
 </div>
 <p><strong>Example - Fitting multiDomain function:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="n">function</span> <span class="o">=</span> <span class="n">mantid</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">FunctionFactory</span><span class="o">.</span><span class="n">createInitializedMultiDomainFunction</span><span class="p">(</span><span class="s2">&quot;name=Gaussian,Height=10.0041,PeakCentre=10098.6,Sigma=48.8581;name=FlatBackground,A0=0.3&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">function</span> <span class="o">=</span> <span class="n">mantid</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">FunctionFactory</span><span class="o">.</span><span class="n">createInitializedMultiDomainFunction</span><span class="p">(</span><span class="s2">"name=Gaussian,Height=10.0041,PeakCentre=10098.6,Sigma=48.8581;name=FlatBackground,A0=0.3"</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 
 <span class="c1">#create string of workspaces to fit (ws,i0; ws,i1, ws,i2 ...)</span>
-<span class="n">workspaces</span> <span class="o">=</span> <span class="p">[</span><span class="n">ws</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;,i</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())]</span>
-<span class="n">workspaces</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspaces</span><span class="p">)</span>
+<span class="n">workspaces</span> <span class="o">=</span> <span class="p">[</span><span class="n">ws</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s1">',i</span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())]</span>
+<span class="n">workspaces</span> <span class="o">=</span> <span class="s1">';'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspaces</span><span class="p">)</span>
 
 <span class="n">peaks</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">chi2</span> <span class="o">=</span> <span class="n">PlotPeakByLogValue</span><span class="p">(</span><span class="n">workspaces</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">Spectrum</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">OutputFitStatus</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Print status of first 10 fits</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fit status = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fit chi2 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chi2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fit status = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fit chi2 = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chi2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Fit status = [&#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;, &#39;success&#39;]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Fit status = ['success', 'success', 'success', 'success', 'success', 'success', 'success', 'success', 'success', 'success']
 Fit chi2 = [1.66303097e-17 1.83229176e-21 1.45413085e-21 1.39794468e-21
  1.34393992e-21 1.29204641e-21 1.24218669e-21 1.19427939e-21
  1.14824806e-21 1.10402028e-21]
@@ -1781,23 +1781,23 @@ Fit chi2 = [1.66303097e-17 1.83229176e-21 1.45413085e-21 1.39794468e-21
 </div>
 <p><strong>Example - :</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">function</span> <span class="o">=</span> <span class="s2">&quot;name=Gaussian,Height=10.0041,PeakCentre=10098.6,Sigma=48.8581;name=FlatBackground,A0=0.3&quot;</span>
+<span class="n">function</span> <span class="o">=</span> <span class="s2">"name=Gaussian,Height=10.0041,PeakCentre=10098.6,Sigma=48.8581;name=FlatBackground,A0=0.3"</span>
 
 <span class="c1">#create string of workspaces to fit (ws,i0; ws,i1, ws,i2 ...)</span>
-<span class="n">workspaces</span> <span class="o">=</span> <span class="p">[</span><span class="n">ws</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;,i</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
-<span class="n">workspaces</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspaces</span><span class="p">)</span>
+<span class="n">workspaces</span> <span class="o">=</span> <span class="p">[</span><span class="n">ws</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s1">',i</span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">workspaces</span> <span class="o">=</span> <span class="s1">';'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspaces</span><span class="p">)</span>
 
-<span class="n">exclude_range</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;5000,7500&quot;</span><span class="p">,</span> <span class="s2">&quot;7500,12500&quot;</span><span class="p">,</span> <span class="s2">&quot;0.0,0.0&quot;</span><span class="p">]</span>
+<span class="n">exclude_range</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"5000,7500"</span><span class="p">,</span> <span class="s2">"7500,12500"</span><span class="p">,</span> <span class="s2">"0.0,0.0"</span><span class="p">]</span>
 
 <span class="n">peaks</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">chi2</span> <span class="o">=</span> <span class="n">PlotPeakByLogValue</span><span class="p">(</span><span class="n">workspaces</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">Spectrum</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">OutputFitStatus</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ExcludeMultiple</span><span class="o">=</span><span class="n">exclude_range</span><span class="p">)</span>
 
 <span class="c1"># Print status of first 10 fits</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fit status = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fit chi2 = [</span><span class="si">{0:.4e}</span><span class="s2">, </span><span class="si">{1:.4e}</span><span class="s2">, </span><span class="si">{2:.4e}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chi2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">chi2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">chi2</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fit status = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fit chi2 = [</span><span class="si">{0:.4e}</span><span class="s2">, </span><span class="si">{1:.4e}</span><span class="s2">, </span><span class="si">{2:.4e}</span><span class="s2">]"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chi2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">chi2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">chi2</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Fit status = [&#39;success&#39;, &#39;success&#39;, &#39;success&#39;]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Fit status = ['success', 'success', 'success']
 Fit chi2 = [1.6757e-17, 0.0000e+00, 1.8323e-21]
 </pre></div>
 </div>
@@ -1805,8 +1805,8 @@ Fit chi2 = [1.6757e-17, 0.0000e+00, 1.8323e-21]
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/PlotPeakByLogValue.h">PlotPeakByLogValue.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/src/Algorithms/PlotPeakByLogValue.cpp">PlotPeakByLogValue.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/PlotPeakByLogValue.h">PlotPeakByLogValue.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/src/Algorithms/PlotPeakByLogValue.cpp">PlotPeakByLogValue.cpp</a></p>
 </section>
 </section>
 

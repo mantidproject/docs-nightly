@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Peak Function Methods &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Peak Function Methods &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/extending_mantid_with_python/advanced_fit_behaviours/04_peak_function_methods';</script>
@@ -563,28 +563,28 @@ fitting procedure these values are no longer used and the real function
 evaluation is performed. An example for the Gaussian follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">centre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1"># Easy here as there is a direct parameter</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1"># Easy here as there is a direct parameter</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span> <span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span> <span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">fwhm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1"># Computes the FWHM from sigma</span>
-    <span class="k">return</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">setCentre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">):</span>
     <span class="c1"># User picked point new_centre</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">setHeight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_height</span><span class="p">):</span>
     <span class="c1"># User set new height for peak</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">,</span> <span class="n">new_height</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">,</span> <span class="n">new_height</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">setFwhm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_fwhm</span><span class="p">):</span>
     <span class="c1"># User had a guess at the width using the range picker bar</span>
     <span class="n">sigma</span> <span class="o">=</span> <span class="n">new_fwhm</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)))</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
 </pre></div>
 </div>
 <section id="complete-example">
@@ -597,17 +597,17 @@ evaluation is performed. An example for the Gaussian follows:</p>
 <span class="k">class</span><span class="w"> </span><span class="nc">PyGaussian</span><span class="p">(</span><span class="n">IPeakFunction</span><span class="p">):</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;Examples&quot;</span>
+        <span class="k">return</span> <span class="s2">"Examples"</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">functionLocal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
-        <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
-        <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
-        <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">)</span>
+        <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
         <span class="n">weight</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">sigma</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
         <span class="n">offset_sq</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">xvals</span><span class="o">-</span><span class="n">peak_centre</span><span class="p">)</span>
@@ -615,9 +615,9 @@ evaluation is performed. An example for the Gaussian follows:</p>
         <span class="k">return</span> <span class="n">out</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">functionDerivLocal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">,</span> <span class="n">jacobian</span><span class="p">):</span>
-        <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
-        <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
-        <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">)</span>
+        <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
         <span class="n">weight</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">sigma</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
         <span class="c1"># X index</span>
@@ -649,23 +649,23 @@ evaluation is performed. An example for the Gaussian follows:</p>
             <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">param_value</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">centre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">fwhm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">setCentre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">,</span> <span class="n">new_centre</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">setHeight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_height</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">,</span> <span class="n">new_height</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">,</span> <span class="n">new_height</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">setFwhm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_fwhm</span><span class="p">):</span>
         <span class="n">sigma</span> <span class="o">=</span> <span class="n">new_fwhm</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
 
 <span class="c1"># Required to have Mantid recognise the new function</span>
 <span class="n">FunctionFactory</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">PyGaussian</span><span class="p">)</span>

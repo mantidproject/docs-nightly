@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>GetEiMonDet v3 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>GetEiMonDet v3 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/GetEiMonDet-v3';</script>
@@ -1527,19 +1527,19 @@
 <p><strong>Example - simple incident energy calibration:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
 
-<span class="n">spectrum</span> <span class="o">=</span> <span class="s1">&#39;name = Gaussian, PeakCentre = 1000.0, Height = 500.0, Sigma = 30.0&#39;</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+<span class="n">spectrum</span> <span class="o">=</span> <span class="s1">'name = Gaussian, PeakCentre = 1000.0, Height = 500.0, Sigma = 30.0'</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
     <span class="n">XMin</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">1100.0</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
     <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">NumMonitors</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span> <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">spectrum</span><span class="p">,</span> <span class="n">BankDistanceFromSample</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">Function</span><span class="o">=</span><span class="s1">'User Defined'</span><span class="p">,</span> <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">spectrum</span><span class="p">,</span> <span class="n">BankDistanceFromSample</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
 <span class="c1"># Shift monitor Y and E data</span>
 <span class="n">shift</span> <span class="o">=</span> <span class="o">-</span><span class="mi">70</span>
 <span class="n">ws</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">shift</span><span class="p">))</span>
 <span class="n">ws</span><span class="o">.</span><span class="n">setE</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">shift</span><span class="p">))</span>
 <span class="n">calibratedE_i</span> <span class="o">=</span> <span class="n">GetEiMonDet</span><span class="p">(</span><span class="n">DetectorWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
-    <span class="n">DetectorWorkspaceIndexSet</span><span class="o">=</span><span class="s2">&quot;1-100&quot;</span><span class="p">,</span> <span class="n">MonitorIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">DetectorWorkspaceIndexSet</span><span class="o">=</span><span class="s2">"1-100"</span><span class="p">,</span> <span class="n">MonitorIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Calibrated energy: </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">calibratedE_i</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Calibrated energy: </span><span class="si">{0:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">calibratedE_i</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1550,21 +1550,21 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">elementary_charge</span><span class="p">,</span> <span class="n">neutron_mass</span>
 
-<span class="n">spectrum</span> <span class="o">=</span> <span class="s1">&#39;name = Gaussian, PeakCentre = 1000.0, Height = 500.0, Sigma = 30.0&#39;</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+<span class="n">spectrum</span> <span class="o">=</span> <span class="s1">'name = Gaussian, PeakCentre = 1000.0, Height = 500.0, Sigma = 30.0'</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
   <span class="n">XMin</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">1100.0</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
   <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">NumMonitors</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-  <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span> <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">spectrum</span><span class="p">,</span> <span class="n">BankDistanceFromSample</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
+  <span class="n">Function</span><span class="o">=</span><span class="s1">'User Defined'</span><span class="p">,</span> <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">spectrum</span><span class="p">,</span> <span class="n">BankDistanceFromSample</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
 <span class="c1"># Shift monitor Y and E data</span>
 <span class="n">shift</span> <span class="o">=</span> <span class="o">-</span><span class="mi">70</span>
 <span class="n">ws</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">shift</span><span class="p">))</span>
 <span class="n">ws</span><span class="o">.</span><span class="n">setE</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">shift</span><span class="p">))</span>
-<span class="n">ExtractMonitors</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">DetectorWorkspace</span><span class="o">=</span><span class="s1">&#39;detectors&#39;</span><span class="p">,</span> <span class="n">MonitorWorkspace</span><span class="o">=</span><span class="s1">&#39;monitors&#39;</span><span class="p">)</span>
-<span class="n">monitorEPPs</span> <span class="o">=</span> <span class="n">FindEPP</span><span class="p">(</span><span class="s1">&#39;monitors&#39;</span><span class="p">)</span>
-<span class="n">calibratedE_i</span> <span class="o">=</span> <span class="n">GetEiMonDet</span><span class="p">(</span><span class="n">DetectorWorkspace</span><span class="o">=</span><span class="s1">&#39;detectors&#39;</span><span class="p">,</span>
-  <span class="n">DetectorWorkspaceIndexSet</span><span class="o">=</span><span class="s2">&quot;0-99&quot;</span><span class="p">,</span> <span class="n">MonitorWorkspace</span><span class="o">=</span><span class="s1">&#39;monitors&#39;</span><span class="p">,</span> <span class="n">MonitorEPPTable</span><span class="o">=</span><span class="n">monitorEPPs</span><span class="p">,</span> <span class="n">MonitorIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ExtractMonitors</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">DetectorWorkspace</span><span class="o">=</span><span class="s1">'detectors'</span><span class="p">,</span> <span class="n">MonitorWorkspace</span><span class="o">=</span><span class="s1">'monitors'</span><span class="p">)</span>
+<span class="n">monitorEPPs</span> <span class="o">=</span> <span class="n">FindEPP</span><span class="p">(</span><span class="s1">'monitors'</span><span class="p">)</span>
+<span class="n">calibratedE_i</span> <span class="o">=</span> <span class="n">GetEiMonDet</span><span class="p">(</span><span class="n">DetectorWorkspace</span><span class="o">=</span><span class="s1">'detectors'</span><span class="p">,</span>
+  <span class="n">DetectorWorkspaceIndexSet</span><span class="o">=</span><span class="s2">"0-99"</span><span class="p">,</span> <span class="n">MonitorWorkspace</span><span class="o">=</span><span class="s1">'monitors'</span><span class="p">,</span> <span class="n">MonitorEPPTable</span><span class="o">=</span><span class="n">monitorEPPs</span><span class="p">,</span> <span class="n">MonitorIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Calibrated energy: </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">calibratedE_i</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Calibrated energy: </span><span class="si">{0:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">calibratedE_i</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1575,8 +1575,8 @@
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/GetEiMonDet3.h">GetEiMonDet3.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/GetEiMonDet3.cpp">GetEiMonDet3.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/GetEiMonDet3.h">GetEiMonDet3.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/GetEiMonDet3.cpp">GetEiMonDet3.cpp</a></p>
 </section>
 </section>
 

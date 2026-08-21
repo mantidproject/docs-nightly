@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ProfileChiSquared1D v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ProfileChiSquared1D v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1560,29 +1560,29 @@ This can be seen in the following example</p>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># run the fit</span>
-<span class="n">func</span> <span class="o">=</span> <span class="s2">&quot;name=LinearBackground, A0=1, A1=2&quot;</span><span class="p">;</span>
+<span class="n">func</span> <span class="o">=</span> <span class="s2">"name=LinearBackground, A0=1, A1=2"</span><span class="p">;</span>
 <span class="n">func_</span> <span class="o">=</span> <span class="n">FunctionFactory</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span><span class="o">.</span><span class="n">createInitialized</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
 
-<span class="n">fit_output</span> <span class="o">=</span> <span class="n">Fit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="n">func_</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s2">&quot;LinearFit&quot;</span><span class="p">)</span>
+<span class="n">fit_output</span> <span class="o">=</span> <span class="n">Fit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="n">func_</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s2">"LinearFit"</span><span class="p">)</span>
 <span class="n">a0_fit</span> <span class="o">=</span> <span class="n">fit_output</span><span class="o">.</span><span class="n">OutputParameters</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">a1_fit</span> <span class="o">=</span> <span class="n">fit_output</span><span class="o">.</span><span class="n">OutputParameters</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="c1"># explore the chi squared profile for the fit parameters</span>
-<span class="n">fitted_func</span> <span class="o">=</span> <span class="s2">&quot;name=LinearBackground, A0=</span><span class="si">{}</span><span class="s2">, A1=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a0_fit</span><span class="p">,</span> <span class="n">a1_fit</span><span class="p">);</span>
-<span class="n">ProfileChiSquared1D</span><span class="p">(</span><span class="n">fitted_func</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s2">&quot;LinearProfile&quot;</span><span class="p">)</span>
+<span class="n">fitted_func</span> <span class="o">=</span> <span class="s2">"name=LinearBackground, A0=</span><span class="si">{}</span><span class="s2">, A1=</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a0_fit</span><span class="p">,</span> <span class="n">a1_fit</span><span class="p">);</span>
+<span class="n">ProfileChiSquared1D</span><span class="p">(</span><span class="n">fitted_func</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s2">"LinearProfile"</span><span class="p">)</span>
 
 <span class="c1"># print left and right errors of parameters</span>
 <span class="c1"># you should note that they are approx equal to the quadratic error for this linear model</span>
-<span class="n">error_table</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;LinearProfile_errors&quot;</span><span class="p">]</span>
+<span class="n">error_table</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"LinearProfile_errors"</span><span class="p">]</span>
 <span class="n">lerror_a0</span> <span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">rerror_a0</span><span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">4</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">qerror_a0</span> <span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">9</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1-sigma error bounds of A0 are </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">, with quadratic estimate </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lerror_a0</span><span class="p">,</span> <span class="n">rerror_a0</span><span class="p">,</span> <span class="n">qerror_a0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"1-sigma error bounds of A0 are </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">, with quadratic estimate </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lerror_a0</span><span class="p">,</span> <span class="n">rerror_a0</span><span class="p">,</span> <span class="n">qerror_a0</span><span class="p">))</span>
 
 <span class="n">lerror_a1</span> <span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">rerror_a1</span><span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">4</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">qerror_a1</span> <span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">9</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1-sigma error bounds of A1 are </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">, with quadratic estimate </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lerror_a1</span><span class="p">,</span> <span class="n">rerror_a1</span><span class="p">,</span> <span class="n">qerror_a1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"1-sigma error bounds of A1 are </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">, with quadratic estimate </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lerror_a1</span><span class="p">,</span> <span class="n">rerror_a1</span><span class="p">,</span> <span class="n">qerror_a1</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>For a non-linear model, it’s possible that the left and right variances will not be equal, leading to an asymmetric error.
@@ -1600,29 +1600,29 @@ This is shown in the example below:</p>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># run the fit</span>
-<span class="n">func</span> <span class="o">=</span> <span class="s2">&quot;name=ExpDecay,Height=3.0, Lifetime=0.5&quot;</span><span class="p">;</span>
+<span class="n">func</span> <span class="o">=</span> <span class="s2">"name=ExpDecay,Height=3.0, Lifetime=0.5"</span><span class="p">;</span>
 <span class="n">func_</span> <span class="o">=</span> <span class="n">FunctionFactory</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span><span class="o">.</span><span class="n">createInitialized</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
 
-<span class="n">fit_output</span> <span class="o">=</span> <span class="n">Fit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="n">func_</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s2">&quot;ExpFit&quot;</span><span class="p">)</span>
+<span class="n">fit_output</span> <span class="o">=</span> <span class="n">Fit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="n">func_</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s2">"ExpFit"</span><span class="p">)</span>
 <span class="n">height_fit</span> <span class="o">=</span> <span class="n">fit_output</span><span class="o">.</span><span class="n">OutputParameters</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">lifetime_fit</span> <span class="o">=</span> <span class="n">fit_output</span><span class="o">.</span><span class="n">OutputParameters</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="c1"># explore the chi squared profile for the fit parameters</span>
-<span class="n">fitted_func</span> <span class="o">=</span> <span class="s2">&quot;name=ExpDecay, Height=</span><span class="si">{}</span><span class="s2">, Lifetime=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">height_fit</span><span class="p">,</span> <span class="n">lifetime_fit</span><span class="p">);</span>
-<span class="n">ProfileChiSquared1D</span><span class="p">(</span><span class="n">fitted_func</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s2">&quot;ExpProfile&quot;</span><span class="p">)</span>
+<span class="n">fitted_func</span> <span class="o">=</span> <span class="s2">"name=ExpDecay, Height=</span><span class="si">{}</span><span class="s2">, Lifetime=</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">height_fit</span><span class="p">,</span> <span class="n">lifetime_fit</span><span class="p">);</span>
+<span class="n">ProfileChiSquared1D</span><span class="p">(</span><span class="n">fitted_func</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s2">"ExpProfile"</span><span class="p">)</span>
 
 <span class="c1"># print left and right errors of parameters</span>
 <span class="c1"># you should note that they differ from the quadratic errors</span>
-<span class="n">error_table</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;ExpProfile_errors&quot;</span><span class="p">]</span>
+<span class="n">error_table</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"ExpProfile_errors"</span><span class="p">]</span>
 <span class="n">lerror_height</span> <span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">rerror_height</span><span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">4</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">qerror_height</span> <span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">9</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1-sigma error bounds of Height are </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">, with quadratic estimate </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lerror_height</span><span class="p">,</span> <span class="n">rerror_height</span><span class="p">,</span> <span class="n">qerror_height</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"1-sigma error bounds of Height are </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">, with quadratic estimate </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lerror_height</span><span class="p">,</span> <span class="n">rerror_height</span><span class="p">,</span> <span class="n">qerror_height</span><span class="p">))</span>
 
 <span class="n">lerror_lifetime</span> <span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">3</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">rerror_lifetime</span><span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">4</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">qerror_lifetime</span> <span class="o">=</span> <span class="n">error_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">9</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1-sigma error bounds of Lifetime are </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">, with quadratic estimate </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lerror_lifetime</span><span class="p">,</span> <span class="n">rerror_lifetime</span><span class="p">,</span> <span class="n">qerror_lifetime</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"1-sigma error bounds of Lifetime are </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">, with quadratic estimate </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lerror_lifetime</span><span class="p">,</span> <span class="n">rerror_lifetime</span><span class="p">,</span> <span class="n">qerror_lifetime</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>For each problem, the error table has the following columns:</p>
@@ -1696,8 +1696,8 @@ the parameter value.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/ProfileChiSquared1D.h">ProfileChiSquared1D.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/src/Algorithms/ProfileChiSquared1D.cpp">ProfileChiSquared1D.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/ProfileChiSquared1D.h">ProfileChiSquared1D.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/src/Algorithms/ProfileChiSquared1D.cpp">ProfileChiSquared1D.cpp</a></p>
 </section>
 </section>
 

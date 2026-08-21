@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FilterByXValue v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FilterByXValue v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/FilterByXValue-v1';</script>
@@ -1500,10 +1500,10 @@ instead.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example: Applying a Max in TOF</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Event&quot;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2"> events before filtering&quot;</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Event"</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">%i</span><span class="s2"> events before filtering"</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">())</span>
 <span class="n">wsOut</span> <span class="o">=</span> <span class="n">FilterByXValue</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">XMax</span><span class="o">=</span><span class="mi">15000</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2"> events after filtering&quot;</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">%i</span><span class="s2"> events after filtering"</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1512,11 +1512,11 @@ instead.</p>
 </pre></div>
 </div>
 <p><strong>Example: Applying Max and Min in Wavelength</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Event&quot;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2"> events before filtering&quot;</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Event"</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">"Wavelength"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">%i</span><span class="s2"> events before filtering"</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">())</span>
 <span class="n">wsOut</span> <span class="o">=</span> <span class="n">FilterByXValue</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">XMin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">XMax</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2"> events after filtering&quot;</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">%i</span><span class="s2"> events after filtering"</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1528,8 +1528,8 @@ instead.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/FilterByXValue.h">FilterByXValue.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/FilterByXValue.cpp">FilterByXValue.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/FilterByXValue.h">FilterByXValue.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/FilterByXValue.cpp">FilterByXValue.cpp</a></p>
 </section>
 </section>
 

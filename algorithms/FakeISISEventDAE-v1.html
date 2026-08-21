@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FakeISISEventDAE v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FakeISISEventDAE v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/FakeISISEventDAE-v1';</script>
@@ -1520,14 +1520,14 @@ event packets.</p>
         <span class="k">pass</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">captureLive</span><span class="p">():</span>
-    <span class="n">ConfigService</span><span class="o">.</span><span class="n">setFacility</span><span class="p">(</span><span class="s2">&quot;TEST_LIVE&quot;</span><span class="p">)</span>
+    <span class="n">ConfigService</span><span class="o">.</span><span class="n">setFacility</span><span class="p">(</span><span class="s2">"TEST_LIVE"</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># start a Live data listener updating every second, that rebins the data</span>
         <span class="c1"># and replaces the results each time with those of the last second.</span>
-        <span class="n">StartLiveData</span><span class="p">(</span><span class="n">Instrument</span><span class="o">=</span><span class="s1">&#39;ISIS_Event&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;wsOut&#39;</span><span class="p">,</span> <span class="n">UpdateEvery</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                      <span class="n">ProcessingAlgorithm</span><span class="o">=</span><span class="s1">&#39;Rebin&#39;</span><span class="p">,</span> <span class="n">ProcessingProperties</span><span class="o">=</span><span class="s1">&#39;Params=10000,1000,20000;PreserveEvents=1&#39;</span><span class="p">,</span>
-                      <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">StartLiveData</span><span class="p">(</span><span class="n">Instrument</span><span class="o">=</span><span class="s1">'ISIS_Event'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'wsOut'</span><span class="p">,</span> <span class="n">UpdateEvery</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                      <span class="n">ProcessingAlgorithm</span><span class="o">=</span><span class="s1">'Rebin'</span><span class="p">,</span> <span class="n">ProcessingProperties</span><span class="o">=</span><span class="s1">'Params=10000,1000,20000;PreserveEvents=1'</span><span class="p">,</span>
+                      <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s1">'Add'</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="c1"># give it a couple of seconds before stopping it</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -1544,12 +1544,12 @@ event packets.</p>
 <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># give it a small amount of time to get ready</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">thread</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Unable to start FakeDAE&quot;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Unable to start FakeDAE"</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="n">captureLive</span><span class="p">()</span>
 <span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error occurred starting live data&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Error occurred starting live data"</span><span class="p">)</span>
 <span class="k">finally</span><span class="p">:</span>
     <span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c1"># this must get hit</span>
 
@@ -1557,8 +1557,8 @@ event packets.</p>
 <span class="n">ConfigService</span><span class="o">.</span><span class="n">setFacility</span><span class="p">(</span><span class="n">oldFacility</span><span class="p">)</span>
 
 <span class="c1">#get the output workspace</span>
-<span class="n">wsOut</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;wsOut&quot;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The workspace contains </span><span class="si">%i</span><span class="s2"> events&quot;</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">())</span>
+<span class="n">wsOut</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"wsOut"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The workspace contains </span><span class="si">%i</span><span class="s2"> events"</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1569,8 +1569,8 @@ event packets.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/LiveData/inc/MantidLiveData/ISIS/FakeISISEventDAE.h">FakeISISEventDAE.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/LiveData/src/ISIS/FakeISISEventDAE.cpp">FakeISISEventDAE.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/LiveData/inc/MantidLiveData/ISIS/FakeISISEventDAE.h">FakeISISEventDAE.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/LiveData/src/ISIS/FakeISISEventDAE.cpp">FakeISISEventDAE.cpp</a></p>
 </section>
 </section>
 

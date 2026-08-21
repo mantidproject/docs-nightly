@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>StatisticsOfPeaksWorkspace v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>StatisticsOfPeaksWorkspace v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1557,29 +1557,29 @@ where <span class="math notranslate nohighlight">\(\langle I_{hkl}\rangle\)</spa
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - an example of running StatisticsOfPeaksWorkspace with PointGroup option.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load example peak data and find cell</span>
-<span class="n">peaks</span> <span class="o">=</span> <span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Peaks5637.integrate&#39;</span><span class="p">)</span>
+<span class="n">peaks</span> <span class="o">=</span> <span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">'Peaks5637.integrate'</span><span class="p">)</span>
 
 <span class="n">FindUBUsingFFT</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">MinD</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">MaxD</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">Tolerance</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 <span class="n">SelectCellWithForm</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">FormNumber</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">Apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">Tolerance</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
 <span class="n">OptimizeLatticeForCellType</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span>
-                           <span class="n">CellType</span><span class="o">=</span><span class="s1">&#39;Hexagonal&#39;</span><span class="p">,</span> <span class="n">Apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">Tolerance</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+                           <span class="n">CellType</span><span class="o">=</span><span class="s1">'Hexagonal'</span><span class="p">,</span> <span class="n">Apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">Tolerance</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
 <span class="c1"># Run the SortHKL algorithm</span>
-<span class="nb">sorted</span><span class="p">,</span> <span class="n">statistics_table</span><span class="p">,</span> <span class="n">equivI</span> <span class="o">=</span> <span class="n">StatisticsOfPeaksWorkspace</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">PointGroup</span><span class="o">=</span><span class="s1">&#39;-3m1 (Trigonal - Hexagonal)&#39;</span><span class="p">,</span>
-                                                      <span class="n">LatticeCentering</span><span class="o">=</span><span class="s1">&#39;Rhombohedrally centred, obverse&#39;</span><span class="p">,</span>
-                                                      <span class="n">SortBy</span><span class="o">=</span><span class="s1">&#39;Overall&#39;</span><span class="p">)</span>
+<span class="nb">sorted</span><span class="p">,</span> <span class="n">statistics_table</span><span class="p">,</span> <span class="n">equivI</span> <span class="o">=</span> <span class="n">StatisticsOfPeaksWorkspace</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">PointGroup</span><span class="o">=</span><span class="s1">'-3m1 (Trigonal - Hexagonal)'</span><span class="p">,</span>
+                                                      <span class="n">LatticeCentering</span><span class="o">=</span><span class="s1">'Rhombohedrally centred, obverse'</span><span class="p">,</span>
+                                                      <span class="n">SortBy</span><span class="o">=</span><span class="s1">'Overall'</span><span class="p">)</span>
 
 <span class="n">statistics</span> <span class="o">=</span> <span class="n">statistics_table</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">peak</span> <span class="o">=</span> <span class="nb">sorted</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;HKL of first peak in table </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peak</span><span class="o">.</span><span class="n">getH</span><span class="p">(),</span><span class="n">peak</span><span class="o">.</span><span class="n">getK</span><span class="p">(),</span><span class="n">peak</span><span class="o">.</span><span class="n">getL</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Multiplicity = </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;Multiplicity&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resolution Min = </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;Resolution Min&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resolution Max = </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;Resolution Max&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No. of Unique Reflections = </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;No. of Unique Reflections&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean ((I)/sd(I)) = </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;Mean ((I)/sd(I))&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rmerge = </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;Rmerge&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rpim = </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">&#39;Rpim&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"HKL of first peak in table </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peak</span><span class="o">.</span><span class="n">getH</span><span class="p">(),</span><span class="n">peak</span><span class="o">.</span><span class="n">getK</span><span class="p">(),</span><span class="n">peak</span><span class="o">.</span><span class="n">getL</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Multiplicity = </span><span class="si">%.2f</span><span class="s2">"</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">'Multiplicity'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Resolution Min = </span><span class="si">%.2f</span><span class="s2">"</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">'Resolution Min'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Resolution Max = </span><span class="si">%.2f</span><span class="s2">"</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">'Resolution Max'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"No. of Unique Reflections = </span><span class="si">%i</span><span class="s2">"</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">'No. of Unique Reflections'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Mean ((I)/sd(I)) = </span><span class="si">%.2f</span><span class="s2">"</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">'Mean ((I)/sd(I))'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Rmerge = </span><span class="si">%.2f</span><span class="s2">"</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">'Rmerge'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Rpim = </span><span class="si">%.2f</span><span class="s2">"</span> <span class="o">%</span> <span class="n">statistics</span><span class="p">[</span><span class="s1">'Rpim'</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1597,8 +1597,8 @@ Rpim = 10.08
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/inc/MantidCrystal/StatisticsOfPeaksWorkspace.h">StatisticsOfPeaksWorkspace.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/src/StatisticsOfPeaksWorkspace.cpp">StatisticsOfPeaksWorkspace.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/inc/MantidCrystal/StatisticsOfPeaksWorkspace.h">StatisticsOfPeaksWorkspace.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/src/StatisticsOfPeaksWorkspace.cpp">StatisticsOfPeaksWorkspace.cpp</a></p>
 </section>
 </section>
 

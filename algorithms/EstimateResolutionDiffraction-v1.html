@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>EstimateResolutionDiffraction v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>EstimateResolutionDiffraction v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1580,20 +1580,20 @@ the total resolution is these terms added in quadriture.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - estimate PG3 partial detectors’ resolution:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a Nexus file</span>
-<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;PG3_2538_2k.nxs&quot;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;PG3_2538&quot;</span><span class="p">)</span>
-<span class="c1"># Run the algorithm to estimate detector&#39;s resolution</span>
-<span class="n">EstimateResolutionDiffraction</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">&quot;PG3_2538&quot;</span><span class="p">,</span> <span class="n">DeltaTOF</span><span class="o">=</span><span class="mf">40.0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;PG3_Resolution&quot;</span><span class="p">,</span>
-                              <span class="n">PartialResolutionWorkspaces</span><span class="o">=</span><span class="s2">&quot;PG3_Resolution_partials&quot;</span><span class="p">)</span>
-<span class="n">resws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;PG3_Resolution&quot;</span><span class="p">]</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"PG3_2538_2k.nxs"</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"PG3_2538"</span><span class="p">)</span>
+<span class="c1"># Run the algorithm to estimate detector's resolution</span>
+<span class="n">EstimateResolutionDiffraction</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">"PG3_2538"</span><span class="p">,</span> <span class="n">DeltaTOF</span><span class="o">=</span><span class="mf">40.0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"PG3_Resolution"</span><span class="p">,</span>
+                              <span class="n">PartialResolutionWorkspaces</span><span class="o">=</span><span class="s2">"PG3_Resolution_partials"</span><span class="p">)</span>
+<span class="n">resws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"PG3_Resolution"</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Size of workspace &#39;PG3_Resolution&#39; =  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated resolution of detector of spectrum 0 =  </span><span class="si">{:.6f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated resolution of detector of spectrum 100 =  </span><span class="si">{:.6f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">100</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated resolution of detector of spectrum 999 =  </span><span class="si">{:.6f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">999</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Size of workspace 'PG3_Resolution' =  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Estimated resolution of detector of spectrum 0 =  </span><span class="si">{:.6f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Estimated resolution of detector of spectrum 100 =  </span><span class="si">{:.6f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">100</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Estimated resolution of detector of spectrum 999 =  </span><span class="si">{:.6f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">999</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Size of workspace &#39;PG3_Resolution&#39; =  1000
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Size of workspace 'PG3_Resolution' =  1000
 Estimated resolution of detector of spectrum 0 =  0.003239
 Estimated resolution of detector of spectrum 100 =  0.003236
 Estimated resolution of detector of spectrum 999 =  0.003548
@@ -1607,8 +1607,8 @@ Estimated resolution of detector of spectrum 999 =  0.003548
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/EstimateResolutionDiffraction.h">EstimateResolutionDiffraction.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/EstimateResolutionDiffraction.cpp">EstimateResolutionDiffraction.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/EstimateResolutionDiffraction.h">EstimateResolutionDiffraction.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/EstimateResolutionDiffraction.cpp">EstimateResolutionDiffraction.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PoldiAnalyseResiduals v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PoldiAnalyseResiduals v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/PoldiAnalyseResiduals-v1';</script>
@@ -1516,8 +1516,8 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p>The following example shows how to calculate the residuals following a fit performed with <a class="reference internal" href="PoldiFitPeaks2D-v1.html#algm-poldifitpeaks2d"><span class="std std-ref">PoldiFitPeaks2D v1</span></a> on Silicon data that had been collected for a calibration measurement.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data from file, load instrument and truncate data to correct size</span>
-<span class="n">data_Si_raw</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;Poldi2013Silicon.nxs&quot;</span><span class="p">)</span>
-<span class="n">LoadInstrument</span><span class="p">(</span><span class="n">data_Si_raw</span><span class="p">,</span> <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;POLDI&quot;</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data_Si_raw</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"Poldi2013Silicon.nxs"</span><span class="p">)</span>
+<span class="n">LoadInstrument</span><span class="p">(</span><span class="n">data_Si_raw</span><span class="p">,</span> <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">"POLDI"</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">data_Si</span> <span class="o">=</span> <span class="n">PoldiTruncateData</span><span class="p">(</span><span class="n">data_Si_raw</span><span class="p">)</span>
 
 <span class="c1"># Perform correlation method, find and refine peaks in correlation spectrum</span>
@@ -1525,25 +1525,25 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <span class="n">peaks_Si_raw</span> <span class="o">=</span> <span class="n">PoldiPeakSearch</span><span class="p">(</span><span class="n">correlation_Si</span><span class="p">)</span>
 
 <span class="c1"># Only use the 11 strongest peaks</span>
-<span class="n">DeleteTableRows</span><span class="p">(</span><span class="n">TableWorkspace</span><span class="o">=</span><span class="n">peaks_Si_raw</span><span class="p">,</span> <span class="n">Rows</span><span class="o">=</span><span class="s2">&quot;11-20&quot;</span><span class="p">)</span>
+<span class="n">DeleteTableRows</span><span class="p">(</span><span class="n">TableWorkspace</span><span class="o">=</span><span class="n">peaks_Si_raw</span><span class="p">,</span> <span class="n">Rows</span><span class="o">=</span><span class="s2">"11-20"</span><span class="p">)</span>
 
-<span class="n">peaks_Si_1D</span> <span class="o">=</span> <span class="n">PoldiFitPeaks1D</span><span class="p">(</span><span class="n">correlation_Si</span><span class="p">,</span> <span class="n">FwhmMultiples</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">PoldiPeakTable</span><span class="o">=</span><span class="s2">&quot;peaks_Si_raw&quot;</span><span class="p">,</span>
+<span class="n">peaks_Si_1D</span> <span class="o">=</span> <span class="n">PoldiFitPeaks1D</span><span class="p">(</span><span class="n">correlation_Si</span><span class="p">,</span> <span class="n">FwhmMultiples</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">PoldiPeakTable</span><span class="o">=</span><span class="s2">"peaks_Si_raw"</span><span class="p">,</span>
 
-                                <span class="n">FitPlotsWorkspace</span> <span class="o">=</span> <span class="s2">&quot;fit_plots_Si&quot;</span><span class="p">,</span>
+                                <span class="n">FitPlotsWorkspace</span> <span class="o">=</span> <span class="s2">"fit_plots_Si"</span><span class="p">,</span>
                                 <span class="n">Version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Fit peaks to original 2D data</span>
 <span class="n">fit_result_Si_2D</span> <span class="o">=</span> <span class="n">PoldiFitPeaks2D</span><span class="p">(</span><span class="n">data_Si</span><span class="p">,</span>
-                                <span class="n">PoldiPeakWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks_Si_1D&quot;</span><span class="p">,</span> <span class="n">MaximumIterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-                                <span class="n">RefinedPoldiPeakWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks_Si_2D&quot;</span><span class="p">,</span>
-                                <span class="n">Calculated1DSpectrum</span><span class="o">=</span><span class="s2">&quot;fit_result_Si_1D&quot;</span><span class="p">)</span>
+                                <span class="n">PoldiPeakWorkspace</span><span class="o">=</span><span class="s2">"peaks_Si_1D"</span><span class="p">,</span> <span class="n">MaximumIterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                <span class="n">RefinedPoldiPeakWorkspace</span><span class="o">=</span><span class="s2">"peaks_Si_2D"</span><span class="p">,</span>
+                                <span class="n">Calculated1DSpectrum</span><span class="o">=</span><span class="s2">"fit_result_Si_1D"</span><span class="p">)</span>
 
 <span class="c1"># Calculate residuals</span>
-<span class="n">residuals_Si</span> <span class="o">=</span> <span class="n">PoldiAnalyseResiduals</span><span class="p">(</span><span class="n">MeasuredCountData</span><span class="o">=</span><span class="n">data_Si</span><span class="p">,</span> <span class="n">FittedCountData</span><span class="o">=</span><span class="s2">&quot;fit_result_Si_2D&quot;</span><span class="p">,</span> <span class="n">MaxIterations</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">residuals_Si</span> <span class="o">=</span> <span class="n">PoldiAnalyseResiduals</span><span class="p">(</span><span class="n">MeasuredCountData</span><span class="o">=</span><span class="n">data_Si</span><span class="p">,</span> <span class="n">FittedCountData</span><span class="o">=</span><span class="s2">"fit_result_Si_2D"</span><span class="p">,</span> <span class="n">MaxIterations</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="n">residual_data</span> <span class="o">=</span> <span class="n">residuals_Si</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Residuals are in the range: [ </span><span class="si">{:.2f}</span><span class="s2"> ,  </span><span class="si">{:.2f}</span><span class="s2"> ]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">residual_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">residual_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Residuals are in the range: [ </span><span class="si">{:.2f}</span><span class="s2"> ,  </span><span class="si">{:.2f}</span><span class="s2"> ]"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">residual_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">residual_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>The output contains the range in which residuals are found:</p>
@@ -1554,8 +1554,8 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/SINQ/inc/MantidSINQ/PoldiAnalyseResiduals.h">PoldiAnalyseResiduals.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/SINQ/src/PoldiAnalyseResiduals.cpp">PoldiAnalyseResiduals.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/SINQ/inc/MantidSINQ/PoldiAnalyseResiduals.h">PoldiAnalyseResiduals.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/SINQ/src/PoldiAnalyseResiduals.cpp">PoldiAnalyseResiduals.cpp</a></p>
 </section>
 </section>
 

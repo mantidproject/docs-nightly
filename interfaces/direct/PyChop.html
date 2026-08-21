@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PyChop &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PyChop &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -499,7 +499,7 @@ will be utilised for subsequent calculations instead of the default value.</p>
 This is encapsulated in the <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> class within the <code class="docutils literal notranslate"><span class="pre">pychop.Instruments</span></code> module. Within
 Mantid, to do a single point calculation of the flux and resolution</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pychop.Instruments</span><span class="w"> </span><span class="kn">import</span> <span class="n">Instrument</span>
-<span class="n">resolution</span><span class="p">,</span> <span class="n">flux</span> <span class="o">=</span> <span class="n">Instrument</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">inst</span><span class="o">=</span><span class="s1">&#39;maps&#39;</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">ei</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">etrans</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">550</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+<span class="n">resolution</span><span class="p">,</span> <span class="n">flux</span> <span class="o">=</span> <span class="n">Instrument</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">inst</span><span class="o">=</span><span class="s1">'maps'</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="s1">'a'</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">ei</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">etrans</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">550</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The parameters are in order, so <code class="docutils literal notranslate"><span class="pre">Instrument.calculate('maps','a',500,600,range(0,550,50))</span></code>
@@ -511,8 +511,8 @@ with four elements, so the desired value can be recovered using</p>
 <div class="math notranslate nohighlight">
 \[res = resolution[0] + resolution[1]\Delta E + resolution[2]\Delta E^2 + resolution[3]\Delta E^3\]</div>
 <p>In addition, an object orient interface is provided:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mapsres</span> <span class="o">=</span> <span class="n">Instrument</span><span class="p">(</span><span class="s1">&#39;maps&#39;</span><span class="p">)</span>
-<span class="n">mapsres</span><span class="o">.</span><span class="n">setChopper</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mapsres</span> <span class="o">=</span> <span class="n">Instrument</span><span class="p">(</span><span class="s1">'maps'</span><span class="p">)</span>
+<span class="n">mapsres</span><span class="o">.</span><span class="n">setChopper</span><span class="p">(</span><span class="s1">'a'</span><span class="p">)</span>
 <span class="n">mapsres</span><span class="o">.</span><span class="n">setFrequency</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
 <span class="n">mapsres</span><span class="o">.</span><span class="n">setEi</span><span class="p">(</span><span class="mi">600</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">mapsres</span><span class="o">.</span><span class="n">getResolution</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">550</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
@@ -610,8 +610,8 @@ So the integration evaluates to</p>
 T G Perring, Proceedings of ICANS XII (1993)</a></p>
 <p id="id3">[2] RALT-028-94: High energy magnetic excitations in hexagonal cobalt,
 T G Perring, Ph.D. Thesis, University of Cambridge (1991)</p>
-<p id="id4">[3] <a class="reference external" href="http://dx.doi.org/10.1016/0029-554X(59)90066-7">M. Marseguerra and G. Pauli, Neutron transmission probability through a
-curved revolving slit, Nucl. Inst. Meth. 4 (1959) 140</a></p>
+<p id="id4">[3] <a class="reference external" href="https://doi.org/10.1016/0029-554X(59)90066-7">M. Marseguerra and G. Pauli, Neutron transmission probability through a
+curved revolving slit, Nuclear Instruments and Methods. 4 (1959) 140</a></p>
 <p id="id5">[4] RAL-85-052: MARS - A Multi-Angle Rotor Spectrometer for the SNS,
 C J Carlile, A D Taylor and W G Williams (1985)</p>
 <p><strong>Category</strong>: <a class="reference external" href="../ILL/categories/Interfaces.html">Interfaces</a></p>

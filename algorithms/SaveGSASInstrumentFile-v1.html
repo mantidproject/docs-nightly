@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SaveGSASInstrumentFile v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SaveGSASInstrumentFile v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1599,22 +1599,22 @@ input.</p></li>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - save GSAS instrument file from a Fullprof .irf file:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the algorithm to save for GSAS instrument file</span>
-<span class="n">SaveGSASInstrumentFile</span><span class="p">(</span><span class="n">InputFileName</span> <span class="o">=</span> <span class="s2">&quot;PG3_Bank1.irf&quot;</span><span class="p">,</span> <span class="n">OutputFileName</span> <span class="o">=</span> <span class="s2">&quot;/tmp/PG3_Bank1.iparam&quot;</span><span class="p">,</span>
-  <span class="n">BankIDs</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Instrument</span> <span class="o">=</span> <span class="s2">&quot;powgen&quot;</span><span class="p">,</span> <span class="n">ChopperFrequency</span> <span class="o">=</span> <span class="s2">&quot;60&quot;</span><span class="p">,</span>
-  <span class="n">IDLine</span> <span class="o">=</span> <span class="s2">&quot;60Hz 2011 Bank 1&quot;</span><span class="p">,</span> <span class="n">Sample</span> <span class="o">=</span> <span class="s2">&quot;LaB6&quot;</span><span class="p">,</span> <span class="n">L1</span> <span class="o">=</span> <span class="mf">60.0</span><span class="p">,</span> <span class="n">TwoTheta</span> <span class="o">=</span> <span class="mf">90.0</span><span class="p">)</span>
+<span class="n">SaveGSASInstrumentFile</span><span class="p">(</span><span class="n">InputFileName</span> <span class="o">=</span> <span class="s2">"PG3_Bank1.irf"</span><span class="p">,</span> <span class="n">OutputFileName</span> <span class="o">=</span> <span class="s2">"/tmp/PG3_Bank1.iparam"</span><span class="p">,</span>
+  <span class="n">BankIDs</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Instrument</span> <span class="o">=</span> <span class="s2">"powgen"</span><span class="p">,</span> <span class="n">ChopperFrequency</span> <span class="o">=</span> <span class="s2">"60"</span><span class="p">,</span>
+  <span class="n">IDLine</span> <span class="o">=</span> <span class="s2">"60Hz 2011 Bank 1"</span><span class="p">,</span> <span class="n">Sample</span> <span class="o">=</span> <span class="s2">"LaB6"</span><span class="p">,</span> <span class="n">L1</span> <span class="o">=</span> <span class="mf">60.0</span><span class="p">,</span> <span class="n">TwoTheta</span> <span class="o">=</span> <span class="mf">90.0</span><span class="p">)</span>
 
 <span class="c1"># Load GSAS parameter files</span>
-<span class="n">gfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/tmp/PG3_Bank1.iparam&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">gfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"/tmp/PG3_Bank1.iparam"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span>
 <span class="n">lines</span> <span class="o">=</span> <span class="n">gfile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 <span class="n">gfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="c1"># Print out some result</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of lines in GSAS instrument file:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Line 0:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Line 1:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Line 2:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Line 3:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Line 305:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">305</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of lines in GSAS instrument file:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Line 0:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Line 1:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Line 2:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Line 3:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Line 305:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">305</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1630,8 +1630,8 @@ Line 305:  INS  1PAB590   0.00213   0.46016   1.99061  -3.12296
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/SaveGSASInstrumentFile.h">SaveGSASInstrumentFile.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/SaveGSASInstrumentFile.cpp">SaveGSASInstrumentFile.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/SaveGSASInstrumentFile.h">SaveGSASInstrumentFile.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/SaveGSASInstrumentFile.cpp">SaveGSASInstrumentFile.cpp</a></p>
 </section>
 </section>
 

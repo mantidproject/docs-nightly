@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>NormaliseToMonitor v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>NormaliseToMonitor v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1594,17 +1594,17 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - Normalise to Monitor ID=1</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span><span class="n">Load</span><span class="p">(</span><span class="s1">&#39;IRS26173.raw&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span><span class="n">Load</span><span class="p">(</span><span class="s1">'IRS26173.raw'</span><span class="p">)</span>
 
 <span class="n">wsN</span> <span class="o">=</span> <span class="n">NormaliseToMonitor</span><span class="p">(</span> <span class="n">ws</span><span class="p">,</span> <span class="n">MonitorID</span><span class="o">=</span><span class="mi">1</span> <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Without normalisation&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Monitor ID=1 </span><span class="si">{:.3f}</span><span class="s2">, </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selected data </span><span class="si">{:.6f}</span><span class="s2">, </span><span class="si">{:.6f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">6</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Without normalisation"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Monitor ID=1 </span><span class="si">{:.3f}</span><span class="s2">, </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Selected data </span><span class="si">{:.6f}</span><span class="s2">, </span><span class="si">{:.6f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">6</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;With Normalisation&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Monitor ID=1 </span><span class="si">{:.3f}</span><span class="s2">, </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsN</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">wsN</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selected data </span><span class="si">{:.6f}</span><span class="s2">, </span><span class="si">{:.6f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsN</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">6</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">wsN</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"With Normalisation"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Monitor ID=1 </span><span class="si">{:.3f}</span><span class="s2">, </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsN</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">wsN</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Selected data </span><span class="si">{:.6f}</span><span class="s2">, </span><span class="si">{:.6f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsN</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">6</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">wsN</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1620,8 +1620,8 @@ Selected data 1.485135, 0.741801
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/NormaliseToMonitor.h">NormaliseToMonitor.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/NormaliseToMonitor.cpp">NormaliseToMonitor.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/NormaliseToMonitor.h">NormaliseToMonitor.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/NormaliseToMonitor.cpp">NormaliseToMonitor.cpp</a></p>
 </section>
 </section>
 

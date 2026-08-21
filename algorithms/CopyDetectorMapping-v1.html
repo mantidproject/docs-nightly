@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CopyDetectorMapping v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CopyDetectorMapping v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/CopyDetectorMapping-v1';</script>
@@ -1495,25 +1495,25 @@ histograms.</p>
 <h2>Usage:<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example: CopyDetectorMapping on generated workspaces</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a sample workspace and a workspace to copy mapping to</span>
-<span class="n">to_match</span> <span class="o">=</span> <span class="n">CreateSimulationWorkspace</span><span class="p">(</span><span class="n">Instrument</span><span class="o">=</span><span class="s1">&#39;IRIS&#39;</span><span class="p">,</span>
-                                     <span class="n">BinParams</span><span class="o">=</span><span class="s1">&#39;-0.5,0.05,0.5&#39;</span><span class="p">)</span>
+<span class="n">to_match</span> <span class="o">=</span> <span class="n">CreateSimulationWorkspace</span><span class="p">(</span><span class="n">Instrument</span><span class="o">=</span><span class="s1">'IRIS'</span><span class="p">,</span>
+                                     <span class="n">BinParams</span><span class="o">=</span><span class="s1">'-0.5,0.05,0.5'</span><span class="p">)</span>
 <span class="n">to_remap</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Group the spectra in the sample workspace</span>
-<span class="n">grouping_ws</span> <span class="o">=</span> <span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s1">&#39;IRIS&#39;</span><span class="p">,</span>
+<span class="n">grouping_ws</span> <span class="o">=</span> <span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s1">'IRIS'</span><span class="p">,</span>
                                       <span class="n">FixedGroupCount</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-                                      <span class="n">ComponentName</span><span class="o">=</span><span class="s1">&#39;graphite&#39;</span><span class="p">)</span>
+                                      <span class="n">ComponentName</span><span class="o">=</span><span class="s1">'graphite'</span><span class="p">)</span>
 <span class="n">to_match</span> <span class="o">=</span> <span class="n">GroupDetectors</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">to_match</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                          <span class="n">CopyGroupingFromWorkspace</span><span class="o">=</span><span class="s1">&#39;grouping_ws&#39;</span><span class="p">)</span>
+                          <span class="n">CopyGroupingFromWorkspace</span><span class="o">=</span><span class="s1">'grouping_ws'</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Spectrum 0 detectors before copy: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">to_remap</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getDetectorIDs</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Spectrum 0 detectors before copy: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">to_remap</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getDetectorIDs</span><span class="p">()))</span>
 
 <span class="c1"># Copy the grouping to another workspace</span>
-<span class="n">CopyDetectorMapping</span><span class="p">(</span><span class="n">WorkspaceToMatch</span><span class="o">=</span><span class="s1">&#39;to_match&#39;</span><span class="p">,</span>
-                    <span class="n">WorkspaceToRemap</span><span class="o">=</span><span class="s1">&#39;to_remap&#39;</span><span class="p">,</span>
+<span class="n">CopyDetectorMapping</span><span class="p">(</span><span class="n">WorkspaceToMatch</span><span class="o">=</span><span class="s1">'to_match'</span><span class="p">,</span>
+                    <span class="n">WorkspaceToRemap</span><span class="o">=</span><span class="s1">'to_remap'</span><span class="p">,</span>
                     <span class="n">IndexBySpectrumNumber</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Spectrum 0 detectors after copy: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">to_remap</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getDetectorIDs</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Spectrum 0 detectors after copy: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">to_remap</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getDetectorIDs</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1525,8 +1525,8 @@ Spectrum 0 detectors after copy: set(3,4,5,6,7)
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/CopyDetectorMapping.h">CopyDetectorMapping.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/CopyDetectorMapping.cpp">CopyDetectorMapping.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/CopyDetectorMapping.h">CopyDetectorMapping.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/CopyDetectorMapping.cpp">CopyDetectorMapping.cpp</a></p>
 </section>
 </section>
 

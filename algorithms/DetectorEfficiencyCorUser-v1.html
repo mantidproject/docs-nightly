@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DetectorEfficiencyCorUser v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>DetectorEfficiencyCorUser v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1517,20 +1517,20 @@ and is set up in the TOFTOF instrument parameters file.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># a sample workspace with a sample instrument</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="c1"># convert to Wavelength</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">&quot;DeltaE&quot;</span><span class="p">,</span><span class="n">EMode</span><span class="o">=</span><span class="s2">&quot;Direct&quot;</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="mf">3.27</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">"DeltaE"</span><span class="p">,</span><span class="n">EMode</span><span class="o">=</span><span class="s2">"Direct"</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="mf">3.27</span><span class="p">)</span>
 
-<span class="n">correction_formula</span> <span class="o">=</span> <span class="s2">&quot;exp(-0.0565/sqrt(e))*(1.0-exp(-3.284/sqrt(e)))&quot;</span>
-<span class="n">SetInstrumentParameter</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">ParameterName</span><span class="o">=</span><span class="s2">&quot;formula_eff&quot;</span><span class="p">,</span><span class="n">Value</span><span class="o">=</span><span class="n">correction_formula</span><span class="p">)</span>
+<span class="n">correction_formula</span> <span class="o">=</span> <span class="s2">"exp(-0.0565/sqrt(e))*(1.0-exp(-3.284/sqrt(e)))"</span>
+<span class="n">SetInstrumentParameter</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">ParameterName</span><span class="o">=</span><span class="s2">"formula_eff"</span><span class="p">,</span><span class="n">Value</span><span class="o">=</span><span class="n">correction_formula</span><span class="p">)</span>
 
 
 <span class="c1"># Now we are ready to run the correction</span>
 <span class="n">wsCorrected</span> <span class="o">=</span> <span class="n">DetectorEfficiencyCorUser</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
 
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The correction for the data by the user defined function.&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In this case: &quot;</span> <span class="o">+</span> <span class="n">correction_formula</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The correction for the data by the user defined function."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"In this case: "</span> <span class="o">+</span> <span class="n">correction_formula</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">wsCorrected</span><span class="o">.</span><span class="n">blocksize</span><span class="p">(),</span><span class="mi">10</span><span class="p">):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The correct value in bin </span><span class="si">{}</span><span class="s2"> is </span><span class="si">{:.2f}</span><span class="s2"> compared to </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">wsCorrected</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">"The correct value in bin </span><span class="si">{}</span><span class="s2"> is </span><span class="si">{:.2f}</span><span class="s2"> compared to </span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">wsCorrected</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1555,8 +1555,8 @@ Nuclear Instruments and Methods in Physics Research Section A, <strong>580</stro
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/DetectorEfficiencyCorUser.h">DetectorEfficiencyCorUser.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/DetectorEfficiencyCorUser.cpp">DetectorEfficiencyCorUser.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/DetectorEfficiencyCorUser.h">DetectorEfficiencyCorUser.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/DetectorEfficiencyCorUser.cpp">DetectorEfficiencyCorUser.cpp</a></p>
 </section>
 </section>
 

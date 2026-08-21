@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadSpiceAscii v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>LoadSpiceAscii v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/LoadSpiceAscii-v1';</script>
@@ -1536,24 +1536,24 @@ stores the run information, such as scan number, IPTS, sample information and et
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - load a SPICE .dat file:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LoadSpiceAscii</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;HB2A_exp0231_scan0001.dat&quot;</span><span class="p">,</span>
-      <span class="n">IntegerSampleLogNames</span><span class="o">=</span><span class="s2">&quot;Sum of Counts, scan, mode, experiment_number&quot;</span><span class="p">,</span>
-      <span class="n">FloatSampleLogNames</span><span class="o">=</span><span class="s2">&quot;samplemosaic, preset_value, Full Width Half-Maximum, Center of Mass&quot;</span><span class="p">,</span>
-      <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;HB2A_0231_0001_Data&quot;</span><span class="p">,</span>
-      <span class="n">RunInfoWorkspace</span><span class="o">=</span><span class="s2">&quot;HB2A_0231_Info&quot;</span><span class="p">)</span>
-<span class="n">datatbws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;HB2A_0231_0001_Data&#39;</span><span class="p">]</span>
-<span class="n">infows</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;HB2A_0231_Info&#39;</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LoadSpiceAscii</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"HB2A_exp0231_scan0001.dat"</span><span class="p">,</span>
+      <span class="n">IntegerSampleLogNames</span><span class="o">=</span><span class="s2">"Sum of Counts, scan, mode, experiment_number"</span><span class="p">,</span>
+      <span class="n">FloatSampleLogNames</span><span class="o">=</span><span class="s2">"samplemosaic, preset_value, Full Width Half-Maximum, Center of Mass"</span><span class="p">,</span>
+      <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"HB2A_0231_0001_Data"</span><span class="p">,</span>
+      <span class="n">RunInfoWorkspace</span><span class="o">=</span><span class="s2">"HB2A_0231_Info"</span><span class="p">)</span>
+<span class="n">datatbws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'HB2A_0231_0001_Data'</span><span class="p">]</span>
+<span class="n">infows</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'HB2A_0231_Info'</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of measuring points = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datatbws</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of columns in data workspace = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datatbws</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of measuring points = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datatbws</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of columns in data workspace = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datatbws</span><span class="o">.</span><span class="n">columnCount</span><span class="p">()))</span>
 <span class="n">propertylist</span> <span class="o">=</span> <span class="n">infows</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getProperties</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of run information = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">propertylist</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of run information = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">propertylist</span><span class="p">)))</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">propertylist</span><span class="p">)):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Property </span><span class="si">{}</span><span class="s2">: Name = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">propertylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum of Counts = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">infows</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;Sum of Counts&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Center of Mass = </span><span class="si">{:.5f}</span><span class="s2"> +/- </span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-       <span class="n">infows</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;Center of Mass&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
-       <span class="n">infows</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;Center of Mass.error&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Property </span><span class="si">{}</span><span class="s2">: Name = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">propertylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Sum of Counts = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">infows</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">"Sum of Counts"</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Center of Mass = </span><span class="si">{:.5f}</span><span class="s2"> +/- </span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+       <span class="n">infows</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">"Center of Mass"</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+       <span class="n">infows</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">"Center of Mass.error"</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1603,8 +1603,8 @@ Center of Mass = 9.00076 +/- 0.00921
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/LoadSpiceAscii.h">LoadSpiceAscii.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/LoadSpiceAscii.cpp">LoadSpiceAscii.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/LoadSpiceAscii.h">LoadSpiceAscii.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/LoadSpiceAscii.cpp">LoadSpiceAscii.cpp</a></p>
 </section>
 </section>
 

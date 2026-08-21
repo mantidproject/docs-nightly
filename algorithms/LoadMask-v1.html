@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadMask v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>LoadMask v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/LoadMask-v1';</script>
@@ -1501,7 +1501,7 @@ The <code class="docutils literal notranslate"><span class="pre">Instrument</spa
 <section id="xml-file-format">
 <h3>XML File Format<a class="headerlink" href="#xml-file-format" title="Link to this heading">#</a></h3>
 <p>Example 1:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 &lt;detector-masking&gt;
  &lt;group&gt;
   &lt;detids&gt;3,34-44,47&lt;/detids&gt;
@@ -1555,19 +1555,19 @@ See the Spectra mask usage sample below.</p>
 and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;HYS_11092_event.nxs&#39;</span><span class="p">)</span>
-<span class="n">mask</span> <span class="o">=</span> <span class="n">LoadMask</span><span class="p">(</span><span class="s1">&#39;HYS&#39;</span><span class="p">,</span> <span class="s1">&#39;HYS_mask.xml&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'HYS_11092_event.nxs'</span><span class="p">)</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">LoadMask</span><span class="p">(</span><span class="s1">'HYS'</span><span class="p">,</span> <span class="s1">'HYS_mask.xml'</span><span class="p">)</span>
 <span class="c1"># To check if mask loaded, apply it</span>
 <span class="n">MaskDetectors</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">MaskedWorkspace</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
 <span class="c1"># One can alternatively do</span>
 <span class="c1"># ws.maskDetectors(MaskedWorkspace=mask)</span>
 
 <span class="c1"># Check some pixels</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is detector 0 masked: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is detector 6245 masked: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">6245</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is detector 11464 masked: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">11464</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is detector 17578 masked: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">17578</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is detector 20475 masked: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">20475</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Is detector 0 masked: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Is detector 6245 masked: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">6245</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Is detector 11464 masked: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">11464</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Is detector 17578 masked: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">17578</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Is detector 20475 masked: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="mi">20475</span><span class="p">)</span><span class="o">.</span><span class="n">isMasked</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1580,26 +1580,26 @@ Is detector 20475 masked: True
 </div>
 <p><strong>Example: Using reference workspace with Spectra Mask</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load workspace with real spectra-derector mask</span>
-<span class="n">rws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;MAR11001.raw&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;realWs&#39;</span><span class="p">,</span><span class="n">InlcudeMonitors</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+<span class="n">rws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">'MAR11001.raw'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'realWs'</span><span class="p">,</span><span class="n">InlcudeMonitors</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 
 <span class="c1"># Create sample mask</span>
-<span class="n">MaskDetectors</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="n">rws</span><span class="p">,</span> <span class="n">SpectraList</span><span class="o">=</span><span class="s1">&#39;10,11,12,13,100,110,120,130,140,200,300&#39;</span><span class="p">)</span>
-<span class="n">masked_list</span> <span class="o">=</span> <span class="n">ExportSpectraMask</span><span class="p">(</span><span class="n">rws</span><span class="p">,</span><span class="s1">&#39;SampleMask&#39;</span><span class="p">)</span>
-<span class="n">file2remove</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s1">&#39;defaultsave.directory&#39;</span><span class="p">),</span><span class="s1">&#39;SampleMask.msk&#39;</span><span class="p">)</span>
+<span class="n">MaskDetectors</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="n">rws</span><span class="p">,</span> <span class="n">SpectraList</span><span class="o">=</span><span class="s1">'10,11,12,13,100,110,120,130,140,200,300'</span><span class="p">)</span>
+<span class="n">masked_list</span> <span class="o">=</span> <span class="n">ExportSpectraMask</span><span class="p">(</span><span class="n">rws</span><span class="p">,</span><span class="s1">'SampleMask'</span><span class="p">)</span>
+<span class="n">file2remove</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s1">'defaultsave.directory'</span><span class="p">),</span><span class="s1">'SampleMask.msk'</span><span class="p">)</span>
 
 <span class="c1">#</span>
 
 <span class="c1"># Load sample  spectra mask using 1:1 instrument</span>
-<span class="n">mask1to1ws</span><span class="o">=</span> <span class="n">LoadMask</span><span class="p">(</span><span class="s1">&#39;MARI&#39;</span><span class="p">,</span><span class="s1">&#39;SampleMask.msk&#39;</span><span class="p">)</span>
+<span class="n">mask1to1ws</span><span class="o">=</span> <span class="n">LoadMask</span><span class="p">(</span><span class="s1">'MARI'</span><span class="p">,</span><span class="s1">'SampleMask.msk'</span><span class="p">)</span>
 
 <span class="c1"># Apply spectra mask using real workspace spectra-detector map.</span>
 <span class="c1"># Note that rws does not need to be masked like its here, We use it masked here only to avoid overhead of loading it again</span>
 <span class="c1"># it just needs to contain the same spectra-detector map as the initial workspace</span>
 <span class="c1"># you may want to try rows below to be sure:</span>
-<span class="c1">#rws1 = Load(Filename=r&#39;MAR11001.raw&#39;, OutputWorkspace=&#39;realWs1&#39;,InlcudeMonitors=True);</span>
+<span class="c1">#rws1 = Load(Filename=r'MAR11001.raw', OutputWorkspace='realWs1',InlcudeMonitors=True);</span>
 
 <span class="c1"># Load Mask using  instrument and spectra-detector map provided with source workspace</span>
-<span class="n">maskRealSDM</span><span class="o">=</span><span class="n">LoadMask</span><span class="p">(</span><span class="s1">&#39;MARI&#39;</span><span class="p">,</span><span class="s1">&#39;SampleMask.msk&#39;</span><span class="p">,</span><span class="n">RefWorkspace</span><span class="o">=</span><span class="n">rws</span><span class="p">)</span>
+<span class="n">maskRealSDM</span><span class="o">=</span><span class="n">LoadMask</span><span class="p">(</span><span class="s1">'MARI'</span><span class="p">,</span><span class="s1">'SampleMask.msk'</span><span class="p">,</span><span class="n">RefWorkspace</span><span class="o">=</span><span class="n">rws</span><span class="p">)</span>
 
 <span class="c1"># Clear up rubbish</span>
 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">file2remove</span><span class="p">)</span>
@@ -1630,25 +1630,25 @@ Is detector 20475 masked: True
             <span class="n">MaskedDet_R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">getID</span><span class="p">())</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">pass</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** ************************************ **********************************************&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** Masked Spec. Id(s):  </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">masked_list</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;*** Initial workspace masking parameters **********************************************&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Masked Spectra Numbers:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Sig0Masked</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Masked Detector IDs   :  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Det0Masked</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** One to one mask workspace has masked the same spectra numbers but different detectors&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ws 1to1 Masked spectra:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MaskedSp1to1</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ws 1to1 Masked DedIDs :  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MaskedDet1to1</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** Real spectra-det-map workspace has masked different spectra numbers but the same detectors&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ws RSDM Masked spectra:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MaskedSp_R</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ws RSDM Masked DedIDs :  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MaskedDet_R</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** indeed the same:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"*** ************************************ **********************************************"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"*** Masked Spec. Id(s):  </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">masked_list</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">"*** Initial workspace masking parameters **********************************************"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Masked Spectra Numbers:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Sig0Masked</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Masked Detector IDs   :  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Det0Masked</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"*** One to one mask workspace has masked the same spectra numbers but different detectors"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ws 1to1 Masked spectra:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MaskedSp1to1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ws 1to1 Masked DedIDs :  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MaskedDet1to1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"*** Real spectra-det-map workspace has masked different spectra numbers but the same detectors"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ws RSDM Masked spectra:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MaskedSp_R</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ws RSDM Masked DedIDs :  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MaskedDet_R</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"*** indeed the same:"</span><span class="p">)</span>
 <span class="n">Det0Masked</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 <span class="n">MaskedDet_R</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sorted initial DetIDs :  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Det0Masked</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sorted RSDM    DedIDs :  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MaskedDet_R</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** ************************************ **********************************************&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** note spectra with id 4 is a monitor, not present in the masking workspaces&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** ************************************ **********************************************&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"sorted initial DetIDs :  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Det0Masked</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"sorted RSDM    DedIDs :  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MaskedDet_R</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"*** ************************************ **********************************************"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"*** note spectra with id 4 is a monitor, not present in the masking workspaces"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"*** ************************************ **********************************************"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1675,8 +1675,8 @@ sorted RSDM    DedIDs :  [2220, 2524, 4106, 4107, 4108, 4109, 4608, 4702, 4712, 
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/LoadMask.h">LoadMask.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/LoadMask.cpp">LoadMask.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/LoadMask.h">LoadMask.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/LoadMask.cpp">LoadMask.cpp</a></p>
 </section>
 </section>
 

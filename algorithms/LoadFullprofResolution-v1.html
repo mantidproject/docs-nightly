@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadFullprofResolution v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>LoadFullprofResolution v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/LoadFullprofResolution-v1';</script>
@@ -1528,44 +1528,44 @@ part of the pseudo-Voigt.</p>
 and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;MUSR00015189&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"MUSR00015189"</span><span class="p">)</span>
 
 <span class="c1"># Run algorithm. MUSR_01.irf has NPROF=13 in 2nd line, so IkedaCarpenterPV will be used.</span>
-<span class="n">tws</span> <span class="o">=</span> <span class="n">LoadFullprofResolution</span><span class="p">(</span><span class="s2">&quot;MUSR_01.irf&quot;</span><span class="p">,</span><span class="n">Banks</span><span class="o">=</span><span class="s2">&quot;3,5&quot;</span><span class="p">,</span> <span class="n">Workspace</span><span class="o">=</span><span class="s2">&quot;ws&quot;</span><span class="p">)</span>
+<span class="n">tws</span> <span class="o">=</span> <span class="n">LoadFullprofResolution</span><span class="p">(</span><span class="s2">"MUSR_01.irf"</span><span class="p">,</span><span class="n">Banks</span><span class="o">=</span><span class="s2">"3,5"</span><span class="p">,</span> <span class="n">Workspace</span><span class="o">=</span><span class="s2">"ws"</span><span class="p">)</span>
 
 <span class="c1">#Print first four rows of output table workspace</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 4 rows of OutputTableWorkspace&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First 4 rows of OutputTableWorkspace"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]:</span>
    <span class="n">row</span> <span class="o">=</span> <span class="n">tws</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;{{&#39;Name&#39;: &#39;</span><span class="si">{}</span><span class="s2">&#39;, &#39;Value_3&#39;: </span><span class="si">{:.2f}</span><span class="s2">, &#39;Value_5&#39;: </span><span class="si">{:.2f}</span><span class="s2">}}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Value_3&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Value_5&quot;</span><span class="p">]))</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">"{{'Name': '</span><span class="si">{}</span><span class="s2">', 'Value_3': </span><span class="si">{:.2f}</span><span class="s2">, 'Value_5': </span><span class="si">{:.2f}</span><span class="s2">}}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Value_3"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Value_5"</span><span class="p">]))</span>
 
 <span class="c1"># Get the instrument with the parameters</span>
 <span class="n">inst</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span>
 
 <span class="c1"># demonstrate that the type of parameters saved are fitting parameters</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of 3 parameters got from instrument in workspace&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Alpha0 type = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">&#39;Alpha0&#39;</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Beta0 type = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">&#39;Beta0&#39;</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SigmaSquared type = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">&#39;SigmaSquared&#39;</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Type of 3 parameters got from instrument in workspace"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Alpha0 type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">'Alpha0'</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Beta0 type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">'Beta0'</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"SigmaSquared type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">'SigmaSquared'</span><span class="p">)))</span>
 
 <span class="c1"># As of the time of writing,</span>
 <span class="c1"># fitting instrument parameters cannot be</span>
 <span class="c1"># accessed through the python API.</span>
 <span class="c1"># They can be accessed via the file in the lext line, if uncommented:</span>
-<span class="c1">#SaveParameterFile(ws[0][0], &quot;instParam.xml&quot;)</span>
+<span class="c1">#SaveParameterFile(ws[0][0], "instParam.xml")</span>
 
 <span class="c1">#This file should contain the lines shown next and similar for other parameters:</span>
-<span class="c1">#            &lt;parameter name=&quot;Alpha0&quot;&gt;</span>
-<span class="c1">#                    &lt;value val=&quot;0 , IkedaCarpenterPV , Alpha0 ,  ,  ,  , Alpha0= , 1.5971070000000001 ,  , TOF , linear ; TOF ; TOF&quot;/&gt;</span>
+<span class="c1">#            &lt;parameter name="Alpha0"&gt;</span>
+<span class="c1">#                    &lt;value val="0 , IkedaCarpenterPV , Alpha0 ,  ,  ,  , Alpha0= , 1.5971070000000001 ,  , TOF , linear ; TOF ; TOF"/&gt;</span>
 <span class="c1">#            &lt;/parameter&gt;</span>
 </pre></div>
 </div>
 <p>Output:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>First 4 rows of OutputTableWorkspace
-{&#39;Name&#39;: &#39;BANK&#39;, &#39;Value_3&#39;: 3.00, &#39;Value_5&#39;: 5.00}
-{&#39;Name&#39;: &#39;Alph0&#39;, &#39;Value_3&#39;: 1.60, &#39;Value_5&#39;: 1.61}
-{&#39;Name&#39;: &#39;Alph1&#39;, &#39;Value_3&#39;: 1.50, &#39;Value_5&#39;: 1.30}
-{&#39;Name&#39;: &#39;Beta0&#39;, &#39;Value_3&#39;: 33.57, &#39;Value_5&#39;: 37.57}
+{'Name': 'BANK', 'Value_3': 3.00, 'Value_5': 5.00}
+{'Name': 'Alph0', 'Value_3': 1.60, 'Value_5': 1.61}
+{'Name': 'Alph1', 'Value_3': 1.50, 'Value_5': 1.30}
+{'Name': 'Beta0', 'Value_3': 33.57, 'Value_5': 37.57}
 Type of 3 parameters got from instrument in workspace
 Alpha0 type = fitting
 Beta0 type = fitting
@@ -1576,8 +1576,8 @@ SigmaSquared type = fitting
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/LoadFullprofResolution.h">LoadFullprofResolution.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/LoadFullprofResolution.cpp">LoadFullprofResolution.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/LoadFullprofResolution.h">LoadFullprofResolution.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/LoadFullprofResolution.cpp">LoadFullprofResolution.cpp</a></p>
 </section>
 </section>
 

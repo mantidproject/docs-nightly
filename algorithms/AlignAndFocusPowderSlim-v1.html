@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>AlignAndFocusPowderSlim v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>AlignAndFocusPowderSlim v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1674,58 +1674,58 @@ As a result, there is a significantly smaller memory usage and the processing is
 <p>This algorithm accepts the same <code class="docutils literal notranslate"><span class="pre">SplitterWorkspace</span></code> inputs as <a class="reference internal" href="FilterEvents-v1.html#algm-filterevents"><span class="std std-ref">FilterEvents</span></a> and more information can be found on the <a class="reference internal" href="../concepts/EventFiltering.html#eventfiltering"><span class="std std-ref">Event Filtering</span></a> page.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create splitter table using relative time</span>
 <span class="n">splitter</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
-<span class="n">splitter</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">)</span>
-<span class="n">splitter</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">)</span>
-<span class="n">splitter</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">)</span>
+<span class="n">splitter</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'float'</span><span class="p">,</span> <span class="s1">'start'</span><span class="p">)</span>
+<span class="n">splitter</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'float'</span><span class="p">,</span> <span class="s1">'stop'</span><span class="p">)</span>
+<span class="n">splitter</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'str'</span><span class="p">,</span> <span class="s1">'target'</span><span class="p">)</span>
 
-<span class="n">splitter</span><span class="o">.</span><span class="n">addRow</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">))</span>
-<span class="n">splitter</span><span class="o">.</span><span class="n">addRow</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span><span class="mi">210</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">))</span>
-<span class="n">splitter</span><span class="o">.</span><span class="n">addRow</span><span class="p">((</span><span class="mi">400</span><span class="p">,</span><span class="mi">410</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">))</span>
+<span class="n">splitter</span><span class="o">.</span><span class="n">addRow</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span> <span class="s1">'0'</span><span class="p">))</span>
+<span class="n">splitter</span><span class="o">.</span><span class="n">addRow</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span><span class="mi">210</span><span class="p">,</span> <span class="s1">'0'</span><span class="p">))</span>
+<span class="n">splitter</span><span class="o">.</span><span class="n">addRow</span><span class="p">((</span><span class="mi">400</span><span class="p">,</span><span class="mi">410</span><span class="p">,</span> <span class="s1">'0'</span><span class="p">))</span>
 
 <span class="c1"># pass the splitter table to AlignAndFocusPowderSlim</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">"VULCAN_218062.nxs.h5"</span><span class="p">,</span>
                              <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="n">splitter</span><span class="p">,</span> <span class="n">RelativeTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                              <span class="n">XMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">XDelta</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>
-                             <span class="n">BinningMode</span><span class="o">=</span><span class="s2">&quot;Linear&quot;</span><span class="p">,</span>
-                             <span class="n">BinningUnits</span><span class="o">=</span><span class="s2">&quot;TOF&quot;</span><span class="p">,</span>
+                             <span class="n">BinningMode</span><span class="o">=</span><span class="s2">"Linear"</span><span class="p">,</span>
+                             <span class="n">BinningUnits</span><span class="o">=</span><span class="s2">"TOF"</span><span class="p">,</span>
                              <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
                              <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.530</span><span class="p">],</span>
                              <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mf">65.5</span><span class="p">],</span>
                              <span class="n">Azimuthal</span><span class="o">=</span><span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># This is equivalent to using FilterEvents with the same splitter table.</span>
-<span class="c1"># But note that this example doesn&#39;t align the data so put everything in 1 big bin to compare.</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">LoadEventNexus</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span> <span class="n">NumberOfBins</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">grp</span> <span class="o">=</span> <span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">GroupDetectorsBy</span><span class="o">=</span><span class="s1">&#39;bank&#39;</span><span class="p">)</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">GroupDetectors</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">CopyGroupingFromWorkspace</span><span class="o">=</span><span class="s2">&quot;grp&quot;</span><span class="p">)</span>
+<span class="c1"># But note that this example doesn't align the data so put everything in 1 big bin to compare.</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">LoadEventNexus</span><span class="p">(</span><span class="s2">"VULCAN_218062.nxs.h5"</span><span class="p">,</span> <span class="n">NumberOfBins</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">grp</span> <span class="o">=</span> <span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">GroupDetectorsBy</span><span class="o">=</span><span class="s1">'bank'</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">GroupDetectors</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">CopyGroupingFromWorkspace</span><span class="o">=</span><span class="s2">"grp"</span><span class="p">)</span>
 
 <span class="n">FilterEvents</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span>
              <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="n">splitter</span><span class="p">,</span> <span class="n">RelativeTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
              <span class="n">FilterByPulseTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-             <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s2">&quot;filtered&quot;</span><span class="p">,</span>
+             <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s2">"filtered"</span><span class="p">,</span>
              <span class="n">GroupWorkspaces</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">out</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="s2">&quot;filtered&quot;</span><span class="p">,</span> <span class="s2">&quot;0,50000,50000&quot;</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="s2">"filtered"</span><span class="p">,</span> <span class="s2">"0,50000,50000"</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">CheckSpectraMap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CheckInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Example - splitting events based on log values</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load only the log we need</span>
-<span class="n">cave_temperature</span> <span class="o">=</span> <span class="n">LoadEventNexus</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span>
+<span class="n">cave_temperature</span> <span class="o">=</span> <span class="n">LoadEventNexus</span><span class="p">(</span><span class="s2">"VULCAN_218062.nxs.h5"</span><span class="p">,</span>
                                   <span class="n">MetaDataOnly</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                  <span class="n">AllowList</span><span class="o">=</span><span class="s2">&quot;CaveTemperature&quot;</span><span class="p">)</span>
+                                  <span class="n">AllowList</span><span class="o">=</span><span class="s2">"CaveTemperature"</span><span class="p">)</span>
 
 <span class="c1"># Use GenerateEventsFilter to create a splitter table based on the log values</span>
 <span class="n">GenerateEventsFilter</span><span class="p">(</span><span class="n">cave_temperature</span><span class="p">,</span>
-                     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;splitter&#39;</span><span class="p">,</span>
-                     <span class="n">InformationWorkspace</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">,</span>
-                     <span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;CaveTemperature&#39;</span><span class="p">,</span>
+                     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'splitter'</span><span class="p">,</span>
+                     <span class="n">InformationWorkspace</span><span class="o">=</span><span class="s1">'info'</span><span class="p">,</span>
+                     <span class="n">LogName</span><span class="o">=</span><span class="s1">'CaveTemperature'</span><span class="p">,</span>
                      <span class="n">MinimumLogValue</span><span class="o">=</span><span class="mf">70.10</span><span class="p">,</span>
                      <span class="n">MaximumLogValue</span><span class="o">=</span><span class="mf">70.15</span><span class="p">,</span>
                      <span class="n">LogValueInterval</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
 <span class="c1"># Use the splitter table to filter the events during loading and output to workspace group</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span> <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">&#39;splitter&#39;</span><span class="p">,</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">"VULCAN_218062.nxs.h5"</span><span class="p">,</span> <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">'splitter'</span><span class="p">,</span>
                              <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
                              <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.530</span><span class="p">],</span>
                              <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mf">65.5</span><span class="p">],</span>
@@ -1733,8 +1733,8 @@ As a result, there is a significantly smaller memory usage and the processing is
 <span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">())</span>  <span class="c1"># should be 6 workspaces in the group</span>
 
 <span class="c1"># By default the events are split based on pulsetime of the events. If you want to split based on full time (pulsetime + tof), set UseFullTime=False.</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span>
-                              <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">&#39;splitter&#39;</span><span class="p">,</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">"VULCAN_218062.nxs.h5"</span><span class="p">,</span>
+                              <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">'splitter'</span><span class="p">,</span>
                               <span class="n">UseFullTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                               <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
                               <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.530</span><span class="p">],</span>
@@ -1743,10 +1743,10 @@ As a result, there is a significantly smaller memory usage and the processing is
 </pre></div>
 </div>
 <p><strong>Example - filter bad pulses</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">"VULCAN_218062.nxs.h5"</span><span class="p">,</span>
                              <span class="n">XMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">XDelta</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>
-                             <span class="n">BinningMode</span><span class="o">=</span><span class="s2">&quot;Linear&quot;</span><span class="p">,</span>
-                             <span class="n">BinningUnits</span><span class="o">=</span><span class="s2">&quot;TOF&quot;</span><span class="p">,</span>
+                             <span class="n">BinningMode</span><span class="o">=</span><span class="s2">"Linear"</span><span class="p">,</span>
+                             <span class="n">BinningUnits</span><span class="o">=</span><span class="s2">"TOF"</span><span class="p">,</span>
                              <span class="n">FilterBadPulses</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                              <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
                              <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.070</span><span class="p">,</span> <span class="mf">2.530</span><span class="p">],</span>
@@ -1754,12 +1754,12 @@ As a result, there is a significantly smaller memory usage and the processing is
                              <span class="n">Azimuthal</span><span class="o">=</span><span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># This is equivalent to using FilterBadPulses.</span>
-<span class="c1"># But note that this example doesn&#39;t align the data so put everything in 1 big bin to compare.</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">LoadEventNexus</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">)</span>
-<span class="n">grp</span> <span class="o">=</span> <span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">GroupDetectorsBy</span><span class="o">=</span><span class="s1">&#39;bank&#39;</span><span class="p">)</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">GroupDetectors</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">CopyGroupingFromWorkspace</span><span class="o">=</span><span class="s2">&quot;grp&quot;</span><span class="p">)</span>
+<span class="c1"># But note that this example doesn't align the data so put everything in 1 big bin to compare.</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">LoadEventNexus</span><span class="p">(</span><span class="s2">"VULCAN_218062.nxs.h5"</span><span class="p">)</span>
+<span class="n">grp</span> <span class="o">=</span> <span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">GroupDetectorsBy</span><span class="o">=</span><span class="s1">'bank'</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">GroupDetectors</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">CopyGroupingFromWorkspace</span><span class="o">=</span><span class="s2">"grp"</span><span class="p">)</span>
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">FilterBadPulses</span><span class="p">(</span><span class="n">ws2</span><span class="p">)</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="s2">&quot;0,50000,50000&quot;</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="s2">"0,50000,50000"</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ws2</span><span class="p">,</span> <span class="n">CheckSpectraMap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">CheckInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
@@ -1767,10 +1767,10 @@ As a result, there is a significantly smaller memory usage and the processing is
 <p><strong>Example - using a GroupingWorkspace</strong></p>
 <p>You can provide a <code class="docutils literal notranslate"><span class="pre">GroupingWorkspace</span></code> to define how the detectors are grouped in the output workspace. If a <code class="docutils literal notranslate"><span class="pre">GroupingWorkspace</span></code> is not provided, the grouping from the calibration file will be used if provided, else a default grouping of one group per bank is used.</p>
 <p>The example done here is using <a class="reference internal" href="GenerateGroupingPowder-v2.html#algm-generategroupingpowder"><span class="std std-ref">GenerateGroupingPowder</span></a> to create a grouping workspace. With an angle step of 45 degrees, this will create 3 groups.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inst</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;VULCAN&quot;</span><span class="p">)</span>
-<span class="n">GenerateGroupingPowder</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">GroupingWorkspace</span><span class="o">=</span><span class="s1">&#39;powder_group&#39;</span><span class="p">,</span> <span class="n">AngleStep</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inst</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s2">"VULCAN"</span><span class="p">)</span>
+<span class="n">GenerateGroupingPowder</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">GroupingWorkspace</span><span class="o">=</span><span class="s1">'powder_group'</span><span class="p">,</span> <span class="n">AngleStep</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
 
-<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span> <span class="n">GroupingWorkspace</span><span class="o">=</span><span class="s2">&quot;powder_group&quot;</span><span class="p">,</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">"VULCAN_218062.nxs.h5"</span><span class="p">,</span> <span class="n">GroupingWorkspace</span><span class="o">=</span><span class="s2">"powder_group"</span><span class="p">,</span>
                              <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
                              <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.25</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span>
                              <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
@@ -1784,15 +1784,15 @@ XML files (e.g. from <a class="reference internal" href="SaveDetectorsGrouping-v
 HDF5 and <code class="docutils literal notranslate"><span class="pre">.cal</span></code> files are loaded via <a class="reference internal" href="LoadDiffCal-v1.html#algm-loaddiffcal"><span class="std std-ref">LoadDiffCal v1</span></a>.
 <code class="docutils literal notranslate"><span class="pre">GroupFilename</span></code> overrides any grouping that would otherwise be extracted from <code class="docutils literal notranslate"><span class="pre">CalFileName</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># XML grouping file</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span>
-                             <span class="n">GroupFilename</span><span class="o">=</span><span class="s2">&quot;mygroups.xml&quot;</span><span class="p">,</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">"VULCAN_218062.nxs.h5"</span><span class="p">,</span>
+                             <span class="n">GroupFilename</span><span class="o">=</span><span class="s2">"mygroups.xml"</span><span class="p">,</span>
                              <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
                              <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.296</span><span class="p">],</span>
                              <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
 
 <span class="c1"># HDF5 grouping file</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">&quot;VULCAN_218062.nxs.h5&quot;</span><span class="p">,</span>
-                             <span class="n">GroupFilename</span><span class="o">=</span><span class="s2">&quot;mygroups.hdf&quot;</span><span class="p">,</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowderSlim</span><span class="p">(</span><span class="s2">"VULCAN_218062.nxs.h5"</span><span class="p">,</span>
+                             <span class="n">GroupFilename</span><span class="o">=</span><span class="s2">"mygroups.hdf"</span><span class="p">,</span>
                              <span class="n">L1</span><span class="o">=</span><span class="mf">43.755</span><span class="p">,</span>
                              <span class="n">L2</span><span class="o">=</span><span class="p">[</span><span class="mf">2.296</span><span class="p">,</span> <span class="mf">2.296</span><span class="p">],</span>
                              <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
@@ -1802,8 +1802,8 @@ HDF5 and <code class="docutils literal notranslate"><span class="pre">.cal</span
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/AlignAndFocusPowderSlim.h">AlignAndFocusPowderSlim.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/AlignAndFocusPowderSlim.cpp">AlignAndFocusPowderSlim.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/AlignAndFocusPowderSlim.h">AlignAndFocusPowderSlim.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/AlignAndFocusPowderSlim.cpp">AlignAndFocusPowderSlim.cpp</a></p>
 </section>
 </section>
 

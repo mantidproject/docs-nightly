@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometryILLSumForeground v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ReflectometryILLSumForeground v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ReflectometryILLSumForeground-v1';</script>
@@ -1552,19 +1552,19 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <p><strong>Example - Sum in wavelength</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use same foreground and background settings for direct and reflected</span>
 <span class="c1"># beams.</span>
-<span class="c1"># Python dictionaries can be passed to algorithms as &#39;keyword arguments&#39;.</span>
+<span class="c1"># Python dictionaries can be passed to algorithms as 'keyword arguments'.</span>
 <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;ForegroundHalfWidth&#39;</span><span class="p">:[</span><span class="mi">5</span><span class="p">],</span>
-    <span class="s1">&#39;LowAngleBkgOffset&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s1">&#39;LowAngleBkgWidth&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="s1">&#39;HighAngleBkgOffset&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s1">&#39;HighAngleBkgWidth&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s1">'ForegroundHalfWidth'</span><span class="p">:[</span><span class="mi">5</span><span class="p">],</span>
+    <span class="s1">'LowAngleBkgOffset'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">'LowAngleBkgWidth'</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s1">'HighAngleBkgOffset'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">'HighAngleBkgWidth'</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="c1"># Direct beam</span>
 <span class="n">direct</span> <span class="o">=</span> <span class="n">ReflectometryILLPreprocess</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/D17/317369.nxs&#39;</span><span class="p">,</span>
-    <span class="n">Measurement</span><span class="o">=</span><span class="s1">&#39;DirectBeam&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/D17/317369.nxs'</span><span class="p">,</span>
+    <span class="n">Measurement</span><span class="o">=</span><span class="s1">'DirectBeam'</span><span class="p">,</span>
     <span class="o">**</span><span class="n">settings</span>
 <span class="p">)</span>
 <span class="c1"># We need the summed direct beam for the reflectivity</span>
@@ -1572,22 +1572,22 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 
 <span class="c1"># Reflected beam</span>
 <span class="n">reflected</span> <span class="o">=</span> <span class="n">ReflectometryILLPreprocess</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/D17/317370.nxs&#39;</span><span class="p">,</span>
-    <span class="n">Measurement</span><span class="o">=</span><span class="s1">&#39;ReflectedBeam&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/D17/317370.nxs'</span><span class="p">,</span>
+    <span class="n">Measurement</span><span class="o">=</span><span class="s1">'ReflectedBeam'</span><span class="p">,</span>
     <span class="o">**</span><span class="n">settings</span>
 <span class="p">)</span>
 <span class="n">reflectivity</span> <span class="o">=</span> <span class="n">ReflectometryILLSumForeground</span><span class="p">(</span>
     <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">reflected</span><span class="p">,</span>
     <span class="n">DirectForegroundWorkspace</span><span class="o">=</span><span class="n">directFrg</span><span class="p">,</span>
     <span class="n">DirectLineWorkspace</span><span class="o">=</span><span class="n">direct</span><span class="p">,</span>
-    <span class="n">SummationType</span><span class="o">=</span><span class="s1">&#39;SumInLambda&#39;</span><span class="p">,</span>
+    <span class="n">SummationType</span><span class="o">=</span><span class="s1">'SumInLambda'</span><span class="p">,</span>
     <span class="n">WavelengthRange</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
 <span class="p">)</span>
 
 <span class="c1"># Reflectivity is a single histogram</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Histograms in reflectivity workspace: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reflectivity</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Histograms in reflectivity workspace: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reflectivity</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 <span class="c1"># The data is still in wavelength</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reflectivity X unit: &#39;</span> <span class="o">+</span> <span class="n">reflectivity</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">unitID</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Reflectivity X unit: '</span> <span class="o">+</span> <span class="n">reflectivity</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">unitID</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1598,19 +1598,19 @@ Reflectivity X unit: Wavelength
 <p><strong>Example - Sum in momentum transfer</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use same foreground and background settings for direct and reflected</span>
 <span class="c1"># beams.</span>
-<span class="c1"># Python dictionaries can be passed to algorithms as &#39;keyword arguments&#39;.</span>
+<span class="c1"># Python dictionaries can be passed to algorithms as 'keyword arguments'.</span>
 <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;ForegroundHalfWidth&#39;</span><span class="p">:[</span><span class="mi">5</span><span class="p">],</span>
-    <span class="s1">&#39;LowAngleBkgOffset&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s1">&#39;LowAngleBkgWidth&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="s1">&#39;HighAngleBkgOffset&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s1">&#39;HighAngleBkgWidth&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s1">'ForegroundHalfWidth'</span><span class="p">:[</span><span class="mi">5</span><span class="p">],</span>
+    <span class="s1">'LowAngleBkgOffset'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">'LowAngleBkgWidth'</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s1">'HighAngleBkgOffset'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">'HighAngleBkgWidth'</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="c1"># Direct beam</span>
 <span class="n">direct</span> <span class="o">=</span> <span class="n">ReflectometryILLPreprocess</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/D17/317369.nxs&#39;</span><span class="p">,</span>
-    <span class="n">Measurement</span><span class="o">=</span><span class="s1">&#39;DirectBeam&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/D17/317369.nxs'</span><span class="p">,</span>
+    <span class="n">Measurement</span><span class="o">=</span><span class="s1">'DirectBeam'</span><span class="p">,</span>
     <span class="o">**</span><span class="n">settings</span>
 <span class="p">)</span>
 
@@ -1619,22 +1619,22 @@ Reflectivity X unit: Wavelength
 
 <span class="c1"># Reflected beam</span>
 <span class="n">reflected</span> <span class="o">=</span> <span class="n">ReflectometryILLPreprocess</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/D17/317370.nxs&#39;</span><span class="p">,</span>
-    <span class="n">Measurement</span><span class="o">=</span><span class="s1">&#39;ReflectedBeam&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/D17/317370.nxs'</span><span class="p">,</span>
+    <span class="n">Measurement</span><span class="o">=</span><span class="s1">'ReflectedBeam'</span><span class="p">,</span>
     <span class="o">**</span><span class="n">settings</span>
 <span class="p">)</span>
 <span class="n">reflectivity</span> <span class="o">=</span> <span class="n">ReflectometryILLSumForeground</span><span class="p">(</span>
     <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">reflected</span><span class="p">,</span>
     <span class="n">DirectForegroundWorkspace</span><span class="o">=</span><span class="n">directFrg</span><span class="p">,</span>
     <span class="n">DirectLineWorkspace</span><span class="o">=</span><span class="n">direct</span><span class="p">,</span>
-    <span class="n">SummationType</span><span class="o">=</span><span class="s1">&#39;SumInQ&#39;</span><span class="p">,</span>
+    <span class="n">SummationType</span><span class="o">=</span><span class="s1">'SumInQ'</span><span class="p">,</span>
     <span class="n">WavelengthRange</span><span class="o">=</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">14.</span><span class="p">]</span>
 <span class="p">)</span>
 
 <span class="c1"># Reflectivity is a single histogram</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Histograms in reflectivity workspace: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reflectivity</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Histograms in reflectivity workspace: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reflectivity</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 <span class="c1"># The data is still in wavelength</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reflectivity X unit: &#39;</span> <span class="o">+</span> <span class="n">reflectivity</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">unitID</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Reflectivity X unit: '</span> <span class="o">+</span> <span class="n">reflectivity</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">unitID</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1646,7 +1646,7 @@ Reflectivity X unit: Wavelength
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryILLSumForeground.py">ReflectometryILLSumForeground.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryILLSumForeground.py">ReflectometryILLSumForeground.py</a></p>
 </section>
 </section>
 

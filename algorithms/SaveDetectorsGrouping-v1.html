@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SaveDetectorsGrouping v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SaveDetectorsGrouping v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/SaveDetectorsGrouping-v1';</script>
@@ -1490,7 +1490,7 @@ format which is accepted by <a class="reference internal" href="LoadDetectorsGro
 <p><strong>Example - Saving a custom grouping for MUSR instrument:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">InstrumentName</span> <span class="o">=</span> <span class="s1">&#39;MUSR&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">CreateGroupingWorkspace</span><span class="p">(</span><span class="n">InstrumentName</span> <span class="o">=</span> <span class="s1">'MUSR'</span><span class="p">)</span>
 
 <span class="n">grouping</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -1504,24 +1504,24 @@ format which is accepted by <a class="reference internal" href="LoadDetectorsGro
 
 <span class="c1"># Spectra 34 - 64 are left in group 0, i.e. are left unused</span>
 
-<span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">],</span> <span class="s2">&quot;musr_det_grouping.xml&quot;</span><span class="p">)</span>
+<span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">"defaultsave.directory"</span><span class="p">],</span> <span class="s2">"musr_det_grouping.xml"</span><span class="p">)</span>
 
 <span class="n">SaveDetectorsGrouping</span><span class="p">(</span><span class="n">grouping</span><span class="p">,</span> <span class="n">save_path</span><span class="p">)</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;  &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\t</span><span class="s1">'</span><span class="p">,</span> <span class="s1">'  '</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;detector-grouping idf-date=&quot;1900-01-31T23:59:59&quot; instrument=&quot;MUSR&quot;&gt;
-  &lt;group ID=&quot;0&quot;&gt;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;?xml version="1.0"?&gt;
+&lt;detector-grouping idf-date="1900-01-31T23:59:59" instrument="MUSR"&gt;
+  &lt;group ID="0"&gt;
     &lt;detids&gt;34-64&lt;/detids&gt;
   &lt;/group&gt;
-  &lt;group ID=&quot;1&quot;&gt;
+  &lt;group ID="1"&gt;
     &lt;detids&gt;1-16&lt;/detids&gt;
   &lt;/group&gt;
-  &lt;group ID=&quot;2&quot;&gt;
+  &lt;group ID="2"&gt;
     &lt;detids&gt;17-33&lt;/detids&gt;
   &lt;/group&gt;
 &lt;/detector-grouping&gt;
@@ -1531,8 +1531,8 @@ format which is accepted by <a class="reference internal" href="LoadDetectorsGro
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/SaveDetectorsGrouping.h">SaveDetectorsGrouping.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/SaveDetectorsGrouping.cpp">SaveDetectorsGrouping.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/SaveDetectorsGrouping.h">SaveDetectorsGrouping.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/SaveDetectorsGrouping.cpp">SaveDetectorsGrouping.cpp</a></p>
 </section>
 </section>
 

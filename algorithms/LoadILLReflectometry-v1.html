@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadILLReflectometry v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>LoadILLReflectometry v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1580,12 +1580,12 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <p><strong>Example - ReflectedBeam:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
 <span class="c1"># Load ILL d17 data file (TOF mode) into a workspace 2D using a user-defined angle of 5.5 degrees:</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span><span class="s1">&#39;ILL/D17/317370.nxs&#39;</span><span class="p">,</span> <span class="n">Measurement</span><span class="o">=</span><span class="s1">&#39;ReflectedBeam&#39;</span><span class="p">,</span> <span class="n">BraggAngle</span><span class="o">=</span><span class="mf">5.5</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span><span class="s1">'ILL/D17/317370.nxs'</span><span class="p">,</span> <span class="n">Measurement</span><span class="o">=</span><span class="s1">'ReflectedBeam'</span><span class="p">,</span> <span class="n">BraggAngle</span><span class="o">=</span><span class="mf">5.5</span><span class="p">)</span>
 <span class="n">detId</span> <span class="o">=</span> <span class="mi">202</span> <span class="c1"># the foreground centre is around 202</span>
 <span class="n">det</span> <span class="o">=</span> <span class="n">ws2</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="n">detId</span><span class="p">)</span>
 <span class="n">angleDet</span> <span class="o">=</span> <span class="n">ws2</span><span class="o">.</span><span class="n">detectorTwoTheta</span><span class="p">(</span><span class="n">det</span><span class="p">)</span> <span class="o">/</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">180</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pixel at detector ID </span><span class="si">{}</span><span class="s2"> was rotated to </span><span class="si">{:.1f}</span><span class="s2"> degrees.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">detId</span><span class="p">,</span> <span class="n">angleDet</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pixel at detector ID </span><span class="si">{}</span><span class="s2"> was rotated to </span><span class="si">{:.1f}</span><span class="s2"> degrees."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">detId</span><span class="p">,</span> <span class="n">angleDet</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1594,12 +1594,12 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p><strong>Example - Direct Beam</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
-<span class="n">directBeamWS</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span><span class="s1">&#39;ILL/D17/317369.nxs&#39;</span><span class="p">)</span>
+<span class="n">directBeamWS</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span><span class="s1">'ILL/D17/317369.nxs'</span><span class="p">)</span>
 <span class="n">detId</span> <span class="o">=</span> <span class="mi">202</span> <span class="c1"># the foreground centre is around 202</span>
 <span class="n">det</span> <span class="o">=</span> <span class="n">directBeamWS</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="n">detId</span><span class="p">)</span>
 <span class="n">angleDet</span> <span class="o">=</span> <span class="n">directBeamWS</span><span class="o">.</span><span class="n">detectorTwoTheta</span><span class="p">(</span><span class="n">det</span><span class="p">)</span> <span class="o">/</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">180</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pixel at detector ID </span><span class="si">{}</span><span class="s2"> was rotated to </span><span class="si">{:.1f}</span><span class="s2"> degrees.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">detId</span><span class="p">,</span> <span class="n">angleDet</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pixel at detector ID </span><span class="si">{}</span><span class="s2"> was rotated to </span><span class="si">{:.1f}</span><span class="s2"> degrees."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">detId</span><span class="p">,</span> <span class="n">angleDet</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1607,10 +1607,10 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </pre></div>
 </div>
 <p><strong>Example - Replace sample log</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logs_to_replace</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ChopperSetting.firstChopper&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;ChopperSetting.secondChopper&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span><span class="s1">&#39;ILL/D17/317369.nxs&#39;</span><span class="p">,</span> <span class="n">LogsToReplace</span><span class="o">=</span><span class="n">logs_to_replace</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logs_to_replace</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"ChopperSetting.firstChopper"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"ChopperSetting.secondChopper"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span><span class="s1">'ILL/D17/317369.nxs'</span><span class="p">,</span> <span class="n">LogsToReplace</span><span class="o">=</span><span class="n">logs_to_replace</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The first chopper ID is: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s2">&quot;ChopperSetting.firstChopper&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The first chopper ID is: </span><span class="si">{}</span><span class="s2">."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s2">"ChopperSetting.firstChopper"</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1621,8 +1621,8 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/LoadILLReflectometry.h">LoadILLReflectometry.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/LoadILLReflectometry.cpp">LoadILLReflectometry.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/LoadILLReflectometry.h">LoadILLReflectometry.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/LoadILLReflectometry.cpp">LoadILLReflectometry.cpp</a></p>
 </section>
 </section>
 

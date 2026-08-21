@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Logging &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Logging &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/extending_mantid_with_python/python_algorithms/05_logging';</script>
@@ -568,21 +568,21 @@ Detailed information about valid log format placeholders can be found in the <a 
 <p>Within a Python algorithm the log can be accessed using <code class="docutils literal notranslate"><span class="pre">self.log()</span></code> which is a configured instance of the <a class="reference internal" href="../../../api/python/mantid/kernel/Logger.html#mantid.kernel.Logger" title="mantid.kernel.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a>.
 To post a message, simply choose a priority level and call a function that has that name with the message as an argument</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;Inputvalue&quot;</span><span class="p">)</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">"Inputvalue"</span><span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">()</span><span class="o">.</span><span class="n">information</span><span class="p">(</span><span class="s2">&quot;The cube of the input value &quot;</span> <span class="o">+</span>
-                           <span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">()</span><span class="o">.</span><span class="n">information</span><span class="p">(</span><span class="s2">"The cube of the input value "</span> <span class="o">+</span>
+                           <span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Avoid excessive logging as it is an expensive operation, i.e. try to avoid posting a log message at every iteration through a loop as it can slow the algorithm down dramatically.
 Instead build the message up as the loop is traversed and call the logging function once</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;LoopLimit&#39;</span><span class="p">)</span>
+    <span class="n">limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'LoopLimit'</span><span class="p">)</span>
     <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">""</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
         <span class="nb">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>
-        <span class="n">msg</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' '</span>
 
     <span class="c1"># This will be much more efficient,</span>
     <span class="c1"># especially if LoopLimit is large</span>

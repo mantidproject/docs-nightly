@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MonteCarloAbsorption v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MonteCarloAbsorption v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1670,38 +1670,38 @@ will produce a smoother result by using a 3rd-order polynomial to approximate th
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example: A cylindrical sample with no container</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">)</span>
 <span class="c1"># Default up axis is Y</span>
-<span class="n">SetSample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;Cylinder&#39;</span><span class="p">,</span> <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s1">&#39;Radius&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-                  <span class="s1">&#39;Center&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
-                <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ChemicalFormula&#39;</span><span class="p">:</span> <span class="s1">&#39;(Li7)2-C-H4-N-Cl6&#39;</span><span class="p">,</span> <span class="s1">&#39;SampleNumberDensity&#39;</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">})</span>
+<span class="n">SetSample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">'Shape'</span><span class="p">:</span> <span class="s1">'Cylinder'</span><span class="p">,</span> <span class="s1">'Height'</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s1">'Radius'</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+                  <span class="s1">'Center'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
+                <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">'ChemicalFormula'</span><span class="p">:</span> <span class="s1">'(Li7)2-C-H4-N-Cl6'</span><span class="p">,</span> <span class="s1">'SampleNumberDensity'</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">})</span>
 <span class="c1"># Simulating every data point can be slow. Use a smaller set and interpolate</span>
 <span class="n">abscor</span> <span class="o">=</span> <span class="n">MonteCarloAbsorption</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">corrected</span> <span class="o">=</span> <span class="n">data</span><span class="o">/</span><span class="n">abscor</span>
 </pre></div>
 </div>
 <p><strong>Example: A cylindrical sample with no container, resimulating tracks for different wavelengths, interpolating with a CSpline</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">)</span>
 <span class="c1"># Default up axis is Y</span>
-<span class="n">SetSample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;Cylinder&#39;</span><span class="p">,</span> <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s1">&#39;Radius&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-                  <span class="s1">&#39;Center&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
-                <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ChemicalFormula&#39;</span><span class="p">:</span> <span class="s1">&#39;(Li7)2-C-H4-N-Cl6&#39;</span><span class="p">,</span> <span class="s1">&#39;SampleNumberDensity&#39;</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">})</span>
+<span class="n">SetSample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">'Shape'</span><span class="p">:</span> <span class="s1">'Cylinder'</span><span class="p">,</span> <span class="s1">'Height'</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s1">'Radius'</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+                  <span class="s1">'Center'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
+                <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">'ChemicalFormula'</span><span class="p">:</span> <span class="s1">'(Li7)2-C-H4-N-Cl6'</span><span class="p">,</span> <span class="s1">'SampleNumberDensity'</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">})</span>
 <span class="c1"># Simulating every data point can be slow. Use a smaller set and interpolate</span>
 <span class="n">abscor</span> <span class="o">=</span> <span class="n">MonteCarloAbsorption</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ResimulateTracksForDifferentWavelengths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">NumberOfWavelengthPoints</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-                              <span class="n">Interpolation</span><span class="o">=</span><span class="s1">&#39;CSpline&#39;</span><span class="p">)</span>
+                              <span class="n">Interpolation</span><span class="o">=</span><span class="s1">'CSpline'</span><span class="p">)</span>
 <span class="n">corrected</span> <span class="o">=</span> <span class="n">data</span><span class="o">/</span><span class="n">abscor</span>
 </pre></div>
 </div>
 <p><strong>Example: A cylindrical sample setting a beam size</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">)</span>
 <span class="c1"># Default up axis is Y</span>
-<span class="n">SetSample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;Cylinder&#39;</span><span class="p">,</span> <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s1">&#39;Radius&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-                  <span class="s1">&#39;Center&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
-                  <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ChemicalFormula&#39;</span><span class="p">:</span> <span class="s1">&#39;(Li7)2-C-H4-N-Cl6&#39;</span><span class="p">,</span> <span class="s1">&#39;SampleNumberDensity&#39;</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">})</span>
-<span class="n">SetBeam</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;Slit&#39;</span><span class="p">,</span> <span class="s1">&#39;Width&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
+<span class="n">SetSample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">'Shape'</span><span class="p">:</span> <span class="s1">'Cylinder'</span><span class="p">,</span> <span class="s1">'Height'</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s1">'Radius'</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+                  <span class="s1">'Center'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
+                  <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">'ChemicalFormula'</span><span class="p">:</span> <span class="s1">'(Li7)2-C-H4-N-Cl6'</span><span class="p">,</span> <span class="s1">'SampleNumberDensity'</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">})</span>
+<span class="n">SetBeam</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">'Shape'</span><span class="p">:</span> <span class="s1">'Slit'</span><span class="p">,</span> <span class="s1">'Width'</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s1">'Height'</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
 <span class="c1"># Simulating every data point can be slow. Use a smaller set and interpolate</span>
 <span class="n">abscor</span> <span class="o">=</span> <span class="n">MonteCarloAbsorption</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">NumberOfWavelengthPoints</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 <span class="n">corrected</span> <span class="o">=</span> <span class="n">data</span><span class="o">/</span><span class="n">abscor</span>
@@ -1712,29 +1712,29 @@ will produce a smoother result by using a 3rd-order polynomial to approximate th
 facility and <code class="docutils literal notranslate"><span class="pre">ISIS_Histogram</span></code> instrument and assumes that these are set as the
 default facility and instrument respectively. The definition can be found at
 <code class="docutils literal notranslate"><span class="pre">[INSTALLDIR]/instrument/sampleenvironments/TEST_LIVE/ISIS_Histogram/CRYO-01.xml</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">)</span>
 <span class="c1"># Sample geometry is defined by container but not completely filled so</span>
 <span class="c1"># we just define the height</span>
-<span class="n">SetSample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Environment</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="s1">&#39;CRYO-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Container&#39;</span><span class="p">:</span> <span class="s1">&#39;8mm&#39;</span><span class="p">},</span>
-          <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">},</span>
-          <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ChemicalFormula&#39;</span><span class="p">:</span> <span class="s1">&#39;(Li7)2-C-H4-N-Cl6&#39;</span><span class="p">,</span> <span class="s1">&#39;SampleNumberDensity&#39;</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">})</span>
+<span class="n">SetSample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Environment</span><span class="o">=</span><span class="p">{</span><span class="s1">'Name'</span><span class="p">:</span> <span class="s1">'CRYO-01'</span><span class="p">,</span> <span class="s1">'Container'</span><span class="p">:</span> <span class="s1">'8mm'</span><span class="p">},</span>
+          <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">'Height'</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">},</span>
+          <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">'ChemicalFormula'</span><span class="p">:</span> <span class="s1">'(Li7)2-C-H4-N-Cl6'</span><span class="p">,</span> <span class="s1">'SampleNumberDensity'</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">})</span>
 <span class="c1"># Simulating every data point can be slow. Use a smaller set and interpolate</span>
 <span class="n">abscor</span> <span class="o">=</span> <span class="n">MonteCarloAbsorption</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">corrected</span> <span class="o">=</span> <span class="n">data</span><span class="o">/</span><span class="n">abscor</span>
 </pre></div>
 </div>
 <p><strong>Example: A cylindrical sample using a sparse instrument description, interpolating with a CSpline</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">)</span>
-<span class="n">SetSample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;Cylinder&#39;</span><span class="p">,</span> <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s1">&#39;Radius&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-                  <span class="s1">&#39;Center&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
-                <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ChemicalFormula&#39;</span><span class="p">:</span> <span class="s1">&#39;(Li7)2-C-H4-N-Cl6&#39;</span><span class="p">,</span> <span class="s1">&#39;SampleNumberDensity&#39;</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">},</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Histogram'</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">'Wavelength'</span><span class="p">)</span>
+<span class="n">SetSample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">'Shape'</span><span class="p">:</span> <span class="s1">'Cylinder'</span><span class="p">,</span> <span class="s1">'Height'</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s1">'Radius'</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+                  <span class="s1">'Center'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
+                <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">'ChemicalFormula'</span><span class="p">:</span> <span class="s1">'(Li7)2-C-H4-N-Cl6'</span><span class="p">,</span> <span class="s1">'SampleNumberDensity'</span><span class="p">:</span> <span class="mf">0.07</span><span class="p">},</span>
          <span class="p">)</span>
 
 <span class="n">abscor</span> <span class="o">=</span> <span class="n">MonteCarloAbsorption</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">SparseInstrument</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                               <span class="n">NumberOfDetectorRows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">NumberOfDetectorColumns</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-                              <span class="n">Interpolation</span><span class="o">=</span><span class="s1">&#39;CSpline&#39;</span><span class="p">)</span>
+                              <span class="n">Interpolation</span><span class="o">=</span><span class="s1">'CSpline'</span><span class="p">)</span>
 <span class="n">corrected</span> <span class="o">=</span> <span class="n">data</span><span class="o">/</span><span class="n">abscor</span>
 </pre></div>
 </div>
@@ -1744,18 +1744,18 @@ default facility and instrument respectively. The definition can be found at
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="dar" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>Darwin, C. G., <em>Philos. Mag.</em>, <strong>43</strong> 800 (1922)
-<a class="reference external" href="http://dx.doi.org/10.1080/10448639208218770">doi: 10.1080/10448639208218770</a></p>
+<p>Darwin, C. G., <em>The Philosophical Magazine: A Journal of Theoretical Experimental and Applied Physics</em>, <strong>43</strong> 800 (1922)
+<a class="reference external" href="https://doi.org/10.1080/14786442208633940">doi: 10.1080/14786442208633940</a></p>
 </aside>
 <aside class="footnote brackets" id="ham" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
-<p>Hamilton, W.C., <em>Acta Cryst</em>, <strong>10</strong>, 629 (1957)
-<a class="reference external" href="http://dx.doi.org/10.1107/S0365110X57002212">doi: 10.1107/S0365110X57002212</a></p>
+<p>Hamilton, W.C., <em>Acta Crystallographica</em>, <strong>10</strong>, 629 (1957)
+<a class="reference external" href="https://doi.org/10.1107/S0365110X57002212">doi: 10.1107/S0365110X57002212</a></p>
 </aside>
 <aside class="footnote brackets" id="sab" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
 <p>Sabine, T. M., <em>International Tables for Crystallography</em>, Vol. C, Page 609, Ed. Wilson, A. J. C and Prince, E. Kluwer Publishers (2004)
-<a class="reference external" href="http://dx.doi.org/10.1107/97809553602060000103">doi: 10.1107/97809553602060000103</a></p>
+<a class="reference external" href="https://doi.org/10.1107/97809553602060000103">doi: 10.1107/97809553602060000103</a></p>
 </aside>
 <aside class="footnote brackets" id="gar" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
@@ -1769,8 +1769,8 @@ default facility and instrument respectively. The definition can be found at
 </aside>
 <aside class="footnote brackets" id="huo" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">6</a><span class="fn-bracket">]</span></span>
-<p>Hu, G. Y., O’Connell, R.F. , <em>Journal of Physics A</em>, <strong>29</strong> 1511 (1996),
-<a class="reference external" href="http://dx.doi.org/10.1088/0305-4470/29/7/020">doi: 10.1088/0305-4470/29/7/020</a>
+<p>Hu, G. Y., O’Connell, R.F. , <em>Journal of Physics A: Mathematical and General</em>, <strong>29</strong> 1511 (1996),
+<a class="reference external" href="https://doi.org/10.1088/0305-4470/29/7/020">doi: 10.1088/0305-4470/29/7/020</a>
 Note: the following edits have been applied to the formulae in the paper for the case -2 &lt; D &lt; 2:
 a) D = -2 cos <span class="math notranslate nohighlight">\(\lambda\)</span> has been implemented instead of D = 2 cos <span class="math notranslate nohighlight">\(\lambda\)</span>
 b) equation (10) has been modified for the -2 &lt; D &lt; 2 case so that the leading minus sign on the right hand side is removed</p>
@@ -1783,8 +1783,8 @@ b) equation (10) has been modified for the -2 &lt; D &lt; 2 case so that the lea
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/MonteCarloAbsorption.h">MonteCarloAbsorption.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/MonteCarloAbsorption.cpp">MonteCarloAbsorption.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/MonteCarloAbsorption.h">MonteCarloAbsorption.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/MonteCarloAbsorption.cpp">MonteCarloAbsorption.cpp</a></p>
 </section>
 </section>
 

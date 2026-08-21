@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Advanced Access to Sample Logs &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Advanced Access to Sample Logs &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/python_in_mantid/further_alg_ws/05_advanced_logs';</script>
@@ -556,27 +556,27 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="c1"># Standard Sample Log set-up</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;CNCS_7860_event&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'CNCS_7860_event'</span><span class="p">)</span>
 <span class="n">run</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span>
-<span class="n">chopper</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;ChopperStatus1&#39;</span><span class="p">)</span>
+<span class="n">chopper</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'ChopperStatus1'</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">### Original Sample Logs ###&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of Entries:&#39;</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Chopper Values:&#39;</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Chopper Timestamps:&#39;</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">times</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;First Value:&#39;</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">firstValue</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;First Time:&#39;</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">firstTime</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Second Value:&#39;</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Second Time:&#39;</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">### Original Sample Logs ###'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Number of Entries:'</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Chopper Values:'</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Chopper Timestamps:'</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">times</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'First Value:'</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">firstValue</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'First Time:'</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">firstTime</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Second Value:'</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Second Time:'</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="n">chopper</span><span class="o">.</span><span class="n">addValue</span><span class="p">(</span><span class="s1">&#39;2010-Mar-26 00:00:00.00&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">--- Sample Logs with Addition ---&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of Entries:&#39;</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Chopper Values:&#39;</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Chopper Timestamps:&#39;</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">times</span><span class="p">)</span>
+<span class="n">chopper</span><span class="o">.</span><span class="n">addValue</span><span class="p">(</span><span class="s1">'2010-Mar-26 00:00:00.00'</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">--- Sample Logs with Addition ---'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Number of Entries:'</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Chopper Values:'</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Chopper Timestamps:'</span><span class="p">,</span><span class="n">chopper</span><span class="o">.</span><span class="n">times</span><span class="p">)</span>
 
 <span class="c1"># Also very nice is valueAsPrettyStr()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"># &#39;</span><span class="p">,</span> <span class="n">chopper</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1"># '</span><span class="p">,</span> <span class="n">chopper</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">chopper</span><span class="o">.</span><span class="n">valueAsPrettyStr</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -584,7 +584,7 @@
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>### Original Sample Logs ###
 Number of Entries: 2
 Chopper Values: [ 4.  4.]
-Chopper Timestamps: [&#39;2010-03-25T16:09:27.930000000&#39; &#39;2010-03-25T16:11:05.000000000&#39;]
+Chopper Timestamps: ['2010-03-25T16:09:27.930000000' '2010-03-25T16:11:05.000000000']
 First Value: 4.0
 First Time: 2010-03-25T16:09:27.930000000
 Second Value: 4.0
@@ -593,8 +593,8 @@ Second Time: 2010-03-25T16:11:05.000000000
 --- Sample Logs with Addition ---
 Number of Entries: 3
 Chopper Values: [ 4.  4.  5.]
-Chopper Timestamps: [&#39;2010-03-25T16:09:27.930000000&#39; &#39;2010-03-25T16:11:05.000000000&#39;
- &#39;2010-03-26T00:00:00.000000000&#39;]
+Chopper Timestamps: ['2010-03-25T16:09:27.930000000' '2010-03-25T16:11:05.000000000'
+ '2010-03-26T00:00:00.000000000']
 
 #  ChopperStatus1
 2010-Mar-25 16:09:27.930000000  4
@@ -626,29 +626,29 @@ be found with ` model.get_hidden_logs()`.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantidqt.widgets.samplelogs.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">SampleLogsModel</span>
 
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ENGINX00228061_log_alarm_data.nxs&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'ENGINX00228061_log_alarm_data.nxs'</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">SampleLogsModel</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
 
 <span class="n">invalid_logs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_logs_with_invalid_data</span><span class="p">()</span>
 <span class="c1"># -1:Fully Invalid, 1:Partially Invalid</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dictionary of Invalid Logs:&quot;</span><span class="p">,</span><span class="n">invalid_logs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Dictionary of Invalid Logs:"</span><span class="p">,</span><span class="n">invalid_logs</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">count</span><span class="p">,</span><span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">invalid_logs</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
     <span class="n">log_data</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-    <span class="n">invalid_entries</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;_invalid_values&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">invalid_entries</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s1">'_invalid_values'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
     <span class="n">filtered_entries</span> <span class="o">=</span> <span class="n">log_data</span><span class="o">.</span><span class="n">filtered_value</span>
     <span class="n">unfiltered_entries</span> <span class="o">=</span> <span class="n">log_data</span><span class="o">.</span><span class="n">unfiltered</span><span class="p">()</span><span class="o">.</span><span class="n">value</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Invalid Log </span><span class="si">{}</span><span class="s2">:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">log_data</span><span class="o">.</span><span class="n">name</span> <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unfiltered Values:&quot;</span><span class="p">,</span><span class="n">unfiltered_entries</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Which entries are good:&#39;</span><span class="p">,</span><span class="n">invalid_entries</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Filtered Values:&quot;</span><span class="p">,</span><span class="n">filtered_entries</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Invalid Log </span><span class="si">{}</span><span class="s2">:"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">log_data</span><span class="o">.</span><span class="n">name</span> <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Unfiltered Values:"</span><span class="p">,</span><span class="n">unfiltered_entries</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Which entries are good:'</span><span class="p">,</span><span class="n">invalid_entries</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Filtered Values:"</span><span class="p">,</span><span class="n">filtered_entries</span><span class="p">)</span>
 
-<span class="n">log_data_CT1</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;cryo_temp1&#39;</span><span class="p">)</span>
-<span class="n">status</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;Status&#39;</span><span class="p">)</span>
+<span class="n">log_data_CT1</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'cryo_temp1'</span><span class="p">)</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'Status'</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"># &#39;</span><span class="p">,</span> <span class="n">log_data_CT1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1"># '</span><span class="p">,</span> <span class="n">log_data_CT1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">log_data_CT1</span><span class="o">.</span><span class="n">valueAsPrettyStr</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# &#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'# '</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">valueAsPrettyStr</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -656,7 +656,7 @@ be found with ` model.get_hidden_logs()`.</p>
 For <cite>cryo_temp1</cite>, the value <code class="docutils literal notranslate"><span class="pre">5.0</span></code> is filtered out for being marked invalid, but the value <code class="docutils literal notranslate"><span class="pre">3.0</span></code> is also filtered
 out as it occurred before the status log was set to RUNNING. For more information, see: <a class="reference internal" href="../../mantid_basic_course/connecting_data_to_instruments/07_invalid_sample_logs.html#invalid-sample-logs"><span class="std std-ref">Invalid Sample Logs</span></a>.</p>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Dictionary of Invalid Logs: {&#39;cryo_temp1&#39;: 1, &#39;cryo_temp2&#39;: -1}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Dictionary of Invalid Logs: {'cryo_temp1': 1, 'cryo_temp2': -1}
 Invalid Log 1: cryo_temp1
 Unfiltered Values: [ 3.  5.  7.]
 Which entries are good: [ True False  True]
@@ -687,7 +687,7 @@ Filtered Values: [ 3.  5.  7.]
 plot. Next, look for plot toolbar button to <cite>generate a script</cite> for producing this plot for some inspiration!</p></li>
 <li><p>Check out the source code for the tiled plot in <a class="reference internal" href="../../mantid_basic_course/connecting_data_to_instruments/06_sample_logs.html#sample-logs"><span class="std std-ref">Sample Logs</span></a>, which plots using something similar to:</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">CNCS_7860_event</span><span class="p">,</span> <span class="n">ExperimentInfo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">Filtered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;SampleTemp&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">CNCS_7860_event</span><span class="p">,</span> <span class="n">ExperimentInfo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">Filtered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">'SampleTemp'</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

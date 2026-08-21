@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MSDFit v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MSDFit v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1531,27 +1531,27 @@ selected. These models include ‘Gaussian’, ‘Peters’, ‘Yi’.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Performing MSDFit on simulated data.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create some data that is similar to the output of ElasticWindowMultiple</span>
-<span class="n">sample</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span>
-                <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="s1">&#39;name=ExpDecay,Height=1,Lifetime=6&#39;</span><span class="p">,</span>
-                <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;momentum&#39;</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">'User Defined'</span><span class="p">,</span>
+                <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="s1">'name=ExpDecay,Height=1,Lifetime=6'</span><span class="p">,</span>
+                <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">'momentum'</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                 <span class="n">XMax</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
 <span class="n">g_msd</span><span class="p">,</span> <span class="n">g_param</span><span class="p">,</span> <span class="n">g_fit</span> <span class="o">=</span> <span class="n">MSDFit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">sample</span><span class="p">,</span>
-                               <span class="n">Model</span><span class="o">=</span><span class="s2">&quot;Gauss&quot;</span><span class="p">,</span>
+                               <span class="n">Model</span><span class="o">=</span><span class="s2">"Gauss"</span><span class="p">,</span>
                                <span class="n">XStart</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">XEnd</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
                                <span class="n">SpecMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">SpecMax</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">y_msd</span><span class="p">,</span> <span class="n">y_param</span><span class="p">,</span> <span class="n">y_fit</span> <span class="o">=</span> <span class="n">MSDFit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">sample</span><span class="p">,</span>
-                               <span class="n">Model</span><span class="o">=</span><span class="s2">&quot;Yi&quot;</span><span class="p">,</span>
+                               <span class="n">Model</span><span class="o">=</span><span class="s2">"Yi"</span><span class="p">,</span>
                                <span class="n">XStart</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">XEnd</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
                                <span class="n">SpecMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">SpecMax</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using Gauss Model&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A0: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">g_msd</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A1: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">g_msd</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using Yi Model&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A0: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y_msd</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A1: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y_msd</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Using Gauss Model'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'A0: '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">g_msd</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'A1: '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">g_msd</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Using Yi Model'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'A0: '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y_msd</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'A1: '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y_msd</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output (the numbers on your machine my not match exactly):</p>
@@ -1567,7 +1567,7 @@ selected. These models include ‘Gaussian’, ‘Peters’, ‘Yi’.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/MSDFit.py">MSDFit.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/MSDFit.py">MSDFit.py</a></p>
 </section>
 </section>
 

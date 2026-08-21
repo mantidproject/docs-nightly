@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Corelli Tube Calibration &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Corelli Tube Calibration &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/calibration/TubeCalibrationCorelli';</script>
@@ -463,10 +463,10 @@ The result is a database of calibrated vertical “Y”-coordinates stored for e
 </ul>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">corelli.calibration.bank</span><span class="w"> </span><span class="kn">import</span> <span class="n">calibrate_banks</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">corelli.calibration.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">apply_calibration</span><span class="p">,</span> <span class="n">load_banks</span>
-<span class="n">counts_file</span> <span class="o">=</span> <span class="s1">&#39;/SNS/CORELLI/shared/tmp/CORELLI_124023_counts.nxs&#39;</span>
-<span class="n">load_banks</span><span class="p">(</span><span class="n">counts_file</span><span class="p">,</span> <span class="n">bank_selection</span><span class="o">=</span><span class="s1">&#39;10-19&#39;</span><span class="p">,</span> <span class="n">output_workspace</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">)</span>
-<span class="n">calibrate_banks</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">bank_selection</span><span class="o">=</span><span class="s1">&#39;10-19&#39;</span><span class="p">)</span>
-<span class="n">apply_calibration</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="s1">&#39;calib10&#39;</span><span class="p">,</span> <span class="n">output_workspace</span><span class="o">=</span><span class="s1">&#39;counts_10&#39;</span><span class="p">)</span>
+<span class="n">counts_file</span> <span class="o">=</span> <span class="s1">'/SNS/CORELLI/shared/tmp/CORELLI_124023_counts.nxs'</span>
+<span class="n">load_banks</span><span class="p">(</span><span class="n">counts_file</span><span class="p">,</span> <span class="n">bank_selection</span><span class="o">=</span><span class="s1">'10-19'</span><span class="p">,</span> <span class="n">output_workspace</span><span class="o">=</span><span class="s1">'counts'</span><span class="p">)</span>
+<span class="n">calibrate_banks</span><span class="p">(</span><span class="s1">'counts'</span><span class="p">,</span> <span class="n">bank_selection</span><span class="o">=</span><span class="s1">'10-19'</span><span class="p">)</span>
+<span class="n">apply_calibration</span><span class="p">(</span><span class="s1">'counts'</span><span class="p">,</span> <span class="s1">'calib10'</span><span class="p">,</span> <span class="n">output_workspace</span><span class="o">=</span><span class="s1">'counts_10'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Open the instrument view for workspaces counts and counts_10, then look at bank10 and verify that all tubes in this bank have been calibrated for counts_10</p>
@@ -513,17 +513,17 @@ The result is a database of calibrated vertical “Y”-coordinates stored for e
 
 <span class="c1"># populate a calibration database with a few cases. There should be at least one bank with two calibrations</span>
 
-<span class="n">database_path</span> <span class="o">=</span> <span class="s1">&#39;/SNS/CORELLI/shared/calibration_database&#39;</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;124023_banks_14_15&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">ws14</span><span class="p">,</span><span class="n">ws15</span><span class="p">])]</span>
-<span class="n">cases</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;124023_banks_14_15&#39;</span><span class="p">,</span> <span class="s1">&#39;14-15&#39;</span><span class="p">)]</span>
+<span class="n">database_path</span> <span class="o">=</span> <span class="s1">'/SNS/CORELLI/shared/calibration_database'</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">'124023_banks_14_15'</span><span class="p">,</span> <span class="p">[</span><span class="n">ws14</span><span class="p">,</span><span class="n">ws15</span><span class="p">])]</span>
+<span class="n">cases</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">'124023_banks_14_15'</span><span class="p">,</span> <span class="s1">'14-15'</span><span class="p">)]</span>
 <span class="c1"># use current date if not provided</span>
 <span class="n">save_manifest_file</span><span class="p">(</span><span class="n">database_path</span><span class="p">,</span> <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">])</span>
 
 <span class="k">for</span> <span class="n">bank_case</span><span class="p">,</span> <span class="n">bank_selection</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">:</span>
-    <span class="c1"># Produce workspace groups &#39;calibrations&#39;, &#39;masks&#39;, &#39;fits&#39;</span>
+    <span class="c1"># Produce workspace groups 'calibrations', 'masks', 'fits'</span>
     <span class="c1"># ws is a dictionary with workspace values</span>
     <span class="n">calibrate_banks</span><span class="p">(</span><span class="n">ws</span><span class="p">[</span><span class="n">bank_case</span><span class="p">],</span> <span class="n">bank_selection</span><span class="p">)</span>
-    <span class="n">save_calibration_set</span><span class="p">(</span><span class="n">ws</span><span class="p">[</span><span class="n">bank_case</span><span class="p">],</span> <span class="n">database</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;calibrations&#39;</span><span class="p">,</span> <span class="n">masks</span><span class="p">,</span> <span class="s1">&#39;fits&#39;</span><span class="p">)</span>
+    <span class="n">save_calibration_set</span><span class="p">(</span><span class="n">ws</span><span class="p">[</span><span class="n">bank_case</span><span class="p">],</span> <span class="n">database</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">'calibrations'</span><span class="p">,</span> <span class="n">masks</span><span class="p">,</span> <span class="s1">'fits'</span><span class="p">)</span>
 
 
 <span class="c1"># Each bank calibration table can be loaded for a particular timestamp date:</span>
@@ -532,7 +532,7 @@ The result is a database of calibrated vertical “Y”-coordinates stored for e
 <span class="n">load_bank_table</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">database_path</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span>
 
 <span class="c1"># Or just the set</span>
-<span class="n">load_calibration_set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cases</span><span class="p">[</span><span class="s1">&#39;124023_bank10&#39;</span><span class="p">],</span> <span class="n">database_path</span><span class="p">)</span>
+<span class="n">load_calibration_set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cases</span><span class="p">[</span><span class="s1">'124023_bank10'</span><span class="p">],</span> <span class="n">database_path</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Category</strong>: <a class="reference external" href="../categories/Calibration.html">Calibration</a></p>

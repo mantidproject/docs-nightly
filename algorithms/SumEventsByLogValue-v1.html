@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SumEventsByLogValue v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SumEventsByLogValue v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/SumEventsByLogValue-v1';</script>
@@ -1534,28 +1534,28 @@ of the log value.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Single-Spectrum Mode</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># a sample workspace with a sample instrument</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Event&quot;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Event"</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;Log2FilterBy&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:00:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;Log2FilterBy&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:10:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;Log2FilterBy&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:20:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;Log2FilterBy&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:30:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;Log2FilterBy&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:40:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;Log2FilterBy&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:50:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"Log2FilterBy"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:00:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"Log2FilterBy"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:10:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"Log2FilterBy"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:20:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"Log2FilterBy"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:30:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"Log2FilterBy"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:40:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"Log2FilterBy"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:50:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="c1">#split the events by the log value</span>
-<span class="n">wsOut</span> <span class="o">=</span> <span class="n">SumEventsByLogValue</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">LogName</span><span class="o">=</span><span class="s2">&quot;Log2FilterBy&quot;</span><span class="p">,</span><span class="n">OutputBinning</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">wsOut</span> <span class="o">=</span> <span class="n">SumEventsByLogValue</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">LogName</span><span class="o">=</span><span class="s2">"Log2FilterBy"</span><span class="p">,</span><span class="n">OutputBinning</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
 
 <span class="c1">#all of the events should be included</span>
 <span class="n">integral</span> <span class="o">=</span> <span class="n">Integration</span><span class="p">(</span><span class="n">wsOut</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Events were split into </span><span class="si">%i</span><span class="s2"> sections based on the log &#39;Log2FilterBy&#39;.&quot;</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">blocksize</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Events were split into </span><span class="si">%i</span><span class="s2"> sections based on the log 'Log2FilterBy'."</span> <span class="o">%</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">blocksize</span><span class="p">())</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">wsOut</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; section </span><span class="si">%i</span><span class="s2">: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">wsOut</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Totalling </span><span class="si">%.0f</span><span class="s2"> events, matching the </span><span class="si">%i</span><span class="s2"> events in the input workspace&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">integral</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">" section </span><span class="si">%i</span><span class="s2">: </span><span class="si">%.2f</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">wsOut</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Totalling </span><span class="si">%.0f</span><span class="s2"> events, matching the </span><span class="si">%i</span><span class="s2"> events in the input workspace"</span> <span class="o">%</span> <span class="p">(</span><span class="n">integral</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Events were split into 3 sections based on the log &#39;Log2FilterBy&#39;.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Events were split into 3 sections based on the log 'Log2FilterBy'.
  section 1: 6...
  section 2: 6...
  section 3: 6...
@@ -1566,8 +1566,8 @@ Totalling 1900 events, matching the 1900 events in the input workspace
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/SumEventsByLogValue.h">SumEventsByLogValue.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/SumEventsByLogValue.cpp">SumEventsByLogValue.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/SumEventsByLogValue.h">SumEventsByLogValue.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/SumEventsByLogValue.cpp">SumEventsByLogValue.cpp</a></p>
 </section>
 </section>
 

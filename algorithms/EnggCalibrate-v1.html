@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>EnggCalibrate v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>EnggCalibrate v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/EnggCalibrate-v1';</script>
@@ -1579,7 +1579,7 @@ corrections.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/EnggCalibrate.py">EnggCalibrate.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/EnggCalibrate.py">EnggCalibrate.py</a></p>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
@@ -1591,26 +1591,26 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - Calculate Difa, Difc, and Zero for EnginX:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">out_tbl_name</span> <span class="o">=</span> <span class="s1">&#39;out_params&#39;</span>
-<span class="n">ws_name</span> <span class="o">=</span> <span class="s1">&#39;test_engg_data&#39;</span>
-<span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ENGINX00213855.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">ws_name</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">out_tbl_name</span> <span class="o">=</span> <span class="s1">'out_params'</span>
+<span class="n">ws_name</span> <span class="o">=</span> <span class="s1">'test_engg_data'</span>
+<span class="n">Load</span><span class="p">(</span><span class="s1">'ENGINX00213855.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">ws_name</span><span class="p">)</span>
 
 <span class="c1"># Using precalculated Vanadium corrections. To calculate from scratch see EnggVanadiumCorrections</span>
-<span class="n">van_integ_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ENGINX_precalculated_vanadium_run000236516_integration.nxs&#39;</span><span class="p">)</span>
-<span class="n">van_curves_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ENGINX_precalculated_vanadium_run000236516_bank_curves.nxs&#39;</span><span class="p">)</span>
+<span class="n">van_integ_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'ENGINX_precalculated_vanadium_run000236516_integration.nxs'</span><span class="p">)</span>
+<span class="n">van_curves_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'ENGINX_precalculated_vanadium_run000236516_bank_curves.nxs'</span><span class="p">)</span>
 
 <span class="n">difa1</span><span class="p">,</span> <span class="n">difc1</span><span class="p">,</span> <span class="n">tzero1</span><span class="p">,</span> <span class="n">peaks1</span> <span class="o">=</span> <span class="n">EnggCalibrate</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws_name</span><span class="p">,</span>
                                     <span class="n">VanIntegrationWorkspace</span><span class="o">=</span><span class="n">van_integ_ws</span><span class="p">,</span>
                                     <span class="n">VanCurvesWorkspace</span><span class="o">=</span><span class="n">van_curves_ws</span><span class="p">,</span>
-                                    <span class="n">ExpectedPeaks</span><span class="o">=</span><span class="p">[</span><span class="mf">1.09</span><span class="p">,</span> <span class="mf">1.28</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">],</span> <span class="n">Bank</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
+                                    <span class="n">ExpectedPeaks</span><span class="o">=</span><span class="p">[</span><span class="mf">1.09</span><span class="p">,</span> <span class="mf">1.28</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">],</span> <span class="n">Bank</span><span class="o">=</span><span class="s1">'1'</span><span class="p">,</span>
                                     <span class="n">OutputParametersTableName</span><span class="o">=</span><span class="n">out_tbl_name</span><span class="p">)</span>
 
 <span class="n">difa2</span><span class="p">,</span> <span class="n">difc2</span><span class="p">,</span> <span class="n">tzero2</span><span class="p">,</span> <span class="n">peaks2</span> <span class="o">=</span> <span class="n">EnggCalibrate</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws_name</span><span class="p">,</span>
                                     <span class="n">VanIntegrationWorkspace</span><span class="o">=</span><span class="n">van_integ_ws</span><span class="p">,</span>
                                     <span class="n">VanCurvesWorkspace</span><span class="o">=</span><span class="n">van_curves_ws</span><span class="p">,</span>
-                                    <span class="n">ExpectedPeaks</span><span class="o">=</span><span class="p">[</span><span class="mf">1.09</span><span class="p">,</span> <span class="mf">1.28</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">],</span> <span class="n">Bank</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+                                    <span class="n">ExpectedPeaks</span><span class="o">=</span><span class="p">[</span><span class="mf">1.09</span><span class="p">,</span> <span class="mf">1.28</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">],</span> <span class="n">Bank</span><span class="o">=</span><span class="s1">'2'</span><span class="p">)</span>
 <span class="n">tbl</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="n">out_tbl_name</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The output table has </span><span class="si">{0}</span><span class="s2"> row(s)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tbl</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The output table has </span><span class="si">{0}</span><span class="s2"> row(s)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tbl</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>

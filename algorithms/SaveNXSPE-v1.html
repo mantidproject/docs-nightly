@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SaveNXSPE v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SaveNXSPE v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/SaveNXSPE-v1';</script>
@@ -1519,18 +1519,18 @@ detectors parameters from the instrument description.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
 
 <span class="c1"># Create dummy workspace.</span>
-<span class="n">out_ws</span> <span class="o">=</span> <span class="n">CreateSimulationWorkspace</span><span class="p">(</span><span class="n">Instrument</span><span class="o">=</span><span class="s2">&quot;MARI&quot;</span><span class="p">,</span> <span class="n">BinParams</span><span class="o">=</span><span class="s2">&quot;0,500,2000&quot;</span><span class="p">)</span>
+<span class="n">out_ws</span> <span class="o">=</span> <span class="n">CreateSimulationWorkspace</span><span class="p">(</span><span class="n">Instrument</span><span class="o">=</span><span class="s2">"MARI"</span><span class="p">,</span> <span class="n">BinParams</span><span class="o">=</span><span class="s2">"0,500,2000"</span><span class="p">)</span>
 <span class="n">out_ws</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">]))</span>
-<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">out_ws</span><span class="p">,</span> <span class="s1">&#39;Ei&#39;</span><span class="p">,</span> <span class="n">LogText</span><span class="o">=</span><span class="s1">&#39;321&#39;</span><span class="p">,</span> <span class="n">LogType</span><span class="o">=</span><span class="s1">&#39;Number&#39;</span><span class="p">,</span> <span class="n">NumberType</span><span class="o">=</span><span class="s1">&#39;Double&#39;</span><span class="p">)</span>
+<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">out_ws</span><span class="p">,</span> <span class="s1">'Ei'</span><span class="p">,</span> <span class="n">LogText</span><span class="o">=</span><span class="s1">'321'</span><span class="p">,</span> <span class="n">LogType</span><span class="o">=</span><span class="s1">'Number'</span><span class="p">,</span> <span class="n">NumberType</span><span class="o">=</span><span class="s1">'Double'</span><span class="p">)</span>
 <span class="n">out_ws</span><span class="o">.</span><span class="n">setDistribution</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">],</span> <span class="s2">&quot;NXSPEData.nxspe&quot;</span><span class="p">)</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">"defaultsave.directory"</span><span class="p">],</span> <span class="s2">"NXSPEData.nxspe"</span><span class="p">)</span>
 
-<span class="c1"># Do a &quot;roundtrip&quot; of the data.</span>
+<span class="c1"># Do a "roundtrip" of the data.</span>
 <span class="n">SaveNXSPE</span><span class="p">(</span><span class="n">out_ws</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span><span class="n">Psi</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
 
-<span class="c1"># By design, SaveNXSPE does not store detector&#39;s ID-s. LoadNXSPE sets detector&#39;s ID-s to defaults.</span>
-<span class="c1"># To compare loaded and saved workspaces here, one needs to set-up default detector&#39;s ID-s to the source workspace.</span>
+<span class="c1"># By design, SaveNXSPE does not store detector's ID-s. LoadNXSPE sets detector's ID-s to defaults.</span>
+<span class="c1"># To compare loaded and saved workspaces here, one needs to set-up default detector's ID-s to the source workspace.</span>
 <span class="n">nSpec</span> <span class="o">=</span> <span class="n">out_ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nSpec</span><span class="p">):</span>
     <span class="n">sp</span><span class="o">=</span><span class="n">out_ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
@@ -1538,10 +1538,10 @@ detectors parameters from the instrument description.</p>
 <span class="n">in_ws</span> <span class="o">=</span> <span class="n">LoadNXSPE</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
 
 <span class="n">ws_comparison_rez</span> <span class="o">=</span> <span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">out_ws</span><span class="p">,</span><span class="n">in_ws</span><span class="p">,</span><span class="mf">1.e-9</span><span class="p">,</span><span class="n">CheckInstrument</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contents of the first spectrum = </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">in_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initial and loaded workspaces comparison is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ws_comparison_rez</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Contents of the first spectrum = </span><span class="si">{}</span><span class="s2">."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">in_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Initial and loaded workspaces comparison is: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ws_comparison_rez</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
 <span class="n">run</span> <span class="o">=</span> <span class="n">in_ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">();</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loaded workspace has attached incident energy Ei=</span><span class="si">{0:.1f}</span><span class="s2"> and rotation angle Psi= </span><span class="si">{1:.1f}</span><span class="s2">deg&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;Ei&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;psi&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Loaded workspace has attached incident energy Ei=</span><span class="si">{0:.1f}</span><span class="s2"> and rotation angle Psi= </span><span class="si">{1:.1f}</span><span class="s2">deg"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'Ei'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'psi'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1559,8 +1559,8 @@ not have a distribution flag.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/SaveNXSPE.h">SaveNXSPE.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/SaveNXSPE.cpp">SaveNXSPE.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/SaveNXSPE.h">SaveNXSPE.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/SaveNXSPE.cpp">SaveNXSPE.cpp</a></p>
 </section>
 </section>
 

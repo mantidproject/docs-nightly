@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Run Info and Sample Logs &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Run Info and Sample Logs &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/python_in_mantid/further_alg_ws/04_run_logs';</script>
@@ -552,20 +552,20 @@
 <span id="run-logs"></span><h1>Run Info and Sample Logs<a class="headerlink" href="#run-info-and-sample-logs" title="Link to this heading">#</a></h1>
 <p>Each workspace has a method called <cite>getRun()</cite>, which can be used to access information regarding the experimental run. A full list of the methods available on the returned object is at <a class="reference internal" href="../../../api/python/mantid/api/Run.html#mantid.api.Run" title="mantid.api.Run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Run</span></code></a>.</p>
 <p>The logs recorded during a run are also stored on the Run object and can be accessed using the <cite>getLogData()</cite> method. It has two variants:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;CNCS_7860_event&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'CNCS_7860_event'</span><span class="p">)</span>
 <span class="n">run</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span>
 
 <span class="c1">#  You can access all the available log properties using the keys method</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sample Logs:&#39;</span><span class="p">,</span> <span class="n">run</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Sample Logs:'</span><span class="p">,</span> <span class="n">run</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
 <span class="c1"># With no argument it returns all logs</span>
 <span class="n">all_logs</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">()</span>
 
 <span class="c1"># Returns the named log, raising an exception if the name is not found</span>
-<span class="n">temperature</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;SampleTemp&#39;</span><span class="p">)</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'SampleTemp'</span><span class="p">)</span>
 
 <span class="c1"># Use name &amp; value to access the name values</span>
-<span class="n">vals</span> <span class="o">=</span> <span class="n">temperature</span><span class="o">.</span><span class="n">value</span><span class="p">;</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Temp Values:&#39;</span><span class="p">,</span><span class="n">vals</span><span class="p">)</span>
+<span class="n">vals</span> <span class="o">=</span> <span class="n">temperature</span><span class="o">.</span><span class="n">value</span><span class="p">;</span> <span class="nb">print</span><span class="p">(</span><span class="s1">'Temp Values:'</span><span class="p">,</span><span class="n">vals</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Most logs are a time-series property with the attributes described here. The values at each time can be accessed individually or as a collection.</p>
@@ -580,27 +580,27 @@ The LogFilter class can be used to filter logs using other logs. For instance, a
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.kernel</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogFilter</span>
 
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;LogWS.nxs&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"LogWS.nxs"</span><span class="p">)</span>
 <span class="n">run</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span>
 
-<span class="n">wave_log</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;sinewave&#39;</span><span class="p">)</span>
-<span class="n">negative_log</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;negative&#39;</span><span class="p">)</span>
-<span class="n">positive_log</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;positive&#39;</span><span class="p">)</span>
+<span class="n">wave_log</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'sinewave'</span><span class="p">)</span>
+<span class="n">negative_log</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'negative'</span><span class="p">)</span>
+<span class="n">positive_log</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'positive'</span><span class="p">)</span>
 
 <span class="c1"># Show the size of the original log.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unfiltered log contains </span><span class="si">%i</span><span class="s2"> values&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">wave_log</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Unfiltered log contains </span><span class="si">%i</span><span class="s2"> values"</span> <span class="o">%</span> <span class="p">(</span><span class="n">wave_log</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span>
 
 <span class="c1"># Filter the original log removing negative data</span>
 <span class="nb">filter</span> <span class="o">=</span> <span class="n">LogFilter</span><span class="p">(</span><span class="n">wave_log</span><span class="p">)</span>
 <span class="nb">filter</span><span class="o">.</span><span class="n">addFilter</span><span class="p">(</span><span class="n">negative_log</span><span class="p">)</span>
 <span class="n">filtered_log</span> <span class="o">=</span> <span class="nb">filter</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Filtered log contains </span><span class="si">%i</span><span class="s2"> positive values&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filtered_log</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Filtered log contains </span><span class="si">%i</span><span class="s2"> positive values"</span> <span class="o">%</span> <span class="p">(</span><span class="n">filtered_log</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span>
 
 <span class="c1"># Now filter the original data removing positive values</span>
 <span class="nb">filter</span> <span class="o">=</span> <span class="n">LogFilter</span><span class="p">(</span><span class="n">wave_log</span><span class="p">)</span>
 <span class="nb">filter</span><span class="o">.</span><span class="n">addFilter</span><span class="p">(</span><span class="n">positive_log</span><span class="p">)</span>
 <span class="n">filtered_log</span> <span class="o">=</span> <span class="nb">filter</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Filtered log contains </span><span class="si">%i</span><span class="s2"> negative values&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filtered_log</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Filtered log contains </span><span class="si">%i</span><span class="s2"> negative values"</span> <span class="o">%</span> <span class="p">(</span><span class="n">filtered_log</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>

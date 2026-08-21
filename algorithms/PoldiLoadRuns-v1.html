@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PoldiLoadRuns v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PoldiLoadRuns v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/PoldiLoadRuns-v1';</script>
@@ -1532,11 +1532,11 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <p>To load only one POLDI data file (in this case a run from a calibration measurement with silicon standard), it’s enough to specify the year and the run number. Nevertheless it will be placed in a WorkspaceGroup.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">calibration</span> <span class="o">=</span> <span class="n">PoldiLoadRuns</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">6903</span><span class="p">)</span>
 
-<span class="c1"># calibration is a WorkspaceGroup, so we can use getNames() to query what&#39;s inside.</span>
+<span class="c1"># calibration is a WorkspaceGroup, so we can use getNames() to query what's inside.</span>
 <span class="n">workspaceNames</span> <span class="o">=</span> <span class="n">calibration</span><span class="o">.</span><span class="n">getNames</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of data files loaded: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name of data workspace: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of data files loaded: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Name of data workspace: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Since only one run number was supplied, only one workspace is loaded. The name corresponds to the scheme described above:</p>
@@ -1550,13 +1550,13 @@ Name of data workspace: calibration_data_6903
 
 <span class="n">workspaceNames</span> <span class="o">=</span> <span class="n">calibration</span><span class="o">.</span><span class="n">getNames</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of data files loaded: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Names of data workspaces: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of data files loaded: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Names of data workspaces: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Now all files from the specified range are in the <cite>calibration</cite> WorkspaceGroup:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Number of data files loaded: 2
-Names of data workspaces: [&#39;calibration_data_6903&#39;,&#39;calibration_data_6904&#39;]
+Names of data workspaces: ['calibration_data_6903','calibration_data_6904']
 </pre></div>
 </div>
 <p>But in fact, these data files should not be processed separately, they belong to the same measurement and should be merged together. Instead of using <a class="reference internal" href="PoldiMerge-v1.html#algm-poldimerge"><span class="std std-ref">PoldiMerge v1</span></a> directly to merge the data files, it’s possible to tell the algorithm to merge the files directly after loading, by specifying how many of the files should be merged together. Setting the parameter to the value <cite>2</cite> means that the whole range will be iterated and files will be merged together in pairs:</p>
@@ -1565,13 +1565,13 @@ Names of data workspaces: [&#39;calibration_data_6903&#39;,&#39;calibration_data
 
 <span class="n">workspaceNames</span> <span class="o">=</span> <span class="n">calibration</span><span class="o">.</span><span class="n">getNames</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of data files loaded: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Names of data workspaces: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of data files loaded: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Names of data workspaces: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The merged files will receive the name of the last file in the merged range:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Number of data files loaded: 1
-Names of data workspaces: [&#39;calibration_data_6904&#39;]
+Names of data workspaces: ['calibration_data_6904']
 </pre></div>
 </div>
 <p>When the merge parameter and the number of runs in the specified range are not compatible (for example specifying <cite>3</cite> in the above code), the algorithm will merge files in the range as long as it can and leave out the rest. In the above example that would result in no data files being loaded at all.</p>
@@ -1584,13 +1584,13 @@ Names of data workspaces: [&#39;calibration_data_6904&#39;]
 
 <span class="n">workspaceNames</span> <span class="o">=</span> <span class="n">calibration</span><span class="o">.</span><span class="n">getNames</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of data files loaded: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Names of data workspaces: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of data files loaded: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Names of data workspaces: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The result is the same as in the example above, two files are in the WorkspaceGroup:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Number of data files loaded: 2
-Names of data workspaces: [&#39;calibration_data_6903&#39;,&#39;calibration_data_6904&#39;]
+Names of data workspaces: ['calibration_data_6903','calibration_data_6904']
 </pre></div>
 </div>
 <p>On the other hand it is also possible to overwrite an existing WorkspaceGroup, for example if there was a mistake with the previous data loading. The parameter needs to be specified explicitly.</p>
@@ -1602,20 +1602,20 @@ Names of data workspaces: [&#39;calibration_data_6903&#39;,&#39;calibration_data
 
 <span class="n">workspaceNames</span> <span class="o">=</span> <span class="n">calibration</span><span class="o">.</span><span class="n">getNames</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of data files loaded: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Names of data workspaces: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of data files loaded: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Names of data workspaces: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workspaceNames</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The data loaded in the first call to the algorithm have been overwritten with the merged data set:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Number of data files loaded: 1
-Names of data workspaces: [&#39;calibration_data_6904&#39;]
+Names of data workspaces: ['calibration_data_6904']
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/SINQ/Poldi.html">SINQ\Poldi</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/PoldiLoadRuns.py">PoldiLoadRuns.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/PoldiLoadRuns.py">PoldiLoadRuns.py</a></p>
 </section>
 </section>
 

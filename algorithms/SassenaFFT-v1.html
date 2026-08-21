@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SassenaFFT v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SassenaFFT v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1539,33 +1539,33 @@ is transformed, the result is another Gaussian:
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Load a Sassena file, Fourier transform it, and do a fit of S(Q,E):</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">LoadSassena</span><span class="p">(</span><span class="s2">&quot;loadSassenaExample.h5&quot;</span><span class="p">,</span> <span class="n">TimeUnit</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">LoadSassena</span><span class="p">(</span><span class="s2">"loadSassenaExample.h5"</span><span class="p">,</span> <span class="n">TimeUnit</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">SassenaFFT</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">FFTonlyRealPart</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Temp</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">DetailedBalance</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;workspaces instantiated:  </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNames</span><span class="p">())))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'workspaces instantiated:  </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNames</span><span class="p">())))</span>
 
 <span class="n">sqt</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># S(Q,E)</span>
 <span class="c1"># I(Q,t) is a Gaussian, thus S(Q,E) is a Gaussian too (at high temperatures)</span>
-<span class="c1"># Let&#39;s fit it to a Gaussian. We start with an initial guess</span>
+<span class="c1"># Let's fit it to a Gaussian. We start with an initial guess</span>
 <span class="n">intensity</span> <span class="o">=</span> <span class="mf">100.0</span>
 <span class="n">center</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.01</span>    <span class="c1">#in meV</span>
 <span class="n">startX</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span>   <span class="c1">#in meV</span>
 <span class="n">endX</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">myFunc</span> <span class="o">=</span> <span class="s1">&#39;name=Gaussian,Height=</span><span class="si">{0}</span><span class="s1">,PeakCentre=</span><span class="si">{1}</span><span class="s1">,Sigma=</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span><span class="n">center</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">myFunc</span> <span class="o">=</span> <span class="s1">'name=Gaussian,Height=</span><span class="si">{0}</span><span class="s1">,PeakCentre=</span><span class="si">{1}</span><span class="s1">,Sigma=</span><span class="si">{2}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span><span class="n">center</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span>
 
 <span class="c1"># Call the Fit algorithm and perform the fit</span>
 <span class="n">fit_output</span> <span class="o">=</span> <span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="n">myFunc</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">sqt</span><span class="p">,</span> <span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                 <span class="n">StartX</span> <span class="o">=</span> <span class="n">startX</span><span class="p">,</span> <span class="n">EndX</span><span class="o">=</span><span class="n">endX</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
+                 <span class="n">StartX</span> <span class="o">=</span> <span class="n">startX</span><span class="p">,</span> <span class="n">EndX</span><span class="o">=</span><span class="n">endX</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">'fit'</span><span class="p">)</span>
 <span class="n">paramTable</span> <span class="o">=</span> <span class="n">fit_output</span><span class="o">.</span><span class="n">OutputParameters</span>  <span class="c1"># table containing the optimal fit parameters</span>
 <span class="n">fitWorkspace</span> <span class="o">=</span> <span class="n">fit_output</span><span class="o">.</span><span class="n">OutputWorkspace</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The fit was: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fit_output</span><span class="o">.</span><span class="n">OutputStatus</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitted Height value is: </span><span class="si">{:.1f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitted centre value is: </span><span class="si">{:.1f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitted sigma value is: </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The fit was: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fit_output</span><span class="o">.</span><span class="n">OutputStatus</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fitted Height value is: </span><span class="si">{:.1f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fitted centre value is: </span><span class="si">{:.1f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fitted sigma value is: </span><span class="si">{:.4f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
 <span class="c1"># fitWorkspace contains the data, the calculated and the difference patterns</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of spectra in fitWorkspace is: &quot;</span> <span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="n">fitWorkspace</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of spectra in fitWorkspace is: "</span> <span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="n">fitWorkspace</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1581,8 +1581,8 @@ Number of spectra in fitWorkspace is: 3
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/SassenaFFT.h">SassenaFFT.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/SassenaFFT.cpp">SassenaFFT.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/SassenaFFT.h">SassenaFFT.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/SassenaFFT.cpp">SassenaFFT.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DirectILLDiagnostics v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>DirectILLDiagnostics v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/DirectILLDiagnostics-v1';</script>
@@ -1749,18 +1749,18 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p><strong>Example - Diagnostics on IN4 workspace</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DirectILLCollectData</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN4/087283-087290.nxs&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;preprocessed&#39;</span><span class="p">,</span>
-    <span class="n">OutputRawWorkspace</span><span class="o">=</span><span class="s1">&#39;raw&#39;</span><span class="p">,</span>  <span class="c1"># Needed for the diagnostics</span>
-    <span class="n">OutputEPPWorkspace</span><span class="o">=</span><span class="s1">&#39;epps&#39;</span>  <span class="c1"># Needed for the diagnostics</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/IN4/087283-087290.nxs'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'preprocessed'</span><span class="p">,</span>
+    <span class="n">OutputRawWorkspace</span><span class="o">=</span><span class="s1">'raw'</span><span class="p">,</span>  <span class="c1"># Needed for the diagnostics</span>
+    <span class="n">OutputEPPWorkspace</span><span class="o">=</span><span class="s1">'epps'</span>  <span class="c1"># Needed for the diagnostics</span>
 <span class="p">)</span>
 
 <span class="n">diagnostics</span> <span class="o">=</span> <span class="n">DirectILLDiagnostics</span><span class="p">(</span>
-    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;raw&#39;</span><span class="p">,</span>  <span class="c1"># Use &#39;raw&#39; rather than &#39;preprocessed&#39; for background diagnostics</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;mask&#39;</span><span class="p">,</span>  <span class="c1"># A special MaskWorkspace</span>
-    <span class="n">EPPWorkspace</span><span class="o">=</span><span class="s1">&#39;epps&#39;</span><span class="p">,</span>
-    <span class="n">MaskedComponents</span><span class="o">=</span><span class="s1">&#39;rosace&#39;</span><span class="p">,</span>
-    <span class="n">OutputReportWorkspace</span><span class="o">=</span><span class="s1">&#39;diagnostics_report&#39;</span>
+    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'raw'</span><span class="p">,</span>  <span class="c1"># Use 'raw' rather than 'preprocessed' for background diagnostics</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'mask'</span><span class="p">,</span>  <span class="c1"># A special MaskWorkspace</span>
+    <span class="n">EPPWorkspace</span><span class="o">=</span><span class="s1">'epps'</span><span class="p">,</span>
+    <span class="n">MaskedComponents</span><span class="o">=</span><span class="s1">'rosace'</span><span class="p">,</span>
+    <span class="n">OutputReportWorkspace</span><span class="o">=</span><span class="s1">'diagnostics_report'</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">diagnostics</span><span class="o">.</span><span class="n">OutputReport</span><span class="p">)</span>
 </pre></div>
@@ -1777,23 +1777,23 @@ Additional spectra marked as bad by flat background diagnostics:
 </pre></div>
 </div>
 <p><strong>Example - Default and beam stop masks on IN5 workspace</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># On IN5 we don&#39;t usually diagnose the pixels, but apply</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># On IN5 we don't usually diagnose the pixels, but apply</span>
 <span class="c1"># a hark mask + beam stop mask.</span>
 <span class="n">DirectILLCollectData</span><span class="p">(</span>
-    <span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN5/104007.nxs&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;preprocessed&#39;</span><span class="p">,</span>
+    <span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/IN5/104007.nxs'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'preprocessed'</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">DirectILLDiagnostics</span><span class="p">(</span>
-    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;preprocessed&#39;</span><span class="p">,</span>  <span class="c1"># Any IN5 workspace goes, doesn&#39;t have to be &#39;raw&#39;</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;mask&#39;</span><span class="p">,</span>  <span class="c1"># A special MaskWorkspace</span>
-    <span class="n">OutputReportWorkspace</span><span class="o">=</span><span class="s1">&#39;report&#39;</span>
+    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'preprocessed'</span><span class="p">,</span>  <span class="c1"># Any IN5 workspace goes, doesn't have to be 'raw'</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'mask'</span><span class="p">,</span>  <span class="c1"># A special MaskWorkspace</span>
+    <span class="n">OutputReportWorkspace</span><span class="o">=</span><span class="s1">'report'</span>
 <span class="p">)</span>
 <span class="c1"># Read some data from the report table workspace</span>
-<span class="n">report</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;report&#39;</span><span class="p">]</span>
-<span class="n">default_column</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;DefaultMask&#39;</span><span class="p">)</span>
-<span class="n">beam_stop_column</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;BeamStopMask&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total number of pixels masked by default mask: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">default_column</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total number of pixels masked under beam stop: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">beam_stop_column</span><span class="p">))))</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'report'</span><span class="p">]</span>
+<span class="n">default_column</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'DefaultMask'</span><span class="p">)</span>
+<span class="n">beam_stop_column</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">'BeamStopMask'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Total number of pixels masked by default mask: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">default_column</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Total number of pixels masked under beam stop: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">beam_stop_column</span><span class="p">))))</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Total number of pixels masked by default mask: 7261
@@ -1808,7 +1808,7 @@ Total number of pixels masked under beam stop: 2457
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/DirectILLDiagnostics.py">DirectILLDiagnostics.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/DirectILLDiagnostics.py">DirectILLDiagnostics.py</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MonitorEfficiencyCorUser v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MonitorEfficiencyCorUser v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1495,20 +1495,20 @@
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="n">wsSample</span> <span class="o">=</span> <span class="n">LoadMLZ</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;TOFTOFTestdata.nxs&#39;</span><span class="p">)</span>
+<span class="n">wsSample</span> <span class="o">=</span> <span class="n">LoadMLZ</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'TOFTOFTestdata.nxs'</span><span class="p">)</span>
 <span class="n">wsNorm</span> <span class="o">=</span> <span class="n">MonitorEfficiencyCorUser</span><span class="p">(</span><span class="n">wsSample</span> <span class="p">)</span>
 <span class="c1"># Input and output workspaces have the same structure</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of histograms of the input and output workspaces:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsSample</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">wsNorm</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of time channels of the input an output workspaces:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">wsSample</span><span class="o">.</span><span class="n">blocksize</span><span class="p">(),</span> <span class="n">wsNorm</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Number of histograms of the input and output workspaces:'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsSample</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">wsNorm</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Number of time channels of the input an output workspaces:'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">wsSample</span><span class="o">.</span><span class="n">blocksize</span><span class="p">(),</span> <span class="n">wsNorm</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
 <span class="c1"># Check calculation of normalisation coefficient between input and output workspaces</span>
 <span class="n">wsCheck</span> <span class="o">=</span> <span class="n">Divide</span><span class="p">(</span><span class="n">wsSample</span><span class="p">,</span><span class="n">wsNorm</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficient of proportionality between Input and Output of MonitorEfficiencyCorUser algorithm: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsCheck</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">102</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Coefficient of proportionality between Input and Output of MonitorEfficiencyCorUser algorithm: </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsCheck</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">102</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
 <span class="c1"># Read the values of the incident energy and of the monitor counts from the SampleLogs of wsSample</span>
-<span class="n">monitor_counts</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;wsSample&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;monitor_counts&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="n">Ei</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;wsSample&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;Ei&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficient from theoretical formula = monitor_counts * sqrt(Ei/25.3): </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">monitor_counts</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Ei</span><span class="o">/</span><span class="mf">25.3</span><span class="p">)))</span>
+<span class="n">monitor_counts</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'wsSample'</span><span class="p">]</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'monitor_counts'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="n">Ei</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'wsSample'</span><span class="p">]</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'Ei'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Coefficient from theoretical formula = monitor_counts * sqrt(Ei/25.3): </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">monitor_counts</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Ei</span><span class="o">/</span><span class="mf">25.3</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1524,8 +1524,8 @@ Coefficient from theoretical formula = monitor_counts * sqrt(Ei/25.3): 41038.432
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/MonitorEfficiencyCorUser.h">MonitorEfficiencyCorUser.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/MonitorEfficiencyCorUser.cpp">MonitorEfficiencyCorUser.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/MonitorEfficiencyCorUser.h">MonitorEfficiencyCorUser.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/MonitorEfficiencyCorUser.cpp">MonitorEfficiencyCorUser.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>IntegratePeaks1DProfile v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>IntegratePeaks1DProfile v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/IntegratePeaks1DProfile-v1';</script>
@@ -1618,17 +1618,17 @@ each dimension like so</p>
 <p><strong>Example - IntegratePeaks1DProfile</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;SXD23767.raw&quot;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;SXD23767&quot;</span><span class="p">)</span>
-<span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="s2">&quot;SXD23767&quot;</span><span class="p">,</span> <span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">)</span>
-<span class="n">AddPeak</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">,</span> <span class="n">RunWorkspace</span><span class="o">=</span><span class="s2">&quot;SXD23767&quot;</span><span class="p">,</span> <span class="n">TOF</span><span class="o">=</span><span class="mf">8303.3735339704781</span><span class="p">,</span> <span class="n">DetectorID</span><span class="o">=</span><span class="mi">7646</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"SXD23767.raw"</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"SXD23767"</span><span class="p">)</span>
+<span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="s2">"SXD23767"</span><span class="p">,</span> <span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"peaks"</span><span class="p">)</span>
+<span class="n">AddPeak</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s2">"peaks"</span><span class="p">,</span> <span class="n">RunWorkspace</span><span class="o">=</span><span class="s2">"SXD23767"</span><span class="p">,</span> <span class="n">TOF</span><span class="o">=</span><span class="mf">8303.3735339704781</span><span class="p">,</span> <span class="n">DetectorID</span><span class="o">=</span><span class="mi">7646</span><span class="p">)</span>
 
-<span class="n">peaks_out</span> <span class="o">=</span> <span class="n">IntegratePeaks1DProfile</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">&quot;SXD23767&quot;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks_int&quot;</span><span class="p">,</span>
-                                    <span class="n">GetNBinsFromBackToBackParams</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">NFWHM</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">CostFunction</span><span class="o">=</span><span class="s2">&quot;RSq&quot;</span><span class="p">,</span>
-                                    <span class="n">PeakFunction</span><span class="o">=</span><span class="s2">&quot;BackToBackExponential&quot;</span><span class="p">,</span> <span class="n">FixPeakParameters</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span>
+<span class="n">peaks_out</span> <span class="o">=</span> <span class="n">IntegratePeaks1DProfile</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">"SXD23767"</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s2">"peaks"</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"peaks_int"</span><span class="p">,</span>
+                                    <span class="n">GetNBinsFromBackToBackParams</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">NFWHM</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">CostFunction</span><span class="o">=</span><span class="s2">"RSq"</span><span class="p">,</span>
+                                    <span class="n">PeakFunction</span><span class="o">=</span><span class="s2">"BackToBackExponential"</span><span class="p">,</span> <span class="n">FixPeakParameters</span><span class="o">=</span><span class="s1">'A'</span><span class="p">,</span>
                                     <span class="n">NRows</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">NCols</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">IOverSigmaThreshold</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                                     <span class="n">FractionalChangeDSpacing</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">IntegrateIfOnEdge</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I/sigma = </span><span class="si">{</span><span class="n">peaks_out</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getIntensityOverSigma</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"I/sigma = </span><span class="si">{</span><span class="n">peaks_out</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getIntensityOverSigma</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
@@ -1648,7 +1648,7 @@ each dimension like so</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/IntegratePeaks1DProfile.py">IntegratePeaks1DProfile.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/IntegratePeaks1DProfile.py">IntegratePeaks1DProfile.py</a></p>
 </section>
 </section>
 

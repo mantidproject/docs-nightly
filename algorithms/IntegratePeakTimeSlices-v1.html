@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>IntegratePeakTimeSlices v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>IntegratePeakTimeSlices v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/IntegratePeakTimeSlices-v1';</script>
@@ -1561,23 +1561,23 @@ algorithm when the Fit tag is selected.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a SCD data set from systemtests Data and find the peaks</span>
-<span class="n">LoadEventNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;TOPAZ_3132_event.nxs&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_nxs&#39;</span><span class="p">)</span>
-<span class="n">ConvertToDiffractionMDWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_nxs&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_md&#39;</span><span class="p">,</span><span class="n">LorentzCorrection</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
-<span class="n">FindPeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_md&#39;</span><span class="p">,</span><span class="n">PeakDistanceThreshold</span><span class="o">=</span><span class="s1">&#39;0.15&#39;</span><span class="p">,</span><span class="n">MaxPeaks</span><span class="o">=</span><span class="s1">&#39;100&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
-<span class="n">FindUBUsingFFT</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span><span class="n">MinD</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="n">MaxD</span><span class="o">=</span><span class="s1">&#39;16&#39;</span><span class="p">)</span>
-<span class="n">IndexPeaks</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
+<span class="n">LoadEventNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">'TOPAZ_3132_event.nxs'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_nxs'</span><span class="p">)</span>
+<span class="n">ConvertToDiffractionMDWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_nxs'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_md'</span><span class="p">,</span><span class="n">LorentzCorrection</span><span class="o">=</span><span class="s1">'1'</span><span class="p">)</span>
+<span class="n">FindPeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_md'</span><span class="p">,</span><span class="n">PeakDistanceThreshold</span><span class="o">=</span><span class="s1">'0.15'</span><span class="p">,</span><span class="n">MaxPeaks</span><span class="o">=</span><span class="s1">'100'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">)</span>
+<span class="n">FindUBUsingFFT</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">,</span><span class="n">MinD</span><span class="o">=</span><span class="s1">'2'</span><span class="p">,</span><span class="n">MaxD</span><span class="o">=</span><span class="s1">'16'</span><span class="p">)</span>
+<span class="n">IndexPeaks</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">)</span>
 
 <span class="c1"># Run the Integration algorithm and print results</span>
-<span class="n">peak0</span><span class="p">,</span><span class="nb">int</span><span class="p">,</span><span class="n">sig</span> <span class="o">=</span> <span class="n">IntegratePeakTimeSlices</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_nxs&#39;</span><span class="p">,</span> <span class="n">Peaks</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span> <span class="n">Intensity</span><span class="o">=</span><span class="mf">4580.8587719746683</span><span class="p">,</span> <span class="n">SigmaIntensity</span><span class="o">=</span><span class="mf">190.21154129339735</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intensity and SigmaIntensity of peak 0  = </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">sig</span><span class="p">))</span>
+<span class="n">peak0</span><span class="p">,</span><span class="nb">int</span><span class="p">,</span><span class="n">sig</span> <span class="o">=</span> <span class="n">IntegratePeakTimeSlices</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_nxs'</span><span class="p">,</span> <span class="n">Peaks</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">,</span> <span class="n">Intensity</span><span class="o">=</span><span class="mf">4580.8587719746683</span><span class="p">,</span> <span class="n">SigmaIntensity</span><span class="o">=</span><span class="mf">190.21154129339735</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Intensity and SigmaIntensity of peak 0  = </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">sig</span><span class="p">))</span>
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Crystal/Integration.html">Crystal\Integration</a> | <a class="reference external" href="categories/Deprecated.html">Deprecated</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/inc/MantidCrystal/IntegratePeakTimeSlices.h">IntegratePeakTimeSlices.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/src/IntegratePeakTimeSlices.cpp">IntegratePeakTimeSlices.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/inc/MantidCrystal/IntegratePeakTimeSlices.h">IntegratePeakTimeSlices.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/src/IntegratePeakTimeSlices.cpp">IntegratePeakTimeSlices.cpp</a></p>
 </section>
 </section>
 

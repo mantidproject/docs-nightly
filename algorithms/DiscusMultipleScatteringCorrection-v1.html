@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DiscusMultipleScatteringCorrection v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>DiscusMultipleScatteringCorrection v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1703,26 +1703,26 @@ For this reason it’s not clear this feature from Discus is useful but it has b
 <span class="c1"># Spike height gives same normalisation as isotropic (integral of Q.S(Q) the same)</span>
 <span class="n">X</span><span class="o">=</span><span class="p">[</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.01</span><span class="p">]</span>
 <span class="n">Y</span><span class="o">=</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mf">0.</span><span class="p">]</span>
-<span class="n">Sofq</span><span class="o">=</span><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">DataY</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">UnitX</span><span class="o">=</span><span class="s2">&quot;MomentumTransfer&quot;</span><span class="p">)</span>
+<span class="n">Sofq</span><span class="o">=</span><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">DataY</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">UnitX</span><span class="o">=</span><span class="s2">"MomentumTransfer"</span><span class="p">)</span>
 
 <span class="c1"># Isotropic S(Q)</span>
 <span class="n">X</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">]</span>
 <span class="n">Y</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">]</span>
-<span class="n">Sofq_isotropic</span><span class="o">=</span><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">DataY</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">UnitX</span><span class="o">=</span><span class="s2">&quot;MomentumTransfer&quot;</span><span class="p">)</span>
+<span class="n">Sofq_isotropic</span><span class="o">=</span><span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">DataY</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">UnitX</span><span class="o">=</span><span class="s2">"MomentumTransfer"</span><span class="p">)</span>
 
 <span class="n">two_thetas</span><span class="o">=</span><span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">180</span><span class="p">):</span>
     <span class="n">two_thetas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
 <span class="c1"># workspace with single bin centred at k=1 Angstrom-1</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span>
-                           <span class="n">XUnit</span><span class="o">=</span><span class="s2">&quot;Momentum&quot;</span><span class="p">,</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">"Histogram"</span><span class="p">,</span>
+                           <span class="n">XUnit</span><span class="o">=</span><span class="s2">"Momentum"</span><span class="p">,</span>
                            <span class="n">Xmin</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                            <span class="n">Xmax</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
                            <span class="n">BinWidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
                            <span class="n">NumBanks</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">two_thetas</span><span class="p">)</span><span class="o">//</span><span class="mi">4</span><span class="p">,</span>
                            <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                           <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;testinst&quot;</span><span class="p">)</span>
+                           <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">"testinst"</span><span class="p">)</span>
 
 <span class="n">ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">two_thetas</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">EditInstrumentGeometry</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span>
@@ -1732,42 +1732,42 @@ For this reason it’s not clear this feature from Discus is useful but it has b
     <span class="n">Polar</span><span class="o">=</span><span class="n">two_thetas</span><span class="p">,</span>
     <span class="n">Azimuthal</span><span class="o">=</span><span class="p">[</span><span class="mf">90.0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">two_thetas</span><span class="p">),</span>
     <span class="n">DetectorIDs</span><span class="o">=</span><span class="n">ids</span><span class="p">,</span>
-    <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;testinst&quot;</span><span class="p">)</span>
+    <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">"testinst"</span><span class="p">)</span>
 
-<span class="n">sphere_xml</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="se">\</span>
-<span class="s2">&lt;sphere id=&#39;some-sphere&#39;&gt; </span><span class="se">\</span>
-<span class="s2">    &lt;centre x=&#39;0.0&#39;  y=&#39;0.0&#39; z=&#39;0.0&#39; /&gt; </span><span class="se">\</span>
-<span class="s2">    &lt;radius val=&#39;0.01&#39; /&gt; </span><span class="se">\</span>
+<span class="n">sphere_xml</span> <span class="o">=</span> <span class="s2">" </span><span class="se">\</span>
+<span class="s2">&lt;sphere id='some-sphere'&gt; </span><span class="se">\</span>
+<span class="s2">    &lt;centre x='0.0'  y='0.0' z='0.0' /&gt; </span><span class="se">\</span>
+<span class="s2">    &lt;radius val='0.01' /&gt; </span><span class="se">\</span>
 <span class="s2">&lt;/sphere&gt; </span><span class="se">\</span>
-<span class="s2">&lt;algebra val=&#39;some-sphere&#39; /&gt; </span><span class="se">\</span>
-<span class="s2">&quot;</span>
+<span class="s2">&lt;algebra val='some-sphere' /&gt; </span><span class="se">\</span>
+<span class="s2">"</span>
 <span class="n">SetSample</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
-          <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;CSG&#39;</span><span class="p">,</span> <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="n">sphere_xml</span><span class="p">},</span>
-          <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;NumberDensity&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;AttenuationXSection&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-                    <span class="s1">&#39;CoherentXSection&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;IncoherentXSection&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;ScatteringXSection&#39;</span><span class="p">:</span> <span class="mf">80.0</span><span class="p">})</span>
+          <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">'Shape'</span><span class="p">:</span> <span class="s1">'CSG'</span><span class="p">,</span> <span class="s1">'Value'</span><span class="p">:</span> <span class="n">sphere_xml</span><span class="p">},</span>
+          <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">'NumberDensity'</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">'AttenuationXSection'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                    <span class="s1">'CoherentXSection'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">'IncoherentXSection'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">'ScatteringXSection'</span><span class="p">:</span> <span class="mf">80.0</span><span class="p">})</span>
 
 <span class="n">results_group</span> <span class="o">=</span> <span class="n">DiscusMultipleScatteringCorrection</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">StructureFactorWorkspace</span><span class="o">=</span><span class="n">Sofq</span><span class="p">,</span>
-                                                   <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;MuscatResults&quot;</span><span class="p">,</span> <span class="n">NeutronPathsSingle</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                                                   <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"MuscatResults"</span><span class="p">,</span> <span class="n">NeutronPathsSingle</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
                                                    <span class="n">NeutronPathsMultiple</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">ImportanceSampling</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># Can&#39;t index into workspace group by name (yet) so just get the members from the ADS instead</span>
-<span class="n">Scatter_1_DeltaFunction</span> <span class="o">=</span> <span class="n">CloneWorkspace</span><span class="p">(</span><span class="s1">&#39;MuscatResults_Scatter_1&#39;</span><span class="p">)</span>
-<span class="n">Scatter_2_DeltaFunction</span> <span class="o">=</span> <span class="n">CloneWorkspace</span><span class="p">(</span><span class="s1">&#39;MuscatResults_Scatter_2&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s1">&#39;MuscatResults&#39;</span><span class="p">)</span>
+<span class="c1"># Can't index into workspace group by name (yet) so just get the members from the ADS instead</span>
+<span class="n">Scatter_1_DeltaFunction</span> <span class="o">=</span> <span class="n">CloneWorkspace</span><span class="p">(</span><span class="s1">'MuscatResults_Scatter_1'</span><span class="p">)</span>
+<span class="n">Scatter_2_DeltaFunction</span> <span class="o">=</span> <span class="n">CloneWorkspace</span><span class="p">(</span><span class="s1">'MuscatResults_Scatter_2'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="s1">'MuscatResults'</span><span class="p">)</span>
 
 <span class="n">DiscusMultipleScatteringCorrection</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">StructureFactorWorkspace</span><span class="o">=</span><span class="n">Sofq_isotropic</span><span class="p">,</span>
-                                   <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;MuscatResultsIsotropic&quot;</span><span class="p">,</span> <span class="n">NeutronPathsSingle</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                                   <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"MuscatResultsIsotropic"</span><span class="p">,</span> <span class="n">NeutronPathsSingle</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
                                    <span class="n">NeutronPathsMultiple</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">ImportanceSampling</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">Scatter_2_Isotropic</span> <span class="o">=</span> <span class="n">CloneWorkspace</span><span class="p">(</span><span class="s1">&#39;MuscatResultsIsotropic_Scatter_2&#39;</span><span class="p">)</span>
+<span class="n">Scatter_2_Isotropic</span> <span class="o">=</span> <span class="n">CloneWorkspace</span><span class="p">(</span><span class="s1">'MuscatResultsIsotropic_Scatter_2'</span><span class="p">)</span>
 
 
 <span class="c1"># q=2ksin(theta), so q spike corresonds to single scatter spike at ~60 degrees, double scatter spikes at 0 and 120 degrees</span>
-<span class="n">msplot</span> <span class="o">=</span> <span class="n">plotBin</span><span class="p">(</span><span class="s1">&#39;Scatter_2_DeltaFunction&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">msplot</span> <span class="o">=</span> <span class="n">plotBin</span><span class="p">(</span><span class="s1">&#39;Scatter_1_DeltaFunction&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">msplot</span><span class="p">)</span>
-<span class="n">msplot</span> <span class="o">=</span> <span class="n">plotBin</span><span class="p">(</span><span class="s1">&#39;Scatter_2_Isotropic&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">msplot</span><span class="p">)</span>
+<span class="n">msplot</span> <span class="o">=</span> <span class="n">plotBin</span><span class="p">(</span><span class="s1">'Scatter_2_DeltaFunction'</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">msplot</span> <span class="o">=</span> <span class="n">plotBin</span><span class="p">(</span><span class="s1">'Scatter_1_DeltaFunction'</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">msplot</span><span class="p">)</span>
+<span class="n">msplot</span> <span class="o">=</span> <span class="n">plotBin</span><span class="p">(</span><span class="s1">'Scatter_2_Isotropic'</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">msplot</span><span class="p">)</span>
 <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-<span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Spectrum (~scattering angle in degrees)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Spectrum (~scattering angle in degrees)'</span><span class="p">)</span>
 <span class="n">axes</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.6</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Single and Double Scatter Intensities&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Single and Double Scatter Intensities"</span><span class="p">)</span>
 <span class="n">mtd</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1804,7 +1804,7 @@ For this reason it’s not clear this feature from Discus is useful but it has b
      <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
      <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">w</span> <span class="o">+</span> <span class="p">(</span><span class="n">D</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">q</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">==</span><span class="mf">0.</span><span class="p">):</span>
         <span class="c1"># Discus S(Q,w) has zero here so do likewise</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Denominator zero so outputting S(q,w)=0&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Denominator zero so outputting S(q,w)=0"</span><span class="p">)</span>
         <span class="n">Y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.</span><span class="p">)</span>
      <span class="k">else</span><span class="p">:</span>
         <span class="n">Sqw</span> <span class="o">=</span> <span class="n">D</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">w</span> <span class="o">+</span> <span class="p">(</span><span class="n">D</span><span class="o">*</span><span class="n">q</span><span class="o">*</span><span class="n">q</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
@@ -1815,20 +1815,20 @@ For this reason it’s not clear this feature from Discus is useful but it has b
         <span class="c1"># S(Q,w) is capped at exactly 4.0 for some reason in Discus example</span>
         <span class="n">Y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">Sqw</span><span class="p">,</span><span class="mf">4.0</span><span class="p">))</span>
 
-<span class="n">sqw</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">DataY</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">UnitX</span><span class="o">=</span><span class="s2">&quot;DeltaE&quot;</span><span class="p">,</span>
-                      <span class="n">VerticalAxisUnit</span><span class="o">=</span><span class="s2">&quot;MomentumTransfer&quot;</span><span class="p">,</span>
+<span class="n">sqw</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">DataY</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">UnitX</span><span class="o">=</span><span class="s2">"DeltaE"</span><span class="p">,</span>
+                      <span class="n">VerticalAxisUnit</span><span class="o">=</span><span class="s2">"MomentumTransfer"</span><span class="p">,</span>
                       <span class="n">VerticalAxisValues</span><span class="o">=</span><span class="n">SpecAxis</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="n">nqpts</span><span class="p">)</span>
 
 <span class="n">two_thetas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">20.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">]</span>
 
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span>
-                           <span class="n">XUnit</span><span class="o">=</span><span class="s2">&quot;DeltaE&quot;</span><span class="p">,</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">"Histogram"</span><span class="p">,</span>
+                           <span class="n">XUnit</span><span class="o">=</span><span class="s2">"DeltaE"</span><span class="p">,</span>
                            <span class="n">Xmin</span><span class="o">=</span><span class="n">wmin</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">wmax</span><span class="o">-</span><span class="n">wmin</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">nwpts</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
                            <span class="n">Xmax</span><span class="o">=</span><span class="n">wmax</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">wmax</span><span class="o">-</span><span class="n">wmin</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">nwpts</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
                            <span class="n">BinWidth</span><span class="o">=</span><span class="p">(</span><span class="n">wmax</span><span class="o">-</span><span class="n">wmin</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">nwpts</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
                            <span class="n">NumBanks</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">two_thetas</span><span class="p">),</span>
                            <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                           <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;testinst&quot;</span><span class="p">)</span>
+                           <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">"testinst"</span><span class="p">)</span>
 
 <span class="c1"># set up ring of detectors in yz plane</span>
 <span class="n">ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">two_thetas</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
@@ -1840,54 +1840,54 @@ For this reason it’s not clear this feature from Discus is useful but it has b
     <span class="c1">#azimuthal angle=phi, phi=0 along x axis and increases as move towards vertical y axis</span>
     <span class="n">Azimuthal</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">90.0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">two_thetas</span><span class="p">),</span>
     <span class="n">DetectorIDs</span><span class="o">=</span><span class="n">ids</span><span class="p">,</span>
-    <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;testinst&quot;</span><span class="p">)</span>
+    <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">"testinst"</span><span class="p">)</span>
 
 <span class="c1"># flat plate sample 5cm x 5cm x 0.065cm</span>
-<span class="n">cuboid_xml</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="se">\</span>
-<span class="s2">&lt;cuboid id=&#39;flatplate&#39;&gt; </span><span class="se">\</span>
-<span class="s2">  &lt;width val=&#39;0.05&#39; /&gt; </span><span class="se">\</span>
-<span class="s2">  &lt;height val=&#39;0.05&#39;  /&gt; </span><span class="se">\</span>
-<span class="s2">  &lt;depth  val=&#39;0.00065&#39; /&gt; </span><span class="se">\</span>
-<span class="s2">  &lt;centre x=&#39;0.0&#39; y=&#39;0.0&#39; z=&#39;0.0&#39;  /&gt; </span><span class="se">\</span>
-<span class="s2">  &lt;rotate x=&#39;45&#39; y=&#39;0&#39; z=&#39;0&#39; /&gt; </span><span class="se">\</span>
+<span class="n">cuboid_xml</span> <span class="o">=</span> <span class="s2">" </span><span class="se">\</span>
+<span class="s2">&lt;cuboid id='flatplate'&gt; </span><span class="se">\</span>
+<span class="s2">  &lt;width val='0.05' /&gt; </span><span class="se">\</span>
+<span class="s2">  &lt;height val='0.05'  /&gt; </span><span class="se">\</span>
+<span class="s2">  &lt;depth  val='0.00065' /&gt; </span><span class="se">\</span>
+<span class="s2">  &lt;centre x='0.0' y='0.0' z='0.0'  /&gt; </span><span class="se">\</span>
+<span class="s2">  &lt;rotate x='45' y='0' z='0' /&gt; </span><span class="se">\</span>
 <span class="s2">&lt;/cuboid&gt; </span><span class="se">\</span>
-<span class="s2">&quot;</span>
+<span class="s2">"</span>
 <span class="n">SetSample</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
-          <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;CSG&#39;</span><span class="p">,</span> <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="n">cuboid_xml</span><span class="p">},</span>
-          <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;NumberDensity&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;AttenuationXSection&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-                    <span class="s1">&#39;CoherentXSection&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;IncoherentXSection&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;ScatteringXSection&#39;</span><span class="p">:</span> <span class="mf">80.0</span><span class="p">})</span>
+          <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">'Shape'</span><span class="p">:</span> <span class="s1">'CSG'</span><span class="p">,</span> <span class="s1">'Value'</span><span class="p">:</span> <span class="n">cuboid_xml</span><span class="p">},</span>
+          <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">'NumberDensity'</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">'AttenuationXSection'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                    <span class="s1">'CoherentXSection'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">'IncoherentXSection'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">'ScatteringXSection'</span><span class="p">:</span> <span class="mf">80.0</span><span class="p">})</span>
 
 <span class="c1">#match Ei value from DISCUS pdf Figure 1</span>
-<span class="n">ws</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s2">&quot;deltaE-mode&quot;</span><span class="p">,</span> <span class="s2">&quot;Direct&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">);</span>
-<span class="n">ws</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s2">&quot;Ei&quot;</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">,</span> <span class="kc">True</span><span class="p">);</span>
+<span class="n">ws</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s2">"deltaE-mode"</span><span class="p">,</span> <span class="s2">"Direct"</span><span class="p">,</span> <span class="kc">True</span><span class="p">);</span>
+<span class="n">ws</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s2">"Ei"</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">,</span> <span class="kc">True</span><span class="p">);</span>
 
 <span class="n">DiscusMultipleScatteringCorrection</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">StructureFactorWorkspace</span><span class="o">=</span><span class="n">sqw</span><span class="p">,</span>
-                                   <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;MuscatResults&quot;</span><span class="p">,</span> <span class="n">NeutronPathsSingle</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                                   <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"MuscatResults"</span><span class="p">,</span> <span class="n">NeutronPathsSingle</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
                                    <span class="n">NeutronPathsMultiple</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 
 <span class="c1"># reverse w axis because Discus w = Ef-Ei (opposite to Mantid)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
-    <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">setE</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
-    <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">setE</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_1'</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_1'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_1'</span><span class="p">]</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_1'</span><span class="p">]</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_1'</span><span class="p">]</span><span class="o">.</span><span class="n">setE</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_2'</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_2'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_2'</span><span class="p">]</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_2'</span><span class="p">]</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_2'</span><span class="p">]</span><span class="o">.</span><span class="n">setE</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.figsize'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">two_thetas</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_1&#39;</span><span class="p">],</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Single: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; degrees&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_1'</span><span class="p">],</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Single: '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' degrees'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">two_thetas</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuscatResults_Scatter_2&#39;</span><span class="p">],</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Double: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; degrees&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'MuscatResults_Scatter_2'</span><span class="p">],</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Double: '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' degrees'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">'log'</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span><span class="mf">1e-1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mf">7.0</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Inelastic Double</span><span class="se">\\</span><span class="s2">Single Scattering Weights&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Inelastic Double</span><span class="se">\\</span><span class="s2">Single Scattering Weights"</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="n">mtd</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
@@ -1930,8 +1930,8 @@ For this reason it’s not clear this feature from Discus is useful but it has b
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/DiscusMultipleScatteringCorrection.h">DiscusMultipleScatteringCorrection.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/DiscusMultipleScatteringCorrection.cpp">DiscusMultipleScatteringCorrection.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/DiscusMultipleScatteringCorrection.h">DiscusMultipleScatteringCorrection.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/DiscusMultipleScatteringCorrection.cpp">DiscusMultipleScatteringCorrection.cpp</a></p>
 </section>
 </section>
 

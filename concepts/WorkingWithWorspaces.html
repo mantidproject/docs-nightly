@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Working with Workspaces in Python &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Working with Workspaces in Python &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/WorkingWithWorspaces';</script>
@@ -447,15 +447,15 @@
 <span id="workspace-accessing-workspaces"></span><h2>Accessing Workspaces<a class="headerlink" href="#accessing-workspaces" title="Link to this heading">#</a></h2>
 <p>In <code class="docutils literal notranslate"><span class="pre">mantid.simpleapi</span></code>, you can access existing workspaces as a dictionary using the <code class="docutils literal notranslate"><span class="pre">mtd[&quot;worskpace_name&quot;]</span></code> command for a specific workspace name key.  More explanation can be found in <a class="reference internal" href="../tutorials/python_in_mantid/further_alg_ws/01_access_ws.html#access-ws"><span class="std std-ref">Accessing Workspaces From Python</span></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This creates a workspace without explicitly capturing the output</span>
-<span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;my_new_workspace&quot;</span><span class="p">)</span>
+<span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"my_new_workspace"</span><span class="p">)</span>
 
 <span class="c1"># You can get a python variable pointing to the workspace with the command</span>
-<span class="n">myWS</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;my_new_workspace&quot;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The variable myWS now points to the workspace called &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">myWS</span><span class="p">))</span>
+<span class="n">myWS</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"my_new_workspace"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The variable myWS now points to the workspace called "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">myWS</span><span class="p">))</span>
 
 <span class="c1"># You can assign a python variable when calling an algorithm and the workspace will match the variable name</span>
 <span class="n">myOtherWS</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;myOtherWS now points to the workspace called &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">myOtherWS</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"myOtherWS now points to the workspace called "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">myOtherWS</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -468,17 +468,17 @@ myOtherWS now points to the workspace called myOtherWS
 <span id="workspace-properties-workspaces"></span><h2>Workspace Properties<a class="headerlink" href="#workspace-properties" title="Link to this heading">#</a></h2>
 <p>You can look at the <a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid-api-workspace"><span class="std std-ref">Workspace API reference</span></a> for a full list of properties, but here are some of the key ones.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myWS</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;name = &quot;</span> <span class="o">+</span> <span class="n">myWS</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"name = "</span> <span class="o">+</span> <span class="n">myWS</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
 
-<span class="n">myWS</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s2">&quot;This is my Title&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;getTitle = &quot;</span> <span class="o">+</span> <span class="n">myWS</span><span class="o">.</span><span class="n">getTitle</span><span class="p">())</span>
+<span class="n">myWS</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s2">"This is my Title"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"getTitle = "</span> <span class="o">+</span> <span class="n">myWS</span><span class="o">.</span><span class="n">getTitle</span><span class="p">())</span>
 
-<span class="n">myWS</span><span class="o">.</span><span class="n">setComment</span><span class="p">(</span><span class="s2">&quot;This is my comment&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;comment = &quot;</span> <span class="o">+</span> <span class="n">myWS</span><span class="o">.</span><span class="n">getComment</span><span class="p">())</span>
+<span class="n">myWS</span><span class="o">.</span><span class="n">setComment</span><span class="p">(</span><span class="s2">"This is my comment"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"comment = "</span> <span class="o">+</span> <span class="n">myWS</span><span class="o">.</span><span class="n">getComment</span><span class="p">())</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;id = &quot;</span> <span class="o">+</span> <span class="n">myWS</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"id = "</span> <span class="o">+</span> <span class="n">myWS</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;getMemorySize = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">myWS</span><span class="o">.</span><span class="n">getMemorySize</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"getMemorySize = "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">myWS</span><span class="o">.</span><span class="n">getMemorySize</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -495,7 +495,7 @@ getMemorySize = ...
 <p>Workspaces keep a track of all of the algorithms used on them, so you can ask a workspace to tell you about it’s history.  The algorithm <a class="reference internal" href="../algorithms/GeneratePythonScript-v1.html#algm-generatepythonscript"><span class="std std-ref">GeneratePythonScript</span></a> uses this information to create a python script able to re-run the workspace history.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run a few algorithms</span>
 <span class="n">myWS</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="n">myWS</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">myWS</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">)</span>
+<span class="n">myWS</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">myWS</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">)</span>
 <span class="n">myWS</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">myWS</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 
 <span class="c1"># You can access the history using getHistory()</span>
@@ -504,7 +504,7 @@ getMemorySize = ...
     <span class="nb">print</span><span class="p">(</span><span class="n">algHistory</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
     <span class="k">for</span> <span class="nb">property</span> <span class="ow">in</span> <span class="n">algHistory</span><span class="o">.</span><span class="n">getProperties</span><span class="p">():</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">property</span><span class="o">.</span><span class="n">isDefault</span><span class="p">():</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">property</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="nb">property</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span> <span class="o">+</span> <span class="nb">property</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s2">" = "</span> <span class="o">+</span> <span class="nb">property</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>

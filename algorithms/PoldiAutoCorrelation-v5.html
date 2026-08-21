@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PoldiAutoCorrelation v5 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PoldiAutoCorrelation v5 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1513,20 +1513,20 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p>PoldiAutoCorrelation operates on a MatrixWorkspace with a valid POLDI instrument definition. The following short example demonstrates how to use the algorithm, processing data obtained from recording the spectrum of a Silicon standard material (powder).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data file with Si spectrum, this loads the HDF-data into a MatrixWorkspace named raw_6904</span>
-<span class="n">raw_6904</span> <span class="o">=</span> <span class="n">LoadSINQFile</span><span class="p">(</span><span class="n">Filename</span> <span class="o">=</span> <span class="s2">&quot;poldi2013n006904.hdf&quot;</span><span class="p">,</span> <span class="n">Instrument</span> <span class="o">=</span> <span class="s2">&quot;POLDI&quot;</span><span class="p">)</span>
+<span class="n">raw_6904</span> <span class="o">=</span> <span class="n">LoadSINQFile</span><span class="p">(</span><span class="n">Filename</span> <span class="o">=</span> <span class="s2">"poldi2013n006904.hdf"</span><span class="p">,</span> <span class="n">Instrument</span> <span class="o">=</span> <span class="s2">"POLDI"</span><span class="p">)</span>
 
 <span class="c1"># Print the number of spectra in the workspace. It should be 400, one for each detector wire</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The workspace contains </span><span class="si">{}</span><span class="s2"> spectra.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">raw_6904</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The workspace contains </span><span class="si">{}</span><span class="s2"> spectra."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">raw_6904</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 
-<span class="c1"># For most calculations, an instrument definition is needed, so it&#39;s loaded as well</span>
-<span class="n">LoadInstrument</span><span class="p">(</span><span class="n">raw_6904</span><span class="p">,</span> <span class="n">InstrumentName</span> <span class="o">=</span> <span class="s2">&quot;POLDI&quot;</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># For most calculations, an instrument definition is needed, so it's loaded as well</span>
+<span class="n">LoadInstrument</span><span class="p">(</span><span class="n">raw_6904</span><span class="p">,</span> <span class="n">InstrumentName</span> <span class="o">=</span> <span class="s2">"POLDI"</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Call the actual algorithm.</span>
 <span class="n">correlated_6904</span> <span class="o">=</span> <span class="n">PoldiAutoCorrelation</span><span class="p">(</span><span class="n">raw_6904</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="c1"># The first spectrum contains the correlation data. In this case there should be 5531 bins.</span>
 <span class="c1"># On other data or different wavelength limits, this number will be different.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The correlation spectrum has </span><span class="si">{}</span><span class="s2"> data points.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">correlated_6904</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The correlation spectrum has </span><span class="si">{}</span><span class="s2"> data points."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">correlated_6904</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1538,8 +1538,8 @@ The correlation spectrum has 5531 data points.
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/SINQ/inc/MantidSINQ/PoldiAutoCorrelation5.h">PoldiAutoCorrelation5.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/SINQ/src/PoldiAutoCorrelation5.cpp">PoldiAutoCorrelation5.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/SINQ/inc/MantidSINQ/PoldiAutoCorrelation5.h">PoldiAutoCorrelation5.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/SINQ/src/PoldiAutoCorrelation5.cpp">PoldiAutoCorrelation5.cpp</a></p>
 </section>
 </section>
 

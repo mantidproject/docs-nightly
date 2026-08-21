@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PolynomialCorrection v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PolynomialCorrection v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1508,10 +1508,10 @@ mid-point of the bin as the <em>x</em> value for histogram data.</p>
 <span class="n">data_ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">dataX</span><span class="p">,</span> <span class="n">dataY</span><span class="p">,</span> <span class="n">DataE</span><span class="o">=</span><span class="n">dataE</span><span class="p">)</span>
 
 <span class="n">coefficients</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]</span> <span class="c1">#  1 + 3x + 5x^2</span>
-<span class="n">data_ws</span> <span class="o">=</span> <span class="n">PolynomialCorrection</span><span class="p">(</span><span class="n">data_ws</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s2">&quot;Divide&quot;</span><span class="p">)</span>
+<span class="n">data_ws</span> <span class="o">=</span> <span class="n">PolynomialCorrection</span><span class="p">(</span><span class="n">data_ws</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s2">"Divide"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 5 y values: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 5 error values: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First 5 y values: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First 5 error values: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>First 5 y values: [0.26666667 0.11940299 0.0754717  0.05498282 0.04319654]
@@ -1526,10 +1526,10 @@ First 5 error values: [0.26666667 0.11940299 0.0754717  0.05498282 0.04319654]
 <span class="n">data_ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">dataX</span><span class="p">,</span> <span class="n">dataY</span><span class="p">,</span> <span class="n">DataE</span><span class="o">=</span><span class="n">dataE</span><span class="p">)</span>
 
 <span class="n">coefficients</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]</span> <span class="c1">#  2 + 4x</span>
-<span class="n">data_ws</span> <span class="o">=</span> <span class="n">PolynomialCorrection</span><span class="p">(</span><span class="n">data_ws</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s2">&quot;Multiply&quot;</span><span class="p">)</span>
+<span class="n">data_ws</span> <span class="o">=</span> <span class="n">PolynomialCorrection</span><span class="p">(</span><span class="n">data_ws</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s2">"Multiply"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 5 y values: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 5 error values: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First 5 y values: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First 5 error values: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>First 5 y values: [  4.  16.  36.  64. 100.]
@@ -1540,8 +1540,8 @@ First 5 error values: [  4.  16.  36.  64. 100.]
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/PolynomialCorrection.h">PolynomialCorrection.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/PolynomialCorrection.cpp">PolynomialCorrection.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/PolynomialCorrection.h">PolynomialCorrection.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/PolynomialCorrection.cpp">PolynomialCorrection.cpp</a></p>
 </section>
 </section>
 

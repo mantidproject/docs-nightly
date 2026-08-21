@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DiffractionFocussing v2 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>DiffractionFocussing v2 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/DiffractionFocussing-v2';</script>
@@ -1582,18 +1582,18 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p><strong>Example - Diffraction focussing of HRPD data:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load HRP dataset</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;HRP39180.RAW&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"HRP39180.RAW"</span><span class="p">)</span>
 
 <span class="c1"># specify grouping file, here using CalFile format</span>
-<span class="n">cal_file</span> <span class="o">=</span> <span class="s2">&quot;hrpd_new_072_01_corr.cal&quot;</span>
+<span class="n">cal_file</span> <span class="o">=</span> <span class="s2">"hrpd_new_072_01_corr.cal"</span>
 
 <span class="c1"># For HRPD data, perform a unit conversion TOF-&gt;d-spacing, taking into account detector position offsets</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">ApplyDiffCal</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">CalibrationFile</span><span class="o">=</span><span class="n">cal_file</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">&quot;dSpacing&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">ApplyDiffCal</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="s1">'ws'</span><span class="p">,</span> <span class="n">CalibrationFile</span><span class="o">=</span><span class="n">cal_file</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'ws'</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">"dSpacing"</span><span class="p">)</span>
 <span class="c1"># Focus the data</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">DiffractionFocussing</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="n">GroupingFileName</span><span class="o">=</span><span class="n">cal_file</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">DiffractionFocussing</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'ws'</span><span class="p">,</span><span class="n">GroupingFileName</span><span class="o">=</span><span class="n">cal_file</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The 51st y-value is: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">50</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The 51st y-value is: </span><span class="si">%.3f</span><span class="s2">"</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">50</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1602,14 +1602,14 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p><strong>Example - Demonstrating option PreserveEvents:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create event workspace with one bank of 4 detectors</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">&quot;Event&quot;</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s2">&quot;dSpacing&quot;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">"Event"</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s2">"dSpacing"</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c1"># focus data in 4 spectra to 2 spectra according to .cal file and don&#39;t preserve events</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">DiffractionFocussing</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">GroupingFileName</span><span class="o">=</span><span class="s2">&quot;4detector_cal_example_file.cal&quot;</span> \
+<span class="c1"># focus data in 4 spectra to 2 spectra according to .cal file and don't preserve events</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">DiffractionFocussing</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'ws'</span><span class="p">,</span> <span class="n">GroupingFileName</span><span class="o">=</span><span class="s2">"4detector_cal_example_file.cal"</span> \
      <span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of focussed spectra: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;What type is the workspace after focussing: &quot;</span> <span class="o">+</span> <span class="n">ws</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of focussed spectra: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"What type is the workspace after focussing: "</span> <span class="o">+</span> <span class="n">ws</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1619,19 +1619,19 @@ What type is the workspace after focussing: Workspace2D
 </div>
 <p><strong>Example - Defining binning parameters:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load HRP dataset</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;HRP39180.RAW&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"HRP39180.RAW"</span><span class="p">)</span>
 
 <span class="c1"># specify grouping file, here using CalFile format</span>
-<span class="n">cal_file</span> <span class="o">=</span> <span class="s2">&quot;hrpd_new_072_01_corr.cal&quot;</span>
+<span class="n">cal_file</span> <span class="o">=</span> <span class="s2">"hrpd_new_072_01_corr.cal"</span>
 
 <span class="c1"># For HRPD data, perform a unit conversion TOF-&gt;d-spacing, taking into account detector position offsets</span>
 <span class="n">ApplyDiffCal</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">CalibrationFile</span><span class="o">=</span><span class="n">cal_file</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">&quot;dSpacing&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s2">"dSpacing"</span><span class="p">)</span>
 <span class="n">ApplyDiffCal</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">ClearCalibration</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># use uncalibrated DIFC to convert from d-spacing to TOF</span>
 <span class="c1"># Focus the data with defined binning parameters</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">DiffractionFocussing</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span><span class="n">GroupingFileName</span><span class="o">=</span><span class="n">cal_file</span><span class="p">,</span> <span class="n">DMin</span><span class="o">=</span><span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.2</span><span class="p">],</span> <span class="n">DMax</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">4.0</span><span class="p">],</span> <span class="n">Delta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output has </span><span class="si">{</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()</span><span class="si">}</span><span class="s2"> spectra with number of bins </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Output has </span><span class="si">{</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()</span><span class="si">}</span><span class="s2"> spectra with number of bins </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1650,8 +1650,8 @@ workspaces and only worked with CalFiles.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/DiffractionFocussing2.h">DiffractionFocussing2.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/DiffractionFocussing2.cpp">DiffractionFocussing2.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/DiffractionFocussing2.h">DiffractionFocussing2.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/DiffractionFocussing2.cpp">DiffractionFocussing2.cpp</a></p>
 </section>
 </section>
 

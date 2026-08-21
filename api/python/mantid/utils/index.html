@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>mantid.utils &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>mantid.utils &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/utils/index';</script>
@@ -673,28 +673,28 @@ can be called from different algorithms.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">absorptioncorrutils</span>
 
 <span class="c1"># Load characterization file</span>
-<span class="n">char_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PG3_char_2020_01_04_PAC_limit_1.4MW.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;PG3_char_2020_05_06-HighRes-PAC_1.4_MW.txt&quot;</span><span class="p">]</span>
-<span class="n">charfile</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">char_files</span><span class="p">)</span>
+<span class="n">char_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"PG3_char_2020_01_04_PAC_limit_1.4MW.txt"</span><span class="p">,</span> <span class="s2">"PG3_char_2020_05_06-HighRes-PAC_1.4_MW.txt"</span><span class="p">]</span>
+<span class="n">charfile</span> <span class="o">=</span> <span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">char_files</span><span class="p">)</span>
 <span class="n">charTable</span> <span class="o">=</span> <span class="n">PDLoadCharacterizations</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">charfile</span><span class="p">)</span>
 <span class="n">chars</span> <span class="o">=</span> <span class="n">charTable</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;PG3_46577.nxs.h5&quot;</span><span class="p">,</span> <span class="n">MetaDataOnly</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"PG3_46577.nxs.h5"</span><span class="p">,</span> <span class="n">MetaDataOnly</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">PDDetermineCharacterizations</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
                              <span class="n">Characterizations</span><span class="o">=</span><span class="n">chars</span><span class="p">,</span>
-                             <span class="n">ReductionProperties</span><span class="o">=</span><span class="s2">&quot;props&quot;</span><span class="p">)</span>
+                             <span class="n">ReductionProperties</span><span class="o">=</span><span class="s2">"props"</span><span class="p">)</span>
 
-<span class="n">props</span> <span class="o">=</span> <span class="n">PropertyManagerDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">&quot;props&quot;</span><span class="p">)</span>
+<span class="n">props</span> <span class="o">=</span> <span class="n">PropertyManagerDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">"props"</span><span class="p">)</span>
 
 <span class="c1"># Sample only absorption correction</span>
 <span class="n">abs_sample</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">absorptioncorrutils</span><span class="o">.</span><span class="n">calculate_absorption_correction</span><span class="p">(</span>
-    <span class="s2">&quot;PG3_46577.nxs.h5&quot;</span><span class="p">,</span>  <span class="c1"># input filename</span>
-    <span class="s2">&quot;SampleOnly&quot;</span><span class="p">,</span>        <span class="c1"># absorption correction method</span>
+    <span class="s2">"PG3_46577.nxs.h5"</span><span class="p">,</span>  <span class="c1"># input filename</span>
+    <span class="s2">"SampleOnly"</span><span class="p">,</span>        <span class="c1"># absorption correction method</span>
     <span class="n">props</span><span class="p">,</span>               <span class="c1"># PropertyManager</span>
-    <span class="s2">&quot;Si&quot;</span><span class="p">,</span>                <span class="c1"># sample_formula</span>
+    <span class="s2">"Si"</span><span class="p">,</span>                <span class="c1"># sample_formula</span>
     <span class="mf">1.165</span><span class="p">,</span>               <span class="c1"># mass_density</span>
     <span class="n">element_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>      <span class="c1"># integration element cube in mm</span>
-    <span class="n">cache_dir</span><span class="o">=</span><span class="s2">&quot;/tmp&quot;</span><span class="p">,</span>    <span class="c1"># cache diretory for speeding up repeated calculation</span>
+    <span class="n">cache_dir</span><span class="o">=</span><span class="s2">"/tmp"</span><span class="p">,</span>    <span class="c1"># cache diretory for speeding up repeated calculation</span>
     <span class="p">)</span>
 </pre></div>
 </div>

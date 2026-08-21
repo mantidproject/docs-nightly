@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Scripting SANS Reductions &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Scripting SANS Reductions &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -391,22 +391,22 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#import Command Interface from sans library</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sans.command_interface.ISISCommandInterface</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="sd">Test script outlining the use of the command line interface to reduce and save SANS data.</span>
 <span class="sd">Data is taken from the Mantid Training Data Course Set: https://www.mantidproject.org/installation/index#sample-data</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="n">LOQ</span><span class="p">()</span>
-<span class="n">MaskFile</span><span class="p">(</span><span class="s1">&#39;MaskFile.toml&#39;</span><span class="p">)</span>
+<span class="n">MaskFile</span><span class="p">(</span><span class="s1">'MaskFile.toml'</span><span class="p">)</span>
 
-<span class="n">AssignSample</span><span class="p">(</span><span class="s1">&#39;LOQ74044.nxs&#39;</span><span class="p">)</span>
-<span class="n">TransmissionSample</span><span class="p">(</span><span class="s1">&#39;LOQ74024.nxs&#39;</span><span class="p">,</span> <span class="s1">&#39;LOQ74014.nxs&#39;</span><span class="p">)</span>
-<span class="n">AssignCan</span><span class="p">(</span><span class="s1">&#39;LOQ74019.nxs&#39;</span><span class="p">)</span>
-<span class="n">TransmissionCan</span><span class="p">(</span><span class="s1">&#39;LOQ74020.nxs&#39;</span><span class="p">,</span> <span class="s1">&#39;LOQ74014.nxs&#39;</span><span class="p">)</span>
+<span class="n">AssignSample</span><span class="p">(</span><span class="s1">'LOQ74044.nxs'</span><span class="p">)</span>
+<span class="n">TransmissionSample</span><span class="p">(</span><span class="s1">'LOQ74024.nxs'</span><span class="p">,</span> <span class="s1">'LOQ74014.nxs'</span><span class="p">)</span>
+<span class="n">AssignCan</span><span class="p">(</span><span class="s1">'LOQ74019.nxs'</span><span class="p">)</span>
+<span class="n">TransmissionCan</span><span class="p">(</span><span class="s1">'LOQ74020.nxs'</span><span class="p">,</span> <span class="s1">'LOQ74014.nxs'</span><span class="p">)</span>
 
 <span class="c1">#Performs reduction and saves data to path using SaveRKH and SaveNexus algorithms</span>
-<span class="n">WavRangeReduction</span><span class="p">(</span><span class="mf">2.2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">saveAlgs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;SaveRKH&#39;</span><span class="p">:</span> <span class="s1">&#39;txt&#39;</span><span class="p">,</span><span class="s1">&#39;SaveNexus&#39;</span><span class="p">:</span> <span class="s1">&#39;nxs&#39;</span><span class="p">})</span>
+<span class="n">WavRangeReduction</span><span class="p">(</span><span class="mf">2.2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">saveAlgs</span><span class="o">=</span><span class="p">{</span><span class="s1">'SaveRKH'</span><span class="p">:</span> <span class="s1">'txt'</span><span class="p">,</span><span class="s1">'SaveNexus'</span><span class="p">:</span> <span class="s1">'nxs'</span><span class="p">})</span>
 </pre></div>
 </div>
 <p>The commands are available once the ISISCommandInterface module has been imported, using the following line:</p>
@@ -447,8 +447,8 @@ or equivalently the <a class="reference internal" href="../concepts/PropertiesFi
 </section>
 <section id="maskfile">
 <h3>MaskFile<a class="headerlink" href="#maskfile" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">UserPath</span><span class="p">(</span><span class="s2">&quot;C:/SANS/masks&quot;</span><span class="p">)</span>
-<span class="n">MaskFile</span><span class="p">(</span><span class="s2">&quot;ExampleMask.toml&quot;</span><span class="p">)</span> <span class="c1"># or MaskFile(&quot;C:/SANS/masks/ExampleMask.toml&quot;)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">UserPath</span><span class="p">(</span><span class="s2">"C:/SANS/masks"</span><span class="p">)</span>
+<span class="n">MaskFile</span><span class="p">(</span><span class="s2">"ExampleMask.toml"</span><span class="p">)</span> <span class="c1"># or MaskFile("C:/SANS/masks/ExampleMask.toml")</span>
 </pre></div>
 </div>
 <p>This settings file can be either a full path or a filename found in the <code class="docutils literal notranslate"><span class="pre">UserPath()</span></code>.
@@ -598,9 +598,9 @@ The filename is a mandatory parameter:</p>
 </section>
 <section id="addruns">
 <h3>AddRuns<a class="headerlink" href="#addruns" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AddRuns</span><span class="p">(</span><span class="n">runs</span><span class="p">,</span> <span class="n">instrument</span> <span class="o">=</span><span class="s1">&#39;sans2d&#39;</span><span class="p">,</span> <span class="n">saveAsEvent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">binning</span> <span class="o">=</span> <span class="s2">&quot;Monitors&quot;</span><span class="p">,</span>
-        <span class="n">isOverlay</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">time_shifts</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">defType</span><span class="o">=</span><span class="s1">&#39;.nxs&#39;</span><span class="p">,</span>
-        <span class="n">rawTypes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;.raw&#39;</span><span class="p">,</span> <span class="s1">&#39;.s*&#39;</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span><span class="s1">&#39;.RAW&#39;</span><span class="p">),</span> <span class="n">lowMem</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AddRuns</span><span class="p">(</span><span class="n">runs</span><span class="p">,</span> <span class="n">instrument</span> <span class="o">=</span><span class="s1">'sans2d'</span><span class="p">,</span> <span class="n">saveAsEvent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">binning</span> <span class="o">=</span> <span class="s2">"Monitors"</span><span class="p">,</span>
+        <span class="n">isOverlay</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">time_shifts</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">defType</span><span class="o">=</span><span class="s1">'.nxs'</span><span class="p">,</span>
+        <span class="n">rawTypes</span><span class="o">=</span><span class="p">(</span><span class="s1">'.raw'</span><span class="p">,</span> <span class="s1">'.s*'</span><span class="p">,</span> <span class="s1">'add'</span><span class="p">,</span><span class="s1">'.RAW'</span><span class="p">),</span> <span class="n">lowMem</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This file adds a list of run files. The <code class="docutils literal notranslate"><span class="pre">runs</span></code> variable holds a list of runs which are to be added.

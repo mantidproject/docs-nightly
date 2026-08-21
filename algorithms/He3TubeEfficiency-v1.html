@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>He3TubeEfficiency v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>He3TubeEfficiency v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1530,16 +1530,16 @@ will be zeroed in the output workspace.</p>
 <p>The correction applies equally well to histogram and event workspaces. An example
 for a histogram workspace will be given.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create workspace with correct units</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Flat background&#39;</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span>
-                           <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">,</span><span class="n">XMax</span><span class="o">=</span><span class="s1">&#39;10&#39;</span><span class="p">,</span><span class="n">BinWidth</span><span class="o">=</span><span class="s1">&#39;0.01&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">'Flat background'</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="s1">'1'</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="s1">'2'</span><span class="p">,</span>
+                           <span class="n">XUnit</span><span class="o">=</span><span class="s1">'Wavelength'</span><span class="p">,</span><span class="n">XMax</span><span class="o">=</span><span class="s1">'10'</span><span class="p">,</span><span class="n">BinWidth</span><span class="o">=</span><span class="s1">'0.01'</span><span class="p">)</span>
 
 <span class="c1"># workspace does not have correct tube parameters, so we need to provide some</span>
 <span class="c1"># parameters taken from the ARCS instrument at the SNS</span>
-<span class="n">ws1</span> <span class="o">=</span> <span class="n">He3TubeEfficiency</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">TubePressure</span><span class="o">=</span><span class="s1">&#39;10&#39;</span><span class="p">,</span><span class="n">TubeThickness</span><span class="o">=</span><span class="s1">&#39;0.0008&#39;</span><span class="p">,</span><span class="n">TubeTemperature</span><span class="o">=</span><span class="s1">&#39;290&#39;</span><span class="p">)</span>
+<span class="n">ws1</span> <span class="o">=</span> <span class="n">He3TubeEfficiency</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">TubePressure</span><span class="o">=</span><span class="s1">'10'</span><span class="p">,</span><span class="n">TubeThickness</span><span class="o">=</span><span class="s1">'0.0008'</span><span class="p">,</span><span class="n">TubeTemperature</span><span class="o">=</span><span class="s1">'290'</span><span class="p">)</span>
 
 <span class="c1"># show the before and after for the first detector for the first 5 bins</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original counts: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Corrected counts: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws1</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Original counts: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Corrected counts: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws1</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1551,8 +1551,8 @@ Corrected counts: [417.07353051 139.35837696  83.81566631  60.01187609  46.78772
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/He3TubeEfficiency.h">He3TubeEfficiency.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/He3TubeEfficiency.cpp">He3TubeEfficiency.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/He3TubeEfficiency.h">He3TubeEfficiency.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/He3TubeEfficiency.cpp">He3TubeEfficiency.cpp</a></p>
 </section>
 </section>
 

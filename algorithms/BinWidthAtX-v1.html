@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>BinWidthAtX v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>BinWidthAtX v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/BinWidthAtX-v1';</script>
@@ -1507,8 +1507,8 @@
 <span class="n">ys</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">xs</span><span class="p">,</span> <span class="n">DataY</span><span class="o">=</span><span class="n">ys</span><span class="p">)</span>
 
-<span class="n">newWidth</span> <span class="o">=</span> <span class="n">BinWidthAtX</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Rounding</span><span class="o">=</span><span class="s1">&#39;10^n&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;New bin width: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">newWidth</span><span class="p">))</span>
+<span class="n">newWidth</span> <span class="o">=</span> <span class="n">BinWidthAtX</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Rounding</span><span class="o">=</span><span class="s1">'10^n'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'New bin width: </span><span class="si">{0}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">newWidth</span><span class="p">))</span>
 
 <span class="c1"># Rebin to equidistant grid</span>
 <span class="n">rebinned</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="p">[</span><span class="n">newWidth</span><span class="p">],</span> <span class="n">FullBinsOnly</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1519,9 +1519,9 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
 
 <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">firstAndLastBinWidths</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bin widths before rebinning, first: </span><span class="si">{0:.4f}</span><span class="s1">, last: </span><span class="si">{1:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Bin widths before rebinning, first: </span><span class="si">{0:.4f}</span><span class="s1">, last: </span><span class="si">{1:.4f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">))</span>
 <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">firstAndLastBinWidths</span><span class="p">(</span><span class="n">rebinned</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bin widths after rebinning, first: </span><span class="si">{0:.2f}</span><span class="s1">, last: </span><span class="si">{1:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Bin widths after rebinning, first: </span><span class="si">{0:.2f}</span><span class="s1">, last: </span><span class="si">{1:.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1534,7 +1534,7 @@ Bin widths after rebinning, first: 0.01, last: 0.01
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/BinWidthAtX.py">BinWidthAtX.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/BinWidthAtX.py">BinWidthAtX.py</a></p>
 </section>
 </section>
 

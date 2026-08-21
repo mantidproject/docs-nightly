@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MPI in Mantid &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MPI in Mantid &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/MPI';</script>
@@ -504,7 +504,7 @@ ninja
 
 <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="c1"># Master process</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running with </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2"> processes&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Running with </span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2"> processes"</span><span class="p">)</span>
     <span class="c1"># Coordinate work</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="c1"># Worker processes</span>
@@ -563,13 +563,13 @@ ninja
 
 <span class="c1"># Only rank 0 loads the calibration file</span>
 <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">cal_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;calibration.nxs&quot;</span><span class="p">)</span>
-    <span class="n">shared_cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">cal_ws</span><span class="p">,</span> <span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;calibration&quot;</span><span class="p">)</span>
+    <span class="n">cal_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"calibration.nxs"</span><span class="p">)</span>
+    <span class="n">shared_cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">cal_ws</span><span class="p">,</span> <span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"calibration"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="c1"># Other ranks receive the broadcast</span>
-    <span class="n">shared_cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;calibration&quot;</span><span class="p">)</span>
+    <span class="n">shared_cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"calibration"</span><span class="p">)</span>
 
-<span class="c1"># All ranks now have &#39;shared_cal&#39; and can use it for processing</span>
+<span class="c1"># All ranks now have 'shared_cal' and can use it for processing</span>
 </pre></div>
 </div>
 </section>
@@ -591,17 +591,17 @@ ninja
 
 <span class="c1"># Process assigned runs</span>
 <span class="k">for</span> <span class="n">run_num</span> <span class="ow">in</span> <span class="n">my_runs</span><span class="p">:</span>
-    <span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;data_</span><span class="si">{</span><span class="n">run_num</span><span class="si">}</span><span class="s2">.nxs&quot;</span><span class="p">)</span>
-    <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s2">&quot;0.1,-0.001,3.0&quot;</span><span class="p">)</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">f</span><span class="s2">"data_</span><span class="si">{</span><span class="n">run_num</span><span class="si">}</span><span class="s2">.nxs"</span><span class="p">)</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s2">"0.1,-0.001,3.0"</span><span class="p">)</span>
     <span class="c1"># Additional processing...</span>
 
-<span class="c1"># For this example, assume last processed workspace is &#39;ws&#39;</span>
+<span class="c1"># For this example, assume last processed workspace is 'ws'</span>
 <span class="c1"># Gather all processed workspaces to rank 0</span>
 <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">combined</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">&quot;Append&quot;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;all_runs_combined&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined workspace has </span><span class="si">{</span><span class="n">combined</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()</span><span class="si">}</span><span class="s2"> spectra&quot;</span><span class="p">)</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">"Append"</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"all_runs_combined"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Combined workspace has </span><span class="si">{</span><span class="n">combined</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()</span><span class="si">}</span><span class="s2"> spectra"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">&quot;Append&quot;</span><span class="p">)</span>
+    <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">"Append"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -623,11 +623,11 @@ ninja
 
 <span class="c1"># Sum all workspaces together</span>
 <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">summed</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">&quot;Add&quot;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;summed&quot;</span><span class="p">)</span>
+    <span class="n">summed</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">"Add"</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"summed"</span><span class="p">)</span>
     <span class="c1"># If 4 processes: result = 1 + 2 + 3 + 4 = 10</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Summed value: </span><span class="si">{</span><span class="n">summed</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Summed value: </span><span class="si">{</span><span class="n">summed</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">&quot;Add&quot;</span><span class="p">)</span>
+    <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">"Add"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -643,25 +643,25 @@ ninja
 
 <span class="c1"># Step 1: Broadcast calibration data</span>
 <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">cal</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;calibration.nxs&quot;</span><span class="p">)</span>
-    <span class="n">cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">cal</span><span class="p">,</span> <span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;cal&quot;</span><span class="p">)</span>
+    <span class="n">cal</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"calibration.nxs"</span><span class="p">)</span>
+    <span class="n">cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">cal</span><span class="p">,</span> <span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"cal"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;cal&quot;</span><span class="p">)</span>
+    <span class="n">cal</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"cal"</span><span class="p">)</span>
 
 <span class="c1"># Step 2: Each rank processes its assigned data</span>
-<span class="n">my_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;data_rank</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.nxs&quot;</span>
+<span class="n">my_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"data_rank</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2">.nxs"</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">my_file</span><span class="p">)</span>
 
 <span class="c1"># Use the shared calibration</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowder</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">CalFileName</span><span class="o">=</span><span class="n">cal</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s2">&quot;0.5,-0.001,10&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">AlignAndFocusPowder</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">CalFileName</span><span class="o">=</span><span class="n">cal</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s2">"0.5,-0.001,10"</span><span class="p">)</span>
 
 <span class="c1"># Step 3: Gather results</span>
 <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">combined</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">&quot;Append&quot;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;final_result&quot;</span><span class="p">)</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">"Append"</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"final_result"</span><span class="p">)</span>
     <span class="c1"># Save combined result</span>
-    <span class="n">SaveNexus</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">combined</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;combined_output.nxs&quot;</span><span class="p">)</span>
+    <span class="n">SaveNexus</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">combined</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s2">"combined_output.nxs"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">&quot;Append&quot;</span><span class="p">)</span>
+    <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">"Append"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -706,9 +706,9 @@ ninja
 
 <span class="c1"># CORRECT - all ranks participate</span>
 <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">&quot;Append&quot;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;result&quot;</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">"Append"</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"result"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">&quot;Append&quot;</span><span class="p">)</span>
+    <span class="n">GatherWorkspaces</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">AccumulationMethod</span><span class="o">=</span><span class="s2">"Append"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -718,7 +718,7 @@ ninja
 <p><strong>Solution</strong>: Ensure all workspaces have compatible structure before gathering:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All workspaces must have same number of bins</span>
 <span class="c1"># Rebin to common grid if necessary</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s2">&quot;0,-0.001,10&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s2">"0,-0.001,10"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -727,7 +727,7 @@ ninja
 <p><strong>Problem</strong>: Root process doesn’t provide input to <code class="docutils literal notranslate"><span class="pre">BroadcastWorkspace</span></code>.</p>
 <p><strong>Solution</strong>: Only the broadcaster rank needs to provide input:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;data.nxs&quot;</span><span class="p">)</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"data.nxs"</span><span class="p">)</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">)</span>  <span class="c1"># Required</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">BroadcastWorkspace</span><span class="p">(</span><span class="n">BroadcasterRank</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># No input needed</span>

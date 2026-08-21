@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PrimStretchedExpFT &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PrimStretchedExpFT &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -585,41 +585,41 @@ it is recommended to follow these steps:
 - Untie parameter <span class="math notranslate nohighlight">\(Height\)</span> of PrimStretchedExpFT and tie parameter <span class="math notranslate nohighlight">\(Beta\)</span> to 1.0, then carry out the fit. This will result in optimized model using an exponential.
 - Release the tie on Beta  and redo the fit.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load resolution function and scattered signal</span>
-<span class="n">resolution</span> <span class="o">=</span> <span class="n">LoadNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;resolution_14955.nxs&quot;</span><span class="p">)</span>
-<span class="n">qens_data</span> <span class="o">=</span> <span class="n">LoadNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;qens_data_14955.nxs&quot;</span><span class="p">)</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="n">LoadNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"resolution_14955.nxs"</span><span class="p">)</span>
+<span class="n">qens_data</span> <span class="o">=</span> <span class="n">LoadNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"qens_data_14955.nxs"</span><span class="p">)</span>
 
 <span class="c1"># This function_string is obtained by constructing the model</span>
 <span class="c1"># with the Fit Function window of a plot in MantidWorkbench, then</span>
 <span class="c1"># Setup--&gt; Manage Setup --&gt; Copy to Clipboard</span>
-<span class="n">function_string</span>  <span class="o">=</span> <span class="s2">&quot;(composite=Convolution,FixResolution=true,NumDeriv=true;&quot;</span>
-<span class="n">function_string</span> <span class="o">+=</span> <span class="s2">&quot;name=TabulatedFunction,Workspace=resolution,WorkspaceIndex=0,Scaling=1,Shift=0,XScaling=1;&quot;</span>
-<span class="n">function_string</span> <span class="o">+=</span> <span class="s2">&quot;(name=DeltaFunction,Height=1,Centre=0;&quot;</span>
-<span class="n">function_string</span> <span class="o">+=</span> <span class="s2">&quot;name=PrimStretchedExpFT,Height=1.0,Tau=100,Beta=0.98,Centre=0));&quot;</span>
-<span class="n">function_string</span> <span class="o">+=</span> <span class="s2">&quot;name=LinearBackground,A0=0,A1=0&quot;</span>
+<span class="n">function_string</span>  <span class="o">=</span> <span class="s2">"(composite=Convolution,FixResolution=true,NumDeriv=true;"</span>
+<span class="n">function_string</span> <span class="o">+=</span> <span class="s2">"name=TabulatedFunction,Workspace=resolution,WorkspaceIndex=0,Scaling=1,Shift=0,XScaling=1;"</span>
+<span class="n">function_string</span> <span class="o">+=</span> <span class="s2">"(name=DeltaFunction,Height=1,Centre=0;"</span>
+<span class="n">function_string</span> <span class="o">+=</span> <span class="s2">"name=PrimStretchedExpFT,Height=1.0,Tau=100,Beta=0.98,Centre=0));"</span>
+<span class="n">function_string</span> <span class="o">+=</span> <span class="s2">"name=LinearBackground,A0=0,A1=0"</span>
 
 <span class="c1"># Carry out the fit. Produces workspaces  fit_results_Parameters,</span>
 <span class="c1">#  fit_results_Workspace, and fit_results_NormalisedCovarianceMatrix.</span>
 <span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="n">function_string</span><span class="p">,</span>
-   <span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">&quot;qens_data&quot;</span><span class="p">,</span>
+   <span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">"qens_data"</span><span class="p">,</span>
    <span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
    <span class="n">StartX</span><span class="o">=-</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">EndX</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>
    <span class="n">CreateOutput</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-   <span class="n">Output</span><span class="o">=</span><span class="s2">&quot;fit_results&quot;</span><span class="p">)</span>
+   <span class="n">Output</span><span class="o">=</span><span class="s2">"fit_results"</span><span class="p">)</span>
 
 <span class="c1"># Collect and print parameters for PrimStrechtedExpFT</span>
-<span class="n">parameters_of_interest</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Tau&quot;</span><span class="p">,</span> <span class="s2">&quot;Beta&quot;</span><span class="p">)</span>
+<span class="n">parameters_of_interest</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"Tau"</span><span class="p">,</span> <span class="s2">"Beta"</span><span class="p">)</span>
 <span class="n">values_found</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;fit_results_Parameters&quot;</span><span class="p">]</span>  <span class="c1"># Workspace containing optimized parameters</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"fit_results_Parameters"</span><span class="p">]</span>  <span class="c1"># Workspace containing optimized parameters</span>
 <span class="k">for</span> <span class="n">row_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()):</span>
-   <span class="n">full_parameter_name</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">row_index</span><span class="p">)[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span>
+   <span class="n">full_parameter_name</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">row_index</span><span class="p">)[</span><span class="s2">"Name"</span><span class="p">]</span>
    <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">parameters_of_interest</span><span class="p">:</span>
       <span class="k">if</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">full_parameter_name</span><span class="p">:</span>
-         <span class="n">values_found</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">row_index</span><span class="p">)[</span><span class="s2">&quot;Value&quot;</span><span class="p">]</span>
+         <span class="n">values_found</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">row_index</span><span class="p">)[</span><span class="s2">"Value"</span><span class="p">]</span>
          <span class="k">break</span>
-<span class="k">if</span> <span class="n">values_found</span><span class="p">[</span><span class="s2">&quot;Beta&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.63</span> <span class="ow">and</span> <span class="n">values_found</span><span class="p">[</span><span class="s2">&quot;Beta&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.71</span><span class="p">:</span>
-   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Beta found within [0.63, 0.71]&quot;</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">values_found</span><span class="p">[</span><span class="s2">&quot;Tau&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">54.0</span> <span class="ow">and</span> <span class="n">values_found</span><span class="p">[</span><span class="s2">&quot;Tau&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">60.0</span><span class="p">:</span>
-   <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Tau found within [54.0, 60.0]&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">values_found</span><span class="p">[</span><span class="s2">"Beta"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.63</span> <span class="ow">and</span> <span class="n">values_found</span><span class="p">[</span><span class="s2">"Beta"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.71</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">"Beta found within [0.63, 0.71]"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">values_found</span><span class="p">[</span><span class="s2">"Tau"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">54.0</span> <span class="ow">and</span> <span class="n">values_found</span><span class="p">[</span><span class="s2">"Tau"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">60.0</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span> <span class="s2">"Tau found within [54.0, 60.0]"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -631,7 +631,7 @@ Tau found within [54.0, 60.0]
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/functions/PrimStretchedExpFT.py">PrimStretchedExpFT.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/functions/PrimStretchedExpFT.py">PrimStretchedExpFT.py</a></p>
 </section>
 </section>
 

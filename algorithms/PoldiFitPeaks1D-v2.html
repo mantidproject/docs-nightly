@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PoldiFitPeaks1D v2 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PoldiFitPeaks1D v2 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/PoldiFitPeaks1D-v2';</script>
@@ -1527,32 +1527,32 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p>The following usage example loads an example correlation spectrum that was calculated for a sample containing two compounds with very similar lattice parameters.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load correlation spectrum</span>
-<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;poldi_2_phases_theoretical_reference.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;correlation_spectrum&#39;</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'poldi_2_phases_theoretical_reference.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'correlation_spectrum'</span><span class="p">)</span>
 
 <span class="c1"># Perform peak search</span>
-<span class="n">PoldiPeakSearch</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;correlation_spectrum&#39;</span><span class="p">,</span> <span class="n">MinimumPeakSeparation</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">MaximumPeakNumber</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">MinimumPeakHeight</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
+<span class="n">PoldiPeakSearch</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'correlation_spectrum'</span><span class="p">,</span> <span class="n">MinimumPeakSeparation</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">MaximumPeakNumber</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">MinimumPeakHeight</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">)</span>
 
 <span class="c1"># Fit peaks with proper overlap handling</span>
-<span class="n">PoldiFitPeaks1D</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;correlation_spectrum&#39;</span><span class="p">,</span> <span class="n">FwhmMultiples</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">AllowedOverlap</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">PoldiPeakTable</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
+<span class="n">PoldiFitPeaks1D</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'correlation_spectrum'</span><span class="p">,</span> <span class="n">FwhmMultiples</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">AllowedOverlap</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">PoldiPeakTable</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Variation of the <cite>AllowedOverlap</cite>-parameter influences the quality of the fit at some point if it’s too close to 1. Setting it to 1 makes the algorithm’s behavior similar to that of version 1.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load correlation spectrum</span>
-<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;poldi_2_phases_theoretical_reference.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;correlation_spectrum&#39;</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'poldi_2_phases_theoretical_reference.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'correlation_spectrum'</span><span class="p">)</span>
 
 <span class="c1"># Perform peak search</span>
-<span class="n">PoldiPeakSearch</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;correlation_spectrum&#39;</span><span class="p">,</span> <span class="n">MinimumPeakSeparation</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">MaximumPeakNumber</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">MinimumPeakHeight</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
+<span class="n">PoldiPeakSearch</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'correlation_spectrum'</span><span class="p">,</span> <span class="n">MinimumPeakSeparation</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">MaximumPeakNumber</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">MinimumPeakHeight</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">)</span>
 
 <span class="c1"># Too large allowed overlap, fits will have bad quality.</span>
-<span class="n">PoldiFitPeaks1D</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;correlation_spectrum&#39;</span><span class="p">,</span> <span class="n">FwhmMultiples</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">AllowedOverlap</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">PoldiPeakTable</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
+<span class="n">PoldiFitPeaks1D</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'correlation_spectrum'</span><span class="p">,</span> <span class="n">FwhmMultiples</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">AllowedOverlap</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">PoldiPeakTable</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/SINQ/Poldi.html">SINQ\Poldi</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/SINQ/inc/MantidSINQ/PoldiFitPeaks1D2.h">PoldiFitPeaks1D2.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/SINQ/src/PoldiFitPeaks1D2.cpp">PoldiFitPeaks1D2.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/SINQ/inc/MantidSINQ/PoldiFitPeaks1D2.h">PoldiFitPeaks1D2.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/SINQ/src/PoldiFitPeaks1D2.cpp">PoldiFitPeaks1D2.cpp</a></p>
 </section>
 </section>
 

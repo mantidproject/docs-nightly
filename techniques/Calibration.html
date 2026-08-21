@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Calibration &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Calibration &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -410,11 +410,11 @@ pattern of peaks or through. Where gaussian peaks or edges can be found.</p>
 </ol>
 <p>Let’s consider the simplest way of calling calibrate:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tube</span><span class="w"> </span><span class="kn">import</span> <span class="n">calibrate</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;WISH17701&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'WISH17701'</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Integration</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
 <span class="n">known_pos</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.41</span><span class="p">,</span><span class="o">-</span><span class="mf">0.31</span><span class="p">,</span><span class="o">-</span><span class="mf">0.21</span><span class="p">,</span><span class="o">-</span><span class="mf">0.11</span><span class="p">,</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">,</span> <span class="mf">0.39</span> <span class="p">]</span>
 <span class="n">peaks_form</span> <span class="o">=</span> <span class="mi">9</span><span class="o">*</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># all the peaks are gaussian peaks</span>
-<span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s1">&#39;WISH/panel03&#39;</span><span class="p">,</span><span class="n">known_pos</span><span class="p">,</span> <span class="n">peaks_form</span><span class="p">)</span>
+<span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s1">'WISH/panel03'</span><span class="p">,</span><span class="n">known_pos</span><span class="p">,</span> <span class="n">peaks_form</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In this example, the calibrate framework will consider all the
@@ -423,7 +423,7 @@ You may decide to look for a subset of the tubes, by passing the
 <strong>rangeList</strong> option.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This code will calibrate only the tube indexed as number 3</span>
 <span class="c1"># (usually tube0004)</span>
-<span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s1">&#39;WISH/panel03&#39;</span><span class="p">,</span><span class="n">known_pos</span><span class="p">,</span>
+<span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s1">'WISH/panel03'</span><span class="p">,</span><span class="n">known_pos</span><span class="p">,</span>
                        <span class="n">peaks_form</span><span class="p">,</span> <span class="n">rangeList</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -472,7 +472,7 @@ the calibrate function</p>
 <span class="c1"># (initial value of fit parameter)</span>
 <span class="n">ExpectedWidth</span> <span class="o">=</span> <span class="mf">10.0</span>
 <span class="n">fitPar</span> <span class="o">=</span> <span class="n">TubeCalibFitParams</span><span class="p">(</span> <span class="n">eP</span><span class="p">,</span> <span class="n">ExpectedHeight</span><span class="p">,</span> <span class="n">ExpectedWidth</span> <span class="p">)</span>
-<span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">&#39;WISH/panel03&#39;</span><span class="p">,</span> <span class="n">known_pos</span><span class="p">,</span> <span class="n">peaks_form</span><span class="p">,</span> <span class="n">fitPar</span><span class="o">=</span><span class="n">fitPar</span><span class="p">)</span>
+<span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">'WISH/panel03'</span><span class="p">,</span> <span class="n">known_pos</span><span class="p">,</span> <span class="n">peaks_form</span><span class="p">,</span> <span class="n">fitPar</span><span class="o">=</span><span class="n">fitPar</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Different Function Factors</strong></p>
@@ -484,7 +484,7 @@ could be configured as</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">known_pos</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span> <span class="mi">2</span> <span class="mf">2.3</span><span class="p">]</span>
 <span class="c1"># gaussian peak followed by two edges (through)</span>
 <span class="n">form_factor</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">]</span>
-<span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s1">&#39;WISH/panel03&#39;</span><span class="p">,</span><span class="n">known_pos</span><span class="p">,</span> <span class="n">form_factor</span><span class="p">)</span>
+<span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s1">'WISH/panel03'</span><span class="p">,</span><span class="n">known_pos</span><span class="p">,</span> <span class="n">form_factor</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Override Peaks</strong></p>
@@ -494,7 +494,7 @@ the calibration of a single tube (30) but skips the finding peaks step.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">known_pos</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.41</span><span class="p">,</span><span class="o">-</span><span class="mf">0.31</span><span class="p">,</span><span class="o">-</span><span class="mf">0.21</span><span class="p">,</span><span class="o">-</span><span class="mf">0.11</span><span class="p">,</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">,</span> <span class="mf">0.39</span> <span class="p">]</span>
 <span class="n">define_peaks</span> <span class="o">=</span> <span class="p">[</span><span class="mf">57.5</span><span class="p">,</span> <span class="mf">107.0</span><span class="p">,</span> <span class="mf">156.5</span><span class="p">,</span> <span class="mf">206.0</span><span class="p">,</span> <span class="mf">255.5</span><span class="p">,</span> <span class="mf">305.0</span><span class="p">,</span> <span class="mf">354.5</span><span class="p">,</span>
                <span class="mf">404.0</span><span class="p">,</span> <span class="mf">453.5</span><span class="p">]</span>
-<span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">&#39;WISH/panel03&#39;</span><span class="p">,</span> <span class="n">known_pos</span><span class="p">,</span> <span class="n">peaks_form</span><span class="p">,</span>
+<span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">'WISH/panel03'</span><span class="p">,</span> <span class="n">known_pos</span><span class="p">,</span> <span class="n">peaks_form</span><span class="p">,</span>
                  <span class="n">overridePeaks</span><span class="o">=</span><span class="p">{</span><span class="mi">30</span><span class="p">:</span><span class="n">define_peaks</span><span class="p">},</span> <span class="n">rangeList</span><span class="o">=</span><span class="p">[</span><span class="mi">30</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -892,7 +892,7 @@ common regions:</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">calibTable</span><span class="p">,</span> <span class="n">peakTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">outputPeak</span><span class="o">=</span><span class="n">peakTable</span><span class="p">)</span>
-<span class="n">savePeak</span><span class="p">(</span><span class="n">peakTable</span><span class="p">,</span> <span class="s1">&#39;myfolder/myfile.txt&#39;</span><span class="p">)</span>
+<span class="n">savePeak</span><span class="p">(</span><span class="n">peakTable</span><span class="p">,</span> <span class="s1">'myfolder/myfile.txt'</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -918,7 +918,7 @@ relative to the defaultsave.directory.</p>
 <p>It returns a list of tuples, where the first value is the detector identification
 and the second value is its calibration values.</p>
 <p>Example of usage:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">det_code</span><span class="p">,</span> <span class="n">cal_values</span><span class="p">)</span> <span class="ow">in</span> <span class="n">readPeakFile</span><span class="p">(</span><span class="s1">&#39;pathname/TubeDemo&#39;</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">det_code</span><span class="p">,</span> <span class="n">cal_values</span><span class="p">)</span> <span class="ow">in</span> <span class="n">readPeakFile</span><span class="p">(</span><span class="s1">'pathname/TubeDemo'</span><span class="p">):</span>
    <span class="nb">print</span><span class="p">(</span><span class="n">det_code</span><span class="p">)</span>
    <span class="nb">print</span><span class="p">(</span><span class="n">cal_values</span><span class="p">)</span>
 </pre></div>
@@ -940,7 +940,7 @@ and the second value is its calibration values.</p>
 <p>This creates a CSV file for the calibration TableWorkspace. The first
 column is the detector number and the second column is the detector position</p>
 <p>Example of usage:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">saveCalibration</span><span class="p">(</span><span class="s1">&#39;CalibTable&#39;</span><span class="p">,</span><span class="s1">&#39;/tmp/myCalibTable.txt&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">saveCalibration</span><span class="p">(</span><span class="s1">'CalibTable'</span><span class="p">,</span><span class="s1">'/tmp/myCalibTable.txt'</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -959,7 +959,7 @@ column is the detector number and the second column is the detector position</p>
 <dd><p>Read a calibration table from file</p>
 <p>This loads a calibration TableWorkspace from a CSV file.</p>
 <p>Example of usage:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">saveCalibration</span><span class="p">(</span><span class="s1">&#39;CalibTable&#39;</span><span class="p">,</span><span class="s1">&#39;/tmp/myCalibTable.txt&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">saveCalibration</span><span class="p">(</span><span class="s1">'CalibTable'</span><span class="p">,</span><span class="s1">'/tmp/myCalibTable.txt'</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">

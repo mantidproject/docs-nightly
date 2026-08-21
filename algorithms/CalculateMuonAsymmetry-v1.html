@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CalculateMuonAsymmetry v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CalculateMuonAsymmetry v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1595,24 +1595,24 @@ This example is for calculating the Asymmetry for a single data set.</p>
 
 <span class="c1">#create a normalisation table</span>
 <span class="n">tab</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="s1">&#39;norm&#39;</span><span class="p">)</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">)</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'double'</span><span class="p">,</span> <span class="s1">'norm'</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'str'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'str'</span><span class="p">,</span> <span class="s1">'method'</span><span class="p">)</span>
 
-<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">11.</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;Estimate&quot;</span><span class="p">])</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">22.</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;Estimate&quot;</span><span class="p">])</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">11.</span><span class="p">,</span><span class="s2">"a"</span><span class="p">,</span><span class="s2">"Estimate"</span><span class="p">])</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">22.</span><span class="p">,</span><span class="s2">"b"</span><span class="p">,</span><span class="s2">"Estimate"</span><span class="p">])</span>
 
-<span class="n">ws</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="mf">2.30</span><span class="p">)</span>
-<span class="n">ws2</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="mf">1.10</span><span class="p">)</span>
+<span class="n">ws</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span><span class="mf">2.30</span><span class="p">)</span>
+<span class="n">ws2</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">"b"</span><span class="p">,</span><span class="mf">1.10</span><span class="p">)</span>
 
-<span class="n">myFunc</span><span class="o">=</span><span class="s1">&#39;name=GausOsc,$domains=i,Frequency=5.;&#39;</span>
+<span class="n">myFunc</span><span class="o">=</span><span class="s1">'name=GausOsc,$domains=i,Frequency=5.;'</span>
 
-<span class="n">TFFunc</span> <span class="o">=</span> <span class="n">ConvertFitFunctionForMuonTFAsymmetry</span><span class="p">(</span><span class="n">InputFunction</span><span class="o">=</span><span class="n">myFunc</span><span class="p">,</span><span class="n">NormalizationTable</span><span class="o">=</span><span class="n">tab</span><span class="p">,</span><span class="n">WorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">],</span><span class="n">Mode</span><span class="o">=</span><span class="s2">&quot;Construct&quot;</span><span class="p">)</span>
-<span class="n">CalculateMuonAsymmetry</span><span class="p">(</span><span class="n">NormalizationTable</span><span class="o">=</span><span class="n">tab</span><span class="p">,</span> <span class="n">unNormalizedWorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">],</span>
-                       <span class="n">ReNormalizedWorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">],</span> <span class="n">InputFunction</span><span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">TFFunc</span><span class="p">),</span>
-                       <span class="n">OutputFitWorkspace</span><span class="o">=</span><span class="s2">&quot;fit_result&quot;</span><span class="p">,</span><span class="n">StartX</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">EndX</span><span class="o">=</span><span class="mf">9.9</span><span class="p">)</span>
+<span class="n">TFFunc</span> <span class="o">=</span> <span class="n">ConvertFitFunctionForMuonTFAsymmetry</span><span class="p">(</span><span class="n">InputFunction</span><span class="o">=</span><span class="n">myFunc</span><span class="p">,</span><span class="n">NormalizationTable</span><span class="o">=</span><span class="n">tab</span><span class="p">,</span><span class="n">WorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">],</span><span class="n">Mode</span><span class="o">=</span><span class="s2">"Construct"</span><span class="p">)</span>
+<span class="n">CalculateMuonAsymmetry</span><span class="p">(</span><span class="n">NormalizationTable</span><span class="o">=</span><span class="n">tab</span><span class="p">,</span> <span class="n">unNormalizedWorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">],</span>
+                       <span class="n">ReNormalizedWorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">"b"</span><span class="p">],</span> <span class="n">InputFunction</span><span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">TFFunc</span><span class="p">),</span>
+                       <span class="n">OutputFitWorkspace</span><span class="o">=</span><span class="s2">"fit_result"</span><span class="p">,</span><span class="n">StartX</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">EndX</span><span class="o">=</span><span class="mf">9.9</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalization constant for b: </span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Normalization constant for b: </span><span class="si">{0:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1633,34 +1633,34 @@ This example is for calculating the Asymmetry for multuiple data sets.</p>
 
 <span class="c1">#create a normalisation table</span>
 <span class="n">tab</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="s1">&#39;norm&#39;</span><span class="p">)</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">)</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'double'</span><span class="p">,</span> <span class="s1">'norm'</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'str'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'str'</span><span class="p">,</span> <span class="s1">'method'</span><span class="p">)</span>
 
-<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">11.</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;Estimate&quot;</span><span class="p">])</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">22.</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;Estimate&quot;</span><span class="p">])</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">22.</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">,</span><span class="s2">&quot;Estimate&quot;</span><span class="p">])</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">22.</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">,</span><span class="s2">&quot;Estimate&quot;</span><span class="p">])</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">11.</span><span class="p">,</span><span class="s2">"a"</span><span class="p">,</span><span class="s2">"Estimate"</span><span class="p">])</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">22.</span><span class="p">,</span><span class="s2">"b"</span><span class="p">,</span><span class="s2">"Estimate"</span><span class="p">])</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">22.</span><span class="p">,</span><span class="s2">"c"</span><span class="p">,</span><span class="s2">"Estimate"</span><span class="p">])</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">22.</span><span class="p">,</span><span class="s2">"d"</span><span class="p">,</span><span class="s2">"Estimate"</span><span class="p">])</span>
 
 <span class="c1">#create original function and workspace</span>
-<span class="n">myFunc</span><span class="o">=</span><span class="s1">&#39;name=GausOsc,$domains=i,Frequency=5.;&#39;</span>
-<span class="n">myFunc2</span><span class="o">=</span><span class="s1">&#39;name=GausOsc,$domains=i,Frequency=5.;&#39;</span>
-<span class="n">multiFunc</span><span class="o">=</span><span class="s1">&#39;composite=MultiDomainFunction,NumDeriv=1;&#39;</span><span class="o">+</span><span class="n">myFunc</span><span class="o">+</span><span class="n">myFunc2</span><span class="o">+</span><span class="s1">&#39;ties=(f0.Frequency=f1.Frequency)&#39;</span>
+<span class="n">myFunc</span><span class="o">=</span><span class="s1">'name=GausOsc,$domains=i,Frequency=5.;'</span>
+<span class="n">myFunc2</span><span class="o">=</span><span class="s1">'name=GausOsc,$domains=i,Frequency=5.;'</span>
+<span class="n">multiFunc</span><span class="o">=</span><span class="s1">'composite=MultiDomainFunction,NumDeriv=1;'</span><span class="o">+</span><span class="n">myFunc</span><span class="o">+</span><span class="n">myFunc2</span><span class="o">+</span><span class="s1">'ties=(f0.Frequency=f1.Frequency)'</span>
 
-<span class="n">ws</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="mf">2.30</span><span class="p">)</span>
-<span class="n">ws2</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="mf">1.10</span><span class="p">)</span>
-<span class="n">ws3</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">,</span><span class="mf">4.1</span><span class="p">)</span>
-<span class="n">ws4</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">,</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">ws</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span><span class="mf">2.30</span><span class="p">)</span>
+<span class="n">ws2</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">"b"</span><span class="p">,</span><span class="mf">1.10</span><span class="p">)</span>
+<span class="n">ws3</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">"c"</span><span class="p">,</span><span class="mf">4.1</span><span class="p">)</span>
+<span class="n">ws4</span><span class="o">=</span> <span class="n">makeData</span><span class="p">(</span><span class="s2">"d"</span><span class="p">,</span><span class="mf">2.0</span><span class="p">)</span>
 
 <span class="n">TFFunc</span> <span class="o">=</span> <span class="n">ConvertFitFunctionForMuonTFAsymmetry</span><span class="p">(</span><span class="n">InputFunction</span><span class="o">=</span><span class="n">multiFunc</span><span class="p">,</span> <span class="n">NormalizationTable</span><span class="o">=</span><span class="n">tab</span><span class="p">,</span>
-                                              <span class="n">WorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">Mode</span><span class="o">=</span><span class="s2">&quot;Construct&quot;</span><span class="p">)</span>
+                                              <span class="n">WorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span><span class="s2">"c"</span><span class="p">],</span> <span class="n">Mode</span><span class="o">=</span><span class="s2">"Construct"</span><span class="p">)</span>
 
-<span class="n">CalculateMuonAsymmetry</span><span class="p">(</span><span class="n">NormalizationTable</span><span class="o">=</span><span class="n">tab</span><span class="p">,</span> <span class="n">unNormalizedWorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">],</span>
-                       <span class="n">ReNormalizedWorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">],</span> <span class="n">InputFunction</span><span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">TFFunc</span><span class="p">),</span>
-                       <span class="n">OutputFitWorkspace</span><span class="o">=</span><span class="s2">&quot;fit_result&quot;</span><span class="p">,</span><span class="n">StartX</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">EndX</span><span class="o">=</span><span class="mf">9.9</span><span class="p">)</span>
+<span class="n">CalculateMuonAsymmetry</span><span class="p">(</span><span class="n">NormalizationTable</span><span class="o">=</span><span class="n">tab</span><span class="p">,</span> <span class="n">unNormalizedWorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span><span class="s2">"c"</span><span class="p">],</span>
+                       <span class="n">ReNormalizedWorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s2">"b"</span><span class="p">,</span><span class="s2">"d"</span><span class="p">],</span> <span class="n">InputFunction</span><span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">TFFunc</span><span class="p">),</span>
+                       <span class="n">OutputFitWorkspace</span><span class="o">=</span><span class="s2">"fit_result"</span><span class="p">,</span><span class="n">StartX</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">EndX</span><span class="o">=</span><span class="mf">9.9</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalization constant for b: </span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalization constant for d: </span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">3</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Normalization constant for b: </span><span class="si">{0:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Normalization constant for d: </span><span class="si">{0:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">3</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1686,18 +1686,18 @@ Normalization constant for d: 4.10
 <span class="n">unnormalised_workspace</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="n">ws_to_normalise</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="n">ws_correctly_normalised</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y_norm</span><span class="p">)</span>
-<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;ws_to_normalise&#39;</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s2">&quot;analysis_asymmetry_norm&quot;</span><span class="p">,</span> <span class="n">LogText</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'ws_to_normalise'</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s2">"analysis_asymmetry_norm"</span><span class="p">,</span> <span class="n">LogText</span><span class="o">=</span><span class="s2">"1"</span><span class="p">)</span>
 
-<span class="n">innerFunction</span> <span class="o">=</span> <span class="n">FunctionFactory</span><span class="o">.</span><span class="n">createInitialized</span><span class="p">(</span><span class="s1">&#39;name=GausOsc,A=0.20,Sigma=0.2,Frequency=1.0,Phi=0&#39;</span><span class="p">)</span>
-<span class="n">tf_function</span> <span class="o">=</span> <span class="n">ConvertFitFunctionForMuonTFAsymmetry</span><span class="p">(</span><span class="n">InputFunction</span><span class="o">=</span><span class="n">innerFunction</span><span class="p">,</span> <span class="n">WorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ws_to_normalise&#39;</span><span class="p">])</span>
+<span class="n">innerFunction</span> <span class="o">=</span> <span class="n">FunctionFactory</span><span class="o">.</span><span class="n">createInitialized</span><span class="p">(</span><span class="s1">'name=GausOsc,A=0.20,Sigma=0.2,Frequency=1.0,Phi=0'</span><span class="p">)</span>
+<span class="n">tf_function</span> <span class="o">=</span> <span class="n">ConvertFitFunctionForMuonTFAsymmetry</span><span class="p">(</span><span class="n">InputFunction</span><span class="o">=</span><span class="n">innerFunction</span><span class="p">,</span> <span class="n">WorkspaceList</span><span class="o">=</span><span class="p">[</span><span class="s1">'ws_to_normalise'</span><span class="p">])</span>
 
-<span class="n">CalculateMuonAsymmetry</span><span class="p">(</span><span class="n">MaxIterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">EnableDoublePulse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">PulseOffset</span><span class="o">=</span><span class="n">delta</span><span class="p">,</span> <span class="n">UnNormalizedWorkspaceList</span><span class="o">=</span><span class="s1">&#39;unnormalised_workspace&#39;</span><span class="p">,</span> <span class="n">ReNormalizedWorkspaceList</span><span class="o">=</span><span class="s1">&#39;ws_to_normalise&#39;</span><span class="p">,</span>
-                        <span class="n">OutputFitWorkspace</span><span class="o">=</span><span class="s1">&#39;DoublePulseFit&#39;</span><span class="p">,</span> <span class="n">StartX</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">InputFunction</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tf_function</span><span class="p">),</span> <span class="n">Minimizer</span><span class="o">=</span><span class="s1">&#39;Levenberg-Marquardt&#39;</span><span class="p">)</span>
+<span class="n">CalculateMuonAsymmetry</span><span class="p">(</span><span class="n">MaxIterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">EnableDoublePulse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">PulseOffset</span><span class="o">=</span><span class="n">delta</span><span class="p">,</span> <span class="n">UnNormalizedWorkspaceList</span><span class="o">=</span><span class="s1">'unnormalised_workspace'</span><span class="p">,</span> <span class="n">ReNormalizedWorkspaceList</span><span class="o">=</span><span class="s1">'ws_to_normalise'</span><span class="p">,</span>
+                        <span class="n">OutputFitWorkspace</span><span class="o">=</span><span class="s1">'DoublePulseFit'</span><span class="p">,</span> <span class="n">StartX</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">InputFunction</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tf_function</span><span class="p">),</span> <span class="n">Minimizer</span><span class="o">=</span><span class="s1">'Levenberg-Marquardt'</span><span class="p">)</span>
 
-<span class="n">double_parameter_workspace</span> <span class="o">=</span> <span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s1">&#39;DoublePulseFit_Parameters&#39;</span><span class="p">)</span>
+<span class="n">double_parameter_workspace</span> <span class="o">=</span> <span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s1">'DoublePulseFit_Parameters'</span><span class="p">)</span>
 <span class="n">values_column</span> <span class="o">=</span> <span class="n">double_parameter_workspace</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalization constant is: </span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">values_column</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Normalization constant is: </span><span class="si">{0:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">values_column</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1708,8 +1708,8 @@ Normalization constant for d: 4.10
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Muon/inc/MantidMuon/CalculateMuonAsymmetry.h">CalculateMuonAsymmetry.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Muon/src/CalculateMuonAsymmetry.cpp">CalculateMuonAsymmetry.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Muon/inc/MantidMuon/CalculateMuonAsymmetry.h">CalculateMuonAsymmetry.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Muon/src/CalculateMuonAsymmetry.cpp">CalculateMuonAsymmetry.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>WorkflowAlgorithmRunner v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>WorkflowAlgorithmRunner v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/WorkflowAlgorithmRunner-v1';</script>
@@ -1560,8 +1560,8 @@
 <p>A non-forced output property which is not needed by the other runs will be cleared by <code class="docutils literal notranslate"><span class="pre">WorkflowAlgorithmRunner</span></code>.</p>
 </div>
 <p>An equivalent python commands to running <code class="docutils literal notranslate"><span class="pre">WorkflowAlgorithmRunner</span></code> with the above <em>InputOutputMap</em> and <em>SetupTable</em> would be</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Scale</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws2&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;scaled_ws2&#39;</span><span class="p">,</span> <span class="n">Factor</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s1">&#39;Multiply&#39;</span><span class="p">)</span>
-<span class="n">Scale</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;scaled_ws2&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws1&#39;</span><span class="p">,</span> <span class="n">Factor</span><span class="o">=</span><span class="mf">0.42</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s1">&#39;Multiply&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Scale</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'ws2'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'scaled_ws2'</span><span class="p">,</span> <span class="n">Factor</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s1">'Multiply'</span><span class="p">)</span>
+<span class="n">Scale</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'scaled_ws2'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'ws1'</span><span class="p">,</span> <span class="n">Factor</span><span class="o">=</span><span class="mf">0.42</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s1">'Multiply'</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1570,44 +1570,44 @@
 <p><strong>Example: Let’s recreate the example in the Description section</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is our initial workspace. We want to scale it first by 100</span>
 <span class="c1"># and then by 0.42</span>
-<span class="n">CreateSingleValuedWorkspace</span><span class="p">(</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws2&#39;</span><span class="p">,</span> <span class="n">DataValue</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">CreateSingleValuedWorkspace</span><span class="p">(</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'ws2'</span><span class="p">,</span> <span class="n">DataValue</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
 <span class="c1"># Setup the runs for the Scale algorithm</span>
 <span class="n">setupTable</span> <span class="o">=</span> <span class="n">WorkspaceFactoryImpl</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span><span class="o">.</span><span class="n">createTable</span><span class="p">()</span>
-<span class="n">setupTable</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;Run name&#39;</span><span class="p">)</span> <span class="c1"># First column can have arbitrary name.</span>
+<span class="n">setupTable</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'str'</span><span class="p">,</span> <span class="s1">'Run name'</span><span class="p">)</span> <span class="c1"># First column can have arbitrary name.</span>
 <span class="c1"># The rest of the columns can be in arbitrary order</span>
-<span class="n">setupTable</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;InputWorkspace&#39;</span><span class="p">)</span>
-<span class="n">setupTable</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="s1">&#39;Factor&#39;</span><span class="p">)</span> <span class="c1"># Scale expects to get a number here.</span>
-<span class="n">setupTable</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;OutputWorkspace&#39;</span><span class="p">)</span>
+<span class="n">setupTable</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'str'</span><span class="p">,</span> <span class="s1">'InputWorkspace'</span><span class="p">)</span>
+<span class="n">setupTable</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'double'</span><span class="p">,</span> <span class="s1">'Factor'</span><span class="p">)</span> <span class="c1"># Scale expects to get a number here.</span>
+<span class="n">setupTable</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'str'</span><span class="p">,</span> <span class="s1">'OutputWorkspace'</span><span class="p">)</span>
 <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Run name&#39;</span><span class="p">:</span> <span class="s1">&#39;1st run&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;InputWorkspace&#39;</span><span class="p">:</span> <span class="s1">&#39;2nd run&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Factor&#39;</span><span class="p">:</span> <span class="mf">0.42</span><span class="p">,</span>
-    <span class="s1">&#39;OutputWorkspace&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;ws1&quot;&#39;</span> <span class="c1"># Forced output either by &#39;&#39; or &quot;&quot;.</span>
+    <span class="s1">'Run name'</span><span class="p">:</span> <span class="s1">'1st run'</span><span class="p">,</span>
+    <span class="s1">'InputWorkspace'</span><span class="p">:</span> <span class="s1">'2nd run'</span><span class="p">,</span>
+    <span class="s1">'Factor'</span><span class="p">:</span> <span class="mf">0.42</span><span class="p">,</span>
+    <span class="s1">'OutputWorkspace'</span><span class="p">:</span> <span class="s1">'"ws1"'</span> <span class="c1"># Forced output either by '' or "".</span>
 <span class="p">}</span>
 <span class="n">setupTable</span><span class="o">.</span><span class="n">addRow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Run name&#39;</span><span class="p">:</span> <span class="s1">&#39;2nd run&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;InputWorkspace&#39;</span><span class="p">:</span> <span class="s2">&quot;&#39;ws2&#39;&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;Factor&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-    <span class="s1">&#39;OutputWorkspace&#39;</span><span class="p">:</span> <span class="s1">&#39;scaled_ws2&#39;</span>
+    <span class="s1">'Run name'</span><span class="p">:</span> <span class="s1">'2nd run'</span><span class="p">,</span>
+    <span class="s1">'InputWorkspace'</span><span class="p">:</span> <span class="s2">"'ws2'"</span><span class="p">,</span>
+    <span class="s1">'Factor'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">'OutputWorkspace'</span><span class="p">:</span> <span class="s1">'scaled_ws2'</span>
 <span class="p">}</span>
 <span class="n">setupTable</span><span class="o">.</span><span class="n">addRow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-<span class="n">AnalysisDataServiceImpl</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span><span class="o">.</span><span class="n">addOrReplace</span><span class="p">(</span><span class="s1">&#39;setupTable&#39;</span><span class="p">,</span> <span class="n">setupTable</span><span class="p">)</span>
+<span class="n">AnalysisDataServiceImpl</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span><span class="o">.</span><span class="n">addOrReplace</span><span class="p">(</span><span class="s1">'setupTable'</span><span class="p">,</span> <span class="n">setupTable</span><span class="p">)</span>
 
 <span class="c1"># Map OutputWorkspace to InputWorkspace</span>
 <span class="n">ioMap</span> <span class="o">=</span> <span class="n">WorkspaceFactoryImpl</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span><span class="o">.</span><span class="n">createTable</span><span class="p">()</span>
-<span class="n">ioMap</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;InputWorkspace&#39;</span><span class="p">)</span>
-<span class="n">ioMap</span><span class="o">.</span><span class="n">addRow</span><span class="p">({</span><span class="s1">&#39;InputWorkspace&#39;</span><span class="p">:</span> <span class="s1">&#39;OutputWorkspace&#39;</span><span class="p">})</span>
-<span class="n">AnalysisDataServiceImpl</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span><span class="o">.</span><span class="n">addOrReplace</span><span class="p">(</span><span class="s1">&#39;ioMapTable&#39;</span><span class="p">,</span> <span class="n">ioMap</span><span class="p">)</span>
+<span class="n">ioMap</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'str'</span><span class="p">,</span> <span class="s1">'InputWorkspace'</span><span class="p">)</span>
+<span class="n">ioMap</span><span class="o">.</span><span class="n">addRow</span><span class="p">({</span><span class="s1">'InputWorkspace'</span><span class="p">:</span> <span class="s1">'OutputWorkspace'</span><span class="p">})</span>
+<span class="n">AnalysisDataServiceImpl</span><span class="o">.</span><span class="n">Instance</span><span class="p">()</span><span class="o">.</span><span class="n">addOrReplace</span><span class="p">(</span><span class="s1">'ioMapTable'</span><span class="p">,</span> <span class="n">ioMap</span><span class="p">)</span>
 
 <span class="c1"># Execute the algorithm</span>
-<span class="n">WorkflowAlgorithmRunner</span><span class="p">(</span><span class="s1">&#39;Scale&#39;</span><span class="p">,</span> <span class="n">SetupTable</span><span class="o">=</span><span class="n">setupTable</span><span class="p">,</span> <span class="n">InputOutputMap</span><span class="o">=</span><span class="n">ioMap</span><span class="p">)</span>
+<span class="n">WorkflowAlgorithmRunner</span><span class="p">(</span><span class="s1">'Scale'</span><span class="p">,</span> <span class="n">SetupTable</span><span class="o">=</span><span class="n">setupTable</span><span class="p">,</span> <span class="n">InputOutputMap</span><span class="o">=</span><span class="n">ioMap</span><span class="p">)</span>
 
 <span class="c1"># Print some results</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original input value: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;ws2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;After scaling by 100: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;scaled_ws2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;After further scaling by 0.42: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;ws1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Original input value: </span><span class="si">{0}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'ws2'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'After scaling by 100: </span><span class="si">{0}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'scaled_ws2'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'After further scaling by 0.42: </span><span class="si">{0}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'ws1'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Original input value: 1.0
@@ -1619,8 +1619,8 @@ After further scaling by 0.42: 42.0
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/WorkflowAlgorithmRunner.h">WorkflowAlgorithmRunner.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/WorkflowAlgorithmRunner.cpp">WorkflowAlgorithmRunner.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/WorkflowAlgorithmRunner.h">WorkflowAlgorithmRunner.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/WorkflowAlgorithmRunner.cpp">WorkflowAlgorithmRunner.cpp</a></p>
 </section>
 </section>
 

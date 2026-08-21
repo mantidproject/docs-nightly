@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Direct Geometry Changes &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Direct Geometry Changes &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v6.0.0/direct_geometry';</script>
@@ -756,16 +756,16 @@
 two functions to be used for the <code class="docutils literal notranslate"><span class="pre">Background</span></code> of a CrystalField fit.</p></li>
 <li><p>Function parameters in the <code class="docutils literal notranslate"><span class="pre">Background</span></code> of a CrystalField fit can be fixed to their current values.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cf</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="n">Background</span><span class="p">(</span><span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;Gaussian&#39;</span><span class="p">,</span><span class="n">Sigma</span><span class="o">=</span><span class="mf">0.05313</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Height</span><span class="o">=</span> <span class="mi">1279300</span><span class="p">,</span><span class="n">PeakCentre</span><span class="o">=-</span><span class="mf">0.0021</span><span class="p">),</span>
-                                      <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;Gaussian&#39;</span><span class="p">,</span><span class="n">Sigma</span><span class="o">=</span><span class="mf">0.1111</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Height</span><span class="o">=</span> <span class="mi">1465</span><span class="p">,</span><span class="n">PeakCentre</span><span class="o">=</span><span class="mf">0.09147</span><span class="p">),</span>
-                                      <span class="n">Function</span><span class="p">(</span><span class="s1">&#39;LinearBackground&#39;</span><span class="p">,</span> <span class="n">A0</span><span class="o">=</span><span class="mi">34</span><span class="p">,</span> <span class="n">A1</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cf</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="n">Background</span><span class="p">(</span><span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="n">Function</span><span class="p">(</span><span class="s1">'Gaussian'</span><span class="p">,</span><span class="n">Sigma</span><span class="o">=</span><span class="mf">0.05313</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Height</span><span class="o">=</span> <span class="mi">1279300</span><span class="p">,</span><span class="n">PeakCentre</span><span class="o">=-</span><span class="mf">0.0021</span><span class="p">),</span>
+                                      <span class="n">Function</span><span class="p">(</span><span class="s1">'Gaussian'</span><span class="p">,</span><span class="n">Sigma</span><span class="o">=</span><span class="mf">0.1111</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Height</span><span class="o">=</span> <span class="mi">1465</span><span class="p">,</span><span class="n">PeakCentre</span><span class="o">=</span><span class="mf">0.09147</span><span class="p">),</span>
+                                      <span class="n">Function</span><span class="p">(</span><span class="s1">'LinearBackground'</span><span class="p">,</span> <span class="n">A0</span><span class="o">=</span><span class="mi">34</span><span class="p">,</span> <span class="n">A1</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)])</span>
 
 <span class="c1"># Ties can then be applied by indexing to the relevant function</span>
 <span class="n">cf</span><span class="o">.</span><span class="n">background</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ties</span><span class="p">(</span><span class="n">Height</span><span class="o">=</span><span class="mi">1465</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="mf">0.1111</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">PeakCentre</span><span class="o">=</span><span class="mf">0.09147</span><span class="p">)</span>
 <span class="c1"># Fixes the PeakCentre and Height of the first Gaussian to their current values.</span>
-<span class="n">cf</span><span class="o">.</span><span class="n">background</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="s1">&#39;PeakCentre&#39;</span><span class="p">,</span> <span class="s1">&#39;Height&#39;</span><span class="p">)</span>
+<span class="n">cf</span><span class="o">.</span><span class="n">background</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="s1">'PeakCentre'</span><span class="p">,</span> <span class="s1">'Height'</span><span class="p">)</span>
 <span class="c1"># Fixes all the parameters of the LinearBackground to their current values.</span>
-<span class="n">cf</span><span class="o">.</span><span class="n">background</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">cf</span><span class="o">.</span><span class="n">background</span><span class="o">.</span><span class="n">functions</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="s1">'all'</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

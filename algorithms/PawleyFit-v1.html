@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PawleyFit v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PawleyFit v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1580,42 +1580,42 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Load spectrum for Silicon in the d-range down to 0.7</span>
-<span class="n">si_spectrum</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;PawleySilicon.nxs&quot;</span><span class="p">)</span>
+<span class="n">si_spectrum</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"PawleySilicon.nxs"</span><span class="p">)</span>
 
 <span class="c1"># In order to index the peaks later on, generate reflection for Si</span>
-<span class="n">Si</span> <span class="o">=</span> <span class="n">PoldiCreatePeaksFromCell</span><span class="p">(</span><span class="n">SpaceGroup</span><span class="o">=</span><span class="s1">&#39;F d -3 m&#39;</span><span class="p">,</span>
-                              <span class="n">Atoms</span><span class="o">=</span><span class="s1">&#39;Si 0 0 0 1.0 0.05&#39;</span><span class="p">,</span>
+<span class="n">Si</span> <span class="o">=</span> <span class="n">PoldiCreatePeaksFromCell</span><span class="p">(</span><span class="n">SpaceGroup</span><span class="o">=</span><span class="s1">'F d -3 m'</span><span class="p">,</span>
+                              <span class="n">Atoms</span><span class="o">=</span><span class="s1">'Si 0 0 0 1.0 0.05'</span><span class="p">,</span>
                               <span class="n">a</span><span class="o">=</span><span class="mf">5.43</span><span class="p">,</span> <span class="n">LatticeSpacingMin</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Silicon has </span><span class="si">{}</span><span class="s2"> unique reflections with d &gt; 0.7.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Si</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Silicon has </span><span class="si">{}</span><span class="s2"> unique reflections with d &gt; 0.7."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Si</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
 
 <span class="c1"># Find peaks in the spectrum</span>
 <span class="n">si_peaks</span> <span class="o">=</span> <span class="n">PoldiPeakSearch</span><span class="p">(</span><span class="n">si_spectrum</span><span class="p">)</span>
 
-<span class="c1"># Index the peaks, will generate a workspace named &#39;si_peaks_indexed_Si&#39;</span>
-<span class="n">indexed</span> <span class="o">=</span> <span class="n">PoldiIndexKnownCompounds</span><span class="p">(</span><span class="n">si_peaks</span><span class="p">,</span> <span class="n">CompoundWorkspaces</span><span class="o">=</span><span class="s1">&#39;Si&#39;</span><span class="p">)</span>
+<span class="c1"># Index the peaks, will generate a workspace named 'si_peaks_indexed_Si'</span>
+<span class="n">indexed</span> <span class="o">=</span> <span class="n">PoldiIndexKnownCompounds</span><span class="p">(</span><span class="n">si_peaks</span><span class="p">,</span> <span class="n">CompoundWorkspaces</span><span class="o">=</span><span class="s1">'Si'</span><span class="p">)</span>
 
-<span class="n">si_peaks_indexed</span> <span class="o">=</span> <span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s1">&#39;si_peaks_indexed_Si&#39;</span><span class="p">)</span>
+<span class="n">si_peaks_indexed</span> <span class="o">=</span> <span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s1">'si_peaks_indexed_Si'</span><span class="p">)</span>
 
 <span class="c1"># 3 peaks have two possibilities for indexing, because their d-values are identical</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of peaks that were indexed: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">si_peaks_indexed</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The number of peaks that were indexed: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">si_peaks_indexed</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
 
 <span class="c1"># Run the actual fit with lattice parameters that are slightly off</span>
 <span class="n">si_fitted</span><span class="p">,</span> <span class="n">si_cell</span><span class="p">,</span> <span class="n">si_params</span><span class="p">,</span> <span class="n">chi_square</span> <span class="o">=</span> <span class="n">PawleyFit</span><span class="p">(</span><span class="n">si_spectrum</span><span class="p">,</span>
-                      <span class="n">LatticeSystem</span><span class="o">=</span><span class="s1">&#39;Cubic&#39;</span><span class="p">,</span>
-                      <span class="n">InitialCell</span><span class="o">=</span><span class="s1">&#39;5.436 5.436 5.436&#39;</span><span class="p">,</span>
+                      <span class="n">LatticeSystem</span><span class="o">=</span><span class="s1">'Cubic'</span><span class="p">,</span>
+                      <span class="n">InitialCell</span><span class="o">=</span><span class="s1">'5.436 5.436 5.436'</span><span class="p">,</span>
                       <span class="n">PeakTable</span><span class="o">=</span><span class="n">si_peaks_indexed</span><span class="p">)</span>
 
-<span class="n">si_cell</span> <span class="o">=</span> <span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">&quot;si_cell&quot;</span><span class="p">)</span>
+<span class="n">si_cell</span> <span class="o">=</span> <span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">"si_cell"</span><span class="p">)</span>
 
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">si_cell</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">a_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">si_cell</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">a_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mf">5.4311946</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The lattice parameter was refined to a = </span><span class="si">{}</span><span class="s2"> +/- </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a_err</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The deviation from the actual parameter (a=5.4311946) is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a_diff</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This difference corresponds to </span><span class="si">{:.2f}</span><span class="s2"> standard deviations.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">a_diff</span> <span class="o">/</span> <span class="n">a_err</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The reduced chi square of the fit is: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">chi_square</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The lattice parameter was refined to a = </span><span class="si">{}</span><span class="s2"> +/- </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a_err</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The deviation from the actual parameter (a=5.4311946) is: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a_diff</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"This difference corresponds to </span><span class="si">{:.2f}</span><span class="s2"> standard deviations."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">a_diff</span> <span class="o">/</span> <span class="n">a_err</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The reduced chi square of the fit is: </span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">chi_square</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Running this script will generate a bit of output about the results of the different steps. At the end the lattice parameter differs less than one standard deviation from the actual value.</p>
@@ -1644,8 +1644,8 @@ The reduced chi square of the fit is: 1.04
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/PawleyFit.h">PawleyFit.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/src/Algorithms/PawleyFit.cpp">PawleyFit.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/PawleyFit.h">PawleyFit.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/src/Algorithms/PawleyFit.cpp">PawleyFit.cpp</a></p>
 </section>
 </section>
 

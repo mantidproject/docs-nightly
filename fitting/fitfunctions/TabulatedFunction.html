@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>TabulatedFunction &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>TabulatedFunction &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'fitting/fitfunctions/TabulatedFunction';</script>
@@ -589,24 +589,24 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - Fit two structure factors that are shifted and scaled with respect to each other:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws1</span><span class="o">=</span><span class="n">LoadNexus</span><span class="p">(</span><span class="s1">&#39;tabulatedFunctionExample.nxs&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws1</span><span class="o">=</span><span class="n">LoadNexus</span><span class="p">(</span><span class="s1">'tabulatedFunctionExample.nxs'</span><span class="p">)</span>
 
 <span class="c1"># Clone the workspace by rescaling and shift</span>
 <span class="n">ws2</span><span class="o">=</span><span class="n">CloneWorkspace</span><span class="p">(</span><span class="n">ws1</span><span class="p">)</span>
-<span class="n">ws2</span><span class="o">=</span><span class="n">Scale</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">Factor</span><span class="o">=</span><span class="mf">1.34</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s1">&#39;Multiply&#39;</span><span class="p">)</span>
-<span class="n">ws2</span><span class="o">=</span><span class="n">ScaleX</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">Factor</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s1">&#39;Add&#39;</span><span class="p">)</span>
+<span class="n">ws2</span><span class="o">=</span><span class="n">Scale</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">Factor</span><span class="o">=</span><span class="mf">1.34</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s1">'Multiply'</span><span class="p">)</span>
+<span class="n">ws2</span><span class="o">=</span><span class="n">ScaleX</span><span class="p">(</span><span class="n">ws2</span><span class="p">,</span> <span class="n">Factor</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">Operation</span><span class="o">=</span><span class="s1">'Add'</span><span class="p">)</span>
 
 <span class="c1"># Call the Fit algorithm and perform the fit</span>
-<span class="n">myFunc</span><span class="o">=</span><span class="s1">&#39;name=TabulatedFunction,Workspace=ws1,WorkspaceIndex=0,Scaling=1.0,Shift=0.0&#39;</span>
-<span class="n">fit_output</span> <span class="o">=</span> <span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="n">myFunc</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws2</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
+<span class="n">myFunc</span><span class="o">=</span><span class="s1">'name=TabulatedFunction,Workspace=ws1,WorkspaceIndex=0,Scaling=1.0,Shift=0.0'</span>
+<span class="n">fit_output</span> <span class="o">=</span> <span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="n">myFunc</span><span class="p">,</span> <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws2</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">'fit'</span><span class="p">)</span>
 <span class="n">paramTable</span> <span class="o">=</span> <span class="n">fit_output</span><span class="o">.</span><span class="n">OutputParameters</span>  <span class="c1"># table containing the optimal fit parameters</span>
 <span class="n">fitWorkspace</span> <span class="o">=</span> <span class="n">fit_output</span><span class="o">.</span><span class="n">OutputWorkspace</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The fit was: &quot;</span> <span class="o">+</span> <span class="n">fit_output</span><span class="o">.</span><span class="n">OutputStatus</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitted Scaling value is: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitted Shift value is: </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">abs</span><span class="p">(</span><span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The fit was: "</span> <span class="o">+</span> <span class="n">fit_output</span><span class="o">.</span><span class="n">OutputStatus</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fitted Scaling value is: </span><span class="si">%.2f</span><span class="s2">"</span> <span class="o">%</span> <span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fitted Shift value is: </span><span class="si">%.3f</span><span class="s2">"</span> <span class="o">%</span> <span class="nb">abs</span><span class="p">(</span><span class="n">paramTable</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
 <span class="c1"># fitWorkspace contains the data, the calculated and the difference patterns</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of spectra in fitWorkspace is: &quot;</span> <span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="n">fitWorkspace</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of spectra in fitWorkspace is: "</span> <span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="n">fitWorkspace</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -620,8 +620,8 @@ Number of spectra in fitWorkspace is: 3
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/inc/MantidCurveFitting/Functions/TabulatedFunction.h">TabulatedFunction.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/src/Functions/TabulatedFunction.cpp">TabulatedFunction.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/inc/MantidCurveFitting/Functions/TabulatedFunction.h">TabulatedFunction.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/src/Functions/TabulatedFunction.cpp">TabulatedFunction.cpp</a></p>
 </section>
 </section>
 

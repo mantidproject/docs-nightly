@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MatrixWorkspace with Python &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MatrixWorkspace with Python &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/python_in_mantid/algorithms_and_workspaces/03_matrix_ws_py';</script>
@@ -557,32 +557,32 @@
 <section id="working-with-matrixworkspaces">
 <h2>Working with MatrixWorkspaces<a class="headerlink" href="#working-with-matrixworkspaces" title="Link to this heading">#</a></h2>
 <p>Loading a Workspace2D and extracting some basic details:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws2D</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;LOQ49886.nxs&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws2D</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"LOQ49886.nxs"</span><span class="p">)</span>
 
 <span class="c1"># Basic queries</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of histograms: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ws2D</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is histogram data: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ws2D</span><span class="o">.</span><span class="n">isHistogramData</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of bins: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ws2D</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of histograms: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ws2D</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Is histogram data: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ws2D</span><span class="o">.</span><span class="n">isHistogramData</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of bins: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ws2D</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
 
 <span class="c1"># More advanced queries</span>
 <span class="n">spectrumAxis</span> <span class="o">=</span> <span class="n">ws2D</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is spectra axis: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">spectrumAxis</span><span class="o">.</span><span class="n">isSpectra</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of spectra: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">spectrumAxis</span><span class="o">.</span><span class="n">length</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Is spectra axis: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">spectrumAxis</span><span class="o">.</span><span class="n">isSpectra</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of spectra: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">spectrumAxis</span><span class="o">.</span><span class="n">length</span><span class="p">()))</span>
 
 <span class="n">xAxis</span> <span class="o">=</span> <span class="n">ws2D</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">xUnit</span> <span class="o">=</span> <span class="n">xAxis</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X-Unit: &quot;</span>  <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">xUnit</span><span class="o">.</span><span class="n">unitID</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="n">xUnit</span><span class="o">.</span><span class="n">caption</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">xUnit</span><span class="o">.</span><span class="n">symbol</span><span class="p">())))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"X-Unit: "</span>  <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">xUnit</span><span class="o">.</span><span class="n">unitID</span><span class="p">()</span> <span class="o">+</span> <span class="s1">', '</span> <span class="o">+</span> <span class="n">xUnit</span><span class="o">.</span><span class="n">caption</span><span class="p">()</span> <span class="o">+</span> <span class="s1">', '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">xUnit</span><span class="o">.</span><span class="n">symbol</span><span class="p">())))</span>
 
 <span class="c1"># Get x-axis data as a NumPy array</span>
 <span class="n">xData</span> <span class="o">=</span> <span class="n">ws2D</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">9683</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X-Data type: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">xData</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X-Data:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"X-Data type: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">xData</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"X-Data:"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">xData</span><span class="p">)</span>
 
 <span class="c1"># Get y-axis data and error data</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Y-Data:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Y-Data:"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ws2D</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">9683</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;E-Data:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"E-Data:"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ws2D</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">9683</span><span class="p">))</span>
 
 <span class="c1"># Looping over each spectrum and obtaining a read-only reference to the counts</span>
@@ -594,9 +594,9 @@
 <section id="working-with-eventworkspaces">
 <h2>Working with EventWorkspaces<a class="headerlink" href="#working-with-eventworkspaces" title="Link to this heading">#</a></h2>
 <p>Loading a Workspace checking it’s type, and reading the number of events.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eventWS</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;CNCS_7860_event.nxs&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of Workspace: &quot;</span><span class="p">,</span> <span class="n">eventWS</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;EventWorkspace called </span><span class="si">%s</span><span class="s2"> contains </span><span class="si">%s</span><span class="s2"> events&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">eventWS</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">eventWS</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eventWS</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"CNCS_7860_event.nxs"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Type of Workspace: "</span><span class="p">,</span> <span class="n">eventWS</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"EventWorkspace called </span><span class="si">%s</span><span class="s2"> contains </span><span class="si">%s</span><span class="s2"> events"</span> <span class="o">%</span><span class="p">(</span><span class="n">eventWS</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">eventWS</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
 </pre></div>
 </div>
 </section>
@@ -605,8 +605,8 @@
 <figure class="align-center">
 <img alt="Binning_example" src="../../../_images/Binning_example.png" />
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rebinned</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">eventWS</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">&#39;1000&#39;</span><span class="p">)</span>
-<span class="n">rebinnedToWorkspace2D</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">eventWS</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">&#39;1000&#39;</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rebinned</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">eventWS</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">'1000'</span><span class="p">)</span>
+<span class="n">rebinnedToWorkspace2D</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">eventWS</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">'1000'</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

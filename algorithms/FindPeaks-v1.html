@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FindPeaks v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FindPeaks v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/FindPeaks-v1';</script>
@@ -1662,20 +1662,20 @@ observed data.</p>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>M.A.Mariscotti, <em>A method for automatic identification of peaks in the presence of background and its application to spectrum analysis</em> , <a class="reference external" href="http://dx.doi.org/10.1016/0029-554X(67)90058-4">NIM 50 (1967) 309</a></p></li>
+<li><p>M.A.Mariscotti, <em>A method for automatic identification of peaks in the presence of background and its application to spectrum analysis</em> , <a class="reference external" href="https://doi.org/10.1016/0029-554X(67)90058-4">Nuclear Instruments and Methods 50 (1967) 309</a></p></li>
 </ol>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Find a single peak:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s2">&quot;User Defined&quot;</span><span class="p">,</span> <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="s2">&quot;name=LinearBackground, </span><span class="se">\</span>
-<span class="s2">   A0=0.3;name=Gaussian, PeakCentre=5, Height=10, Sigma=0.7&quot;</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s2">"User Defined"</span><span class="p">,</span> <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="s2">"name=LinearBackground, </span><span class="se">\</span>
+<span class="s2">   A0=0.3;name=Gaussian, PeakCentre=5, Height=10, Sigma=0.7"</span><span class="p">,</span> <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
-<span class="n">table</span> <span class="o">=</span> <span class="n">FindPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">FWHM</span><span class="o">=</span><span class="s1">&#39;20&#39;</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">FindPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'ws'</span><span class="p">,</span> <span class="n">FWHM</span><span class="o">=</span><span class="s1">'20'</span><span class="p">)</span>
 
 <span class="n">row</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Peak 1 {Centre: </span><span class="si">%.3f</span><span class="s2">, width: </span><span class="si">%.3f</span><span class="s2">, height: </span><span class="si">%.3f</span><span class="s2"> }&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;centre&quot;</span><span class="p">],</span>  <span class="n">row</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Peak 1 {Centre: </span><span class="si">%.3f</span><span class="s2">, width: </span><span class="si">%.3f</span><span class="s2">, height: </span><span class="si">%.3f</span><span class="s2"> }"</span> <span class="o">%</span> <span class="p">(</span> <span class="n">row</span><span class="p">[</span><span class="s2">"centre"</span><span class="p">],</span>  <span class="n">row</span><span class="p">[</span><span class="s2">"width"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"height"</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1686,8 +1686,8 @@ observed data.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/FindPeaks.h">FindPeaks.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/FindPeaks.cpp">FindPeaks.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/FindPeaks.h">FindPeaks.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/FindPeaks.cpp">FindPeaks.cpp</a></p>
 </section>
 </section>
 

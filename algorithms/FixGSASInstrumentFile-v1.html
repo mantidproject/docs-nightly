@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FixGSASInstrumentFile v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FixGSASInstrumentFile v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/FixGSASInstrumentFile-v1';</script>
@@ -1487,24 +1487,24 @@ characters.</p>
 <p><strong>Example - correct a GSAS instrument file to 80 characters per line:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create filename (puts it in home directory to guarantee it exists)</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="n">savefile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/fixed.iparm&quot;</span><span class="p">)</span>
+<span class="n">savefile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~/fixed.iparm"</span><span class="p">)</span>
 
 <span class="c1"># Run the algorithm</span>
-<span class="n">FixGSASInstrumentFile</span><span class="p">(</span><span class="n">InputFilename</span><span class="o">=</span><span class="s2">&quot;PG3HR60_FmPython.iparm&quot;</span><span class="p">,</span> <span class="n">OutputFilename</span><span class="o">=</span><span class="n">savefile</span><span class="p">)</span>
+<span class="n">FixGSASInstrumentFile</span><span class="p">(</span><span class="n">InputFilename</span><span class="o">=</span><span class="s2">"PG3HR60_FmPython.iparm"</span><span class="p">,</span> <span class="n">OutputFilename</span><span class="o">=</span><span class="n">savefile</span><span class="p">)</span>
 
 <span class="c1"># Load new file and check each line</span>
-<span class="n">wfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">savefile</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">wfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">savefile</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span>
 <span class="n">lines</span> <span class="o">=</span> <span class="n">wfile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 <span class="n">wfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="n">numlinefewer80b</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">80</span><span class="p">:</span>
       <span class="n">numlinefewer80b</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <span class="c1"># Print out result</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Corrected File: Number of lines that are not equal to 80 characters =  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numlinefewer80b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Corrected File: Number of lines that are not equal to 80 characters =  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numlinefewer80b</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1515,8 +1515,8 @@ characters.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/FixGSASInstrumentFile.h">FixGSASInstrumentFile.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/FixGSASInstrumentFile.cpp">FixGSASInstrumentFile.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/FixGSASInstrumentFile.h">FixGSASInstrumentFile.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/FixGSASInstrumentFile.cpp">FixGSASInstrumentFile.cpp</a></p>
 </section>
 </section>
 

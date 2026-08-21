@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PoldiFitPeaks2D v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PoldiFitPeaks2D v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1603,20 +1603,20 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <span class="n">truncated</span> <span class="o">=</span> <span class="n">PoldiLoadRuns</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">6904</span><span class="p">)</span>
 
 <span class="c1"># Perform correlation, peak search and fit</span>
-<span class="n">correlated_6904</span> <span class="o">=</span> <span class="n">PoldiAutoCorrelation</span><span class="p">(</span><span class="s2">&quot;truncated_data_6904&quot;</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">correlated_6904</span> <span class="o">=</span> <span class="n">PoldiAutoCorrelation</span><span class="p">(</span><span class="s2">"truncated_data_6904"</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">peaks_6904</span> <span class="o">=</span> <span class="n">PoldiPeakSearch</span><span class="p">(</span><span class="n">correlated_6904</span><span class="p">)</span>
 
 <span class="n">PoldiFitPeaks1D</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="n">correlated_6904</span><span class="p">,</span> <span class="n">FwhmMultiples</span> <span class="o">=</span> <span class="mf">4.0</span><span class="p">,</span>
-                <span class="n">PeakFunction</span> <span class="o">=</span> <span class="s2">&quot;Gaussian&quot;</span><span class="p">,</span> <span class="n">PoldiPeakTable</span> <span class="o">=</span> <span class="n">peaks_6904</span><span class="p">,</span>
-                <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">&quot;peaks_refined_6904&quot;</span><span class="p">,</span>
-                <span class="n">FitPlotsWorkspace</span> <span class="o">=</span> <span class="s2">&quot;fit_plots_6904&quot;</span><span class="p">)</span>
+                <span class="n">PeakFunction</span> <span class="o">=</span> <span class="s2">"Gaussian"</span><span class="p">,</span> <span class="n">PoldiPeakTable</span> <span class="o">=</span> <span class="n">peaks_6904</span><span class="p">,</span>
+                <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">"peaks_refined_6904"</span><span class="p">,</span>
+                <span class="n">FitPlotsWorkspace</span> <span class="o">=</span> <span class="s2">"fit_plots_6904"</span><span class="p">)</span>
 
 <span class="c1"># Calculate a 2D spectrum using the refined peaks</span>
-<span class="n">PoldiFitPeaks2D</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">&quot;truncated_data_6904&quot;</span><span class="p">,</span>
-                            <span class="n">PoldiPeakWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks_refined_6904&quot;</span><span class="p">,</span>
-                            <span class="n">RefinedPoldiPeakWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks_fit_2d_6904&quot;</span><span class="p">,</span>
-                            <span class="n">Calculated1DSpectrum</span><span class="o">=</span><span class="s2">&quot;simulated_1d_6904&quot;</span><span class="p">,</span>
-                            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;simulated_6904&quot;</span><span class="p">)</span>
+<span class="n">PoldiFitPeaks2D</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">"truncated_data_6904"</span><span class="p">,</span>
+                            <span class="n">PoldiPeakWorkspace</span><span class="o">=</span><span class="s2">"peaks_refined_6904"</span><span class="p">,</span>
+                            <span class="n">RefinedPoldiPeakWorkspace</span><span class="o">=</span><span class="s2">"peaks_fit_2d_6904"</span><span class="p">,</span>
+                            <span class="n">Calculated1DSpectrum</span><span class="o">=</span><span class="s2">"simulated_1d_6904"</span><span class="p">,</span>
+                            <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"simulated_6904"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>After this step, there is a new workspace containing the simulated spectrum. It should look similar to the one in the following figure:</p>
@@ -1631,20 +1631,20 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <span class="n">truncated</span> <span class="o">=</span> <span class="n">PoldiLoadRuns</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">6904</span><span class="p">)</span>
 
 <span class="c1"># Perform correlation, peak search and fit</span>
-<span class="n">correlated_6904</span> <span class="o">=</span> <span class="n">PoldiAutoCorrelation</span><span class="p">(</span><span class="s2">&quot;truncated_data_6904&quot;</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">correlated_6904</span> <span class="o">=</span> <span class="n">PoldiAutoCorrelation</span><span class="p">(</span><span class="s2">"truncated_data_6904"</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">peaks_6904</span> <span class="o">=</span> <span class="n">PoldiPeakSearch</span><span class="p">(</span><span class="n">correlated_6904</span><span class="p">)</span>
 
 <span class="n">PoldiFitPeaks1D</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="n">correlated_6904</span><span class="p">,</span> <span class="n">FwhmMultiples</span> <span class="o">=</span> <span class="mf">4.0</span><span class="p">,</span>
-                <span class="n">PeakFunction</span> <span class="o">=</span> <span class="s2">&quot;Gaussian&quot;</span><span class="p">,</span> <span class="n">PoldiPeakTable</span> <span class="o">=</span> <span class="n">peaks_6904</span><span class="p">,</span>
-                <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">&quot;peaks_refined_6904&quot;</span><span class="p">,</span>
-                <span class="n">FitPlotsWorkspace</span> <span class="o">=</span> <span class="s2">&quot;fit_plots_6904&quot;</span><span class="p">)</span>
+                <span class="n">PeakFunction</span> <span class="o">=</span> <span class="s2">"Gaussian"</span><span class="p">,</span> <span class="n">PoldiPeakTable</span> <span class="o">=</span> <span class="n">peaks_6904</span><span class="p">,</span>
+                <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">"peaks_refined_6904"</span><span class="p">,</span>
+                <span class="n">FitPlotsWorkspace</span> <span class="o">=</span> <span class="s2">"fit_plots_6904"</span><span class="p">)</span>
 
 <span class="c1"># Calculate a 2D spectrum using the refined peaks - with background linear in 2theta</span>
-<span class="n">PoldiFitPeaks2D</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">&quot;truncated_data_6904&quot;</span><span class="p">,</span>
-                         <span class="n">PoldiPeakWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks_refined_6904&quot;</span><span class="p">,</span>
-                         <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;simulated_6904&quot;</span><span class="p">,</span>
-                         <span class="n">RefinedPoldiPeakWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks_fit_2d_6904&quot;</span><span class="p">,</span>
-                         <span class="n">Calculated1DSpectrum</span><span class="o">=</span><span class="s2">&quot;simulated_1d_6904&quot;</span><span class="p">,</span>
+<span class="n">PoldiFitPeaks2D</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">"truncated_data_6904"</span><span class="p">,</span>
+                         <span class="n">PoldiPeakWorkspace</span><span class="o">=</span><span class="s2">"peaks_refined_6904"</span><span class="p">,</span>
+                         <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"simulated_6904"</span><span class="p">,</span>
+                         <span class="n">RefinedPoldiPeakWorkspace</span><span class="o">=</span><span class="s2">"peaks_fit_2d_6904"</span><span class="p">,</span>
+                         <span class="n">Calculated1DSpectrum</span><span class="o">=</span><span class="s2">"simulated_1d_6904"</span><span class="p">,</span>
                          <span class="n">LinearBackgroundParameter</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1670,43 +1670,43 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <span class="n">truncated</span> <span class="o">=</span> <span class="n">PoldiLoadRuns</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">6903</span><span class="p">,</span> <span class="mi">6904</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Perform correlation, peak search and fit</span>
-<span class="n">correlated_6904</span> <span class="o">=</span> <span class="n">PoldiAutoCorrelation</span><span class="p">(</span><span class="s2">&quot;truncated_data_6904&quot;</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">correlated_6904</span> <span class="o">=</span> <span class="n">PoldiAutoCorrelation</span><span class="p">(</span><span class="s2">"truncated_data_6904"</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">peaks_6904</span> <span class="o">=</span> <span class="n">PoldiPeakSearch</span><span class="p">(</span><span class="n">correlated_6904</span><span class="p">)</span>
 
 <span class="n">PoldiFitPeaks1D</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="n">correlated_6904</span><span class="p">,</span> <span class="n">FwhmMultiples</span> <span class="o">=</span> <span class="mf">4.0</span><span class="p">,</span>
-                <span class="n">PeakFunction</span> <span class="o">=</span> <span class="s2">&quot;Gaussian&quot;</span><span class="p">,</span> <span class="n">PoldiPeakTable</span> <span class="o">=</span> <span class="n">peaks_6904</span><span class="p">,</span>
-                <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">&quot;peaks_refined_6904&quot;</span><span class="p">,</span>
-                <span class="n">FitPlotsWorkspace</span> <span class="o">=</span> <span class="s2">&quot;fit_plots_6904&quot;</span><span class="p">)</span>
+                <span class="n">PeakFunction</span> <span class="o">=</span> <span class="s2">"Gaussian"</span><span class="p">,</span> <span class="n">PoldiPeakTable</span> <span class="o">=</span> <span class="n">peaks_6904</span><span class="p">,</span>
+                <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">"peaks_refined_6904"</span><span class="p">,</span>
+                <span class="n">FitPlotsWorkspace</span> <span class="o">=</span> <span class="s2">"fit_plots_6904"</span><span class="p">)</span>
 
 <span class="c1"># Generate reflections for Silicon</span>
-<span class="n">si_peaks</span> <span class="o">=</span> <span class="n">PoldiCreatePeaksFromCell</span><span class="p">(</span><span class="n">SpaceGroup</span> <span class="o">=</span> <span class="s2">&quot;F d -3 m&quot;</span><span class="p">,</span>
-                                    <span class="n">Atoms</span> <span class="o">=</span> <span class="s2">&quot;Si 0.0 0.0 0.0&quot;</span><span class="p">,</span>
+<span class="n">si_peaks</span> <span class="o">=</span> <span class="n">PoldiCreatePeaksFromCell</span><span class="p">(</span><span class="n">SpaceGroup</span> <span class="o">=</span> <span class="s2">"F d -3 m"</span><span class="p">,</span>
+                                    <span class="n">Atoms</span> <span class="o">=</span> <span class="s2">"Si 0.0 0.0 0.0"</span><span class="p">,</span>
                                     <span class="n">a</span> <span class="o">=</span> <span class="mf">5.431</span><span class="p">,</span>
                                     <span class="n">LatticeSpacingMin</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">)</span>
 <span class="c1"># Index the refined peaks</span>
-<span class="n">indexed</span> <span class="o">=</span> <span class="n">PoldiIndexKnownCompounds</span><span class="p">(</span><span class="s2">&quot;peaks_refined_6904&quot;</span><span class="p">,</span>
-                                   <span class="n">CompoundWorkspaces</span> <span class="o">=</span> <span class="s2">&quot;si_peaks&quot;</span><span class="p">)</span>
+<span class="n">indexed</span> <span class="o">=</span> <span class="n">PoldiIndexKnownCompounds</span><span class="p">(</span><span class="s2">"peaks_refined_6904"</span><span class="p">,</span>
+                                   <span class="n">CompoundWorkspaces</span> <span class="o">=</span> <span class="s2">"si_peaks"</span><span class="p">)</span>
 
 <span class="c1"># Only consider the first 8 peaks</span>
-<span class="n">DeleteTableRows</span><span class="p">(</span><span class="s2">&quot;peaks_refined_6904_indexed_si_peaks&quot;</span><span class="p">,</span> <span class="s2">&quot;8-30&quot;</span><span class="p">)</span>
+<span class="n">DeleteTableRows</span><span class="p">(</span><span class="s2">"peaks_refined_6904_indexed_si_peaks"</span><span class="p">,</span> <span class="s2">"8-30"</span><span class="p">)</span>
 
 <span class="c1"># Fit a unit cell.</span>
-<span class="n">PoldiFitPeaks2D</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">&quot;truncated_data_6904&quot;</span><span class="p">,</span>
-                         <span class="n">PoldiPeakWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks_refined_6904_indexed_si_peaks&quot;</span><span class="p">,</span>
-                         <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;fitted_6904&quot;</span><span class="p">,</span>
+<span class="n">PoldiFitPeaks2D</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">"truncated_data_6904"</span><span class="p">,</span>
+                         <span class="n">PoldiPeakWorkspace</span><span class="o">=</span><span class="s2">"peaks_refined_6904_indexed_si_peaks"</span><span class="p">,</span>
+                         <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"fitted_6904"</span><span class="p">,</span>
                          <span class="n">PawleyFit</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
                          <span class="n">MaximumIterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-                         <span class="n">RefinedPoldiPeakWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks_fit_2d_6904&quot;</span><span class="p">,</span>
-                         <span class="n">Calculated1DSpectrum</span><span class="o">=</span><span class="s2">&quot;simulated_1d_6904&quot;</span><span class="p">,</span>
-                         <span class="n">RefinedCellParameters</span><span class="o">=</span><span class="s2">&quot;refined_cell_6904&quot;</span><span class="p">)</span>
+                         <span class="n">RefinedPoldiPeakWorkspace</span><span class="o">=</span><span class="s2">"peaks_fit_2d_6904"</span><span class="p">,</span>
+                         <span class="n">Calculated1DSpectrum</span><span class="o">=</span><span class="s2">"simulated_1d_6904"</span><span class="p">,</span>
+                         <span class="n">RefinedCellParameters</span><span class="o">=</span><span class="s2">"refined_cell_6904"</span><span class="p">)</span>
 
 
-<span class="n">lattice_parameters</span> <span class="o">=</span> <span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">&quot;refined_cell_6904&quot;</span><span class="p">)</span>
+<span class="n">lattice_parameters</span> <span class="o">=</span> <span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">"refined_cell_6904"</span><span class="p">)</span>
 
 <span class="n">cell_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">lattice_parameters</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">cell_a_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">lattice_parameters</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Refined lattice parameter a = </span><span class="si">{:.5f}</span><span class="s2"> +/- </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cell_a</span><span class="p">,</span> <span class="n">cell_a_error</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Refined lattice parameter a = </span><span class="si">{:.5f}</span><span class="s2"> +/- </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cell_a</span><span class="p">,</span> <span class="n">cell_a_error</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The refined lattice parameter is printed at the end:</p>
@@ -1717,8 +1717,8 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/SINQ/inc/MantidSINQ/PoldiFitPeaks2D.h">PoldiFitPeaks2D.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/SINQ/src/PoldiFitPeaks2D.cpp">PoldiFitPeaks2D.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/SINQ/inc/MantidSINQ/PoldiFitPeaks2D.h">PoldiFitPeaks2D.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/SINQ/src/PoldiFitPeaks2D.cpp">PoldiFitPeaks2D.cpp</a></p>
 </section>
 </section>
 

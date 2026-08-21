@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometryReductionOneAuto v3 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ReflectometryReductionOneAuto v3 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ReflectometryReductionOneAuto-v3';</script>
@@ -1774,7 +1774,7 @@
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td></td>
-<td><p>When detector IDs are provided, the algorithm will attempt to sum counts across each row of a RectangularDetector after the flood correction step. Detectors not included in the given range will be masked before summing. This will only work correctly when the instrument definition file(IDF) contains a single RectangularDetector panel.</p></td>
+<td><p>When detector IDs are provided, the algorithm will attempt to sum counts across each row of a RectangularDetector for a matrix workspace or for each member of a workspace group. Detectors not included in the given range will be masked before summing. This will only work correctly when the instrument definition file(IDF) contains a single RectangularDetector panel.</p></td>
 </tr>
 <tr class="row-odd"><td><p>HideSummedWorkspaces</p></td>
 <td><p>Input</p></td>
@@ -1858,6 +1858,9 @@ individual reductions will produce three output workspaces: an output workspace 
 wavelength, an output workspace in Q with native binning, and a rebinned workspace in Q.
 Output workspaces in wavelength will be grouped together to produce an output workspace group in wavelength, and output
 workspaces in Q will be grouped together to produce an output workspace group in Q.
+If <code class="docutils literal notranslate"><span class="pre">ROIDetectorIDs</span></code> is provided for a workspace group containing a single two-dimensional rectangular detector per
+member, the selected detector region is summed independently for every member before reduction. The summed workspaces
+and reduced outputs retain the order of the input group.
 The diagram below illustrates this process (note that, for the sake of clarity, the rebinned output
 workspace in Q, <code class="docutils literal notranslate"><span class="pre">OutputWorkspaceBinned</span></code>, is not represented but it is handled analogously to
 <code class="docutils literal notranslate"><span class="pre">OutputWorkspace</span></code> and <code class="docutils literal notranslate"><span class="pre">OutputWorkspaceWavelength</span></code>):</p>
@@ -1915,13 +1918,13 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - Basic reduction with no transmission run, polynomial corrections will be automatically applied</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;INTER00013460.nxs&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'INTER00013460.nxs'</span><span class="p">)</span>
 <span class="n">IvsQ</span><span class="p">,</span> <span class="n">IvsQ_unbinned</span> <span class="o">=</span> <span class="n">ReflectometryReductionOneAuto</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">run</span><span class="p">,</span> <span class="n">ThetaIn</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">106</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">107</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">13</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">14</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">106</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">107</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">13</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">14</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1932,14 +1935,14 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </pre></div>
 </div>
 <p><strong>Example - Basic reduction with a transmission run</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;INTER00013460.nxs&#39;</span><span class="p">)</span>
-<span class="n">trans</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;INTER00013463.nxs&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'INTER00013460.nxs'</span><span class="p">)</span>
+<span class="n">trans</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'INTER00013463.nxs'</span><span class="p">)</span>
 <span class="n">IvsQ</span><span class="p">,</span> <span class="n">IvsQ_unbinned</span><span class="p">,</span> <span class="n">IvsLam</span><span class="p">,</span> <span class="n">TRANS</span> <span class="o">=</span> <span class="n">ReflectometryReductionOneAuto</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">run</span><span class="p">,</span> <span class="n">FirstTransmissionRun</span><span class="o">=</span><span class="n">trans</span><span class="p">,</span> <span class="n">ThetaIn</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">96</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">97</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">5</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">6</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">96</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">97</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">6</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1950,13 +1953,13 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </pre></div>
 </div>
 <p><strong>Example - Reduction overriding some default values</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;INTER00013460.nxs&#39;</span><span class="p">)</span>
-<span class="n">IvsQ</span><span class="p">,</span> <span class="n">IvsQ_unbinned</span> <span class="o">=</span> <span class="n">ReflectometryReductionOneAuto</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">run</span><span class="p">,</span> <span class="n">ThetaIn</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">DetectorCorrectionType</span><span class="o">=</span><span class="s2">&quot;RotateAroundSample&quot;</span><span class="p">,</span> <span class="n">MonitorBackgroundWavelengthMin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">MonitorBackgroundWavelengthMax</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'INTER00013460.nxs'</span><span class="p">)</span>
+<span class="n">IvsQ</span><span class="p">,</span> <span class="n">IvsQ_unbinned</span> <span class="o">=</span> <span class="n">ReflectometryReductionOneAuto</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">run</span><span class="p">,</span> <span class="n">ThetaIn</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">DetectorCorrectionType</span><span class="o">=</span><span class="s2">"RotateAroundSample"</span><span class="p">,</span> <span class="n">MonitorBackgroundWavelengthMin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">MonitorBackgroundWavelengthMax</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">106</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">107</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">5</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">6</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">106</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ_unbinned</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">107</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IvsQ</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">6</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1970,8 +1973,8 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Reflectometry/inc/MantidReflectometry/ReflectometryReductionOneAuto3.h">ReflectometryReductionOneAuto3.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Reflectometry/src/ReflectometryReductionOneAuto3.cpp">ReflectometryReductionOneAuto3.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Reflectometry/inc/MantidReflectometry/ReflectometryReductionOneAuto3.h">ReflectometryReductionOneAuto3.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Reflectometry/src/ReflectometryReductionOneAuto3.cpp">ReflectometryReductionOneAuto3.cpp</a></p>
 </section>
 </section>
 

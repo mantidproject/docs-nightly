@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Basic 1D, 2D and 3D Plots &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Basic 1D, 2D and 3D Plots &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/python_in_mantid/plotting/01_basic_plot_scripting';</script>
@@ -559,7 +559,7 @@
 <p>Right clicking on a row or a column allows a plot of that spectrum or time bin, which can also be achieved in Python using the <cite>plotSpectrum()</cite> or <cite>plotBin()</cite> functions, e.g.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.container</span><span class="w"> </span><span class="kn">import</span> <span class="n">ErrorbarContainer</span>
 
-<span class="n">RawData</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;MAR11015&quot;</span><span class="p">)</span>
+<span class="n">RawData</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"MAR11015"</span><span class="p">)</span>
 
 <span class="n">graph_spec</span> <span class="o">=</span> <span class="n">plotSpectrum</span><span class="p">(</span><span class="n">RawData</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">graph_time</span> <span class="o">=</span> <span class="n">plotBin</span><span class="p">(</span><span class="n">RawData</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -568,8 +568,8 @@
 <span class="n">graph_spec_has_errorbars</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ErrorbarContainer</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">graph_spec</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">containers</span><span class="p">)</span>
 <span class="n">graph_time_has_errorbars</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ErrorbarContainer</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">graph_time</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">containers</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The spectrum graph contains errorbars - </span><span class="si">{</span><span class="n">graph_spec_has_errorbars</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The time-of-flight graph contains errorbars - </span><span class="si">{</span><span class="n">graph_time_has_errorbars</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The spectrum graph contains errorbars - </span><span class="si">{</span><span class="n">graph_spec_has_errorbars</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The time-of-flight graph contains errorbars - </span><span class="si">{</span><span class="n">graph_time_has_errorbars</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -580,7 +580,7 @@ The time-of-flight graph contains errorbars - False
 <p>To include error bars on a plot, there is an extra argument that can be set to ‘True’ to enable them, e.g.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.container</span><span class="w"> </span><span class="kn">import</span> <span class="n">ErrorbarContainer</span>
 
-<span class="n">RawData</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;MAR11015&quot;</span><span class="p">)</span>
+<span class="n">RawData</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"MAR11015"</span><span class="p">)</span>
 
 <span class="n">graph_spec</span> <span class="o">=</span> <span class="n">plotSpectrum</span><span class="p">(</span><span class="n">RawData</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">error_bars</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">graph_time</span> <span class="o">=</span> <span class="n">plotBin</span><span class="p">(</span><span class="n">RawData</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">error_bars</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -589,8 +589,8 @@ The time-of-flight graph contains errorbars - False
 <span class="n">graph_spec_has_errorbars</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ErrorbarContainer</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">graph_spec</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">containers</span><span class="p">)</span>
 <span class="n">graph_time_has_errorbars</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ErrorbarContainer</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">graph_time</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">containers</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The spectrum graph contains errorbars - </span><span class="si">{</span><span class="n">graph_spec_has_errorbars</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The time-of-flight graph contains errorbars - </span><span class="si">{</span><span class="n">graph_time_has_errorbars</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The spectrum graph contains errorbars - </span><span class="si">{</span><span class="n">graph_spec_has_errorbars</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The time-of-flight graph contains errorbars - </span><span class="si">{</span><span class="n">graph_time_has_errorbars</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -601,36 +601,36 @@ The time-of-flight graph contains errorbars - True
 <p>For setting scales, axis titles, plot titles etc. you can use:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">RawData</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;MAR11015&quot;</span><span class="p">)</span>
+<span class="n">RawData</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"MAR11015"</span><span class="p">)</span>
 <span class="n">plotSpectrum</span><span class="p">(</span><span class="n">RawData</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">error_bars</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Get current axes of the graph</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">(),</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">'log'</span><span class="p">)</span>
 
 <span class="c1"># Rescale the axis limits</span>
 <span class="n">axes</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5000</span><span class="p">)</span>
 <span class="n">axes</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span><span class="mi">1500</span><span class="p">)</span>
 
 <span class="c1"># Change the labels</span>
-<span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Time-of-flight ($\mu s$)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Counts ($\mu s$)$^{-1}$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">'Time-of-flight ($\mu s$)'</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">'Counts ($\mu s$)$^{-1}$'</span><span class="p">)</span>
 
 <span class="c1"># Add legend entries</span>
-<span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Good Line&#39;</span><span class="p">])</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">'Good Line'</span><span class="p">])</span>
 
 <span class="c1"># Give the graph a modest title</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;My Wonderful Plot&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"My Wonderful Plot"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
 <span class="c1"># Verify the scale, legend, axis limits and labels</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The yscale is - </span><span class="si">{</span><span class="n">axes</span><span class="o">.</span><span class="n">get_yscale</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The x-limits are - [</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The y-limits are - [</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The x-axis label is - </span><span class="si">{</span><span class="n">axes</span><span class="o">.</span><span class="n">get_xlabel</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The y-axis label is - </span><span class="si">{</span><span class="n">axes</span><span class="o">.</span><span class="n">get_ylabel</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The plot title is - </span><span class="si">{</span><span class="n">axes</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The plot legend is - </span><span class="si">{</span><span class="n">axes</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">get_texts</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The yscale is - </span><span class="si">{</span><span class="n">axes</span><span class="o">.</span><span class="n">get_yscale</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The x-limits are - [</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The y-limits are - [</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The x-axis label is - </span><span class="si">{</span><span class="n">axes</span><span class="o">.</span><span class="n">get_xlabel</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The y-axis label is - </span><span class="si">{</span><span class="n">axes</span><span class="o">.</span><span class="n">get_ylabel</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The plot title is - </span><span class="si">{</span><span class="n">axes</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The plot legend is - </span><span class="si">{</span><span class="n">axes</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">get_texts</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -644,8 +644,8 @@ The plot legend is - Good Line
 </pre></div>
 </div>
 <p>Multiple workspaces/spectra can be plotted by providing lists within the <cite>plotSpectrum()</cite> or <cite>plotBin()</cite> functions, e.g.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">RawData1</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;MAR11015&quot;</span><span class="p">)</span>
-<span class="n">RawData2</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;MAR11060&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">RawData1</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"MAR11015"</span><span class="p">)</span>
+<span class="n">RawData2</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"MAR11060"</span><span class="p">)</span>
 
 <span class="c1"># Plot multiple spectra from a single workspace</span>
 <span class="n">graph_spec1</span> <span class="o">=</span> <span class="n">plotSpectrum</span><span class="p">(</span><span class="n">RawData1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
@@ -657,9 +657,9 @@ The plot legend is - Good Line
 <span class="n">graph_spec3</span> <span class="o">=</span> <span class="n">plotSpectrum</span><span class="p">([</span><span class="n">RawData1</span><span class="p">,</span><span class="n">RawData2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 
 <span class="c1"># Verify the number of spectra in plots</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The graph_spec1 plot contains </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">graph_spec1</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">)</span><span class="si">}</span><span class="s2"> spectra&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The graph_spec2 plot contains </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">graph_spec2</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">)</span><span class="si">}</span><span class="s2"> spectra&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The graph_spec3 plot contains </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">graph_spec3</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">)</span><span class="si">}</span><span class="s2"> spectra&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The graph_spec1 plot contains </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">graph_spec1</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">)</span><span class="si">}</span><span class="s2"> spectra"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The graph_spec2 plot contains </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">graph_spec2</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">)</span><span class="si">}</span><span class="s2"> spectra"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The graph_spec3 plot contains </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">graph_spec3</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">)</span><span class="si">}</span><span class="s2"> spectra"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -669,7 +669,7 @@ The graph_spec3 plot contains 6 spectra
 </pre></div>
 </div>
 <p>To overplot on the same window:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">RawData</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;MAR11015&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">RawData</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"MAR11015"</span><span class="p">)</span>
 
 <span class="c1"># Assign original plot to a window called graph_spec</span>
 <span class="n">graph_spec</span> <span class="o">=</span> <span class="n">plotSpectrum</span><span class="p">(</span><span class="n">RawData</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -678,7 +678,7 @@ The graph_spec3 plot contains 6 spectra
 <span class="n">plotSpectrum</span><span class="p">(</span><span class="n">RawData</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">graph_spec</span><span class="p">,</span> <span class="n">clearWindow</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Verify the number of spectra in plot</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The plot contains </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">graph_spec</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">)</span><span class="si">}</span><span class="s2"> spectra&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The plot contains </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">graph_spec</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lines</span><span class="p">)</span><span class="si">}</span><span class="s2"> spectra"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -689,20 +689,20 @@ The graph_spec3 plot contains 6 spectra
 <section id="d-colourfill-and-contour-plots">
 <h2>2D Colourfill and Contour Plots<a class="headerlink" href="#d-colourfill-and-contour-plots" title="Link to this heading">#</a></h2>
 <p>2D plots can be produced as an <a class="reference external" href="https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.imshow.html">image</a> or a <a class="reference external" href="https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.pcolormesh.html">pseudocolormesh</a> (for a non-regular grid):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; ----------- Image &gt; imshow() ----------- &#39;&#39;&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">''' ----------- Image &gt; imshow() ----------- '''</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogNorm</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;MAR11060&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'MAR11060'</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
 
 <span class="c1"># IMPORTANT to set origin to lower</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">())</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">origin</span> <span class="o">=</span> <span class="s1">'lower'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'viridis'</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">())</span>
 <span class="n">cbar</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Counts ($\mu s$)$^{-1}$&#39;</span><span class="p">)</span> <span class="c1">#add text to colorbar</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">'Counts ($\mu s$)$^{-1}$'</span><span class="p">)</span> <span class="c1">#add text to colorbar</span>
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
@@ -710,22 +710,22 @@ The graph_spec3 plot contains 6 spectra
 <figure class="align-default">
 <img alt="../../../_images/01_basic_plot_scripting-1.png" class="plot-directive" src="../../../_images/01_basic_plot_scripting-1.png" />
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; ----------- Pseudocolormesh &gt; pcolormesh() ----------- &#39;&#39;&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">''' ----------- Pseudocolormesh &gt; pcolormesh() ----------- '''</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogNorm</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;CNCS_7860&#39;</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span> <span class="n">EMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">,</span> <span class="n">EFixed</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;-3,0.025,3&#39;</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">md</span> <span class="o">=</span> <span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span><span class="n">QDimensions</span><span class="o">=</span><span class="s1">&#39;|Q|&#39;</span><span class="p">,</span><span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">)</span>
-<span class="n">sqw</span> <span class="o">=</span> <span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">md</span><span class="p">,</span><span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">&#39;|Q|,0,3,100&#39;</span><span class="p">,</span><span class="n">AlignedDim1</span><span class="o">=</span><span class="s1">&#39;DeltaE,-3,3,100&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'CNCS_7860'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span> <span class="n">EMode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">,</span> <span class="n">EFixed</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">'-3,0.025,3'</span><span class="p">,</span> <span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">md</span> <span class="o">=</span> <span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">data</span><span class="p">,</span><span class="n">QDimensions</span><span class="o">=</span><span class="s1">'|Q|'</span><span class="p">,</span><span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">)</span>
+<span class="n">sqw</span> <span class="o">=</span> <span class="n">BinMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">md</span><span class="p">,</span><span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">'|Q|,0,3,100'</span><span class="p">,</span><span class="n">AlignedDim1</span><span class="o">=</span><span class="s1">'DeltaE,-3,3,100'</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">sqw</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">())</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">sqw</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'plasma'</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">())</span>
 <span class="n">cbar</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;Intensity (arb. units)&#39;</span><span class="p">)</span> <span class="c1">#add text to colorbar</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">'Intensity (arb. units)'</span><span class="p">)</span> <span class="c1">#add text to colorbar</span>
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
@@ -734,24 +734,24 @@ The graph_spec3 plot contains 6 spectra
 <img alt="../../../_images/01_basic_plot_scripting-2.png" class="plot-directive" src="../../../_images/01_basic_plot_scripting-2.png" />
 </figure>
 <p><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.contour.html">Contour lines</a> can be overlayed on a 2D colorfill:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; ----------- Contour overlay ----------- &#39;&#39;&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">''' ----------- Contour overlay ----------- '''</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;SANSLOQCan2D.nxs&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'SANSLOQCan2D.nxs'</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
 
 <span class="c1"># IMPORTANT to set origin to lower</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">origin</span> <span class="o">=</span> <span class="s1">'lower'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'viridis'</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">)</span>
 
 <span class="c1"># Overlay contours</span>
-<span class="n">axes</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">colors</span><span class="o">=</span><span class="s1">'yellow'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
 <span class="n">cbar</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Counts ($\mu s$)$^{-1}$&#39;</span><span class="p">)</span> <span class="c1">#add text to colorbar</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">'Counts ($\mu s$)$^{-1}$'</span><span class="p">)</span> <span class="c1">#add text to colorbar</span>
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
@@ -763,16 +763,16 @@ The graph_spec3 plot contains 6 spectra
 <section id="d-surface-and-wireframe-plots">
 <h2>3D Surface and Wireframe Plots<a class="headerlink" href="#d-surface-and-wireframe-plots" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html">3D plots</a> <a class="reference external" href="https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#surface-plots">Surface</a> and <a class="reference external" href="https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#wireframe-plots">Wireframe</a> plots can also be created:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; ----------- Surface plot ----------- &#39;&#39;&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">''' ----------- Surface plot ----------- '''</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;MUSR00015189.nxs&#39;</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;data_1&#39;</span><span class="p">]</span> <span class="c1"># Extract individual workspace from group</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'MUSR00015189.nxs'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'data_1'</span><span class="p">]</span> <span class="c1"># Extract individual workspace from group</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid3d&#39;</span><span class="p">})</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid3d'</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'viridis'</span><span class="p">)</span>
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>
@@ -780,16 +780,16 @@ The graph_spec3 plot contains 6 spectra
 <figure class="align-default">
 <img alt="../../../_images/01_basic_plot_scripting-4.png" class="plot-directive" src="../../../_images/01_basic_plot_scripting-4.png" />
 </figure>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; ----------- Wireframe plot ----------- &#39;&#39;&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">''' ----------- Wireframe plot ----------- '''</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;164198.nxs&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'164198.nxs'</span><span class="p">)</span>
 <span class="n">data</span><span class="o">=</span><span class="n">ExtractSpectra</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mi">470</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">490</span><span class="p">,</span> <span class="n">StartWorkspaceIndex</span><span class="o">=</span><span class="mi">260</span><span class="p">,</span> <span class="n">EndWorkspaceIndex</span><span class="o">=</span><span class="mi">270</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid3d&#39;</span><span class="p">})</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid3d'</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">)</span>
 <span class="c1">#fig.show()</span>
 </pre></div>
 </div>

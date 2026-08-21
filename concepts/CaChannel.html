@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CaChannel &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CaChannel &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/CaChannel';</script>
@@ -457,16 +457,16 @@ Developers should install the conda package.</p>
 <h3>Full Installation<a class="headerlink" href="#full-installation" title="Link to this heading">#</a></h3>
 <p>If you installed mantid via an installer package then simplest way to install
 CaChannel is to run the following script in the Workbench Script Window</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Install CaChannel with pip&quot;&quot;&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""Install CaChannel with pip"""</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">subp</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 
 <span class="c1"># Run pip using the same executable as the running Python</span>
 <span class="n">py_exe</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
 <span class="n">pip_cmd</span> <span class="o">=</span> <span class="p">(</span>
-  <span class="n">py_exe</span><span class="p">,</span> <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="s2">&quot;--upgrade-strategy&quot;</span><span class="p">,</span> <span class="s2">&quot;only-if-needed&quot;</span><span class="p">,</span> <span class="s2">&quot;cachannel&quot;</span>
+  <span class="n">py_exe</span><span class="p">,</span> <span class="s2">"-m"</span><span class="p">,</span> <span class="s2">"pip"</span><span class="p">,</span> <span class="s2">"install"</span><span class="p">,</span> <span class="s2">"--upgrade-strategy"</span><span class="p">,</span> <span class="s2">"only-if-needed"</span><span class="p">,</span> <span class="s2">"cachannel"</span>
 <span class="p">)</span>
-<span class="n">process</span> <span class="o">=</span> <span class="n">subp</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">pip_cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subp</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subp</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">subp</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">pip_cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subp</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subp</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
 <span class="n">process</span><span class="o">.</span><span class="n">check_returncode</span><span class="p">()</span>
 </pre></div>
@@ -485,7 +485,7 @@ environment:</p>
 <h3>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h3>
 <p>Assuming the instrument can be contacted by a prefix <code class="docutils literal notranslate"><span class="pre">PREFIX1:PREFIX2</span></code> then to retrieve a process variable you would type the following Python code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">CaChannel</span><span class="w"> </span><span class="kn">import</span> <span class="n">CaChannel</span><span class="p">,</span> <span class="n">CaChannelException</span><span class="p">,</span> <span class="n">ca</span>
-<span class="n">chan</span> <span class="o">=</span> <span class="n">CaChannel</span><span class="p">(</span><span class="s1">&#39;PREFIX1:PREFIX2:PVNAME:VALUENAME&#39;</span><span class="p">)</span>
+<span class="n">chan</span> <span class="o">=</span> <span class="n">CaChannel</span><span class="p">(</span><span class="s1">'PREFIX1:PREFIX2:PVNAME:VALUENAME'</span><span class="p">)</span>
 <span class="n">chan</span><span class="o">.</span><span class="n">setTimeout</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
 <span class="n">chan</span><span class="o">.</span><span class="n">searchw</span><span class="p">()</span>
 <span class="n">as_string</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># set to False if you want a numeric value</span>

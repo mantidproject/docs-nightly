@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>EnggSaveGSASIIFitResultsToHDF5 v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>EnggSaveGSASIIFitResultsToHDF5 v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/EnggSaveGSASIIFitResultsToHDF5-v1';</script>
@@ -1616,31 +1616,31 @@ developers if you spot something awry</p>
 <p><strong>Example - Export refinement results to a new HDF5 file following GSAS-II refinement:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="n">path_to_gsas</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\g2conda\GSASII&quot;</span>
+<span class="n">path_to_gsas</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"C:\g2conda\GSASII"</span>
 
-<span class="n">gsas_proj_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\mantid-data\280625.gpx&quot;</span>
+<span class="n">gsas_proj_file</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"C:\mantid-data\280625.gpx"</span>
 
-<span class="n">data_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\mantid-data&quot;</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"C:\mantid-data"</span>
 <span class="n">input_file</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">file</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
 
-<span class="n">phase_file</span> <span class="o">=</span> <span class="n">input_file</span><span class="p">(</span><span class="s2">&quot;Fe-alpha.cif&quot;</span><span class="p">)</span>
-<span class="n">iparams_file</span> <span class="o">=</span> <span class="n">input_file</span><span class="p">(</span><span class="s2">&quot;template_ENGINX_241391_236516_North_bank.prm&quot;</span><span class="p">)</span>
-<span class="n">input_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">input_file</span><span class="p">(</span><span class="s2">&quot;ENGINX_280625_focused_bank_1.nxs&quot;</span><span class="p">))</span>
+<span class="n">phase_file</span> <span class="o">=</span> <span class="n">input_file</span><span class="p">(</span><span class="s2">"Fe-alpha.cif"</span><span class="p">)</span>
+<span class="n">iparams_file</span> <span class="o">=</span> <span class="n">input_file</span><span class="p">(</span><span class="s2">"template_ENGINX_241391_236516_North_bank.prm"</span><span class="p">)</span>
+<span class="n">input_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">input_file</span><span class="p">(</span><span class="s2">"ENGINX_280625_focused_bank_1.nxs"</span><span class="p">))</span>
 
 <span class="n">fitted_peaks</span><span class="p">,</span> <span class="n">lattice_params</span><span class="p">,</span> <span class="n">rwp</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=</span> \
     <span class="n">GSASIIRefineFitPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">input_ws</span><span class="p">,</span>
                          <span class="n">PhaseInfoFiles</span><span class="o">=</span><span class="n">phase_file</span><span class="p">,</span>
                          <span class="n">InstrumentFile</span><span class="o">=</span><span class="n">iparams_file</span><span class="p">,</span>
-                         <span class="n">RefinementMethod</span><span class="o">=</span><span class="s2">&quot;Rietveld refinement&quot;</span><span class="p">,</span>
+                         <span class="n">RefinementMethod</span><span class="o">=</span><span class="s2">"Rietveld refinement"</span><span class="p">,</span>
                          <span class="n">SaveGSASIIProjectFile</span><span class="o">=</span><span class="n">gsas_proj_file</span><span class="p">,</span>
                          <span class="n">PathToGSASII</span><span class="o">=</span><span class="n">path_to_gsas</span><span class="p">,</span>
                          <span class="n">RefineSigma</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                          <span class="n">RefineGamma</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">EnggSaveGSASIIFitResultsToHDF5</span><span class="p">(</span><span class="n">LatticeParamWorkspaces</span><span class="o">=</span><span class="p">[</span><span class="n">lattice_params</span><span class="p">],</span>
-                               <span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;D:\doctest.hdf5&quot;</span><span class="p">,</span>
-                               <span class="n">BankIDs</span><span class="o">=</span><span class="p">[</span><span class="n">input_ws</span><span class="o">.</span><span class="n">run</span><span class="p">()[</span><span class="s2">&quot;bankid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">],</span>
-                               <span class="n">RefinementMethod</span><span class="o">=</span><span class="s2">&quot;Rietveld refinement&quot;</span><span class="p">,</span>
+                               <span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s2">"D:\doctest.hdf5"</span><span class="p">,</span>
+                               <span class="n">BankIDs</span><span class="o">=</span><span class="p">[</span><span class="n">input_ws</span><span class="o">.</span><span class="n">run</span><span class="p">()[</span><span class="s2">"bankid"</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">],</span>
+                               <span class="n">RefinementMethod</span><span class="o">=</span><span class="s2">"Rietveld refinement"</span><span class="p">,</span>
                                <span class="n">XMin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">fitted_peaks</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span>
                                <span class="n">XMax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">fitted_peaks</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span>
                                <span class="n">RefineSigma</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -1657,12 +1657,12 @@ Python <code class="docutils literal notranslate"><span class="pre">h5py</span><
 
 <span class="c1"># lattice_params table workspace is an output property of GSASIIRefineFitPeaks</span>
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
-<span class="n">lattice_param_headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;beta&quot;</span><span class="p">,</span> <span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="s2">&quot;volume&quot;</span><span class="p">]</span>
-<span class="p">[</span><span class="n">lattice_params</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s2">&quot;double&quot;</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span> <span class="k">for</span> <span class="n">header</span> <span class="ow">in</span> <span class="n">lattice_param_headers</span><span class="p">]</span>
+<span class="n">lattice_param_headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"alpha"</span><span class="p">,</span> <span class="s2">"beta"</span><span class="p">,</span> <span class="s2">"gamma"</span><span class="p">,</span> <span class="s2">"volume"</span><span class="p">]</span>
+<span class="p">[</span><span class="n">lattice_params</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s2">"double"</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span> <span class="k">for</span> <span class="n">header</span> <span class="ow">in</span> <span class="n">lattice_param_headers</span><span class="p">]</span>
 <span class="n">lattice_params</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">2.8</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span>
 
 <span class="c1"># Input properties of GSASIIRefineFitPeaks</span>
-<span class="n">refinement_method</span> <span class="o">=</span> <span class="s2">&quot;Pawley refinement&quot;</span>
+<span class="n">refinement_method</span> <span class="o">=</span> <span class="s2">"Pawley refinement"</span>
 <span class="n">x_min</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">x_max</span> <span class="o">=</span> <span class="mi">40000</span>
 <span class="n">refine_sigma</span> <span class="o">=</span> <span class="kc">True</span>
@@ -1675,8 +1675,8 @@ Python <code class="docutils literal notranslate"><span class="pre">h5py</span><
 <span class="c1"># Either read from the focused workspace sample logs or work it out from the title</span>
 <span class="n">bank_id</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">],</span>
-                        <span class="s2">&quot;EnggSaveGSASIIFitResultsToHDF5DocTest.hdf5&quot;</span><span class="p">)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">"defaultsave.directory"</span><span class="p">],</span>
+                        <span class="s2">"EnggSaveGSASIIFitResultsToHDF5DocTest.hdf5"</span><span class="p">)</span>
 
 <span class="n">EnggSaveGSASIIFitResultsToHDF5</span><span class="p">(</span><span class="n">LatticeParamWorkspaces</span><span class="o">=</span><span class="p">[</span><span class="n">lattice_params</span><span class="p">],</span>
                                <span class="n">Filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
@@ -1689,13 +1689,13 @@ Python <code class="docutils literal notranslate"><span class="pre">h5py</span><
                                <span class="n">Sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span>
                                <span class="n">Rwp</span><span class="o">=</span><span class="n">rwp</span><span class="p">)</span>
 
-<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">fit_results_group</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;Bank 1&quot;</span><span class="p">][</span><span class="s2">&quot;GSAS-II Fitting&quot;</span><span class="p">]</span>
+<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">fit_results_group</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"Bank 1"</span><span class="p">][</span><span class="s2">"GSAS-II Fitting"</span><span class="p">]</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lattice parameter a: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fit_results_group</span><span class="p">[</span><span class="s2">&quot;Lattice Parameters&quot;</span><span class="p">][</span><span class="s2">&quot;a&quot;</span><span class="p">][()]))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;XMin: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fit_results_group</span><span class="p">[</span><span class="s2">&quot;Refinement Parameters&quot;</span><span class="p">][</span><span class="s2">&quot;XMin&quot;</span><span class="p">][()]))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RefineSigma: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">fit_results_group</span><span class="p">[</span><span class="s2">&quot;Refinement Parameters&quot;</span><span class="p">][</span><span class="s2">&quot;RefineSigma&quot;</span><span class="p">])))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sigma: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fit_results_group</span><span class="p">[</span><span class="s2">&quot;Profile Coefficients&quot;</span><span class="p">][</span><span class="s2">&quot;Sigma&quot;</span><span class="p">][()]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Lattice parameter a: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fit_results_group</span><span class="p">[</span><span class="s2">"Lattice Parameters"</span><span class="p">][</span><span class="s2">"a"</span><span class="p">][()]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"XMin: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fit_results_group</span><span class="p">[</span><span class="s2">"Refinement Parameters"</span><span class="p">][</span><span class="s2">"XMin"</span><span class="p">][()]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"RefineSigma: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">fit_results_group</span><span class="p">[</span><span class="s2">"Refinement Parameters"</span><span class="p">][</span><span class="s2">"RefineSigma"</span><span class="p">])))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Sigma: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fit_results_group</span><span class="p">[</span><span class="s2">"Profile Coefficients"</span><span class="p">][</span><span class="s2">"Sigma"</span><span class="p">][()]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1709,7 +1709,7 @@ Sigma: 81.0
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/EnggSaveGSASIIFitResultsToHDF5.py">EnggSaveGSASIIFitResultsToHDF5.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/EnggSaveGSASIIFitResultsToHDF5.py">EnggSaveGSASIIFitResultsToHDF5.py</a></p>
 </section>
 </section>
 

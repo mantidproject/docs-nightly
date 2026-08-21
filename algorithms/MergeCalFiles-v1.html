@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MergeCalFiles v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MergeCalFiles v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/MergeCalFiles-v1';</script>
@@ -1511,17 +1511,17 @@ file.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="c1">#find a suitable directory to save the files</span>
-<span class="n">file_dir</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">]</span>
+<span class="n">file_dir</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">"defaultsave.directory"</span><span class="p">]</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">file_dir</span><span class="p">):</span>
     <span class="c1">#use the users home directory if default save is not set</span>
-    <span class="n">file_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">)</span>
+    <span class="n">file_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">'~'</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">writeCalFile</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span><span class="n">num_dets</span><span class="p">,</span><span class="n">inc_group</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inc_offset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inc_selected</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span><span class="n">file_name</span><span class="o">+</span><span class="s2">&quot;.cal&quot;</span><span class="p">)</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span><span class="n">file_name</span><span class="o">+</span><span class="s2">".cal"</span><span class="p">)</span>
     <span class="c1">#write the cal file out</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">line_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_dets</span><span class="p">):</span>
-            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%i</span><span class="se">\t</span><span class="si">%i</span><span class="se">\t</span><span class="si">%f</span><span class="se">\t</span><span class="si">%i</span><span class="se">\t</span><span class="si">%i</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="si">%i</span><span class="se">\t</span><span class="si">%i</span><span class="se">\t</span><span class="si">%f</span><span class="se">\t</span><span class="si">%i</span><span class="se">\t</span><span class="si">%i</span><span class="se">\n</span><span class="s2">"</span> <span class="o">%</span>
             <span class="p">(</span><span class="n">line_no</span><span class="p">,</span>
              <span class="n">line_no</span> <span class="o">+</span> <span class="mi">100</span><span class="p">,</span>
              <span class="p">(</span><span class="n">line_no</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span> <span class="k">if</span> <span class="n">inc_offset</span> <span class="k">else</span> <span class="mf">0.0</span><span class="p">,</span>
@@ -1529,10 +1529,10 @@ file.</p>
              <span class="p">(</span><span class="n">line_no</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="n">inc_group</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
     <span class="k">return</span> <span class="n">file_path</span>
 
-<span class="n">calFile_master</span> <span class="o">=</span> <span class="n">writeCalFile</span><span class="p">(</span><span class="s2">&quot;masterCal&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">calFile_updates</span> <span class="o">=</span> <span class="n">writeCalFile</span><span class="p">(</span><span class="s2">&quot;updateCal&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span>
+<span class="n">calFile_master</span> <span class="o">=</span> <span class="n">writeCalFile</span><span class="p">(</span><span class="s2">"masterCal"</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">calFile_updates</span> <span class="o">=</span> <span class="n">writeCalFile</span><span class="p">(</span><span class="s2">"updateCal"</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span>
     <span class="n">inc_group</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inc_offset</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inc_selected</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span><span class="s2">&quot;output.cal&quot;</span><span class="p">)</span>
+<span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span><span class="s2">"output.cal"</span><span class="p">)</span>
 
 <span class="n">MergeCalFiles</span><span class="p">(</span>
     <span class="n">UpdateFile</span> <span class="o">=</span> <span class="n">calFile_updates</span><span class="p">,</span>
@@ -1543,8 +1543,8 @@ file.</p>
     <span class="n">MergeGroups</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1">#Load and print the resulting file</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The result file has been updated with 0 for group, select and offset</span><span class="se">\n</span><span class="s2">where the detector id&#39;s match&quot;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The result file has been updated with 0 for group, select and offset</span><span class="se">\n</span><span class="s2">where the detector id's match"</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>
 
 <span class="c1">#cleanup</span>
@@ -1555,7 +1555,7 @@ file.</p>
 </div>
 <p>Output:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The result file has been updated with 0 for group, select and offset
-where the detector id&#39;s match
+where the detector id's match
         0             100       0.0000000        0        1
         1             101       0.0000000        0        1
         2             102       0.0000000        0        1
@@ -1568,17 +1568,17 @@ where the detector id&#39;s match
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="c1">#find a suitable directory to save the files</span>
-<span class="n">file_dir</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">]</span>
+<span class="n">file_dir</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">"defaultsave.directory"</span><span class="p">]</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">file_dir</span><span class="p">):</span>
     <span class="c1">#use the users home directory if default save is not set</span>
-    <span class="n">file_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">)</span>
+    <span class="n">file_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">'~'</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">writeCalFile</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span><span class="n">num_dets</span><span class="p">,</span><span class="n">inc_group</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inc_offset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inc_selected</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span><span class="n">file_name</span><span class="o">+</span><span class="s2">&quot;.cal&quot;</span><span class="p">)</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span><span class="n">file_name</span><span class="o">+</span><span class="s2">".cal"</span><span class="p">)</span>
     <span class="c1">#write the cal file out</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">line_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_dets</span><span class="p">):</span>
-            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%i</span><span class="se">\t</span><span class="si">%i</span><span class="se">\t</span><span class="si">%f</span><span class="se">\t</span><span class="si">%i</span><span class="se">\t</span><span class="si">%i</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="si">%i</span><span class="se">\t</span><span class="si">%i</span><span class="se">\t</span><span class="si">%f</span><span class="se">\t</span><span class="si">%i</span><span class="se">\t</span><span class="si">%i</span><span class="se">\n</span><span class="s2">"</span> <span class="o">%</span>
             <span class="p">(</span><span class="n">line_no</span><span class="p">,</span>
              <span class="n">line_no</span> <span class="o">+</span> <span class="mi">100</span><span class="p">,</span>
              <span class="p">(</span><span class="n">line_no</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span> <span class="k">if</span> <span class="n">inc_offset</span> <span class="k">else</span> <span class="mf">0.0</span><span class="p">,</span>
@@ -1586,10 +1586,10 @@ where the detector id&#39;s match
              <span class="p">(</span><span class="n">line_no</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="n">inc_group</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
     <span class="k">return</span> <span class="n">file_path</span>
 
-<span class="n">calFile_master</span> <span class="o">=</span> <span class="n">writeCalFile</span><span class="p">(</span><span class="s2">&quot;masterCal&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">calFile_updates</span> <span class="o">=</span> <span class="n">writeCalFile</span><span class="p">(</span><span class="s2">&quot;updateCal&quot;</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span>
+<span class="n">calFile_master</span> <span class="o">=</span> <span class="n">writeCalFile</span><span class="p">(</span><span class="s2">"masterCal"</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">calFile_updates</span> <span class="o">=</span> <span class="n">writeCalFile</span><span class="p">(</span><span class="s2">"updateCal"</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span>
     <span class="n">inc_group</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inc_offset</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inc_selected</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span><span class="s2">&quot;output.cal&quot;</span><span class="p">)</span>
+<span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span><span class="s2">"output.cal"</span><span class="p">)</span>
 
 <span class="n">MergeCalFiles</span><span class="p">(</span>
     <span class="n">UpdateFile</span> <span class="o">=</span> <span class="n">calFile_updates</span><span class="p">,</span>
@@ -1600,8 +1600,8 @@ where the detector id&#39;s match
     <span class="n">MergeGroups</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 
 <span class="c1">#Load and print the resulting file</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Any additional rows in the update file will be added,</span><span class="se">\n</span><span class="s2">set the Merge options to False if you don&#39;t want to affect existing values&quot;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Any additional rows in the update file will be added,</span><span class="se">\n</span><span class="s2">set the Merge options to False if you don't want to affect existing values"</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>
 
 <span class="c1">#cleanup</span>
@@ -1612,7 +1612,7 @@ where the detector id&#39;s match
 </div>
 <p>Output:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Any additional rows in the update file will be added,
-set the Merge options to False if you don&#39;t want to affect existing values
+set the Merge options to False if you don't want to affect existing values
         0             100       0.0000000        0        0
         1             101       0.0010000        1        1
         2             102       0.0020000        0        2
@@ -1627,7 +1627,7 @@ set the Merge options to False if you don&#39;t want to affect existing values
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/MergeCalFiles.py">MergeCalFiles.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/MergeCalFiles.py">MergeCalFiles.py</a></p>
 </section>
 </section>
 

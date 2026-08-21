@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FFTSmooth v2 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FFTSmooth v2 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/FFTSmooth-v2';</script>
@@ -1544,7 +1544,7 @@ original one.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example: Zeroing with Params=2</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="s2">&quot;Multiple Peaks&quot;</span><span class="p">,</span><span class="n">XMax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="s2">"Multiple Peaks"</span><span class="p">,</span><span class="n">XMax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1">#add a bit of predictable noise</span>
 <span class="n">noiseAmp</span><span class="o">=</span><span class="mf">0.1</span>
@@ -1557,11 +1557,11 @@ original one.</p>
     <span class="n">ws</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">+</span><span class="n">noiseArray</span><span class="p">)</span>
 
 
-<span class="n">wsSmooth</span> <span class="o">=</span> <span class="n">FFTSmooth</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+<span class="n">wsSmooth</span> <span class="o">=</span> <span class="n">FFTSmooth</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">'2'</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bin Orig  Smoothed&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"bin Orig  Smoothed"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">wsSmooth</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">wsSmooth</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
 </pre></div>
 </div>
 <figure class="align-right">
@@ -1583,7 +1583,7 @@ original one.</p>
 </pre></div>
 </div>
 <p><strong>Example: Using the  Butterworth filter</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="s2">&quot;Multiple Peaks&quot;</span><span class="p">,</span><span class="n">XMax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="s2">"Multiple Peaks"</span><span class="p">,</span><span class="n">XMax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="c1">#add a bit of predictable noise</span>
 <span class="n">noiseAmp</span><span class="o">=</span><span class="mf">0.1</span>
@@ -1596,13 +1596,13 @@ original one.</p>
     <span class="n">ws</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">+</span><span class="n">noiseArray</span><span class="p">)</span>
 
 
-<span class="n">wsButter2_2</span> <span class="o">=</span> <span class="n">FFTSmooth</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filter</span><span class="o">=</span><span class="s2">&quot;Butterworth&quot;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;2,2&#39;</span><span class="p">,</span> <span class="n">AllSpectra</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">wsButter5_2</span> <span class="o">=</span> <span class="n">FFTSmooth</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filter</span><span class="o">=</span><span class="s2">&quot;Butterworth&quot;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;5,2&#39;</span><span class="p">,</span> <span class="n">AllSpectra</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">wsButter20_2</span> <span class="o">=</span> <span class="n">FFTSmooth</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filter</span><span class="o">=</span><span class="s2">&quot;Butterworth&quot;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;20,2&#39;</span><span class="p">,</span> <span class="n">AllSpectra</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">wsButter2_2</span> <span class="o">=</span> <span class="n">FFTSmooth</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filter</span><span class="o">=</span><span class="s2">"Butterworth"</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">'2,2'</span><span class="p">,</span> <span class="n">AllSpectra</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">wsButter5_2</span> <span class="o">=</span> <span class="n">FFTSmooth</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filter</span><span class="o">=</span><span class="s2">"Butterworth"</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">'5,2'</span><span class="p">,</span> <span class="n">AllSpectra</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">wsButter20_2</span> <span class="o">=</span> <span class="n">FFTSmooth</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filter</span><span class="o">=</span><span class="s2">"Butterworth"</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">'20,2'</span><span class="p">,</span> <span class="n">AllSpectra</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bin Orig  2_2   5_2   20_2&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"bin Orig  2_2   5_2   20_2"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">wsButter2_2</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">wsButter5_2</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">wsButter20_2</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">  </span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">wsButter2_2</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">wsButter5_2</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span> <span class="n">wsButter20_2</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
 </pre></div>
 </div>
 <figure class="align-right">
@@ -1630,15 +1630,15 @@ original one.</p>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 
 <span class="c1"># Apply the Butterworth filter to all spectra</span>
-<span class="n">smooth</span> <span class="o">=</span> <span class="n">FFTSmooth</span><span class="p">(</span> <span class="n">ws</span><span class="p">,</span> <span class="n">Filter</span><span class="o">=</span><span class="s1">&#39;Butterworth&#39;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">&#39;5,2&#39;</span><span class="p">,</span> <span class="n">AllSpectra</span><span class="o">=</span><span class="kc">True</span> <span class="p">)</span>
+<span class="n">smooth</span> <span class="o">=</span> <span class="n">FFTSmooth</span><span class="p">(</span> <span class="n">ws</span><span class="p">,</span> <span class="n">Filter</span><span class="o">=</span><span class="s1">'Butterworth'</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="s1">'5,2'</span><span class="p">,</span> <span class="n">AllSpectra</span><span class="o">=</span><span class="kc">True</span> <span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Arithmetic/FFT.html">Arithmetic\FFT</a> | <a class="reference external" href="categories/Transforms/Smoothing.html">Transforms\Smoothing</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/FFTSmooth2.h">FFTSmooth2.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/FFTSmooth2.cpp">FFTSmooth2.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/FFTSmooth2.h">FFTSmooth2.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/FFTSmooth2.cpp">FFTSmooth2.cpp</a></p>
 </section>
 </section>
 

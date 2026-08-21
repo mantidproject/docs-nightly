@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CarpenterSampleCorrection v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CarpenterSampleCorrection v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1531,15 +1531,15 @@ expansion coefficients:</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example: A simple cylindrical sample</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">"Wavelength"</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">SetSampleMaterial</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">ChemicalFormula</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">)</span>
+<span class="n">SetSampleMaterial</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">ChemicalFormula</span><span class="o">=</span><span class="s2">"V"</span><span class="p">)</span>
 
 <span class="c1">#restrict the number of wavelength points to speed up the example</span>
 <span class="n">wsOut</span> <span class="o">=</span> <span class="n">CarpenterSampleCorrection</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">CylinderSampleRadius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Output:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1553,23 +1553,23 @@ expansion coefficients:</p>
 <aside class="footnote brackets" id="id5" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
-<p>J.M. Carpenter <em>Attenuation Correction Factor for Scattering from Cylindrical Targets</em> Review of Scientific Instruments <strong>40.4</strong> (1969): 555. doi: <a class="reference external" href="http://dx.doi.org/10.1063/1.1684003">10.1063/1.1684003</a></p>
+<p>J.M. Carpenter <em>Attenuation Correction Factor for Scattering from Cylindrical Targets</em> Review of Scientific Instruments <strong>40.4</strong> (1969): 555. doi: <a class="reference external" href="https://doi.org/10.1063/1.1684003">10.1063/1.1684003</a></p>
 </aside>
 <aside class="footnote brackets" id="id7" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
-<p>D.F.R. Mildner, J.M. Carpenter, and C.A. Pelizzari <em>Generalized Attenuation Correction Factor for Scattering from Cylindrical Targets</em> Review of Scientific Instruments <strong>45.4</strong> (1974): 572. doi: <a class="reference external" href="http://dx.doi.org/10.1063/1.1686687">10.1063/1.1686687</a></p>
+<p>D.F.R. Mildner, J.M. Carpenter, and C.A. Pelizzari <em>Generalized Attenuation Correction Factor for Scattering from Cylindrical Targets</em> Review of Scientific Instruments <strong>45.4</strong> (1974): 572. doi: <a class="reference external" href="https://doi.org/10.1063/1.1686687">10.1063/1.1686687</a></p>
 </aside>
 <aside class="footnote brackets" id="id9" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
-<p>D.F.R. Mildner and J.M.Carpenter <em>Improvements to the Chebyshev Expansion of Attenuation Correction Factors for Cylindrical Samples.</em> J Appl Crystallogr <strong>23.5</strong> (1990): 378–386 doi: <a class="reference external" href="http://dx.doi.org/10.1107/S0021889890005258">10.1107/S0021889890005258</a></p>
+<p>D.F.R. Mildner and J.M.Carpenter <em>Improvements to the Chebyshev Expansion of Attenuation Correction Factors for Cylindrical Samples.</em> Journal of Applied Crystallography <strong>23.5</strong> (1990): 378–386 doi: <a class="reference external" href="https://doi.org/10.1107/S0021889890005258">10.1107/S0021889890005258</a></p>
 </aside>
 </aside>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/CorrectionFunctions/AbsorptionCorrections.html">CorrectionFunctions\AbsorptionCorrections</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/CarpenterSampleCorrection.h">CarpenterSampleCorrection.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/CarpenterSampleCorrection.cpp">CarpenterSampleCorrection.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/CarpenterSampleCorrection.h">CarpenterSampleCorrection.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/CarpenterSampleCorrection.cpp">CarpenterSampleCorrection.cpp</a></p>
 </section>
 </section>
 

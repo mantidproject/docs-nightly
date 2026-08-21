@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Pattern Matching With Regular Expressions &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Pattern Matching With Regular Expressions &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/introduction_to_python/pattern_matching_with_regular_expressions';</script>
@@ -561,8 +561,8 @@ expressions.</p></li>
 characters and this string would then match with only that exact
 string, e.g.</p></li>
 </ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>string in file: &#39;email&#39;
-regex: &#39;email&#39; # This is a regular expression but albeit not a very
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>string in file: 'email'
+regex: 'email' # This is a regular expression but albeit not a very
                # useful one as only matches with one word!
 </pre></div>
 </div>
@@ -584,49 +584,49 @@ search for “regular expression reference” online.</p></li>
 <li><p>An asterisk <code class="docutils literal notranslate"><span class="pre">*</span></code> specifies that the character preceding it can
 appear zero or more times, e.g,</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;a*b&#39;</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span>         <span class="c1"># Matches as there are no occurrences of &#39;a&#39;</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;ab&#39;</span>        <span class="c1"># Matches as there is a single &#39;a&#39;</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;aaaaaaaab&#39;</span> <span class="c1"># Matches as there are multiple occurrences of &#39;a&#39;</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;aaaabab&#39;</span>   <span class="c1"># Matches as there is an occurrence of a string of</span>
-                  <span class="c1"># a&#39;s followed by a b</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">'a*b'</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'b'</span>         <span class="c1"># Matches as there are no occurrences of 'a'</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'ab'</span>        <span class="c1"># Matches as there is a single 'a'</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'aaaaaaaab'</span> <span class="c1"># Matches as there are multiple occurrences of 'a'</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'aaaabab'</span>   <span class="c1"># Matches as there is an occurrence of a string of</span>
+                  <span class="c1"># a's followed by a b</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>A range of characters, or a “character class” is defined using square
 brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>, e.g.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;[a-z]&#39;</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span> <span class="c1"># Matches as it is a lower case letter</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;M&#39;</span> <span class="c1"># Fails as it is an upper case letter</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;4&#39;</span> <span class="c1"># Fails as it is a number</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">'[a-z]'</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'m'</span> <span class="c1"># Matches as it is a lower case letter</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'M'</span> <span class="c1"># Fails as it is an upper case letter</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'4'</span> <span class="c1"># Fails as it is a number</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Several ranges can be specified such that they are all checked, e.g.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;[a-z,A-Z,0-9]&#39;</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span>  <span class="c1"># Matches!</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;M&#39;</span>  <span class="c1"># Matches!</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;4&#39;</span>  <span class="c1"># Matches!</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;mm&#39;</span> <span class="c1">#Fails as there are two characters</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">'[a-z,A-Z,0-9]'</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'m'</span>  <span class="c1"># Matches!</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'M'</span>  <span class="c1"># Matches!</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'4'</span>  <span class="c1"># Matches!</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'mm'</span> <span class="c1">#Fails as there are two characters</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Combining ranges and the asterisk allows us to specify any number of
 alphanumeric characters!, e.g.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;[a-z,A-Z,0-9]*&#39;</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;mm&#39;</span>    <span class="c1"># Matches</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;a0123&#39;</span> <span class="c1"># Matches</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">'[a-z,A-Z,0-9]*'</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'mm'</span>    <span class="c1"># Matches</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'a0123'</span> <span class="c1"># Matches</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>To specify an exact number of characters use braces <code class="docutils literal notranslate"><span class="pre">{}</span></code>, e.g.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">&#39;a</span><span class="si">{2}</span><span class="s1">&#39;</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;abab&#39;</span>  <span class="c1"># Fails as there is not two consecutive a&#39;s in the string</span>
-<span class="n">test</span><span class="p">:</span> <span class="s1">&#39;aaaab&#39;</span> <span class="c1"># Matches</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">regex</span><span class="p">:</span> <span class="s1">'a</span><span class="si">{2}</span><span class="s1">'</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'abab'</span>  <span class="c1"># Fails as there is not two consecutive a's in the string</span>
+<span class="n">test</span><span class="p">:</span> <span class="s1">'aaaab'</span> <span class="c1"># Matches</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -655,18 +655,18 @@ that a case-insensitive match is performed.</p></li>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">checkForMatch</span><span class="p">(</span><span class="n">checker</span><span class="p">,</span> <span class="n">test</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">checker</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">test</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;String matches!&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'String matches!'</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;String does not contain a match&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'String does not contain a match'</span><span class="p">)</span>
 <span class="c1"># End of function definition</span>
 
-<span class="n">checker</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[a-z]&#39;</span><span class="p">)</span>
-<span class="n">checkForMatch</span><span class="p">(</span><span class="n">checker</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<span class="n">checkForMatch</span><span class="p">(</span><span class="n">checker</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">)</span>
+<span class="n">checker</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'[a-z]'</span><span class="p">)</span>
+<span class="n">checkForMatch</span><span class="p">(</span><span class="n">checker</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">)</span>
+<span class="n">checkForMatch</span><span class="p">(</span><span class="n">checker</span><span class="p">,</span> <span class="s1">'9'</span><span class="p">)</span>
 
-<span class="n">checker</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[a-z]&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
-<span class="n">checkForMatch</span><span class="p">(</span><span class="n">checker</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<span class="n">checkForMatch</span><span class="p">(</span><span class="n">checker</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">checker</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'[a-z]'</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="n">checkForMatch</span><span class="p">(</span><span class="n">checker</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">)</span>
+<span class="n">checkForMatch</span><span class="p">(</span><span class="n">checker</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Gives the output:</p>
@@ -691,11 +691,11 @@ example:</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 
-<span class="n">filetestsRun</span> <span class="o">=</span> <span class="s1">&#39;testResults.log&#39;</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filetestsRun</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">reTestCount</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;Running</span><span class="se">\\</span><span class="s2">s*(</span><span class="se">\\</span><span class="s2">d+)</span><span class="se">\\</span><span class="s2">s*test&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
-<span class="n">reCrashCount</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;OK!&quot;</span><span class="p">)</span>
-<span class="n">reFailCount</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;Failed</span><span class="se">\\</span><span class="s2">s*(</span><span class="se">\\</span><span class="s2">d+)</span><span class="se">\\</span><span class="s2">s*of</span><span class="se">\\</span><span class="s2">s*(</span><span class="se">\\</span><span class="s2">d+)</span><span class="se">\\</span><span class="s2">s*tests&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="n">filetestsRun</span> <span class="o">=</span> <span class="s1">'testResults.log'</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filetestsRun</span><span class="p">,</span><span class="s1">'r'</span><span class="p">)</span>
+<span class="n">reTestCount</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">"Running</span><span class="se">\\</span><span class="s2">s*(</span><span class="se">\\</span><span class="s2">d+)</span><span class="se">\\</span><span class="s2">s*test"</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="n">reCrashCount</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">"OK!"</span><span class="p">)</span>
+<span class="n">reFailCount</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">"Failed</span><span class="se">\\</span><span class="s2">s*(</span><span class="se">\\</span><span class="s2">d+)</span><span class="se">\\</span><span class="s2">s*of</span><span class="se">\\</span><span class="s2">s*(</span><span class="se">\\</span><span class="s2">d+)</span><span class="se">\\</span><span class="s2">s*tests"</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
 <span class="n">testCount</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">failCount</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">testsPass</span> <span class="o">=</span> <span class="kc">True</span>
@@ -717,9 +717,9 @@ example:</p></li>
 
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tests Passed: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">testsPass</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tests Failed: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">failCount</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total Tests: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">testCount</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Tests Passed: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">testsPass</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Tests Failed: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">failCount</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Total Tests: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">testCount</span><span class="p">))</span>
 </pre></div>
 </div>
 <ul class="simple">

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SpatialGrouping v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SpatialGrouping v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/SpatialGrouping-v1';</script>
@@ -1489,10 +1489,10 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
 <p>This algorithm creates an XML Grouping file of the form:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="nt">&lt;detector-grouping&gt;</span>
-<span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fwd&quot;</span><span class="nt">&gt;&lt;detids</span><span class="w"> </span><span class="na">val=</span><span class="s">&quot;1,2,17,32&quot;</span><span class="nt">/&gt;&lt;/group&gt;</span>
-<span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;bwd&quot;</span><span class="nt">&gt;&lt;detids</span><span class="w"> </span><span class="na">val=</span><span class="s">&quot;33,36,38,60,64&quot;</span><span class="nt">/&gt;</span><span class="w"> </span><span class="nt">&lt;/group&gt;</span>
+<span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">"fwd"</span><span class="nt">&gt;&lt;detids</span><span class="w"> </span><span class="na">val=</span><span class="s">"1,2,17,32"</span><span class="nt">/&gt;&lt;/group&gt;</span>
+<span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">"bwd"</span><span class="nt">&gt;&lt;detids</span><span class="w"> </span><span class="na">val=</span><span class="s">"33,36,38,60,64"</span><span class="nt">/&gt;</span><span class="w"> </span><span class="nt">&lt;/group&gt;</span>
 <span class="nt">&lt;/detector-grouping&gt;</span>
 </pre></div>
 </div>
@@ -1511,10 +1511,10 @@ grouping file is invalid and cannot be used.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a workspace with a single bank and 9x9 pixels.</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="n">group_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">],</span> <span class="s2">&quot;mygroup.xml&quot;</span><span class="p">)</span>
+<span class="n">group_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">"defaultsave.directory"</span><span class="p">],</span> <span class="s2">"mygroup.xml"</span><span class="p">)</span>
 <span class="c1"># Want to get nine groups of 3x3</span>
 <span class="n">SpatialGrouping</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">group_file</span><span class="p">,</span> <span class="n">SearchDistance</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File created: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">group_file</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"File created: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">group_file</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1525,8 +1525,8 @@ grouping file is invalid and cannot be used.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/SpatialGrouping.h">SpatialGrouping.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/SpatialGrouping.cpp">SpatialGrouping.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/SpatialGrouping.h">SpatialGrouping.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/SpatialGrouping.cpp">SpatialGrouping.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PeaksOnSurface v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PeaksOnSurface v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/PeaksOnSurface-v1';</script>
@@ -1521,43 +1521,43 @@ at the lower left.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Peaks on and off a finite surface</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load an MDEventWorkspace (QLab) containing some SC diffration peaks</span>
-<span class="n">mdew</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;TOPAZ_3680_5_sec_MDEW.nxs&quot;</span><span class="p">)</span>
+<span class="n">mdew</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"TOPAZ_3680_5_sec_MDEW.nxs"</span><span class="p">)</span>
 <span class="c1"># Find some peaks. These are all unindexed so will have HKL = [0,0,0]</span>
 <span class="n">peaks</span> <span class="o">=</span> <span class="n">FindPeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">mdew</span><span class="p">,</span> <span class="n">MaxPeaks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Peak is on the plane</span>
 <span class="n">out_of_plane_offset</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">tbl</span> <span class="o">=</span> <span class="n">PeaksOnSurface</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">peaks</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">CoordinateFrame</span><span class="o">=</span><span class="s1">&#39;HKL&#39;</span><span class="p">,</span>
+<span class="n">tbl</span> <span class="o">=</span> <span class="n">PeaksOnSurface</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">peaks</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">CoordinateFrame</span><span class="o">=</span><span class="s1">'HKL'</span><span class="p">,</span>
                      <span class="n">Vertex1</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">out_of_plane_offset</span><span class="p">],</span> <span class="n">Vertex2</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">out_of_plane_offset</span><span class="p">],</span>
                      <span class="n">Vertex3</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span><span class="n">out_of_plane_offset</span><span class="p">],</span> <span class="n">Vertex4</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span><span class="n">out_of_plane_offset</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;{{&#39;Distance&#39;: </span><span class="si">{Distance}</span><span class="s2">, &#39;PeakIndex&#39;: </span><span class="si">{PeakIndex}</span><span class="s2">, &#39;Intersecting&#39;: </span><span class="si">{Intersecting}</span><span class="s2">}}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">tbl</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"{{'Distance': </span><span class="si">{Distance}</span><span class="s2">, 'PeakIndex': </span><span class="si">{PeakIndex}</span><span class="s2">, 'Intersecting': </span><span class="si">{Intersecting}</span><span class="s2">}}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">tbl</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
 
 <span class="c1"># Peak is off the plane, and does not intesect it</span>
 <span class="n">out_of_plane_offset</span> <span class="o">=</span> <span class="mf">1.000</span>
-<span class="n">tbl</span> <span class="o">=</span> <span class="n">PeaksOnSurface</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">peaks</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>  <span class="n">CoordinateFrame</span><span class="o">=</span><span class="s1">&#39;HKL&#39;</span><span class="p">,</span>
+<span class="n">tbl</span> <span class="o">=</span> <span class="n">PeaksOnSurface</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">peaks</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>  <span class="n">CoordinateFrame</span><span class="o">=</span><span class="s1">'HKL'</span><span class="p">,</span>
                      <span class="n">Vertex1</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">out_of_plane_offset</span><span class="p">],</span> <span class="n">Vertex2</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">out_of_plane_offset</span><span class="p">],</span>
                      <span class="n">Vertex3</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span><span class="n">out_of_plane_offset</span><span class="p">],</span> <span class="n">Vertex4</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span><span class="n">out_of_plane_offset</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;{{&#39;Distance&#39;: </span><span class="si">{Distance}</span><span class="s2">, &#39;PeakIndex&#39;: </span><span class="si">{PeakIndex}</span><span class="s2">, &#39;Intersecting&#39;: </span><span class="si">{Intersecting}</span><span class="s2">}}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">tbl</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"{{'Distance': </span><span class="si">{Distance}</span><span class="s2">, 'PeakIndex': </span><span class="si">{PeakIndex}</span><span class="s2">, 'Intersecting': </span><span class="si">{Intersecting}</span><span class="s2">}}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">tbl</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
 
 <span class="c1"># Peak is off the plane, but does intesect it when radius is made larger</span>
-<span class="n">tbl</span> <span class="o">=</span> <span class="n">PeaksOnSurface</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">peaks</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">1.000</span><span class="p">,</span>  <span class="n">CoordinateFrame</span><span class="o">=</span><span class="s1">&#39;HKL&#39;</span><span class="p">,</span>
+<span class="n">tbl</span> <span class="o">=</span> <span class="n">PeaksOnSurface</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">peaks</span><span class="p">,</span> <span class="n">PeakRadius</span><span class="o">=</span><span class="mf">1.000</span><span class="p">,</span>  <span class="n">CoordinateFrame</span><span class="o">=</span><span class="s1">'HKL'</span><span class="p">,</span>
                      <span class="n">Vertex1</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">out_of_plane_offset</span><span class="p">],</span> <span class="n">Vertex2</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">out_of_plane_offset</span><span class="p">],</span>
                      <span class="n">Vertex3</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span><span class="n">out_of_plane_offset</span><span class="p">],</span> <span class="n">Vertex4</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span><span class="n">out_of_plane_offset</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;{{&#39;Distance&#39;: </span><span class="si">{Distance}</span><span class="s2">, &#39;PeakIndex&#39;: </span><span class="si">{PeakIndex}</span><span class="s2">, &#39;Intersecting&#39;: </span><span class="si">{Intersecting}</span><span class="s2">}}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">tbl</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"{{'Distance': </span><span class="si">{Distance}</span><span class="s2">, 'PeakIndex': </span><span class="si">{PeakIndex}</span><span class="s2">, 'Intersecting': </span><span class="si">{Intersecting}</span><span class="s2">}}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">tbl</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;Distance&#39;: 0.0, &#39;PeakIndex&#39;: 0, &#39;Intersecting&#39;: True}
-{&#39;Distance&#39;: -1.0, &#39;PeakIndex&#39;: 0, &#39;Intersecting&#39;: False}
-{&#39;Distance&#39;: -1.0, &#39;PeakIndex&#39;: 0, &#39;Intersecting&#39;: True}
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{'Distance': 0.0, 'PeakIndex': 0, 'Intersecting': True}
+{'Distance': -1.0, 'PeakIndex': 0, 'Intersecting': False}
+{'Distance': -1.0, 'PeakIndex': 0, 'Intersecting': True}
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Crystal/Peaks.html">Crystal\Peaks</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/inc/MantidCrystal/PeaksOnSurface.h">PeaksOnSurface.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/src/PeaksOnSurface.cpp">PeaksOnSurface.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/inc/MantidCrystal/PeaksOnSurface.h">PeaksOnSurface.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/src/PeaksOnSurface.cpp">PeaksOnSurface.cpp</a></p>
 </section>
 </section>
 

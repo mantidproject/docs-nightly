@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Theory of Le Bail Fit &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Theory of Le Bail Fit &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/LeBailFit';</script>
@@ -529,101 +529,101 @@ all the profile parameters.</p></li>
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Sample script which illustrates the steps of the Le-Bailfit method</a><a class="headerlink" href="#sample-script-which-illustrates-the-steps-of-the-le-bailfit-method" title="Link to this heading">#</a></h2>
 <p>The data for this script are present in the system tests directory.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data</span>
-<span class="n">LoadAscii</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;PG3_11485-1.dat&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485&#39;</span><span class="p">,</span><span class="n">Unit</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">)</span>
+<span class="n">LoadAscii</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">'PG3_11485-1.dat'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485'</span><span class="p">,</span><span class="n">Unit</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">)</span>
 
 <span class="c1"># Create input workspaces for Le Bail fit</span>
-<span class="n">CreateLeBailFitInput</span><span class="p">(</span><span class="n">ReflectionsFile</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;LB4844b1.hkl&#39;</span><span class="p">,</span>
-        <span class="n">FullprofParameterFile</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;2011B_HR60b1.irf&#39;</span><span class="p">,</span>
-        <span class="n">LatticeConstant</span><span class="o">=</span><span class="s1">&#39;4.1568899999999998&#39;</span><span class="p">,</span>
-        <span class="n">InstrumentParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank1InstrumentParameterTable1&#39;</span><span class="p">,</span>
-        <span class="n">BraggPeakParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable1&#39;</span><span class="p">)</span>
+<span class="n">CreateLeBailFitInput</span><span class="p">(</span><span class="n">ReflectionsFile</span><span class="o">=</span><span class="sa">r</span><span class="s1">'LB4844b1.hkl'</span><span class="p">,</span>
+        <span class="n">FullprofParameterFile</span><span class="o">=</span><span class="sa">r</span><span class="s1">'2011B_HR60b1.irf'</span><span class="p">,</span>
+        <span class="n">LatticeConstant</span><span class="o">=</span><span class="s1">'4.1568899999999998'</span><span class="p">,</span>
+        <span class="n">InstrumentParameterWorkspace</span><span class="o">=</span><span class="s1">'Bank1InstrumentParameterTable1'</span><span class="p">,</span>
+        <span class="n">BraggPeakParameterWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable1'</span><span class="p">)</span>
 
 <span class="c1"># Initial Le Bail fit in calculation mode to see how far the starting parameters are off</span>
-<span class="n">LeBailFit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485&#39;</span><span class="p">,</span>
-        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485_Calculated_0&#39;</span><span class="p">,</span>
-        <span class="n">InputParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank1InstrumentParameterTable1&#39;</span><span class="p">,</span>
-        <span class="n">OutputParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;TempTable&#39;</span><span class="p">,</span>
-        <span class="n">InputHKLWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable1&#39;</span><span class="p">,</span>
-        <span class="n">OutputPeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable2&#39;</span><span class="p">,</span>
-        <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Calculation&#39;</span><span class="p">,</span>
-        <span class="n">BackgroundType</span><span class="o">=</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span>
-        <span class="n">BackgroundParameters</span><span class="o">=</span><span class="s1">&#39;0,0,0&#39;</span><span class="p">,</span>   <span class="c1"># No background at first</span>
-        <span class="n">UseInputPeakHeights</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span>
-        <span class="n">PeakRadius</span><span class="o">=</span><span class="s1">&#39;8&#39;</span><span class="p">,</span>
-        <span class="n">Minimizer</span><span class="o">=</span><span class="s1">&#39;Levenberg-Marquardt&#39;</span><span class="p">)</span>
+<span class="n">LeBailFit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485'</span><span class="p">,</span>
+        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485_Calculated_0'</span><span class="p">,</span>
+        <span class="n">InputParameterWorkspace</span><span class="o">=</span><span class="s1">'Bank1InstrumentParameterTable1'</span><span class="p">,</span>
+        <span class="n">OutputParameterWorkspace</span><span class="o">=</span><span class="s1">'TempTable'</span><span class="p">,</span>
+        <span class="n">InputHKLWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable1'</span><span class="p">,</span>
+        <span class="n">OutputPeaksWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable2'</span><span class="p">,</span>
+        <span class="n">Function</span><span class="o">=</span><span class="s1">'Calculation'</span><span class="p">,</span>
+        <span class="n">BackgroundType</span><span class="o">=</span><span class="s1">'Chebyshev'</span><span class="p">,</span>
+        <span class="n">BackgroundParameters</span><span class="o">=</span><span class="s1">'0,0,0'</span><span class="p">,</span>   <span class="c1"># No background at first</span>
+        <span class="n">UseInputPeakHeights</span><span class="o">=</span><span class="s1">'0'</span><span class="p">,</span>
+        <span class="n">PeakRadius</span><span class="o">=</span><span class="s1">'8'</span><span class="p">,</span>
+        <span class="n">Minimizer</span><span class="o">=</span><span class="s1">'Levenberg-Marquardt'</span><span class="p">)</span>
 
 <span class="c1"># Fit the instrumental geometry-related parameters.  Dtt1, Dtt1t, Dtt2, Zero, Zerot,</span>
 <span class="c1"># Step 1: Fit single diffraction peaks</span>
-<span class="n">FitPowderDiffPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485&#39;</span><span class="p">,</span>
-        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank1FittedPeaks&#39;</span><span class="p">,</span>
-        <span class="n">BraggPeakParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable2&#39;</span><span class="p">,</span>
-        <span class="n">InstrumentParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank1InstrumentParameterTable1&#39;</span><span class="p">,</span>
-        <span class="n">OutputBraggPeakParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable2_0&#39;</span><span class="p">,</span>
-        <span class="n">OutputBraggPeakParameterDataWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable2_P&#39;</span><span class="p">,</span>
-        <span class="n">OutputZscoreWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable2_Zscore&#39;</span><span class="p">,</span>
-        <span class="n">MinTOF</span><span class="o">=</span><span class="s1">&#39;15000&#39;</span><span class="p">,</span><span class="n">MaxTOF</span><span class="o">=</span><span class="s1">&#39;49387&#39;</span><span class="p">,</span><span class="n">UseGivenPeakCentreTOF</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span>
-        <span class="n">MinimumPeakHeight</span><span class="o">=</span><span class="s1">&#39;0.29999999999999999&#39;</span><span class="p">,</span>
-        <span class="n">PeaksCorrelated</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
-        <span class="n">MinimumHKL</span><span class="o">=</span><span class="s1">&#39;12,12,12&#39;</span><span class="p">,</span>
-        <span class="n">RightMostPeakHKL</span><span class="o">=</span><span class="s1">&#39;2,0,0&#39;</span><span class="p">,</span>
-        <span class="n">RightMostPeakLeftBound</span><span class="o">=</span><span class="s1">&#39;46000&#39;</span><span class="p">,</span>
-        <span class="n">RightMostPeakRightBound</span><span class="o">=</span><span class="s1">&#39;48000&#39;</span><span class="p">)</span>
+<span class="n">FitPowderDiffPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485'</span><span class="p">,</span>
+        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'Bank1FittedPeaks'</span><span class="p">,</span>
+        <span class="n">BraggPeakParameterWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable2'</span><span class="p">,</span>
+        <span class="n">InstrumentParameterWorkspace</span><span class="o">=</span><span class="s1">'Bank1InstrumentParameterTable1'</span><span class="p">,</span>
+        <span class="n">OutputBraggPeakParameterWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable2_0'</span><span class="p">,</span>
+        <span class="n">OutputBraggPeakParameterDataWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable2_P'</span><span class="p">,</span>
+        <span class="n">OutputZscoreWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable2_Zscore'</span><span class="p">,</span>
+        <span class="n">MinTOF</span><span class="o">=</span><span class="s1">'15000'</span><span class="p">,</span><span class="n">MaxTOF</span><span class="o">=</span><span class="s1">'49387'</span><span class="p">,</span><span class="n">UseGivenPeakCentreTOF</span><span class="o">=</span><span class="s1">'0'</span><span class="p">,</span>
+        <span class="n">MinimumPeakHeight</span><span class="o">=</span><span class="s1">'0.29999999999999999'</span><span class="p">,</span>
+        <span class="n">PeaksCorrelated</span><span class="o">=</span><span class="s1">'1'</span><span class="p">,</span>
+        <span class="n">MinimumHKL</span><span class="o">=</span><span class="s1">'12,12,12'</span><span class="p">,</span>
+        <span class="n">RightMostPeakHKL</span><span class="o">=</span><span class="s1">'2,0,0'</span><span class="p">,</span>
+        <span class="n">RightMostPeakLeftBound</span><span class="o">=</span><span class="s1">'46000'</span><span class="p">,</span>
+        <span class="n">RightMostPeakRightBound</span><span class="o">=</span><span class="s1">'48000'</span><span class="p">)</span>
 
 <span class="c1"># Step 2: Refine geometry-related parameters.  Dtt1, Dtt1t, Dtt2, Zero, Zerot,</span>
-<span class="n">RefinePowderInstrumentParameters</span><span class="p">(</span><span class="n">InputPeakPositionWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable2_P&#39;</span><span class="p">,</span>
-        <span class="n">OutputPeakPositionWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485_PeakPositions&#39;</span><span class="p">,</span>
-        <span class="n">InputInstrumentParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank1InstrumentParameterTable1&#39;</span><span class="p">,</span>
-        <span class="n">OutputInstrumentParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank1InstrumentParameterTable1_01&#39;</span><span class="p">,</span>
-        <span class="n">RefinementAlgorithm</span><span class="o">=</span><span class="s1">&#39;OneStepFit&#39;</span><span class="p">)</span>
+<span class="n">RefinePowderInstrumentParameters</span><span class="p">(</span><span class="n">InputPeakPositionWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable2_P'</span><span class="p">,</span>
+        <span class="n">OutputPeakPositionWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485_PeakPositions'</span><span class="p">,</span>
+        <span class="n">InputInstrumentParameterWorkspace</span><span class="o">=</span><span class="s1">'Bank1InstrumentParameterTable1'</span><span class="p">,</span>
+        <span class="n">OutputInstrumentParameterWorkspace</span><span class="o">=</span><span class="s1">'Bank1InstrumentParameterTable1_01'</span><span class="p">,</span>
+        <span class="n">RefinementAlgorithm</span><span class="o">=</span><span class="s1">'OneStepFit'</span><span class="p">)</span>
 
 <span class="c1"># Create a workspace containing background of diffraction data to fit background polynomial</span>
-<span class="n">ProcessBackground</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485&#39;</span><span class="p">,</span>
-        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485_Background&#39;</span><span class="p">,</span>
-        <span class="n">Options</span><span class="o">=</span><span class="s1">&#39;SelectBackgroundPoints&#39;</span><span class="p">,</span>
-        <span class="n">LowerBound</span><span class="o">=</span><span class="s1">&#39;5053&#39;</span><span class="p">,</span>
-        <span class="n">UpperBound</span><span class="o">=</span><span class="s1">&#39;49387&#39;</span><span class="p">,</span>
-        <span class="n">BackgroundPoints</span><span class="o">=</span><span class="s1">&#39;5243,8910,11165,12153,13731,15060,16511,17767,19650,21874,23167,24519,36000,44282,49000&#39;</span><span class="p">,</span>
-        <span class="n">NoiseTolerance</span><span class="o">=</span><span class="s1">&#39;0.10000000000000001&#39;</span><span class="p">)</span>
+<span class="n">ProcessBackground</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485'</span><span class="p">,</span>
+        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485_Background'</span><span class="p">,</span>
+        <span class="n">Options</span><span class="o">=</span><span class="s1">'SelectBackgroundPoints'</span><span class="p">,</span>
+        <span class="n">LowerBound</span><span class="o">=</span><span class="s1">'5053'</span><span class="p">,</span>
+        <span class="n">UpperBound</span><span class="o">=</span><span class="s1">'49387'</span><span class="p">,</span>
+        <span class="n">BackgroundPoints</span><span class="o">=</span><span class="s1">'5243,8910,11165,12153,13731,15060,16511,17767,19650,21874,23167,24519,36000,44282,49000'</span><span class="p">,</span>
+        <span class="n">NoiseTolerance</span><span class="o">=</span><span class="s1">'0.10000000000000001'</span><span class="p">)</span>
 
 <span class="c1"># Fit background function</span>
-<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;name=Polynomial,n=6,A0=0.558765,A1=-3.36699e-05,A2=-9.89997e-10,A3=2.29598e-13,A4=-1.07727e-17,A5=2.10058e-22,A6=-1.49446e-27&#39;</span><span class="p">,</span>
-        <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485_Background&#39;</span><span class="p">,</span>
-        <span class="n">MaxIterations</span><span class="o">=</span><span class="s1">&#39;1000&#39;</span><span class="p">,</span>
-        <span class="n">Minimizer</span><span class="o">=</span><span class="s1">&#39;Levenberg-MarquardtMD&#39;</span><span class="p">,</span>
-        <span class="n">CreateOutput</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
-        <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;PG3_11485_Background&#39;</span><span class="p">,</span>
-        <span class="n">StartX</span><span class="o">=</span><span class="s1">&#39;5053&#39;</span><span class="p">,</span><span class="n">EndX</span><span class="o">=</span><span class="s1">&#39;49387&#39;</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">'name=Polynomial,n=6,A0=0.558765,A1=-3.36699e-05,A2=-9.89997e-10,A3=2.29598e-13,A4=-1.07727e-17,A5=2.10058e-22,A6=-1.49446e-27'</span><span class="p">,</span>
+        <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485_Background'</span><span class="p">,</span>
+        <span class="n">MaxIterations</span><span class="o">=</span><span class="s1">'1000'</span><span class="p">,</span>
+        <span class="n">Minimizer</span><span class="o">=</span><span class="s1">'Levenberg-MarquardtMD'</span><span class="p">,</span>
+        <span class="n">CreateOutput</span><span class="o">=</span><span class="s1">'1'</span><span class="p">,</span>
+        <span class="n">Output</span><span class="o">=</span><span class="s1">'PG3_11485_Background'</span><span class="p">,</span>
+        <span class="n">StartX</span><span class="o">=</span><span class="s1">'5053'</span><span class="p">,</span><span class="n">EndX</span><span class="o">=</span><span class="s1">'49387'</span><span class="p">)</span>
 
 <span class="c1"># Use LeBailFit to calculate the diffraction pattern to see whether the refined geometry-related parameters are good as starting value</span>
-<span class="n">LeBailFit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485&#39;</span><span class="p">,</span>
-        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;CalculatedPattern0&#39;</span><span class="p">,</span>
-        <span class="n">InputParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank1InstrumentParameterTable1_01&#39;</span><span class="p">,</span>
-        <span class="n">OutputParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank1InstrumentParameterTable1_0&#39;</span><span class="p">,</span>
-        <span class="n">InputHKLWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable1&#39;</span><span class="p">,</span>
-        <span class="n">OutputPeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable2_0&#39;</span><span class="p">,</span>
-        <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Calculation&#39;</span><span class="p">,</span>
-        <span class="n">BackgroundParametersWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485_Background_Parameters&#39;</span><span class="p">,</span>
-        <span class="n">UseInputPeakHeights</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="n">PeakRadius</span><span class="o">=</span><span class="s1">&#39;8&#39;</span><span class="p">,</span><span class="n">Minimizer</span><span class="o">=</span><span class="s1">&#39;Levenberg-Marquardt&#39;</span><span class="p">)</span>
+<span class="n">LeBailFit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485'</span><span class="p">,</span>
+        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'CalculatedPattern0'</span><span class="p">,</span>
+        <span class="n">InputParameterWorkspace</span><span class="o">=</span><span class="s1">'Bank1InstrumentParameterTable1_01'</span><span class="p">,</span>
+        <span class="n">OutputParameterWorkspace</span><span class="o">=</span><span class="s1">'Bank1InstrumentParameterTable1_0'</span><span class="p">,</span>
+        <span class="n">InputHKLWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable1'</span><span class="p">,</span>
+        <span class="n">OutputPeaksWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable2_0'</span><span class="p">,</span>
+        <span class="n">Function</span><span class="o">=</span><span class="s1">'Calculation'</span><span class="p">,</span>
+        <span class="n">BackgroundParametersWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485_Background_Parameters'</span><span class="p">,</span>
+        <span class="n">UseInputPeakHeights</span><span class="o">=</span><span class="s1">'0'</span><span class="p">,</span><span class="n">PeakRadius</span><span class="o">=</span><span class="s1">'8'</span><span class="p">,</span><span class="n">Minimizer</span><span class="o">=</span><span class="s1">'Levenberg-Marquardt'</span><span class="p">)</span>
 
-<span class="c1"># Use LeBailFit to refine POWGEN&#39;s instrument profile parameters by Monte Carlo algorithm</span>
-<span class="n">LeBailFit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485&#39;</span><span class="p">,</span>
-        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485_MC_1000&#39;</span><span class="p">,</span>
-        <span class="n">InputParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank1InstrumentParameterTable1_0&#39;</span><span class="p">,</span>
-        <span class="n">OutputParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank1InstrumentParameterTable_MC&#39;</span><span class="p">,</span>
-        <span class="n">InputHKLWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable1&#39;</span><span class="p">,</span>
-        <span class="n">OutputPeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;BraggPeakParameterTable3&#39;</span><span class="p">,</span>
-        <span class="n">FitRegion</span><span class="o">=</span><span class="s1">&#39;5053,49387&#39;</span><span class="p">,</span>
-        <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;MonteCarlo&#39;</span><span class="p">,</span>
-        <span class="n">BackgroundParametersWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_11485_Background_Parameters&#39;</span><span class="p">,</span>
-        <span class="n">UseInputPeakHeights</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span>
-        <span class="n">PeakRadius</span><span class="o">=</span><span class="s1">&#39;8&#39;</span><span class="p">,</span>
-        <span class="n">Minimizer</span><span class="o">=</span><span class="s1">&#39;Levenberg-Marquardt&#39;</span><span class="p">,</span>
-        <span class="n">Damping</span><span class="o">=</span><span class="s1">&#39;0.90000000000000002&#39;</span><span class="p">,</span>
-        <span class="n">NumberMinimizeSteps</span><span class="o">=</span><span class="s1">&#39;1000&#39;</span><span class="p">,</span>
-        <span class="n">FitGeometryParameter</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
-        <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">&#39;1000&#39;</span><span class="p">,</span>
-        <span class="n">AnnealingTemperature</span><span class="o">=</span><span class="s1">&#39;10&#39;</span><span class="p">,</span>
-        <span class="n">DrunkenWalk</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="c1"># Use LeBailFit to refine POWGEN's instrument profile parameters by Monte Carlo algorithm</span>
+<span class="n">LeBailFit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485'</span><span class="p">,</span>
+        <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485_MC_1000'</span><span class="p">,</span>
+        <span class="n">InputParameterWorkspace</span><span class="o">=</span><span class="s1">'Bank1InstrumentParameterTable1_0'</span><span class="p">,</span>
+        <span class="n">OutputParameterWorkspace</span><span class="o">=</span><span class="s1">'Bank1InstrumentParameterTable_MC'</span><span class="p">,</span>
+        <span class="n">InputHKLWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable1'</span><span class="p">,</span>
+        <span class="n">OutputPeaksWorkspace</span><span class="o">=</span><span class="s1">'BraggPeakParameterTable3'</span><span class="p">,</span>
+        <span class="n">FitRegion</span><span class="o">=</span><span class="s1">'5053,49387'</span><span class="p">,</span>
+        <span class="n">Function</span><span class="o">=</span><span class="s1">'MonteCarlo'</span><span class="p">,</span>
+        <span class="n">BackgroundParametersWorkspace</span><span class="o">=</span><span class="s1">'PG3_11485_Background_Parameters'</span><span class="p">,</span>
+        <span class="n">UseInputPeakHeights</span><span class="o">=</span><span class="s1">'0'</span><span class="p">,</span>
+        <span class="n">PeakRadius</span><span class="o">=</span><span class="s1">'8'</span><span class="p">,</span>
+        <span class="n">Minimizer</span><span class="o">=</span><span class="s1">'Levenberg-Marquardt'</span><span class="p">,</span>
+        <span class="n">Damping</span><span class="o">=</span><span class="s1">'0.90000000000000002'</span><span class="p">,</span>
+        <span class="n">NumberMinimizeSteps</span><span class="o">=</span><span class="s1">'1000'</span><span class="p">,</span>
+        <span class="n">FitGeometryParameter</span><span class="o">=</span><span class="s1">'1'</span><span class="p">,</span>
+        <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">'1000'</span><span class="p">,</span>
+        <span class="n">AnnealingTemperature</span><span class="o">=</span><span class="s1">'10'</span><span class="p">,</span>
+        <span class="n">DrunkenWalk</span><span class="o">=</span><span class="s1">'1'</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

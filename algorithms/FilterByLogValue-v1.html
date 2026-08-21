@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FilterByLogValue v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FilterByLogValue v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/FilterByLogValue-v1';</script>
@@ -1584,7 +1584,7 @@ output:</p>
 nexus file. Some of these files have a sample log called
 “veto_pulse_time” that only contains times of the pulses to be
 rejected. For example, this call will filter out veto pulses:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">FilterByLogValue</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s2">&quot;veto_pulse_time&quot;</span><span class="p">,</span> <span class="n">PulseFilter</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">FilterByLogValue</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s2">"veto_pulse_time"</span><span class="p">,</span> <span class="n">PulseFilter</span><span class="o">=</span><span class="s2">"1"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1619,29 +1619,29 @@ can produce same result as <a class="reference internal" href="#algm-filterbylog
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="c1"># Load data</span>
-<span class="n">LoadEventNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;/SNS/SNAP/IPTS-25836/nexus/SNAP_52100.nxs.h5&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;52100&#39;</span><span class="p">)</span>
+<span class="n">LoadEventNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'/SNS/SNAP/IPTS-25836/nexus/SNAP_52100.nxs.h5'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'52100'</span><span class="p">)</span>
 
 <span class="c1"># FilterByLogValue</span>
-<span class="n">FilterByLogValue</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;52100&#39;</span><span class="p">,</span>
-                 <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;52100_hexaZ_L&#39;</span><span class="p">,</span>
-                 <span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;BL3:Mot:Hexa:MotZ&#39;</span><span class="p">,</span>
+<span class="n">FilterByLogValue</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'52100'</span><span class="p">,</span>
+                 <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'52100_hexaZ_L'</span><span class="p">,</span>
+                 <span class="n">LogName</span><span class="o">=</span><span class="s1">'BL3:Mot:Hexa:MotZ'</span><span class="p">,</span>
                  <span class="n">MinimumValue</span><span class="o">=</span> <span class="mf">6.55</span><span class="p">,</span>
                  <span class="n">MaximumValue</span><span class="o">=</span> <span class="mf">6.75</span><span class="p">,</span>
-                 <span class="n">LogBoundary</span><span class="o">=</span><span class="s1">&#39;Left&#39;</span><span class="p">)</span>
+                 <span class="n">LogBoundary</span><span class="o">=</span><span class="s1">'Left'</span><span class="p">)</span>
 
 <span class="c1"># Equivalent GenerateEventsFilter/FilterEvents combination</span>
-<span class="n">GenerateEventsFilter</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;52100&#39;</span><span class="p">,</span>
-                     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;MotZSplitter_left&#39;</span><span class="p">,</span>
-                     <span class="n">InformationWorkspace</span><span class="o">=</span><span class="s1">&#39;MotZSplitter_left_info&#39;</span><span class="p">,</span>
-                     <span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;BL3:Mot:Hexa:MotZ&#39;</span><span class="p">,</span>
+<span class="n">GenerateEventsFilter</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'52100'</span><span class="p">,</span>
+                     <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'MotZSplitter_left'</span><span class="p">,</span>
+                     <span class="n">InformationWorkspace</span><span class="o">=</span><span class="s1">'MotZSplitter_left_info'</span><span class="p">,</span>
+                     <span class="n">LogName</span><span class="o">=</span><span class="s1">'BL3:Mot:Hexa:MotZ'</span><span class="p">,</span>
                      <span class="n">MinimumLogValue</span><span class="o">=</span><span class="mf">6.55</span><span class="p">,</span>
                      <span class="n">MaximumLogValue</span><span class="o">=</span><span class="mf">6.75</span><span class="p">,</span>
-                     <span class="n">LogBoundary</span><span class="o">=</span><span class="s1">&#39;Left&#39;</span><span class="p">,</span>
-                     <span class="n">TitleOfSplitters</span><span class="o">=</span><span class="s1">&#39;Left&#39;</span><span class="p">)</span>
-<span class="n">FilterEvents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;52100&#39;</span><span class="p">,</span>
-             <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">&#39;MotZSplitter_left&#39;</span><span class="p">,</span>
-             <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">&#39;Chop52100&#39;</span><span class="p">,</span>
-             <span class="n">InformationWorkspace</span><span class="o">=</span><span class="s1">&#39;MotZSplitter_left_info&#39;</span><span class="p">,</span>
+                     <span class="n">LogBoundary</span><span class="o">=</span><span class="s1">'Left'</span><span class="p">,</span>
+                     <span class="n">TitleOfSplitters</span><span class="o">=</span><span class="s1">'Left'</span><span class="p">)</span>
+<span class="n">FilterEvents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'52100'</span><span class="p">,</span>
+             <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="s1">'MotZSplitter_left'</span><span class="p">,</span>
+             <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">'Chop52100'</span><span class="p">,</span>
+             <span class="n">InformationWorkspace</span><span class="o">=</span><span class="s1">'MotZSplitter_left_info'</span><span class="p">,</span>
              <span class="n">FilterByPulseTime</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1671,20 +1671,20 @@ filtering in mantid.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Filtering by a simple time series Log</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Event&quot;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Event"</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;proton_charge&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:00:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;proton_charge&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:10:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;proton_charge&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:20:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;proton_charge&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:30:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;proton_charge&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:40:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;proton_charge&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">&quot;2010-01-01T00:50:00&quot;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"proton_charge"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:00:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"proton_charge"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:10:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"proton_charge"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:20:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"proton_charge"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:30:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"proton_charge"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:40:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"proton_charge"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="s2">"2010-01-01T00:50:00"</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The unfiltered workspace </span><span class="si">{}</span><span class="s2"> has </span><span class="si">{}</span><span class="s2"> events and a peak value of </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">(),</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">50</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The unfiltered workspace </span><span class="si">{}</span><span class="s2"> has </span><span class="si">{}</span><span class="s2"> events and a peak value of </span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">(),</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">50</span><span class="p">]))</span>
 
-<span class="n">wsOut</span> <span class="o">=</span> <span class="n">FilterByLogValue</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">&quot;proton_charge&quot;</span><span class="p">,</span><span class="n">MinimumValue</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">MaximumValue</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">wsOut</span> <span class="o">=</span> <span class="n">FilterByLogValue</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="s2">"proton_charge"</span><span class="p">,</span><span class="n">MinimumValue</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">MaximumValue</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The filtered workspace </span><span class="si">{}</span><span class="s2"> has </span><span class="si">{}</span><span class="s2"> events and a peak value of </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="p">,</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">(),</span><span class="n">wsOut</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">50</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The filtered workspace </span><span class="si">{}</span><span class="s2"> has </span><span class="si">{}</span><span class="s2"> events and a peak value of </span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="p">,</span> <span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">(),</span><span class="n">wsOut</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">50</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1696,8 +1696,8 @@ The filtered workspace wsOut has 950 events and a peak value of 1...
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/FilterByLogValue.h">FilterByLogValue.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/FilterByLogValue.cpp">FilterByLogValue.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/FilterByLogValue.h">FilterByLogValue.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/FilterByLogValue.cpp">FilterByLogValue.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SumSpectra v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SumSpectra v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1602,20 +1602,20 @@ properties (Log values). The properties (Log) names are:</p>
 </ul>
 <p>Assuming <code class="docutils literal notranslate"><span class="pre">pWS</span></code> is the output workspace handle, from Python these
 properties can be accessed using:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nSpectra</span>       <span class="o">=</span> <span class="n">pWS</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s2">&quot;NumAllSpectra&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
-<span class="n">nMaskedSpectra</span> <span class="o">=</span> <span class="n">pWS</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s2">&quot;NumMaskSpectra&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
-<span class="n">nZeroSpectra</span>   <span class="o">=</span> <span class="n">pWS</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s2">&quot;NumZeroSpectra&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nSpectra</span>       <span class="o">=</span> <span class="n">pWS</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s2">"NumAllSpectra"</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">nMaskedSpectra</span> <span class="o">=</span> <span class="n">pWS</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s2">"NumMaskSpectra"</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">nZeroSpectra</span>   <span class="o">=</span> <span class="n">pWS</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s2">"NumZeroSpectra"</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - a simple example of running SumSpectra.</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span> <span class="n">Random</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace has </span><span class="si">%d</span><span class="s2"> spectra&quot;</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span> <span class="n">Random</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace has </span><span class="si">%d</span><span class="s2"> spectra"</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
 
 <span class="n">ws</span> <span class="o">=</span> <span class="n">SumSpectra</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace has </span><span class="si">%d</span><span class="s2"> spectra&quot;</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace has </span><span class="si">%d</span><span class="s2"> spectra"</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1624,11 +1624,11 @@ Workspace has 1 spectra
 </pre></div>
 </div>
 <p><strong>Example - running SumSpectra with a list of indices.</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span> <span class="n">Random</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace has </span><span class="si">%d</span><span class="s2"> spectra&quot;</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span> <span class="n">Random</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace has </span><span class="si">%d</span><span class="s2"> spectra"</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
 
-<span class="n">ws</span> <span class="o">=</span> <span class="n">SumSpectra</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ListOfWorkspaceIndices</span><span class="o">=</span><span class="s1">&#39;0-3, 10-13&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace has </span><span class="si">%d</span><span class="s2"> spectra&quot;</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">SumSpectra</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">ListOfWorkspaceIndices</span><span class="o">=</span><span class="s1">'0-3, 10-13'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace has </span><span class="si">%d</span><span class="s2"> spectra"</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1637,11 +1637,11 @@ Workspace has 1 spectra
 </pre></div>
 </div>
 <p><strong>Example - a running SumSpectra with a start and end index.</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span> <span class="n">Random</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace has </span><span class="si">%d</span><span class="s2"> spectra&quot;</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span> <span class="n">Random</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace has </span><span class="si">%d</span><span class="s2"> spectra"</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
 
 <span class="n">ws</span> <span class="o">=</span> <span class="n">SumSpectra</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">StartWorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">EndWorkspaceIndex</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace has </span><span class="si">%d</span><span class="s2"> spectra&quot;</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace has </span><span class="si">%d</span><span class="s2"> spectra"</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1650,11 +1650,11 @@ Workspace has 1 spectra
 </pre></div>
 </div>
 <p><strong>Example - a running SumSpectra in weighted sum mode.</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span> <span class="n">Random</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace has </span><span class="si">%d</span><span class="s2"> spectra&quot;</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span> <span class="n">Random</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace has </span><span class="si">%d</span><span class="s2"> spectra"</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
 
 <span class="n">ws</span> <span class="o">=</span> <span class="n">SumSpectra</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">WeightedSum</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace has </span><span class="si">%d</span><span class="s2"> spectra&quot;</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace has </span><span class="si">%d</span><span class="s2"> spectra"</span> <span class="o">%</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1666,8 +1666,8 @@ Workspace has 1 spectra
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/SumSpectra.h">SumSpectra.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/SumSpectra.cpp">SumSpectra.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/SumSpectra.h">SumSpectra.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/SumSpectra.cpp">SumSpectra.cpp</a></p>
 </section>
 </section>
 

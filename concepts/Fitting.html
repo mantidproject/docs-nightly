@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Fitting &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Fitting &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -563,7 +563,7 @@ minimization.</p>
 <p>Many well known global fitting algorithms are very simple in their
 implementation.</p>
 <p>To demonstrate an example of this, below is shown how to script
-a global fitting algorithm, which for example in <a class="reference external" href="http://dx.doi.org/10.1107/S0021889810008113">http://dx.doi.org/10.1107/S0021889810008113</a>
+a global fitting algorithm, which for example in <a class="reference external" href="https://doi.org/10.1107/S0021889810008113">https://doi.org/10.1107/S0021889810008113</a>
 has been shown to be competitive with a tuned Simulation Annealing algorithm
 (<a class="reference external" href="https://en.wikipedia.org/wiki/Simulated_annealing">https://en.wikipedia.org/wiki/Simulated_annealing</a>)
 implementation used for solving crystal structures from powder diffraction data.</p>
@@ -576,7 +576,7 @@ implementation used for solving crystal structures from powder diffraction data.
 <span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">random</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;HRP39182.RAW&#39;</span><span class="p">,</span><span class="n">LoadLogFiles</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">SpectrumList</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'HRP39182.RAW'</span><span class="p">,</span><span class="n">LoadLogFiles</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">SpectrumList</span><span class="o">=</span><span class="s2">"1"</span><span class="p">)</span>
 
 <span class="c1"># Specify the fitting interval</span>
 <span class="n">startX</span> <span class="o">=</span> <span class="mi">93000</span>
@@ -593,10 +593,10 @@ implementation used for solving crystal structures from powder diffraction data.
 
     <span class="c1"># Do a fit from this starting value of the peak centre fitting parameter</span>
     <span class="c1"># Note choice of local minimizer will affect the outcome</span>
-    <span class="n">fit_results</span> <span class="o">=</span> <span class="n">Fit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> \
-                      <span class="n">StartX</span> <span class="o">=</span> <span class="n">startX</span><span class="p">,</span> <span class="n">EndX</span><span class="o">=</span><span class="n">endX</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span> \
-                      <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;name=Gaussian,Height=10,PeakCentre=&#39;</span><span class="o">+</span><span class="n">tryCentre</span><span class="o">+</span><span class="s1">&#39;,Sigma=20&#39;</span><span class="p">,</span>
-                      <span class="n">Minimizer</span><span class="o">=</span><span class="s1">&#39;Conjugate gradient (Fletcher-Reeves imp.)&#39;</span><span class="p">)</span>
+    <span class="n">fit_results</span> <span class="o">=</span> <span class="n">Fit</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span> <span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> \
+                      <span class="n">StartX</span> <span class="o">=</span> <span class="n">startX</span><span class="p">,</span> <span class="n">EndX</span><span class="o">=</span><span class="n">endX</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">'fit'</span><span class="p">,</span> \
+                      <span class="n">Function</span><span class="o">=</span><span class="s1">'name=Gaussian,Height=10,PeakCentre='</span><span class="o">+</span><span class="n">tryCentre</span><span class="o">+</span><span class="s1">',Sigma=20'</span><span class="p">,</span>
+                      <span class="n">Minimizer</span><span class="o">=</span><span class="s1">'Conjugate gradient (Fletcher-Reeves imp.)'</span><span class="p">)</span>
     <span class="n">costFuncVal</span> <span class="o">=</span> <span class="n">fit_results</span><span class="o">.</span><span class="n">OutputChi2overDoF</span>
 
     <span class="c1"># Here simply keep record of the best fit found, but this could easily be extended to</span>
@@ -604,14 +604,14 @@ implementation used for solving crystal structures from powder diffraction data.
     <span class="k">if</span> <span class="n">costFuncVal</span> <span class="o">&lt;</span> <span class="n">costFuncBest</span><span class="p">:</span>
         <span class="n">costFuncBest</span> <span class="o">=</span> <span class="n">costFuncVal</span>
         <span class="c1"># here keep clone of best fit</span>
-        <span class="n">CloneWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;fit_Workspace&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;fitBest&#39;</span><span class="p">)</span>
+        <span class="n">CloneWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'fit_Workspace'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'fitBest'</span><span class="p">)</span>
 
     <span class="c1"># Uncomment the sleep if would like to watch this algorithm trying to</span>
     <span class="c1"># find the global minima (graphically and/or from command line)</span>
     <span class="c1"># print(costFuncVal)</span>
     <span class="c1"># sleep(2)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'test'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Category</strong>: <a class="reference external" href="../api/python/mantid/api/categories/Concepts.html">Concepts</a></p>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CropWorkspaceRagged v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CropWorkspaceRagged v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/CropWorkspaceRagged-v1';</script>
@@ -1510,8 +1510,8 @@ independently.</p>
 
 <span class="n">new</span><span class="o">=</span><span class="n">CropWorkspaceRagged</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">x_min</span><span class="p">,</span><span class="n">x_max</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of bins in spectrum 1 is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of bins in spectrum 2 is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The number of bins in spectrum 1 is: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The number of bins in spectrum 2 is: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1532,20 +1532,20 @@ the end of a workflow to generate a real-space distribution of data
 after it had been reduced into a number of “banks” or “spectra.” As
 mentioned above, <code class="docutils literal notranslate"><span class="pre">numpy.nan</span></code> or <code class="docutils literal notranslate"><span class="pre">math.nan</span></code> can both be used.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">nan</span>
-<span class="n">NOM_91796</span> <span class="o">=</span> <span class="n">LoadNexusProcessed</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;NOM_91796_banks.nxs&#39;</span><span class="p">)</span>
-<span class="n">CropWorkspaceRagged</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">NOM_91796</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;cropped&#39;</span><span class="p">,</span>
+<span class="n">NOM_91796</span> <span class="o">=</span> <span class="n">LoadNexusProcessed</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'NOM_91796_banks.nxs'</span><span class="p">)</span>
+<span class="n">CropWorkspaceRagged</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">NOM_91796</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'cropped'</span><span class="p">,</span>
                     <span class="n">Xmin</span><span class="o">=</span><span class="p">[</span><span class="mf">0.67</span><span class="p">,</span> <span class="mf">1.20</span><span class="p">,</span> <span class="mf">2.42</span><span class="p">,</span> <span class="mf">3.70</span><span class="p">,</span> <span class="mf">4.12</span><span class="p">,</span> <span class="mf">0.39</span><span class="p">],</span>
                     <span class="n">Xmax</span><span class="o">=</span><span class="p">[</span><span class="mf">10.20</span><span class="p">,</span> <span class="mf">20.8</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="mf">9.35</span><span class="p">])</span>
 <span class="n">binning</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">.02</span><span class="p">,</span><span class="mf">40.</span><span class="p">)</span>
-<span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;cropped&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;cropped&#39;</span><span class="p">,</span>
+<span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'cropped'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'cropped'</span><span class="p">,</span>
       <span class="n">Params</span><span class="o">=</span><span class="n">binning</span><span class="p">)</span>
 <span class="c1"># put into a single spectrum and Fourier transform</span>
-<span class="n">SumSpectra</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;cropped&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;FQ&#39;</span><span class="p">,</span>
+<span class="n">SumSpectra</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'cropped'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'FQ'</span><span class="p">,</span>
            <span class="n">WeightedSum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">RemoveSpecialValues</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">gr</span><span class="o">=</span><span class="n">PDFFourierTransform</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;FQ&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Gr&#39;</span><span class="p">,</span>
-                    <span class="n">Direction</span><span class="o">=</span><span class="s2">&quot;Backward&quot;</span><span class="p">,</span> <span class="n">DeltaR</span><span class="o">=</span><span class="mf">.02</span><span class="p">)</span>
+<span class="n">gr</span><span class="o">=</span><span class="n">PDFFourierTransform</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'FQ'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'Gr'</span><span class="p">,</span>
+                    <span class="n">Direction</span><span class="o">=</span><span class="s2">"Backward"</span><span class="p">,</span> <span class="n">DeltaR</span><span class="o">=</span><span class="mf">.02</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">13</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y values: </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gr</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">j</span><span class="p">]))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"y values: </span><span class="si">{:.4f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gr</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">j</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1558,8 +1558,8 @@ y values: 0.6487
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/CropWorkspaceRagged.h">CropWorkspaceRagged.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/CropWorkspaceRagged.cpp">CropWorkspaceRagged.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/CropWorkspaceRagged.h">CropWorkspaceRagged.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/CropWorkspaceRagged.cpp">CropWorkspaceRagged.cpp</a></p>
 </section>
 </section>
 

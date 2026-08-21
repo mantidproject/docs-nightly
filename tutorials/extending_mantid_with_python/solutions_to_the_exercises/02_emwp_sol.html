@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Exercise 2 Solutions &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Exercise 2 Solutions &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/extending_mantid_with_python/solutions_to_the_exercises/02_emwp_sol';</script>
@@ -561,7 +561,7 @@ two previous terms.</p>
 <span class="c1">#    would be something like NTerms</span>
 <span class="c1">#  - The property should have documentation that shows in the GUI describing what it is used for.</span>
 <span class="c1">#  - Validate that NTerms property is greater or equal to 1 when set in the GUI.</span>
-<span class="c1">#  - The log message for the value of each term should be at notice level and in the format: &quot;Term 1 in the Fibonacci series is: 0&quot;</span>
+<span class="c1">#  - The log message for the value of each term should be at notice level and in the format: "Term 1 in the Fibonacci series is: 0"</span>
 <span class="c1">#  - Add log message at debug level that prints the value of the NTerms property after it has been retrieved.</span>
 <span class="c1">#</span>
 <span class="c1"># As an additional exercise in understanding errors:</span>
@@ -573,32 +573,32 @@ two previous terms.</p>
 <span class="k">class</span><span class="w"> </span><span class="nc">FibonacciExercise</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;Examples&quot;</span>
+        <span class="k">return</span> <span class="s2">"Examples"</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;NTerms&quot;</span><span class="p">,</span> <span class="n">defaultValue</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="n">IntBoundedValidator</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Number of terms to print&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"NTerms"</span><span class="p">,</span> <span class="n">defaultValue</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="n">IntBoundedValidator</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">doc</span><span class="o">=</span><span class="s2">"Number of terms to print"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">nterms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">&quot;NTerms&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">()</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;NTerms = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">nterms</span><span class="p">))</span>
+        <span class="n">nterms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s2">"NTerms"</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">()</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"NTerms = "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">nterms</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">nterms</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Number of terms greater than 1000&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Number of terms greater than 1000"</span><span class="p">)</span>
 
         <span class="c1"># 0 should print something else</span>
         <span class="k">if</span> <span class="n">nterms</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Number of terms selected less than 1&quot;</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">"Number of terms selected less than 1"</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># First two terms</span>
             <span class="n">prev_2</span><span class="p">,</span> <span class="n">prev_1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
 
-            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Term 1 in the Fibonacci series is: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">prev_2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;Term 2 in the Fibonacci series is: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">prev_1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">"Term 1 in the Fibonacci series is: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">prev_2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="s2">"Term 2 in the Fibonacci series is: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">prev_1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
             <span class="n">count</span> <span class="o">=</span> <span class="mi">2</span>
             <span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">nterms</span><span class="p">:</span>
                 <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="n">current</span> <span class="o">=</span> <span class="n">prev_2</span> <span class="o">+</span> <span class="n">prev_1</span>
-                <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;Term &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; in the Fibonacci series is: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">current</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="s2">"Term "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" in the Fibonacci series is: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">current</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
                 <span class="n">prev_2</span> <span class="o">=</span> <span class="n">prev_1</span>
                 <span class="n">prev_1</span> <span class="o">=</span> <span class="n">current</span>
         <span class="c1"># End of else</span>

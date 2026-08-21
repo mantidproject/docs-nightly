@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MuonProcess v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MuonProcess v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1642,31 +1642,31 @@ documentation.</p>
 </div>
 <p><strong>Example - Integrated pair asymmetry for MUSR run (combined mode):</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Begin by loading data into a workspace to process</span>
-<span class="n">load_result</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;MUSR0015189.nxs&quot;</span><span class="p">,</span>
-                   <span class="n">DetectorGroupingTable</span><span class="o">=</span><span class="s2">&quot;grouping&quot;</span><span class="p">,</span>
-                                  <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">&quot;loadedWS&quot;</span><span class="p">)</span>
+<span class="n">load_result</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"MUSR0015189.nxs"</span><span class="p">,</span>
+                   <span class="n">DetectorGroupingTable</span><span class="o">=</span><span class="s2">"grouping"</span><span class="p">,</span>
+                                  <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">"loadedWS"</span><span class="p">)</span>
 <span class="n">loaded_time_zero</span> <span class="o">=</span> <span class="n">load_result</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># time zero loaded from file</span>
-<span class="n">grouping</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;grouping&#39;</span><span class="p">]</span>        <span class="c1"># detector grouping loaded from file</span>
+<span class="n">grouping</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'grouping'</span><span class="p">]</span>        <span class="c1"># detector grouping loaded from file</span>
 <span class="n">grouping</span> <span class="o">=</span> <span class="n">grouping</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># grouping here is a WorkspaceGroup - use table for first period</span>
 
-<span class="n">MuonProcess</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="s2">&quot;loadedWS&quot;</span><span class="p">,</span>
-            <span class="n">Mode</span> <span class="o">=</span> <span class="s2">&quot;Combined&quot;</span><span class="p">,</span>
+<span class="n">MuonProcess</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="s2">"loadedWS"</span><span class="p">,</span>
+            <span class="n">Mode</span> <span class="o">=</span> <span class="s2">"Combined"</span><span class="p">,</span>
             <span class="n">DetectorGroupingTable</span> <span class="o">=</span> <span class="n">grouping</span><span class="p">,</span>
-            <span class="n">SummedPeriodSet</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+            <span class="n">SummedPeriodSet</span> <span class="o">=</span> <span class="s2">"1"</span><span class="p">,</span>
             <span class="n">LoadedTimeZero</span> <span class="o">=</span> <span class="n">loaded_time_zero</span><span class="p">,</span>
             <span class="n">TimeZero</span> <span class="o">=</span> <span class="mf">0.55</span><span class="p">,</span>
             <span class="n">Xmin</span> <span class="o">=</span> <span class="mf">0.11</span><span class="p">,</span>
             <span class="n">Xmax</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
-            <span class="n">OutputType</span> <span class="o">=</span> <span class="s2">&quot;PairAsymmetry&quot;</span><span class="p">,</span>
+            <span class="n">OutputType</span> <span class="o">=</span> <span class="s2">"PairAsymmetry"</span><span class="p">,</span>
             <span class="n">PairFirstIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
             <span class="n">PairSecondIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
             <span class="n">Alpha</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-            <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">&quot;MuonProcess_output&quot;</span><span class="p">)</span>
+            <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">"MuonProcess_output"</span><span class="p">)</span>
 
-<span class="n">processed</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MuonProcess_output&#39;</span><span class="p">]</span>
+<span class="n">processed</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'MuonProcess_output'</span><span class="p">]</span>
 <span class="n">output_int</span> <span class="o">=</span> <span class="n">Integration</span><span class="p">(</span><span class="n">processed</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Integrated asymmetry for the run: </span><span class="si">{0:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">output_int</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Integrated asymmetry for the run: </span><span class="si">{0:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">output_int</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1682,20 +1682,20 @@ documentation.</p>
 
 <span class="c1"># Grouping</span>
 <span class="n">grouping</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
-<span class="n">grouping</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;vector_int&#39;</span><span class="p">,</span> <span class="s1">&#39;detectors&#39;</span><span class="p">)</span>
+<span class="n">grouping</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'vector_int'</span><span class="p">,</span> <span class="s1">'detectors'</span><span class="p">)</span>
 <span class="n">grouping</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)])</span>
 
 <span class="n">output</span> <span class="o">=</span> <span class="n">MuonProcess</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="nb">input</span><span class="p">,</span>
-                     <span class="n">Mode</span> <span class="o">=</span> <span class="s2">&quot;Analyse&quot;</span><span class="p">,</span>
+                     <span class="n">Mode</span> <span class="o">=</span> <span class="s2">"Analyse"</span><span class="p">,</span>
                      <span class="n">DetectorGroupingTable</span> <span class="o">=</span> <span class="n">grouping</span><span class="p">,</span>
-                     <span class="n">SummedPeriodSet</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+                     <span class="n">SummedPeriodSet</span> <span class="o">=</span> <span class="s2">"1"</span><span class="p">,</span>
                      <span class="n">LoadedTimeZero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-                     <span class="n">OutputType</span> <span class="o">=</span> <span class="s1">&#39;PairAsymmetry&#39;</span><span class="p">,</span>
+                     <span class="n">OutputType</span> <span class="o">=</span> <span class="s1">'PairAsymmetry'</span><span class="p">,</span>
                      <span class="n">PairFirstIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
                      <span class="n">PairSecondIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
                      <span class="n">Alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Output: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1707,31 +1707,31 @@ documentation.</p>
 <span class="n">y1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">y2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)</span>
-<span class="n">first_period</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">]</span>
-<span class="n">first_period</span><span class="o">.</span><span class="n">mutableRun</span><span class="p">()</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">&#39;goodfrm&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;second&quot;</span><span class="p">)</span>
-<span class="n">second_period</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;second&quot;</span><span class="p">]</span>
-<span class="n">second_period</span><span class="o">.</span><span class="n">mutableRun</span><span class="p">()</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">&#39;goodfrm&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"first"</span><span class="p">)</span>
+<span class="n">first_period</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"first"</span><span class="p">]</span>
+<span class="n">first_period</span><span class="o">.</span><span class="n">mutableRun</span><span class="p">()</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">'goodfrm'</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"second"</span><span class="p">)</span>
+<span class="n">second_period</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"second"</span><span class="p">]</span>
+<span class="n">second_period</span><span class="o">.</span><span class="n">mutableRun</span><span class="p">()</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">'goodfrm'</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="nb">input</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">([</span><span class="n">first_period</span><span class="p">,</span> <span class="n">second_period</span><span class="p">])</span>
 
 <span class="c1"># Grouping</span>
 <span class="n">grouping</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
-<span class="n">grouping</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;vector_int&#39;</span><span class="p">,</span> <span class="s1">&#39;detectors&#39;</span><span class="p">)</span>
+<span class="n">grouping</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'vector_int'</span><span class="p">,</span> <span class="s1">'detectors'</span><span class="p">)</span>
 <span class="n">grouping</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
 <span class="n">grouping</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)])</span>
 
 <span class="n">output</span> <span class="o">=</span> <span class="n">MuonProcess</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="nb">input</span><span class="p">,</span>
-                     <span class="n">Mode</span> <span class="o">=</span> <span class="s2">&quot;Analyse&quot;</span><span class="p">,</span>
+                     <span class="n">Mode</span> <span class="o">=</span> <span class="s2">"Analyse"</span><span class="p">,</span>
                      <span class="n">DetectorGroupingTable</span> <span class="o">=</span> <span class="n">grouping</span><span class="p">,</span>
                      <span class="n">SummedPeriodSet</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
                      <span class="n">SubtractedPeriodSet</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
                      <span class="n">LoadedTimeZero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-                     <span class="n">OutputType</span> <span class="o">=</span> <span class="s1">&#39;GroupAsymmetry&#39;</span><span class="p">,</span>
+                     <span class="n">OutputType</span> <span class="o">=</span> <span class="s1">'GroupAsymmetry'</span><span class="p">,</span>
                      <span class="n">GroupIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">Xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Xmax</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Output: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1742,8 +1742,8 @@ documentation.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/WorkflowAlgorithms/inc/MantidWorkflowAlgorithms/MuonProcess.h">MuonProcess.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/WorkflowAlgorithms/src/MuonProcess.cpp">MuonProcess.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/WorkflowAlgorithms/inc/MantidWorkflowAlgorithms/MuonProcess.h">MuonProcess.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/WorkflowAlgorithms/src/MuonProcess.cpp">MuonProcess.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Exercise 1 Solutions &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Exercise 1 Solutions &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/extending_mantid_with_python/solutions_to_the_exercises/01_emwp_sol';</script>
@@ -555,9 +555,9 @@ within Python.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extending Mantid With Python: Exercise 1</span>
 <span class="c1">#</span>
 <span class="c1"># Write a Detector class contains two attributes id and name:</span>
-<span class="c1">#   - The attributes should be able to be set by a call like: Detector(1, &quot;bank1_1&quot;).</span>
+<span class="c1">#   - The attributes should be able to be set by a call like: Detector(1, "bank1_1").</span>
 <span class="c1"># Write an an Instrument class with 2 attributes: name and list of detectors</span>
-<span class="c1">#   - These attributes should also be able to be set by a call like: Instrument(&#39;MyInst&#39;, dets)</span>
+<span class="c1">#   - These attributes should also be able to be set by a call like: Instrument('MyInst', dets)</span>
 <span class="c1"># Add a method to the Instrument class called printTree that will print the names &amp; ids of the detectors contained within it</span>
 <span class="c1">#</span>
 <span class="c1"># Write a class called Component that stores a single name attribute</span>
@@ -588,14 +588,14 @@ within Python.</p>
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">printTree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Instrument: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Instrument: "</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">detector</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">detectors</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name: </span><span class="si">{0}</span><span class="s2"> ID: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">detector</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">detector</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Name: </span><span class="si">{0}</span><span class="s2"> ID: </span><span class="si">{1}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">detector</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">detector</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
 
 <span class="c1">##########</span>
-<span class="n">det1</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Bank1&quot;</span><span class="p">)</span>
-<span class="n">det2</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;Bank2&quot;</span><span class="p">)</span>
-<span class="n">inst</span> <span class="o">=</span>  <span class="n">Instrument</span><span class="p">(</span><span class="s2">&quot;My Instrument&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">det1</span><span class="p">,</span><span class="n">det2</span><span class="p">])</span>
+<span class="n">det1</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s2">"Bank1"</span><span class="p">)</span>
+<span class="n">det2</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s2">"Bank2"</span><span class="p">)</span>
+<span class="n">inst</span> <span class="o">=</span>  <span class="n">Instrument</span><span class="p">(</span><span class="s2">"My Instrument"</span><span class="p">,</span> <span class="p">[</span><span class="n">det1</span><span class="p">,</span><span class="n">det2</span><span class="p">])</span>
 
 <span class="n">inst</span><span class="o">.</span><span class="n">printTree</span><span class="p">()</span>
 </pre></div>

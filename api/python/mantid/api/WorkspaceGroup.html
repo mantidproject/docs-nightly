@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>WorkspaceGroup &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>WorkspaceGroup &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/api/WorkspaceGroup';</script>
@@ -667,7 +667,7 @@
 <span class="n">wsList</span> <span class="o">=</span> <span class="p">[</span><span class="n">ws1</span><span class="p">,</span><span class="n">ws2</span><span class="p">,</span><span class="n">ws3</span><span class="p">]</span>
 <span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="n">wsList</span><span class="p">)</span>
 <span class="c1"># or</span>
-<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">&quot;ws1,ws2,ws3&quot;</span><span class="p">)</span>
+<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">"ws1,ws2,ws3"</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">wsGroup</span><span class="o">.</span><span class="n">getNames</span><span class="p">())</span>
 
@@ -679,7 +679,7 @@
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;ws1&#39;,&#39;ws2&#39;,&#39;ws3&#39;]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>['ws1','ws2','ws3']
 </pre></div>
 </div>
 <p>To avoid interaction with the ADS, a <cite>WorkspaceGroup</cite> object can be instantiated using</p>
@@ -689,7 +689,7 @@
 </pre></div>
 </div>
 <p>This <strong>will not</strong> be automatically added to the ADS, to do so, use the following line</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">ws_group</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span> <span class="n">ws_group</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>the group should then appear in the ADS with the given name. Using direct instantiation; groups can be added to the ADS and then workspaces added to the group via their name and the <cite>add</cite> method;</p>
@@ -704,17 +704,17 @@
 
 <span class="c1"># Create a group workspace and add to the ADS</span>
 <span class="n">ws_group</span> <span class="o">=</span> <span class="n">WorkspaceGroup</span><span class="p">()</span>
-<span class="n">mtd</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;group1&quot;</span><span class="p">,</span> <span class="n">ws_group</span><span class="p">)</span>
+<span class="n">mtd</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"group1"</span><span class="p">,</span> <span class="n">ws_group</span><span class="p">)</span>
 
-<span class="n">ws_group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;ws1&quot;</span><span class="p">)</span>
-<span class="n">ws_group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;ws2&quot;</span><span class="p">)</span>
-<span class="n">ws_group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;ws3&quot;</span><span class="p">)</span>
+<span class="n">ws_group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"ws1"</span><span class="p">)</span>
+<span class="n">ws_group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"ws2"</span><span class="p">)</span>
+<span class="n">ws_group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"ws3"</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">ws_group</span><span class="o">.</span><span class="n">getNames</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;ws1&#39;,&#39;ws2&#39;,&#39;ws3&#39;]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>['ws1','ws2','ws3']
 </pre></div>
 </div>
 <p>Alternatively, workspace group objects can be fed workspaces which are not in the ADS (in this case the <cite>addWorkspace</cite> method is used rather than <cite>add</cite> because <cite>add</cite> requires a name, and since the workspaces are not in the ADS they may not have a name)</p>
@@ -723,9 +723,9 @@
 
 <span class="n">mtd</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
-<span class="n">ws1</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;Workspace2D&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;Workspace2D&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">ws3</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;Workspace2D&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ws1</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">"Workspace2D"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">"Workspace2D"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ws3</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">"Workspace2D"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Create a group workspace</span>
 <span class="n">ws_group</span> <span class="o">=</span> <span class="n">WorkspaceGroup</span><span class="p">()</span>
@@ -736,14 +736,14 @@
 
 <span class="nb">print</span><span class="p">(</span><span class="n">ws_group</span><span class="o">.</span><span class="n">getNames</span><span class="p">())</span>
 
-<span class="n">mtd</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;group1&quot;</span><span class="p">,</span> <span class="n">ws_group</span><span class="p">)</span>
+<span class="n">mtd</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"group1"</span><span class="p">,</span> <span class="n">ws_group</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">ws_group</span><span class="o">.</span><span class="n">getNames</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;&#39;,&#39;&#39;,&#39;&#39;]
-[&#39;group1_1&#39;,&#39;group1_2&#39;,&#39;group1_3&#39;]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>['','','']
+['group1_1','group1_2','group1_3']
 </pre></div>
 </div>
 <p>when adding the group to the ADS, the workspaces will also be added, and given default names. It is not recommended to add workspace to groups in this way, as much of the functionality of groups depends on workspaces having names; for example the “in” keyword.</p>
@@ -757,10 +757,10 @@
 
 <span class="n">ws1</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">&quot;ws1,ws2&quot;</span><span class="p">)</span>
+<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">"ws1,ws2"</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wsGroup</span><span class="p">,</span> <span class="n">WorkspaceGroup</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">wsGroup</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; is an &quot;</span> <span class="o">+</span> <span class="n">wsGroup</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">wsGroup</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s2">" is an "</span> <span class="o">+</span> <span class="n">wsGroup</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -773,20 +773,20 @@
 
 <span class="n">ws1</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">&quot;ws1,ws2&quot;</span><span class="p">)</span>
+<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">"ws1,ws2"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of members: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">wsGroup</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;List of names: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">wsGroup</span><span class="o">.</span><span class="n">getNames</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of members: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">wsGroup</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"List of names: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">wsGroup</span><span class="o">.</span><span class="n">getNames</span><span class="p">()))</span>
 
 <span class="c1"># Get the member workspaces in a loop</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">wsGroup</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()):</span>
     <span class="n">wsLoop</span> <span class="o">=</span> <span class="n">wsGroup</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Member </span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">wsLoop</span><span class="o">.</span><span class="n">name</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Member </span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">wsLoop</span><span class="o">.</span><span class="n">name</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Number of members: 2
-List of names: [&#39;ws1&#39;,&#39;ws2&#39;]
+List of names: ['ws1','ws2']
 Member 0 ws1
 Member 1 ws2
 </pre></div>
@@ -800,8 +800,8 @@ Member 1 ws2
 
 <span class="n">ws1</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">&quot;ws1,ws2&quot;</span><span class="p">)</span>
-<span class="n">wsGroup2</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">&quot;ws2,ws1&quot;</span><span class="p">)</span>
+<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">"ws1,ws2"</span><span class="p">)</span>
+<span class="n">wsGroup2</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">"ws2,ws1"</span><span class="p">)</span>
 
 <span class="c1">#  This will add the member workspaces in a pair like manner</span>
 <span class="n">wsGroup3</span> <span class="o">=</span> <span class="n">wsGroup</span> <span class="o">+</span> <span class="n">wsGroup2</span>
@@ -824,7 +824,7 @@ Member 1 ws2
 
 <span class="n">ws1</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">&quot;ws1,ws2&quot;</span><span class="p">)</span>
+<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">"ws1,ws2"</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">ws</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">wsGroup</span><span class="p">):</span>
     <span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
@@ -838,7 +838,7 @@ Member 1 ws2
 
 <span class="n">ws1</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
-<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">&quot;ws1,ws2&quot;</span><span class="p">)</span>
+<span class="n">wsGroup</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">"ws1,ws2"</span><span class="p">)</span>
 
 <span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">wsGroup</span><span class="p">)</span>
 </pre></div>

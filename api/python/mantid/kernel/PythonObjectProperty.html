@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PythonObjectProperty &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PythonObjectProperty &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/kernel/PythonObjectProperty';</script>
@@ -819,20 +819,20 @@ It is meant to hold a generic python object as a property for use in algorithms 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">FakeAlgorithm</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">PythonObjectProperty</span><span class="p">(</span><span class="s2">&quot;UnvalidatedPyObject&quot;</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">PythonObjectProperty</span><span class="p">(</span><span class="s2">&quot;ValidatedPyObject&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">PythonObjectTypeValidator</span><span class="p">(</span><span class="n">FakeClass</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">PythonObjectProperty</span><span class="p">(</span><span class="s2">"UnvalidatedPyObject"</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">PythonObjectProperty</span><span class="p">(</span><span class="s2">"ValidatedPyObject"</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">PythonObjectTypeValidator</span><span class="p">(</span><span class="n">FakeClass</span><span class="p">)))</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
 
-<span class="n">value1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="s2">&quot;value one&quot;</span><span class="p">,</span> <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">]}</span>
+<span class="n">value1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"key1"</span><span class="p">:</span> <span class="s2">"value one"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"one"</span><span class="p">,</span> <span class="s2">"two"</span><span class="p">,</span> <span class="s2">"three"</span><span class="p">]}</span>
 <span class="n">value2</span> <span class="o">=</span> <span class="n">FakeClass</span><span class="p">()</span>
 
 <span class="c1"># run the algorithm</span>
 <span class="n">fake</span> <span class="o">=</span> <span class="n">FakeAlgorithm</span><span class="p">()</span>
 <span class="n">fake</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-<span class="n">fake</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;UnvalidatedPyObject&quot;</span><span class="p">,</span> <span class="n">value1</span><span class="p">)</span>
-<span class="n">fake</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;ValidatedPyObject&quot;</span><span class="p">,</span> <span class="n">value2</span><span class="p">)</span>
+<span class="n">fake</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">"UnvalidatedPyObject"</span><span class="p">,</span> <span class="n">value1</span><span class="p">)</span>
+<span class="n">fake</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">"ValidatedPyObject"</span><span class="p">,</span> <span class="n">value2</span><span class="p">)</span>
 <span class="n">fake</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 </pre></div>
 </div>

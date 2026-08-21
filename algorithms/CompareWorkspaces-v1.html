@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CompareWorkspaces v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CompareWorkspaces v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/CompareWorkspaces-v1';</script>
@@ -1605,7 +1605,7 @@ in each of the two workspaces:</p>
 
 <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span> <span class="o">=</span> <span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws1</span><span class="p">,</span> <span class="n">ws2</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Result: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">rowCount</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1626,23 +1626,23 @@ in each of the two workspaces:</p>
 <span class="n">dataY2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dataX</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataX</span><span class="p">))</span>
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">dataX</span><span class="p">,</span> <span class="n">dataY2</span><span class="p">)</span>
 
-<span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span> <span class="o">=</span> <span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws1</span><span class="p">,</span> <span class="n">ws2</span><span class="p">)</span> <span class="c1"># Fails, they&#39;re not the same</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Displaying </span><span class="si">{}</span><span class="s2"> messages:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
+<span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span> <span class="o">=</span> <span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws1</span><span class="p">,</span> <span class="n">ws2</span><span class="p">)</span> <span class="c1"># Fails, they're not the same</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Result: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Displaying </span><span class="si">{}</span><span class="s2"> messages:"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;Message&#39;: &#39;</span><span class="si">{Message}</span><span class="s2">&#39;, &#39;Workspace 1&#39;: &#39;{Workspace 1}&#39;, &#39;Workspace 2&#39;: &#39;{Workspace 2}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">row</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"'Message': '</span><span class="si">{Message}</span><span class="s2">', 'Workspace 1': '{Workspace 1}', 'Workspace 2': '{Workspace 2}'"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">row</span><span class="p">))</span>
 
-<span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span> <span class="o">=</span> <span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws1</span><span class="p">,</span> <span class="n">ws2</span><span class="p">,</span> <span class="n">Tolerance</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># Passes, they&#39;re close enough</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Displaying </span><span class="si">{}</span><span class="s2"> messages:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
+<span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span> <span class="o">=</span> <span class="n">CompareWorkspaces</span><span class="p">(</span><span class="n">ws1</span><span class="p">,</span> <span class="n">ws2</span><span class="p">,</span> <span class="n">Tolerance</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># Passes, they're close enough</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Result: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Displaying </span><span class="si">{}</span><span class="s2"> messages:"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;Message&#39;: &#39;</span><span class="si">{Message}</span><span class="s2">&#39;, &#39;Workspace 1&#39;: &#39;{Workspace 1}&#39;, &#39;Workspace 2&#39;: &#39;{Workspace 2}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">row</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"'Message': '</span><span class="si">{Message}</span><span class="s2">', 'Workspace 1': '{Workspace 1}', 'Workspace 2': '{Workspace 2}'"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">row</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Result: False
 Displaying 1 messages:
-&#39;Message&#39;: &#39;Data mismatch&#39;, &#39;Workspace 1&#39;: &#39;ws1&#39;, &#39;Workspace 2&#39;: &#39;ws2&#39;
+'Message': 'Data mismatch', 'Workspace 1': 'ws1', 'Workspace 2': 'ws2'
 Result: True
 Displaying 0 messages:
 </pre></div>
@@ -1651,8 +1651,8 @@ Displaying 0 messages:
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/CompareWorkspaces.h">CompareWorkspaces.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/CompareWorkspaces.cpp">CompareWorkspaces.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/CompareWorkspaces.h">CompareWorkspaces.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/CompareWorkspaces.cpp">CompareWorkspaces.cpp</a></p>
 </section>
 </section>
 

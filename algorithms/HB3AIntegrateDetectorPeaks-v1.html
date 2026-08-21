@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>HB3AIntegrateDetectorPeaks v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>HB3AIntegrateDetectorPeaks v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1644,13 +1644,13 @@ used as the peak intensity:</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - DEMAND single detector peak integration</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">HB3AAdjustSampleNorm</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;HB3A_data.nxs&#39;</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">=</span><span class="s1">&#39;Detector&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">HB3AAdjustSampleNorm</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'HB3A_data.nxs'</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">=</span><span class="s1">'Detector'</span><span class="p">)</span>
 <span class="n">peaks</span> <span class="o">=</span> <span class="n">HB3AIntegrateDetectorPeaks</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
                                    <span class="n">ChiSqMax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                                    <span class="n">OutputFitResults</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                    <span class="n">LowerLeft</span><span class="o">=</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
                                    <span class="n">UpperRight</span><span class="o">=</span><span class="p">[</span><span class="mi">312</span><span class="p">,</span> <span class="mi">312</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HKL=</span><span class="si">{h:.0f}{k:.0f}{l:.0f}</span><span class="s1"> λ=</span><span class="si">{Wavelength}</span><span class="s1">Å Intensity=</span><span class="si">{Intens:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">peaks</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'HKL=</span><span class="si">{h:.0f}{k:.0f}{l:.0f}</span><span class="s1"> λ=</span><span class="si">{Wavelength}</span><span class="s1">Å Intensity=</span><span class="si">{Intens:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">peaks</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>HKL=... λ=...Å Intensity=...
@@ -1659,15 +1659,15 @@ used as the peak intensity:</p>
 <p>To check the ROI and peak fitting you can plot the results</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">9.6</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">))</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;mantid&#39;</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;mantid&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;peaks_data_ROI&#39;</span><span class="p">],</span> <span class="n">transpose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;ROI&quot;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;peaks_data_Workspace&#39;</span><span class="p">],</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;peaks_data_Workspace&#39;</span><span class="p">],</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;calc&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;peaks_data_Workspace&#39;</span><span class="p">],</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;diff&#39;</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">'mantid'</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">'mantid'</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'peaks_data_ROI'</span><span class="p">],</span> <span class="n">transpose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"ROI"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'peaks_data_Workspace'</span><span class="p">],</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'data'</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'peaks_data_Workspace'</span><span class="p">],</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'calc'</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'peaks_data_Workspace'</span><span class="p">],</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'diff'</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Fitted integrated peak&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Fitted integrated peak"</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1679,19 +1679,19 @@ used as the peak intensity:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">IPTS</span> <span class="o">=</span> <span class="mi">24855</span>
 <span class="n">exp</span> <span class="o">=</span> <span class="mi">755</span>
 <span class="n">scans</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">96</span><span class="p">)</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;/HFIR/HB3A/IPTS-</span><span class="si">{}</span><span class="s1">/shared/autoreduce/HB3A_exp</span><span class="si">{:04}</span><span class="s1">_scan</span><span class="si">{:04}</span><span class="s1">.nxs&#39;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">'/HFIR/HB3A/IPTS-</span><span class="si">{}</span><span class="s1">/shared/autoreduce/HB3A_exp</span><span class="si">{:04}</span><span class="s1">_scan</span><span class="si">{:04}</span><span class="s1">.nxs'</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">HB3AAdjustSampleNorm</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IPTS</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">scan</span><span class="p">)</span> <span class="k">for</span> <span class="n">scan</span> <span class="ow">in</span> <span class="n">scans</span><span class="p">),</span> <span class="n">OutputType</span><span class="o">=</span><span class="s2">&quot;Detector&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">HB3AAdjustSampleNorm</span><span class="p">(</span><span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">IPTS</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">scan</span><span class="p">)</span> <span class="k">for</span> <span class="n">scan</span> <span class="ow">in</span> <span class="n">scans</span><span class="p">),</span> <span class="n">OutputType</span><span class="o">=</span><span class="s2">"Detector"</span><span class="p">)</span>
 <span class="n">peaks</span> <span class="o">=</span> <span class="n">HB3AIntegrateDetectorPeaks</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">IndexPeaks</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">ModVector1</span><span class="o">=</span><span class="s1">&#39;0,0,0.5&#39;</span><span class="p">,</span> <span class="n">MaxOrder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">SaveModulationInfo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">SaveReflections</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;peaks.hkl&#39;</span><span class="p">)</span>
+<span class="n">IndexPeaks</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">ModVector1</span><span class="o">=</span><span class="s1">'0,0,0.5'</span><span class="p">,</span> <span class="n">MaxOrder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">SaveModulationInfo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">SaveReflections</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">'peaks.hkl'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Crystal/Integration.html">Crystal\Integration</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/HB3AIntegrateDetectorPeaks.py">HB3AIntegrateDetectorPeaks.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/HB3AIntegrateDetectorPeaks.py">HB3AIntegrateDetectorPeaks.py</a></p>
 </section>
 </section>
 

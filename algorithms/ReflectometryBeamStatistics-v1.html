@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometryBeamStatistics v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ReflectometryBeamStatistics v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1546,8 +1546,8 @@
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - ReflectometryBeamStatistics</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ILL/D17/317369.nxs&#39;</span><span class="p">)</span>
-<span class="n">ref</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ILL/D17/317370.nxs&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'ILL/D17/317369.nxs'</span><span class="p">)</span>
+<span class="n">ref</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'ILL/D17/317370.nxs'</span><span class="p">)</span>
 
 <span class="n">ReflectometryBeamStatistics</span><span class="p">(</span>
     <span class="n">ReflectedBeamWorkspace</span><span class="o">=</span><span class="n">ref</span><span class="p">,</span>
@@ -1556,18 +1556,18 @@
     <span class="n">DirectForeground</span><span class="o">=</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">205</span><span class="p">],</span>
     <span class="n">PixelSize</span><span class="o">=</span><span class="mf">0.001195</span><span class="p">,</span>
     <span class="n">DetectorResolution</span><span class="o">=</span><span class="mf">0.00022</span><span class="p">,</span>
-    <span class="n">FirstSlitName</span><span class="o">=</span><span class="s1">&#39;slit2&#39;</span><span class="p">,</span>
-    <span class="n">FirstSlitSizeSampleLog</span><span class="o">=</span><span class="s1">&#39;VirtualSlitAxis.s2w_actual_width&#39;</span><span class="p">,</span>
-    <span class="n">SecondSlitName</span><span class="o">=</span><span class="s1">&#39;slit3&#39;</span><span class="p">,</span>
-    <span class="n">SecondSlitSizeSampleLog</span><span class="o">=</span><span class="s1">&#39;VirtualSlitAxis.s3w_actual_width&#39;</span><span class="p">)</span>
+    <span class="n">FirstSlitName</span><span class="o">=</span><span class="s1">'slit2'</span><span class="p">,</span>
+    <span class="n">FirstSlitSizeSampleLog</span><span class="o">=</span><span class="s1">'VirtualSlitAxis.s2w_actual_width'</span><span class="p">,</span>
+    <span class="n">SecondSlitName</span><span class="o">=</span><span class="s1">'slit3'</span><span class="p">,</span>
+    <span class="n">SecondSlitSizeSampleLog</span><span class="o">=</span><span class="s1">'VirtualSlitAxis.s3w_actual_width'</span><span class="p">)</span>
 <span class="n">run</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-<span class="n">bent</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;beam_stats.bent_sample&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bent sample? </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;yes&#39;</span> <span class="k">if</span> <span class="n">bent</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s1">&#39;no&#39;</span><span class="p">))</span>
-<span class="n">rms</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;beam_stats.beam_rms_variation&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Beam RMS variation: </span><span class="si">{:.3}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rms</span><span class="p">))</span>
+<span class="n">bent</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'beam_stats.bent_sample'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Bent sample? </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">'yes'</span> <span class="k">if</span> <span class="n">bent</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s1">'no'</span><span class="p">))</span>
+<span class="n">rms</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'beam_stats.beam_rms_variation'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Beam RMS variation: </span><span class="si">{:.3}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rms</span><span class="p">))</span>
 <span class="n">run</span> <span class="o">=</span> <span class="nb">dir</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-<span class="n">rms</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;beam_stats.beam_rms_variation&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMS variation cached in dir: </span><span class="si">{:.3}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rms</span><span class="p">))</span>
+<span class="n">rms</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'beam_stats.beam_rms_variation'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'RMS variation cached in dir: </span><span class="si">{:.3}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rms</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1580,8 +1580,8 @@ RMS variation cached in dir: 0.00208
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Reflectometry/inc/MantidReflectometry/ReflectometryBeamStatistics.h">ReflectometryBeamStatistics.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Reflectometry/src/ReflectometryBeamStatistics.cpp">ReflectometryBeamStatistics.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Reflectometry/inc/MantidReflectometry/ReflectometryBeamStatistics.h">ReflectometryBeamStatistics.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Reflectometry/src/ReflectometryBeamStatistics.cpp">ReflectometryBeamStatistics.cpp</a></p>
 </section>
 </section>
 

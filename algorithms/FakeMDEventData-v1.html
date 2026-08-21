@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FakeMDEventData v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FakeMDEventData v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/FakeMDEventData-v1';</script>
@@ -1512,10 +1512,10 @@ number of events.</p>
 or a newly created one. All of the examples below will be done with newly created ones
 using <a class="reference internal" href="CreateMDWorkspace-v1.html#algm-createmdworkspace"><span class="std std-ref">CreateMDWorkspace</span></a>.</p>
 <p><strong>2D Uniform Event Distribution Example</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="n">EventType</span><span class="o">=</span><span class="s1">&#39;MDEvent&#39;</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;-10,10,-10,10&#39;</span><span class="p">,</span>
-                       <span class="n">Names</span><span class="o">=</span><span class="s1">&#39;Q_lab_x,Q_lab_y&#39;</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">&#39;A,B&#39;</span><span class="p">)</span>
-<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">UniformParams</span><span class="o">=</span><span class="s2">&quot;1000000&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of events = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">()))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">'2'</span><span class="p">,</span> <span class="n">EventType</span><span class="o">=</span><span class="s1">'MDEvent'</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">'-10,10,-10,10'</span><span class="p">,</span>
+                       <span class="n">Names</span><span class="o">=</span><span class="s1">'Q_lab_x,Q_lab_y'</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">'A,B'</span><span class="p">)</span>
+<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">UniformParams</span><span class="o">=</span><span class="s2">"1000000"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of events = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1529,12 +1529,12 @@ using <a class="reference internal" href="CreateMDWorkspace-v1.html#algm-createm
 </div>
 <p><strong>3D Peaks Example</strong></p>
 <p>Creates 3 peaks in (H,K,L) at (0,0,0), (1,1,0) and (1,1,1).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;-3,3,-3,3,-3,3&#39;</span><span class="p">,</span> <span class="n">Names</span><span class="o">=</span><span class="s1">&#39;h,k,l&#39;</span><span class="p">,</span>
-                       <span class="n">Units</span><span class="o">=</span><span class="s1">&#39;rlu,rlu,rlu&#39;</span><span class="p">,</span> <span class="n">SplitInto</span><span class="o">=</span><span class="s1">&#39;4&#39;</span><span class="p">)</span>
-<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">&#39;10000,1,1,1,0.1&#39;</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">&#39;63759&#39;</span><span class="p">,</span> <span class="n">RandomizeSignal</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
-<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">&#39;100000,0,0,0,0.1&#39;</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">&#39;63759&#39;</span><span class="p">,</span> <span class="n">RandomizeSignal</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
-<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">&#39;40000,1,1,0,0.1&#39;</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">&#39;63759&#39;</span><span class="p">,</span> <span class="n">RandomizeSignal</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of events = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">()))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">'3'</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">'-3,3,-3,3,-3,3'</span><span class="p">,</span> <span class="n">Names</span><span class="o">=</span><span class="s1">'h,k,l'</span><span class="p">,</span>
+                       <span class="n">Units</span><span class="o">=</span><span class="s1">'rlu,rlu,rlu'</span><span class="p">,</span> <span class="n">SplitInto</span><span class="o">=</span><span class="s1">'4'</span><span class="p">)</span>
+<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">'10000,1,1,1,0.1'</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">'63759'</span><span class="p">,</span> <span class="n">RandomizeSignal</span><span class="o">=</span><span class="s1">'1'</span><span class="p">)</span>
+<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">'100000,0,0,0,0.1'</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">'63759'</span><span class="p">,</span> <span class="n">RandomizeSignal</span><span class="o">=</span><span class="s1">'1'</span><span class="p">)</span>
+<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">'40000,1,1,0,0.1'</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">'63759'</span><span class="p">,</span> <span class="n">RandomizeSignal</span><span class="o">=</span><span class="s1">'1'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of events = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1548,10 +1548,10 @@ using <a class="reference internal" href="CreateMDWorkspace-v1.html#algm-createm
 </div>
 <p><strong>4D Peaks Example</strong></p>
 <p>Creates a peak at (H,K,L) of (0,0,0) around T=5K.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;-1,1,-1,1,-1,1,0,10&#39;</span><span class="p">,</span> <span class="n">Names</span><span class="o">=</span><span class="s1">&#39;H,K,L,T&#39;</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">&#39;rlu,rlu,rlu,K&#39;</span><span class="p">,</span>
-                       <span class="n">SplitInto</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="n">SplitThreshold</span><span class="o">=</span><span class="s1">&#39;50&#39;</span><span class="p">)</span>
-<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">&#39;1e+06,0,0,0,5,0.2&#39;</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">&#39;3873875&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of events = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">()))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">'4'</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">'-1,1,-1,1,-1,1,0,10'</span><span class="p">,</span> <span class="n">Names</span><span class="o">=</span><span class="s1">'H,K,L,T'</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">'rlu,rlu,rlu,K'</span><span class="p">,</span>
+                       <span class="n">SplitInto</span><span class="o">=</span><span class="s1">'2'</span><span class="p">,</span> <span class="n">SplitThreshold</span><span class="o">=</span><span class="s1">'50'</span><span class="p">)</span>
+<span class="n">FakeMDEventData</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">'1e+06,0,0,0,5,0.2'</span><span class="p">,</span> <span class="n">RandomSeed</span><span class="o">=</span><span class="s1">'3873875'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of events = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1565,8 +1565,8 @@ the T slider is moved to ~5K:</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/inc/MantidMDAlgorithms/FakeMDEventData.h">FakeMDEventData.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/src/FakeMDEventData.cpp">FakeMDEventData.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/inc/MantidMDAlgorithms/FakeMDEventData.h">FakeMDEventData.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/src/FakeMDEventData.cpp">FakeMDEventData.cpp</a></p>
 </section>
 </section>
 

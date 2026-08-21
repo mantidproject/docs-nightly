@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ExaminePowderDiffProfile v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ExaminePowderDiffProfile v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ExaminePowderDiffProfile-v1';</script>
@@ -1569,32 +1569,32 @@ processing background and calculating peaks by Le Bail algorithm.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Calculate peaks from input table workspaces</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate inputs</span>
-<span class="n">LoadAscii</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;PG3_15035-3.dat&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_15035-3&#39;</span><span class="p">,</span> <span class="n">Unit</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">)</span>
+<span class="n">LoadAscii</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'PG3_15035-3.dat'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'PG3_15035-3'</span><span class="p">,</span> <span class="n">Unit</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">)</span>
 
-<span class="n">ProcessBackground</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_15035-3&#39;</span><span class="p">,</span>
-      <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_15035-3_BkgdPts&#39;</span><span class="p">,</span>
-      <span class="n">Options</span><span class="o">=</span><span class="s1">&#39;SelectBackgroundPoints&#39;</span><span class="p">,</span>
+<span class="n">ProcessBackground</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'PG3_15035-3'</span><span class="p">,</span>
+      <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'PG3_15035-3_BkgdPts'</span><span class="p">,</span>
+      <span class="n">Options</span><span class="o">=</span><span class="s1">'SelectBackgroundPoints'</span><span class="p">,</span>
       <span class="n">LowerBound</span><span class="o">=</span><span class="mi">9726</span><span class="p">,</span>
       <span class="n">UpperBound</span><span class="o">=</span><span class="mi">79000</span><span class="p">,</span>
-      <span class="n">SelectionMode</span><span class="o">=</span><span class="s1">&#39;FitGivenDataPoints&#39;</span><span class="p">,</span>
-      <span class="n">BackgroundPoints</span><span class="o">=</span><span class="s1">&#39;10082,10591,11154,12615,13690,13715,15073,16893,17764,19628,21318,24192,35350, 44212,50900,60000,69900,79000&#39;</span><span class="p">,</span>
-      <span class="n">UserBackgroundWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank3Background&#39;</span><span class="p">,</span>
-      <span class="n">OutputBackgroundParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank3BackgroundParamsTable&#39;</span><span class="p">)</span>
+      <span class="n">SelectionMode</span><span class="o">=</span><span class="s1">'FitGivenDataPoints'</span><span class="p">,</span>
+      <span class="n">BackgroundPoints</span><span class="o">=</span><span class="s1">'10082,10591,11154,12615,13690,13715,15073,16893,17764,19628,21318,24192,35350, 44212,50900,60000,69900,79000'</span><span class="p">,</span>
+      <span class="n">UserBackgroundWorkspace</span><span class="o">=</span><span class="s1">'Bank3Background'</span><span class="p">,</span>
+      <span class="n">OutputBackgroundParameterWorkspace</span><span class="o">=</span><span class="s1">'Bank3BackgroundParamsTable'</span><span class="p">)</span>
 
-<span class="n">CreateLeBailFitInput</span><span class="p">(</span><span class="n">FullprofParameterFile</span><span class="o">=</span><span class="s1">&#39;2013A_HR60b3.irf&#39;</span><span class="p">,</span>
-      <span class="n">ReflectionsFile</span><span class="o">=</span><span class="s1">&#39;LB4854b3.hkl&#39;</span><span class="p">,</span>
+<span class="n">CreateLeBailFitInput</span><span class="p">(</span><span class="n">FullprofParameterFile</span><span class="o">=</span><span class="s1">'2013A_HR60b3.irf'</span><span class="p">,</span>
+      <span class="n">ReflectionsFile</span><span class="o">=</span><span class="s1">'LB4854b3.hkl'</span><span class="p">,</span>
       <span class="n">Bank</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">LatticeConstant</span><span class="o">=</span><span class="mf">4.156890</span><span class="p">,</span>
-      <span class="n">InstrumentParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_Bank3_ParTable&#39;</span><span class="p">,</span>
-      <span class="n">BraggPeakParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;LaB6_HKL_Table&#39;</span><span class="p">)</span>
+      <span class="n">InstrumentParameterWorkspace</span><span class="o">=</span><span class="s1">'PG3_Bank3_ParTable'</span><span class="p">,</span>
+      <span class="n">BraggPeakParameterWorkspace</span><span class="o">=</span><span class="s1">'LaB6_HKL_Table'</span><span class="p">)</span>
 
 <span class="c1"># Examine profile quality</span>
-<span class="n">ExaminePowderDiffProfile</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_15035-3&#39;</span><span class="p">,</span> <span class="n">StartX</span><span class="o">=</span><span class="mi">20000</span><span class="p">,</span> <span class="n">EndX</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
-      <span class="n">ProfileWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_Bank3_ParTable&#39;</span><span class="p">,</span> <span class="n">BraggPeakWorkspace</span><span class="o">=</span><span class="s1">&#39;LaB6_HKL_Table&#39;</span><span class="p">,</span>
-      <span class="n">BackgroundParameterWorkspace</span><span class="o">=</span><span class="s1">&#39;Bank3BackgroundParamsTable&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_15035B3_Cal&#39;</span><span class="p">)</span>
+<span class="n">ExaminePowderDiffProfile</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'PG3_15035-3'</span><span class="p">,</span> <span class="n">StartX</span><span class="o">=</span><span class="mi">20000</span><span class="p">,</span> <span class="n">EndX</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
+      <span class="n">ProfileWorkspace</span><span class="o">=</span><span class="s1">'PG3_Bank3_ParTable'</span><span class="p">,</span> <span class="n">BraggPeakWorkspace</span><span class="o">=</span><span class="s1">'LaB6_HKL_Table'</span><span class="p">,</span>
+      <span class="n">BackgroundParameterWorkspace</span><span class="o">=</span><span class="s1">'Bank3BackgroundParamsTable'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'PG3_15035B3_Cal'</span><span class="p">)</span>
 
 <span class="c1"># Output result</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;PG3_15035B3_Cal&#39;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output workspace has </span><span class="si">%d</span><span class="s1"> spectra&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'PG3_15035B3_Cal'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Output workspace has </span><span class="si">%d</span><span class="s1"> spectra'</span> <span class="o">%</span> <span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1606,7 +1606,7 @@ Output workspace has 9 spectra
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/ExaminePowderDiffProfile.py">ExaminePowderDiffProfile.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/ExaminePowderDiffProfile.py">ExaminePowderDiffProfile.py</a></p>
 </section>
 </section>
 

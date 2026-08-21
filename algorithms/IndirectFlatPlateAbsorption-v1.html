@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>IndirectFlatPlateAbsorption v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>IndirectFlatPlateAbsorption v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1591,11 +1591,11 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - Sample corrections for IRIS:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">red_ws</span> <span class="o">=</span> <span class="n">LoadNexusProcessed</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;irs26176_graphite002_red.nxs&#39;</span><span class="p">)</span>
-<span class="n">can_ws</span> <span class="o">=</span> <span class="n">LoadNexusProcessed</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;irs26173_graphite002_red.nxs&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">red_ws</span> <span class="o">=</span> <span class="n">LoadNexusProcessed</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'irs26176_graphite002_red.nxs'</span><span class="p">)</span>
+<span class="n">can_ws</span> <span class="o">=</span> <span class="n">LoadNexusProcessed</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'irs26173_graphite002_red.nxs'</span><span class="p">)</span>
 
 <span class="n">corrected</span><span class="p">,</span> <span class="n">fact</span> <span class="o">=</span> <span class="n">IndirectFlatPlateAbsorption</span><span class="p">(</span><span class="n">SampleWorkspace</span><span class="o">=</span><span class="n">red_ws</span><span class="p">,</span>
-                                              <span class="n">SampleChemicalFormula</span><span class="o">=</span><span class="s1">&#39;H2-O&#39;</span><span class="p">,</span>
+                                              <span class="n">SampleChemicalFormula</span><span class="o">=</span><span class="s1">'H2-O'</span><span class="p">,</span>
                                               <span class="n">CanWorkspace</span><span class="o">=</span><span class="n">can_ws</span><span class="p">,</span>
                                               <span class="n">CanScaleFactor</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
                                               <span class="n">SampleHeight</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -1607,10 +1607,10 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 
 <span class="n">ass</span> <span class="o">=</span> <span class="n">fact</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Corrected workspace is intensity against </span><span class="si">%s</span><span class="s1">&#39;</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'Corrected workspace is intensity against </span><span class="si">%s</span><span class="s1">'</span>
       <span class="o">%</span> <span class="p">(</span><span class="n">corrected</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
 
-<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Ass workspace is </span><span class="si">%s</span><span class="s1"> against </span><span class="si">%s</span><span class="s1">&#39;</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'Ass workspace is </span><span class="si">%s</span><span class="s1"> against </span><span class="si">%s</span><span class="s1">'</span>
       <span class="o">%</span> <span class="p">(</span><span class="n">ass</span><span class="o">.</span><span class="n">YUnitLabel</span><span class="p">(),</span> <span class="n">ass</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
 </pre></div>
 </div>
@@ -1620,13 +1620,13 @@ Ass workspace is Attenuation factor against Wavelength
 </pre></div>
 </div>
 <p><strong>Example - Sample and container corrections for IRIS:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">red_ws</span> <span class="o">=</span> <span class="n">LoadNexusProcessed</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;irs26176_graphite002_red.nxs&#39;</span><span class="p">)</span>
-<span class="n">can_ws</span> <span class="o">=</span> <span class="n">LoadNexusProcessed</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;irs26173_graphite002_red.nxs&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">red_ws</span> <span class="o">=</span> <span class="n">LoadNexusProcessed</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'irs26176_graphite002_red.nxs'</span><span class="p">)</span>
+<span class="n">can_ws</span> <span class="o">=</span> <span class="n">LoadNexusProcessed</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'irs26173_graphite002_red.nxs'</span><span class="p">)</span>
 
 <span class="n">corrected</span><span class="p">,</span> <span class="n">fact</span> <span class="o">=</span> <span class="n">IndirectFlatPlateAbsorption</span><span class="p">(</span><span class="n">SampleWorkspace</span><span class="o">=</span><span class="n">red_ws</span><span class="p">,</span>
-                                              <span class="n">SampleChemicalFormula</span><span class="o">=</span><span class="s1">&#39;H2-O&#39;</span><span class="p">,</span>
+                                              <span class="n">SampleChemicalFormula</span><span class="o">=</span><span class="s1">'H2-O'</span><span class="p">,</span>
                                               <span class="n">CanWorkspace</span><span class="o">=</span><span class="n">can_ws</span><span class="p">,</span>
-                                              <span class="n">CanChemicalFormula</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span>
+                                              <span class="n">CanChemicalFormula</span><span class="o">=</span><span class="s1">'V'</span><span class="p">,</span>
                                               <span class="n">CanScaleFactor</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
                                               <span class="n">SampleHeight</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                                               <span class="n">SampleWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -1638,13 +1638,13 @@ Ass workspace is Attenuation factor against Wavelength
 <span class="n">ass</span> <span class="o">=</span> <span class="n">fact</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">acc</span> <span class="o">=</span> <span class="n">fact</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Corrected workspace is intensity against </span><span class="si">%s</span><span class="s1">&#39;</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'Corrected workspace is intensity against </span><span class="si">%s</span><span class="s1">'</span>
       <span class="o">%</span> <span class="p">(</span><span class="n">corrected</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
 
-<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Ass workspace is </span><span class="si">%s</span><span class="s1"> against </span><span class="si">%s</span><span class="s1">&#39;</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'Ass workspace is </span><span class="si">%s</span><span class="s1"> against </span><span class="si">%s</span><span class="s1">'</span>
       <span class="o">%</span> <span class="p">(</span><span class="n">ass</span><span class="o">.</span><span class="n">YUnitLabel</span><span class="p">(),</span> <span class="n">ass</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
 
-<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Acc workspace is </span><span class="si">%s</span><span class="s1"> against </span><span class="si">%s</span><span class="s1">&#39;</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'Acc workspace is </span><span class="si">%s</span><span class="s1"> against </span><span class="si">%s</span><span class="s1">'</span>
       <span class="o">%</span> <span class="p">(</span><span class="n">acc</span><span class="o">.</span><span class="n">YUnitLabel</span><span class="p">(),</span> <span class="n">acc</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
 </pre></div>
 </div>
@@ -1658,7 +1658,7 @@ Acc workspace is Attenuation factor against Wavelength
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/IndirectFlatPlateAbsorption.py">IndirectFlatPlateAbsorption.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/IndirectFlatPlateAbsorption.py">IndirectFlatPlateAbsorption.py</a></p>
 </section>
 </section>
 

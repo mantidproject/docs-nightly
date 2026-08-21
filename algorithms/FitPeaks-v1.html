@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FitPeaks v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FitPeaks v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -2046,26 +2046,26 @@ If fitting is bad, then only background is calculated.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Find a single peak:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s2">&quot;User Defined&quot;</span><span class="p">,</span>
-                           <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="s2">&quot;name=LinearBackground, A0=0.3;name=Gaussian, PeakCentre=5, Height=10, Sigma=0.7&quot;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s2">"User Defined"</span><span class="p">,</span>
+                           <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="s2">"name=LinearBackground, A0=0.3;name=Gaussian, PeakCentre=5, Height=10, Sigma=0.7"</span><span class="p">,</span>
                            <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
-<span class="n">FitPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span> <span class="n">PeakCenters</span><span class="o">=</span><span class="s1">&#39;5.1&#39;</span><span class="p">,</span> <span class="n">FitWindowBoundaryList</span><span class="o">=</span><span class="s1">&#39;0,10&#39;</span><span class="p">,</span> <span class="n">OutputPeakParametersWorkspace</span><span class="o">=</span><span class="s1">&#39;fitted_params&#39;</span><span class="p">,</span>
-         <span class="n">BackgroundType</span><span class="o">=</span><span class="s1">&#39;Linear&#39;</span><span class="p">,</span> <span class="n">FittedPeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;fitted&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peakpositions&#39;</span><span class="p">)</span>
+<span class="n">FitPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'ws'</span><span class="p">,</span> <span class="n">PeakCenters</span><span class="o">=</span><span class="s1">'5.1'</span><span class="p">,</span> <span class="n">FitWindowBoundaryList</span><span class="o">=</span><span class="s1">'0,10'</span><span class="p">,</span> <span class="n">OutputPeakParametersWorkspace</span><span class="o">=</span><span class="s1">'fitted_params'</span><span class="p">,</span>
+         <span class="n">BackgroundType</span><span class="o">=</span><span class="s1">'Linear'</span><span class="p">,</span> <span class="n">FittedPeaksWorkspace</span><span class="o">=</span><span class="s1">'fitted'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peakpositions'</span><span class="p">)</span>
 
-<span class="n">peakposws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;peakpositions&#39;</span><span class="p">]</span>
-<span class="n">param_ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;fitted_params&#39;</span><span class="p">]</span>
+<span class="n">peakposws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'peakpositions'</span><span class="p">]</span>
+<span class="n">param_ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'fitted_params'</span><span class="p">]</span>
 <span class="n">row</span> <span class="o">=</span> <span class="n">param_ws</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># output</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Fitted peak position: </span><span class="si">{0:.5f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakposws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Peak 0  Centre: </span><span class="si">{0:.5f}</span><span class="s2">, width: </span><span class="si">{1:.5f}</span><span class="s2">, height: </span><span class="si">{2:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Sigma&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Height&quot;</span><span class="p">]))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'Fitted peak position: </span><span class="si">{0:.5f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peakposws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">"Peak 0  Centre: </span><span class="si">{0:.5f}</span><span class="s2">, width: </span><span class="si">{1:.5f}</span><span class="s2">, height: </span><span class="si">{2:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"PeakCentre"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Sigma"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Height"</span><span class="p">]))</span>
 
 <span class="c1"># clean up workspaces</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;fitted&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;fitted_params&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;peakpositions&#39;</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'fitted'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'fitted_params'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'ws'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'peakpositions'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -2075,17 +2075,17 @@ Peak 0  Centre: ..., width: ..., height: ...
 </div>
 <p><strong>Example - Fit peaks on high background (vanadium):</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load a 4 spectra workspace</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;PG3_733.nxs&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"PG3_733.nxs"</span><span class="p">)</span>
 
-<span class="n">van_peak_centers</span> <span class="o">=</span> <span class="s2">&quot;0.5044,0.5191,0.5350,0.5526,0.5936,0.6178,0.6453,0.6768,0.7134,0.7566,0.8089,0.8737,0.9571,1.0701,1.2356,1.5133,2.1401&quot;</span>
+<span class="n">van_peak_centers</span> <span class="o">=</span> <span class="s2">"0.5044,0.5191,0.5350,0.5526,0.5936,0.6178,0.6453,0.6768,0.7134,0.7566,0.8089,0.8737,0.9571,1.0701,1.2356,1.5133,2.1401"</span>
 <span class="n">FitPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">StartWorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">StopWorkspaceIndex</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">PeakCenters</span><span class="o">=</span><span class="n">van_peak_centers</span><span class="p">,</span>
            <span class="n">FitFromRight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">HighBackground</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-           <span class="n">BackgroundType</span><span class="o">=</span><span class="s1">&#39;Quadratic&#39;</span><span class="p">,</span>
+           <span class="n">BackgroundType</span><span class="o">=</span><span class="s1">'Quadratic'</span><span class="p">,</span>
            <span class="n">PeakWidthPercent</span><span class="o">=</span><span class="mf">0.008</span><span class="p">,</span>
-           <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_733_peak_positions&#39;</span><span class="p">,</span><span class="n">OutputPeakParametersWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_733_peak_params&#39;</span><span class="p">,</span>
-           <span class="n">FittedPeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;PG3_733_fitted_peaks&#39;</span><span class="p">)</span>
+           <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'PG3_733_peak_positions'</span><span class="p">,</span><span class="n">OutputPeakParametersWorkspace</span><span class="o">=</span><span class="s1">'PG3_733_peak_params'</span><span class="p">,</span>
+           <span class="n">FittedPeaksWorkspace</span><span class="o">=</span><span class="s1">'PG3_733_fitted_peaks'</span><span class="p">)</span>
 
-<span class="n">PG3_733_peak_positions</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;PG3_733_peak_positions&quot;</span><span class="p">]</span>
+<span class="n">PG3_733_peak_positions</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"PG3_733_peak_positions"</span><span class="p">]</span>
 <span class="n">ep0</span> <span class="o">=</span> <span class="n">PG3_733_peak_positions</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">ep1</span> <span class="o">=</span> <span class="n">PG3_733_peak_positions</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">ep2</span> <span class="o">=</span> <span class="n">PG3_733_peak_positions</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
@@ -2094,14 +2094,14 @@ Peak 0  Centre: ..., width: ..., height: ...
 <span class="n">fp2</span> <span class="o">=</span> <span class="n">PG3_733_peak_positions</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
 
 <span class="c1"># print data</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Spectrum 1: Expected right most 3 peaks at </span><span class="si">{0:.3f}</span><span class="s1">, </span><span class="si">{1:.3f}</span><span class="s1">, </span><span class="si">{2:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ep0</span><span class="p">,</span> <span class="n">ep1</span><span class="p">,</span> <span class="n">ep2</span><span class="p">))</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Spectrum 1: Found    right most 3 peaks at </span><span class="si">{0:.3f}</span><span class="s1">, </span><span class="si">{1:.3f}</span><span class="s1">, </span><span class="si">{2:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fp0</span><span class="p">,</span> <span class="n">fp1</span><span class="p">,</span> <span class="n">fp2</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'Spectrum 1: Expected right most 3 peaks at </span><span class="si">{0:.3f}</span><span class="s1">, </span><span class="si">{1:.3f}</span><span class="s1">, </span><span class="si">{2:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ep0</span><span class="p">,</span> <span class="n">ep1</span><span class="p">,</span> <span class="n">ep2</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'Spectrum 1: Found    right most 3 peaks at </span><span class="si">{0:.3f}</span><span class="s1">, </span><span class="si">{1:.3f}</span><span class="s1">, </span><span class="si">{2:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fp0</span><span class="p">,</span> <span class="n">fp1</span><span class="p">,</span> <span class="n">fp2</span><span class="p">))</span>
 
 <span class="c1"># delete workspaces</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;PG3_733_peak_positions&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;PG3_733_fitted_peaks&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;PG3_733_peak_params&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;ws&#39;</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'PG3_733_peak_positions'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'PG3_733_fitted_peaks'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'PG3_733_peak_params'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'ws'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -2111,35 +2111,35 @@ Spectrum 1: Found    right most 3 peaks at 2.149, 1.519, 1.240
 </div>
 <p><strong>Example - Fit back-to-back exponential peaks (Vulcan diamond):</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load data</span>
-<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;vulcan_diamond.nxs&quot;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;diamond_3peaks&quot;</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"vulcan_diamond.nxs"</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"diamond_3peaks"</span><span class="p">)</span>
 
-<span class="n">FitPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">&quot;diamond_3peaks&quot;</span><span class="p">,</span> <span class="n">StartWorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">StopWorkspaceIndex</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-       <span class="n">PeakCenters</span><span class="o">=</span><span class="s2">&quot;0.6867, 0.728299, 0.89198, 1.0758&quot;</span><span class="p">,</span>
-       <span class="n">PeakFunction</span><span class="o">=</span><span class="s2">&quot;BackToBackExponential&quot;</span><span class="p">,</span> <span class="n">BackgroundType</span><span class="o">=</span><span class="s2">&quot;Linear&quot;</span><span class="p">,</span>
-       <span class="n">FitWindowBoundaryList</span><span class="o">=</span><span class="s2">&quot;0.67, 0.709, 0.71, 0.76, 0.87, 0.92, 1.05, 1.1&quot;</span><span class="p">,</span>
-       <span class="n">PeakParameterNames</span><span class="o">=</span><span class="s2">&quot;I, A, B, X0, S&quot;</span><span class="p">,</span>
-       <span class="n">PeakParameterValues</span><span class="o">=</span><span class="s2">&quot;2.5e+06, 5400, 1700, 1.07, 0.000355&quot;</span><span class="p">,</span>
+<span class="n">FitPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">"diamond_3peaks"</span><span class="p">,</span> <span class="n">StartWorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">StopWorkspaceIndex</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+       <span class="n">PeakCenters</span><span class="o">=</span><span class="s2">"0.6867, 0.728299, 0.89198, 1.0758"</span><span class="p">,</span>
+       <span class="n">PeakFunction</span><span class="o">=</span><span class="s2">"BackToBackExponential"</span><span class="p">,</span> <span class="n">BackgroundType</span><span class="o">=</span><span class="s2">"Linear"</span><span class="p">,</span>
+       <span class="n">FitWindowBoundaryList</span><span class="o">=</span><span class="s2">"0.67, 0.709, 0.71, 0.76, 0.87, 0.92, 1.05, 1.1"</span><span class="p">,</span>
+       <span class="n">PeakParameterNames</span><span class="o">=</span><span class="s2">"I, A, B, X0, S"</span><span class="p">,</span>
+       <span class="n">PeakParameterValues</span><span class="o">=</span><span class="s2">"2.5e+06, 5400, 1700, 1.07, 0.000355"</span><span class="p">,</span>
        <span class="n">FitFromRight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
        <span class="n">HighBackground</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;diamond_peaks_centers&quot;</span><span class="p">,</span>
-       <span class="n">OutputPeakParametersWorkspace</span><span class="o">=</span><span class="s2">&quot;PeakParametersWS2&quot;</span><span class="p">,</span>
-       <span class="n">FittedPeaksWorkspace</span><span class="o">=</span><span class="s2">&quot;FittedPeaksWS2&quot;</span><span class="p">)</span>
+       <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"diamond_peaks_centers"</span><span class="p">,</span>
+       <span class="n">OutputPeakParametersWorkspace</span><span class="o">=</span><span class="s2">"PeakParametersWS2"</span><span class="p">,</span>
+       <span class="n">FittedPeaksWorkspace</span><span class="o">=</span><span class="s2">"FittedPeaksWS2"</span><span class="p">)</span>
 
-<span class="n">fitted_peak_pos_ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;diamond_peaks_centers&#39;</span><span class="p">]</span>
+<span class="n">fitted_peak_pos_ws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'diamond_peaks_centers'</span><span class="p">]</span>
 
 <span class="c1"># print result</span>
 <span class="k">for</span> <span class="n">ws_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Spectrum </span><span class="si">{0}</span><span class="s1">:&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws_index</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">'Spectrum </span><span class="si">{0}</span><span class="s1">:'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws_index</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">peak_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
         <span class="n">exp_pos</span> <span class="o">=</span> <span class="n">fitted_peak_pos_ws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">ws_index</span><span class="p">)[</span><span class="n">peak_index</span><span class="p">]</span>
         <span class="n">fit_pos</span> <span class="o">=</span> <span class="n">fitted_peak_pos_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">ws_index</span><span class="p">)[</span><span class="n">peak_index</span><span class="p">]</span>
-        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Expected @ </span><span class="si">{0:.3f}</span><span class="s1">  Fitted @ </span><span class="si">{1:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exp_pos</span><span class="p">,</span> <span class="n">fit_pos</span><span class="p">))</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">'Expected @ </span><span class="si">{0:.3f}</span><span class="s1">  Fitted @ </span><span class="si">{1:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exp_pos</span><span class="p">,</span> <span class="n">fit_pos</span><span class="p">))</span>
 
 <span class="c1"># clean</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;diamond_3peaks&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;diamond_peaks_centers&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;FittedPeaksWS2&#39;</span><span class="p">)</span>
-<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">&#39;PeakParametersWS2&#39;</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'diamond_3peaks'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'diamond_peaks_centers'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'FittedPeaksWS2'</span><span class="p">)</span>
+<span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="s1">'PeakParametersWS2'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -2152,8 +2152,8 @@ Expected @ 1.076  Fitted @ 1.075
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/FitPeaks.h">FitPeaks.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/FitPeaks.cpp">FitPeaks.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/FitPeaks.h">FitPeaks.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/FitPeaks.cpp">FitPeaks.cpp</a></p>
 </section>
 </section>
 

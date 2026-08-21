@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>GSASIIRefineFitPeaks v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>GSASIIRefineFitPeaks v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1674,29 +1674,29 @@ something is awry.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># You would normally generate the focused file using the Engg GUI or,</span>
 <span class="c1"># alternatively, with commands like these:</span>
 <span class="c1">#</span>
-<span class="c1"># ws_to_focus = Load(&#39;ENGINX00256663-256675&#39;)</span>
-<span class="c1"># wks_ceria = Load(&#39;ENGINX00255924&#39;)</span>
-<span class="c1"># wks_vana = Load(&#39;ENGINX00254854&#39;)</span>
+<span class="c1"># ws_to_focus = Load('ENGINX00256663-256675')</span>
+<span class="c1"># wks_ceria = Load('ENGINX00255924')</span>
+<span class="c1"># wks_vana = Load('ENGINX00254854')</span>
 <span class="c1"># # Using default expected peaks for Ceria</span>
-<span class="c1"># difa, difc, tzero, peaks_tbl = EnggCalibrate(InputWorkspace=wks_ceria, VanadiumWorkspace=wks_vana, Bank=&#39;North&#39;)</span>
-<span class="c1"># wks_focused = EnggFocus(InputWorkspace=wks, VanadiumWorkspace=wks_vana, Bank=&#39;North&#39;)</span>
-<span class="c1"># SaveNexus(InputWorkspace=wks_focused, Filename=&#39;focused_bank1_ENGINX00256663.nxs&#39;)</span>
+<span class="c1"># difa, difc, tzero, peaks_tbl = EnggCalibrate(InputWorkspace=wks_ceria, VanadiumWorkspace=wks_vana, Bank='North')</span>
+<span class="c1"># wks_focused = EnggFocus(InputWorkspace=wks, VanadiumWorkspace=wks_vana, Bank='North')</span>
+<span class="c1"># SaveNexus(InputWorkspace=wks_focused, Filename='focused_bank1_ENGINX00256663.nxs')</span>
 <span class="c1">#</span>
-<span class="n">wks</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;focused_bank1_ENGINX00256663.nxs&#39;</span><span class="p">)</span>
+<span class="n">wks</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'focused_bank1_ENGINX00256663.nxs'</span><span class="p">)</span>
 <span class="n">peaks</span><span class="p">,</span> <span class="n">lattice_params</span><span class="p">,</span> <span class="n">rwp</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=</span> \
     <span class="n">GSASIIRefineFitPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">wks</span><span class="p">,</span>
-                         <span class="n">RefinementMethod</span><span class="o">=</span><span class="s2">&quot;Pawley refinement&quot;</span><span class="p">,</span>
-                         <span class="n">InstrumentFile</span><span class="o">=</span><span class="s1">&#39;template_ENGINX_241391_236516_North_bank.prm&#39;</span><span class="p">,</span>
-                         <span class="n">PhaseInfoFiles</span><span class="o">=</span><span class="s1">&#39;Fe-alpha.cif,Fe-gamma.cif&#39;</span><span class="p">,</span>
-                         <span class="n">PathToGSASII</span><span class="o">=</span><span class="s1">&#39;/home/user/g2conda/GSASII&#39;</span><span class="p">,</span>
+                         <span class="n">RefinementMethod</span><span class="o">=</span><span class="s2">"Pawley refinement"</span><span class="p">,</span>
+                         <span class="n">InstrumentFile</span><span class="o">=</span><span class="s1">'template_ENGINX_241391_236516_North_bank.prm'</span><span class="p">,</span>
+                         <span class="n">PhaseInfoFiles</span><span class="o">=</span><span class="s1">'Fe-alpha.cif,Fe-gamma.cif'</span><span class="p">,</span>
+                         <span class="n">PathToGSASII</span><span class="o">=</span><span class="s1">'/home/user/g2conda/GSASII'</span><span class="p">,</span>
                          <span class="n">RefineSigma</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                          <span class="n">RefineGamma</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                         <span class="n">SaveGSASIIProjectFile</span><span class="o">=</span><span class="s1">&#39;example_gsas2_project.gpx&#39;</span><span class="p">,</span>
-                         <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;FittedPeaks&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Weighted profile R-factor (Rwp): </span><span class="si">{0:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rwp</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lattice parameters, a: </span><span class="si">{a}</span><span class="s2">, b: </span><span class="si">{b}</span><span class="s2">, c: </span><span class="si">{c}</span><span class="s2">, alpha: </span><span class="si">{alpha}</span><span class="s2">, beta: </span><span class="si">{beta}</span><span class="s2">, gamma: </span><span class="si">{gamma}</span><span class="s2">, &quot;</span>
-      <span class="s2">&quot;Volume: </span><span class="si">{volume:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">lattice_params</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sigma=</span><span class="si">{}</span><span class="s2">, Gamma=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">gamma</span><span class="p">))</span>
+                         <span class="n">SaveGSASIIProjectFile</span><span class="o">=</span><span class="s1">'example_gsas2_project.gpx'</span><span class="p">,</span>
+                         <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"FittedPeaks"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Weighted profile R-factor (Rwp): </span><span class="si">{0:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rwp</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Lattice parameters, a: </span><span class="si">{a}</span><span class="s2">, b: </span><span class="si">{b}</span><span class="s2">, c: </span><span class="si">{c}</span><span class="s2">, alpha: </span><span class="si">{alpha}</span><span class="s2">, beta: </span><span class="si">{beta}</span><span class="s2">, gamma: </span><span class="si">{gamma}</span><span class="s2">, "</span>
+      <span class="s2">"Volume: </span><span class="si">{volume:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">lattice_params</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Sigma=</span><span class="si">{}</span><span class="s2">, Gamma=</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">gamma</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1706,18 +1706,18 @@ Sigma=81.0939, Gamma=0.1855
 </pre></div>
 </div>
 <p><strong>Example - Rietveld refinement of lattice parameters from a diffraction spectrum</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">wks</span><span class="o">=</span><span class="n">Load</span><span class="p">(</span><span class="s1">&#39;focused_bank1_ENGINX00256663.nxs&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">wks</span><span class="o">=</span><span class="n">Load</span><span class="p">(</span><span class="s1">'focused_bank1_ENGINX00256663.nxs'</span><span class="p">)</span>
 <span class="n">peaks</span><span class="p">,</span> <span class="n">lattice_params</span><span class="p">,</span> <span class="n">rwp</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=</span> \
     <span class="n">GSASIIRefineFitPeaks</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">wks</span><span class="p">,</span>
-                         <span class="n">RefinementMethod</span><span class="o">=</span><span class="s1">&#39;Rietveld refinement&#39;</span><span class="p">,</span>
-                         <span class="n">InstrumentFile</span><span class="o">=</span><span class="s1">&#39;template_ENGINX_241391_236516_North_bank.prm&#39;</span><span class="p">,</span>
-                         <span class="n">PhaseInfoFiles</span><span class="o">=</span><span class="s1">&#39;Fe-alpha.cif,Fe-gamma.cif&#39;</span><span class="p">,</span>
-                         <span class="n">PathToGSASII</span><span class="o">=</span><span class="s1">&#39;/home/user/g2conda/GSASII&#39;</span><span class="p">,</span>
-                         <span class="n">SaveGSASIIProjectFile</span><span class="o">=</span><span class="s1">&#39;example_gsas2_project.gpx&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Weighted profile R-factor (Rwp): </span><span class="si">{0:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rwp</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lattice parameters, a: </span><span class="si">{a}</span><span class="s2">, b: </span><span class="si">{b}</span><span class="s2">, c: </span><span class="si">{c}</span><span class="s2">, alpha: </span><span class="si">{alpha}</span><span class="s2">, beta: </span><span class="si">{beta}</span><span class="s2">, gamma: </span><span class="si">{gamma}</span><span class="s2">, &quot;</span>
-      <span class="s2">&quot;Volume: </span><span class="si">{volume:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">lattice_params</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sigma=</span><span class="si">{}</span><span class="s2">, Gamma=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">gamma</span><span class="p">))</span>
+                         <span class="n">RefinementMethod</span><span class="o">=</span><span class="s1">'Rietveld refinement'</span><span class="p">,</span>
+                         <span class="n">InstrumentFile</span><span class="o">=</span><span class="s1">'template_ENGINX_241391_236516_North_bank.prm'</span><span class="p">,</span>
+                         <span class="n">PhaseInfoFiles</span><span class="o">=</span><span class="s1">'Fe-alpha.cif,Fe-gamma.cif'</span><span class="p">,</span>
+                         <span class="n">PathToGSASII</span><span class="o">=</span><span class="s1">'/home/user/g2conda/GSASII'</span><span class="p">,</span>
+                         <span class="n">SaveGSASIIProjectFile</span><span class="o">=</span><span class="s1">'example_gsas2_project.gpx'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Weighted profile R-factor (Rwp): </span><span class="si">{0:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rwp</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Lattice parameters, a: </span><span class="si">{a}</span><span class="s2">, b: </span><span class="si">{b}</span><span class="s2">, c: </span><span class="si">{c}</span><span class="s2">, alpha: </span><span class="si">{alpha}</span><span class="s2">, beta: </span><span class="si">{beta}</span><span class="s2">, gamma: </span><span class="si">{gamma}</span><span class="s2">, "</span>
+      <span class="s2">"Volume: </span><span class="si">{volume:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">lattice_params</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Sigma=</span><span class="si">{}</span><span class="s2">, Gamma=</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">gamma</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1730,7 +1730,7 @@ Sigma=81.0939, Gamma=0.1855
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/GSASIIRefineFitPeaks.py">GSASIIRefineFitPeaks.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/GSASIIRefineFitPeaks.py">GSASIIRefineFitPeaks.py</a></p>
 </section>
 </section>
 

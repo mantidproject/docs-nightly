@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Symmetry groups &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Symmetry groups &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -521,11 +521,11 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">SymmetryOperationFactory</span>
 
 <span class="c1"># This time the identifier is already normalized</span>
-<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">&quot;x,y,-z&quot;</span><span class="p">)</span>
+<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">"x,y,-z"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">symOp</span><span class="o">.</span><span class="n">getIdentifier</span><span class="p">())</span>
 
 <span class="c1"># This is an example for an identifier that changes</span>
-<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">&quot;1/2+x,y,z&quot;</span><span class="p">)</span>
+<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">"1/2+x,y,z"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">symOp</span><span class="o">.</span><span class="n">getIdentifier</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -538,10 +538,10 @@ x+1/2,y,z
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">SymmetryOperationFactory</span>
 
 <span class="c1"># Create a list of symmetry operations</span>
-<span class="n">symOps</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOps</span><span class="p">(</span><span class="s2">&quot;x,y,-z; -x,-y,-z; z,x,y&quot;</span><span class="p">)</span>
+<span class="n">symOps</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOps</span><span class="p">(</span><span class="s2">"x,y,-z; -x,-y,-z; z,x,y"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of operations: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symOps</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Operations:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of operations: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symOps</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Operations:"</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">symOps</span><span class="p">:</span>
    <span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">getIdentifier</span><span class="p">())</span>
@@ -558,12 +558,12 @@ z,x,y
 <p>Symmetry operation objects can be used to transform coordinates or Miller indices, which are handled differently as detailed in the theory section above, so different methods exists for each of the two tasks.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">SymmetryOperationFactory</span>
 
-<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">&quot;x-y,x,z&quot;</span><span class="p">)</span>
+<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">"x-y,x,z"</span><span class="p">)</span>
 
 <span class="n">coordinates</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
 <span class="n">coordinatesPrime</span> <span class="o">=</span> <span class="n">symOp</span><span class="o">.</span><span class="n">transformCoordinates</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transformed coordinates: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">coordinatesPrime</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Transformed coordinates: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">coordinatesPrime</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>This script generates a symmetry operation that is used in hexagonal coordinate systems and uses it to transform the given coordinates:</p>
@@ -573,12 +573,12 @@ z,x,y
 <p>As transforming HKLs requires slightly different math, there is a special method for this as well:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">SymmetryOperationFactory</span>
 
-<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">&quot;x,y,-z&quot;</span><span class="p">)</span>
+<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">"x,y,-z"</span><span class="p">)</span>
 
 <span class="n">hkl</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="n">hklPrime</span> <span class="o">=</span> <span class="n">symOp</span><span class="o">.</span><span class="n">transformHKL</span><span class="p">(</span><span class="n">hkl</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transformed hkl: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">hklPrime</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Transformed hkl: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">hklPrime</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The above code will print the transformed Miller index triplet:</p>
@@ -588,16 +588,16 @@ z,x,y
 <p>It’s also possible to query the order of a symmetry operation. The next example generates a fourfold rotation around the <span class="math notranslate nohighlight">\(z\)</span>-axis and prints some information about it.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">SymmetryOperationFactory</span>
 
-<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">&quot;-y,x,z&quot;</span><span class="p">)</span>
+<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">"-y,x,z"</span><span class="p">)</span>
 
 <span class="n">k</span> <span class="o">=</span> <span class="n">symOp</span><span class="o">.</span><span class="n">getOrder</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Order of the symmetry operation: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Order of the symmetry operation: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original point: [&quot;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot; </span><span class="si">%.1f</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Original point: ["</span><span class="o">+</span><span class="p">(</span><span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">" </span><span class="si">%.1f</span><span class="s2">"</span><span class="o">%</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">+</span><span class="s2">"]"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">symOp</span><span class="o">.</span><span class="n">transformCoordinates</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After </span><span class="si">{0}</span><span class="s2"> application(s): </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"After </span><span class="si">{0}</span><span class="s2"> application(s): </span><span class="si">{1}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Order of the symmetry operation: 4
@@ -615,16 +615,16 @@ After 4 application(s): [0.3,0.4,0.5]
 <p>Section 11.2 in the same book describes how to derive symmetry elements from matrix and vector pairs. The algorithms from that text are implemented in Mantid as well, so after a symmetry operation has been created using the factory, another factory can be used to generate the symmetry element corresponding to the operation. The resulting object can be queried for its Hermann-Mauguin symbol, its axis and its rotation sense (only for rotation axes). For identity, inversion and translation this returns <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">SymmetryOperationFactory</span><span class="p">,</span> <span class="n">SymmetryElementFactory</span>
 
-<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">&quot;x,y,-z&quot;</span><span class="p">)</span>
+<span class="n">symOp</span> <span class="o">=</span> <span class="n">SymmetryOperationFactory</span><span class="o">.</span><span class="n">createSymOp</span><span class="p">(</span><span class="s2">"x,y,-z"</span><span class="p">)</span>
 <span class="n">element</span> <span class="o">=</span> <span class="n">SymmetryElementFactory</span><span class="o">.</span><span class="n">createSymElement</span><span class="p">(</span><span class="n">symOp</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The element corresponding to &#39;x,y,-z&#39; has the following symbol: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">getHMSymbol</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The mirror plane is perpendicular to: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">getAxis</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sense of rotation (or NoRotation): &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">getRotationSense</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The element corresponding to 'x,y,-z' has the following symbol: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">getHMSymbol</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The mirror plane is perpendicular to: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">getAxis</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Sense of rotation (or NoRotation): "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">getRotationSense</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>In this case, it’s a mirror plane perpendicular to the <span class="math notranslate nohighlight">\(z\)</span>-axis:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The element corresponding to &#39;x,y,-z&#39; has the following symbol: m
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The element corresponding to 'x,y,-z' has the following symbol: m
 The mirror plane is perpendicular to: [0,0,1]
 Sense of rotation (or NoRotation): NoRotation
 </pre></div>
@@ -679,10 +679,10 @@ Sense of rotation (or NoRotation): NoRotation
 <p>Combining the symmetry operations does not result into any new operations, so the group is closed. Each element has an inverse (in this case, each element is its own inverse). :math:` and an identity element exists (all elements in the first row are the same as in the header row). Groups are available through the Python interface of Mantid. The following code generates the group in the table above (with the y-axis being characteristic for rotation and mirror symmetry) and checks whether this set of symmetry operations is indeed a Group:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Group</span>
 
-<span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="s2">&quot;x,y,z; -x,-y,-z; -x,y,-z; x,-y,z&quot;</span><span class="p">)</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="s2">"x,y,z; -x,-y,-z; -x,y,-z; x,-y,z"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Order of group: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">getOrder</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fulfills group axioms: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">isGroup</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Order of group: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">getOrder</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fulfills group axioms: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">isGroup</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>This code confirms what was demonstrated by the group table above, the specified set of symmetry operations fulfills the group axioms:</p>
@@ -693,13 +693,13 @@ Fulfills group axioms: True
 <p>For more fine-grained information, the four axioms can also be checked separately. Please note that the associativity axiom is always fulfilled due to the way the binary operation for symmetry operations is defined, it’s included for completeness reasons. In the next example, the inversion operation is removed and the four axioms are checked:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Group</span><span class="p">,</span> <span class="n">GroupAxiom</span>
 
-<span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="s2">&quot;x,y,z; -x,y,-z; x,-y,z&quot;</span><span class="p">)</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="s2">"x,y,z; -x,y,-z; x,-y,z"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Group axioms fulfilled:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  1. Closure: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Closure</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  2. Associativity: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Associativity</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  3. Identity: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Identity</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  4. Inversion: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Inversion</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Group axioms fulfilled:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  1. Closure: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Closure</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  2. Associativity: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Associativity</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  3. Identity: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Identity</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  4. Inversion: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Inversion</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>The code reveals that axioms 2 - 4 are fulfilled, but that the group is not closed:</p>
@@ -713,13 +713,13 @@ Fulfills group axioms: True
 <p>Looking into the group table above shows the reason: The combination of a mirror plane and a two-fold rotation axis implies the presence of an inversion center. Similarly, the identity can be removed:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Group</span><span class="p">,</span> <span class="n">GroupAxiom</span>
 
-<span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="s2">&quot;-x,-y,-z; -x,y,-z; x,-y,z&quot;</span><span class="p">)</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="s2">"-x,-y,-z; -x,y,-z; x,-y,z"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Group axioms fulfilled:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  1. Closure: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Closure</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  2. Associativity: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Associativity</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  3. Identity: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Identity</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  4. Inversion: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Inversion</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Group axioms fulfilled:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  1. Closure: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Closure</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  2. Associativity: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Associativity</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  3. Identity: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Identity</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  4. Inversion: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">fulfillsAxiom</span><span class="p">(</span><span class="n">GroupAxiom</span><span class="o">.</span><span class="n">Inversion</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>In contrast to removing the inversion, the group now also lacks an identity element:</p>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>IntegratePeaksProfileFitting v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>IntegratePeaksProfileFitting v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1700,18 +1700,18 @@ sums are over the same voxels used to calculate intensity.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - IntegratePeaksProfileFitting</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;/SNS/MANDI/IPTS-8776/0/5921/NeXus/MANDI_5921_event.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;MANDI_5921_event&#39;</span><span class="p">)</span>
-<span class="linenos"> 2</span><span class="n">MANDI_5921_md</span> <span class="o">=</span> <span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;MANDI_5921_event&#39;</span><span class="p">,</span>  <span class="n">QDimensions</span><span class="o">=</span><span class="s1">&#39;Q3D&#39;</span><span class="p">,</span> <span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s1">&#39;Elastic&#39;</span><span class="p">,</span>
-<span class="linenos"> 3</span>                           <span class="n">Q3DFrames</span><span class="o">=</span><span class="s1">&#39;Q_lab&#39;</span><span class="p">,</span> <span class="n">QConversionScales</span><span class="o">=</span><span class="s1">&#39;Q in A^-1&#39;</span><span class="p">,</span>
-<span class="linenos"> 4</span>                           <span class="n">MinValues</span><span class="o">=</span><span class="s1">&#39;-5, -5, -5&#39;</span><span class="p">,</span> <span class="n">Maxvalues</span><span class="o">=</span><span class="s1">&#39;5, 5, 5&#39;</span><span class="p">,</span> <span class="n">MaxRecursionDepth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'/SNS/MANDI/IPTS-8776/0/5921/NeXus/MANDI_5921_event.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'MANDI_5921_event'</span><span class="p">)</span>
+<span class="linenos"> 2</span><span class="n">MANDI_5921_md</span> <span class="o">=</span> <span class="n">ConvertToMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'MANDI_5921_event'</span><span class="p">,</span>  <span class="n">QDimensions</span><span class="o">=</span><span class="s1">'Q3D'</span><span class="p">,</span> <span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s1">'Elastic'</span><span class="p">,</span>
+<span class="linenos"> 3</span>                           <span class="n">Q3DFrames</span><span class="o">=</span><span class="s1">'Q_lab'</span><span class="p">,</span> <span class="n">QConversionScales</span><span class="o">=</span><span class="s1">'Q in A^-1'</span><span class="p">,</span>
+<span class="linenos"> 4</span>                           <span class="n">MinValues</span><span class="o">=</span><span class="s1">'-5, -5, -5'</span><span class="p">,</span> <span class="n">Maxvalues</span><span class="o">=</span><span class="s1">'5, 5, 5'</span><span class="p">,</span> <span class="n">MaxRecursionDepth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
 <span class="linenos"> 5</span>                           <span class="n">LorentzCorrection</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos"> 6</span><span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;/SNS/MANDI/shared/ProfileFitting/demo_5921.integrate&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks_ws&#39;</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'/SNS/MANDI/shared/ProfileFitting/demo_5921.integrate'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peaks_ws'</span><span class="p">)</span>
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span><span class="n">IntegratePeaksProfileFitting</span><span class="p">(</span><span class="n">OutputPeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks_ws_out&#39;</span><span class="p">,</span> <span class="n">OutputParamsWorkspace</span><span class="o">=</span><span class="s1">&#39;params_ws&#39;</span><span class="p">,</span>
-<span class="linenos"> 9</span>                             <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;MANDI_5921_md&#39;</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks_ws&#39;</span><span class="p">,</span>
-<span class="linenos">10</span>                             <span class="n">UBFile</span><span class="o">=</span><span class="s1">&#39;/SNS/MANDI/shared/ProfileFitting/demo_5921.mat&#39;</span><span class="p">,</span> <span class="n">MinpplFrac</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">MaxpplFrac</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span>
-<span class="linenos">11</span>                             <span class="n">ModeratorCoefficientsFile</span><span class="o">=</span><span class="s1">&#39;/SNS/MANDI/shared/ProfileFitting/franz_coefficients_2017.dat&#39;</span><span class="p">,</span>
-<span class="linenos">12</span>                             <span class="n">StrongPeakParamsFile</span><span class="o">=</span><span class="s1">&#39;/SNS/MANDI/shared/ProfileFitting/strongPeakParams_beta_lac_mut_mbvg.pkl&#39;</span><span class="p">,</span>
+<span class="linenos"> 8</span><span class="n">IntegratePeaksProfileFitting</span><span class="p">(</span><span class="n">OutputPeaksWorkspace</span><span class="o">=</span><span class="s1">'peaks_ws_out'</span><span class="p">,</span> <span class="n">OutputParamsWorkspace</span><span class="o">=</span><span class="s1">'params_ws'</span><span class="p">,</span>
+<span class="linenos"> 9</span>                             <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'MANDI_5921_md'</span><span class="p">,</span> <span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">'peaks_ws'</span><span class="p">,</span>
+<span class="linenos">10</span>                             <span class="n">UBFile</span><span class="o">=</span><span class="s1">'/SNS/MANDI/shared/ProfileFitting/demo_5921.mat'</span><span class="p">,</span> <span class="n">MinpplFrac</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">MaxpplFrac</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span>
+<span class="linenos">11</span>                             <span class="n">ModeratorCoefficientsFile</span><span class="o">=</span><span class="s1">'/SNS/MANDI/shared/ProfileFitting/franz_coefficients_2017.dat'</span><span class="p">,</span>
+<span class="linenos">12</span>                             <span class="n">StrongPeakParamsFile</span><span class="o">=</span><span class="s1">'/SNS/MANDI/shared/ProfileFitting/strongPeakParams_beta_lac_mut_mbvg.pkl'</span><span class="p">,</span>
 <span class="linenos">13</span>                             <span class="n">peakNumber</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1719,7 +1719,7 @@ sums are over the same voxels used to calculate intensity.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/IntegratePeaksProfileFitting.py">IntegratePeaksProfileFitting.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/IntegratePeaksProfileFitting.py">IntegratePeaksProfileFitting.py</a></p>
 </section>
 </section>
 

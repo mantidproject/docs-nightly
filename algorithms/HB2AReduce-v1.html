@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>HB2AReduce v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>HB2AReduce v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/HB2AReduce-v1';</script>
@@ -1558,7 +1558,7 @@
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
 <p>This algorithm reduces HFIR POWDER (HB-2A) data.</p>
 <p>You can either specify the filenames of data you want to reduce or provide the IPTS, exp and scan number. If only one experiment exists in an IPTS then exp can be omitted. <em>e.g.</em> the following are equivalent:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">&#39;/HFIR/HB2A/IPTS-21073/exp666/Datafiles/HB2A_exp0666_scan0024.dat&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">'/HFIR/HB2A/IPTS-21073/exp666/Datafiles/HB2A_exp0666_scan0024.dat'</span><span class="p">)</span>
 <span class="c1"># and</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">HB2AReduce</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">21073</span><span class="p">,</span> <span class="n">exp</span><span class="o">=</span><span class="mi">666</span><span class="p">,</span> <span class="n">ScanNumbers</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
 </pre></div>
@@ -1591,21 +1591,21 @@
 <h3>Saving reduced data<a class="headerlink" href="#saving-reduced-data" title="Link to this heading">#</a></h3>
 <p>The output workspace can be saved to <code class="docutils literal notranslate"><span class="pre">XYE</span></code>, <code class="docutils literal notranslate"><span class="pre">Maud</span></code> and <code class="docutils literal notranslate"><span class="pre">TOPAS</span></code> format using <a class="reference internal" href="SaveFocusedXYE-v1.html#algm-savefocusedxye"><span class="std std-ref">SaveFocusedXYE</span></a>. <em>e.g.</em></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># XYE with no header</span>
-<span class="n">SaveFocusedXYE</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;data.xye&#39;</span><span class="p">,</span> <span class="n">SplitFiles</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">IncludeHeader</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">SaveFocusedXYE</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">'data.xye'</span><span class="p">,</span> <span class="n">SplitFiles</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">IncludeHeader</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># TOPAS format</span>
-<span class="n">SaveFocusedXYE</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;data.xye&#39;</span><span class="p">,</span> <span class="n">SplitFiles</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Format</span><span class="o">=</span><span class="s1">&#39;TOPAS&#39;</span><span class="p">)</span>
+<span class="n">SaveFocusedXYE</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">'data.xye'</span><span class="p">,</span> <span class="n">SplitFiles</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Format</span><span class="o">=</span><span class="s1">'TOPAS'</span><span class="p">)</span>
 
 <span class="c1"># Maud format</span>
-<span class="n">SaveFocusedXYE</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;data.xye&#39;</span><span class="p">,</span> <span class="n">SplitFiles</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Format</span><span class="o">=</span><span class="s1">&#39;MAUD&#39;</span><span class="p">)</span>
+<span class="n">SaveFocusedXYE</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">'data.xye'</span><span class="p">,</span> <span class="n">SplitFiles</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">Format</span><span class="o">=</span><span class="s1">'MAUD'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can also save the reduced data as <code class="docutils literal notranslate"><span class="pre">GSAS</span></code> or <code class="docutils literal notranslate"><span class="pre">XYE</span></code> format by adding additional arguments to the reduction call</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">HB2AReduce</span><span class="p">(</span>
-   <span class="s1">&#39;/HFIR/HB2A/IPTS-21073/exp666/Datafiles/HB2A_exp0666_scan0024.dat&#39;</span><span class="p">,</span>
+   <span class="s1">'/HFIR/HB2A/IPTS-21073/exp666/Datafiles/HB2A_exp0666_scan0024.dat'</span><span class="p">,</span>
    <span class="n">SaveData</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-   <span class="n">OutputFormat</span><span class="o">=</span><span class="s2">&quot;GSAS&quot;</span><span class="p">,</span>
-   <span class="n">OutputDirectory</span><span class="o">=</span><span class="s2">&quot;/tmp&quot;</span><span class="p">,</span>
+   <span class="n">OutputFormat</span><span class="o">=</span><span class="s2">"GSAS"</span><span class="p">,</span>
+   <span class="n">OutputDirectory</span><span class="o">=</span><span class="s2">"/tmp"</span><span class="p">,</span>
    <span class="p">)</span>
 </pre></div>
 </div>
@@ -1617,16 +1617,16 @@
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Individual Detectors</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">&#39;HB2A_exp0666_scan0024.dat&#39;</span><span class="p">,</span> <span class="n">IndividualDetectors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">'HB2A_exp0666_scan0024.dat'</span><span class="p">,</span> <span class="n">IndividualDetectors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Plot anodes 40, 41 and 42</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">plots</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
 <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">42</span><span class="p">]:</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">specNum</span><span class="o">=</span><span class="n">num</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="c1">#fig.savefig(&#39;HB2AReduce_1.png&#39;)</span>
+<span class="c1">#fig.savefig('HB2AReduce_1.png')</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1634,14 +1634,14 @@
 <img alt="../_images/HB2AReduce_1.png" src="../_images/HB2AReduce_1.png" />
 </figure>
 <p><strong>Unbinned data</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">&#39;HB2A_exp0666_scan0024.dat&#39;</span><span class="p">,</span> <span class="n">BinData</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">'HB2A_exp0666_scan0024.dat'</span><span class="p">,</span> <span class="n">BinData</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">plots</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
-<span class="c1">#fig.savefig(&#39;HB2AReduce_2.png&#39;)</span>
+<span class="c1">#fig.savefig('HB2AReduce_2.png')</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1649,14 +1649,14 @@
 <img alt="../_images/HB2AReduce_2.png" src="../_images/HB2AReduce_2.png" />
 </figure>
 <p><strong>Binned data</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">&#39;HB2A_exp0666_scan0024.dat&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">'HB2A_exp0666_scan0024.dat'</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">plots</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
-<span class="c1">#fig.savefig(&#39;HB2AReduce_3.png&#39;)</span>
+<span class="c1">#fig.savefig('HB2AReduce_3.png')</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1664,14 +1664,14 @@
 <img alt="../_images/HB2AReduce_3.png" src="../_images/HB2AReduce_3.png" />
 </figure>
 <p><strong>Exclude detectors: 1-20,40,41,42</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">&#39;HB2A_exp0666_scan0024.dat&#39;</span><span class="p">,</span> <span class="n">ExcludeDetectors</span><span class="o">=</span><span class="s1">&#39;1-20,40,41,42&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">'HB2A_exp0666_scan0024.dat'</span><span class="p">,</span> <span class="n">ExcludeDetectors</span><span class="o">=</span><span class="s1">'1-20,40,41,42'</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">plots</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
-<span class="c1">#fig.savefig(&#39;HB2AReduce_4.png&#39;)</span>
+<span class="c1">#fig.savefig('HB2AReduce_4.png')</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1679,14 +1679,14 @@
 <img alt="../_images/HB2AReduce_4.png" src="../_images/HB2AReduce_4.png" />
 </figure>
 <p><strong>Combining multiple files</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">&#39;HB2A_exp0666_scan0024.dat, HB2A_exp0666_scan0025.dat&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">'HB2A_exp0666_scan0024.dat, HB2A_exp0666_scan0025.dat'</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">plots</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
-<span class="c1">#fig.savefig(&#39;HB2AReduce_5.png&#39;)</span>
+<span class="c1">#fig.savefig('HB2AReduce_5.png')</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1698,16 +1698,16 @@
 algorithm will reduce the data to be counts <em>vs</em> <code class="docutils literal notranslate"><span class="pre">sample</span></code> (sample
 temperature). Setting <code class="docutils literal notranslate"><span class="pre">IndividualDetectors=True</span></code> allows you to see a
 single anode <em>vs</em> temperature.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">&#39;HB2A_exp0660_scan0146.dat&#39;</span><span class="p">,</span>
-              <span class="n">Vanadium</span><span class="o">=</span><span class="s1">&#39;HB2A_exp0644_scan0018.dat&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">HB2AReduce</span><span class="p">(</span><span class="s1">'HB2A_exp0660_scan0146.dat'</span><span class="p">,</span>
+              <span class="n">Vanadium</span><span class="o">=</span><span class="s1">'HB2A_exp0644_scan0018.dat'</span><span class="p">,</span>
               <span class="n">IndividualDetectors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">plots</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">specNum</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span> <span class="c1"># anode8</span>
-<span class="c1">#fig.savefig(&#39;HB2AReduce_6.png&#39;)</span>
+<span class="c1">#fig.savefig('HB2AReduce_6.png')</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1718,7 +1718,7 @@ single anode <em>vs</em> temperature.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/HB2AReduce.py">HB2AReduce.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/HB2AReduce.py">HB2AReduce.py</a></p>
 </section>
 </section>
 

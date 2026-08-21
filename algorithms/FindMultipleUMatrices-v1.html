@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FindMultipleUMatrices v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FindMultipleUMatrices v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/FindMultipleUMatrices-v1';</script>
@@ -1617,16 +1617,16 @@ d-spacing peaks to start.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rotation</span> <span class="k">as</span> <span class="n">rot</span>
 
-<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s1">&#39;SXD&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;empty_SXD&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s1">'SXD'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'empty_SXD'</span><span class="p">)</span>
 <span class="n">axis</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">axis</span><span class="o">.</span><span class="n">setUnit</span><span class="p">(</span><span class="s2">&quot;TOF&quot;</span><span class="p">)</span>
+<span class="n">axis</span><span class="o">.</span><span class="n">setUnit</span><span class="p">(</span><span class="s2">"TOF"</span><span class="p">)</span>
 
 <span class="c1"># create a peak tables of orthorhombic domains with lattice parameters a=4, b=5, c=10</span>
-<span class="n">alatt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">}</span>
-<span class="n">ubs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="n">alatt</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="o">/</span><span class="n">alatt</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="o">/</span><span class="n">alatt</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]])]</span>
+<span class="n">alatt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'a'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">'alpha'</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">'beta'</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">'gamma'</span><span class="p">:</span> <span class="mi">90</span><span class="p">}</span>
+<span class="n">ubs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="n">alatt</span><span class="p">[</span><span class="s1">'a'</span><span class="p">],</span> <span class="mi">1</span><span class="o">/</span><span class="n">alatt</span><span class="p">[</span><span class="s1">'b'</span><span class="p">],</span> <span class="mi">1</span><span class="o">/</span><span class="n">alatt</span><span class="p">[</span><span class="s1">'c'</span><span class="p">]])]</span>
 <span class="n">ubs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rot</span><span class="o">.</span><span class="n">from_rotvec</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">90</span><span class="p">],</span> <span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span>  <span class="o">@</span> <span class="n">ubs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-<span class="n">peaks</span> <span class="o">=</span> <span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;peaks&quot;</span><span class="p">)</span>
+<span class="n">peaks</span> <span class="o">=</span> <span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="sa">f</span><span class="s2">"peaks"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">iub</span><span class="p">,</span> <span class="n">ub</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ubs</span><span class="p">):</span>
     <span class="n">SetUB</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">UB</span><span class="o">=</span><span class="n">ub</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
@@ -1636,12 +1636,12 @@ d-spacing peaks to start.</p>
                 <span class="k">if</span> <span class="n">pk</span><span class="o">.</span><span class="n">getDetectorID</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">peaks</span><span class="o">.</span><span class="n">addPeak</span><span class="p">(</span><span class="n">pk</span><span class="p">)</span>
 
-<span class="n">peaks_out</span> <span class="o">=</span> <span class="n">FindMultipleUMatrices</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="n">peaks</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks_out&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">alatt</span><span class="p">,</span>
-                                  <span class="n">MinDSpacing</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">MaxDSpacing</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">Spacegroup</span><span class="o">=</span><span class="s1">&#39;P m m m&#39;</span><span class="p">,</span>
+<span class="n">peaks_out</span> <span class="o">=</span> <span class="n">FindMultipleUMatrices</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="n">peaks</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peaks_out'</span><span class="p">,</span> <span class="o">**</span><span class="n">alatt</span><span class="p">,</span>
+                                  <span class="n">MinDSpacing</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">MaxDSpacing</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">Spacegroup</span><span class="o">=</span><span class="s1">'P m m m'</span><span class="p">,</span>
                                   <span class="n">NumberOfUBs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">ipk</span><span class="p">,</span> <span class="n">pks</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">peaks_out</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;HKL along x-axis of QLab = &quot;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">pks</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">getOrientedLattice</span><span class="p">()</span><span class="o">.</span><span class="n">getvVector</span><span class="p">())))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"HKL along x-axis of QLab = "</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">pks</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">getOrientedLattice</span><span class="p">()</span><span class="o">.</span><span class="n">getvVector</span><span class="p">())))</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
@@ -1653,7 +1653,7 @@ HKL along x-axis of QLab =  [0. 5. 0.]
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/FindMultipleUMatrices.py">FindMultipleUMatrices.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/FindMultipleUMatrices.py">FindMultipleUMatrices.py</a></p>
 </section>
 </section>
 

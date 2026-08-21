@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ISIS Powder Diffraction Scripts - SampleDetails Reference &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ISIS Powder Diffraction Scripts - SampleDetails Reference &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'techniques/ISISPowder-SampleDetails-v1';</script>
@@ -440,10 +440,10 @@ height</p></li>
 <span class="n">cylinder_radius</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">cylinder_position</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
 <span class="n">sample_obj</span> <span class="o">=</span> <span class="n">SampleDetails</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="n">cylinder_height</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">cylinder_radius</span><span class="p">,</span>
-                           <span class="n">center</span><span class="o">=</span><span class="n">cylinder_position</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s2">&quot;cylinder&quot;</span><span class="p">)</span>
+                           <span class="n">center</span><span class="o">=</span><span class="n">cylinder_position</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s2">"cylinder"</span><span class="p">)</span>
 
 <span class="n">slab_thickness</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">slab_obj</span> <span class="o">=</span> <span class="n">SampleDetails</span><span class="p">(</span><span class="n">thickness</span><span class="o">=</span><span class="n">slab_thickness</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s2">&quot;slab&quot;</span><span class="p">)</span>
+<span class="n">slab_obj</span> <span class="o">=</span> <span class="n">SampleDetails</span><span class="p">(</span><span class="n">thickness</span><span class="o">=</span><span class="n">slab_thickness</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s2">"slab"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -490,7 +490,7 @@ which is greater than 0.</p>
 <p>The shape of the sample. Allowed values are currently <strong>cylinder</strong> and
 <strong>slab</strong>.</p>
 <p>Example Input:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_obj</span> <span class="o">=</span> <span class="n">SampleDetails</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="s2">&quot;cylinder&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_obj</span> <span class="o">=</span> <span class="n">SampleDetails</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="s2">"cylinder"</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -521,13 +521,13 @@ container parameters need to be set. These container shapes support the
 <p>Example Input:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">isis_powder</span><span class="w"> </span><span class="kn">import</span> <span class="n">SampleDetails</span>
 
-<span class="n">cylinder_obj</span> <span class="o">=</span> <span class="n">SampleDetails</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;cylinder&#39;</span><span class="p">)</span>
-<span class="n">cylinder_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s1">&#39;Si&#39;</span><span class="p">)</span>
-<span class="n">cylinder_obj</span><span class="o">.</span><span class="n">set_container</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">chemical_formula</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>
+<span class="n">cylinder_obj</span> <span class="o">=</span> <span class="n">SampleDetails</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="s1">'cylinder'</span><span class="p">)</span>
+<span class="n">cylinder_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s1">'Si'</span><span class="p">)</span>
+<span class="n">cylinder_obj</span><span class="o">.</span><span class="n">set_container</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">chemical_formula</span><span class="o">=</span><span class="s1">'V'</span><span class="p">)</span>
 
-<span class="n">slab_obj</span> <span class="o">=</span> <span class="n">SampleDetails</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="s1">&#39;slab&#39;</span><span class="p">)</span>
-<span class="n">slab_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s1">&#39;Si&#39;</span><span class="p">)</span>
-<span class="n">slab_obj</span><span class="o">.</span><span class="n">set_container</span><span class="p">(</span><span class="n">front_thick</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">back_thick</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">chemical_formula</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>
+<span class="n">slab_obj</span> <span class="o">=</span> <span class="n">SampleDetails</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="s1">'slab'</span><span class="p">)</span>
+<span class="n">slab_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s1">'Si'</span><span class="p">)</span>
+<span class="n">slab_obj</span><span class="o">.</span><span class="n">set_container</span><span class="p">(</span><span class="n">front_thick</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">back_thick</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">chemical_formula</span><span class="o">=</span><span class="s1">'V'</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -549,9 +549,9 @@ see: <a class="reference internal" href="#changing-sample-properties-sampledetai
 <p>Either number_density or number_density_effective must be supplied if <em>chemical_formula</em> is not an element.</p>
 <section id="id1">
 <h3>Example<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s2">"V"</span><span class="p">)</span>
 <span class="c1"># OR</span>
-<span class="n">sample_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s2">&quot;VNb&quot;</span><span class="p">,</span> <span class="n">number_density</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">sample_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s2">"VNb"</span><span class="p">,</span> <span class="n">number_density</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -563,9 +563,9 @@ expressed as <em>V0.951 Nb0.049</em>.</p>
 <p>See: <a class="reference internal" href="../algorithms/SetSampleMaterial-v1.html#algm-setsamplematerial"><span class="std std-ref">SetSampleMaterial</span></a> for
 more details.</p>
 <p>Example Input:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s2">"V"</span><span class="p">)</span>
 <span class="c1"># Or</span>
-<span class="n">sample_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s2">&quot;V0.951 Nb0.049&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="n">sample_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="n">chemical_formula</span><span class="o">=</span><span class="s2">"V0.951 Nb0.049"</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -610,7 +610,7 @@ This value is a fraction between 0.0 and 1.0 and if supplied then number_density
 <code class="docutils literal notranslate"><span class="pre">&quot;Atoms&quot;</span></code> (i.e. atoms per cubic angstrom) but <a class="reference internal" href="../algorithms/SetSampleMaterial-v1.html#algm-setsamplematerial"><span class="std std-ref">SetSampleMaterial</span></a>
 also accepts <code class="docutils literal notranslate"><span class="pre">&quot;Formula</span> <span class="pre">Units&quot;</span></code> (i.e. formula units per cubic angstrom) so this can be used as well.</p>
 <p>Example Input:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">number_density_unit</span><span class="o">=</span><span class="s2">&quot;Formula Units&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_obj</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">number_density_unit</span><span class="o">=</span><span class="s2">"Formula Units"</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

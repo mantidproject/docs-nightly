@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MatrixWorkspace &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MatrixWorkspace &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/api/MatrixWorkspace';</script>
@@ -674,25 +674,25 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">MatrixWorkspace</span>
 
-<span class="n">histoWS</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">&quot;Histogram&quot;</span><span class="p">)</span>
+<span class="n">histoWS</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">"Histogram"</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">histoWS</span><span class="p">,</span> <span class="n">MatrixWorkspace</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">histoWS</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; is a &quot;</span> <span class="o">+</span> <span class="n">histoWS</span><span class="o">.</span><span class="n">id</span><span class="p">()</span> <span class="o">+</span> \
-             <span class="s2">&quot; and can be treated as a Matrix Workspace&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">histoWS</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s2">" is a "</span> <span class="o">+</span> <span class="n">histoWS</span><span class="o">.</span><span class="n">id</span><span class="p">()</span> <span class="o">+</span> \
+             <span class="s2">" and can be treated as a Matrix Workspace"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">For more Matrix Workspace types&quot;</span><span class="p">)</span>
-<span class="n">eventWS</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">&quot;Event&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">For more Matrix Workspace types"</span><span class="p">)</span>
+<span class="n">eventWS</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s2">"Event"</span><span class="p">)</span>
 <span class="n">svWS</span> <span class="o">=</span> <span class="n">CreateSingleValuedWorkspace</span><span class="p">()</span>
 <span class="n">tableWS</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
-<span class="n">groupWS</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">&quot;histoWS,eventWS&quot;</span><span class="p">)</span>
-<span class="n">mdWS</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;-10,10,-10,10,-10,10&#39;</span><span class="p">,</span> <span class="n">Names</span><span class="o">=</span><span class="s1">&#39;A,B,C&#39;</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">&#39;U,U,U&#39;</span><span class="p">)</span>
-<span class="n">mdHistoWS</span><span class="o">=</span><span class="n">CreateMDHistoWorkspace</span><span class="p">(</span><span class="n">Dimensionality</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;-3,3,-10,10&#39;</span><span class="p">,</span><span class="n">SignalInput</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span><span class="n">ErrorInput</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span>\
-                           <span class="n">NumberOfBins</span><span class="o">=</span><span class="s1">&#39;10,10&#39;</span><span class="p">,</span><span class="n">Names</span><span class="o">=</span><span class="s1">&#39;Dim1,Dim2&#39;</span><span class="p">,</span><span class="n">Units</span><span class="o">=</span><span class="s1">&#39;MomentumTransfer,EnergyTransfer&#39;</span><span class="p">)</span>
+<span class="n">groupWS</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="s2">"histoWS,eventWS"</span><span class="p">)</span>
+<span class="n">mdWS</span> <span class="o">=</span> <span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">'-10,10,-10,10,-10,10'</span><span class="p">,</span> <span class="n">Names</span><span class="o">=</span><span class="s1">'A,B,C'</span><span class="p">,</span> <span class="n">Units</span><span class="o">=</span><span class="s1">'U,U,U'</span><span class="p">)</span>
+<span class="n">mdHistoWS</span><span class="o">=</span><span class="n">CreateMDHistoWorkspace</span><span class="p">(</span><span class="n">Dimensionality</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">Extents</span><span class="o">=</span><span class="s1">'-3,3,-10,10'</span><span class="p">,</span><span class="n">SignalInput</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span><span class="n">ErrorInput</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span>\
+                           <span class="n">NumberOfBins</span><span class="o">=</span><span class="s1">'10,10'</span><span class="p">,</span><span class="n">Names</span><span class="o">=</span><span class="s1">'Dim1,Dim2'</span><span class="p">,</span><span class="n">Units</span><span class="o">=</span><span class="s1">'MomentumTransfer,EnergyTransfer'</span><span class="p">)</span>
 
 <span class="n">myWorkspaceList</span> <span class="o">=</span> <span class="p">[</span><span class="n">histoWS</span><span class="p">,</span><span class="n">eventWS</span><span class="p">,</span><span class="n">svWS</span><span class="p">,</span><span class="n">tableWS</span><span class="p">,</span><span class="n">mdWS</span><span class="p">,</span><span class="n">mdHistoWS</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is Matrix Workspace?</span><span class="se">\t</span><span class="s2">Type&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Is Matrix Workspace?</span><span class="se">\t</span><span class="s2">Type"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">ws</span> <span class="ow">in</span> <span class="n">myWorkspaceList</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="se">\t</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">MatrixWorkspace</span><span class="p">),</span> <span class="n">ws</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{0}</span><span class="se">\t</span><span class="si">{1}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">MatrixWorkspace</span><span class="p">),</span> <span class="n">ws</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -712,18 +712,18 @@ False       MDHistoWorkspace
 <section id="matrix-workspace-properties">
 <h3>Matrix Workspace Properties<a class="headerlink" href="#matrix-workspace-properties" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To find out the number of histograms in a workspace use getNumberHistograms()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of histograms = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"number of histograms = </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 
 <span class="c1"># To find out the number of bins along the x-axis use blocksize()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of bins = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"number of bins = </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
 <span class="c1"># To find out the bin containing a value use yIndexOfX()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bin index containing 502.2 for a histogram (0 by default) = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">yIndexOfX</span><span class="p">(</span><span class="mf">502.2</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bin index containing 997.1 for histogram 272 = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">yIndexOfX</span><span class="p">(</span><span class="mf">997.1</span><span class="p">,</span><span class="mi">272</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"bin index containing 502.2 for a histogram (0 by default) = </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">yIndexOfX</span><span class="p">(</span><span class="mf">502.2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"bin index containing 997.1 for histogram 272 = </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">yIndexOfX</span><span class="p">(</span><span class="mf">997.1</span><span class="p">,</span><span class="mi">272</span><span class="p">)))</span>
 
 <span class="c1"># To find a workspace index from a spectrum number</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;workspace index for histogram 272 = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getIndexFromSpectrumNumber</span><span class="p">(</span><span class="mi">272</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"workspace index for histogram 272 = </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getIndexFromSpectrumNumber</span><span class="p">(</span><span class="mi">272</span><span class="p">)))</span>
 <span class="c1"># To get the Run Number use getRunNumber()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;run number = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getRunNumber</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"run number = </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getRunNumber</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -759,14 +759,14 @@ You can list out the axes of a workspace using the following code.</p>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">axes</span><span class="p">()):</span>
     <span class="n">axis</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Axis </span><span class="si">{0}</span><span class="s2"> is a </span><span class="si">{1}{2}{3}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span>
-                                           <span class="s2">&quot;Spectrum Axis&quot;</span> <span class="k">if</span> <span class="n">axis</span><span class="o">.</span><span class="n">isSpectra</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-                                           <span class="s2">&quot;Text Axis&quot;</span> <span class="k">if</span> <span class="n">axis</span><span class="o">.</span><span class="n">isText</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-                                           <span class="s2">&quot;Numeric Axis&quot;</span> <span class="k">if</span> <span class="n">axis</span><span class="o">.</span><span class="n">isNumeric</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Axis </span><span class="si">{0}</span><span class="s2"> is a </span><span class="si">{1}{2}{3}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span>
+                                           <span class="s2">"Spectrum Axis"</span> <span class="k">if</span> <span class="n">axis</span><span class="o">.</span><span class="n">isSpectra</span><span class="p">()</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>
+                                           <span class="s2">"Text Axis"</span> <span class="k">if</span> <span class="n">axis</span><span class="o">.</span><span class="n">isText</span><span class="p">()</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>
+                                           <span class="s2">"Numeric Axis"</span> <span class="k">if</span> <span class="n">axis</span><span class="o">.</span><span class="n">isNumeric</span><span class="p">()</span> <span class="k">else</span> <span class="s2">""</span><span class="p">))</span>
 
     <span class="n">unit</span> <span class="o">=</span> <span class="n">axis</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> caption:</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> symbol:</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\t</span><span class="s2"> caption:</span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\t</span><span class="s2"> symbol:</span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -783,11 +783,11 @@ Axis 1 is a Spectrum Axis
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="n">axis</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># Create a new axis</span>
-<span class="n">axis</span><span class="o">.</span><span class="n">setUnit</span><span class="p">(</span><span class="s2">&quot;Label&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">setLabel</span><span class="p">(</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">)</span>
+<span class="n">axis</span><span class="o">.</span><span class="n">setUnit</span><span class="p">(</span><span class="s2">"Label"</span><span class="p">)</span><span class="o">.</span><span class="n">setLabel</span><span class="p">(</span><span class="s1">'Temperature'</span><span class="p">,</span> <span class="s1">'K'</span><span class="p">)</span>
 
 <span class="n">unit</span> <span class="o">=</span> <span class="n">axis</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New caption:</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New symbol:</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"New caption:</span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"New symbol:</span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -800,12 +800,12 @@ New symbol:K
 
 <span class="n">axis</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">unit</span> <span class="o">=</span> <span class="n">axis</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Old caption:</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Old symbol:</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Old caption:</span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Old symbol:</span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
 
 <span class="c1"># Create a new axis</span>
 <span class="n">newAxis</span> <span class="o">=</span> <span class="n">NumericAxis</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
-<span class="n">newAxis</span><span class="o">.</span><span class="n">setUnit</span><span class="p">(</span><span class="s2">&quot;Label&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">setLabel</span><span class="p">(</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">)</span>
+<span class="n">newAxis</span><span class="o">.</span><span class="n">setUnit</span><span class="p">(</span><span class="s2">"Label"</span><span class="p">)</span><span class="o">.</span><span class="n">setLabel</span><span class="p">(</span><span class="s1">'Temperature'</span><span class="p">,</span> <span class="s1">'K'</span><span class="p">)</span>
 
 <span class="c1"># Set the vertical axis values</span>
 <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
@@ -817,9 +817,9 @@ New symbol:K
 
 <span class="n">axis</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">unit</span> <span class="o">=</span> <span class="n">axis</span><span class="o">.</span><span class="n">getUnit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New caption:</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New symbol:</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New values: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">extractValues</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"New caption:</span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">caption</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"New symbol:</span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">symbol</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"New values: </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">extractValues</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -835,7 +835,7 @@ New values: [ 25. 28. ... 2785. 2788.]
 <img alt="PlotMatrixWorkspaceYUnitElephants.png" src="../../../../_images/PlotMatrixWorkspaceYUnitElephants.png" />
 </figure>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">YUnitLabel</span><span class="p">())</span>
-<span class="n">ws</span><span class="o">.</span><span class="n">setYUnitLabel</span><span class="p">(</span><span class="s2">&quot;Elephants&quot;</span><span class="p">)</span>
+<span class="n">ws</span><span class="o">.</span><span class="n">setYUnitLabel</span><span class="p">(</span><span class="s2">"Elephants"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">YUnitLabel</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -853,7 +853,7 @@ treated as a <code class="docutils literal notranslate"><span class="pre">plot</
 type will affect the way the data is displayed. An example of the different plot types can be seen in <a class="reference internal" href="../plots/index.html#mantid-plots"><span class="std std-ref">mantid.plots</span></a>.
 Below is a simple example changing the plot type, a full example is available in the <a class="reference internal" href="../../../../plotting/index.html#markerws-example"><span class="std std-ref">plotting gallery</span></a> page.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getPlotType</span><span class="p">())</span>
-<span class="n">ws</span><span class="o">.</span><span class="n">setPlotType</span><span class="p">(</span><span class="s2">&quot;marker&quot;</span><span class="p">)</span>
+<span class="n">ws</span><span class="o">.</span><span class="n">setPlotType</span><span class="p">(</span><span class="s2">"marker"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getPlotType</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -865,7 +865,7 @@ marker
 <p><strong>Setting Plot Marker</strong></p>
 <p>When plotting multiple marker workspaces it may be necessary to set the marker type for each workspace.
 If no marker is set, the default will be used from the <a class="reference internal" href="../../../../concepts/PropertiesFile.html#properties-file"><span class="std std-ref">Properties File</span></a>. Marker style can be changed using the following code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">.</span><span class="n">setMarkerStyle</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">.</span><span class="n">setMarkerStyle</span><span class="p">(</span><span class="s2">"circle"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getMarkerStyle</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -884,16 +884,16 @@ If no marker is set, the default will be used from the <a class="reference inter
 
 <span class="c1"># To check if two variables point to the same workspace</span>
 <span class="k">if</span> <span class="n">ws</span> <span class="o">==</span> <span class="n">wsClone</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;They are the same workspace&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"They are the same workspace"</span><span class="p">)</span>
 
 <span class="c1"># To check if two workspaces have equal values</span>
 <span class="k">if</span> <span class="n">ws</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">wsClone</span><span class="p">,</span> <span class="n">tolerance</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;They have the same data&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"They have the same data"</span><span class="p">)</span>
 
 <span class="c1"># To create a copy of a workspace</span>
-<span class="n">wsWavelength</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">convertUnits</span><span class="p">(</span><span class="n">Target</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">)</span>
+<span class="n">wsWavelength</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">convertUnits</span><span class="p">(</span><span class="n">Target</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">)</span>
 <span class="c1"># or</span>
-<span class="n">wsWavelength</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">)</span>
+<span class="n">wsWavelength</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">)</span>
 
 <span class="c1"># To rebin the workspace</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">rebin</span><span class="p">(</span><span class="n">Params</span> <span class="o">=</span> <span class="mi">200</span><span class="p">)</span>
@@ -935,8 +935,8 @@ If no marker is set, the default will be used from the <a class="reference inter
 <span id="matrixworkspace-algebra"></span><h3>Workspace algebra<a class="headerlink" href="#workspace-algebra" title="Link to this heading">#</a></h3>
 <p>Matrix Workspaces can have algebraic operations applied to them directly without the need to call a specific algorithm, e.g. <a class="reference internal" href="../../../../algorithms/Plus-v1.html#algm-plus"><span class="std std-ref">Plus</span></a></p>
 <p>The expected operations of +,-,*,/ are supported with either a single number or another workspace as the second argument, e.g.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">w1</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;workspace1&#39;</span><span class="p">]</span>
-<span class="n">w2</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;workspace2&#39;</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">w1</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'workspace1'</span><span class="p">]</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'workspace2'</span><span class="p">]</span>
 
 <span class="c1"># Sum the two workspaces and place the output into a third</span>
 <span class="n">w3</span> <span class="o">=</span> <span class="n">w1</span> <span class="o">+</span> <span class="n">w2</span>
@@ -949,7 +949,7 @@ If no marker is set, the default will be used from the <a class="reference inter
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiply a workspace by 2 and replace w1 with the output</span>
 <span class="n">w1</span> <span class="o">*=</span> <span class="mf">2.0</span>
 
-<span class="c1"># Add &#39;workspace2&#39; to &#39;workspace1&#39; and replace &#39;workspace1&#39; with the output</span>
+<span class="c1"># Add 'workspace2' to 'workspace1' and replace 'workspace1' with the output</span>
 <span class="n">w1</span> <span class="o">+=</span> <span class="n">w2</span>
 </pre></div>
 </div>

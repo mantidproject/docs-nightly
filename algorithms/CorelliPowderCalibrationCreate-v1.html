@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CorelliPowderCalibrationCreate v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CorelliPowderCalibrationCreate v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1587,21 +1587,21 @@ adjust the position and orientation of each bank.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">corelli.calibration</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_calibration_set</span><span class="p">,</span> <span class="n">apply_calibration</span>
 <span class="c1">#</span>
 <span class="c1"># Loading the runs for the standard powder sample</span>
-<span class="n">LoadNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;/tmp/CORELLI_124036_banks42_87.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;LaB6&#39;</span><span class="p">)</span>
+<span class="n">LoadNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'/tmp/CORELLI_124036_banks42_87.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'LaB6'</span><span class="p">)</span>
 <span class="c1">#</span>
 <span class="c1"># Apply the tube calibration</span>
-<span class="n">table</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">load_calibration_set</span><span class="p">(</span><span class="n">input_workspace</span><span class="p">,</span> <span class="s1">&#39;/SNS/CORELLI/shared/tube_calibration/&#39;</span><span class="p">,</span> <span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s1">&#39;mask&#39;</span><span class="p">)</span>
-<span class="n">apply_calibration</span><span class="p">(</span><span class="s1">&#39;LaB6&#39;</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
+<span class="n">table</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">load_calibration_set</span><span class="p">(</span><span class="n">input_workspace</span><span class="p">,</span> <span class="s1">'/SNS/CORELLI/shared/tube_calibration/'</span><span class="p">,</span> <span class="s1">'table'</span><span class="p">,</span> <span class="s1">'mask'</span><span class="p">)</span>
+<span class="n">apply_calibration</span><span class="p">(</span><span class="s1">'LaB6'</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
 <span class="c1">#</span>
 <span class="c1"># Adjust the position of the moderator. Adjust the position and orentation of banks 42 and 87</span>
-<span class="n">CorelliPowderCalibrationCreate</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;LaB6&#39;</span><span class="p">,</span>
-                               <span class="n">OutputWorkspacesPrefix</span><span class="o">=</span><span class="s1">&#39;LaB6_&#39;</span><span class="p">,</span>
-                               <span class="n">TubeDatabaseDir</span><span class="o">=</span><span class="s1">&#39;/tmp&#39;</span><span class="p">,</span>
+<span class="n">CorelliPowderCalibrationCreate</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'LaB6'</span><span class="p">,</span>
+                               <span class="n">OutputWorkspacesPrefix</span><span class="o">=</span><span class="s1">'LaB6_'</span><span class="p">,</span>
+                               <span class="n">TubeDatabaseDir</span><span class="o">=</span><span class="s1">'/tmp'</span><span class="p">,</span>
                                <span class="n">TofBinning</span><span class="o">=</span><span class="p">[</span><span class="mi">3000</span><span class="p">,</span><span class="o">-</span><span class="mf">0.001</span><span class="p">,</span><span class="mi">16660</span><span class="p">],</span>
-                               <span class="n">PeakFunction</span><span class="o">=</span><span class="s1">&#39;Gaussian&#39;</span><span class="p">,</span>
+                               <span class="n">PeakFunction</span><span class="o">=</span><span class="s1">'Gaussian'</span><span class="p">,</span>
                                <span class="n">PeakPositions</span><span class="o">=</span><span class="p">[</span><span class="mf">1.3143</span><span class="p">,</span> <span class="mf">1.3854</span><span class="p">,</span><span class="mf">1.6967</span><span class="p">,</span> <span class="mf">1.8587</span><span class="p">,</span> <span class="mf">2.0781</span><span class="p">,</span> <span class="mf">2.3995</span><span class="p">,</span> <span class="mf">2.9388</span><span class="p">,</span> <span class="mf">4.1561</span><span class="p">],</span>
                                <span class="n">SourceMaxTranslation</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-                               <span class="n">ComponentList</span><span class="o">=</span><span class="s1">&#39;bank42/sixteenpack,bank87/sixteenpack&#39;</span><span class="p">,</span>
+                               <span class="n">ComponentList</span><span class="o">=</span><span class="s1">'bank42/sixteenpack,bank87/sixteenpack'</span><span class="p">,</span>
                                <span class="n">ComponentMaxTranslation</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
                                <span class="n">ComponentMaxRotation</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
 </pre></div>
@@ -1701,7 +1701,7 @@ observed deviations are not due to misalignment in the position and orientation 
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/CorelliPowderCalibrationCreate.py">CorelliPowderCalibrationCreate.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/CorelliPowderCalibrationCreate.py">CorelliPowderCalibrationCreate.py</a></p>
 </section>
 </section>
 

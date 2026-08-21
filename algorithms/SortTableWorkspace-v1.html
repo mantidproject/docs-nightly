@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SortTableWorkspace v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SortTableWorkspace v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/SortTableWorkspace-v1';</script>
@@ -1496,70 +1496,70 @@
 <p><strong>Example - SortTableWorkspace</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># a method to print a row</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">print_row</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;{{&#39;y&#39;: &#39;</span><span class="si">{0}</span><span class="s2">&#39;, &#39;x&#39;: </span><span class="si">{1}</span><span class="s2">, &#39;z&#39;: </span><span class="si">{2}</span><span class="s2">}}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"{{'y': '</span><span class="si">{0}</span><span class="s2">', 'x': </span><span class="si">{1}</span><span class="s2">, 'z': </span><span class="si">{2}</span><span class="s2">}}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"y"</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s2">"x"</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s2">"z"</span><span class="p">]))</span>
 
 <span class="c1"># Create a host workspace</span>
 <span class="n">table</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s2">&quot;str&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">)</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s2">&quot;double&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s2">"int"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s2">"str"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s2">"double"</span><span class="p">,</span> <span class="s2">"z"</span><span class="p">)</span>
 
 <span class="c1"># Put in some values</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;three (3)&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;one (3)&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;one (2)&quot;</span><span class="p">,</span><span class="mf">2.0</span><span class="p">])</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;two (1)&quot;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;three (2)&quot;</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">])</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;three (2)&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">])</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;two (2)&quot;</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">])</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;one (1)&quot;</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">])</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;two (1)&quot;</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;two (2)&quot;</span><span class="p">,</span><span class="mf">9.0</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"three (3)"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"one (3)"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"one (2)"</span><span class="p">,</span><span class="mf">2.0</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"two (1)"</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"three (2)"</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"three (2)"</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"two (2)"</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"one (1)"</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"two (1)"</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"two (2)"</span><span class="p">,</span><span class="mf">9.0</span><span class="p">])</span>
 
 <span class="c1"># Sort in ascending order</span>
-<span class="n">sorted_asc</span> <span class="o">=</span> <span class="n">SortTableWorkspace</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">Columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sorted ascending&#39;</span><span class="p">)</span>
+<span class="n">sorted_asc</span> <span class="o">=</span> <span class="n">SortTableWorkspace</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">Columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'x'</span><span class="p">,</span><span class="s1">'y'</span><span class="p">,</span><span class="s1">'z'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Sorted ascending'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sorted_asc</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()):</span>
     <span class="n">print_row</span><span class="p">(</span><span class="n">sorted_asc</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 
 <span class="c1"># Sort in descending order</span>
-<span class="n">sorted_des</span> <span class="o">=</span> <span class="n">SortTableWorkspace</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">Columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="n">Ascending</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sorted descending&#39;</span><span class="p">)</span>
+<span class="n">sorted_des</span> <span class="o">=</span> <span class="n">SortTableWorkspace</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">Columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'x'</span><span class="p">,</span><span class="s1">'y'</span><span class="p">,</span><span class="s1">'z'</span><span class="p">],</span> <span class="n">Ascending</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Sorted descending'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sorted_des</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()):</span>
     <span class="n">print_row</span><span class="p">(</span><span class="n">sorted_des</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Sorted ascending
-{&#39;y&#39;: &#39;one (1)&#39;, &#39;x&#39;: 1, &#39;z&#39;: 7.0}
-{&#39;y&#39;: &#39;one (2)&#39;, &#39;x&#39;: 1, &#39;z&#39;: 2.0}
-{&#39;y&#39;: &#39;one (3)&#39;, &#39;x&#39;: 1, &#39;z&#39;: 1.0}
-{&#39;y&#39;: &#39;two (1)&#39;, &#39;x&#39;: 2, &#39;z&#39;: 3.0}
-{&#39;y&#39;: &#39;two (1)&#39;, &#39;x&#39;: 2, &#39;z&#39;: 8.0}
-{&#39;y&#39;: &#39;two (2)&#39;, &#39;x&#39;: 2, &#39;z&#39;: 6.0}
-{&#39;y&#39;: &#39;two (2)&#39;, &#39;x&#39;: 2, &#39;z&#39;: 9.0}
-{&#39;y&#39;: &#39;three (2)&#39;, &#39;x&#39;: 3, &#39;z&#39;: 4.0}
-{&#39;y&#39;: &#39;three (2)&#39;, &#39;x&#39;: 3, &#39;z&#39;: 5.0}
-{&#39;y&#39;: &#39;three (3)&#39;, &#39;x&#39;: 3, &#39;z&#39;: 0.0}
+{'y': 'one (1)', 'x': 1, 'z': 7.0}
+{'y': 'one (2)', 'x': 1, 'z': 2.0}
+{'y': 'one (3)', 'x': 1, 'z': 1.0}
+{'y': 'two (1)', 'x': 2, 'z': 3.0}
+{'y': 'two (1)', 'x': 2, 'z': 8.0}
+{'y': 'two (2)', 'x': 2, 'z': 6.0}
+{'y': 'two (2)', 'x': 2, 'z': 9.0}
+{'y': 'three (2)', 'x': 3, 'z': 4.0}
+{'y': 'three (2)', 'x': 3, 'z': 5.0}
+{'y': 'three (3)', 'x': 3, 'z': 0.0}
 Sorted descending
-{&#39;y&#39;: &#39;three (3)&#39;, &#39;x&#39;: 3, &#39;z&#39;: 0.0}
-{&#39;y&#39;: &#39;three (2)&#39;, &#39;x&#39;: 3, &#39;z&#39;: 5.0}
-{&#39;y&#39;: &#39;three (2)&#39;, &#39;x&#39;: 3, &#39;z&#39;: 4.0}
-{&#39;y&#39;: &#39;two (2)&#39;, &#39;x&#39;: 2, &#39;z&#39;: 9.0}
-{&#39;y&#39;: &#39;two (2)&#39;, &#39;x&#39;: 2, &#39;z&#39;: 6.0}
-{&#39;y&#39;: &#39;two (1)&#39;, &#39;x&#39;: 2, &#39;z&#39;: 8.0}
-{&#39;y&#39;: &#39;two (1)&#39;, &#39;x&#39;: 2, &#39;z&#39;: 3.0}
-{&#39;y&#39;: &#39;one (3)&#39;, &#39;x&#39;: 1, &#39;z&#39;: 1.0}
-{&#39;y&#39;: &#39;one (2)&#39;, &#39;x&#39;: 1, &#39;z&#39;: 2.0}
-{&#39;y&#39;: &#39;one (1)&#39;, &#39;x&#39;: 1, &#39;z&#39;: 7.0}
+{'y': 'three (3)', 'x': 3, 'z': 0.0}
+{'y': 'three (2)', 'x': 3, 'z': 5.0}
+{'y': 'three (2)', 'x': 3, 'z': 4.0}
+{'y': 'two (2)', 'x': 2, 'z': 9.0}
+{'y': 'two (2)', 'x': 2, 'z': 6.0}
+{'y': 'two (1)', 'x': 2, 'z': 8.0}
+{'y': 'two (1)', 'x': 2, 'z': 3.0}
+{'y': 'one (3)', 'x': 1, 'z': 1.0}
+{'y': 'one (2)', 'x': 1, 'z': 2.0}
+{'y': 'one (1)', 'x': 1, 'z': 7.0}
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Utility/Sorting.html">Utility\Sorting</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/SortTableWorkspace.h">SortTableWorkspace.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/SortTableWorkspace.cpp">SortTableWorkspace.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/SortTableWorkspace.h">SortTableWorkspace.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/SortTableWorkspace.cpp">SortTableWorkspace.cpp</a></p>
 </section>
 </section>
 

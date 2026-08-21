@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FindGoniometerAngles v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FindGoniometerAngles v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/FindGoniometerAngles-v1';</script>
@@ -1513,15 +1513,15 @@
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - FindGoniometerAngles</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a peaks workspace with particular lattice and goniometer</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;TOPAZ&quot;</span><span class="p">)</span>
-<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s2">&quot;45,0,0,1,1&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s2">"TOPAZ"</span><span class="p">)</span>
+<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s2">"45,0,0,1,1"</span><span class="p">)</span>
 <span class="n">SetUB</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 <span class="n">peaks</span> <span class="o">=</span> <span class="n">PredictPeaks</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
 <span class="n">num_peaks</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">getNumberPeaks</span><span class="p">()</span>
 
 <span class="c1"># create new peaks workspace with wrong goniometer</span>
 <span class="n">new_peaks</span> <span class="o">=</span> <span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">new_peaks</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s2">&quot;42,0,0,1,1&quot;</span><span class="p">)</span>
+<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">new_peaks</span><span class="p">,</span> <span class="n">Axis0</span><span class="o">=</span><span class="s2">"42,0,0,1,1"</span><span class="p">)</span>
 <span class="n">SetUB</span><span class="p">(</span><span class="n">new_peaks</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 
 <span class="c1"># copy peak q_lab vectors, q_sample will be wrong since wrong goniometer</span>
@@ -1530,10 +1530,10 @@
     <span class="n">new_peaks</span><span class="o">.</span><span class="n">addPeak</span><span class="p">(</span><span class="n">peaks</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">getQLabFrame</span><span class="p">(),</span> <span class="n">SpecialCoordinateSystem</span><span class="o">.</span><span class="n">QLab</span><span class="p">)</span>
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">IndexPeaks</span><span class="p">(</span><span class="n">new_peaks</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting with </span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">NumIndexed</span><span class="si">}</span><span class="s2"> out of </span><span class="si">{</span><span class="n">num_peaks</span><span class="si">}</span><span class="s2"> peaks indexed&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Starting with </span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">NumIndexed</span><span class="si">}</span><span class="s2"> out of </span><span class="si">{</span><span class="n">num_peaks</span><span class="si">}</span><span class="s2"> peaks indexed"</span><span class="p">)</span>
 <span class="n">angles</span> <span class="o">=</span> <span class="n">FindGoniometerAngles</span><span class="p">(</span><span class="n">new_peaks</span><span class="p">,</span> <span class="n">Apply</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">IndexPeaks</span><span class="p">(</span><span class="n">new_peaks</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found Chi=</span><span class="si">{</span><span class="n">angles</span><span class="o">.</span><span class="n">Chi</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> and there are now </span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">NumIndexed</span><span class="si">}</span><span class="s2"> out of </span><span class="si">{</span><span class="n">num_peaks</span><span class="si">}</span><span class="s2"> peaks indexed&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Found Chi=</span><span class="si">{</span><span class="n">angles</span><span class="o">.</span><span class="n">Chi</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> and there are now </span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">NumIndexed</span><span class="si">}</span><span class="s2"> out of </span><span class="si">{</span><span class="n">num_peaks</span><span class="si">}</span><span class="s2"> peaks indexed"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1545,8 +1545,8 @@ Found Chi=44.99 and there are now 65 out of 65 peaks indexed
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/inc/MantidCrystal/FindGoniometerAngles.h">FindGoniometerAngles.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/src/FindGoniometerAngles.cpp">FindGoniometerAngles.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/inc/MantidCrystal/FindGoniometerAngles.h">FindGoniometerAngles.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/src/FindGoniometerAngles.cpp">FindGoniometerAngles.cpp</a></p>
 </section>
 </section>
 

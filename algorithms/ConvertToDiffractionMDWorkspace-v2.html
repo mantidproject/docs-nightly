@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ConvertToDiffractionMDWorkspace v2 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ConvertToDiffractionMDWorkspace v2 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1579,13 +1579,13 @@ false if that algorithm has been run on the input workspace.</p>
 <p>Usage</p>
 <p><strong>Example - Convert re-binned MARI 2D workspace to 3D MD workspace for further analysis/merging with data at different temperatures :</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create or load event workspace</span>
-<span class="n">events</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;events&#39;</span><span class="p">,</span> <span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Event&#39;</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Multiple Peaks&#39;</span><span class="p">)</span>
+<span class="n">events</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'events'</span><span class="p">,</span> <span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Event'</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="s1">'Multiple Peaks'</span><span class="p">)</span>
 <span class="c1"># convert to  MD workspace</span>
-<span class="n">md</span> <span class="o">=</span> <span class="n">ConvertToDiffractionMDWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">events</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;md&#39;</span><span class="p">,</span> <span class="n">OneEventPerBin</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">LorentzCorrection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">SplitThreshold</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">md</span> <span class="o">=</span> <span class="n">ConvertToDiffractionMDWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">events</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'md'</span><span class="p">,</span> <span class="n">OneEventPerBin</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">LorentzCorrection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">SplitThreshold</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># A way to look at these results as a text:</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resulting MD workspace has </span><span class="si">{0}</span><span class="s2"> events and </span><span class="si">{1}</span><span class="s2"> dimensions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">(),</span><span class="n">md</span><span class="o">.</span><span class="n">getNumDims</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspace Type is:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Resulting MD workspace has </span><span class="si">{0}</span><span class="s2"> events and </span><span class="si">{1}</span><span class="s2"> dimensions"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">getNEvents</span><span class="p">(),</span><span class="n">md</span><span class="o">.</span><span class="n">getNumDims</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspace Type is:  </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
@@ -1598,8 +1598,8 @@ Workspace Type is:  MDEventWorkspace&lt;MDEvent,3&gt;
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertToDiffractionMDWorkspace2.h">ConvertToDiffractionMDWorkspace2.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/src/ConvertToDiffractionMDWorkspace2.cpp">ConvertToDiffractionMDWorkspace2.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/inc/MantidMDAlgorithms/ConvertToDiffractionMDWorkspace2.h">ConvertToDiffractionMDWorkspace2.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/src/ConvertToDiffractionMDWorkspace2.cpp">ConvertToDiffractionMDWorkspace2.cpp</a></p>
 </section>
 </section>
 

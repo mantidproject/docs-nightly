@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LeanElasticPeaksWorkspace &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>LeanElasticPeaksWorkspace &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/dataobjects/LeanElasticPeaksWorkspace';</script>
@@ -659,22 +659,22 @@ of single crystal LeanElasticPeak objects. It is the equivalent to the
 <h3>FindPeaksMD example<a class="headerlink" href="#findpeaksmd-example" title="Link to this heading">#</a></h3>
 <p>Create a MDEventWorkspace and add some fake peaks at Q-sample of
 (1,1,1), (3,3,3), and (5.5,3.14159,1) and run FindPeaksMD.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">&#39;0,10,0,10,0,10&#39;</span><span class="p">,</span>
-                  <span class="n">Names</span><span class="o">=</span><span class="s1">&#39;Q_sample_x,Q_sample_y,Q_sample_z&#39;</span><span class="p">,</span>
-                  <span class="n">Units</span><span class="o">=</span><span class="s1">&#39;rlu,rlu,rlu&#39;</span><span class="p">,</span>
-                  <span class="n">Frames</span><span class="o">=</span><span class="s1">&#39;QSample,QSample,QSample&#39;</span><span class="p">,</span>
-                  <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;MDE&#39;</span><span class="p">)</span>
-<span class="n">FakeMDEventData</span><span class="p">(</span><span class="s1">&#39;MDE&#39;</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">&#39;10000,1,1,1,0.2&#39;</span><span class="p">)</span>
-<span class="n">FakeMDEventData</span><span class="p">(</span><span class="s1">&#39;MDE&#39;</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">&#39;100000,3,3,3,0.3&#39;</span><span class="p">)</span>
-<span class="n">FakeMDEventData</span><span class="p">(</span><span class="s1">&#39;MDE&#39;</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">&#39;1000,5.5,3.14159,1,0.1&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CreateMDWorkspace</span><span class="p">(</span><span class="n">Dimensions</span><span class="o">=</span><span class="s1">'3'</span><span class="p">,</span> <span class="n">Extents</span><span class="o">=</span><span class="s1">'0,10,0,10,0,10'</span><span class="p">,</span>
+                  <span class="n">Names</span><span class="o">=</span><span class="s1">'Q_sample_x,Q_sample_y,Q_sample_z'</span><span class="p">,</span>
+                  <span class="n">Units</span><span class="o">=</span><span class="s1">'rlu,rlu,rlu'</span><span class="p">,</span>
+                  <span class="n">Frames</span><span class="o">=</span><span class="s1">'QSample,QSample,QSample'</span><span class="p">,</span>
+                  <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'MDE'</span><span class="p">)</span>
+<span class="n">FakeMDEventData</span><span class="p">(</span><span class="s1">'MDE'</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">'10000,1,1,1,0.2'</span><span class="p">)</span>
+<span class="n">FakeMDEventData</span><span class="p">(</span><span class="s1">'MDE'</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">'100000,3,3,3,0.3'</span><span class="p">)</span>
+<span class="n">FakeMDEventData</span><span class="p">(</span><span class="s1">'MDE'</span><span class="p">,</span> <span class="n">PeakParams</span><span class="o">=</span><span class="s1">'1000,5.5,3.14159,1,0.1'</span><span class="p">)</span>
 
-<span class="n">peaks</span><span class="o">=</span><span class="n">FindPeaksMD</span><span class="p">(</span><span class="s1">&#39;MDE&#39;</span><span class="p">,</span>
+<span class="n">peaks</span><span class="o">=</span><span class="n">FindPeaksMD</span><span class="p">(</span><span class="s1">'MDE'</span><span class="p">,</span>
                   <span class="n">DensityThresholdFactor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                   <span class="n">PeakDistanceThreshold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">peaks</span><span class="o">.</span><span class="n">getNumberPeaks</span><span class="p">()):</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Peak </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> - Q-sample = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getQSampleFrame</span><span class="p">()</span><span class="si">}</span><span class="s2"> - bin count = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getBinCount</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Peak </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> - Q-sample = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getQSampleFrame</span><span class="p">()</span><span class="si">}</span><span class="s2"> - bin count = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getBinCount</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -684,18 +684,18 @@ Peak 2 - Q-sample = [1.00319,1.00183,1.00097] - bin count = 181.0
 </pre></div>
 </div>
 <p>Now convert that MDEventWorkspace to MDHistoWorkspace and run FindPeaksMD on that.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BinMD</span><span class="p">(</span><span class="s1">&#39;MDE&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;MDH&#39;</span><span class="p">,</span>
-      <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">&#39;Q_sample_x,0,10,100&#39;</span><span class="p">,</span>
-      <span class="n">AlignedDim1</span><span class="o">=</span><span class="s1">&#39;Q_sample_y,0,10,100&#39;</span><span class="p">,</span>
-      <span class="n">AlignedDim2</span><span class="o">=</span><span class="s1">&#39;Q_sample_z,0,10,100&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BinMD</span><span class="p">(</span><span class="s1">'MDE'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'MDH'</span><span class="p">,</span>
+      <span class="n">AlignedDim0</span><span class="o">=</span><span class="s1">'Q_sample_x,0,10,100'</span><span class="p">,</span>
+      <span class="n">AlignedDim1</span><span class="o">=</span><span class="s1">'Q_sample_y,0,10,100'</span><span class="p">,</span>
+      <span class="n">AlignedDim2</span><span class="o">=</span><span class="s1">'Q_sample_z,0,10,100'</span><span class="p">)</span>
 
-<span class="n">peaks2</span><span class="o">=</span><span class="n">FindPeaksMD</span><span class="p">(</span><span class="s1">&#39;MDH&#39;</span><span class="p">,</span>
+<span class="n">peaks2</span><span class="o">=</span><span class="n">FindPeaksMD</span><span class="p">(</span><span class="s1">'MDH'</span><span class="p">,</span>
                    <span class="n">DensityThresholdFactor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                    <span class="n">PeakDistanceThreshold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">peaks2</span><span class="o">.</span><span class="n">getNumberPeaks</span><span class="p">()):</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">peaks2</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Peak </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> - Q-sample = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getQSampleFrame</span><span class="p">()</span><span class="si">}</span><span class="s2"> - bin count = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getBinCount</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Peak </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> - Q-sample = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getQSampleFrame</span><span class="p">()</span><span class="si">}</span><span class="s2"> - bin count = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getBinCount</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -710,10 +710,10 @@ Peak 2 - Q-sample = [5.55,3.15,1.05] - bin count = 0.19
 <p>Create a workspace, set the UB and then predict all peaks in the d-spacing range.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">CreatePeaksWorkspace</span><span class="p">()</span>
 <span class="n">SetUB</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
-<span class="n">peaks</span> <span class="o">=</span> <span class="n">PredictPeaks</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">=</span><span class="s1">&#39;LeanElasticPeak&#39;</span><span class="p">,</span> <span class="n">CalculateWavelength</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">MinDSpacing</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">MaxDSpacing</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>
+<span class="n">peaks</span> <span class="o">=</span> <span class="n">PredictPeaks</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">=</span><span class="s1">'LeanElasticPeak'</span><span class="p">,</span> <span class="n">CalculateWavelength</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">MinDSpacing</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">MaxDSpacing</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">peaks</span><span class="o">.</span><span class="n">getNumberPeaks</span><span class="p">()):</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Peak </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">&gt;2</span><span class="si">}</span><span class="s2"> - d-spacing = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getDSpacing</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> - HKL = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getHKL</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Peak </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">&gt;2</span><span class="si">}</span><span class="s2"> - d-spacing = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getDSpacing</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> - HKL = </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">getHKL</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -772,7 +772,7 @@ Peak 19 - d-spacing = 2.50 - HKL = [2,-1,0]
 <p>See <a class="reference internal" href="../api/IPeaksWorkspace.html#mantid.api.IPeaksWorkspace" title="mantid.api.IPeaksWorkspace"><code class="xref py py-class docutils literal notranslate"><span class="pre">IPeaksWorkspace</span></code></a> for
 complete API.</p>
 <p>To get peaks from an existing workspace <cite>‘name_of_peaks_workspace’</cite></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;name_of_peaks_workspace&#39;</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'name_of_peaks_workspace'</span><span class="p">]</span>
 <span class="n">pws</span><span class="o">.</span><span class="n">getNumberPeaks</span><span class="p">()</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">pws</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">pws</span><span class="o">.</span><span class="n">removePeak</span><span class="p">(</span><span class="mi">34</span><span class="p">)</span>
@@ -783,7 +783,7 @@ the peak and not a copy of the peak, so any modification to <cite>p</cite> will
 change not just <cite>p</cite> but that peak in the <cite>name_of_peaks_workspace</cite>
 workspace.</p>
 <p>To create an empty LeanElasticPeaksWorkspace then add peaks to it:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">peaks</span> <span class="o">=</span> <span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">=</span><span class="s2">&quot;LeanElasticPeak&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">peaks</span> <span class="o">=</span> <span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">OutputType</span><span class="o">=</span><span class="s2">"LeanElasticPeak"</span><span class="p">)</span>
 <span class="n">p0</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">createPeakQSample</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">peaks</span><span class="o">.</span><span class="n">addPeak</span><span class="p">(</span><span class="n">p0</span><span class="p">)</span>
 <span class="n">SetUB</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -791,7 +791,7 @@ workspace.</p>
 <span class="n">peaks</span><span class="o">.</span><span class="n">addPeak</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
     <span class="n">peak</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Peak </span><span class="si">{}</span><span class="s1"> hkl = </span><span class="si">{:.0f}{:.0f}{:.0f}</span><span class="s1"> q_sample = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">peak</span><span class="o">.</span><span class="n">getH</span><span class="p">(),</span> <span class="n">peak</span><span class="o">.</span><span class="n">getK</span><span class="p">(),</span> <span class="n">peak</span><span class="o">.</span><span class="n">getL</span><span class="p">(),</span> <span class="n">peak</span><span class="o">.</span><span class="n">getQSampleFrame</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Peak </span><span class="si">{}</span><span class="s1"> hkl = </span><span class="si">{:.0f}{:.0f}{:.0f}</span><span class="s1"> q_sample = </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">peak</span><span class="o">.</span><span class="n">getH</span><span class="p">(),</span> <span class="n">peak</span><span class="o">.</span><span class="n">getK</span><span class="p">(),</span> <span class="n">peak</span><span class="o">.</span><span class="n">getL</span><span class="p">(),</span> <span class="n">peak</span><span class="o">.</span><span class="n">getQSampleFrame</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -817,22 +817,22 @@ Peak 1 hkl = 123 q_sample = [6.28319,9.42478,3.14159]
 <p>Once you have a handle on a peak “p” you have several methods to query/modify its values:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">setHKL</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">hkl</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">getHKL</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hkl =&quot;</span><span class="p">,</span> <span class="n">hkl</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"hkl ="</span><span class="p">,</span> <span class="n">hkl</span><span class="p">)</span>
 
 <span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">getQSampleFrame</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;q =&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"q ="</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
 
 <span class="n">p</span><span class="o">.</span><span class="n">setIntensity</span><span class="p">(</span><span class="mf">1000.0</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">setSigmaIntensity</span><span class="p">(</span><span class="mf">31.6</span><span class="p">)</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">getIntensity</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;counts =&quot;</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"counts ="</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
 
 <span class="n">wl</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">getWavelength</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wl = </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wl</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"wl = </span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wl</span><span class="p">))</span>
 <span class="n">d</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">getDSpacing</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;d = </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"d = </span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
 <span class="n">shape</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">getPeakShape</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shape =&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">.</span><span class="n">shapeName</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"shape ="</span><span class="p">,</span> <span class="n">shape</span><span class="o">.</span><span class="n">shapeName</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>

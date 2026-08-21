@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Creating Workspaces &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Creating Workspaces &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/extending_mantid_with_python/expanding_data_interaction/01_creating_workspaces';</script>
@@ -565,16 +565,16 @@ or <a class="reference internal" href="../../../api/python/mantid/api/MatrixWork
 method called <code class="docutils literal notranslate"><span class="pre">create</span></code>. To create a brand new workspace from scratch:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1"># Creates a generic output property</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">WorkspaceProperty</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;OutputWorkspace&quot;</span><span class="p">,</span>
-                                           <span class="n">defaultValue</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">WorkspaceProperty</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"OutputWorkspace"</span><span class="p">,</span>
+                                           <span class="n">defaultValue</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
                                            <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">Output</span><span class="p">))</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1"># A workspace with 5 rows with 9 bins &amp; 10 bin boundaries</span>
     <span class="c1"># (i.e. a histogram)</span>
-    <span class="n">output_ws</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;Workspace2D&quot;</span><span class="p">,</span> <span class="n">NVectors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">output_ws</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">"Workspace2D"</span><span class="p">,</span> <span class="n">NVectors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
                                         <span class="n">XLength</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">YLength</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;OutputWorkspace&quot;</span><span class="p">,</span> <span class="n">output_ws</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">"OutputWorkspace"</span><span class="p">,</span> <span class="n">output_ws</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The above code will create a new 2D workspace filled with zeroes. The
@@ -586,7 +586,7 @@ workspace like so:</p>
 <span class="c1"># A workspace with 5 rows with 9 bins &amp; 10 bin boundaries</span>
 <span class="n">nrows</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">nbins</span> <span class="o">=</span> <span class="mi">9</span>
-<span class="n">output_ws</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;Workspace2D&quot;</span><span class="p">,</span> <span class="n">NVectors</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
+<span class="n">output_ws</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">"Workspace2D"</span><span class="p">,</span> <span class="n">NVectors</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
                                     <span class="n">XLength</span><span class="o">=</span><span class="n">nbins</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">YLength</span><span class="o">=</span><span class="n">nbins</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
     <span class="n">xdata</span> <span class="o">=</span> <span class="n">output_ws</span><span class="o">.</span><span class="n">mutableX</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -600,7 +600,7 @@ workspace like so:</p>
     <span class="c1"># final bin boundary</span>
     <span class="n">xdata</span><span class="p">[</span><span class="n">nbins</span><span class="p">]</span> <span class="o">=</span> <span class="n">nbins</span>
 
-<span class="bp">self</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;OutputWorkspace&quot;</span><span class="p">,</span> <span class="n">output_ws</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">"OutputWorkspace"</span><span class="p">,</span> <span class="n">output_ws</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">WorkspaceFactory</span></code> can also create a workspace using another as a
@@ -611,7 +611,7 @@ method can also create a workspace of a different size, e.g.</p>
 <span class="c1"># A workspace with 5 rows with 9 bins &amp; 10 bin boundaries</span>
 <span class="n">nrows</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">nbins</span> <span class="o">=</span> <span class="mi">9</span>
-<span class="n">output_ws</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;Workspace2D&quot;</span><span class="p">,</span> <span class="n">NVectors</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
+<span class="n">output_ws</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">"Workspace2D"</span><span class="p">,</span> <span class="n">NVectors</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
                                     <span class="n">XLength</span><span class="o">=</span><span class="n">nbins</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">YLength</span><span class="o">=</span><span class="n">nbins</span><span class="p">)</span>
 
 <span class="c1"># Copies meta-data and creates a single bin workspace with 5 rows</span>
@@ -632,7 +632,7 @@ each element in python:</p>
 <span class="c1"># A workspace with 5 rows with 9 bins &amp; 10 bin boundaries</span>
 <span class="n">nrows</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">nbins</span> <span class="o">=</span> <span class="mi">9</span>
-<span class="n">output_ws</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;Workspace2D&quot;</span><span class="p">,</span> <span class="n">NVectors</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
+<span class="n">output_ws</span> <span class="o">=</span> <span class="n">WorkspaceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">"Workspace2D"</span><span class="p">,</span> <span class="n">NVectors</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
                                     <span class="n">XLength</span><span class="o">=</span><span class="n">nbins</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">YLength</span><span class="o">=</span><span class="n">nbins</span><span class="p">)</span>
 
 <span class="n">xdata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">nbins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="c1"># filled with 0-&gt;9</span>
@@ -644,7 +644,7 @@ each element in python:</p>
     <span class="n">output_ws</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">ydata</span><span class="p">)</span>
     <span class="n">output_ws</span><span class="o">.</span><span class="n">setE</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">edata</span><span class="p">)</span>
 
-<span class="bp">self</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;OutputWorkspace&quot;</span><span class="p">,</span> <span class="n">output_ws</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">"OutputWorkspace"</span><span class="p">,</span> <span class="n">output_ws</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

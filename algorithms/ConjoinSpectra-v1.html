@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ConjoinSpectra v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ConjoinSpectra v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ConjoinSpectra-v1';</script>
@@ -1517,62 +1517,62 @@ how a single value is extracted from time series logs.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Join workspace index 1 from three workspaces</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ws3</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ws3</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">wsOut</span> <span class="o">=</span> <span class="n">ConjoinSpectra</span><span class="p">(</span><span class="s2">&quot;ws,ws2,ws3&quot;</span><span class="p">,</span><span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creates a workspace with </span><span class="si">{}</span><span class="s2"> spectra labelled as&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="n">wsOut</span> <span class="o">=</span> <span class="n">ConjoinSpectra</span><span class="p">(</span><span class="s2">"ws,ws2,ws3"</span><span class="p">,</span><span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Creates a workspace with </span><span class="si">{}</span><span class="s2"> spectra labelled as"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">extractValues</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Creates a workspace with 3 spectra labelled as
-[&#39;ws_1&#39;, &#39;ws2_1&#39;, &#39;ws3_1&#39;]
+['ws_1', 'ws2_1', 'ws3_1']
 </pre></div>
 </div>
 <p><strong>Example - Join spectra from three workspaces using a log value</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ws3</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ws3</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1">#add some log values</span>
 <span class="n">wsIndex</span><span class="o">=</span><span class="mi">0</span>
 <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">[</span><span class="n">ws</span><span class="p">,</span><span class="n">ws2</span><span class="p">,</span><span class="n">ws3</span><span class="p">]:</span>
     <span class="n">wsIndex</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">minute</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">60</span><span class="p">):</span>
-        <span class="n">time_string</span> <span class="o">=</span> <span class="s2">&quot;2010-01-01T00:</span><span class="si">%02i</span><span class="s2">:00&quot;</span> <span class="o">%</span> <span class="n">minute</span>
-        <span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">&quot;myLog&quot;</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="n">time_string</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="p">(</span><span class="n">wsIndex</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">+</span><span class="n">minute</span><span class="p">)</span>
+        <span class="n">time_string</span> <span class="o">=</span> <span class="s2">"2010-01-01T00:</span><span class="si">%02i</span><span class="s2">:00"</span> <span class="o">%</span> <span class="n">minute</span>
+        <span class="n">AddTimeSeriesLog</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="s2">"myLog"</span><span class="p">,</span> <span class="n">Time</span><span class="o">=</span><span class="n">time_string</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="p">(</span><span class="n">wsIndex</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">+</span><span class="n">minute</span><span class="p">)</span>
 
-<span class="n">wsOut</span> <span class="o">=</span> <span class="n">ConjoinSpectra</span><span class="p">(</span><span class="s2">&quot;ws,ws2,ws3&quot;</span><span class="p">,</span><span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">LabelUsing</span><span class="o">=</span><span class="s2">&quot;myLog&quot;</span><span class="p">,</span><span class="n">LabelValue</span><span class="o">=</span><span class="s2">&quot;Mean&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creates a workspace with </span><span class="si">{}</span><span class="s2"> spectra labelled using the Mean of myLog.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="n">wsOut</span> <span class="o">=</span> <span class="n">ConjoinSpectra</span><span class="p">(</span><span class="s2">"ws,ws2,ws3"</span><span class="p">,</span><span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">LabelUsing</span><span class="o">=</span><span class="s2">"myLog"</span><span class="p">,</span><span class="n">LabelValue</span><span class="o">=</span><span class="s2">"Mean"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Creates a workspace with </span><span class="si">{}</span><span class="s2"> spectra labelled using the Mean of myLog."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">extractValues</span><span class="p">())</span>
 
-<span class="n">otherLabelValueOptions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;First Value&quot;</span><span class="p">,</span><span class="s2">&quot;Median&quot;</span><span class="p">,</span> <span class="s2">&quot;Maximum&quot;</span><span class="p">,</span> <span class="s2">&quot;Minimum&quot;</span><span class="p">]</span>
+<span class="n">otherLabelValueOptions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"First Value"</span><span class="p">,</span><span class="s2">"Median"</span><span class="p">,</span> <span class="s2">"Maximum"</span><span class="p">,</span> <span class="s2">"Minimum"</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">labelValueOption</span> <span class="ow">in</span> <span class="n">otherLabelValueOptions</span><span class="p">:</span>
-    <span class="n">wsOut</span> <span class="o">=</span> <span class="n">ConjoinSpectra</span><span class="p">(</span><span class="s2">&quot;ws,ws2,ws3&quot;</span><span class="p">,</span><span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">LabelUsing</span><span class="o">=</span><span class="s2">&quot;myLog&quot;</span><span class="p">,</span> <span class="n">LabelValue</span><span class="o">=</span><span class="n">labelValueOption</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creates a workspace with </span><span class="si">{}</span><span class="s2"> spectra labelled using the </span><span class="si">{}</span><span class="s2"> of myLog.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">labelValueOption</span><span class="p">))</span>
+    <span class="n">wsOut</span> <span class="o">=</span> <span class="n">ConjoinSpectra</span><span class="p">(</span><span class="s2">"ws,ws2,ws3"</span><span class="p">,</span><span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">LabelUsing</span><span class="o">=</span><span class="s2">"myLog"</span><span class="p">,</span> <span class="n">LabelValue</span><span class="o">=</span><span class="n">labelValueOption</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Creates a workspace with </span><span class="si">{}</span><span class="s2"> spectra labelled using the </span><span class="si">{}</span><span class="s2"> of myLog."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">(),</span> <span class="n">labelValueOption</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">extractValues</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Output:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Creates a workspace with 3 spectra labelled using the Mean of myLog.
-[&#39;129.5&#39;, &#39;229.5&#39;, &#39;329.5&#39;]
+['129.5', '229.5', '329.5']
 Creates a workspace with 3 spectra labelled using the First Value of myLog.
-[&#39;100.0&#39;, &#39;200.0&#39;, &#39;300.0&#39;]
+['100.0', '200.0', '300.0']
 Creates a workspace with 3 spectra labelled using the Median of myLog.
-[&#39;129.5&#39;, &#39;229.5&#39;, &#39;329.5&#39;]
+['129.5', '229.5', '329.5']
 Creates a workspace with 3 spectra labelled using the Maximum of myLog.
-[&#39;159.0&#39;, &#39;259.0&#39;, &#39;359.0&#39;]
+['159.0', '259.0', '359.0']
 Creates a workspace with 3 spectra labelled using the Minimum of myLog.
-[&#39;100.0&#39;, &#39;200.0&#39;, &#39;300.0&#39;]
+['100.0', '200.0', '300.0']
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Transforms/Merging.html">Transforms\Merging</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/ConjoinSpectra.py">ConjoinSpectra.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/ConjoinSpectra.py">ConjoinSpectra.py</a></p>
 </section>
 </section>
 

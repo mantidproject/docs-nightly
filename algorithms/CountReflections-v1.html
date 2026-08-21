@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CountReflections v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CountReflections v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1562,23 +1562,23 @@ peaks that carry intensity data while this algorithm also works without intensit
 <p>The usage example uses the same data as the usage test in <a class="reference internal" href="SortHKL-v1.html#algm-sorthkl"><span class="std std-ref">SortHKL v1</span></a>, but produces slightly different
 data, because some intensities in the input file are 0, so these reflections are ignored by <a class="reference internal" href="SortHKL-v1.html#algm-sorthkl"><span class="std std-ref">SortHKL v1</span></a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load example peak data and find cell</span>
-<span class="n">peaks</span> <span class="o">=</span> <span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Peaks5637.integrate&#39;</span><span class="p">)</span>
+<span class="n">peaks</span> <span class="o">=</span> <span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">'Peaks5637.integrate'</span><span class="p">)</span>
 
 <span class="n">FindUBUsingFFT</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">MinD</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">MaxD</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">Tolerance</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 <span class="n">SelectCellWithForm</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">FormNumber</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">Apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">Tolerance</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
-<span class="n">OptimizeLatticeForCellType</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">CellType</span><span class="o">=</span><span class="s1">&#39;Hexagonal&#39;</span><span class="p">,</span> <span class="n">Apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">Tolerance</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">OptimizeLatticeForCellType</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">CellType</span><span class="o">=</span><span class="s1">'Hexagonal'</span><span class="p">,</span> <span class="n">Apply</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">Tolerance</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
 <span class="c1"># Run the SortHKL algorithm</span>
-<span class="n">unique</span><span class="p">,</span> <span class="n">completeness</span><span class="p">,</span> <span class="n">redundancy</span><span class="p">,</span> <span class="n">multiple</span> <span class="o">=</span> <span class="n">CountReflections</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">PointGroup</span><span class="o">=</span><span class="s1">&#39;-3m1&#39;</span><span class="p">,</span>
-                                                              <span class="n">LatticeCentering</span><span class="o">=</span><span class="s1">&#39;Robv&#39;</span><span class="p">,</span> <span class="n">MinDSpacing</span><span class="o">=</span><span class="mf">0.205</span><span class="p">,</span>
-                                                              <span class="n">MaxDSpacing</span><span class="o">=</span><span class="mf">2.08</span><span class="p">,</span> <span class="n">MissingReflectionsWorkspace</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">unique</span><span class="p">,</span> <span class="n">completeness</span><span class="p">,</span> <span class="n">redundancy</span><span class="p">,</span> <span class="n">multiple</span> <span class="o">=</span> <span class="n">CountReflections</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">PointGroup</span><span class="o">=</span><span class="s1">'-3m1'</span><span class="p">,</span>
+                                                              <span class="n">LatticeCentering</span><span class="o">=</span><span class="s1">'Robv'</span><span class="p">,</span> <span class="n">MinDSpacing</span><span class="o">=</span><span class="mf">0.205</span><span class="p">,</span>
+                                                              <span class="n">MaxDSpacing</span><span class="o">=</span><span class="mf">2.08</span><span class="p">,</span> <span class="n">MissingReflectionsWorkspace</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data set statistics:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;             Peaks: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peaks</span><span class="o">.</span><span class="n">getNumberPeaks</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;            Unique: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unique</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;      Completeness: </span><span class="si">{0}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">completeness</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;        Redundancy: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">redundancy</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; Multiply observed: </span><span class="si">{0}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">multiple</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Data set statistics:'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'             Peaks: </span><span class="si">{0}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peaks</span><span class="o">.</span><span class="n">getNumberPeaks</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'            Unique: </span><span class="si">{0}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unique</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'      Completeness: </span><span class="si">{0}</span><span class="s1">%'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">completeness</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'        Redundancy: </span><span class="si">{0}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">redundancy</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">' Multiply observed: </span><span class="si">{0}</span><span class="s1">%'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">multiple</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1596,8 +1596,8 @@ better to remove the zero intensity peaks from the workspace prior to running th
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/inc/MantidCrystal/CountReflections.h">CountReflections.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/src/CountReflections.cpp">CountReflections.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/inc/MantidCrystal/CountReflections.h">CountReflections.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/src/CountReflections.cpp">CountReflections.cpp</a></p>
 </section>
 </section>
 

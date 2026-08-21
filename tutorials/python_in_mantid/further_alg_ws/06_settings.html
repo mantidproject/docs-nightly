@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Settings &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Settings &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/python_in_mantid/further_alg_ws/06_settings';</script>
@@ -565,14 +565,14 @@
 <p>All settings specified in these files are accessible via python through the config object, which can be imported from the mantid module. For example, to access the default instrument:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
 
-<span class="n">default_inst_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;default.instrument&#39;</span><span class="p">]</span>
+<span class="n">default_inst_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">'default.instrument'</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>The config object behaves like a Python dictionary, where each setting in the properties file is used as a key to obtain its value from the config object.</p>
 <p>The dictionary-like manner can also be used to update settings, e.g.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
 
-<span class="n">config</span><span class="p">[</span><span class="s1">&#39;default.instrument&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;INST_NAME&#39;</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'default.instrument'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'INST_NAME'</span>
 </pre></div>
 </div>
 <p>where the value on the RHS must be a string. NOTE: Settings changed in this manner only affect the current Mantid session</p>
@@ -585,16 +585,16 @@
 <span class="n">current_paths</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getDataSearchDirs</span><span class="p">()</span>
 
 <span class="c1"># Add a new directory to the list</span>
-<span class="n">config</span><span class="o">.</span><span class="n">appendDataSearchDir</span><span class="p">(</span><span class="s1">&#39;new-dir&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">appendDataSearchDir</span><span class="p">(</span><span class="s1">'new-dir'</span><span class="p">)</span>
 
 <span class="c1"># Beware, the following commands will change your data search path</span>
 <span class="c1"># After that you may not be able to find your training data with Load()</span>
 
 <span class="c1">#Avoids dependency on the key name</span>
-<span class="n">config</span><span class="o">.</span><span class="n">setDataSearchDirs</span><span class="p">(</span><span class="s1">&#39;path1;path2;path3&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">setDataSearchDirs</span><span class="p">(</span><span class="s1">'path1;path2;path3'</span><span class="p">)</span>
 
 <span class="c1"># Set it via a list</span>
-<span class="n">config</span><span class="o">.</span><span class="n">setDataSearchDirs</span><span class="p">([</span><span class="s1">&#39;path1&#39;</span><span class="p">,</span><span class="s1">&#39;path2&#39;</span><span class="p">])</span>
+<span class="n">config</span><span class="o">.</span><span class="n">setDataSearchDirs</span><span class="p">([</span><span class="s1">'path1'</span><span class="p">,</span><span class="s1">'path2'</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>
@@ -609,8 +609,8 @@ the archive search plugin used to access the data archive.</p>
 <p>All of these properties can be accessed via Python:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
 
-<span class="n">facility</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getFacility</span><span class="p">(</span><span class="s1">&#39;SNS&#39;</span><span class="p">)</span>  <span class="c1"># or config.getFacility() returns the current default</span>
-<span class="n">inst_info</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">(</span><span class="s1">&#39;CNCS&#39;</span><span class="p">)</span> <span class="c1"># or config.Instrument() returns the current default</span>
+<span class="n">facility</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getFacility</span><span class="p">(</span><span class="s1">'SNS'</span><span class="p">)</span>  <span class="c1"># or config.getFacility() returns the current default</span>
+<span class="n">inst_info</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">(</span><span class="s1">'CNCS'</span><span class="p">)</span> <span class="c1"># or config.Instrument() returns the current default</span>
 </pre></div>
 </div>
 <p>The list of methods available are shown in the python reference: <a class="reference internal" href="../../../api/python/mantid/kernel/InstrumentInfo.html#instrumentinfo"><span class="std std-ref">InstrumentInfo</span></a></p>

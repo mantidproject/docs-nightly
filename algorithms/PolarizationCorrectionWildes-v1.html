@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PolarizationCorrectionWildes v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PolarizationCorrectionWildes v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1600,69 +1600,69 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p><strong>Example - PolarizationEfficiencyCor</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LoadILLReflectometry</span><span class="p">(</span>
-    <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;ILL/D17/317370.nxs&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;direct_beam&#39;</span><span class="p">,</span>
-    <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;TimeOfFlight&#39;</span><span class="p">)</span>
+    <span class="n">Filename</span><span class="o">=</span><span class="s1">'ILL/D17/317370.nxs'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'direct_beam'</span><span class="p">,</span>
+    <span class="n">XUnit</span><span class="o">=</span><span class="s1">'TimeOfFlight'</span><span class="p">)</span>
 <span class="n">LoadILLReflectometry</span><span class="p">(</span>
-    <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;ILL/D17/317370.nxs&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;reflected_beam&#39;</span><span class="p">,</span>
-    <span class="n">Measurement</span><span class="o">=</span><span class="s1">&#39;ReflectedBeam&#39;</span><span class="p">,</span>
+    <span class="n">Filename</span><span class="o">=</span><span class="s1">'ILL/D17/317370.nxs'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'reflected_beam'</span><span class="p">,</span>
+    <span class="n">Measurement</span><span class="o">=</span><span class="s1">'ReflectedBeam'</span><span class="p">,</span>
     <span class="n">BraggAngle</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-    <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;TimeOfFlight&#39;</span><span class="p">)</span>
+    <span class="n">XUnit</span><span class="o">=</span><span class="s1">'TimeOfFlight'</span><span class="p">)</span>
 <span class="c1"># Sum pixels containing the reflected intensity</span>
 <span class="n">GroupDetectors</span><span class="p">(</span>
-    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;reflected_beam&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;reflected_beam&#39;</span><span class="p">,</span>
+    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'reflected_beam'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'reflected_beam'</span><span class="p">,</span>
     <span class="n">WorkspaceIndexList</span><span class="o">=</span><span class="p">[</span><span class="mi">199</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">205</span><span class="p">])</span>
 <span class="n">ConvertUnits</span><span class="p">(</span>
-    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;reflected_beam&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;reflected_beam&#39;</span><span class="p">,</span>
-    <span class="n">Target</span><span class="o">=</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">,</span>
-    <span class="n">EMode</span><span class="o">=</span><span class="s1">&#39;Elastic&#39;</span><span class="p">)</span>
+    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'reflected_beam'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'reflected_beam'</span><span class="p">,</span>
+    <span class="n">Target</span><span class="o">=</span><span class="s1">'Wavelength'</span><span class="p">,</span>
+    <span class="n">EMode</span><span class="o">=</span><span class="s1">'Elastic'</span><span class="p">)</span>
 <span class="c1"># There are some unphysical wavelengths</span>
 <span class="n">CropWorkspace</span><span class="p">(</span>
-    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;reflected_beam&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;reflected_beam&#39;</span><span class="p">,</span>
+    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'reflected_beam'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'reflected_beam'</span><span class="p">,</span>
     <span class="n">XMin</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
 <span class="c1"># Fake two flipper configurations</span>
 <span class="n">RenameWorkspace</span><span class="p">(</span>
-    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;reflected_beam&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;up&#39;</span>
+    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'reflected_beam'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'up'</span>
 <span class="p">)</span>
 <span class="n">CloneWorkspace</span><span class="p">(</span>
-    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;up&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;down&#39;</span>
+    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'up'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'down'</span>
 <span class="p">)</span>
 <span class="n">Scale</span><span class="p">(</span>
-    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;down&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;down&#39;</span><span class="p">,</span>
+    <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'down'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'down'</span><span class="p">,</span>
     <span class="n">Factor</span><span class="o">=</span><span class="mf">0.1</span>
 <span class="p">)</span>
 <span class="n">LoadILLPolarizationFactors</span><span class="p">(</span>
-    <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;ILL/D17/PolarizationFactors.txt&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;efficiencies&#39;</span><span class="p">,</span>
-    <span class="n">WavelengthReference</span><span class="o">=</span><span class="s1">&#39;up&#39;</span><span class="p">)</span>
+    <span class="n">Filename</span><span class="o">=</span><span class="s1">'ILL/D17/PolarizationFactors.txt'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'efficiencies'</span><span class="p">,</span>
+    <span class="n">WavelengthReference</span><span class="o">=</span><span class="s1">'up'</span><span class="p">)</span>
 <span class="n">PolarizationEfficiencyCor</span><span class="p">(</span>
-    <span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">&#39;up, down&#39;</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;corrected&#39;</span><span class="p">,</span>
-    <span class="n">Efficiencies</span><span class="o">=</span><span class="s1">&#39;efficiencies&#39;</span><span class="p">,</span>
-    <span class="n">Flippers</span><span class="o">=</span><span class="s1">&#39;00, 11&#39;</span><span class="p">)</span>
+    <span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">'up, down'</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'corrected'</span><span class="p">,</span>
+    <span class="n">Efficiencies</span><span class="o">=</span><span class="s1">'efficiencies'</span><span class="p">,</span>
+    <span class="n">Flippers</span><span class="o">=</span><span class="s1">'00, 11'</span><span class="p">)</span>
 
-<span class="n">orig</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;up&#39;</span><span class="p">]</span>
-<span class="n">corr</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;corrected_++&#39;</span><span class="p">]</span>
+<span class="n">orig</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'up'</span><span class="p">]</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'corrected_++'</span><span class="p">]</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">orig</span><span class="o">.</span><span class="n">yIndexOfX</span><span class="p">(</span><span class="mf">15.</span><span class="p">)</span>
 <span class="n">ratio_up</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">index</span><span class="p">]</span> <span class="o">/</span> <span class="n">orig</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">index</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ratio of corrected and original &#39;up&#39; intensity at 15A: </span><span class="si">{:.4}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ratio_up</span><span class="p">))</span>
-<span class="n">orig</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;down&#39;</span><span class="p">]</span>
-<span class="n">corr</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;corrected_--&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ratio of corrected and original 'up' intensity at 15A: </span><span class="si">{:.4}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ratio_up</span><span class="p">))</span>
+<span class="n">orig</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'down'</span><span class="p">]</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'corrected_--'</span><span class="p">]</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">orig</span><span class="o">.</span><span class="n">yIndexOfX</span><span class="p">(</span><span class="mf">15.</span><span class="p">)</span>
 <span class="n">ratio_down</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">index</span><span class="p">]</span> <span class="o">/</span> <span class="n">orig</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">index</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ratio of corrected and original &#39;down&#39; intensity at 15A: </span><span class="si">{:.4}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ratio_down</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ratio of corrected and original 'down' intensity at 15A: </span><span class="si">{:.4}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ratio_down</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Ratio of corrected and original &#39;up&#39; intensity at 15A: 0.1062
-Ratio of corrected and original &#39;down&#39; intensity at 15A: 10.38
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Ratio of corrected and original 'up' intensity at 15A: 0.1062
+Ratio of corrected and original 'down' intensity at 15A: 10.38
 </pre></div>
 </div>
 </section>
@@ -1684,8 +1684,8 @@ Ratio of corrected and original &#39;down&#39; intensity at 15A: 10.38
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/PolarizationCorrectionWildes.h">PolarizationCorrectionWildes.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/PolarizationCorrectionWildes.cpp">PolarizationCorrectionWildes.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/PolarizationCorrectionWildes.h">PolarizationCorrectionWildes.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/PolarizationCorrectionWildes.cpp">PolarizationCorrectionWildes.cpp</a></p>
 </section>
 </section>
 

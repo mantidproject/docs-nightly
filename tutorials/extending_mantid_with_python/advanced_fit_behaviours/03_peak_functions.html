@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Peak Functions &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Peak Functions &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/extending_mantid_with_python/advanced_fit_behaviours/03_peak_functions';</script>
@@ -571,10 +571,10 @@ here is to walk through defining an example. Here will implement a <code class="
 <span class="k">class</span><span class="w"> </span><span class="nc">PyGaussian</span><span class="p">(</span><span class="n">IPeakFunction</span><span class="p">):</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
-        <span class="c1"># We don&#39;t use any attributes in this example</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
+        <span class="c1"># We don't use any attributes in this example</span>
 
 <span class="n">FunctionFactory</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">PyGaussian</span><span class="p">)</span> <span class="c1"># Registration is identical</span>
 </pre></div>
@@ -588,9 +588,9 @@ exception that the method is now called <code class="docutils literal notranslat
 <code class="docutils literal notranslate"><span class="pre">functionDerivLocal</span></code> method. This is optional and default is to be
 calculated numerical derivatives:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">functionLocal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
-    <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
-    <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">)</span>
+    <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
     <span class="n">weight</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">sigma</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="n">offset_sq</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">xvals</span><span class="o">-</span><span class="n">peak_centre</span><span class="p">)</span>
@@ -599,9 +599,9 @@ calculated numerical derivatives:</p>
 
 <span class="c1"># the following method is optional</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">functionDerivLocal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">,</span> <span class="n">jacobian</span><span class="p">):</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
-    <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
-    <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">)</span>
+    <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
     <span class="n">weight</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">sigma</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># X index</span>

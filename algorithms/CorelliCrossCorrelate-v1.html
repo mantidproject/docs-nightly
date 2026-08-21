@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CorelliCrossCorrelate v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CorelliCrossCorrelate v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1488,17 +1488,17 @@
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - CorelliCrossCorrelate</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a Corelli data file.</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;CORELLI_2100&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'CORELLI_2100'</span><span class="p">)</span>
 
-<span class="c1"># You will need to load the instrument if the one in the NeXus file doesn&#39;t contain the chopper sequence.</span>
-<span class="n">LoadInstrument</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">InstrumentName</span><span class="o">=</span><span class="s1">&#39;CORELLI&#39;</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># You will need to load the instrument if the one in the NeXus file doesn't contain the chopper sequence.</span>
+<span class="n">LoadInstrument</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">InstrumentName</span><span class="o">=</span><span class="s1">'CORELLI'</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Run the cross-correlation. This is using a TDC timing offset of 56000ns.</span>
 <span class="n">wsOut</span> <span class="o">=</span> <span class="n">CorelliCrossCorrelate</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="mi">56000</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The detector 172305 has </span><span class="si">{}</span><span class="s1"> events.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">172305</span><span class="p">)</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The event weights before cross-correlation are </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">172305</span><span class="p">)</span><span class="o">.</span><span class="n">getWeights</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The event weights after  cross-correlation are </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">172305</span><span class="p">)</span><span class="o">.</span><span class="n">getWeights</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'The detector 172305 has </span><span class="si">{}</span><span class="s1"> events.'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">172305</span><span class="p">)</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'The event weights before cross-correlation are </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">172305</span><span class="p">)</span><span class="o">.</span><span class="n">getWeights</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'The event weights after  cross-correlation are </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsOut</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">172305</span><span class="p">)</span><span class="o">.</span><span class="n">getWeights</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1511,8 +1511,8 @@ The event weights after  cross-correlation are [-0.99391854  1.          1.     
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/CorelliCrossCorrelate.h">CorelliCrossCorrelate.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/CorelliCrossCorrelate.cpp">CorelliCrossCorrelate.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/CorelliCrossCorrelate.h">CorelliCrossCorrelate.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/CorelliCrossCorrelate.cpp">CorelliCrossCorrelate.cpp</a></p>
 </section>
 </section>
 

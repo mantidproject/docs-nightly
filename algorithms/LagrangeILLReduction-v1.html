@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LagrangeILLReduction v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>LagrangeILLReduction v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/LagrangeILLReduction-v1';</script>
@@ -1528,22 +1528,22 @@ will automatically choose which way to load the input data. The reduction with e
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Simple Example with plotting of temperature vs initial energy</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># full correction of a single monochromator scan, with multiple files</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">LagrangeILLReduction</span><span class="p">(</span><span class="n">SampleRuns</span><span class="o">=</span><span class="s1">&#39;012869:012871&#39;</span><span class="p">,</span>
-                              <span class="n">ContainerRuns</span><span class="o">=</span><span class="s1">&#39;012882:012884&#39;</span><span class="p">,</span>
-                              <span class="n">CorrectionFile</span><span class="o">=</span><span class="s1">&#39;correction-water-cu220-2020.txt&#39;</span><span class="p">,</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">LagrangeILLReduction</span><span class="p">(</span><span class="n">SampleRuns</span><span class="o">=</span><span class="s1">'012869:012871'</span><span class="p">,</span>
+                              <span class="n">ContainerRuns</span><span class="o">=</span><span class="s1">'012882:012884'</span><span class="p">,</span>
+                              <span class="n">CorrectionFile</span><span class="o">=</span><span class="s1">'correction-water-cu220-2020.txt'</span><span class="p">,</span>
                               <span class="n">UseIncidentEnergy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                               <span class="n">ConvertToWaveNumber</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">run</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">getRun</span><span class="p">()</span>
-<span class="n">times</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'time'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 <span class="n">eis</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">temperatures</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">temperatures</span> <span class="o">=</span> <span class="n">run</span><span class="o">.</span><span class="n">getLogData</span><span class="p">(</span><span class="s1">'temperature'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span> <span class="s1">'mantid'</span><span class="p">})</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eis</span><span class="p">,</span> <span class="n">temperatures</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Ei (meV)&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;temperature (K)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Ei (meV)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"temperature (K)"</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1557,22 +1557,22 @@ will automatically choose which way to load the input data. The reduction with e
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="c1"># setting search directory for data</span>
-<span class="n">config</span><span class="o">.</span><span class="n">appendDataSearchDir</span><span class="p">(</span><span class="s2">&quot;/path/to/data&quot;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">appendDataSearchDir</span><span class="p">(</span><span class="s2">"/path/to/data"</span><span class="p">)</span>
 
 <span class="c1"># setting data grouped by monochromator</span>
-<span class="n">samples</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Cu220&quot;</span><span class="p">:</span> <span class="s1">&#39;raw_cu220_0, raw_cu220_1&#39;</span><span class="p">,</span>
-           <span class="s2">&quot;Si111&quot;</span><span class="p">:</span> <span class="s1">&#39;raw_si111_0&#39;</span><span class="p">,</span>
-           <span class="s2">&quot;Si311&quot;</span><span class="p">:</span> <span class="s1">&#39;raw_si311_0&#39;</span><span class="p">}</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Cu220"</span><span class="p">:</span> <span class="s1">'raw_cu220_0, raw_cu220_1'</span><span class="p">,</span>
+           <span class="s2">"Si111"</span><span class="p">:</span> <span class="s1">'raw_si111_0'</span><span class="p">,</span>
+           <span class="s2">"Si311"</span><span class="p">:</span> <span class="s1">'raw_si311_0'</span><span class="p">}</span>
 
 <span class="c1"># empty cell files</span>
-<span class="n">ec</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Cu220&quot;</span><span class="p">:</span> <span class="s1">&#39;ec_cu220_0, ec_cu220_1&#39;</span><span class="p">,</span>
-      <span class="s2">&quot;Si111&quot;</span><span class="p">:</span> <span class="s1">&#39;ec_si111_0&#39;</span><span class="p">,</span>
-      <span class="s2">&quot;Si311&quot;</span><span class="p">:</span> <span class="s1">&#39;ec_si311_0&#39;</span><span class="p">}</span>
+<span class="n">ec</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Cu220"</span><span class="p">:</span> <span class="s1">'ec_cu220_0, ec_cu220_1'</span><span class="p">,</span>
+      <span class="s2">"Si111"</span><span class="p">:</span> <span class="s1">'ec_si111_0'</span><span class="p">,</span>
+      <span class="s2">"Si311"</span><span class="p">:</span> <span class="s1">'ec_si311_0'</span><span class="p">}</span>
 
 <span class="c1"># correction files</span>
-<span class="n">corr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Cu220&quot;</span><span class="p">:</span> <span class="s2">&quot;correction-factor-Cu220.txt&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Si111&quot;</span><span class="p">:</span> <span class="s2">&quot;correction-factor-Si111.txt&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Si311&quot;</span><span class="p">:</span> <span class="s2">&quot;correction_factor-Si311.txt&quot;</span><span class="p">}</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Cu220"</span><span class="p">:</span> <span class="s2">"correction-factor-Cu220.txt"</span><span class="p">,</span>
+        <span class="s2">"Si111"</span><span class="p">:</span> <span class="s2">"correction-factor-Si111.txt"</span><span class="p">,</span>
+        <span class="s2">"Si311"</span><span class="p">:</span> <span class="s2">"correction_factor-Si311.txt"</span><span class="p">}</span>
 
 <span class="c1"># treating data for each monochromator</span>
 <span class="k">for</span> <span class="n">mono</span> <span class="ow">in</span> <span class="n">samples</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -1584,17 +1584,17 @@ will automatically choose which way to load the input data. The reduction with e
                          <span class="n">ConvertToWaveNumber</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># stitching the results</span>
-<span class="n">Stitch</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">ReferenceWorkspace</span><span class="o">=</span><span class="s1">&#39;Si311&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;stitched&quot;</span><span class="p">)</span>
+<span class="n">Stitch</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s2">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">ReferenceWorkspace</span><span class="o">=</span><span class="s1">'Si311'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"stitched"</span><span class="p">)</span>
 
 <span class="c1"># plotting all results</span>
-<span class="n">plotSpectrum</span><span class="p">(</span><span class="n">workspaces</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;stitched&#39;</span><span class="p">],</span> <span class="n">indices</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plotSpectrum</span><span class="p">(</span><span class="n">workspaces</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="s1">'stitched'</span><span class="p">],</span> <span class="n">indices</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/ILL/Indirect.html">ILL\Indirect</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/LagrangeILLReduction.py">LagrangeILLReduction.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/LagrangeILLReduction.py">LagrangeILLReduction.py</a></p>
 </section>
 </section>
 

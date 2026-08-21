@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SANS TOML Files &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SANS TOML Files &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -482,8 +482,8 @@ file version. Long-term this allows us to make changes in a backwards compatible
 <p>This is a free-form field, typically at the top of the file
 to enter any user attributes. They are ignored by the TOML parser.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">metadata</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">created = &quot;1980-12-31&quot;</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">weather_that_day = &quot;sunny&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">created = "1980-12-31"</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">weather_that_day = "sunny"</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">this_is_toml = true</span>
 </pre></div>
 </div>
@@ -492,7 +492,7 @@ to enter any user attributes. They are ignored by the TOML parser.</p>
 <h3>Instrument<a class="headerlink" href="#instrument" title="Link to this heading">#</a></h3>
 <p>This is a required entry to specify the instrument name and <cite>instrument.configuration</cite>, documented in the conversion guide below.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">name = &quot;LARMOR&quot;</span><span class="w">  </span><span class="c1"># or &quot;LOQ&quot; / &quot;SANS2D&quot; / &quot;ZOOM&quot;...etc.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">name = "LARMOR"</span><span class="w">  </span><span class="c1"># or "LOQ" / "SANS2D" / "ZOOM"...etc.</span>
 
 <span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="c1"># ...</span>
@@ -527,32 +527,32 @@ the existing user file format: <cite>[ ]</cite>.</p>
 <p>Examples are given in a way that they can be merged together where headers
 match, for example these three examples:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">binning</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">wavelength = {start = 2.0, step=0.125, stop=14.0, type = &quot;Lin&quot;}</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">wavelength = {start = 2.0, step=0.125, stop=14.0, type = "Lin"}</span>
 </pre></div>
 </div>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">binning</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">binning.1d_reduction</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">binning = &quot;0.02,0.05,0.5,-0.1,10.0&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">binning = "0.02,0.05,0.5,-0.1,10.0"</span>
 </pre></div>
 </div>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">binning</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">binning.2d_reduction</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">step = 0.002</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">stop = 0.1</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">type = &quot;Lin&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">type = "Lin"</span>
 </pre></div>
 </div>
 <p>Are combined into the following when writing the TOML file:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">binning</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">wavelength = {start = 2.0, step=0.125, stop=14.0, type = &quot;Lin&quot;}</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">wavelength = {start = 2.0, step=0.125, stop=14.0, type = "Lin"}</span>
 
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[binning.1d_reduction]</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">binning = &quot;0.02,0.05,0.5,-0.1,10.0&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">binning = "0.02,0.05,0.5,-0.1,10.0"</span>
 
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[binning.2d_reduction]</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">step = 0.002</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">stop = 0.1</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">type = &quot;Lin&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">type = "Lin"</span>
 </pre></div>
 </div>
 </section>
@@ -569,7 +569,7 @@ match, for example these three examples:</p>
 <span class="l l-Scalar l-Scalar-Plain">[metadata]</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[instrument]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">name = &quot;instrument&quot;</span><span class="w">  </span><span class="c1"># give name of instrument</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">name = "instrument"</span><span class="w">  </span><span class="c1"># give name of instrument</span>
 
 <span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
 </pre></div>
@@ -627,7 +627,7 @@ is now deprecated. See also <a class="reference internal" href="#back-mn-times-r
 <p>This command was used to estimate and subtract the (time-independent)
 background level on a specified monitor. See also <a class="reference internal" href="#back-mon-times-ref"><span class="std std-ref">BACK/MON/TIMES t1 t2</span></a>.</p>
 <p>Times were specified in microseconds.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: both &quot;normalisation&quot; and &quot;normalisation&quot; are both accepted</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: both "normalisation" and "normalisation" are both accepted</span>
 <span class="p p-Indicator">[</span><span class="nv">normalisation</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">normalisation.monitor.Mn</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">spectrum_number = n</span>
@@ -750,7 +750,7 @@ equivalent to the <em>rear</em> detector.</p>
 <p>In TOML the detectors must be specified in lower case, and /BOTH
 has been replaced by “all”.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">detector.configuration</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">selected_detector = &quot;rear&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">selected_detector = "rear"</span>
 </pre></div>
 </div>
 <p><strong>Existing Example</strong></p>
@@ -759,8 +759,8 @@ has been replaced by “all”.</p>
 </div>
 <p><strong>Replacement Example</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">detector.configuration</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="c1"># Accepts &quot;front&quot;, &quot;rear&quot;, &quot;merged&quot;, or &quot;all&quot;.</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">selected_detector = &quot;front&quot;</span>
+<span class="w">  </span><span class="c1"># Accepts "front", "rear", "merged", or "all".</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">selected_detector = "front"</span>
 </pre></div>
 </div>
 </section>
@@ -958,9 +958,9 @@ transmission data. See also <a class="reference internal" href="#fitting-on-ref"
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">transmission.fitting</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">enabled = false</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">parameters = {lambda_min = w1, lambda_max = w2}</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># Can be</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Linear&quot;</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/ &quot;Logarithmic&quot; / &quot;Polynomial&quot;</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">function = &quot;Linear&quot;</span>
-<span class="w">    </span><span class="c1"># Only used when set to &quot;Polynomial&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># Can be</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"Linear"</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/ "Logarithmic" / "Polynomial"</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">function = "Linear"</span>
+<span class="w">    </span><span class="c1"># Only used when set to "Polynomial"</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">polynomial_order = 3</span>
 </pre></div>
 </div>
@@ -973,7 +973,7 @@ transmission data. See also <a class="reference internal" href="#fitting-on-ref"
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">transmission.fitting</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">enabled = false</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">parameters = {lambda_min = 3.0, lambda_max = 11.0}</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">function = &quot;Linear&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">function = "Linear"</span>
 </pre></div>
 </div>
 </section>
@@ -1001,9 +1001,9 @@ Y=C0+C1X+C2X^2+…CnX^n where n&gt;2.</p>
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">transmission.fitting</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">enabled = true</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">parameters = {lambda_min = w1, lambda_max = w2}</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># Can be</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Linear&quot;</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/ &quot;Logarithmic&quot; / &quot;Polynomial&quot;</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">function = &quot;Linear&quot;</span>
-<span class="w">    </span><span class="c1"># Only used when set to &quot;Polynomial&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"># Can be</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"Linear"</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/ "Logarithmic" / "Polynomial"</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">function = "Linear"</span>
+<span class="w">    </span><span class="c1"># Only used when set to "Polynomial"</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">polynomial_order = 3</span>
 </pre></div>
 </div>
@@ -1016,7 +1016,7 @@ Y=C0+C1X+C2X^2+…CnX^n where n&gt;2.</p>
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">transmission.fitting</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">enabled = true</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">parameters = {lambda_min = 3.0, lambda_max = 11.0}</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">function = &quot;Linear&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">function = "Linear"</span>
 </pre></div>
 </div>
 </section>
@@ -1081,7 +1081,7 @@ bins.</p>
 tsteps were specified as %/100.</p>
 <p><strong>Replacement</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">reduction.events</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">binning = &quot;str&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">binning = "str"</span>
 </pre></div>
 </div>
 <p><strong>Existing Example</strong></p>
@@ -1092,7 +1092,7 @@ tsteps were specified as %/100.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">reduction.events</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="c1"># A negative step (middle val) indicates Log</span>
 <span class="w">  </span><span class="c1"># Therefore this is linear binning</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">binning = &quot;7000.0,500.0,60000.0&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">binning = "7000.0,500.0,60000.0"</span>
 </pre></div>
 </div>
 </section>
@@ -1152,7 +1152,7 @@ qsteps were specified as %/100.</p>
 <p><strong>Replacement</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">binning.1d_reduction</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="c1"># Negative indicates log</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">binning = &quot;rebin_string&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">binning = "rebin_string"</span>
 </pre></div>
 </div>
 <p><strong>Existing Example</strong></p>
@@ -1163,7 +1163,7 @@ qsteps were specified as %/100.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">binning</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">binning.1d_reduction</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="c1"># Negative indicates log</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">binning = &quot;0.02,0.05,0.5,-0.1,10.0&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">binning = "0.02,0.05,0.5,-0.1,10.0"</span>
 </pre></div>
 </div>
 </section>
@@ -1240,8 +1240,8 @@ Logarithmic qsteps were specified as %/100.</p>
 <span class="w">    </span><span class="c1">#binning MUST start at 0.0</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">step = step</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">stop = stop</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">#type can be &quot;Lin&quot; or &quot;Log&quot;</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">type = &quot;Lin&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">#type can be "Lin" or "Log"</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">type = "Lin"</span>
 </pre></div>
 </div>
 <p><strong>Existing Example</strong></p>
@@ -1253,7 +1253,7 @@ Logarithmic qsteps were specified as %/100.</p>
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">binning.2d_reduction</span><span class="p p-Indicator">]</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">step = 0.002</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">stop = 0.1</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">type = &quot;Lin&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">type = "Lin"</span>
 </pre></div>
 </div>
 </section>
@@ -1319,9 +1319,9 @@ geometrically-expanding) bins.</p>
 <p>All wavelength-values and linear wsteps were specified in Angstroms.
 Logarithmic wsteps were specified as %/100.</p>
 <p><strong>Replacement</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">wavelength = {start = min, step = step, stop = max, type = &quot;Lin&quot;}</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">wavelength = {start = min, step = step, stop = max, type = "Lin"}</span>
 <span class="l l-Scalar l-Scalar-Plain"># Alternative for ranges</span>
-<span class="l l-Scalar l-Scalar-Plain">wavelength = {binning = &quot;min,max&quot;, step = step, type = &quot;RangeLin&quot;}</span>
+<span class="l l-Scalar l-Scalar-Plain">wavelength = {binning = "min,max", step = step, type = "RangeLin"}</span>
 </pre></div>
 </div>
 <p><strong>Existing Example</strong></p>
@@ -1330,10 +1330,10 @@ Logarithmic wsteps were specified as %/100.</p>
 </div>
 <p><strong>Replacement Example</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">binning</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="c1"># Only for &quot;Lin&quot;, &quot;Log&quot;</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">wavelength = {start = 2.0, step=0.125, stop=14.0, type = &quot;Lin&quot;}</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain"># Only for &quot;RangeLin&quot; or &quot;RangeLog&quot;</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">wavelength = {binning=&quot;2.0-7.0, 7.0-14.0&quot;, step=0.125, type = &quot;RangeLin&quot;}</span>
+<span class="w">  </span><span class="c1"># Only for "Lin", "Log"</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">wavelength = {start = 2.0, step=0.125, stop=14.0, type = "Lin"}</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain"># Only for "RangeLin" or "RangeLog"</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">wavelength = {binning="2.0-7.0, 7.0-14.0", step=0.125, type = "RangeLin"}</span>
 </pre></div>
 </div>
 </section>
@@ -1357,7 +1357,7 @@ applied during data reduction to omit individual detector pixels or
 regions of pixels from the calculation.</p>
 <p><strong>Replacement</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">mask</span><span class="p p-Indicator">]</span>
-<span class="l l-Scalar l-Scalar-Plain">mask_files = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span>
+<span class="l l-Scalar l-Scalar-Plain">mask_files = ["a", "b", "c"]</span>
 </pre></div>
 </div>
 <p><strong>Existing Example</strong></p>
@@ -1366,7 +1366,7 @@ regions of pixels from the calculation.</p>
 </div>
 <p><strong>Replacement Example</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">mask</span><span class="p p-Indicator">]</span>
-<span class="l l-Scalar l-Scalar-Plain">mask_files = [&quot;a.xml&quot;, &quot;b.xml&quot;, &quot;c.xml&quot;]</span>
+<span class="l l-Scalar l-Scalar-Plain">mask_files = ["a.xml", "b.xml", "c.xml"]</span>
 </pre></div>
 </div>
 </section>
@@ -1614,8 +1614,8 @@ as wavelength (in Angstroms), efficiency ratio, uncertainty on efficiency ratio.
 <p><strong>Replacement</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">detector</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">detector.correction.direct</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">rear_file = &quot;filename&quot;</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">front_file = &quot;filename&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">rear_file = "filename"</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">front_file = "filename"</span>
 </pre></div>
 </div>
 <p><strong>Existing Example:</strong></p>
@@ -1626,8 +1626,8 @@ MON/DIRECT/HAB=DIRECT_RUN524.dat
 <p><strong>Replacement Example</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">detector</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">detector.correction.direct</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">rear_file = &quot;DIRECT_RUN524.dat&quot;</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">front_file = &quot;DIRECT_RUN524.dat&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">rear_file = "DIRECT_RUN524.dat"</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">front_file = "DIRECT_RUN524.dat"</span>
 </pre></div>
 </div>
 </section>
@@ -1644,17 +1644,17 @@ efficiency.</p>
 <p><strong>Replacement</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">detector</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">detector.correction.flat</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">rear_file = &quot;str&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">rear_file = "str"</span>
 </pre></div>
 </div>
 <p><strong>Existing Example:</strong></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>MON/FLAT=&quot;flat_file.091&quot;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>MON/FLAT="flat_file.091"
 </pre></div>
 </div>
 <p><strong>Replacement Example</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">detector</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">detector.correction.flat</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">rear_file = &quot;flat_file.091&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">rear_file = "flat_file.091"</span>
 </pre></div>
 </div>
 </section>
@@ -1703,7 +1703,7 @@ the moderator-monitor distance.</p>
 <p>This command was used to specify which monitor <em>spectrum</em> (not number) was to
 be used for normalisation during data reduction.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">norm_monitor = &quot;Mn&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">norm_monitor = "Mn"</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[normalisation]</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">#Normalisation monitor</span>
@@ -1721,7 +1721,7 @@ be used for normalisation during data reduction.</p>
 </div>
 <p><strong>Replacement Example</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">norm_monitor = &quot;M1&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">norm_monitor = "M1"</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[normalisation]</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[normalisation.monitor.M1]</span>
@@ -1751,8 +1751,8 @@ be used for normalisation during data reduction. As the /TRANS qualifier was
 present the command only applied to the normalisation of <em>transmission</em>
 spectra.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">norm_monitor = &quot;Ma&quot;</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = &quot;Mb&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">norm_monitor = "Ma"</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = "Mb"</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[normalisation]</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">#Normalisation monitor</span>
@@ -1769,7 +1769,7 @@ spectra.</p>
 <span class="l l-Scalar l-Scalar-Plain">[transmission]</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[transmission.monitor.Mb]</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">use_different_norm_monitor = true</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">trans_norm_monitor = &quot;Mc&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">trans_norm_monitor = "Mc"</span>
 </pre></div>
 </div>
 <p><strong>Existing Example:</strong></p>
@@ -1780,8 +1780,8 @@ MON/TRANS/SPECTRUM=4
 </div>
 <p><strong>Replacement Example</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">norm_monitor = &quot;M1&quot;</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = &quot;M2&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">norm_monitor = "M1"</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = "M2"</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[normalisation]</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[normalisation.monitor.M1]</span>
@@ -1794,7 +1794,7 @@ MON/TRANS/SPECTRUM=4
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[transmission.monitor.M2]</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">spectrum_number = 2</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">use_different_norm_monitor = true</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">trans_norm_monitor = &quot;M4&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">trans_norm_monitor = "M4"</span>
 
 <span class="l l-Scalar l-Scalar-Plain"># If interpolation is also required</span><span class="p p-Indicator">:</span>
 <span class="p p-Indicator">[</span><span class="nv">binning</span><span class="p p-Indicator">]</span>
@@ -1818,10 +1818,10 @@ still two ways to include equivalent information in the file:</p>
 example:</p></li>
 </ul>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">metadata</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">name = &quot;Using beamstop M4 for transmissions&quot;</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">created = &quot;2021-09-09&quot;</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">original_file = &quot;USER_LOQ_211G_M4_hab_log.toml&quot;</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">mantid_interface = &quot;SANS v2&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">name = "Using beamstop M4 for transmissions"</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">created = "2021-09-09"</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">original_file = "USER_LOQ_211G_M4_hab_log.toml"</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">mantid_interface = "SANS v2"</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -1878,7 +1878,7 @@ data arranged as wavelength (in Angstroms), time spread (in microseconds),
 uncertainty on time spread (zero if unknown).</p>
 <p><strong>Replacement</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">q_resolution</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">moderator_file = &quot;filename&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">moderator_file = "filename"</span>
 </pre></div>
 </div>
 <p><strong>Existing Example:</strong></p>
@@ -1887,7 +1887,7 @@ uncertainty on time spread (zero if unknown).</p>
 </div>
 <p><strong>Replacement Example</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">q_resolution</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">moderator_file = &quot;ModeratorStdDev_TS2_SANS_LETexptl_07Aug2015.txt&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">moderator_file = "ModeratorStdDev_TS2_SANS_LETexptl_07Aug2015.txt"</span>
 </pre></div>
 </div>
 </section>
@@ -2282,7 +2282,7 @@ and/or beamstop support arm shadows).</p>
 TRANS/ROI=filename command.</strong> See also <a class="reference internal" href="#trans-transpec-ref"><span class="std std-ref">TRANS/TRANSPEC=s</span></a>.</p>
 <p><strong>Replacement</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = &quot;ROI&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = "ROI"</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[transmission]</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain"># This will be ignored</span><span class="p p-Indicator">:</span>
@@ -2290,7 +2290,7 @@ TRANS/ROI=filename command.</strong> See also <a class="reference internal" href
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">spectrum_number = s</span>
 
 <span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">transmission.ROI</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">file = &quot;roi_file.xml&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">file = "roi_file.xml"</span>
 </pre></div>
 </div>
 <p><strong>Existing Example:</strong></p>
@@ -2299,12 +2299,12 @@ TRANS/ROI=filename command.</strong> See also <a class="reference internal" href
 </div>
 <p><strong>Replacement Example</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = &quot;ROI&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = "ROI"</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[transmission]</span>
 
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[transmission.ROI]</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">file = &quot;filename.xml&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">file = "filename.xml"</span>
 </pre></div>
 </div>
 </section>
@@ -2316,7 +2316,7 @@ number may, or may not, be the same depending on the instrument!</p>
 <p><strong>Replacement</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="c1"># Where Mn is arbitrary but must match the section label</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = &quot;Mn&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = "Mn"</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[transmission]</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[transmission.monitor.Mn]</span>
@@ -2329,7 +2329,7 @@ number may, or may not, be the same depending on the instrument!</p>
 </div>
 <p><strong>Replacement Example</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = &quot;M3&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = "M3"</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[transmission]</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[transmission.monitor.M3]</span>
@@ -2349,7 +2349,7 @@ transmission monitors.</p>
 <p><strong>Replacement</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="c1"># Where Mn is arbitrary but must match the section label</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = &quot;Mn&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = "Mn"</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[transmission]</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[transmission.monitor.Mn]</span>
@@ -2363,7 +2363,7 @@ transmission monitors.</p>
 </div>
 <p><strong>Replacement Example</strong></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">instrument.configuration</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = &quot;M4&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">trans_monitor = "M4"</span>
 
 <span class="l l-Scalar l-Scalar-Plain">[transmission]</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[transmission.monitor.M4]</span>
@@ -2382,7 +2382,7 @@ be amalgamated.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">detector</span><span class="p p-Indicator">]</span>
 
 <span class="p p-Indicator">[</span><span class="nv">detector.correction.tube</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">file = &quot;filename&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">file = "filename"</span>
 </pre></div>
 </div>
 <p><strong>Existing Example:</strong></p>
@@ -2393,7 +2393,7 @@ be amalgamated.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">detector</span><span class="p p-Indicator">]</span>
 
 <span class="p p-Indicator">[</span><span class="nv">detector.correction.tube</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">file = &quot;TUBE_SANS2D_BOTH_64393_15Mar20.nxs&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">file = "TUBE_SANS2D_BOTH_64393_15Mar20.nxs"</span>
 </pre></div>
 </div>
 <p><strong>Category</strong>: <a class="reference external" href="categories/Techniques.html">Techniques</a></p>

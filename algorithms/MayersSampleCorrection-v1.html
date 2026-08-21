@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MayersSampleCorrection v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MayersSampleCorrection v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1541,26 +1541,26 @@ e_{out} &amp;= y_{out} * e_{in} / y_{in}
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Correct Vanadium For Both Absorption &amp; Multiple Scattering</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a fake workspace with TOF data</span>
-<span class="n">sample_ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Powder Diffraction&#39;</span><span class="p">,</span>
-                                  <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+<span class="n">sample_ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">'Powder Diffraction'</span><span class="p">,</span>
+                                  <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">XUnit</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
                                   <span class="n">XMin</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">XMax</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 <span class="c1"># Set meta data about shape and material</span>
 <span class="n">cyl_height_cm</span> <span class="o">=</span> <span class="mf">4.0</span>
 <span class="n">cyl_radius_cm</span> <span class="o">=</span> <span class="mf">0.25</span>
-<span class="n">material</span> <span class="o">=</span> <span class="s1">&#39;V&#39;</span>
+<span class="n">material</span> <span class="o">=</span> <span class="s1">'V'</span>
 <span class="n">num_density</span> <span class="o">=</span> <span class="mf">0.07261</span>
 <span class="n">SetSample</span><span class="p">(</span><span class="n">sample_ws</span><span class="p">,</span>
-    <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;Cylinder&#39;</span><span class="p">,</span> <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="n">cyl_height_cm</span><span class="p">,</span>
-              <span class="s1">&#39;Radius&#39;</span><span class="p">:</span> <span class="n">cyl_radius_cm</span><span class="p">,</span> <span class="s1">&#39;Center&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
-    <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ChemicalFormula&#39;</span><span class="p">:</span> <span class="n">material</span><span class="p">,</span> <span class="s1">&#39;SampleNumberDensity&#39;</span><span class="p">:</span> <span class="n">num_density</span><span class="p">})</span>
+    <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span><span class="s1">'Shape'</span><span class="p">:</span> <span class="s1">'Cylinder'</span><span class="p">,</span> <span class="s1">'Height'</span><span class="p">:</span> <span class="n">cyl_height_cm</span><span class="p">,</span>
+              <span class="s1">'Radius'</span><span class="p">:</span> <span class="n">cyl_radius_cm</span><span class="p">,</span> <span class="s1">'Center'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]},</span>
+    <span class="n">Material</span><span class="o">=</span><span class="p">{</span><span class="s1">'ChemicalFormula'</span><span class="p">:</span> <span class="n">material</span><span class="p">,</span> <span class="s1">'SampleNumberDensity'</span><span class="p">:</span> <span class="n">num_density</span><span class="p">})</span>
 
 <span class="c1"># Run corrections</span>
 <span class="n">corrected_sample</span> <span class="o">=</span> <span class="n">MayersSampleCorrection</span><span class="p">(</span><span class="n">sample_ws</span><span class="p">,</span>
                                           <span class="n">MultipleScattering</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Print a bin</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Uncorrected signal: </span><span class="si">{0:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sample_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">25</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Corrected signal: </span><span class="si">{0:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corrected_sample</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">25</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Uncorrected signal: </span><span class="si">{0:.4f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sample_ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">25</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Corrected signal: </span><span class="si">{0:.4f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corrected_sample</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">25</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1581,8 +1581,8 @@ Corrected signal: ...
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/SampleCorrections/MayersSampleCorrection.h">MayersSampleCorrection.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/SampleCorrections/MayersSampleCorrection.cpp">MayersSampleCorrection.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/SampleCorrections/MayersSampleCorrection.h">MayersSampleCorrection.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/SampleCorrections/MayersSampleCorrection.cpp">MayersSampleCorrection.cpp</a></p>
 </section>
 </section>
 

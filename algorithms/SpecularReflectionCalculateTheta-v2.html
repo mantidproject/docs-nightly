@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SpecularReflectionCalculateTheta v2 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SpecularReflectionCalculateTheta v2 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1528,17 +1528,17 @@ that version 1 worked with detectors at <span class="math notranslate nohighligh
 <p><strong>Example - Point detector theta calculation</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up an instrument with a 45 degree final two theta angle.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="n">instrument_def</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">config</span><span class="o">.</span><span class="n">getInstrumentDirectory</span><span class="p">()</span> <span class="p">,</span> <span class="s2">&quot;INTER_Definition.xml&quot;</span><span class="p">)</span>
+<span class="n">instrument_def</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">config</span><span class="o">.</span><span class="n">getInstrumentDirectory</span><span class="p">()</span> <span class="p">,</span> <span class="s2">"INTER_Definition.xml"</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">instrument_def</span><span class="p">)</span>
 <span class="n">inst</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span>
 <span class="n">ref_frame</span> <span class="o">=</span> <span class="n">inst</span><span class="o">.</span><span class="n">getReferenceFrame</span><span class="p">()</span>
 <span class="n">upoffset</span> <span class="o">=</span> <span class="n">ref_frame</span><span class="o">.</span><span class="n">vecPointingUp</span><span class="p">()</span>
 <span class="n">det_position</span> <span class="o">=</span> <span class="p">{</span><span class="n">ref_frame</span><span class="o">.</span><span class="n">pointingUpAxis</span><span class="p">():</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">ref_frame</span><span class="o">.</span><span class="n">pointingAlongBeamAxis</span><span class="p">():</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">ref_frame</span><span class="o">.</span><span class="n">pointingHorizontalAxis</span><span class="p">():</span><span class="mi">0</span><span class="p">}</span>
-<span class="n">MoveInstrumentComponent</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">&#39;point-detector&#39;</span><span class="p">,</span><span class="n">RelativePosition</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">det_position</span><span class="p">)</span>
-<span class="n">MoveInstrumentComponent</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">&#39;some-surface-holder&#39;</span><span class="p">,</span><span class="n">RelativePosition</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="n">X</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Z</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">MoveInstrumentComponent</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">'point-detector'</span><span class="p">,</span><span class="n">RelativePosition</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">det_position</span><span class="p">)</span>
+<span class="n">MoveInstrumentComponent</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="s1">'some-surface-holder'</span><span class="p">,</span><span class="n">RelativePosition</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="n">X</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Z</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Calculate the two theta.</span>
-<span class="n">two_theta</span> <span class="o">=</span> <span class="n">SpecularReflectionCalculateTheta</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">DetectorComponentName</span><span class="o">=</span><span class="s1">&#39;point-detector&#39;</span><span class="p">,</span> <span class="n">AnalysisMode</span><span class="o">=</span><span class="s1">&#39;PointDetectorAnalysis&#39;</span><span class="p">)</span>
+<span class="n">two_theta</span> <span class="o">=</span> <span class="n">SpecularReflectionCalculateTheta</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">DetectorComponentName</span><span class="o">=</span><span class="s1">'point-detector'</span><span class="p">,</span> <span class="n">AnalysisMode</span><span class="o">=</span><span class="s1">'PointDetectorAnalysis'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">two_theta</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1550,8 +1550,8 @@ that version 1 worked with detectors at <span class="math notranslate nohighligh
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Reflectometry/inc/MantidReflectometry/SpecularReflectionCalculateTheta2.h">SpecularReflectionCalculateTheta2.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Reflectometry/src/SpecularReflectionCalculateTheta2.cpp">SpecularReflectionCalculateTheta2.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Reflectometry/inc/MantidReflectometry/SpecularReflectionCalculateTheta2.h">SpecularReflectionCalculateTheta2.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Reflectometry/src/SpecularReflectionCalculateTheta2.cpp">SpecularReflectionCalculateTheta2.cpp</a></p>
 </section>
 </section>
 

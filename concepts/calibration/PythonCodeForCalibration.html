@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Python Code For Calibration &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Python Code For Calibration &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/calibration/PythonCodeForCalibration';</script>
@@ -473,7 +473,7 @@ parameters as well. The minimum set of parameters required are:</p>
 <section id="parameter-workspace">
 <h3>Parameter: Workspace<a class="headerlink" href="#parameter-workspace" title="Link to this heading">#</a></h3>
 <p>Below, it shows an example of a workspace:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">wsToCalibrate</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;MAP14919&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">wsToCalibrate</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'MAP14919'</span><span class="p">)</span>
 <span class="n">wsToCalibrate</span> <span class="o">=</span> <span class="n">Integration</span><span class="p">(</span><span class="n">wsToCalibrate</span><span class="p">)</span>
 <span class="c1"># you may provide the integration limits as well</span>
 <span class="c1">#wsToCalibrate = Integration(wsToCalibrate,lowRange,highRange)</span>
@@ -491,7 +491,7 @@ parameters as well. The minimum set of parameters required are:</p>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tube_spec</span><span class="w"> </span><span class="kn">import</span> <span class="n">TubeSpec</span>
 <span class="n">tubeSet</span> <span class="o">=</span> <span class="n">TubeSpec</span><span class="p">(</span><span class="n">wsToCalibrate</span><span class="p">)</span>
-<span class="n">tubeSet</span><span class="o">.</span><span class="n">setTubeSpecByString</span><span class="p">(</span><span class="s2">&quot;MAPS/A1_window&quot;</span><span class="p">)</span>
+<span class="n">tubeSet</span><span class="o">.</span><span class="n">setTubeSpecByString</span><span class="p">(</span><span class="s2">"MAPS/A1_window"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -522,7 +522,7 @@ and finally, a final edge. These 5 points were measured and the result was:</p>
 <p>The calibrate function returns a Calibration Table that will be used to
 calibrate the instrument, providing, for each detector, its correct
 position.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">wsToCalibrate</span><span class="p">,</span> <span class="s1">&#39;MAPS/A1_window&#39;</span><span class="p">,</span> <span class="n">knownPositions</span><span class="p">,</span> <span class="n">funcForm</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">calibTable</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">wsToCalibrate</span><span class="p">,</span> <span class="s1">'MAPS/A1_window'</span><span class="p">,</span> <span class="n">knownPositions</span><span class="p">,</span> <span class="n">funcForm</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>With the given calibration table, the
@@ -562,14 +562,14 @@ are the position for the peaks for each tube.</p>
 <section id="saving-the-detector-positions-to-text-file">
 <h3>Saving the Detector Positions to Text File<a class="headerlink" href="#saving-the-detector-positions-to-text-file" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">savePositions2TxtFileFromCalibTable</span><span class="p">(</span><span class="n">calibTable</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
-  <span class="n">tofile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+  <span class="n">tofile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s1">'w'</span><span class="p">)</span>
   <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">calibTable</span><span class="p">:</span>
-    <span class="nb">print</span> <span class="o">&gt;&gt;</span> <span class="n">tofile</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Detector ID&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Detector Position&#39;</span><span class="p">]</span>
+    <span class="nb">print</span> <span class="o">&gt;&gt;</span> <span class="n">tofile</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">'Detector ID'</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">'Detector Position'</span><span class="p">]</span>
   <span class="n">tofile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">savePositions2TxtFileFromWorkspace</span><span class="p">(</span> <span class="n">ws</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
-  <span class="n">tofile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+  <span class="n">tofile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span>
   <span class="n">det_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">getPos</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ws</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">isMonitor</span><span class="p">()]</span>
   <span class="k">for</span> <span class="n">det</span> <span class="ow">in</span> <span class="n">det_pos</span><span class="p">:</span>
     <span class="nb">print</span> <span class="o">&gt;&gt;</span> <span class="n">tofile</span><span class="p">,</span> <span class="n">det</span>
@@ -581,7 +581,7 @@ are the position for the peaks for each tube.</p>
 <h3>Loading Detector Positions From Text File<a class="headerlink" href="#loading-detector-positions-from-text-file" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">getDetPositionsFromFile</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">','</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Category</strong>: <a class="reference external" href="../categories/Calibration.html">Calibration</a></p>

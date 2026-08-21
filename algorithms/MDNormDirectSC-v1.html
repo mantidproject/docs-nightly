@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MDNormDirectSC v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MDNormDirectSC v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/MDNormDirectSC-v1';</script>
@@ -1574,35 +1574,35 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">mantid</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="n">config</span><span class="p">[</span><span class="s1">&#39;default.facility&#39;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;SNS&quot;</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'default.facility'</span><span class="p">]</span><span class="o">=</span><span class="s2">"SNS"</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">DGS_input_data</span><span class="o">=</span><span class="n">Load</span><span class="p">(</span><span class="s2">&quot;CNCS_7860&quot;</span><span class="p">)</span>
+<span class="n">DGS_input_data</span><span class="o">=</span><span class="n">Load</span><span class="p">(</span><span class="s2">"CNCS_7860"</span><span class="p">)</span>
 <span class="c1"># Keep events (SofPhiEIsDistribution=False)</span>
 <span class="c1"># Do not normalize by proton charge in DgsReduction</span>
 <span class="n">DGS_output_data</span><span class="o">=</span><span class="n">DgsReduction</span><span class="p">(</span>
          <span class="n">SampleInputWorkspace</span><span class="o">=</span><span class="n">DGS_input_data</span><span class="p">,</span>
          <span class="n">SofPhiEIsDistribution</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-         <span class="n">IncidentBeamNormalisation</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
-         <span class="n">EnergyTransferRange</span><span class="o">=</span><span class="s2">&quot;-1.5,0.01,2.7&quot;</span><span class="p">,</span>
+         <span class="n">IncidentBeamNormalisation</span><span class="o">=</span><span class="s2">"None"</span><span class="p">,</span>
+         <span class="n">EnergyTransferRange</span><span class="o">=</span><span class="s2">"-1.5,0.01,2.7"</span><span class="p">,</span>
         <span class="p">)</span>
 <span class="n">DGS_output_data</span><span class="o">=</span><span class="n">DGS_output_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">DGS_output_data</span><span class="p">,</span><span class="n">Axis0</span><span class="o">=</span><span class="s2">&quot;10.,0,1,0,1&quot;</span><span class="p">)</span>
+<span class="n">SetGoniometer</span><span class="p">(</span><span class="n">DGS_output_data</span><span class="p">,</span><span class="n">Axis0</span><span class="o">=</span><span class="s2">"10.,0,1,0,1"</span><span class="p">)</span>
 <span class="n">SetUB</span><span class="p">(</span><span class="n">DGS_output_data</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span><span class="mf">3.2</span><span class="p">,</span><span class="mf">7.2</span><span class="p">)</span>
 <span class="n">DGS_output_data</span><span class="o">=</span><span class="n">CropWorkspace</span><span class="p">(</span><span class="n">DGS_output_data</span><span class="p">,</span><span class="n">XMin</span><span class="o">=-</span><span class="mf">1.5</span><span class="p">,</span><span class="n">XMax</span><span class="o">=</span><span class="mf">2.7</span><span class="p">)</span>
 <span class="n">MDE</span><span class="o">=</span><span class="n">ConvertToMD</span><span class="p">(</span><span class="n">DGS_output_data</span><span class="p">,</span>
-        <span class="n">QDimensions</span><span class="o">=</span><span class="s2">&quot;Q3D&quot;</span><span class="p">,</span>
-        <span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s2">&quot;Direct&quot;</span><span class="p">,</span>
-        <span class="n">Q3DFrames</span><span class="o">=</span><span class="s2">&quot;HKL&quot;</span><span class="p">,</span>
-        <span class="n">QConversionScales</span><span class="o">=</span><span class="s2">&quot;HKL&quot;</span><span class="p">)</span>
+        <span class="n">QDimensions</span><span class="o">=</span><span class="s2">"Q3D"</span><span class="p">,</span>
+        <span class="n">dEAnalysisMode</span><span class="o">=</span><span class="s2">"Direct"</span><span class="p">,</span>
+        <span class="n">Q3DFrames</span><span class="o">=</span><span class="s2">"HKL"</span><span class="p">,</span>
+        <span class="n">QConversionScales</span><span class="o">=</span><span class="s2">"HKL"</span><span class="p">)</span>
 <span class="n">histoData</span><span class="p">,</span><span class="n">histoNorm</span><span class="o">=</span><span class="n">MDNormDirectSC</span><span class="p">(</span><span class="n">MDE</span><span class="p">,</span>
-        <span class="n">AlignedDim0</span><span class="o">=</span><span class="s2">&quot;[H,0,0],-0.2,1.6,100&quot;</span><span class="p">,</span>
-        <span class="n">AlignedDim1</span><span class="o">=</span><span class="s2">&quot;DeltaE,-1.5,3.,100&quot;</span><span class="p">,</span>
+        <span class="n">AlignedDim0</span><span class="o">=</span><span class="s2">"[H,0,0],-0.2,1.6,100"</span><span class="p">,</span>
+        <span class="n">AlignedDim1</span><span class="o">=</span><span class="s2">"DeltaE,-1.5,3.,100"</span><span class="p">,</span>
         <span class="p">)</span>
 <span class="n">normalized</span><span class="o">=</span><span class="n">histoData</span><span class="o">/</span><span class="n">histoNorm</span>
 <span class="n">histoShape</span><span class="o">=</span><span class="n">histoNorm</span><span class="o">.</span><span class="n">getSignalArray</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The normalization workspace shape is (</span><span class="si">%d</span><span class="s2">, </span><span class="si">%d</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">histoShape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Out of those elements, &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nonzero</span><span class="p">(</span><span class="n">histoNorm</span><span class="o">.</span><span class="n">getSignalArray</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; are nonzero&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The normalization workspace shape is (</span><span class="si">%d</span><span class="s2">, </span><span class="si">%d</span><span class="s2">)"</span> <span class="o">%</span> <span class="n">histoShape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Out of those elements, "</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nonzero</span><span class="p">(</span><span class="n">histoNorm</span><span class="o">.</span><span class="n">getSignalArray</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">+</span><span class="s2">" are nonzero"</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The normalization workspace shape is (100, 100)
@@ -1617,8 +1617,8 @@ Out of those elements, 6712 are nonzero
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/inc/MantidMDAlgorithms/MDNormDirectSC.h">MDNormDirectSC.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/MDAlgorithms/src/MDNormDirectSC.cpp">MDNormDirectSC.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/inc/MantidMDAlgorithms/MDNormDirectSC.h">MDNormDirectSC.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/MDAlgorithms/src/MDNormDirectSC.cpp">MDNormDirectSC.cpp</a></p>
 </section>
 </section>
 

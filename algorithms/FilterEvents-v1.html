@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FilterEvents v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FilterEvents v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1688,22 +1688,22 @@ events will be filtered by full time, i.e. pulse time plus TOF.</p>
 <section id="usage">
 <span id="filter-events-usage-label"></span><h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Filtering events without correction on TOF</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;CNCS_7860_event.nxs&#39;</span><span class="p">)</span>
-<span class="n">splitws</span><span class="p">,</span> <span class="n">infows</span> <span class="o">=</span> <span class="n">GenerateEventsFilter</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">UnitOfTime</span><span class="o">=</span><span class="s1">&#39;Nanoseconds&#39;</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;SampleTemp&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'CNCS_7860_event.nxs'</span><span class="p">)</span>
+<span class="n">splitws</span><span class="p">,</span> <span class="n">infows</span> <span class="o">=</span> <span class="n">GenerateEventsFilter</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">UnitOfTime</span><span class="o">=</span><span class="s1">'Nanoseconds'</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">'SampleTemp'</span><span class="p">,</span>
         <span class="n">MinimumLogValue</span><span class="o">=</span><span class="mf">279.9</span><span class="p">,</span>  <span class="n">MaximumLogValue</span><span class="o">=</span><span class="mf">279.98</span><span class="p">,</span> <span class="n">LogValueInterval</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
 <span class="n">FilterEvents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="n">splitws</span><span class="p">,</span> <span class="n">InformationWorkspace</span><span class="o">=</span><span class="n">infows</span><span class="p">,</span>
-        <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">&#39;tempsplitws&#39;</span><span class="p">,</span>  <span class="n">GroupWorkspaces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">'tempsplitws'</span><span class="p">,</span>  <span class="n">GroupWorkspaces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">FilterByPulseTime</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">OutputWorkspaceIndexedFrom1</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">CorrectionToSample</span> <span class="o">=</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="n">SpectrumWithoutDetector</span> <span class="o">=</span> <span class="s2">&quot;Skip&quot;</span><span class="p">,</span>
-        <span class="n">OutputTOFCorrectionWorkspace</span><span class="o">=</span><span class="s1">&#39;mock&#39;</span><span class="p">,</span> <span class="n">OutputUnfilteredEvents</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">CorrectionToSample</span> <span class="o">=</span> <span class="s2">"None"</span><span class="p">,</span> <span class="n">SpectrumWithoutDetector</span> <span class="o">=</span> <span class="s2">"Skip"</span><span class="p">,</span>
+        <span class="n">OutputTOFCorrectionWorkspace</span><span class="o">=</span><span class="s1">'mock'</span><span class="p">,</span> <span class="n">OutputUnfilteredEvents</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Print result</span>
-<span class="n">wsgroup</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;tempsplitws&quot;</span><span class="p">]</span>
+<span class="n">wsgroup</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"tempsplitws"</span><span class="p">]</span>
 <span class="n">wsnames</span> <span class="o">=</span> <span class="n">wsgroup</span><span class="o">.</span><span class="n">getNames</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">wsnames</span><span class="p">):</span>
     <span class="n">tmpws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;workspace </span><span class="si">%s</span><span class="s2"> has </span><span class="si">%d</span><span class="s2"> events&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"workspace </span><span class="si">%s</span><span class="s2"> has </span><span class="si">%d</span><span class="s2"> events"</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1718,38 +1718,38 @@ workspace tempsplitws_unfiltered has 50603 events
 </div>
 <p><strong>Example - Filtering events by a user-generated TableWorkspace</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;CNCS_7860_event.nxs&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'CNCS_7860_event.nxs'</span><span class="p">)</span>
 
 <span class="c1"># create TableWorkspace</span>
 <span class="n">split_table_ws</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
-<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">)</span>
-<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">)</span>
-<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">)</span>
+<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'float'</span><span class="p">,</span> <span class="s1">'start'</span><span class="p">)</span>
+<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'float'</span><span class="p">,</span> <span class="s1">'stop'</span><span class="p">)</span>
+<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'str'</span><span class="p">,</span> <span class="s1">'target'</span><span class="p">)</span>
 
-<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">])</span>
-<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">200.</span><span class="p">,</span> <span class="mf">300.</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
-<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">400.</span><span class="p">,</span> <span class="mf">600.</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
-<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">600.</span><span class="p">,</span> <span class="mf">650.</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
+<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">])</span>
+<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">200.</span><span class="p">,</span> <span class="mf">300.</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">])</span>
+<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">400.</span><span class="p">,</span> <span class="mf">600.</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">])</span>
+<span class="n">split_table_ws</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="mf">600.</span><span class="p">,</span> <span class="mf">650.</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">])</span>
 
 <span class="c1"># filter events</span>
 <span class="n">FilterEvents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="n">split_table_ws</span><span class="p">,</span>
-        <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">&#39;tempsplitws3&#39;</span><span class="p">,</span>  <span class="n">GroupWorkspaces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">'tempsplitws3'</span><span class="p">,</span>  <span class="n">GroupWorkspaces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">FilterByPulseTime</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">OutputWorkspaceIndexedFrom1</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">CorrectionToSample</span> <span class="o">=</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="n">SpectrumWithoutDetector</span> <span class="o">=</span> <span class="s2">&quot;Skip&quot;</span><span class="p">,</span>
-        <span class="n">OutputTOFCorrectionWorkspace</span><span class="o">=</span><span class="s1">&#39;mock&#39;</span><span class="p">,</span>
+        <span class="n">CorrectionToSample</span> <span class="o">=</span> <span class="s2">"None"</span><span class="p">,</span> <span class="n">SpectrumWithoutDetector</span> <span class="o">=</span> <span class="s2">"Skip"</span><span class="p">,</span>
+        <span class="n">OutputTOFCorrectionWorkspace</span><span class="o">=</span><span class="s1">'mock'</span><span class="p">,</span>
         <span class="n">RelativeTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">OutputUnfilteredEvents</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># print result</span>
-<span class="n">wsgroup</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;tempsplitws3&quot;</span><span class="p">]</span>
+<span class="n">wsgroup</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"tempsplitws3"</span><span class="p">]</span>
 <span class="n">wsnames</span> <span class="o">=</span> <span class="n">wsgroup</span><span class="o">.</span><span class="n">getNames</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">wsnames</span><span class="p">):</span>
     <span class="n">tmpws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;workspace </span><span class="si">%s</span><span class="s2"> has </span><span class="si">%d</span><span class="s2"> events&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"workspace </span><span class="si">%s</span><span class="s2"> has </span><span class="si">%d</span><span class="s2"> events"</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
     <span class="n">time_roi</span> <span class="o">=</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getTimeROI</span><span class="p">()</span>
     <span class="n">splitters</span> <span class="o">=</span> <span class="n">time_roi</span><span class="o">.</span><span class="n">toTimeIntervals</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">splitter</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">splitters</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">splitter</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ns&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1990-01-01T00:00&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;event splitter &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: from &quot;</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">timezone</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; to &quot;</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">timezone</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">))</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">splitter</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'ns'</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">'1990-01-01T00:00'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"event splitter "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">+</span> <span class="s2">": from "</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">timezone</span><span class="o">=</span><span class="s1">'UTC'</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" to "</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">timezone</span><span class="o">=</span><span class="s1">'UTC'</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1767,7 +1767,7 @@ event splitter 2: from 2010-03-25T16:13:37.000000000Z to 2010-03-25T16:15:17.000
 </div>
 <p><strong>Example - Filtering events by a user-generated MatrixWorkspace</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;CNCS_7860_event.nxs&#39;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'CNCS_7860_event.nxs'</span><span class="p">)</span>
 
 <span class="c1"># create MatrixWorkspace. Use -1 as a target for unfiltered events.</span>
 <span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">650</span><span class="p">]</span>
@@ -1776,23 +1776,23 @@ event splitter 2: from 2010-03-25T16:13:37.000000000Z to 2010-03-25T16:15:17.000
 
 <span class="c1"># filter events</span>
 <span class="n">FilterEvents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="n">split_matrix_ws</span><span class="p">,</span>
-        <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">&#39;tempsplitws4&#39;</span><span class="p">,</span>  <span class="n">GroupWorkspaces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">'tempsplitws4'</span><span class="p">,</span>  <span class="n">GroupWorkspaces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">FilterByPulseTime</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">OutputWorkspaceIndexedFrom1</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">CorrectionToSample</span> <span class="o">=</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="n">SpectrumWithoutDetector</span> <span class="o">=</span> <span class="s2">&quot;Skip&quot;</span><span class="p">,</span>
-        <span class="n">OutputTOFCorrectionWorkspace</span><span class="o">=</span><span class="s1">&#39;mock&#39;</span><span class="p">,</span>
+        <span class="n">CorrectionToSample</span> <span class="o">=</span> <span class="s2">"None"</span><span class="p">,</span> <span class="n">SpectrumWithoutDetector</span> <span class="o">=</span> <span class="s2">"Skip"</span><span class="p">,</span>
+        <span class="n">OutputTOFCorrectionWorkspace</span><span class="o">=</span><span class="s1">'mock'</span><span class="p">,</span>
         <span class="n">RelativeTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">OutputUnfilteredEvents</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># print result</span>
-<span class="n">wsgroup</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;tempsplitws4&quot;</span><span class="p">]</span>
+<span class="n">wsgroup</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"tempsplitws4"</span><span class="p">]</span>
 <span class="n">wsnames</span> <span class="o">=</span> <span class="n">wsgroup</span><span class="o">.</span><span class="n">getNames</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">wsnames</span><span class="p">):</span>
     <span class="n">tmpws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;workspace </span><span class="si">%s</span><span class="s2"> has </span><span class="si">%d</span><span class="s2"> events&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"workspace </span><span class="si">%s</span><span class="s2"> has </span><span class="si">%d</span><span class="s2"> events"</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
     <span class="n">time_roi</span> <span class="o">=</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getTimeROI</span><span class="p">()</span>
     <span class="n">splitters</span> <span class="o">=</span> <span class="n">time_roi</span><span class="o">.</span><span class="n">toTimeIntervals</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">splitter</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">splitters</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">splitter</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ns&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1990-01-01T00:00&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;event splitter &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: from &quot;</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">timezone</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; to &quot;</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">timezone</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">))</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">splitter</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'ns'</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">'1990-01-01T00:00'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"event splitter "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">+</span> <span class="s2">": from "</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">timezone</span><span class="o">=</span><span class="s1">'UTC'</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" to "</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">timezone</span><span class="o">=</span><span class="s1">'UTC'</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1809,27 +1809,27 @@ event splitter 2: from 2010-03-25T16:13:37.000000000Z to 2010-03-25T16:15:17.000
 </pre></div>
 </div>
 <p><strong>Example - Filtering events by pulse time</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;CNCS_7860_event.nxs&#39;</span><span class="p">)</span>
-<span class="n">splitws</span><span class="p">,</span> <span class="n">infows</span> <span class="o">=</span> <span class="n">GenerateEventsFilter</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">UnitOfTime</span><span class="o">=</span><span class="s1">&#39;Nanoseconds&#39;</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;SampleTemp&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'CNCS_7860_event.nxs'</span><span class="p">)</span>
+<span class="n">splitws</span><span class="p">,</span> <span class="n">infows</span> <span class="o">=</span> <span class="n">GenerateEventsFilter</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">UnitOfTime</span><span class="o">=</span><span class="s1">'Nanoseconds'</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">'SampleTemp'</span><span class="p">,</span>
         <span class="n">MinimumLogValue</span><span class="o">=</span><span class="mf">279.9</span><span class="p">,</span>  <span class="n">MaximumLogValue</span><span class="o">=</span><span class="mf">279.98</span><span class="p">,</span> <span class="n">LogValueInterval</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
 <span class="n">FilterEvents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
     <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="n">splitws</span><span class="p">,</span>
     <span class="n">InformationWorkspace</span><span class="o">=</span><span class="n">infows</span><span class="p">,</span>
-    <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">&#39;tempsplitws&#39;</span><span class="p">,</span>
+    <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">'tempsplitws'</span><span class="p">,</span>
     <span class="n">GroupWorkspaces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">FilterByPulseTime</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">OutputWorkspaceIndexedFrom1</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">CorrectionToSample</span> <span class="o">=</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span>
-    <span class="n">SpectrumWithoutDetector</span> <span class="o">=</span> <span class="s2">&quot;Skip&quot;</span><span class="p">,</span>
-    <span class="n">OutputTOFCorrectionWorkspace</span><span class="o">=</span><span class="s1">&#39;mock&#39;</span><span class="p">)</span>
+    <span class="n">CorrectionToSample</span> <span class="o">=</span> <span class="s2">"None"</span><span class="p">,</span>
+    <span class="n">SpectrumWithoutDetector</span> <span class="o">=</span> <span class="s2">"Skip"</span><span class="p">,</span>
+    <span class="n">OutputTOFCorrectionWorkspace</span><span class="o">=</span><span class="s1">'mock'</span><span class="p">)</span>
 
 <span class="c1"># Print result</span>
-<span class="n">wsgroup</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;tempsplitws&quot;</span><span class="p">]</span>
+<span class="n">wsgroup</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"tempsplitws"</span><span class="p">]</span>
 <span class="n">wsnames</span> <span class="o">=</span> <span class="n">wsgroup</span><span class="o">.</span><span class="n">getNames</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">wsnames</span><span class="p">):</span>
     <span class="n">tmpws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;workspace </span><span class="si">%s</span><span class="s2"> has </span><span class="si">%d</span><span class="s2"> events&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"workspace </span><span class="si">%s</span><span class="s2"> has </span><span class="si">%d</span><span class="s2"> events"</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1842,27 +1842,27 @@ workspace tempsplitws_6 has 5067 events
 </pre></div>
 </div>
 <p><strong>Example - Filtering events with correction on TOF</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;CNCS_7860_event.nxs&#39;</span><span class="p">)</span>
-<span class="n">splitws</span><span class="p">,</span> <span class="n">infows</span> <span class="o">=</span> <span class="n">GenerateEventsFilter</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">UnitOfTime</span><span class="o">=</span><span class="s1">&#39;Nanoseconds&#39;</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;SampleTemp&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'CNCS_7860_event.nxs'</span><span class="p">)</span>
+<span class="n">splitws</span><span class="p">,</span> <span class="n">infows</span> <span class="o">=</span> <span class="n">GenerateEventsFilter</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">UnitOfTime</span><span class="o">=</span><span class="s1">'Nanoseconds'</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">'SampleTemp'</span><span class="p">,</span>
         <span class="n">MinimumLogValue</span><span class="o">=</span><span class="mf">279.9</span><span class="p">,</span>  <span class="n">MaximumLogValue</span><span class="o">=</span><span class="mf">279.98</span><span class="p">,</span> <span class="n">LogValueInterval</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
 <span class="n">FilterEvents</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">SplitterWorkspace</span><span class="o">=</span><span class="n">splitws</span><span class="p">,</span> <span class="n">InformationWorkspace</span><span class="o">=</span><span class="n">infows</span><span class="p">,</span>
-    <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">&#39;tempsplitws&#39;</span><span class="p">,</span>
+    <span class="n">OutputWorkspaceBaseName</span><span class="o">=</span><span class="s1">'tempsplitws'</span><span class="p">,</span>
     <span class="n">GroupWorkspaces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">FilterByPulseTime</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">OutputWorkspaceIndexedFrom1</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">CorrectionToSample</span> <span class="o">=</span> <span class="s2">&quot;Direct&quot;</span><span class="p">,</span>
+    <span class="n">CorrectionToSample</span> <span class="o">=</span> <span class="s2">"Direct"</span><span class="p">,</span>
     <span class="n">IncidentEnergy</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">SpectrumWithoutDetector</span> <span class="o">=</span> <span class="s2">&quot;Skip&quot;</span><span class="p">,</span>
-    <span class="n">OutputTOFCorrectionWorkspace</span><span class="o">=</span><span class="s1">&#39;mock&#39;</span><span class="p">,</span>
+    <span class="n">SpectrumWithoutDetector</span> <span class="o">=</span> <span class="s2">"Skip"</span><span class="p">,</span>
+    <span class="n">OutputTOFCorrectionWorkspace</span><span class="o">=</span><span class="s1">'mock'</span><span class="p">,</span>
     <span class="n">OutputUnfilteredEvents</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Print result</span>
-<span class="n">wsgroup</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">&quot;tempsplitws&quot;</span><span class="p">]</span>
+<span class="n">wsgroup</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s2">"tempsplitws"</span><span class="p">]</span>
 <span class="n">wsnames</span> <span class="o">=</span> <span class="n">wsgroup</span><span class="o">.</span><span class="n">getNames</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">wsnames</span><span class="p">):</span>
     <span class="n">tmpws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;workspace </span><span class="si">%s</span><span class="s2"> has </span><span class="si">%d</span><span class="s2"> events&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"workspace </span><span class="si">%s</span><span class="s2"> has </span><span class="si">%d</span><span class="s2"> events"</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tmpws</span><span class="o">.</span><span class="n">getNumberEvents</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1879,8 +1879,8 @@ workspace tempsplitws_unfiltered has 50605 events
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/FilterEvents.h">FilterEvents.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/FilterEvents.cpp">FilterEvents.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/FilterEvents.h">FilterEvents.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/FilterEvents.cpp">FilterEvents.cpp</a></p>
 </section>
 </section>
 

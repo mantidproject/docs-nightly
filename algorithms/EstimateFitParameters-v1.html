@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>EstimateFitParameters v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>EstimateFitParameters v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/EstimateFitParameters-v1';</script>
@@ -1626,29 +1626,29 @@ If the algorithm decides that some of the parameters may cause problems it will 
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># Define a function, constraints set the search intervals.</span>
-<span class="n">fun</span> <span class="o">=</span> <span class="s1">&#39;name=BackToBackExponential,S=1.1,constraints=(50&lt;I&lt;200,0.1&lt;A&lt;300,0.01&lt;B&lt;10,-5&lt;X0&lt;0,0.001&lt;S&lt;4)&#39;</span>
+<span class="n">fun</span> <span class="o">=</span> <span class="s1">'name=BackToBackExponential,S=1.1,constraints=(50&lt;I&lt;200,0.1&lt;A&lt;300,0.01&lt;B&lt;10,-5&lt;X0&lt;0,0.001&lt;S&lt;4)'</span>
 
 <span class="c1"># Set up the algorithm.</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlgorithmManager</span>
-<span class="n">alg</span> <span class="o">=</span> <span class="n">AlgorithmManager</span><span class="o">.</span><span class="n">createUnmanaged</span><span class="p">(</span><span class="s1">&#39;EstimateFitParameters&#39;</span><span class="p">)</span>
+<span class="n">alg</span> <span class="o">=</span> <span class="n">AlgorithmManager</span><span class="o">.</span><span class="n">createUnmanaged</span><span class="p">(</span><span class="s1">'EstimateFitParameters'</span><span class="p">)</span>
 <span class="n">alg</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;Function&#39;</span><span class="p">,</span> <span class="n">fun</span><span class="p">)</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;InputWorkspace&#39;</span><span class="p">,</span> <span class="n">ws</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'Function'</span><span class="p">,</span> <span class="n">fun</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'InputWorkspace'</span><span class="p">,</span> <span class="n">ws</span><span class="p">)</span>
 <span class="c1"># Non-default cost function can be used.</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;CostFunction&#39;</span><span class="p">,</span> <span class="s1">&#39;Unweighted least squares&#39;</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'CostFunction'</span><span class="p">,</span> <span class="s1">'Unweighted least squares'</span><span class="p">)</span>
 <span class="c1"># How many points to try.</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;NSamples&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'NSamples'</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="c1"># A seed for the random number generator. Only to make this test reproducible.</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;Seed&#39;</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'Seed'</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>
 <span class="c1"># Execute the algorithm.</span>
 <span class="n">alg</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 <span class="c1"># Function now contains the estimated parameters.</span>
-<span class="n">function</span> <span class="o">=</span> <span class="n">alg</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;Function&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">function</span> <span class="o">=</span> <span class="n">alg</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'Function'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
 <span class="c1"># Evaluate the function with the returned parameters to see the quality of estimation.</span>
-<span class="n">EvaluateFunction</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">function</span><span class="p">),</span><span class="n">ws</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;estimation&#39;</span><span class="p">)</span>
+<span class="n">EvaluateFunction</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">function</span><span class="p">),</span><span class="n">ws</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'estimation'</span><span class="p">)</span>
 <span class="c1"># Run Fit starting with the new parameters.</span>
-<span class="n">Fit</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">function</span><span class="p">),</span><span class="n">ws</span><span class="p">,</span><span class="n">Output</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">function</span><span class="p">),</span><span class="n">ws</span><span class="p">,</span><span class="n">Output</span><span class="o">=</span><span class="s1">'fit'</span><span class="p">)</span>
 </pre></div>
 </div>
 <figure class="align-default">
@@ -1674,35 +1674,35 @@ If the algorithm decides that some of the parameters may cause problems it will 
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># Define a function, constraints set the search intervals.</span>
-<span class="n">fun</span> <span class="o">=</span> <span class="s1">&#39;name=BackToBackExponential,S=1.1,constraints=(0.01&lt;I&lt;200,0.001&lt;A&lt;300,0.001&lt;B&lt;300,-5&lt;X0&lt;5,0.001&lt;S&lt;4)&#39;</span>
+<span class="n">fun</span> <span class="o">=</span> <span class="s1">'name=BackToBackExponential,S=1.1,constraints=(0.01&lt;I&lt;200,0.001&lt;A&lt;300,0.001&lt;B&lt;300,-5&lt;X0&lt;5,0.001&lt;S&lt;4)'</span>
 
 <span class="c1"># Set up the algorithm.</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlgorithmManager</span>
-<span class="n">alg</span> <span class="o">=</span> <span class="n">AlgorithmManager</span><span class="o">.</span><span class="n">createUnmanaged</span><span class="p">(</span><span class="s1">&#39;EstimateFitParameters&#39;</span><span class="p">)</span>
+<span class="n">alg</span> <span class="o">=</span> <span class="n">AlgorithmManager</span><span class="o">.</span><span class="n">createUnmanaged</span><span class="p">(</span><span class="s1">'EstimateFitParameters'</span><span class="p">)</span>
 <span class="n">alg</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;Function&#39;</span><span class="p">,</span> <span class="n">fun</span><span class="p">)</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;InputWorkspace&#39;</span><span class="p">,</span> <span class="n">ws</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'Function'</span><span class="p">,</span> <span class="n">fun</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'InputWorkspace'</span><span class="p">,</span> <span class="n">ws</span><span class="p">)</span>
 <span class="c1"># Cross Entropy type.</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Cross Entropy&#39;</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'Type'</span><span class="p">,</span> <span class="s1">'Cross Entropy'</span><span class="p">)</span>
 <span class="c1"># How many samples in each iteration.</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;NSamples&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'NSamples'</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="c1"># How many samples to use to refine distributions.</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;Selection&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'Selection'</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="c1"># How many iterations to make.</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;NIterations&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'NIterations'</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="c1"># Try to find bad parameters. A and B are expected to be bad.</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;FixBadParameters&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'FixBadParameters'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 <span class="c1"># A seed for the random number generator. Only to make this test reproducible.</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;Seed&#39;</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">'Seed'</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>
 <span class="c1"># Execute the algorithm.</span>
 <span class="n">alg</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 <span class="c1"># Function now contains the estimated parameters.</span>
-<span class="n">function</span> <span class="o">=</span> <span class="n">alg</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;Function&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">function</span> <span class="o">=</span> <span class="n">alg</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'Function'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
 <span class="c1"># Evaluate the function with the returned parameters to see the quality of estimation.</span>
-<span class="n">EvaluateFunction</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">function</span><span class="p">),</span><span class="n">ws</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;estimation&#39;</span><span class="p">)</span>
+<span class="n">EvaluateFunction</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">function</span><span class="p">),</span><span class="n">ws</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'estimation'</span><span class="p">)</span>
 <span class="c1"># Run Fit starting with the new parameters.</span>
-<span class="n">Fit</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">function</span><span class="p">),</span><span class="n">ws</span><span class="p">,</span><span class="n">Output</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">function</span><span class="p">),</span><span class="n">ws</span><span class="p">,</span><span class="n">Output</span><span class="o">=</span><span class="s1">'fit'</span><span class="p">)</span>
 </pre></div>
 </div>
 <figure class="align-default">
@@ -1720,8 +1720,8 @@ If the algorithm decides that some of the parameters may cause problems it will 
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/EstimateFitParameters.h">EstimateFitParameters.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/src/Algorithms/EstimateFitParameters.cpp">EstimateFitParameters.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/inc/MantidCurveFitting/Algorithms/EstimateFitParameters.h">EstimateFitParameters.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/src/Algorithms/EstimateFitParameters.cpp">EstimateFitParameters.cpp</a></p>
 </section>
 </section>
 

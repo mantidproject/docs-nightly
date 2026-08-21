@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CrystalFieldSusceptibility &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CrystalFieldSusceptibility &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -543,8 +543,8 @@ The “data” here is generated from the function itself, for a field along the
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Build a reference data set</span>
-<span class="n">fun</span> <span class="o">=</span> <span class="s1">&#39;name=CrystalFieldSusceptibility,Ion=Ce,B20=0.37737,B22=0.039770,B40=-0.031787,B42=-0.11611,B44=-0.12544,&#39;</span>
-<span class="n">fun</span> <span class="o">+=</span> <span class="s1">&#39;Hdir=(1,1,1), Unit=cgs, inverse=1,&#39;</span>
+<span class="n">fun</span> <span class="o">=</span> <span class="s1">'name=CrystalFieldSusceptibility,Ion=Ce,B20=0.37737,B22=0.039770,B40=-0.031787,B42=-0.11611,B44=-0.12544,'</span>
+<span class="n">fun</span> <span class="o">+=</span> <span class="s1">'Hdir=(1,1,1), Unit=cgs, inverse=1,'</span>
 
 <span class="c1"># This creates a (empty) workspace to use with EvaluateFunction</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
@@ -552,24 +552,24 @@ The “data” here is generated from the function itself, for a field along the
 <span class="n">e</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 
-<span class="c1"># The calculated data will be in &#39;data&#39;, WorkspaceIndex=1</span>
-<span class="n">EvaluateFunction</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="c1"># The calculated data will be in 'data', WorkspaceIndex=1</span>
+<span class="n">EvaluateFunction</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">)</span>
 
  <span class="c1"># Change parameters slightly and fit to the reference data</span>
-<span class="n">fun</span> <span class="o">=</span> <span class="s1">&#39;name=CrystalFieldSusceptibility,Ion=Ce,Symmetry=C2v,B20=0.4,B22=0.04,B40=-0.03,B42=-0.1,B44=-0.1,&#39;</span>
-<span class="n">fun</span> <span class="o">+=</span> <span class="s1">&#39;Hdir=(1,1,1), Unit=cgs, inverse=1,&#39;</span>
-<span class="n">fun</span> <span class="o">+=</span> <span class="s1">&#39;ties=(B60=0,B62=0,B64=0,B66=0,BmolX=0,BmolY=0,BmolZ=0,BextX=0,BextY=0,BextZ=0)&#39;</span>
+<span class="n">fun</span> <span class="o">=</span> <span class="s1">'name=CrystalFieldSusceptibility,Ion=Ce,Symmetry=C2v,B20=0.4,B22=0.04,B40=-0.03,B42=-0.1,B44=-0.1,'</span>
+<span class="n">fun</span> <span class="o">+=</span> <span class="s1">'Hdir=(1,1,1), Unit=cgs, inverse=1,'</span>
+<span class="n">fun</span> <span class="o">+=</span> <span class="s1">'ties=(B60=0,B62=0,B64=0,B66=0,BmolX=0,BmolY=0,BmolZ=0,BextX=0,BextY=0,BextZ=0)'</span>
 
 <span class="c1"># (set MaxIterations=0 to see the starting point)</span>
-<span class="n">Fit</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span><span class="n">MaxIterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">CostFunction</span><span class="o">=</span><span class="s1">&#39;Unweighted least squares&#39;</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="s1">'data'</span><span class="p">,</span> <span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Output</span><span class="o">=</span><span class="s1">'fit'</span><span class="p">,</span><span class="n">MaxIterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">CostFunction</span><span class="o">=</span><span class="s1">'Unweighted least squares'</span><span class="p">)</span>
 <span class="c1"># Using Unweighted least squares fit because the data has no errors.</span>
 
 <span class="c1"># Extract fitted parameters</span>
-<span class="n">parws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;fit_Parameters&#39;</span><span class="p">]</span>
+<span class="n">parws</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'fit_Parameters'</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">parws</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()):</span>
     <span class="n">row</span> <span class="o">=</span> <span class="n">parws</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%7s</span><span class="s2"> = </span><span class="si">% 7.5g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]))</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">%7s</span><span class="s2"> = </span><span class="si">% 7.5g</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">'Name'</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output (the numbers you see on your machine may vary):</p>
@@ -784,8 +784,8 @@ The “data” here is generated from the function itself, for a field along the
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/inc/MantidCurveFitting/Functions/CrystalFieldSusceptibility.h">CrystalFieldSusceptibility.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/src/Functions/CrystalFieldSusceptibility.cpp">CrystalFieldSusceptibility.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/inc/MantidCurveFitting/Functions/CrystalFieldSusceptibility.h">CrystalFieldSusceptibility.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/src/Functions/CrystalFieldSusceptibility.cpp">CrystalFieldSusceptibility.cpp</a></p>
 </section>
 </section>
 

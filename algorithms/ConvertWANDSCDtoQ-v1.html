@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ConvertWANDSCDtoQ v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ConvertWANDSCDtoQ v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ConvertWANDSCDtoQ-v1';</script>
@@ -1656,21 +1656,21 @@ Symmetry Operations can be found <a class="reference internal" href="../concepts
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Convert to Q</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load Data and normalisation</span>
-<span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="mi">26509</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span><span class="n">Grouping</span><span class="o">=</span><span class="s1">&#39;4x4&#39;</span><span class="p">)</span> <span class="c1"># Vanadium</span>
-<span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">&#39;26640-27944&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="n">Grouping</span><span class="o">=</span><span class="s1">&#39;4x4&#39;</span><span class="p">)</span>
-<span class="n">ConvertWANDSCDtoQ</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
-                  <span class="n">NormalisationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span>
-                  <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span>
-                  <span class="n">BinningDim1</span><span class="o">=</span><span class="s1">&#39;-1,1,1&#39;</span><span class="p">)</span>
+<span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="mi">26509</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'norm'</span><span class="p">,</span><span class="n">Grouping</span><span class="o">=</span><span class="s1">'4x4'</span><span class="p">)</span> <span class="c1"># Vanadium</span>
+<span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">'26640-27944'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span><span class="n">Grouping</span><span class="o">=</span><span class="s1">'4x4'</span><span class="p">)</span>
+<span class="n">ConvertWANDSCDtoQ</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span>
+                  <span class="n">NormalisationWorkspace</span><span class="o">=</span><span class="s1">'norm'</span><span class="p">,</span>
+                  <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'Q'</span><span class="p">,</span>
+                  <span class="n">BinningDim1</span><span class="o">=</span><span class="s1">'-1,1,1'</span><span class="p">)</span>
 
 <span class="c1"># Plot workspace</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">plots</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;Q&#39;</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'Q'</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">cbar</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;Intensity (arb. units)&#39;</span><span class="p">)</span>
-<span class="c1">#fig.savefig(&#39;ConvertWANDSCDtoQ_Q.png&#39;)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">'Intensity (arb. units)'</span><span class="p">)</span>
+<span class="c1">#fig.savefig('ConvertWANDSCDtoQ_Q.png')</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1679,25 +1679,25 @@ Symmetry Operations can be found <a class="reference internal" href="../concepts
 </figure>
 <p><strong>Convert to HKL</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load Data and normalisation</span>
-<span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="mi">26509</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span><span class="n">Grouping</span><span class="o">=</span><span class="s1">&#39;4x4&#39;</span><span class="p">)</span> <span class="c1"># Vanadium</span>
-<span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">&#39;26640-27944&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="n">Grouping</span><span class="o">=</span><span class="s1">&#39;4x4&#39;</span><span class="p">)</span>
-<span class="n">SetUB</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">UB</span><span class="o">=</span><span class="s1">&#39;0,0.1770619741,-0.00927942487,0.177304965,0,0,0,-0.00927942487,-0.177061974&#39;</span><span class="p">)</span>
-<span class="n">ConvertWANDSCDtoQ</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
-                  <span class="n">NormalisationWorkspace</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span>
-                  <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;HKL&#39;</span><span class="p">,</span>
-                  <span class="n">Frame</span><span class="o">=</span><span class="s1">&#39;HKL&#39;</span><span class="p">,</span>
-                  <span class="n">BinningDim0</span><span class="o">=</span><span class="s1">&#39;-1,1,1&#39;</span><span class="p">,</span>
-                  <span class="n">BinningDim1</span><span class="o">=</span><span class="s1">&#39;-2.02,7.02,226&#39;</span><span class="p">,</span>
-                  <span class="n">BinningDim2</span><span class="o">=</span><span class="s1">&#39;-6.52,2.52,226&#39;</span><span class="p">)</span>
+<span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="mi">26509</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'norm'</span><span class="p">,</span><span class="n">Grouping</span><span class="o">=</span><span class="s1">'4x4'</span><span class="p">)</span> <span class="c1"># Vanadium</span>
+<span class="n">LoadWANDSCD</span><span class="p">(</span><span class="n">IPTS</span><span class="o">=</span><span class="mi">7776</span><span class="p">,</span> <span class="n">RunNumbers</span><span class="o">=</span><span class="s1">'26640-27944'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span><span class="n">Grouping</span><span class="o">=</span><span class="s1">'4x4'</span><span class="p">)</span>
+<span class="n">SetUB</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="n">UB</span><span class="o">=</span><span class="s1">'0,0.1770619741,-0.00927942487,0.177304965,0,0,0,-0.00927942487,-0.177061974'</span><span class="p">)</span>
+<span class="n">ConvertWANDSCDtoQ</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span>
+                  <span class="n">NormalisationWorkspace</span><span class="o">=</span><span class="s1">'norm'</span><span class="p">,</span>
+                  <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'HKL'</span><span class="p">,</span>
+                  <span class="n">Frame</span><span class="o">=</span><span class="s1">'HKL'</span><span class="p">,</span>
+                  <span class="n">BinningDim0</span><span class="o">=</span><span class="s1">'-1,1,1'</span><span class="p">,</span>
+                  <span class="n">BinningDim1</span><span class="o">=</span><span class="s1">'-2.02,7.02,226'</span><span class="p">,</span>
+                  <span class="n">BinningDim2</span><span class="o">=</span><span class="s1">'-6.52,2.52,226'</span><span class="p">)</span>
 
 <span class="c1"># Plot workspace</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid</span><span class="w"> </span><span class="kn">import</span> <span class="n">plots</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span><span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;HKL&#39;</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span><span class="s1">'mantid'</span><span class="p">})</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'HKL'</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">cbar</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;Intensity (arb. units)&#39;</span><span class="p">)</span>
-<span class="c1">#fig.savefig(&#39;ConvertWANDSCDtoQ_HKL.png&#39;)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">'Intensity (arb. units)'</span><span class="p">)</span>
+<span class="c1">#fig.savefig('ConvertWANDSCDtoQ_HKL.png')</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1709,7 +1709,7 @@ Symmetry Operations can be found <a class="reference internal" href="../concepts
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/ConvertWANDSCDtoQ.py">ConvertWANDSCDtoQ.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/ConvertWANDSCDtoQ.py">ConvertWANDSCDtoQ.py</a></p>
 </section>
 </section>
 

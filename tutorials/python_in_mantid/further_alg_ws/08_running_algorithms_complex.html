@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Running Algorithms - Complex Example &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Running Algorithms - Complex Example &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/python_in_mantid/further_alg_ws/08_running_algorithms_complex';</script>
@@ -554,7 +554,7 @@
 <p>The script below shows a more complex example of mixing Mantid’s algorithms with numpy</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
 
-<span class="n">white_beam</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;MAR11060.raw&quot;</span><span class="p">)</span>
+<span class="n">white_beam</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"MAR11060.raw"</span><span class="p">)</span>
 
 <span class="c1"># Define constants</span>
 <span class="n">norm_spectrum</span> <span class="o">=</span> <span class="mi">2</span>
@@ -564,12 +564,12 @@
 <span class="n">white_beam</span> <span class="o">=</span> <span class="n">NormaliseToMonitor</span><span class="p">(</span><span class="n">white_beam</span><span class="p">,</span><span class="n">MonitorSpectrum</span><span class="o">=</span><span class="n">norm_spectrum</span><span class="p">)</span>
 <span class="c1"># crop out monitors</span>
 <span class="n">white_beam</span> <span class="o">=</span> <span class="n">CropWorkspace</span><span class="p">(</span><span class="n">white_beam</span><span class="p">,</span> <span class="n">StartWorkspaceIndex</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">white_beam</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">white_beam</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">&#39;Energy&#39;</span><span class="p">)</span>
+<span class="n">white_beam</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">white_beam</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">'Energy'</span><span class="p">)</span>
 <span class="n">white_beam</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">white_beam</span><span class="p">,</span> <span class="n">rb_params</span><span class="p">)</span>
 
-<span class="sd">&quot;&quot;&quot; Extract data to numpy, computes the sum value for each spectra</span>
+<span class="sd">""" Extract data to numpy, computes the sum value for each spectra</span>
 <span class="sd">      and puts the results back into a worksapace.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="n">xvalues</span> <span class="o">=</span> <span class="n">white_beam</span><span class="o">.</span><span class="n">extractX</span><span class="p">()</span> <span class="c1"># 2D copy of workspace data</span>
 <span class="n">yvalues</span> <span class="o">=</span> <span class="n">white_beam</span><span class="o">.</span><span class="n">extractY</span><span class="p">()</span> <span class="c1"># 2D copy of workspace data</span>
 <span class="n">evalues</span> <span class="o">=</span> <span class="n">white_beam</span><span class="o">.</span><span class="n">extractE</span><span class="p">()</span> <span class="c1"># 2D copy of workspace data</span>
@@ -588,9 +588,9 @@
 <span class="n">white_beam</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">xlimits</span><span class="p">,</span> <span class="n">sumy</span><span class="p">,</span> <span class="n">evalues</span><span class="p">,</span><span class="n">NSpec</span><span class="o">=</span><span class="n">sumy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># Divide sample run</span>
-<span class="n">sample</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">&quot;MAR11015&quot;</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s2">"MAR11015"</span><span class="p">)</span>
 <span class="n">sample</span> <span class="o">=</span> <span class="n">NormaliseToMonitor</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span><span class="n">MonitorSpectrum</span><span class="o">=</span><span class="n">norm_spectrum</span><span class="p">)</span>
-<span class="n">sample</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span><span class="n">EMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span><span class="n">EMode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span>
 <span class="c1"># crop out monitors</span>
 <span class="n">sample</span> <span class="o">=</span> <span class="n">CropWorkspace</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">StartWorkspaceIndex</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">sample</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">rb_params</span><span class="p">)</span>

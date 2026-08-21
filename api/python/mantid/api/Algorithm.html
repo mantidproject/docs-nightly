@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Algorithm &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Algorithm &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/api/Algorithm';</script>
@@ -696,22 +696,22 @@ of the example algorithms below.</p>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># where p1,p2 &amp; p3 are values for algorithm &quot;Alg&quot;&#39;s properties</span>
-<span class="n">mtd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;Alg&quot;</span><span class="p">,</span><span class="s2">&quot;p1;p2;p3&quot;</span><span class="p">)</span> <span class="c1"># using parameter ordinal position</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># where p1,p2 &amp; p3 are values for algorithm "Alg"'s properties</span>
+<span class="n">mtd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"Alg"</span><span class="p">,</span><span class="s2">"p1;p2;p3"</span><span class="p">)</span> <span class="c1"># using parameter ordinal position</span>
 <span class="c1">#or</span>
-<span class="n">mtd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;Alg&quot;</span><span class="p">,</span><span class="s2">&quot;Property1=p1;Property2=p2;Property3=p3&quot;</span><span class="p">)</span> <span class="c1">#using parameter names</span>
+<span class="n">mtd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"Alg"</span><span class="p">,</span><span class="s2">"Property1=p1;Property2=p2;Property3=p3"</span><span class="p">)</span> <span class="c1">#using parameter names</span>
 <span class="c1">#or</span>
-<span class="n">alg</span> <span class="o">=</span> <span class="n">mtd</span><span class="o">.</span><span class="n">createAlgorithm</span><span class="p">(</span><span class="s2">&quot;Alg&quot;</span><span class="p">)</span> <span class="c1"># explicitly setting each parameter, then executing</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s2">&quot;Property1&quot;</span><span class="p">,</span><span class="s2">&quot;p1&quot;</span><span class="p">)</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s2">&quot;Property2&quot;</span><span class="p">,</span><span class="s2">&quot;p2&quot;</span><span class="p">)</span>
-<span class="n">alg</span><span class="o">.</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s2">&quot;Property3&quot;</span><span class="p">,</span><span class="s2">&quot;p3&quot;</span><span class="p">)</span>
+<span class="n">alg</span> <span class="o">=</span> <span class="n">mtd</span><span class="o">.</span><span class="n">createAlgorithm</span><span class="p">(</span><span class="s2">"Alg"</span><span class="p">)</span> <span class="c1"># explicitly setting each parameter, then executing</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s2">"Property1"</span><span class="p">,</span><span class="s2">"p1"</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s2">"Property2"</span><span class="p">,</span><span class="s2">"p2"</span><span class="p">)</span>
+<span class="n">alg</span><span class="o">.</span><span class="n">setPropertyValue</span><span class="p">(</span><span class="s2">"Property3"</span><span class="p">,</span><span class="s2">"p3"</span><span class="p">)</span>
 <span class="n">alg</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 
 <span class="c1"># Properties of Algorithms can be read (but not written to) through a Python dictionary. So you may do:</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">alg</span><span class="p">[</span><span class="s2">&quot;Property1&quot;</span><span class="p">])</span>
-<span class="c1"># prints &#39;p1&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">alg</span><span class="p">[</span><span class="s2">&quot;Property2&quot;</span><span class="p">])</span>
-<span class="c1"># prints &#39;p2&#39;, etc</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alg</span><span class="p">[</span><span class="s2">"Property1"</span><span class="p">])</span>
+<span class="c1"># prints 'p1'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alg</span><span class="p">[</span><span class="s2">"Property2"</span><span class="p">])</span>
+<span class="c1"># prints 'p2', etc</span>
 </pre></div>
 </div>
 </section>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>EnggSaveSinglePeakFitResultsToHDF5 v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>EnggSaveSinglePeakFitResultsToHDF5 v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/EnggSaveSinglePeakFitResultsToHDF5-v1';</script>
@@ -1517,27 +1517,27 @@ we just mock one up here. See <a class="reference internal" href="EnggFitPeaks-v
 
 <span class="n">peaks</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
 
-<span class="n">fit_param_headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dSpacing&quot;</span><span class="p">,</span> <span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="s2">&quot;A0_Err&quot;</span><span class="p">,</span> <span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="s2">&quot;A1_Err&quot;</span><span class="p">,</span> <span class="s2">&quot;X0&quot;</span><span class="p">,</span> <span class="s2">&quot;X0_Err&quot;</span><span class="p">,</span>
-                     <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;A_Err&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;B_Err&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;S_Err&quot;</span><span class="p">,</span> <span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;I_Err&quot;</span><span class="p">,</span> <span class="s2">&quot;Chi&quot;</span><span class="p">]</span>
+<span class="n">fit_param_headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"dSpacing"</span><span class="p">,</span> <span class="s2">"A0"</span><span class="p">,</span> <span class="s2">"A0_Err"</span><span class="p">,</span> <span class="s2">"A1"</span><span class="p">,</span> <span class="s2">"A1_Err"</span><span class="p">,</span> <span class="s2">"X0"</span><span class="p">,</span> <span class="s2">"X0_Err"</span><span class="p">,</span>
+                     <span class="s2">"A"</span><span class="p">,</span> <span class="s2">"A_Err"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"B_Err"</span><span class="p">,</span> <span class="s2">"S"</span><span class="p">,</span> <span class="s2">"S_Err"</span><span class="p">,</span> <span class="s2">"I"</span><span class="p">,</span> <span class="s2">"I_Err"</span><span class="p">,</span> <span class="s2">"Chi"</span><span class="p">]</span>
 
-<span class="p">[</span><span class="n">peaks</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s2">&quot;double&quot;</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span> <span class="k">for</span> <span class="n">header</span> <span class="ow">in</span> <span class="n">fit_param_headers</span><span class="p">]</span>
+<span class="p">[</span><span class="n">peaks</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s2">"double"</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span> <span class="k">for</span> <span class="n">header</span> <span class="ow">in</span> <span class="n">fit_param_headers</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
     <span class="n">peaks</span><span class="o">.</span><span class="n">addRow</span><span class="p">([(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fit_param_headers</span><span class="p">))])</span>
 
-<span class="n">output_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">],</span>
-                               <span class="s2">&quot;EnggSaveSinglePeakFitResultsToHDF5DocTest.hdf5&quot;</span><span class="p">)</span>
+<span class="n">output_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">"defaultsave.directory"</span><span class="p">],</span>
+                               <span class="s2">"EnggSaveSinglePeakFitResultsToHDF5DocTest.hdf5"</span><span class="p">)</span>
 
 <span class="n">EnggSaveSinglePeakFitResultsToHDF5</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="p">[</span><span class="n">peaks</span><span class="p">],</span>
                                    <span class="n">Filename</span><span class="o">=</span><span class="n">output_filename</span><span class="p">,</span>
                                    <span class="n">BankIDs</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">bank_group</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;Bank 1&quot;</span><span class="p">]</span>
-    <span class="n">peaks_dataset</span> <span class="o">=</span> <span class="n">bank_group</span><span class="p">[</span><span class="s2">&quot;Single Peak Fitting&quot;</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Peaks dataset has </span><span class="si">{}</span><span class="s2"> rows, for our 3 peaks&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">peaks_dataset</span><span class="p">)))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First peak is at D spacing </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peaks_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;dSpacing&quot;</span><span class="p">]))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Third peak X0 = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peaks_dataset</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;X0&quot;</span><span class="p">]))</span>
+<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">bank_group</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"Bank 1"</span><span class="p">]</span>
+    <span class="n">peaks_dataset</span> <span class="o">=</span> <span class="n">bank_group</span><span class="p">[</span><span class="s2">"Single Peak Fitting"</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Peaks dataset has </span><span class="si">{}</span><span class="s2"> rows, for our 3 peaks"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">peaks_dataset</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"First peak is at D spacing </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peaks_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"dSpacing"</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Third peak X0 = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peaks_dataset</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">"X0"</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1550,7 +1550,7 @@ Third peak X0 = 0.5
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/EnggSaveSinglePeakFitResultsToHDF5.py">EnggSaveSinglePeakFitResultsToHDF5.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/EnggSaveSinglePeakFitResultsToHDF5.py">EnggSaveSinglePeakFitResultsToHDF5.py</a></p>
 </section>
 </section>
 

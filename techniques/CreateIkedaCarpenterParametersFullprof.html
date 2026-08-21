@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Create Ikeda Carpenter Parameters Fullprof &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Create Ikeda Carpenter Parameters Fullprof &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -499,21 +499,21 @@ END
 <p>The Fullprof Ikeda Carparter parameters of the above Fullprof file is the four numbers stored to the right of ALFBE.
 These are the same for all the banks and in Mantid these are therefore assigned to the top level component of the GEM instrument (see <code class="docutils literal notranslate"><span class="pre">GEM_Definition.xml</span></code>),
 which is called GEM, and Mantid representation of Alpha0, Beta0, Alpha1 and Kappa are:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;component-link name=&quot;GEM&quot; &gt;
-  &lt;parameter name=&quot;IkedaCarpenterPV:Alpha0&quot; type=&quot;fitting&quot;&gt;
-    &lt;formula eq=&quot;0.734079&quot; result-unit=&quot;TOF&quot;/&gt;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;component-link name="GEM" &gt;
+  &lt;parameter name="IkedaCarpenterPV:Alpha0" type="fitting"&gt;
+    &lt;formula eq="0.734079" result-unit="TOF"/&gt;
     &lt;fixed /&gt;
   &lt;/parameter&gt;
-  &lt;parameter name=&quot;IkedaCarpenterPV:Beta0&quot; type=&quot;fitting&quot;&gt;
-    &lt;formula eq=&quot;32.017204&quot; result-unit=&quot;TOF&quot;/&gt;
+  &lt;parameter name="IkedaCarpenterPV:Beta0" type="fitting"&gt;
+    &lt;formula eq="32.017204" result-unit="TOF"/&gt;
     &lt;fixed /&gt;
   &lt;/parameter&gt;
-  &lt;parameter name=&quot;IkedaCarpenterPV:Alpha1&quot; type=&quot;fitting&quot;&gt;
-    &lt;formula eq=&quot;2.067249&quot; result-unit=&quot;TOF&quot;/&gt;
+  &lt;parameter name="IkedaCarpenterPV:Alpha1" type="fitting"&gt;
+    &lt;formula eq="2.067249" result-unit="TOF"/&gt;
     &lt;fixed /&gt;
   &lt;/parameter&gt;
-  &lt;parameter name=&quot;IkedaCarpenterPV:Kappa&quot; type=&quot;fitting&quot;&gt;
-    &lt;formula eq=&quot;48.734158&quot;/&gt;
+  &lt;parameter name="IkedaCarpenterPV:Kappa" type="fitting"&gt;
+    &lt;formula eq="48.734158"/&gt;
     &lt;fixed /&gt;
   &lt;/parameter&gt;
 &lt;/component-link&gt;
@@ -533,8 +533,8 @@ for these to TOF and dimensionless respectively (i.e. ignoring the wavelength bi
 and it can be found to translates into the equation: <span class="math notranslate nohighlight">\(variance=SigmaSquared = Sig \mbox{-}2 * d^4 + Sig \mbox{-}1 * d^2 + Sig \mbox{-}0\)</span>,
 where variance is in units of <span class="math notranslate nohighlight">\(TOF^2\)</span>, and <span class="math notranslate nohighlight">\(d\)</span> is the dSpacing at the centre of the peak.
 This translates into the Mantid parameter:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;parameter name=&quot;IkedaCarpenterPV:SigmaSquared&quot; type=&quot;fitting&quot;&gt;
-  &lt;formula eq=&quot;0.0*centre^4+166.868*centre^2+98.757&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF^2&quot;/&gt;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;parameter name="IkedaCarpenterPV:SigmaSquared" type="fitting"&gt;
+  &lt;formula eq="0.0*centre^4+166.868*centre^2+98.757" unit="dSpacing" result-unit="TOF^2"/&gt;
 &lt;/parameter&gt;
 </pre></div>
 </div>
@@ -544,86 +544,86 @@ Note in addition to using the result-unit attribute this formula also assigns <c
 For the 1st bank it is <code class="docutils literal notranslate"><span class="pre">GAMMA</span> <span class="pre">0.000</span> <span class="pre">0.277</span> <span class="pre">0.000</span></code>, and it can be found to translate into the equation:
 <span class="math notranslate nohighlight">\(GAMMA=Gamma = Gam \mbox{-}2 * d^2 + Gam \mbox{-}1 * d + Gam \mbox{-}0\)</span>, where <code class="docutils literal notranslate"><span class="pre">Gamma</span></code> is in units of TOF and <span class="math notranslate nohighlight">\(d\)</span> is the dSpacing at the centre of the peak.
 This translates into the Mantid parameter:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;parameter name=&quot;IkedaCarpenterPV:Gamma&quot; type=&quot;fitting&quot;&gt;
-  &lt;formula eq=&quot;0.0*centre^2+0.277*centre+0.0&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF&quot;/&gt;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;parameter name="IkedaCarpenterPV:Gamma" type="fitting"&gt;
+  &lt;formula eq="0.0*centre^2+0.277*centre+0.0" unit="dSpacing" result-unit="TOF"/&gt;
 &lt;/parameter&gt;
 </pre></div>
 </div>
 <p>A copy of the full translation of the above Fullprof instrument file into a Mantid parameter file is shown below
 (this parameter file can be applied to a GEM workspace with <a class="reference internal" href="../algorithms/LoadParameterFile-v1.html#algm-loadparameterfile"><span class="std std-ref">LoadParameterFile v1</span></a> or by copying in into <code class="docutils literal notranslate"><span class="pre">MantidInstall/instrument/GEM_Parameters.xml</span></code>):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;parameter-file instrument=&quot;GEM&quot; date = &quot;2003-11-30 23:59:59&quot;&gt;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;parameter-file instrument="GEM" date = "2003-11-30 23:59:59"&gt;
 
-  &lt;component-link name=&quot;GEM&quot; &gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:Alpha0&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;0.734079&quot; result-unit=&quot;TOF&quot;/&gt;
+  &lt;component-link name="GEM" &gt;
+    &lt;parameter name="IkedaCarpenterPV:Alpha0" type="fitting"&gt;
+      &lt;formula eq="0.734079" result-unit="TOF"/&gt;
       &lt;fixed /&gt;
     &lt;/parameter&gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:Beta0&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;32.017204&quot; result-unit=&quot;TOF&quot;/&gt;
+    &lt;parameter name="IkedaCarpenterPV:Beta0" type="fitting"&gt;
+      &lt;formula eq="32.017204" result-unit="TOF"/&gt;
       &lt;fixed /&gt;
     &lt;/parameter&gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:Alpha1&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;2.067249&quot; result-unit=&quot;TOF&quot;/&gt;
+    &lt;parameter name="IkedaCarpenterPV:Alpha1" type="fitting"&gt;
+      &lt;formula eq="2.067249" result-unit="TOF"/&gt;
       &lt;fixed /&gt;
     &lt;/parameter&gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:Kappa&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;48.734158&quot;/&gt;
+    &lt;parameter name="IkedaCarpenterPV:Kappa" type="fitting"&gt;
+      &lt;formula eq="48.734158"/&gt;
       &lt;fixed /&gt;
     &lt;/parameter&gt;
   &lt;/component-link&gt;
 
-  &lt;component-link name=&quot;bank1&quot; &gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:SigmaSquared&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;166.868*centre^2+98.757&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF^2&quot;/&gt;
+  &lt;component-link name="bank1" &gt;
+    &lt;parameter name="IkedaCarpenterPV:SigmaSquared" type="fitting"&gt;
+      &lt;formula eq="166.868*centre^2+98.757" unit="dSpacing" result-unit="TOF^2"/&gt;
     &lt;/parameter&gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:Gamma&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;0.277*centre&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF&quot;/&gt;
-    &lt;/parameter&gt;
-  &lt;/component-link&gt;
-
-  &lt;component-link name=&quot;bank2&quot; &gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:SigmaSquared&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;263.595*centre^2&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF^2&quot;/&gt;
-    &lt;/parameter&gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:Gamma&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;3.45*centre&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF&quot;/&gt;
+    &lt;parameter name="IkedaCarpenterPV:Gamma" type="fitting"&gt;
+      &lt;formula eq="0.277*centre" unit="dSpacing" result-unit="TOF"/&gt;
     &lt;/parameter&gt;
   &lt;/component-link&gt;
 
-  &lt;component-link name=&quot;bank3&quot; &gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:SigmaSquared&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;287.456*centre^2&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF^2&quot;/&gt;
+  &lt;component-link name="bank2" &gt;
+    &lt;parameter name="IkedaCarpenterPV:SigmaSquared" type="fitting"&gt;
+      &lt;formula eq="263.595*centre^2" unit="dSpacing" result-unit="TOF^2"/&gt;
     &lt;/parameter&gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:Gamma&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;3.645*centre&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF&quot;/&gt;
-    &lt;/parameter&gt;
-  &lt;/component-link&gt;
-
-  &lt;component-link name=&quot;bank4&quot; &gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:SigmaSquared&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;176.833*centre^2&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF^2&quot;/&gt;
-    &lt;/parameter&gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:Gamma&quot; type=&quot;fitting&quot; result-unit=&quot;TOF&quot;&gt;
-      &lt;formula eq=&quot;4.416*centre&quot; unit=&quot;dSpacing&quot;/&gt;
+    &lt;parameter name="IkedaCarpenterPV:Gamma" type="fitting"&gt;
+      &lt;formula eq="3.45*centre" unit="dSpacing" result-unit="TOF"/&gt;
     &lt;/parameter&gt;
   &lt;/component-link&gt;
 
-  &lt;component-link name=&quot;bank5&quot; &gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:SigmaSquared&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;63.41*centre^2&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF^2&quot;/&gt;
+  &lt;component-link name="bank3" &gt;
+    &lt;parameter name="IkedaCarpenterPV:SigmaSquared" type="fitting"&gt;
+      &lt;formula eq="287.456*centre^2" unit="dSpacing" result-unit="TOF^2"/&gt;
     &lt;/parameter&gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:Gamma&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;3.116*centre&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF&quot;/&gt;
+    &lt;parameter name="IkedaCarpenterPV:Gamma" type="fitting"&gt;
+      &lt;formula eq="3.645*centre" unit="dSpacing" result-unit="TOF"/&gt;
     &lt;/parameter&gt;
   &lt;/component-link&gt;
 
-  &lt;component-link name=&quot;bank6&quot; &gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:SigmaSquared&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;29.321*centre^2&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF^2&quot;/&gt;
+  &lt;component-link name="bank4" &gt;
+    &lt;parameter name="IkedaCarpenterPV:SigmaSquared" type="fitting"&gt;
+      &lt;formula eq="176.833*centre^2" unit="dSpacing" result-unit="TOF^2"/&gt;
     &lt;/parameter&gt;
-    &lt;parameter name=&quot;IkedaCarpenterPV:Gamma&quot; type=&quot;fitting&quot;&gt;
-      &lt;formula eq=&quot;0.982*centre&quot; unit=&quot;dSpacing&quot; result-unit=&quot;TOF&quot;/&gt;
+    &lt;parameter name="IkedaCarpenterPV:Gamma" type="fitting" result-unit="TOF"&gt;
+      &lt;formula eq="4.416*centre" unit="dSpacing"/&gt;
+    &lt;/parameter&gt;
+  &lt;/component-link&gt;
+
+  &lt;component-link name="bank5" &gt;
+    &lt;parameter name="IkedaCarpenterPV:SigmaSquared" type="fitting"&gt;
+      &lt;formula eq="63.41*centre^2" unit="dSpacing" result-unit="TOF^2"/&gt;
+    &lt;/parameter&gt;
+    &lt;parameter name="IkedaCarpenterPV:Gamma" type="fitting"&gt;
+      &lt;formula eq="3.116*centre" unit="dSpacing" result-unit="TOF"/&gt;
+    &lt;/parameter&gt;
+  &lt;/component-link&gt;
+
+  &lt;component-link name="bank6" &gt;
+    &lt;parameter name="IkedaCarpenterPV:SigmaSquared" type="fitting"&gt;
+      &lt;formula eq="29.321*centre^2" unit="dSpacing" result-unit="TOF^2"/&gt;
+    &lt;/parameter&gt;
+    &lt;parameter name="IkedaCarpenterPV:Gamma" type="fitting"&gt;
+      &lt;formula eq="0.982*centre" unit="dSpacing" result-unit="TOF"/&gt;
     &lt;/parameter&gt;
   &lt;/component-link&gt;
 

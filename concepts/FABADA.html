@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FABADA &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>FABADA &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -446,7 +446,7 @@
   <section id="fabada">
 <span id="id1"></span><h1>FABADA<a class="headerlink" href="#fabada" title="Link to this heading">#</a></h1>
 <p>FABADA is a fitting algorithm for Bayesian data analysis, the theory of which is
-detailed here: <a class="reference external" href="http://dx.doi.org/10.1088/1742-6596/325/1/012006">http://dx.doi.org/10.1088/1742-6596/325/1/012006</a></p>
+detailed here: <a class="reference external" href="https://doi.org/10.1088/1742-6596/325/1/012006">https://doi.org/10.1088/1742-6596/325/1/012006</a></p>
 <p>This documentation covers details of it’s implementation in Mantid.</p>
 <section id="important-notes">
 <h2>Important Notes<a class="headerlink" href="#important-notes" title="Link to this heading">#</a></h2>
@@ -502,13 +502,13 @@ This is output as a TableWorkspace.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example: A simple example</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws_data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;irs26176_graphite002_red.nxs&#39;</span><span class="p">)</span>
-<span class="n">ws_res</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;irs26173_graphite002_res.nxs&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws_data</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'irs26176_graphite002_red.nxs'</span><span class="p">)</span>
+<span class="n">ws_res</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s1">'irs26173_graphite002_res.nxs'</span><span class="p">)</span>
 
-<span class="n">function_str</span> <span class="o">=</span> <span class="s1">&#39;composite=Convolution,FixResolution=tue,NumDeriv=false;name=Resolution,Workspace=ws_res,WorkspaceIndex=0;(composite=CompositeFunction,NumDeriv=true;name=Lorentzian,Amplitude=1,PeakCentre=0.01,FWHM=0.5;name=Lorentzian,Amplitude=1,PeakCentre=0.01,FWHM=0.5)&#39;</span>
-<span class="n">minimizer_str</span> <span class="o">=</span> <span class="s2">&quot;FABADA,Chain Length=1000000,Steps between values=10,Convergence Criteria=0.01,PDF=pdf,Chains=chain,Converged chain=conv,Cost Function Table=CostFunction,Parameter Erros =Errors&quot;</span>
+<span class="n">function_str</span> <span class="o">=</span> <span class="s1">'composite=Convolution,FixResolution=tue,NumDeriv=false;name=Resolution,Workspace=ws_res,WorkspaceIndex=0;(composite=CompositeFunction,NumDeriv=true;name=Lorentzian,Amplitude=1,PeakCentre=0.01,FWHM=0.5;name=Lorentzian,Amplitude=1,PeakCentre=0.01,FWHM=0.5)'</span>
+<span class="n">minimizer_str</span> <span class="o">=</span> <span class="s2">"FABADA,Chain Length=1000000,Steps between values=10,Convergence Criteria=0.01,PDF=pdf,Chains=chain,Converged chain=conv,Cost Function Table=CostFunction,Parameter Erros =Errors"</span>
 
-<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span> <span class="o">=</span> <span class="n">function_str</span><span class="p">,</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws_data</span><span class="p">,</span><span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">StartX</span><span class="o">=-</span><span class="mf">0.25</span><span class="p">,</span><span class="n">EndX</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span><span class="n">CreateOutput</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">Output</span> <span class="o">=</span> <span class="s1">&#39;result&#39;</span><span class="p">,</span><span class="n">OutputCompositeMembers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">MaxIterations</span><span class="o">=</span><span class="mi">2000000</span><span class="p">,</span> <span class="n">Minimizer</span><span class="o">=</span><span class="n">minimizer_str</span><span class="p">)</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span> <span class="o">=</span> <span class="n">function_str</span><span class="p">,</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws_data</span><span class="p">,</span><span class="n">WorkspaceIndex</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">StartX</span><span class="o">=-</span><span class="mf">0.25</span><span class="p">,</span><span class="n">EndX</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span><span class="n">CreateOutput</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">Output</span> <span class="o">=</span> <span class="s1">'result'</span><span class="p">,</span><span class="n">OutputCompositeMembers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">MaxIterations</span><span class="o">=</span><span class="mi">2000000</span><span class="p">,</span> <span class="n">Minimizer</span><span class="o">=</span><span class="n">minimizer_str</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Category</strong>: <a class="reference external" href="../api/python/mantid/api/categories/Concepts.html">Concepts</a></p>

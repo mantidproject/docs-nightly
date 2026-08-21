@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>D7AbsoluteCrossSections v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>D7AbsoluteCrossSections v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1692,21 +1692,21 @@ and add these to your path.
 In Mantid this is done using <a class="reference internal" href="../interfaces/framework/ManageUserDirectories.html#manageuserdirectories"><span class="std std-ref">Manage User Directories</span></a>.</p>
 </div>
 <p><strong>Example - D7AbsoluteCrossSections - XYZ cross-section separation of vanadium data</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampleProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="mf">2.932</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="mf">50.942</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampleProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span> <span class="mf">2.932</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span> <span class="mf">50.942</span><span class="p">}</span>
 
-<span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ILL/D7/vanadium_xyz.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_xyz&#39;</span><span class="p">)</span> <span class="c1"># loads already reduced data</span>
+<span class="n">Load</span><span class="p">(</span><span class="s1">'ILL/D7/vanadium_xyz.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_xyz'</span><span class="p">)</span> <span class="c1"># loads already reduced data</span>
 <span class="n">D7AbsoluteCrossSections</span><span class="p">(</span>
-           <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_xyz&#39;</span><span class="p">,</span>
-           <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span>
+           <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_xyz'</span><span class="p">,</span>
+           <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">'XYZ'</span><span class="p">,</span>
            <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sampleProperties</span><span class="p">,</span>
-           <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">&#39;Merge&#39;</span><span class="p">,</span>
-           <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;xyz&#39;</span><span class="p">,</span>
-           <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">&#39;TwoTheta&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of separated cross-sections: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;xyz&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
-<span class="n">Integration</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;xyz&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sum_coherent&#39;</span><span class="p">)</span>
-<span class="n">Integration</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;xyz&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sum_incoherent&#39;</span><span class="p">)</span>
-<span class="n">Divide</span><span class="p">(</span><span class="n">LHSWorkspace</span><span class="o">=</span><span class="s1">&#39;sum_incoherent&#39;</span><span class="p">,</span> <span class="n">RHSWorkspace</span><span class="o">=</span><span class="s1">&#39;sum_coherent&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;ratio&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ratio of spin-incoherent to nuclear coherent cross-sections measured for vanadium is equal to: </span><span class="si">{0:.0f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+           <span class="n">OutputTreatment</span><span class="o">=</span><span class="s1">'Merge'</span><span class="p">,</span>
+           <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'xyz'</span><span class="p">,</span>
+           <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">'TwoTheta'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of separated cross-sections: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'xyz'</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
+<span class="n">Integration</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'xyz'</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'sum_coherent'</span><span class="p">)</span>
+<span class="n">Integration</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'xyz'</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'sum_incoherent'</span><span class="p">)</span>
+<span class="n">Divide</span><span class="p">(</span><span class="n">LHSWorkspace</span><span class="o">=</span><span class="s1">'sum_incoherent'</span><span class="p">,</span> <span class="n">RHSWorkspace</span><span class="o">=</span><span class="s1">'sum_coherent'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'ratio'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ratio of spin-incoherent to nuclear coherent cross-sections measured for vanadium is equal to: </span><span class="si">{0:.0f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'ratio'</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1715,16 +1715,16 @@ Ratio of spin-incoherent to nuclear coherent cross-sections measured for vanadiu
 </pre></div>
 </div>
 <p><strong>Example - D7AbsoluteCrossSections - Sample normalisation to vanadium data</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampleProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="mf">2.932</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="mf">182.54</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampleProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span> <span class="mf">2.932</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span> <span class="mf">182.54</span><span class="p">}</span>
 
-<span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ILL/D7/396993_reduced.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_input&#39;</span><span class="p">)</span>
-<span class="n">GroupWorkspaces</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">&#39;vanadium_input&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_data&#39;</span><span class="p">)</span>
-<span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ILL/D7/397004_reduced.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sample_data&#39;</span><span class="p">)</span>
-<span class="n">D7AbsoluteCrossSections</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;sample_data&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;normalised_sample_vanadium&#39;</span><span class="p">,</span>
-                        <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span> <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">&#39;Vanadium&#39;</span><span class="p">,</span>
+<span class="n">Load</span><span class="p">(</span><span class="s1">'ILL/D7/396993_reduced.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_input'</span><span class="p">)</span>
+<span class="n">GroupWorkspaces</span><span class="p">(</span><span class="n">InputWorkspaces</span><span class="o">=</span><span class="s1">'vanadium_input'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_data'</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="s1">'ILL/D7/397004_reduced.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'sample_data'</span><span class="p">)</span>
+<span class="n">D7AbsoluteCrossSections</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'sample_data'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'normalised_sample_vanadium'</span><span class="p">,</span>
+                        <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">'XYZ'</span><span class="p">,</span> <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">'Vanadium'</span><span class="p">,</span>
                         <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sampleProperties</span><span class="p">,</span>
-                        <span class="n">VanadiumInputWorkspace</span><span class="o">=</span><span class="s1">&#39;vanadium_data&#39;</span><span class="p">,</span> <span class="n">AbsoluteUnitsNormalisation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of entries in the normalised data is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;normalised_sample_vanadium&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
+                        <span class="n">VanadiumInputWorkspace</span><span class="o">=</span><span class="s1">'vanadium_data'</span><span class="p">,</span> <span class="n">AbsoluteUnitsNormalisation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The number of entries in the normalised data is: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'normalised_sample_vanadium'</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1732,13 +1732,13 @@ Ratio of spin-incoherent to nuclear coherent cross-sections measured for vanadiu
 </pre></div>
 </div>
 <p><strong>Example - D7D7AbsoluteCrossSections - Sample normalisation to paramagnetic cross-section</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampleProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="mf">2.932</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="mf">182.54</span><span class="p">,</span> <span class="s1">&#39;SampleSpin&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampleProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span> <span class="mf">2.932</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span> <span class="mf">182.54</span><span class="p">,</span> <span class="s1">'SampleSpin'</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}</span>
 
-<span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ILL/D7/397004_reduced.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sample_data&#39;</span><span class="p">)</span>
-<span class="n">D7AbsoluteCrossSections</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;sample_data&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;normalised_sample_magnetic&#39;</span><span class="p">,</span>
-                        <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span> <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">&#39;Paramagnetic&#39;</span><span class="p">,</span>
+<span class="n">Load</span><span class="p">(</span><span class="s1">'ILL/D7/397004_reduced.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'sample_data'</span><span class="p">)</span>
+<span class="n">D7AbsoluteCrossSections</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'sample_data'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'normalised_sample_magnetic'</span><span class="p">,</span>
+                        <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">'XYZ'</span><span class="p">,</span> <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">'Paramagnetic'</span><span class="p">,</span>
                         <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sampleProperties</span><span class="p">,</span> <span class="n">AbsoluteUnitsNormalisation</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of entries in the normalised data is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;normalised_sample_magnetic&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The number of entries in the normalised data is: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'normalised_sample_magnetic'</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1746,22 +1746,22 @@ Ratio of spin-incoherent to nuclear coherent cross-sections measured for vanadiu
 </pre></div>
 </div>
 <p><strong>Example - D7D7AbsoluteCrossSections - Single crystal sample XYZ cross-section separation</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampleProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span> <span class="mf">2.932</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span> <span class="mf">182.54</span><span class="p">,</span> <span class="s1">&#39;OmegaShift&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;KiXAngle&#39;</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampleProperties</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span> <span class="mf">2.932</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span> <span class="mf">182.54</span><span class="p">,</span> <span class="s1">'OmegaShift'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">'KiXAngle'</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">}</span>
 
-<span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ILL/D7/399870_400288_by_25.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sample_data&#39;</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="s1">'ILL/D7/399870_400288_by_25.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'sample_data'</span><span class="p">)</span>
 <span class="n">D7AbsoluteCrossSections</span><span class="p">(</span>
-  <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;sample_data&#39;</span><span class="p">,</span>
-  <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;sample_data_qxy&#39;</span><span class="p">,</span>
-  <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span>
-  <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
-  <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">&#39;Qxy&#39;</span><span class="p">,</span>
+  <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'sample_data'</span><span class="p">,</span>
+  <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'sample_data_qxy'</span><span class="p">,</span>
+  <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">'XYZ'</span><span class="p">,</span>
+  <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
+  <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">'Qxy'</span><span class="p">,</span>
   <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sampleProperties</span><span class="p">,</span>
   <span class="n">AbsoluteUnitsNormalisation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
   <span class="n">IsotropicMagnetism</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-  <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;SingleCrystal&#39;</span><span class="p">,</span>
+  <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">'SingleCrystal'</span><span class="p">,</span>
   <span class="n">ClearCache</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of entries in the output data is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;sample_data_qxy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The number of entries in the output data is: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'sample_data_qxy'</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1769,22 +1769,22 @@ Ratio of spin-incoherent to nuclear coherent cross-sections measured for vanadiu
 </pre></div>
 </div>
 <p><strong>Example - D7D7AbsoluteCrossSections - Time-of-flight measurement with Z-only cross-section separation</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_dictionary_H2O</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;SampleMass&#39;</span><span class="p">:</span><span class="mf">0.874</span><span class="p">,</span> <span class="s1">&#39;FormulaUnitMass&#39;</span><span class="p">:</span><span class="mf">18.0</span><span class="p">,</span> <span class="s1">&#39;SampleChemicalFormula&#39;</span><span class="p">:</span><span class="s1">&#39;H2O&#39;</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_dictionary_H2O</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'SampleMass'</span><span class="p">:</span><span class="mf">0.874</span><span class="p">,</span> <span class="s1">'FormulaUnitMass'</span><span class="p">:</span><span class="mf">18.0</span><span class="p">,</span> <span class="s1">'SampleChemicalFormula'</span><span class="p">:</span><span class="s1">'H2O'</span><span class="p">}</span>
 
-<span class="n">Load</span><span class="p">(</span><span class="s1">&#39;ILL/D7/395639_reduced.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;h2O_ws&#39;</span><span class="p">)</span>
+<span class="n">Load</span><span class="p">(</span><span class="s1">'ILL/D7/395639_reduced.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'h2O_ws'</span><span class="p">)</span>
 <span class="n">D7AbsoluteCrossSections</span><span class="p">(</span>
-  <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;h2O_ws&#39;</span><span class="p">,</span>
-  <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;h2O_reduced&#39;</span><span class="p">,</span>
-  <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span>
-  <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
-  <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">&#39;Default&#39;</span><span class="p">,</span>
+  <span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'h2O_ws'</span><span class="p">,</span>
+  <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'h2O_reduced'</span><span class="p">,</span>
+  <span class="n">CrossSectionSeparationMethod</span><span class="o">=</span><span class="s1">'Z'</span><span class="p">,</span>
+  <span class="n">NormalisationMethod</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span>
+  <span class="n">OutputUnits</span><span class="o">=</span><span class="s1">'Default'</span><span class="p">,</span>
   <span class="n">SampleAndEnvironmentProperties</span><span class="o">=</span><span class="n">sample_dictionary_H2O</span><span class="p">,</span>
   <span class="n">AbsoluteUnitsNormalisation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-  <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+  <span class="n">MeasurementTechnique</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
   <span class="n">ClearCache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-  <span class="n">QBinning</span><span class="o">=</span><span class="s1">&#39;-5,0.04,1.5&#39;</span>
+  <span class="n">QBinning</span><span class="o">=</span><span class="s1">'-5,0.04,1.5'</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of entries in the output data is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;h2O_reduced&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The number of entries in the output data is: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'h2O_reduced'</span><span class="p">]</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1831,7 +1831,7 @@ J. Phys.: Conf. Ser. <strong>211</strong> (2010) 012026
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/D7AbsoluteCrossSections.py">D7AbsoluteCrossSections.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/D7AbsoluteCrossSections.py">D7AbsoluteCrossSections.py</a></p>
 </section>
 </section>
 

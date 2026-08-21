@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>RemoveBackground v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>RemoveBackground v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/RemoveBackground-v1';</script>
@@ -1511,15 +1511,15 @@ and estimate errors during removal.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 
-<span class="n">maps_dir</span> <span class="o">=</span> <span class="s1">&#39;/home/user/InstrumentFileFinder/let/&#39;</span>
-<span class="n">data_dir</span> <span class="o">=</span><span class="s1">&#39;/home/user/results&#39;</span>
-<span class="n">ref_data_dir</span> <span class="o">=</span> <span class="s1">&#39;/home/user/SystemTests/AnalysisTests/ReferenceResults&#39;</span>
-<span class="n">config</span><span class="o">.</span><span class="n">setDataSearchDirs</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">;</span><span class="si">{1}</span><span class="s1">;</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span><span class="n">maps_dir</span><span class="p">,</span><span class="n">ref_data_dir</span><span class="p">))</span>
-<span class="n">config</span><span class="p">[</span><span class="s1">&#39;defaultsave.directory&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="c1"># folder to save resulting spe/nxspe files. Defaults are in</span>
+<span class="n">maps_dir</span> <span class="o">=</span> <span class="s1">'/home/user/InstrumentFileFinder/let/'</span>
+<span class="n">data_dir</span> <span class="o">=</span><span class="s1">'/home/user/results'</span>
+<span class="n">ref_data_dir</span> <span class="o">=</span> <span class="s1">'/home/user/SystemTests/AnalysisTests/ReferenceResults'</span>
+<span class="n">config</span><span class="o">.</span><span class="n">setDataSearchDirs</span><span class="p">(</span><span class="s1">'</span><span class="si">{0}</span><span class="s1">;</span><span class="si">{1}</span><span class="s1">;</span><span class="si">{2}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span><span class="n">maps_dir</span><span class="p">,</span><span class="n">ref_data_dir</span><span class="p">))</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'defaultsave.directory'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="c1"># folder to save resulting spe/nxspe files. Defaults are in</span>
 
 <span class="c1"># the name of a workspace containing background</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;LET0007438&#39;</span>
-<span class="n">groupedFilename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">+</span><span class="s1">&#39;rings&#39;</span><span class="p">;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">'LET0007438'</span>
+<span class="n">groupedFilename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">+</span><span class="s1">'rings'</span><span class="p">;</span>
 <span class="c1">#</span>
 <span class="n">Ei</span><span class="o">=</span> <span class="mi">25</span>
 <span class="n">e_min</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span>
@@ -1527,19 +1527,19 @@ and estimate errors during removal.</p>
 <span class="n">dE</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">bgRange</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15000</span><span class="p">,</span><span class="mi">18000</span><span class="p">]</span>
 
-<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="s2">&quot;Tgrid&quot;</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="s2">"Tgrid"</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">):</span>
 
   <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">groupedFilename</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">):</span>
-      <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">LoadMonitors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-      <span class="n">GroupDetectors</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">groupedFilename</span> <span class="p">,</span> <span class="n">MapFile</span><span class="o">=</span><span class="s1">&#39;LET_one2one_123.map&#39;</span><span class="p">,</span> <span class="n">Behaviour</span><span class="o">=</span><span class="s1">&#39;Average&#39;</span><span class="p">)</span>
+      <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">filename</span><span class="o">+</span><span class="s1">'.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">LoadMonitors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+      <span class="n">GroupDetectors</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">groupedFilename</span> <span class="p">,</span> <span class="n">MapFile</span><span class="o">=</span><span class="s1">'LET_one2one_123.map'</span><span class="p">,</span> <span class="n">Behaviour</span><span class="o">=</span><span class="s1">'Average'</span><span class="p">)</span>
 
   <span class="n">wsParent</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="n">groupedFilename</span><span class="p">];</span>
 
   <span class="n">nHist</span> <span class="o">=</span> <span class="n">wsParent</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">();</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parent workspace contains </span><span class="si">{0:10}</span><span class="s2"> histograms&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nHist</span><span class="p">))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">"Parent workspace contains </span><span class="si">{0:10}</span><span class="s2"> histograms"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nHist</span><span class="p">))</span>
   <span class="c1"># Get the energy binning correspondent to the binning produced by rebin function (not to re-implement the same function)</span>
   <span class="n">ws1s</span> <span class="o">=</span> <span class="n">ExtractSingleSpectrum</span><span class="p">(</span><span class="n">wsParent</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-  <span class="n">ws1s</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws1s</span><span class="p">,</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span><span class="s1">&#39;Direct&#39;</span><span class="p">,</span><span class="n">Ei</span><span class="p">);</span>
+  <span class="n">ws1s</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws1s</span><span class="p">,</span><span class="s1">'DeltaE'</span><span class="p">,</span><span class="s1">'Direct'</span><span class="p">,</span><span class="n">Ei</span><span class="p">);</span>
   <span class="n">ws1s</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">ws1s</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="p">[</span><span class="n">e_min</span><span class="p">,</span><span class="n">dE</span><span class="p">,</span><span class="n">e_max</span><span class="p">]);</span>
   <span class="n">e_bins</span> <span class="o">=</span> <span class="n">ws1s</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
   <span class="n">nBins</span> <span class="o">=</span> <span class="n">e_bins</span><span class="o">.</span><span class="n">size</span><span class="p">;</span>
@@ -1549,21 +1549,21 @@ and estimate errors during removal.</p>
   <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">nHist</span>
   <span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">ws1s</span><span class="p">);</span>
 
-  <span class="n">eGrid</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">DataY</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">UnitX</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span><span class="n">NSpec</span><span class="o">=</span><span class="n">nHist</span><span class="p">,</span><span class="n">VerticalAxisUnit</span><span class="o">=</span><span class="s1">&#39;SpectraNumber&#39;</span><span class="p">,</span><span class="n">ParentWorkspace</span><span class="o">=</span><span class="n">wsParent</span><span class="p">)</span>
+  <span class="n">eGrid</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">DataY</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">UnitX</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span><span class="n">NSpec</span><span class="o">=</span><span class="n">nHist</span><span class="p">,</span><span class="n">VerticalAxisUnit</span><span class="o">=</span><span class="s1">'SpectraNumber'</span><span class="p">,</span><span class="n">ParentWorkspace</span><span class="o">=</span><span class="n">wsParent</span><span class="p">)</span>
 
-  <span class="n">Tgrid</span><span class="o">=</span><span class="n">ConvertUnits</span><span class="p">(</span><span class="n">eGrid</span><span class="p">,</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span><span class="n">Emode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
+  <span class="n">Tgrid</span><span class="o">=</span><span class="n">ConvertUnits</span><span class="p">(</span><span class="n">eGrid</span><span class="p">,</span><span class="s1">'TOF'</span><span class="p">,</span><span class="n">Emode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
 
 <span class="k">else</span><span class="p">:</span>
-  <span class="n">Tgrid</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;Tgrid&#39;</span><span class="p">];</span>
-  <span class="n">eGrid</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;eGrid&#39;</span><span class="p">];</span>
+  <span class="n">Tgrid</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'Tgrid'</span><span class="p">];</span>
+  <span class="n">eGrid</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'eGrid'</span><span class="p">];</span>
   <span class="n">nHist</span> <span class="o">=</span> <span class="n">Tgrid</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">();</span>
   <span class="n">nBins</span> <span class="o">=</span> <span class="n">Tgrid</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">;</span>
 
-<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="s1">&#39;Bg&#39;</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="s1">'Bg'</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">):</span>
   <span class="n">Bg</span><span class="o">=</span><span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">groupedFilename</span><span class="p">,</span>  <span class="n">Params</span><span class="o">=</span><span class="p">[</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-  <span class="c1">#Bg=CalculateFlatBackground(InputWorkspace=groupedFilename, StartX=bgRange[0], EndX=bgRange[1], Mode=&#39;Mean&#39;, OutputMode=&#39;Return Background&#39;, SkipMonitors=True)</span>
+  <span class="c1">#Bg=CalculateFlatBackground(InputWorkspace=groupedFilename, StartX=bgRange[0], EndX=bgRange[1], Mode='Mean', OutputMode='Return Background', SkipMonitors=True)</span>
 <span class="k">else</span><span class="p">:</span>
-  <span class="n">Bg</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;Bg&#39;</span><span class="p">]</span>
+  <span class="n">Bg</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'Bg'</span><span class="p">]</span>
 
 <span class="c1"># Assign constant background to the Time grid workspace, minding different time bin width</span>
 <span class="k">for</span> <span class="n">nspec</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nHist</span><span class="p">):</span>
@@ -1578,11 +1578,11 @@ and estimate errors during removal.</p>
      <span class="n">eGrid</span><span class="o">.</span><span class="n">setE</span><span class="p">(</span><span class="n">nspec</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
   <span class="k">else</span><span class="p">:</span>  <span class="c1"># signal and error for background is 0 anyway.</span>
       <span class="k">pass</span>
-  <span class="c1">#print(&quot; bg at spectra {0} equal to : {1}&quot;.format(nspec,bg[0]))</span>
+  <span class="c1">#print(" bg at spectra {0} equal to : {1}".format(nspec,bg[0]))</span>
 
 
 <span class="n">background</span> <span class="o">=</span> <span class="n">eGrid</span><span class="p">;</span>
-<span class="n">resultEt</span>   <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">groupedFilename</span><span class="p">,</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span><span class="n">Emode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
+<span class="n">resultEt</span>   <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">groupedFilename</span><span class="p">,</span><span class="s1">'DeltaE'</span><span class="p">,</span><span class="n">Emode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
 <span class="n">result</span>     <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">resultEt</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="p">[</span><span class="n">e_min</span><span class="p">,</span><span class="n">dE</span><span class="p">,</span><span class="n">e_max</span><span class="p">],</span><span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">fr</span>         <span class="o">=</span> <span class="n">result</span><span class="o">-</span><span class="n">background</span><span class="p">;</span>
 <span class="c1">#</span>
@@ -1604,15 +1604,15 @@ are identical:</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 
-<span class="n">maps_dir</span> <span class="o">=</span> <span class="s1">&#39;/home/user/InstrumentFileFinder/let/&#39;</span>
-<span class="n">data_dir</span> <span class="o">=</span><span class="s1">&#39;/home/user/results&#39;</span>
-<span class="n">ref_data_dir</span> <span class="o">=</span> <span class="s1">&#39;/home/user/SystemTests/AnalysisTests/ReferenceResults&#39;</span>
-<span class="n">config</span><span class="o">.</span><span class="n">setDataSearchDirs</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">;</span><span class="si">{1}</span><span class="s1">;</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span><span class="n">maps_dir</span><span class="p">,</span><span class="n">ref_data_dir</span><span class="p">))</span>
-<span class="n">config</span><span class="p">[</span><span class="s1">&#39;defaultsave.directory&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="c1"># folder to save resulting spe/nxspe files. Defaults are in</span>
+<span class="n">maps_dir</span> <span class="o">=</span> <span class="s1">'/home/user/InstrumentFileFinder/let/'</span>
+<span class="n">data_dir</span> <span class="o">=</span><span class="s1">'/home/user/results'</span>
+<span class="n">ref_data_dir</span> <span class="o">=</span> <span class="s1">'/home/user/SystemTests/AnalysisTests/ReferenceResults'</span>
+<span class="n">config</span><span class="o">.</span><span class="n">setDataSearchDirs</span><span class="p">(</span><span class="s1">'</span><span class="si">{0}</span><span class="s1">;</span><span class="si">{1}</span><span class="s1">;</span><span class="si">{2}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span><span class="n">maps_dir</span><span class="p">,</span><span class="n">ref_data_dir</span><span class="p">))</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'defaultsave.directory'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="c1"># folder to save resulting spe/nxspe files. Defaults are in</span>
 
 <span class="c1"># the name of a workspace containing background</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;LET0007438&#39;</span>
-<span class="n">groupedFilename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">+</span><span class="s1">&#39;rings&#39;</span><span class="p">;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">'LET0007438'</span>
+<span class="n">groupedFilename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">+</span><span class="s1">'rings'</span><span class="p">;</span>
 <span class="c1">#</span>
 <span class="n">Ei</span><span class="o">=</span> <span class="mi">25</span>
 <span class="n">e_min</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span>
@@ -1622,22 +1622,22 @@ are identical:</p>
 
 
 <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">groupedFilename</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">):</span>
-  <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.nxs&#39;</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">LoadMonitors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-  <span class="n">GroupDetectors</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">groupedFilename</span> <span class="p">,</span> <span class="n">MapFile</span><span class="o">=</span><span class="s1">&#39;LET_one2one_123.map&#39;</span><span class="p">,</span> <span class="n">Behaviour</span><span class="o">=</span><span class="s1">&#39;Average&#39;</span><span class="p">)</span>
+  <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">filename</span><span class="o">+</span><span class="s1">'.nxs'</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">LoadMonitors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="n">GroupDetectors</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">groupedFilename</span> <span class="p">,</span> <span class="n">MapFile</span><span class="o">=</span><span class="s1">'LET_one2one_123.map'</span><span class="p">,</span> <span class="n">Behaviour</span><span class="o">=</span><span class="s1">'Average'</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="s1">&#39;Bg&#39;</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="s1">'Bg'</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">):</span>
   <span class="n">Bg</span><span class="o">=</span><span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">groupedFilename</span><span class="p">,</span>  <span class="n">Params</span><span class="o">=</span><span class="p">[</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bgRange</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-  <span class="n">Bg</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;Bg&#39;</span><span class="p">]</span>
+  <span class="n">Bg</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'Bg'</span><span class="p">]</span>
 
-<span class="k">if</span>  <span class="s1">&#39;resultEtransf&#39;</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">:</span>
-  <span class="n">resultEtransf</span>   <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;resultEtransf&#39;</span><span class="p">]</span>
+<span class="k">if</span>  <span class="s1">'resultEtransf'</span> <span class="ow">in</span> <span class="n">mtd</span><span class="p">:</span>
+  <span class="n">resultEtransf</span>   <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'resultEtransf'</span><span class="p">]</span>
 <span class="k">else</span><span class="p">:</span>
-  <span class="n">resultEtransf</span>   <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">groupedFilename</span><span class="p">,</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span><span class="n">Emode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
+  <span class="n">resultEtransf</span>   <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">groupedFilename</span><span class="p">,</span><span class="s1">'DeltaE'</span><span class="p">,</span><span class="n">Emode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">,</span><span class="n">EFixed</span><span class="o">=</span><span class="n">Ei</span><span class="p">)</span>
 
 <span class="n">noBgWorkspace</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">resultEtransf</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="p">[</span><span class="n">e_min</span><span class="p">,</span><span class="n">dE</span><span class="p">,</span><span class="n">e_max</span><span class="p">],</span><span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">noBgWorkspace</span><span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">noBgWorkspace</span><span class="p">,</span><span class="n">BkgWorkspace</span><span class="o">=</span><span class="s1">&#39;Bg&#39;</span><span class="p">,</span><span class="n">EMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">)</span>
+<span class="n">noBgWorkspace</span><span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">noBgWorkspace</span><span class="p">,</span><span class="n">BkgWorkspace</span><span class="o">=</span><span class="s1">'Bg'</span><span class="p">,</span><span class="n">EMode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">)</span>
 <span class="n">nHist</span> <span class="o">=</span> <span class="n">Bg</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()</span>
 <span class="n">removedBkgSum</span> <span class="o">=</span> <span class="n">SumSpectra</span><span class="p">(</span><span class="n">noBgWorkspace</span> <span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">nHist</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
@@ -1647,23 +1647,23 @@ are identical:</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - Background removal from a workspace in energy transfer units</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create sample workspace with events</span>
-<span class="n">Test</span><span class="o">=</span><span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">&#39;Event&#39;</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Flat background&#39;</span><span class="p">)</span>
+<span class="n">Test</span><span class="o">=</span><span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">WorkspaceType</span><span class="o">=</span><span class="s1">'Event'</span><span class="p">,</span> <span class="n">Function</span><span class="o">=</span><span class="s1">'Flat background'</span><span class="p">)</span>
 <span class="c1"># Add sample log necessary for unit conversion</span>
-<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">Test</span><span class="p">,</span><span class="s1">&#39;Ei&#39;</span><span class="p">,</span><span class="n">LogText</span><span class="o">=</span><span class="s1">&#39;25.&#39;</span><span class="p">,</span><span class="n">LogType</span><span class="o">=</span><span class="s1">&#39;Number&#39;</span><span class="p">);</span>
+<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">Test</span><span class="p">,</span><span class="s1">'Ei'</span><span class="p">,</span><span class="n">LogText</span><span class="o">=</span><span class="s1">'25.'</span><span class="p">,</span><span class="n">LogType</span><span class="o">=</span><span class="s1">'Number'</span><span class="p">);</span>
 
 <span class="c1"># Calculate background</span>
-<span class="n">Bg</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">Test</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">&#39;15000,5000,20000&#39;</span><span class="p">,</span><span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">Bg</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">Test</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">'15000,5000,20000'</span><span class="p">,</span><span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 
 
-<span class="c1"># Convert event&#39;s units</span>
-<span class="n">Test_BgDE</span><span class="o">=</span><span class="n">ConvertUnits</span><span class="p">(</span><span class="n">Test</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s1">&#39;DeltaE&#39;</span><span class="p">,</span><span class="n">EMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">);</span>
+<span class="c1"># Convert event's units</span>
+<span class="n">Test_BgDE</span><span class="o">=</span><span class="n">ConvertUnits</span><span class="p">(</span><span class="n">Test</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s1">'DeltaE'</span><span class="p">,</span><span class="n">EMode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">);</span>
 
 <span class="c1"># Calculate histograms for event workspace in energy binning</span>
-<span class="n">Sample</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">Test_BgDE</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">&#39;-20,2,20&#39;</span><span class="p">,</span><span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">Sample</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">Test_BgDE</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">'-20,2,20'</span><span class="p">,</span><span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 <span class="c1"># Calculate histograms for event workspace in energy binning</span>
-<span class="n">Result</span>   <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">Test_BgDE</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">&#39;-20,2,20&#39;</span><span class="p">,</span><span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">Result</span>   <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">Test_BgDE</span><span class="p">,</span><span class="n">Params</span><span class="o">=</span><span class="s1">'-20,2,20'</span><span class="p">,</span><span class="n">PreserveEvents</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 <span class="c1"># Remove flat background in-place</span>
-<span class="n">Result</span>   <span class="o">=</span> <span class="n">RemoveBackground</span><span class="p">(</span><span class="n">Result</span><span class="p">,</span><span class="n">BkgWorkspace</span><span class="o">=</span><span class="s1">&#39;Bg&#39;</span><span class="p">,</span><span class="n">EMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">);</span>
+<span class="n">Result</span>   <span class="o">=</span> <span class="n">RemoveBackground</span><span class="p">(</span><span class="n">Result</span><span class="p">,</span><span class="n">BkgWorkspace</span><span class="o">=</span><span class="s1">'Bg'</span><span class="p">,</span><span class="n">EMode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">);</span>
 
 <span class="c1"># Get access to the results</span>
 <span class="n">XS</span> <span class="o">=</span> <span class="n">Sample</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -1676,9 +1676,9 @@ are identical:</p>
 <span class="n">ER</span> <span class="o">=</span> <span class="n">Result</span> <span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
 <span class="c1"># print first spectra, Note invalid error calculations</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| x sampl  | x result | S sample | S no bg  | Err samp | Err no_bg|&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"| x sampl  | x result | S sample | S no bg  | Err samp | Err no_bg|"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">):</span>
-   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;|</span><span class="si">{0:10}</span><span class="s2">|</span><span class="si">{1:10}</span><span class="s2">|</span><span class="si">{2:10.4f}</span><span class="s2">|</span><span class="si">{3:10.3f}</span><span class="s2">|</span><span class="si">{4:10.3f}</span><span class="s2">|</span><span class="si">{5:10.3f}</span><span class="s2">|&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">XS</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">XR</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">YS</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">YR</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ES</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ER</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">"|</span><span class="si">{0:10}</span><span class="s2">|</span><span class="si">{1:10}</span><span class="s2">|</span><span class="si">{2:10.4f}</span><span class="s2">|</span><span class="si">{3:10.3f}</span><span class="s2">|</span><span class="si">{4:10.3f}</span><span class="s2">|</span><span class="si">{5:10.3f}</span><span class="s2">|"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">XS</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">XR</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">YS</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">YR</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ES</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ER</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>| x sampl  | x result | S sample | S no bg  | Err samp | Err no_bg|
@@ -1708,8 +1708,8 @@ are identical:</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/RemoveBackground.h">RemoveBackground.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/RemoveBackground.cpp">RemoveBackground.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/RemoveBackground.h">RemoveBackground.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/RemoveBackground.cpp">RemoveBackground.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PeakIntensityVsRadius v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PeakIntensityVsRadius v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/PeakIntensityVsRadius-v1';</script>
@@ -1569,34 +1569,34 @@ BackgroundOuterRadius</p></li>
 event nexus file instead of <strong>TOPAZ_3132_event.nxs</strong> used within this example. The original <strong>TOPAZ_3132_event.nxs</strong>
 file is available in <a class="reference external" href="https://github.com/mantidproject/systemtests/tree/master/Data/TOPAZ_3132_event.nxs">Mantid system tests repository</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a SCD data set from systemtests Data and find the peaks</span>
-<span class="n">LoadEventNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;TOPAZ_3132_event.nxs&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_nxs&#39;</span><span class="p">)</span>
-<span class="n">ConvertToDiffractionMDWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_nxs&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_md&#39;</span><span class="p">,</span><span class="n">LorentzCorrection</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
-<span class="n">FindPeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_md&#39;</span><span class="p">,</span><span class="n">PeakDistanceThreshold</span><span class="o">=</span><span class="s1">&#39;0.15&#39;</span><span class="p">,</span><span class="n">MaxPeaks</span><span class="o">=</span><span class="s1">&#39;100&#39;</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
-<span class="n">FindUBUsingFFT</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span><span class="n">MinD</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="n">MaxD</span><span class="o">=</span><span class="s1">&#39;16&#39;</span><span class="p">)</span>
-<span class="n">IndexPeaks</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">)</span>
+<span class="n">LoadEventNexus</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="sa">r</span><span class="s1">'TOPAZ_3132_event.nxs'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_nxs'</span><span class="p">)</span>
+<span class="n">ConvertToDiffractionMDWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_nxs'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_md'</span><span class="p">,</span><span class="n">LorentzCorrection</span><span class="o">=</span><span class="s1">'1'</span><span class="p">)</span>
+<span class="n">FindPeaksMD</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_md'</span><span class="p">,</span><span class="n">PeakDistanceThreshold</span><span class="o">=</span><span class="s1">'0.15'</span><span class="p">,</span><span class="n">MaxPeaks</span><span class="o">=</span><span class="s1">'100'</span><span class="p">,</span><span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">)</span>
+<span class="n">FindUBUsingFFT</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">,</span><span class="n">MinD</span><span class="o">=</span><span class="s1">'2'</span><span class="p">,</span><span class="n">MaxD</span><span class="o">=</span><span class="s1">'16'</span><span class="p">)</span>
+<span class="n">IndexPeaks</span><span class="p">(</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">)</span>
 
 <span class="c1"># Run the PeakIntensityVsRadius algorithm, where the background shell scales with the PeakRadius</span>
-<span class="n">PeakIntensityVsRadius</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_md&#39;</span><span class="p">,</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span>
+<span class="n">PeakIntensityVsRadius</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_md'</span><span class="p">,</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">,</span>
     <span class="n">RadiusStart</span><span class="o">=</span><span class="mf">0.00</span><span class="p">,</span> <span class="n">RadiusEnd</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">NumSteps</span><span class="o">=</span><span class="mi">51</span><span class="p">,</span>
     <span class="n">BackgroundInnerFactor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span><span class="n">BackgroundOuterFactor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peak_vs_rad&#39;</span><span class="p">)</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peak_vs_rad'</span><span class="p">)</span>
 
 <span class="c1"># Run the PeakIntensityVsRadius algorithm, with fixed background shell radius</span>
-<span class="n">PeakIntensityVsRadius</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">&#39;TOPAZ_3132_md&#39;</span><span class="p">,</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">&#39;peaks&#39;</span><span class="p">,</span>
+<span class="n">PeakIntensityVsRadius</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s1">'TOPAZ_3132_md'</span><span class="p">,</span><span class="n">PeaksWorkspace</span><span class="o">=</span><span class="s1">'peaks'</span><span class="p">,</span>
     <span class="n">RadiusStart</span><span class="o">=</span><span class="mf">0.00</span><span class="p">,</span> <span class="n">RadiusEnd</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">NumSteps</span><span class="o">=</span><span class="mi">51</span><span class="p">,</span>
     <span class="n">BackgroundInnerRadius</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span><span class="n">BackgroundOuterRadius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">&#39;peak_vs_rad_fixed&#39;</span><span class="p">)</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s1">'peak_vs_rad_fixed'</span><span class="p">)</span>
 
 <span class="c1"># Plot a few of the peaks</span>
-<span class="n">plotSpectrum</span><span class="p">(</span><span class="s1">&#39;peak_vs_rad&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">error_bars</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plotSpectrum</span><span class="p">(</span><span class="s1">'peak_vs_rad'</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">error_bars</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Crystal/Integration.html">Crystal\Integration</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/inc/MantidCrystal/PeakIntensityVsRadius.h">PeakIntensityVsRadius.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/src/PeakIntensityVsRadius.cpp">PeakIntensityVsRadius.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/inc/MantidCrystal/PeakIntensityVsRadius.h">PeakIntensityVsRadius.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/src/PeakIntensityVsRadius.cpp">PeakIntensityVsRadius.cpp</a></p>
 </section>
 </section>
 

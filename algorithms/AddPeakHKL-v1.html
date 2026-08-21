@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>AddPeakHKL v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>AddPeakHKL v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/AddPeakHKL-v1';</script>
@@ -1488,12 +1488,12 @@
 
 <span class="c1"># Create an instrument workspace</span>
 <span class="n">inst_dir</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getInstrumentDirectory</span><span class="p">()</span>
-<span class="n">sxd_ws</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inst_dir</span><span class="p">,</span> <span class="s2">&quot;SXD_Definition.xml&quot;</span><span class="p">))</span>
-<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">sxd_ws</span><span class="p">,</span> <span class="s1">&#39;run_number&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;Number&#39;</span><span class="p">)</span>
+<span class="n">sxd_ws</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inst_dir</span><span class="p">,</span> <span class="s2">"SXD_Definition.xml"</span><span class="p">))</span>
+<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">sxd_ws</span><span class="p">,</span> <span class="s1">'run_number'</span><span class="p">,</span> <span class="s1">'1'</span><span class="p">,</span> <span class="s1">'Number'</span><span class="p">)</span>
 
 <span class="c1"># Create a peaks workspace from the instrument workspace</span>
 <span class="n">peak_ws</span> <span class="o">=</span> <span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">InstrumentWorkspace</span><span class="o">=</span><span class="n">sxd_ws</span><span class="p">,</span> <span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">peak_ws</span><span class="o">.</span><span class="n">mutableRun</span><span class="p">()</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">&#39;run_number&#39;</span><span class="p">,</span> <span class="n">sxd_ws</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;run_number&#39;</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">peak_ws</span><span class="o">.</span><span class="n">mutableRun</span><span class="p">()</span><span class="o">.</span><span class="n">addProperty</span><span class="p">(</span><span class="s1">'run_number'</span><span class="p">,</span> <span class="n">sxd_ws</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'run_number'</span><span class="p">),</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Apply a UB</span>
 <span class="n">ub</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.15097235</span><span class="p">,</span>  <span class="mf">0.09164432</span><span class="p">,</span>  <span class="mf">0.00519473</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.0831895</span><span class="p">,</span>   <span class="mf">0.14123681</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.06719047</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.03845029</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05534039</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1633801</span> <span class="p">]])</span>
@@ -1504,10 +1504,10 @@
 
 <span class="c1"># Get info on newly added peak</span>
 <span class="n">peak</span> <span class="o">=</span> <span class="n">peak_ws</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Peak wavelength </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">],</span> <span class="mi">4</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Peak detector id </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">&#39;DetID&#39;</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Peak run number </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">&#39;RunNumber&#39;</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Peak HKL [</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">&#39;l&#39;</span><span class="p">])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Peak wavelength </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">'Wavelength'</span><span class="p">],</span> <span class="mi">4</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Peak detector id </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">'DetID'</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Peak run number </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">'RunNumber'</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Peak HKL [</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">]'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">'h'</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">'k'</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">peak</span><span class="p">[</span><span class="s1">'l'</span><span class="p">])))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1521,8 +1521,8 @@ Peak HKL [2,0,-4]
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/inc/MantidCrystal/AddPeakHKL.h">AddPeakHKL.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/src/AddPeakHKL.cpp">AddPeakHKL.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/inc/MantidCrystal/AddPeakHKL.h">AddPeakHKL.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/src/AddPeakHKL.cpp">AddPeakHKL.cpp</a></p>
 </section>
 </section>
 

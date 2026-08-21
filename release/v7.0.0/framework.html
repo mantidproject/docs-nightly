@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/framework';</script>
@@ -735,6 +735,8 @@
 <li><p>A new algorithm <a class="reference internal" href="../../algorithms/SaveMDToAscii-v1.html#algm-savemdtoascii"><span class="std std-ref">SaveMDToAscii v1</span></a> has been added to save an <a class="reference internal" href="../../api/python/mantid/dataobjects/MDHistoWorkspace.html#mantid.dataobjects.MDHistoWorkspace" title="mantid.dataobjects.MDHistoWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDHistoWorkspace</span></code></a> to a plain ASCII file, with configurable exclusion of integrated dimensions, normalization, column separator and numeric precision.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction v1</span></a> now attempts to autopopulate the sample absorption parameters if correct data is found in sample run files</p></li>
 <li><p><a class="reference internal" href="../../algorithms/SumSpectra-v1.html#algm-sumspectra"><span class="std std-ref">SumSpectra v1</span></a> algorithm has been optimized for better performance.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/RenameWorkspace-v1.html#algm-renameworkspace"><span class="std std-ref">RenameWorkspace</span></a> can now assign a name to a workspace object that is not already in the
+Analysis Data Service (ADS). In this case, the workspace will be added to the ADS.</p></li>
 <li><p>The <a class="reference internal" href="../../algorithms/Fit-v1.html#algm-fit"><span class="std std-ref">Fit v1</span></a> algorithm now allows setting step sizes to customize the perturbation applied to each parameter value while fitting. Setting the <code class="docutils literal notranslate"><span class="pre">StepSizeMethod</span></code> to <code class="docutils literal notranslate"><span class="pre">Custom</span></code> will allow the step sizes list to be passed using the <code class="docutils literal notranslate"><span class="pre">CustomStepSizes</span></code> parameter.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/EstimatePeakIntensities-v1.html#algm-estimatepeakintensities"><span class="std std-ref">EstimatePeakIntensities v1</span></a> allows parallel, fit-free estimation of peak intensities within specified windows, using a skew-seeded background estimation.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/MDNormDirectSC-v1.html#algm-mdnormdirectsc"><span class="std std-ref">MDNormDirectSC v1</span></a> can now handle MDEvent workspaces created by <a class="reference internal" href="../../algorithms/ConvertToMD-v1.html#algm-converttomd"><span class="std std-ref">ConvertToMD v1</span></a> with the <code class="docutils literal notranslate"><span class="pre">UseLogTimes</span></code> property.</p></li>
@@ -827,6 +829,9 @@
 and make all state transitions explicit.  These changes primarily add to the
 <code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code> interface, deprecating its <code class="docutils literal notranslate"><span class="pre">runStatus</span></code> method,
 but otherwise leave most <code class="docutils literal notranslate"><span class="pre">ILiveListener</span></code> implementations largely unchanged.</p></li>
+<li><p>The socket-read poll loop of the <code class="docutils literal notranslate"><span class="pre">SNSLiveEventDataListener</span></code> is refactored to provide clean detection
+of a peer disconnect, and to improve its responsiveness. These changes are expected to fix several cases
+where the live-data system hung up in response to changes in the ADARA-server state.</p></li>
 </ul>
 </section>
 </section>
@@ -836,6 +841,9 @@ but otherwise leave most <code class="docutils literal notranslate"><span class=
 <h3>New features<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Instrument</span></code> now has <code class="docutils literal notranslate"><span class="pre">getXmlText</span></code> exposed to python.</p></li>
+<li><p>Output workspace properties of the generic type <code class="docutils literal notranslate"><span class="pre">Workspace</span></code> now return a <code class="docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code> object after an
+algorithm is automatically dispatched over an input workspace group. Previously, the value component of the
+property would be set to equal the <code class="docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code> name but the workspace component would be null.</p></li>
 <li><p>The dimensions of an <a class="reference internal" href="../../api/python/mantid/api/IMDHistoWorkspace.html#mantid.api.IMDHistoWorkspace" title="mantid.api.IMDHistoWorkspace"><code class="xref py py-class docutils literal notranslate"><span class="pre">IMDHistoWorkspace</span></code></a> can now have their <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> edited from
 Python via <code class="docutils literal notranslate"><span class="pre">getDimension(i).setName(...)</span></code> and <code class="docutils literal notranslate"><span class="pre">getDimension(i).setUnits(...)</span></code>. Editing units is supported for
 HKL and general frames; an HKL dimension accepts <code class="docutils literal notranslate"><span class="pre">r.l.u.</span></code> or an inverse-Angstrom-style label such as
@@ -890,6 +898,7 @@ when hunting call sites in tests or CI.</p></li>
 <h3>New features<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Upgraded python to 3.13. See the changes made to python <a class="reference external" href="https://docs.python.org/3/whatsnew/3.13.html">here</a>.</p></li>
+<li><p>Automatically set <code class="docutils literal notranslate"><span class="pre">MPLCONFIGDIR</span></code> to <code class="docutils literal notranslate"><span class="pre">$XDG_CACHE_HOME/matplotlib</span></code> when <code class="docutils literal notranslate"><span class="pre">XDG_CACHE_HOME</span></code> is set</p></li>
 <li><p>Removed dependence on the <code class="docutils literal notranslate"><span class="pre">quasielasticbayes</span></code> library to facilitate the upgrade to Qt6.</p></li>
 </ul>
 </section>

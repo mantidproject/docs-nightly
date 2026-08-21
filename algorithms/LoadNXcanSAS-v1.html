@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadNXcanSAS v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>LoadNXcanSAS v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/LoadNXcanSAS-v1';</script>
@@ -1495,12 +1495,12 @@ the <a class="reference internal" href="SaveNXcanSAS-v1.html#algm-savenxcansas">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="c1"># Create a example workspace with units of momentum transfer</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Histogram&quot;</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s2">&quot;MomentumTransfer&quot;</span><span class="p">)</span>
-<span class="n">LoadInstrument</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;SANS2D&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Histogram"</span><span class="p">,</span><span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">Target</span><span class="o">=</span><span class="s2">"MomentumTransfer"</span><span class="p">)</span>
+<span class="n">LoadInstrument</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s2">"SANS2D"</span><span class="p">)</span>
 
 <span class="c1"># Save the file</span>
-<span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;test_file_for_nxcansas&quot;</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s2">"test_file_for_nxcansas"</span>
 <span class="n">SaveNXcanSAS</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">file_name</span><span class="p">)</span>
 
 <span class="c1"># Load the file back</span>
@@ -1508,7 +1508,7 @@ the <a class="reference internal" href="SaveNXcanSAS-v1.html#algm-savenxcansas">
 
 <span class="c1">#remove the file we created</span>
 <span class="n">alg</span> <span class="o">=</span> <span class="n">ws_loaded</span><span class="o">.</span><span class="n">getHistory</span><span class="p">()</span><span class="o">.</span><span class="n">lastAlgorithm</span><span class="p">()</span>
-<span class="n">filePath</span> <span class="o">=</span> <span class="n">alg</span><span class="o">.</span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s2">&quot;Filename&quot;</span><span class="p">)</span>
+<span class="n">filePath</span> <span class="o">=</span> <span class="n">alg</span><span class="o">.</span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s2">"Filename"</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">filePath</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1516,8 +1516,8 @@ the <a class="reference internal" href="SaveNXcanSAS-v1.html#algm-savenxcansas">
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/LoadNXcanSAS.h">LoadNXcanSAS.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/LoadNXcanSAS.cpp">LoadNXcanSAS.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/LoadNXcanSAS.h">LoadNXcanSAS.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/LoadNXcanSAS.cpp">LoadNXcanSAS.cpp</a></p>
 </section>
 </section>
 

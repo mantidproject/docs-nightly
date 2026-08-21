@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CorelliCalibrationApply v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CorelliCalibrationApply v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/CorelliCalibrationApply-v1';</script>
@@ -1509,19 +1509,19 @@ The current inputs are:</p>
 <span class="n">calitable</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;ComponentName&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Xposition&quot;</span><span class="p">,</span> <span class="s2">&quot;Yposition&quot;</span><span class="p">,</span> <span class="s2">&quot;Zposition&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;XdirectionCosine&quot;</span><span class="p">,</span> <span class="s2">&quot;YdirectionCosine&quot;</span><span class="p">,</span> <span class="s2">&quot;ZdirectionCosine&quot;</span><span class="p">,</span> <span class="s2">&quot;RotationAngle&quot;</span><span class="p">,</span>
+    <span class="s2">"ComponentName"</span><span class="p">,</span>
+    <span class="s2">"Xposition"</span><span class="p">,</span> <span class="s2">"Yposition"</span><span class="p">,</span> <span class="s2">"Zposition"</span><span class="p">,</span>
+    <span class="s2">"XdirectionCosine"</span><span class="p">,</span> <span class="s2">"YdirectionCosine"</span><span class="p">,</span> <span class="s2">"ZdirectionCosine"</span><span class="p">,</span> <span class="s2">"RotationAngle"</span><span class="p">,</span>
     <span class="p">]</span>
-<span class="n">datatypes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;str&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;double&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">7</span>
+<span class="n">datatypes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"str"</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"double"</span><span class="p">]</span><span class="o">*</span><span class="mi">7</span>
 
 <span class="k">for</span> <span class="n">dt</span><span class="p">,</span> <span class="n">hd</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">datatypes</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
     <span class="n">calitable</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">hd</span><span class="p">)</span>
 
-<span class="n">calitable</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="s2">&quot;bank42/sixteenpack&quot;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">])</span>  <span class="c1"># move to (0,0,0) and rotate to (0,1,0)@180degree</span>
+<span class="n">calitable</span><span class="o">.</span><span class="n">addRow</span><span class="p">([</span><span class="s2">"bank42/sixteenpack"</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">])</span>  <span class="c1"># move to (0,0,0) and rotate to (0,1,0)@180degree</span>
 
 <span class="c1"># load empty instrument</span>
-<span class="n">ws_original</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="s2">&quot;CORELLI_Definition.xml&quot;</span><span class="p">)</span>
+<span class="n">ws_original</span> <span class="o">=</span> <span class="n">LoadEmptyInstrument</span><span class="p">(</span><span class="s2">"CORELLI_Definition.xml"</span><span class="p">)</span>
 <span class="n">ws_calibrated</span> <span class="o">=</span> <span class="n">ConvertToEventWorkspace</span><span class="p">(</span><span class="n">ws_original</span><span class="p">)</span>
 
 <span class="c1"># apply the calibration to ws</span>
@@ -1538,8 +1538,8 @@ The current inputs are:</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/CorelliCalibrationApply.h">CorelliCalibrationApply.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/CorelliCalibrationApply.cpp">CorelliCalibrationApply.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/CorelliCalibrationApply.h">CorelliCalibrationApply.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/CorelliCalibrationApply.cpp">CorelliCalibrationApply.cpp</a></p>
 </section>
 </section>
 

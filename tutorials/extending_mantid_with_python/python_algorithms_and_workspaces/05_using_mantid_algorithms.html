@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Using Mantid Algorithms &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Using Mantid Algorithms &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/extending_mantid_with_python/python_algorithms_and_workspaces/05_using_mantid_algorithms';</script>
@@ -562,26 +562,26 @@ name followed by the arguments.</p>
 <span class="k">class</span><span class="w"> </span><span class="nc">LoadAndDoSomething</span><span class="p">(</span><span class="n">PythonAlgorithm</span><span class="p">):</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">PyInit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">FileProperty</span><span class="p">(</span><span class="s2">&quot;Filename&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">FileProperty</span><span class="p">(</span><span class="s2">"Filename"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span>
                                           <span class="n">action</span><span class="o">=</span><span class="n">FileAction</span><span class="o">.</span><span class="n">Load</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">declareProperty</span><span class="p">(</span><span class="n">MatrixWorkspaceProperty</span><span class="p">(</span>
-                                    <span class="s2">&quot;OutputWorkspace&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                    <span class="s2">"OutputWorkspace"</span><span class="p">,</span>
+                                    <span class="s2">""</span><span class="p">,</span>
                                     <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">Output</span><span class="p">))</span>
         <span class="c1"># ... other stuff</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">PyExec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Load</span><span class="p">,</span> <span class="n">Scale</span><span class="p">,</span> <span class="n">DeleteWorkspace</span>
 
-        <span class="n">_tmpws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s2">&quot;Filename&quot;</span><span class="p">))</span>
+        <span class="n">_tmpws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">getPropertyValue</span><span class="p">(</span><span class="s2">"Filename"</span><span class="p">))</span>
         <span class="n">_tmpws</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">_tmpws</span><span class="p">,</span> <span class="n">Factor</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
         <span class="c1"># Sets reference externally and sets the name to that</span>
         <span class="c1"># given by the OutputWorkspace property</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;OutputWorkspace&quot;</span><span class="p">,</span> <span class="n">_tmpws</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">"OutputWorkspace"</span><span class="p">,</span> <span class="n">_tmpws</span><span class="p">)</span>
 
         <span class="c1"># Removes temporary reference created here</span>
-        <span class="c1"># (doesn&#39;t delete workspace)</span>
+        <span class="c1"># (doesn't delete workspace)</span>
         <span class="n">DeleteWorkspace</span><span class="p">(</span><span class="n">_tmpws</span><span class="p">)</span>
 </pre></div>
 </div>

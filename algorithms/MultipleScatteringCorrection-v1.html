@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MultipleScatteringCorrection v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MultipleScatteringCorrection v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1563,10 +1563,10 @@ while performing the integration, which is different from when working with a si
 <p>The following Python script generate a synthetic data set (instrument and sample) to show case the interface</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_sample_workspace</span><span class="p">():</span>
     <span class="c1"># Create a fake workspace with TOF data</span>
-    <span class="n">sample_ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Powder Diffraction&#39;</span><span class="p">,</span>
+    <span class="n">sample_ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">'Powder Diffraction'</span><span class="p">,</span>
                                     <span class="n">NumBanks</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
                                     <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                                    <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+                                    <span class="n">XUnit</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
                                     <span class="n">XMin</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
                                     <span class="n">XMax</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
     <span class="c1"># fake instrument</span>
@@ -1577,7 +1577,7 @@ while performing the integration, which is different from when working with a si
                         <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">170.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">],</span>
                         <span class="n">Azimuthal</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">],</span>
                         <span class="n">DetectorIDs</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-                        <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;Instrument&quot;</span><span class="p">)</span>
+                        <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">"Instrument"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">sample_ws</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">add_cylinder_sample_to_workspace</span><span class="p">(</span>
@@ -1592,30 +1592,30 @@ while performing the integration, which is different from when working with a si
     <span class="n">SetSample</span><span class="p">(</span>
         <span class="n">ws</span><span class="p">,</span>
         <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="s2">&quot;Cylinder&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;centre-of-bottom-base&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">center_bottom_base</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">center_bottom_base</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="n">center_bottom_base</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="s2">"Shape"</span><span class="p">:</span> <span class="s2">"Cylinder"</span><span class="p">,</span>
+            <span class="s2">"centre-of-bottom-base"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"x"</span><span class="p">:</span> <span class="n">center_bottom_base</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">"y"</span><span class="p">:</span> <span class="n">center_bottom_base</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="s2">"z"</span><span class="p">:</span> <span class="n">center_bottom_base</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
             <span class="p">},</span>
-            <span class="s2">&quot;Height&quot;</span><span class="p">:</span> <span class="n">height</span><span class="p">,</span>
-            <span class="s2">&quot;Radius&quot;</span><span class="p">:</span> <span class="n">radius</span><span class="p">,</span>
-            <span class="s2">&quot;Axis&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">"Height"</span><span class="p">:</span> <span class="n">height</span><span class="p">,</span>
+            <span class="s2">"Radius"</span><span class="p">:</span> <span class="n">radius</span><span class="p">,</span>
+            <span class="s2">"Axis"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">Material</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;ChemicalFormula&quot;</span><span class="p">:</span> <span class="n">material</span><span class="p">,</span>
-            <span class="s2">&quot;SampleNumberDensity&quot;</span><span class="p">:</span> <span class="n">number_density</span><span class="p">,</span>
-            <span class="s2">&quot;SampleMassDensity&quot;</span><span class="p">:</span> <span class="n">mass_density</span><span class="p">,</span>
+            <span class="s2">"ChemicalFormula"</span><span class="p">:</span> <span class="n">material</span><span class="p">,</span>
+            <span class="s2">"SampleNumberDensity"</span><span class="p">:</span> <span class="n">number_density</span><span class="p">,</span>
+            <span class="s2">"SampleMassDensity"</span><span class="p">:</span> <span class="n">mass_density</span><span class="p">,</span>
         <span class="p">}</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">ws</span>
 
 <span class="c1"># use Mutliple scattering correction</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">correction_multiple_scattering</span><span class="p">(</span><span class="n">sample_ws</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">correction_multiple_scattering</span><span class="p">(</span><span class="n">sample_ws</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">):</span>
     <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">sample_ws</span><span class="p">,</span>
                 <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">sample_ws</span><span class="p">,</span>
                 <span class="n">Target</span><span class="o">=</span><span class="n">unit</span><span class="p">,</span>
-                <span class="n">EMode</span><span class="o">=</span><span class="s2">&quot;Elastic&quot;</span><span class="p">)</span>
+                <span class="n">EMode</span><span class="o">=</span><span class="s2">"Elastic"</span><span class="p">)</span>
     <span class="n">rst</span> <span class="o">=</span> <span class="n">MultipleScatteringCorrection</span><span class="p">(</span><span class="n">sample_ws</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">rst</span>
 
@@ -1623,7 +1623,7 @@ while performing the integration, which is different from when working with a si
 <span class="n">ws</span> <span class="o">=</span> <span class="n">make_sample_workspace</span><span class="p">()</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">add_cylinder_sample_to_workspace</span><span class="p">(</span>
     <span class="n">ws</span><span class="p">,</span>
-    <span class="s2">&quot;V&quot;</span><span class="p">,</span>
+    <span class="s2">"V"</span><span class="p">,</span>
     <span class="mf">0.07261</span><span class="p">,</span>
     <span class="mf">6.11</span><span class="p">,</span>
     <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0284</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
@@ -1636,10 +1636,10 @@ while performing the integration, which is different from when working with a si
 <p>The following code generates a synthetic data set with instrument, sample and container.
 Notice that the output workspace group now contains <code class="docutils literal notranslate"><span class="pre">_containerOnly</span></code> and <code class="docutils literal notranslate"><span class="pre">_sampleAndContainer</span></code> workspaces.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a fake workspace with TOF data</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Powder Diffraction&#39;</span><span class="p">,</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">'Powder Diffraction'</span><span class="p">,</span>
                             <span class="n">NumBanks</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                             <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                            <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+                            <span class="n">XUnit</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
                             <span class="n">XMin</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
                             <span class="n">XMax</span><span class="o">=</span><span class="mi">1500</span><span class="p">,)</span>
 <span class="c1"># Fake instrument</span>
@@ -1650,41 +1650,41 @@ Notice that the output workspace group now contains <code class="docutils litera
                         <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">],</span>
                         <span class="n">Azimuthal</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">],</span>
                         <span class="n">DetectorIDs</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-                        <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;Instrument&quot;</span><span class="p">)</span>
+                        <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">"Instrument"</span><span class="p">)</span>
 <span class="c1"># set sample and container</span>
 <span class="n">SetSample</span><span class="p">(</span>
         <span class="n">ws</span><span class="p">,</span>
         <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="s2">&quot;Cylinder&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;Center&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
-            <span class="s2">&quot;Height&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-            <span class="s2">&quot;Radius&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+            <span class="s2">"Shape"</span><span class="p">:</span> <span class="s2">"Cylinder"</span><span class="p">,</span>
+            <span class="s2">"Center"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+            <span class="s2">"Height"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+            <span class="s2">"Radius"</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">Material</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;ChemicalFormula&quot;</span><span class="p">:</span> <span class="s2">&quot;La-(B11)5.94-(B10)0.06&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;SampleNumberDensity&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+            <span class="s2">"ChemicalFormula"</span><span class="p">:</span> <span class="s2">"La-(B11)5.94-(B10)0.06"</span><span class="p">,</span>
+            <span class="s2">"SampleNumberDensity"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">ContainerMaterial</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;ChemicalFormula&quot;</span><span class="p">:</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;SampleNumberDensity&quot;</span><span class="p">:</span> <span class="mf">0.0721</span><span class="p">,</span>
+            <span class="s2">"ChemicalFormula"</span><span class="p">:</span> <span class="s2">"V"</span><span class="p">,</span>
+            <span class="s2">"SampleNumberDensity"</span><span class="p">:</span> <span class="mf">0.0721</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">ContainerGeometry</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="s2">&quot;HollowCylinder&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;Height&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-            <span class="s2">&quot;InnerRadius&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
-            <span class="s2">&quot;OuterRadius&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
-            <span class="s2">&quot;Center&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+            <span class="s2">"Shape"</span><span class="p">:</span> <span class="s2">"HollowCylinder"</span><span class="p">,</span>
+            <span class="s2">"Height"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+            <span class="s2">"InnerRadius"</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+            <span class="s2">"OuterRadius"</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+            <span class="s2">"Center"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
         <span class="p">}</span>
     <span class="p">)</span>
 <span class="c1"># to wavelength</span>
 <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
                 <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
-                <span class="n">Target</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">,</span>
-                <span class="n">EMode</span><span class="o">=</span><span class="s2">&quot;Elastic&quot;</span><span class="p">)</span>
+                <span class="n">Target</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">,</span>
+                <span class="n">EMode</span><span class="o">=</span><span class="s2">"Elastic"</span><span class="p">)</span>
 <span class="c1"># Run the multiple scattering correction</span>
 <span class="n">rst</span> <span class="o">=</span> <span class="n">MultipleScatteringCorrection</span><span class="p">(</span>
     <span class="n">InputWorkspace</span> <span class="o">=</span> <span class="n">ws</span><span class="p">,</span>
-    <span class="n">Method</span><span class="o">=</span><span class="s2">&quot;SampleAndContainer&quot;</span><span class="p">,</span>
+    <span class="n">Method</span><span class="o">=</span><span class="s2">"SampleAndContainer"</span><span class="p">,</span>
     <span class="n">ElementSize</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>  <span class="c1"># mm</span>
 <span class="p">)</span>
 </pre></div>
@@ -1695,10 +1695,10 @@ element size for container is needed.</p>
 <span class="c1"># make an empty workspace #</span>
 <span class="c1"># ----------------------- #</span>
 <span class="c1"># Create a fake workspace with TOF data</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">&#39;Powder Diffraction&#39;</span><span class="p">,</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s1">'Powder Diffraction'</span><span class="p">,</span>
                             <span class="n">NumBanks</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                             <span class="n">BankPixelWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                            <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;TOF&#39;</span><span class="p">,</span>
+                            <span class="n">XUnit</span><span class="o">=</span><span class="s1">'TOF'</span><span class="p">,</span>
                             <span class="n">XMin</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
                             <span class="n">XMax</span><span class="o">=</span><span class="mi">10000</span><span class="p">,)</span>
 <span class="c1"># Fake instrument</span>
@@ -1709,44 +1709,44 @@ element size for container is needed.</p>
                         <span class="n">Polar</span><span class="o">=</span><span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">],</span>
                         <span class="n">Azimuthal</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">],</span>
                         <span class="n">DetectorIDs</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-                        <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">&quot;Instrument&quot;</span><span class="p">)</span>
+                        <span class="n">InstrumentName</span><span class="o">=</span><span class="s2">"Instrument"</span><span class="p">)</span>
 <span class="c1"># set sample and container</span>
 <span class="n">SetSample</span><span class="p">(</span>
         <span class="n">ws</span><span class="p">,</span>
         <span class="n">Geometry</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="s2">&quot;Cylinder&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;Center&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
-            <span class="s2">&quot;Height&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># cm</span>
-            <span class="s2">&quot;Radius&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>  <span class="c1"># cm</span>
+            <span class="s2">"Shape"</span><span class="p">:</span> <span class="s2">"Cylinder"</span><span class="p">,</span>
+            <span class="s2">"Center"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+            <span class="s2">"Height"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># cm</span>
+            <span class="s2">"Radius"</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>  <span class="c1"># cm</span>
         <span class="p">},</span>
         <span class="n">Material</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;ChemicalFormula&quot;</span><span class="p">:</span> <span class="s2">&quot;La-(B11)5.94-(B10)0.06&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;SampleNumberDensity&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+            <span class="s2">"ChemicalFormula"</span><span class="p">:</span> <span class="s2">"La-(B11)5.94-(B10)0.06"</span><span class="p">,</span>
+            <span class="s2">"SampleNumberDensity"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">ContainerMaterial</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;ChemicalFormula&quot;</span><span class="p">:</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;SampleNumberDensity&quot;</span><span class="p">:</span> <span class="mf">0.0721</span><span class="p">,</span>
+            <span class="s2">"ChemicalFormula"</span><span class="p">:</span> <span class="s2">"V"</span><span class="p">,</span>
+            <span class="s2">"SampleNumberDensity"</span><span class="p">:</span> <span class="mf">0.0721</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">ContainerGeometry</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="s2">&quot;HollowCylinder&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;Height&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># cm</span>
-            <span class="s2">&quot;InnerRadius&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>  <span class="c1"># cm</span>
-            <span class="s2">&quot;OuterRadius&quot;</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span>  <span class="c1"># cm</span>
-            <span class="s2">&quot;Center&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+            <span class="s2">"Shape"</span><span class="p">:</span> <span class="s2">"HollowCylinder"</span><span class="p">,</span>
+            <span class="s2">"Height"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># cm</span>
+            <span class="s2">"InnerRadius"</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>  <span class="c1"># cm</span>
+            <span class="s2">"OuterRadius"</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span>  <span class="c1"># cm</span>
+            <span class="s2">"Center"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
         <span class="p">}</span>
     <span class="p">)</span>
 <span class="c1"># to wavelength</span>
 <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
                 <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span>
-                <span class="n">Target</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">,</span>
-                <span class="n">EMode</span><span class="o">=</span><span class="s2">&quot;Elastic&quot;</span><span class="p">)</span>
+                <span class="n">Target</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">,</span>
+                <span class="n">EMode</span><span class="o">=</span><span class="s2">"Elastic"</span><span class="p">)</span>
 <span class="c1"># call</span>
 <span class="n">MultipleScatteringCorrection</span><span class="p">(</span>
     <span class="n">InputWorkspace</span> <span class="o">=</span> <span class="n">ws</span><span class="p">,</span>
-    <span class="n">Method</span><span class="o">=</span><span class="s2">&quot;SampleAndContainer&quot;</span><span class="p">,</span>
+    <span class="n">Method</span><span class="o">=</span><span class="s2">"SampleAndContainer"</span><span class="p">,</span>
     <span class="n">ElementSize</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
     <span class="n">ContainerElementSize</span><span class="o">=</span><span class="mf">0.45</span><span class="p">,</span>
-    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;rst&quot;</span><span class="p">,</span>
+    <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"rst"</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1754,8 +1754,8 @@ element size for container is needed.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/MultipleScatteringCorrection.h">MultipleScatteringCorrection.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/MultipleScatteringCorrection.cpp">MultipleScatteringCorrection.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/MultipleScatteringCorrection.h">MultipleScatteringCorrection.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/MultipleScatteringCorrection.cpp">MultipleScatteringCorrection.cpp</a></p>
 </section>
 </section>
 

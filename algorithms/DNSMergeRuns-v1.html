@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DNSMergeRuns v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>DNSMergeRuns v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1522,13 +1522,13 @@ removed without a notification, should instrument scientists decide to do so.</p
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># path to the directory containing data files</span>
-<span class="n">mypath</span> <span class="o">=</span> <span class="s2">&quot;/path/to/data/dns/rc36b_standard_dz&quot;</span>
-<span class="n">coilcurrents</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">mypath</span><span class="p">,</span> <span class="s1">&#39;currents.txt&#39;</span><span class="p">)</span>
+<span class="n">mypath</span> <span class="o">=</span> <span class="s2">"/path/to/data/dns/rc36b_standard_dz"</span>
+<span class="n">coilcurrents</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">mypath</span><span class="p">,</span> <span class="s1">'currents.txt'</span><span class="p">)</span>
 
 <span class="c1"># filter the data files in the given directory</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^dz(\d</span><span class="si">{8}</span><span class="s1">)vana.d_dat$&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">'^dz(\d</span><span class="si">{8}</span><span class="s1">)vana.d_dat$'</span><span class="p">)</span>
 
-<span class="c1"># we choose only the runs with &#39;x&#39; polarisation</span>
+<span class="c1"># we choose only the runs with 'x' polarisation</span>
 <span class="n">filelist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">6</span> <span class="o">+</span> <span class="mi">29100501</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">is_in_filelist</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">flist</span><span class="p">):</span>
@@ -1546,25 +1546,25 @@ removed without a notification, should instrument scientists decide to do so.</p
 <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">datafiles</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">wname</span> <span class="o">=</span> <span class="n">splitext</span><span class="p">(</span><span class="n">f</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="c1">#print(&quot;Processing {}&quot;.format(wname))  # uncomment if needed</span>
-        <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">join</span><span class="p">(</span><span class="n">mypath</span><span class="p">,</span> <span class="n">f</span><span class="p">),</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">wname</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">coilcurrents</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">&#39;duration&#39;</span><span class="p">)</span>
+        <span class="c1">#print("Processing {}".format(wname))  # uncomment if needed</span>
+        <span class="n">LoadDNSLegacy</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">join</span><span class="p">(</span><span class="n">mypath</span><span class="p">,</span> <span class="n">f</span><span class="p">),</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="n">wname</span><span class="p">,</span> <span class="n">CoilCurrentsTable</span><span class="o">=</span><span class="n">coilcurrents</span><span class="p">,</span> <span class="n">Normalization</span><span class="o">=</span><span class="s1">'duration'</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">wslist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wname</span><span class="p">)</span>
 
 <span class="c1"># merge the given workspaces</span>
-<span class="n">merged</span> <span class="o">=</span> <span class="n">DNSMergeRuns</span><span class="p">(</span><span class="n">wslist</span><span class="p">,</span> <span class="n">HorizontalAxis</span><span class="o">=</span><span class="s1">&#39;2theta&#39;</span><span class="p">)</span>
-<span class="n">mergedQ</span> <span class="o">=</span> <span class="n">DNSMergeRuns</span><span class="p">(</span><span class="n">wslist</span><span class="p">,</span> <span class="n">HorizontalAxis</span><span class="o">=</span><span class="s1">&#39;|Q|&#39;</span><span class="p">)</span>
-<span class="n">mergedD</span> <span class="o">=</span> <span class="n">DNSMergeRuns</span><span class="p">(</span><span class="n">wslist</span><span class="p">,</span> <span class="n">HorizontalAxis</span><span class="o">=</span><span class="s1">&#39;d-Spacing&#39;</span><span class="p">)</span>
+<span class="n">merged</span> <span class="o">=</span> <span class="n">DNSMergeRuns</span><span class="p">(</span><span class="n">wslist</span><span class="p">,</span> <span class="n">HorizontalAxis</span><span class="o">=</span><span class="s1">'2theta'</span><span class="p">)</span>
+<span class="n">mergedQ</span> <span class="o">=</span> <span class="n">DNSMergeRuns</span><span class="p">(</span><span class="n">wslist</span><span class="p">,</span> <span class="n">HorizontalAxis</span><span class="o">=</span><span class="s1">'|Q|'</span><span class="p">)</span>
+<span class="n">mergedD</span> <span class="o">=</span> <span class="n">DNSMergeRuns</span><span class="p">(</span><span class="n">wslist</span><span class="p">,</span> <span class="n">HorizontalAxis</span><span class="o">=</span><span class="s1">'d-Spacing'</span><span class="p">)</span>
 
 <span class="c1"># print selected values from merged workspaces</span>
 <span class="n">two_theta</span> <span class="o">=</span> <span class="n">merged</span><span class="o">.</span><span class="n">extractX</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 5 2Theta values: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_theta</span><span class="p">[:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First 5 2Theta values: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_theta</span><span class="p">[:</span><span class="mi">5</span><span class="p">]))</span>
 <span class="n">q</span> <span class="o">=</span> <span class="n">mergedQ</span><span class="o">.</span><span class="n">extractX</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 5 |Q| values: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">q</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First 5 |Q| values: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">q</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="mi">3</span><span class="p">)))</span>
 <span class="n">d</span> <span class="o">=</span> <span class="n">mergedD</span><span class="o">.</span><span class="n">extractX</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 5 d values: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">d</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First 5 d values: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">d</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="mi">3</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1577,7 +1577,7 @@ removed without a notification, should instrument scientists decide to do so.</p
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/DNSMergeRuns.py">DNSMergeRuns.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/DNSMergeRuns.py">DNSMergeRuns.py</a></p>
 </section>
 </section>
 

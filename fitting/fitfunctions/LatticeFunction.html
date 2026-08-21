@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LatticeFunction &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>LatticeFunction &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'fitting/fitfunctions/LatticeFunction';</script>
@@ -528,28 +528,28 @@ used to generate Bragg reflections that are expected for the crystal structure o
 
 <span class="c1"># Create Silicon peaks for indexing</span>
 <span class="n">peaks_Si</span> <span class="o">=</span> <span class="n">PoldiCreatePeaksFromCell</span><span class="p">(</span>
-            <span class="n">SpaceGroup</span><span class="o">=</span><span class="s2">&quot;F d -3 m&quot;</span><span class="p">,</span>
+            <span class="n">SpaceGroup</span><span class="o">=</span><span class="s2">"F d -3 m"</span><span class="p">,</span>
             <span class="n">a</span><span class="o">=</span><span class="mf">5.4311946</span><span class="p">,</span>
-            <span class="n">Atoms</span><span class="o">=</span><span class="s2">&quot;Si 0 0 0&quot;</span><span class="p">,</span>
+            <span class="n">Atoms</span><span class="o">=</span><span class="s2">"Si 0 0 0"</span><span class="p">,</span>
             <span class="n">LatticeSpacingMin</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
 <span class="c1"># Fit a cubic cell, starting parameter is 5</span>
-<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s2">&quot;name=LatticeFunction,LatticeSystem=Cubic,a=5&quot;</span><span class="p">,</span>
+<span class="n">Fit</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s2">"name=LatticeFunction,LatticeSystem=Cubic,a=5"</span><span class="p">,</span>
     <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">peaks_Si</span><span class="p">,</span>
-    <span class="n">Ties</span><span class="o">=</span><span class="s2">&quot;ZeroShift=0.0&quot;</span><span class="p">,</span>
+    <span class="n">Ties</span><span class="o">=</span><span class="s2">"ZeroShift=0.0"</span><span class="p">,</span>
     <span class="n">CreateOutput</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">Output</span><span class="o">=</span><span class="s2">&quot;Si&quot;</span><span class="p">,</span>
-    <span class="n">CostFunction</span><span class="o">=</span><span class="s2">&quot;Unweighted least squares&quot;</span><span class="p">)</span>
+    <span class="n">Output</span><span class="o">=</span><span class="s2">"Si"</span><span class="p">,</span>
+    <span class="n">CostFunction</span><span class="o">=</span><span class="s2">"Unweighted least squares"</span><span class="p">)</span>
 
 <span class="c1"># Print the refined lattice parameter with error estimate</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">&quot;Si_Parameters&quot;</span><span class="p">)</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="n">AnalysisDataService</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">"Si_Parameters"</span><span class="p">)</span>
 
 <span class="n">a_true</span> <span class="o">=</span> <span class="mf">5.4311946</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">parameters</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">7</span><span class="p">)</span>
 <span class="n">a_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">parameters</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">7</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Refined lattice parameter: a = </span><span class="si">{0}</span><span class="s2"> +/- </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a_err</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difference from expected value: a_observed - a_expected = </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">a_true</span><span class="p">,</span> <span class="mi">7</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Refined lattice parameter: a = </span><span class="si">{0}</span><span class="s2"> +/- </span><span class="si">{1}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a_err</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Difference from expected value: a_observed - a_expected = </span><span class="si">{0}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">a_true</span><span class="p">,</span> <span class="mi">7</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>Executing the script produces some output with information about the fit:</p>
@@ -630,8 +630,8 @@ well the peak positions calculated from the fitted parameters match the observed
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/inc/MantidCurveFitting/LatticeFunction.h">LatticeFunction.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/CurveFitting/src/LatticeFunction.cpp">LatticeFunction.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/inc/MantidCurveFitting/LatticeFunction.h">LatticeFunction.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/CurveFitting/src/LatticeFunction.cpp">LatticeFunction.cpp</a></p>
 </section>
 </section>
 

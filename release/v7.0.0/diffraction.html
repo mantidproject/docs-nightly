@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Diffraction Changes &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Diffraction Changes &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/diffraction';</script>
@@ -740,6 +740,7 @@
 <h3>Bugfixes<a class="headerlink" href="#bugfixes" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../techniques/ISISPowder-SampleDetails-v1.html#isis-powder-diffraction-sampledetails-ref"><span class="std std-ref">ISIS Powder SampleDetails</span></a> now accepts a <code class="docutils literal notranslate"><span class="pre">number_density_units</span></code> argument which can be set appropriately to fix issues where total scattering <code class="docutils literal notranslate"><span class="pre">S(Q)-1</span></code> does not tend to 0 at high Q when number density has been provided as: formula units per volume (see <a class="reference internal" href="../../techniques/ISISPowder-SampleDetails-v1.html#number-density-unit-sampledetails-isis-powder-diffraction-ref"><span class="std std-ref">number_density_unit</span></a>).</p></li>
+<li><p>Fixed <a class="reference internal" href="../../algorithms/CylinderAbsorptionCW-v1.html#algm-cylinderabsorptioncw"><span class="std std-ref">CylinderAbsorptionCW</span></a> Sabine calculation for large μR</p></li>
 </ul>
 </section>
 <section id="removed">
@@ -778,6 +779,8 @@
 <section id="id4">
 <h3>Bugfixes<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p><a class="reference internal" href="../../algorithms/SaveIsawDetCal-v1.html#algm-saveisawdetcal"><span class="std std-ref">SaveIsawDetCal v1</span></a> and <a class="reference internal" href="../../algorithms/SaveIsawPeaks-v1.html#algm-saveisawpeaks"><span class="std std-ref">SaveIsawPeaks v1</span></a> now record the calibrated positions of CORELLI detector panels. Since Mantid 6.15.0.1 they wrote the nominal positions taken from the instrument definition, so a panel calibration was silently absent from the <code class="docutils literal notranslate"><span class="pre">.DetCal</span></code> and <code class="docutils literal notranslate"><span class="pre">.peaks</span></code> files they produced. <a class="reference internal" href="../../algorithms/SaveIsawPeaks-v1.html#algm-saveisawpeaks"><span class="std std-ref">SaveIsawPeaks v1</span></a> also wrote nominal panel orientations and sizes, which affected WISH as well as CORELLI. CORELLI and WISH files written with an affected version should be regenerated.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/SaveHKL-v1.html#algm-savehkl"><span class="std std-ref">SaveHKL v1</span></a> and <a class="reference internal" href="../../algorithms/AnvredCorrection-v1.html#algm-anvredcorrection"><span class="std std-ref">AnvredCorrection v1</span></a> now use the calibrated detector distance in the slant-path absorption correction for CORELLI, having used the nominal distance since Mantid 6.15.0.1.</p></li>
 <li><p>Fixed the <code class="docutils literal notranslate"><span class="pre">Counts</span></code> vanadium normalization option in <a class="reference internal" href="../../algorithms/LoadWANDSCD-v1.html#algm-loadwandscd"><span class="std std-ref">LoadWANDSCD v1</span></a> so detector counts are scaled by the mean vanadium signal when applying the vanadium correction.</p></li>
 </ul>
 <p><a class="reference internal" href="index.html#v7-0-0"><span class="std std-ref">Release 7.0.0</span></a></p>

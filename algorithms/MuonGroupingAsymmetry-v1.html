@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MuonGroupingAsymmetry v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>MuonGroupingAsymmetry v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1540,7 +1540,7 @@
 <p>The group name does not affect the data; however the name is used in the muon interface when automatically generating workspace names from group data.</p>
 <p>After the grouping is performed, the analysis described in <a class="reference internal" href="EstimateMuonAsymmetryFromCounts-v1.html#algm-estimatemuonasymmetryfromcounts"><span class="std std-ref">EstimateMuonAsymmetryFromCounts v1</span></a> will be run; effectively estimating the muon decay curve and subtracting it from the grouped data and then estimating the asymmetry on the grouped data. The range over which the estimate is performed is controlled by the <strong>AsymmetryTimeMin</strong> and <strong>AsymmetryTimeMax</strong> inputs.</p>
 <p><strong>Note</strong> : The workspaces supplied to the algorithm must have a number of good frames set in their sample logs. The sample log is called “goodfrm” and can be set using;</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AddSampleLog</span><span class="p">(</span><span class="n">workspace</span><span class="o">=</span><span class="n">workspace</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s2">&quot;goodfram&quot;</span><span class="p">,</span> <span class="n">LogText</span> <span class="o">=</span><span class="s2">&quot;10&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AddSampleLog</span><span class="p">(</span><span class="n">workspace</span><span class="o">=</span><span class="n">workspace</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s2">"goodfram"</span><span class="p">,</span> <span class="n">LogText</span> <span class="o">=</span><span class="s2">"10"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1564,18 +1564,18 @@
 <span class="n">input_workspace</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">dataX</span><span class="p">,</span> <span class="n">dataY</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">input_workspace</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">setDetectorID</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># Workspace must have the number of good frames set</span>
-<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="n">input_workspace</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;goodfrm&#39;</span><span class="p">,</span> <span class="n">LogText</span><span class="o">=</span><span class="s2">&quot;10&quot;</span><span class="p">)</span>
+<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="n">input_workspace</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">'goodfrm'</span><span class="p">,</span> <span class="n">LogText</span><span class="o">=</span><span class="s2">"10"</span><span class="p">)</span>
 
 <span class="n">pre_processed_workspace</span> <span class="o">=</span> <span class="n">MuonPreProcess</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">input_workspace</span><span class="p">)</span>
 
 <span class="n">output</span> <span class="o">=</span> <span class="n">MuonGroupingAsymmetry</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">pre_processed_workspace</span><span class="p">,</span>
-                                                   <span class="n">GroupName</span><span class="o">=</span><span class="s2">&quot;fwd&quot;</span><span class="p">,</span>
+                                                   <span class="n">GroupName</span><span class="o">=</span><span class="s2">"fwd"</span><span class="p">,</span>
                                                    <span class="n">Grouping</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="n">output_workspace</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X values are : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">output_workspace</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Y values are : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">output_workspace</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"X values are : </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">output_workspace</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Y values are : </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">output_workspace</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1592,8 +1592,8 @@ Y values are : [-0.735, -0.163, 0.979, 1.08, 0.639]
                 <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
 <span class="n">ws1</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">dataX</span><span class="p">,</span> <span class="n">dataY_period1</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ws2</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">dataX</span><span class="p">,</span> <span class="n">dataY_period2</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="n">ws1</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;goodfrm&#39;</span><span class="p">,</span> <span class="n">LogText</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
-<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="n">ws2</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">&#39;goodfrm&#39;</span><span class="p">,</span> <span class="n">LogText</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="n">ws1</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">'goodfrm'</span><span class="p">,</span> <span class="n">LogText</span><span class="o">=</span><span class="s2">"1"</span><span class="p">)</span>
+<span class="n">AddSampleLog</span><span class="p">(</span><span class="n">Workspace</span><span class="o">=</span><span class="n">ws2</span><span class="p">,</span> <span class="n">LogName</span><span class="o">=</span><span class="s1">'goodfrm'</span><span class="p">,</span> <span class="n">LogText</span><span class="o">=</span><span class="s2">"1"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
     <span class="c1"># set detector IDs to be 1,2,3,4</span>
     <span class="c1"># these do not have to be the same as the spectrum numbers</span>
@@ -1605,19 +1605,19 @@ Y values are : [-0.735, -0.163, 0.979, 1.08, 0.639]
 <span class="n">multi_period_data</span> <span class="o">=</span> <span class="n">GroupWorkspaces</span><span class="p">(</span><span class="n">ws1</span><span class="p">)</span>
 <span class="n">multi_period_data</span><span class="o">.</span><span class="n">addWorkspace</span><span class="p">(</span><span class="n">ws2</span><span class="p">)</span>
 
-<span class="c1"># This time we won&#39;t run MuonPreProcess, as we don&#39;t want to apply any pre-processing</span>
+<span class="c1"># This time we won't run MuonPreProcess, as we don't want to apply any pre-processing</span>
 <span class="c1"># and we already have a WorkspaceGroup</span>
 
 <span class="n">output</span> <span class="o">=</span> <span class="n">MuonGroupingAsymmetry</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">multi_period_data</span><span class="p">,</span>
-                                                   <span class="n">GroupName</span><span class="o">=</span><span class="s2">&quot;fwd&quot;</span><span class="p">,</span>
+                                                   <span class="n">GroupName</span><span class="o">=</span><span class="s2">"fwd"</span><span class="p">,</span>
                                                    <span class="n">Grouping</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
                                                    <span class="n">SummedPeriods</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 
 <span class="n">output_workspace</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># We have asked for periods 1+2, with each period summing detectors 1,2</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X values are : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">output_workspace</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Y values are : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">output_workspace</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"X values are : </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">output_workspace</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Y values are : </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">output_workspace</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1629,8 +1629,8 @@ Y values are : [-0.638, -0.201, 0.619, 0.985, 1.235]
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Muon/inc/MantidMuon/MuonGroupingAsymmetry.h">MuonGroupingAsymmetry.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Muon/src/MuonGroupingAsymmetry.cpp">MuonGroupingAsymmetry.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Muon/inc/MantidMuon/MuonGroupingAsymmetry.h">MuonGroupingAsymmetry.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Muon/src/MuonGroupingAsymmetry.cpp">MuonGroupingAsymmetry.cpp</a></p>
 </section>
 </section>
 

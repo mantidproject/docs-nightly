@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>UpdateInstrumentFromFile v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>UpdateInstrumentFromFile v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/UpdateInstrumentFromFile-v1';</script>
@@ -1557,10 +1557,10 @@ used to ignore a column.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="c1"># priting procedure</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">print_10_detectors</span><span class="p">(</span><span class="n">instr_type</span><span class="p">,</span><span class="n">instr</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; print first 10 detectors from given instrument &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">''' print first 10 detectors from given instrument '''</span>
      <span class="c1"># get first 10 detectors using detector ID</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> instrument&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">instr_type</span><span class="p">,</span> <span class="n">instr</span><span class="o">.</span><span class="n">getName</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> instrument"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">instr_type</span><span class="p">,</span> <span class="n">instr</span><span class="o">.</span><span class="n">getName</span><span class="p">()))</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
       <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">:</span>
           <span class="n">detBase</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1569,37 +1569,37 @@ used to ignore a column.</p>
       <span class="n">detID</span> <span class="o">=</span> <span class="n">detBase</span><span class="o">+</span><span class="n">i</span>
       <span class="n">det1</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="n">detID</span><span class="p">);</span>
       <span class="n">pos</span> <span class="o">=</span> <span class="n">det1</span><span class="o">.</span><span class="n">getPos</span><span class="p">();</span>
-      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;det with ID: </span><span class="si">{0:5}</span><span class="s1"> is monitor? </span><span class="si">{1:5}</span><span class="s1">, polar angle: </span><span class="si">{2:10.3f}</span><span class="s1">, position: | </span><span class="si">{3:&lt;10.3f}</span><span class="s1"> | </span><span class="si">{4:&lt;10.3f}</span><span class="s1"> | </span><span class="si">{5:&lt;10.3f}</span><span class="s1">|&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+      <span class="nb">print</span><span class="p">(</span><span class="s1">'det with ID: </span><span class="si">{0:5}</span><span class="s1"> is monitor? </span><span class="si">{1:5}</span><span class="s1">, polar angle: </span><span class="si">{2:10.3f}</span><span class="s1">, position: | </span><span class="si">{3:&lt;10.3f}</span><span class="s1"> | </span><span class="si">{4:&lt;10.3f}</span><span class="s1"> | </span><span class="si">{5:&lt;10.3f}</span><span class="s1">|'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
              <span class="n">detID</span><span class="p">,</span><span class="n">det1</span><span class="o">.</span><span class="n">isMonitor</span><span class="p">(),(</span><span class="n">det1</span><span class="o">.</span><span class="n">getPhi</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mi">180</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)),</span><span class="n">pos</span><span class="o">.</span><span class="n">X</span><span class="p">(),</span><span class="n">pos</span><span class="o">.</span><span class="n">Y</span><span class="p">(),</span><span class="n">pos</span><span class="o">.</span><span class="n">Z</span><span class="p">()))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*********************************************************************************&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'*********************************************************************************'</span><span class="p">)</span>
 
 <span class="c1">#--------------------------------------------------------------------------------------</span>
 <span class="c1"># create sample workspace</span>
 <span class="n">ws</span><span class="o">=</span><span class="n">CreateSampleWorkspace</span><span class="p">();</span>
 <span class="c1">#--------------------------------------------------------------------------------------</span>
 <span class="c1"># load MARI</span>
-<span class="n">det</span><span class="o">=</span><span class="n">LoadInstrument</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s1">&#39;MARI&#39;</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">det</span><span class="o">=</span><span class="n">LoadInstrument</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s1">'MARI'</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">inst1</span><span class="o">=</span><span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">();</span>
 <span class="c1">#</span>
-<span class="n">print_10_detectors</span><span class="p">(</span><span class="s1">&#39;unCalibrated&#39;</span><span class="p">,</span><span class="n">inst1</span><span class="p">);</span>
+<span class="n">print_10_detectors</span><span class="p">(</span><span class="s1">'unCalibrated'</span><span class="p">,</span><span class="n">inst1</span><span class="p">);</span>
 <span class="c1">#--------------------------------------------------------------------------------------</span>
 <span class="c1"># Prepare calibration file changing first 6 detectors &amp; monitors</span>
-<span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;defaultsave.directory&quot;</span><span class="p">],</span> <span class="s2">&quot;TestCalibration.dat&quot;</span><span class="p">)</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">"defaultsave.directory"</span><span class="p">],</span> <span class="s2">"TestCalibration.dat"</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span><span class="s1">'w'</span><span class="p">);</span>
 <span class="c1"># prepare through each spectra in the test workspace and change its detector calibration parameters</span>
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; Test calibration file </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; detID  theta  delay source_dist detector_dist</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">' Test calibration file </span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">' detID  theta  delay source_dist detector_dist</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">):</span>
-   <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">  </span><span class="si">{1}</span><span class="s1">  </span><span class="si">{2}</span><span class="s1">  </span><span class="si">{3}</span><span class="s1">  </span><span class="si">{4}</span><span class="s1">  </span><span class="si">{5}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mf">3.1415926</span><span class="o">/</span><span class="mi">200</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">100</span><span class="p">,(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mf">3.1415926</span><span class="o">/</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+   <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'</span><span class="si">{0}</span><span class="s1">  </span><span class="si">{1}</span><span class="s1">  </span><span class="si">{2}</span><span class="s1">  </span><span class="si">{3}</span><span class="s1">  </span><span class="si">{4}</span><span class="s1">  </span><span class="si">{5}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mf">3.1415926</span><span class="o">/</span><span class="mi">200</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">100</span><span class="p">,(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mf">3.1415926</span><span class="o">/</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
 <span class="c1">#--------------------------------------------------------------------------------------</span>
 <span class="c1"># CALIBRATE:</span>
-<span class="n">UpdateInstrumentFromFile</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">Filename</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span><span class="n">AsciiHeader</span><span class="o">=</span><span class="s1">&#39;spectrum,theta,-,-,phi,R&#39;</span><span class="p">,</span><span class="n">MoveMonitors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">SkipFirstNLines</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">UpdateInstrumentFromFile</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">Filename</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span><span class="n">AsciiHeader</span><span class="o">=</span><span class="s1">'spectrum,theta,-,-,phi,R'</span><span class="p">,</span><span class="n">MoveMonitors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">SkipFirstNLines</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">inst1</span><span class="o">=</span><span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">();</span>
 <span class="c1">#--------------------------------------------------------------------------------------</span>
 <span class="c1"># look at the result:</span>
-<span class="n">print_10_detectors</span><span class="p">(</span><span class="s1">&#39;Calibrated&#39;</span><span class="p">,</span><span class="n">inst1</span><span class="p">);</span>
+<span class="n">print_10_detectors</span><span class="p">(</span><span class="s1">'Calibrated'</span><span class="p">,</span><span class="n">inst1</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
@@ -1633,8 +1633,8 @@ det with ID:  1107 is monitor?     0, polar angle:    -72.060, position: | 0.347
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/inc/MantidDataHandling/UpdateInstrumentFromFile.h">UpdateInstrumentFromFile.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/DataHandling/src/UpdateInstrumentFromFile.cpp">UpdateInstrumentFromFile.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/inc/MantidDataHandling/UpdateInstrumentFromFile.h">UpdateInstrumentFromFile.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/DataHandling/src/UpdateInstrumentFromFile.cpp">UpdateInstrumentFromFile.cpp</a></p>
 </section>
 </section>
 

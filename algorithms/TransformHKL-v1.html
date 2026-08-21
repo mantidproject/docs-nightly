@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>TransformHKL v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>TransformHKL v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1517,15 +1517,15 @@ comma separated list of numbers.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="s2">&quot;TOPAZ_3007.peaks&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span><span class="o">=</span><span class="n">LoadIsawPeaks</span><span class="p">(</span><span class="s2">"TOPAZ_3007.peaks"</span><span class="p">)</span>
 <span class="n">FindUBUsingFFT</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">MinD</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span><span class="n">MaxD</span><span class="o">=</span><span class="mf">13.0</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before Transformation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Before Transformation:"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">getOrientedLattice</span><span class="p">()</span><span class="o">.</span><span class="n">getUB</span><span class="p">())</span>
 
 <span class="c1">#This HKLTransform is a matrix that will swap H and K and negate L</span>
-<span class="n">TransformHKL</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">HKLTransform</span><span class="o">=</span><span class="s2">&quot;0,1,0,1,0,0,0,0,-1&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">After Transformation:&quot;</span><span class="p">)</span>
+<span class="n">TransformHKL</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">HKLTransform</span><span class="o">=</span><span class="s2">"0,1,0,1,0,0,0,0,-1"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">After Transformation:"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">getOrientedLattice</span><span class="p">()</span><span class="o">.</span><span class="n">getUB</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1547,25 +1547,25 @@ For example, if peaks are constrained to two dimensions in HKL space,
 the error calculation will fail. In this case, <cite>FindError=False</cite> can be
 specified to skip the calculation. In this case, the lattice parameter
 error will be set to zero.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">OutputType</span><span class="o">=</span><span class="s1">&#39;LeanElasticPeak&#39;</span><span class="p">,</span> <span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreatePeaksWorkspace</span><span class="p">(</span><span class="n">OutputType</span><span class="o">=</span><span class="s1">'LeanElasticPeak'</span><span class="p">,</span> <span class="n">NumberOfPeaks</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">SetUB</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
 
 <span class="n">ws</span><span class="o">.</span><span class="n">addPeak</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">createPeakHKL</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
 <span class="n">ws</span><span class="o">.</span><span class="n">addPeak</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">createPeakHKL</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
 
-<span class="n">TransformHKL</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">HKLTransform</span><span class="o">=</span><span class="s1">&#39;0,1,0,1,0,0,0,0,-1&#39;</span><span class="p">,</span> <span class="n">FindError</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">TransformHKL</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">HKLTransform</span><span class="o">=</span><span class="s1">'0,1,0,1,0,0,0,0,-1'</span><span class="p">,</span> <span class="n">FindError</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;peak(0) = &#39;</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getHKL</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;peak(1) = &#39;</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">getHKL</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'peak(0) = '</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getHKL</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'peak(1) = '</span><span class="p">,</span> <span class="n">ws</span><span class="o">.</span><span class="n">getPeak</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">getHKL</span><span class="p">())</span>
 
 <span class="n">ol</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span><span class="o">.</span><span class="n">getOrientedLattice</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ea = &#39;</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">errora</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;eb = &#39;</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">errorb</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ec = &#39;</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">errorc</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ealpha = &#39;</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">erroralpha</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ebeta = &#39;</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">errorbeta</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;egamma = &#39;</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">errorgamma</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'ea = '</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">errora</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'eb = '</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">errorb</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'ec = '</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">errorc</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'ealpha = '</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">erroralpha</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'ebeta = '</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">errorbeta</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'egamma = '</span><span class="p">,</span> <span class="n">ol</span><span class="o">.</span><span class="n">errorgamma</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>gives</p>
@@ -1583,8 +1583,8 @@ egamma =  0.0
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/inc/MantidCrystal/TransformHKL.h">TransformHKL.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Crystal/src/TransformHKL.cpp">TransformHKL.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/inc/MantidCrystal/TransformHKL.h">TransformHKL.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Crystal/src/TransformHKL.cpp">TransformHKL.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ChangeTimeZero v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ChangeTimeZero v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ChangeTimeZero-v1';</script>
@@ -1504,7 +1504,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p><strong>Example - Relative Time Shift for an EventWorkspace:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load an event workspace</span>
-<span class="n">original_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;CNCS_7860_event.nxs&#39;</span><span class="p">)</span>
+<span class="n">original_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'CNCS_7860_event.nxs'</span><span class="p">)</span>
 
 <span class="c1"># Specify the time shift</span>
 <span class="n">time_shift</span> <span class="o">=</span> <span class="mf">10000.5</span>
@@ -1513,18 +1513,18 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <span class="n">shifted_ws</span> <span class="o">=</span> <span class="n">ChangeTimeZero</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="n">original_ws</span> <span class="p">,</span> <span class="n">RelativeTimeOffset</span> <span class="o">=</span> <span class="n">time_shift</span><span class="p">)</span>
 
 <span class="c1"># Check some logs</span>
-<span class="n">original_proton_charge</span> <span class="o">=</span> <span class="n">original_ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()[</span><span class="s1">&#39;proton_charge&#39;</span><span class="p">]</span>
-<span class="n">shifted_proton_charge</span> <span class="o">=</span> <span class="n">shifted_ws</span> <span class="o">.</span><span class="n">getRun</span><span class="p">()[</span><span class="s1">&#39;proton_charge&#39;</span><span class="p">]</span>
+<span class="n">original_proton_charge</span> <span class="o">=</span> <span class="n">original_ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()[</span><span class="s1">'proton_charge'</span><span class="p">]</span>
+<span class="n">shifted_proton_charge</span> <span class="o">=</span> <span class="n">shifted_ws</span> <span class="o">.</span><span class="n">getRun</span><span class="p">()[</span><span class="s1">'proton_charge'</span><span class="p">]</span>
 
 <span class="c1"># Check some events</span>
 <span class="n">original_pulse_times</span> <span class="o">=</span> <span class="n">original_ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">getPulseTimes</span><span class="p">()</span>
 <span class="n">shifted_pulse_times</span> <span class="o">=</span> <span class="n">shifted_ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">getPulseTimes</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original proton_charge time:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">original_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">original_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shifted proton_charge time:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shifted_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">shifted_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Original proton_charge time:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ..."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">original_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">original_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Shifted proton_charge time:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ..."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shifted_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">shifted_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original pulse times:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">original_pulse_times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">original_pulse_times</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shifted pulse times:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shifted_pulse_times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">shifted_pulse_times</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Original pulse times:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ..."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">original_pulse_times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">original_pulse_times</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Shifted pulse times:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ..."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shifted_pulse_times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">shifted_pulse_times</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1536,27 +1536,27 @@ Shifted pulse times:  2010-03-25T18:56:37.974029541  ,  2010-03-25T18:57:14.0291
 </div>
 <p><strong>Example - Absolute Time Shift for an EventWorkspace:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load an event workspace</span>
-<span class="n">original_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;CNCS_7860_event.nxs&#39;</span><span class="p">)</span>
+<span class="n">original_ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'CNCS_7860_event.nxs'</span><span class="p">)</span>
 
 <span class="c1"># Specify the time shift</span>
-<span class="n">time_shift</span> <span class="o">=</span> <span class="s1">&#39;2002-07-13T14:00:01&#39;</span>
+<span class="n">time_shift</span> <span class="o">=</span> <span class="s1">'2002-07-13T14:00:01'</span>
 
 <span class="c1"># Change the zero time</span>
 <span class="n">shifted_ws</span> <span class="o">=</span> <span class="n">ChangeTimeZero</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="n">original_ws</span> <span class="p">,</span> <span class="n">AbsoluteTimeOffset</span> <span class="o">=</span> <span class="n">time_shift</span><span class="p">)</span>
 
 <span class="c1"># Check some logs</span>
-<span class="n">original_proton_charge</span> <span class="o">=</span> <span class="n">original_ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()[</span><span class="s1">&#39;proton_charge&#39;</span><span class="p">]</span>
-<span class="n">shifted_proton_charge</span> <span class="o">=</span> <span class="n">shifted_ws</span> <span class="o">.</span><span class="n">getRun</span><span class="p">()[</span><span class="s1">&#39;proton_charge&#39;</span><span class="p">]</span>
+<span class="n">original_proton_charge</span> <span class="o">=</span> <span class="n">original_ws</span><span class="o">.</span><span class="n">getRun</span><span class="p">()[</span><span class="s1">'proton_charge'</span><span class="p">]</span>
+<span class="n">shifted_proton_charge</span> <span class="o">=</span> <span class="n">shifted_ws</span> <span class="o">.</span><span class="n">getRun</span><span class="p">()[</span><span class="s1">'proton_charge'</span><span class="p">]</span>
 
 <span class="c1"># Check some events</span>
 <span class="n">original_pulse_times</span> <span class="o">=</span> <span class="n">original_ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">getPulseTimes</span><span class="p">()</span>
 <span class="n">shifted_pulse_times</span> <span class="o">=</span> <span class="n">shifted_ws</span><span class="o">.</span><span class="n">getSpectrum</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">getPulseTimes</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original proton_charge time:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">original_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">original_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shifted proton_charge time:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shifted_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">shifted_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Original proton_charge time:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ..."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">original_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">original_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Shifted proton_charge time:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ..."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shifted_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">shifted_proton_charge</span><span class="o">.</span><span class="n">nthTime</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original pulse times:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">original_pulse_times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">original_pulse_times</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shifted pulse times:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shifted_pulse_times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">shifted_pulse_times</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Original pulse times:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ..."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">original_pulse_times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">original_pulse_times</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Shifted pulse times:  </span><span class="si">{}</span><span class="s2"> ,  </span><span class="si">{}</span><span class="s2"> , ..."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shifted_pulse_times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">shifted_pulse_times</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1570,8 +1570,8 @@ Shifted pulse times:  2002-07-13T14:01:21.474029541  ,  2002-07-13T14:01:57.5291
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/ChangeTimeZero.h">ChangeTimeZero.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/ChangeTimeZero.cpp">ChangeTimeZero.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/ChangeTimeZero.h">ChangeTimeZero.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/ChangeTimeZero.cpp">ChangeTimeZero.cpp</a></p>
 </section>
 </section>
 

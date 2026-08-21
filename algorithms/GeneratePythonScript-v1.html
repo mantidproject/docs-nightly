@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>GeneratePythonScript v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>GeneratePythonScript v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/GeneratePythonScript-v1';</script>
@@ -1555,7 +1555,7 @@ The <code class="docutils literal notranslate"><span class="pre">ExcludeHeader</
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CropWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">7828.162291</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">11980.906921</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Power</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Exponent</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;MyTestWorkspace&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"MyTestWorkspace"</span><span class="p">)</span>
 
 <span class="n">script_text</span> <span class="o">=</span> <span class="n">GeneratePythonScript</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">script_text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
@@ -1568,10 +1568,10 @@ The <code class="docutils literal notranslate"><span class="pre">ExcludeHeader</
 
 from mantid.simpleapi import *
 
-CreateSampleWorkspace(OutputWorkspace=&#39;ws&#39;)
-CropWorkspace(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;ws&#39;, XMin=7828.1622909999996, XMax=11980.906921)
-Power(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;ws&#39;, Exponent=1.5)
-RenameWorkspace(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;MyTestWorkspace&#39;)
+CreateSampleWorkspace(OutputWorkspace='ws')
+CropWorkspace(InputWorkspace='ws', OutputWorkspace='ws', XMin=7828.1622909999996, XMax=11980.906921)
+Power(InputWorkspace='ws', OutputWorkspace='ws', Exponent=1.5)
+RenameWorkspace(InputWorkspace='ws', OutputWorkspace='MyTestWorkspace')
 </pre></div>
 </div>
 <p><strong>Example - generate a python script giving a range of start times:</strong></p>
@@ -1582,10 +1582,10 @@ RenameWorkspace(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;MyTestWorkspac
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CropWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">7828.162291</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">11980.906921</span><span class="p">)</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Power</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Exponent</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;MyTestWorkspace&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"MyTestWorkspace"</span><span class="p">)</span>
 
 <span class="c1"># Get the execution time of the last algorithm and subtract 1 second</span>
-<span class="n">history</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;MyTestWorkspace&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getHistory</span><span class="p">()</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">mtd</span><span class="p">[</span><span class="s1">'MyTestWorkspace'</span><span class="p">]</span><span class="o">.</span><span class="n">getHistory</span><span class="p">()</span>
 <span class="n">last</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">getAlgorithmHistory</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">from_time</span> <span class="o">=</span> <span class="n">last</span><span class="o">.</span><span class="n">executionDate</span><span class="p">()</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
 
@@ -1601,8 +1601,8 @@ RenameWorkspace(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;MyTestWorkspac
 
 from mantid.simpleapi import *
 
-Power(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;ws&#39;, Exponent=1.5)
-RenameWorkspace(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;MyTestWorkspace&#39;)
+Power(InputWorkspace='ws', OutputWorkspace='ws', Exponent=1.5)
+RenameWorkspace(InputWorkspace='ws', OutputWorkspace='MyTestWorkspace')
 </pre></div>
 </div>
 <p><strong>Example - generate a python script and save it to file:</strong></p>
@@ -1612,12 +1612,12 @@ RenameWorkspace(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;MyTestWorkspac
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">()</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">CropWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">7828.162291</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">11980.906921</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Power</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Exponent</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;MyTestWorkspace&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">RenameWorkspace</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"MyTestWorkspace"</span><span class="p">)</span>
 
-<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s1">&#39;myscript.py&#39;</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~"</span><span class="p">),</span> <span class="s1">'myscript.py'</span><span class="p">)</span>
 <span class="n">GeneratePythonScript</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
 
-<span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">script</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">script</span><span class="p">:</span>
   <span class="nb">print</span><span class="p">(</span><span class="n">script</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1628,18 +1628,18 @@ RenameWorkspace(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;MyTestWorkspac
 
 from mantid.simpleapi import *
 
-CreateSampleWorkspace(OutputWorkspace=&#39;ws&#39;)
-CropWorkspace(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;ws&#39;, XMin=7828.1622909999996, XMax=11980.906921)
-Power(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;ws&#39;, Exponent=1.5)
-RenameWorkspace(InputWorkspace=&#39;ws&#39;, OutputWorkspace=&#39;MyTestWorkspace&#39;)
+CreateSampleWorkspace(OutputWorkspace='ws')
+CropWorkspace(InputWorkspace='ws', OutputWorkspace='ws', XMin=7828.1622909999996, XMax=11980.906921)
+Power(InputWorkspace='ws', OutputWorkspace='ws', Exponent=1.5)
+RenameWorkspace(InputWorkspace='ws', OutputWorkspace='MyTestWorkspace')
 </pre></div>
 </div>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Utility/Python.html">Utility\Python</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/GeneratePythonScript.h">GeneratePythonScript.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/GeneratePythonScript.cpp">GeneratePythonScript.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/GeneratePythonScript.h">GeneratePythonScript.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/GeneratePythonScript.cpp">GeneratePythonScript.cpp</a></p>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometrySumInQ v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ReflectometrySumInQ v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1530,47 +1530,47 @@ lambda) direct beam data.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Direct beam</span>
-<span class="n">noBackground</span> <span class="o">=</span> <span class="s1">&#39;name=LinearBackground, A0=0&#39;</span>
+<span class="n">noBackground</span> <span class="o">=</span> <span class="s1">'name=LinearBackground, A0=0'</span>
 <span class="n">direct</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span>
-    <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span>
+    <span class="n">Function</span><span class="o">=</span><span class="s1">'User Defined'</span><span class="p">,</span>
     <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">noBackground</span><span class="p">,</span>
     <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">,</span>
+    <span class="n">XUnit</span><span class="o">=</span><span class="s1">'Wavelength'</span><span class="p">,</span>
     <span class="n">XMin</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">20.</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
 <span class="c1"># Move the detector such that the beam is right at its center.</span>
 <span class="n">MoveInstrumentComponent</span><span class="p">(</span>
     <span class="n">Workspace</span><span class="o">=</span><span class="n">direct</span><span class="p">,</span>
-    <span class="n">ComponentName</span><span class="o">=</span><span class="s1">&#39;bank1&#39;</span><span class="p">,</span>
+    <span class="n">ComponentName</span><span class="o">=</span><span class="s1">'bank1'</span><span class="p">,</span>
     <span class="n">X</span><span class="o">=-</span><span class="mf">0.008</span> <span class="o">*</span> <span class="mf">4.5</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.008</span> <span class="o">*</span> <span class="mf">4.5</span><span class="p">,</span> <span class="n">Z</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
 <span class="c1"># Fill intensity for pixels in the beam</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">44</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">55</span><span class="p">]:</span>
     <span class="n">direct</span><span class="o">.</span><span class="n">mutableY</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
     <span class="n">direct</span><span class="o">.</span><span class="n">mutableE</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="c1"># Group detectors to form a &#39;line detector&#39;. The line is vertical in this case.</span>
-<span class="n">groupingPattern</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="c1"># Group detectors to form a 'line detector'. The line is vertical in this case.</span>
+<span class="n">groupingPattern</span><span class="o">=</span><span class="s1">''</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
         <span class="n">groupingPattern</span> <span class="o">=</span> <span class="n">groupingPattern</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">column</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">row</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">:</span>
-            <span class="n">groupingPattern</span> <span class="o">=</span> <span class="n">groupingPattern</span> <span class="o">+</span> <span class="s1">&#39;+&#39;</span>
+            <span class="n">groupingPattern</span> <span class="o">=</span> <span class="n">groupingPattern</span> <span class="o">+</span> <span class="s1">'+'</span>
     <span class="k">if</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">:</span>
-        <span class="n">groupingPattern</span> <span class="o">=</span> <span class="n">groupingPattern</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span>
+        <span class="n">groupingPattern</span> <span class="o">=</span> <span class="n">groupingPattern</span> <span class="o">+</span> <span class="s1">','</span>
 <span class="n">direct</span> <span class="o">=</span> <span class="n">GroupDetectors</span><span class="p">(</span>
     <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">direct</span><span class="p">,</span>
     <span class="n">GroupingPattern</span><span class="o">=</span><span class="n">groupingPattern</span><span class="p">,</span>
-    <span class="n">Behaviour</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">)</span>
+    <span class="n">Behaviour</span><span class="o">=</span><span class="s1">'Sum'</span><span class="p">)</span>
 
 <span class="c1">#Reflected beam</span>
 <span class="n">reflected</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span>
-    <span class="n">Function</span><span class="o">=</span><span class="s1">&#39;User Defined&#39;</span><span class="p">,</span>
+    <span class="n">Function</span><span class="o">=</span><span class="s1">'User Defined'</span><span class="p">,</span>
     <span class="n">UserDefinedFunction</span><span class="o">=</span><span class="n">noBackground</span><span class="p">,</span>
     <span class="n">NumBanks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">,</span>
+    <span class="n">XUnit</span><span class="o">=</span><span class="s1">'Wavelength'</span><span class="p">,</span>
     <span class="n">XMin</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">20.</span><span class="p">,</span> <span class="n">BinWidth</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
 <span class="c1"># Move the detector. This reflectometer moves vertically.</span>
 <span class="n">MoveInstrumentComponent</span><span class="p">(</span>
     <span class="n">Workspace</span><span class="o">=</span><span class="n">reflected</span><span class="p">,</span>
-    <span class="n">ComponentName</span><span class="o">=</span><span class="s1">&#39;bank1&#39;</span><span class="p">,</span>
+    <span class="n">ComponentName</span><span class="o">=</span><span class="s1">'bank1'</span><span class="p">,</span>
     <span class="n">X</span><span class="o">=-</span><span class="mf">0.008</span> <span class="o">*</span> <span class="mf">4.5</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span> <span class="mf">0.008</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">Z</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
 <span class="c1"># Create some fake reflected beam data.</span>
 <span class="n">Xs</span> <span class="o">=</span> <span class="n">reflected</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -1584,7 +1584,7 @@ lambda) direct beam data.</p>
 <span class="n">reflected</span> <span class="o">=</span> <span class="n">GroupDetectors</span><span class="p">(</span>
     <span class="n">InputWorkspace</span><span class="o">=</span><span class="n">reflected</span><span class="p">,</span>
     <span class="n">GroupingPattern</span><span class="o">=</span><span class="n">groupingPattern</span><span class="p">,</span>
-    <span class="n">Behaviour</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">)</span>
+    <span class="n">Behaviour</span><span class="o">=</span><span class="s1">'Sum'</span><span class="p">)</span>
 
 <span class="c1"># Now we have somewhat realistic data.</span>
 <span class="c1"># Sum the direct beam (in lambda).</span>
@@ -1600,9 +1600,9 @@ lambda) direct beam data.</p>
     <span class="n">reflectivity</span><span class="p">,</span>
     <span class="n">XMin</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">19.</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span> <span class="s1">'mantid'</span><span class="p">})</span>
 <span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">reflectivity</span><span class="p">)</span>
-<span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&quot;Reflectivity&quot;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'"Reflectivity"'</span><span class="p">)</span>
 <span class="c1"># Uncomment to show the plot window.</span>
 <span class="c1">#fig.show()</span>
 <span class="n">mtd</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
@@ -1618,16 +1618,16 @@ lambda) direct beam data.</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="cubitt" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>Cubitt et al., <em>J. Appl. Crystallogr.</em>, <strong>6</strong> 2006 (2015)
-<a class="reference external" href="http://dx.doi.org/10.1107/S1600576715019500">doi: 10.1107/S1600576715019500</a></p>
+<p>Cubitt et al., <em>Journal of Applied Crystallography</em>, <strong>6</strong> 2006 (2015)
+<a class="reference external" href="https://doi.org/10.1107/S1600576715019500">doi: 10.1107/S1600576715019500</a></p>
 </aside>
 </aside>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/Reflectometry.html">Reflectometry</a> | <a class="reference external" href="categories/ILL/Reflectometry.html">ILL\Reflectometry</a></p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Reflectometry/inc/MantidReflectometry/ReflectometrySumInQ.h">ReflectometrySumInQ.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Reflectometry/src/ReflectometrySumInQ.cpp">ReflectometrySumInQ.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Reflectometry/inc/MantidReflectometry/ReflectometrySumInQ.h">ReflectometrySumInQ.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Reflectometry/src/ReflectometrySumInQ.cpp">ReflectometrySumInQ.cpp</a></p>
 </section>
 </section>
 

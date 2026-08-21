@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>IndirectILLEnergyTransfer v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>IndirectILLEnergyTransfer v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/IndirectILLEnergyTransfer-v1';</script>
@@ -1611,10 +1611,10 @@ Values for single detectors will be computed similarly but separately, and they 
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - IndirectILLEnergyTransfer : QENS data without mirror sense</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">IndirectILLEnergyTransfer</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN16B/090661.nxs&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reduced workspace has </span><span class="si">{:d}</span><span class="s2"> wing&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;which has </span><span class="si">{:d}</span><span class="s2"> spectra&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;and </span><span class="si">{:d}</span><span class="s2"> bins&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">IndirectILLEnergyTransfer</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/IN16B/090661.nxs'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Reduced workspace has </span><span class="si">{:d}</span><span class="s2"> wing"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"which has </span><span class="si">{:d}</span><span class="s2"> spectra"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"and </span><span class="si">{:d}</span><span class="s2"> bins"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1624,10 +1624,10 @@ and 1024 bins
 </pre></div>
 </div>
 <p><strong>Example - IndirectILLEnergyTransfer : QENS data with mirror sense</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">IndirectILLEnergyTransfer</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN16B/136553:136555.nxs&#39;</span><span class="p">,</span> <span class="n">CropDeadMonitorChannels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reduced workspace has </span><span class="si">{:d}</span><span class="s2"> wings&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;which have </span><span class="si">{:d}</span><span class="s2"> spectra&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;and </span><span class="si">{:d}</span><span class="s2"> bins&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">IndirectILLEnergyTransfer</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/IN16B/136553:136555.nxs'</span><span class="p">,</span> <span class="n">CropDeadMonitorChannels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Reduced workspace has </span><span class="si">{:d}</span><span class="s2"> wings"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberOfEntries</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"which have </span><span class="si">{:d}</span><span class="s2"> spectra"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"and </span><span class="si">{:d}</span><span class="s2"> bins"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1637,9 +1637,9 @@ and 1017 bins
 </pre></div>
 </div>
 <p><strong>Example - IndirectILLEnergyTransfer : BATS data</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">IndirectILLEnergyTransfer</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">&#39;ILL/IN16B/215962.nxs&#39;</span><span class="p">,</span> <span class="n">PulseChopper</span><span class="o">=</span><span class="s1">&#39;34&#39;</span><span class="p">,</span> <span class="n">GroupDetectors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The output workspace has </span><span class="si">{:d}</span><span class="s2"> spectra&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;and </span><span class="si">{:d}</span><span class="s2"> bins&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">IndirectILLEnergyTransfer</span><span class="p">(</span><span class="n">Run</span><span class="o">=</span><span class="s1">'ILL/IN16B/215962.nxs'</span><span class="p">,</span> <span class="n">PulseChopper</span><span class="o">=</span><span class="s1">'34'</span><span class="p">,</span> <span class="n">GroupDetectors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The output workspace has </span><span class="si">{:d}</span><span class="s2"> spectra"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"and </span><span class="si">{:d}</span><span class="s2"> bins"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1651,7 +1651,7 @@ and 1121 bins
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/IndirectILLEnergyTransfer.py">IndirectILLEnergyTransfer.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/IndirectILLEnergyTransfer.py">IndirectILLEnergyTransfer.py</a></p>
 </section>
 </section>
 

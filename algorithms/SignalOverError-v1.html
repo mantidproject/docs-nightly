@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SignalOverError v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>SignalOverError v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/SignalOverError-v1';</script>
@@ -1478,13 +1478,13 @@ Y values by Y/E (signal divided by error)</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example: Taking the derivative of logs</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">&quot;Event&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="s2">"Event"</span><span class="p">)</span>
 <span class="n">wsOut</span> <span class="o">=</span> <span class="n">SignalOverError</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Values from every 10th bin&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bin</span><span class="se">\t</span><span class="s2">Y</span><span class="se">\t</span><span class="s2">E</span><span class="se">\t</span><span class="s2">Y_New&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Values from every 10th bin"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"bin</span><span class="se">\t</span><span class="s2">Y</span><span class="se">\t</span><span class="s2">E</span><span class="se">\t</span><span class="s2">Y_New"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ws</span><span class="o">.</span><span class="n">blocksize</span><span class="p">(),</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="se">\t</span><span class="si">{:.2f}</span><span class="se">\t</span><span class="si">{:.2f}</span><span class="se">\t</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span><span class="n">ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span><span class="n">wsOut</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{}</span><span class="se">\t</span><span class="si">{:.2f}</span><span class="se">\t</span><span class="si">{:.2f}</span><span class="se">\t</span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span><span class="n">ws</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span><span class="n">wsOut</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="n">i</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1506,8 +1506,8 @@ bin     Y       E       Y_New
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/SignalOverError.h">SignalOverError.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/SignalOverError.cpp">SignalOverError.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/SignalOverError.h">SignalOverError.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/SignalOverError.cpp">SignalOverError.cpp</a></p>
 </section>
 </section>
 

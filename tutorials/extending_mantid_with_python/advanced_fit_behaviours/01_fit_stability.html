@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Fit Stability &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Fit Stability &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -593,16 +593,16 @@ parts):</p>
 <span class="k">class</span><span class="w"> </span><span class="nc">PyGaussian</span><span class="p">(</span><span class="n">IFunction1D</span><span class="p">):</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
         <span class="c1"># Parameter is declared as you want it to be seen by the user</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declareParameter</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">function1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xvals</span><span class="p">):</span>
         <span class="c1"># Can also be retrieve by index self.getParameterValue(0)</span>
-        <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Height&quot;</span><span class="p">)</span>
-        <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;PeakCentre&quot;</span><span class="p">)</span>
-        <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">&quot;Sigma&quot;</span><span class="p">)</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Height"</span><span class="p">)</span>
+        <span class="n">peak_centre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"PeakCentre"</span><span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParameterValue</span><span class="p">(</span><span class="s2">"Sigma"</span><span class="p">)</span>
         <span class="n">weight</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">sigma</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
         <span class="n">offset_sq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">xvals</span><span class="o">-</span><span class="n">peak_centre</span><span class="p">)</span>

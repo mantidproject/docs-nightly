@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Python in Mantid: Solution 4 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Python in Mantid: Solution 4 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/python_in_mantid/solutions/04_pim_sol';</script>
@@ -560,7 +560,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;HRP39182.RAW&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"HRP39182.RAW"</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="mf">1e4</span><span class="p">)</span>
 <span class="n">nbins</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">nbins</span><span class="p">)</span>
@@ -569,7 +569,7 @@
 <span class="n">xMax</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getDimension</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">getMaximum</span><span class="p">()</span>
 <span class="n">xRange</span> <span class="o">=</span> <span class="p">[</span><span class="n">xMin</span><span class="p">,</span> <span class="n">xMax</span><span class="p">]</span>
 
-<span class="sd">&#39;&#39;&#39; ----------- Part One Solution using nested loop and implementing a max condition by hand ----------- &#39;&#39;&#39;</span>
+<span class="sd">''' ----------- Part One Solution using nested loop and implementing a max condition by hand ----------- '''</span>
 <span class="n">new_y</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -583,7 +583,7 @@
 
 <span class="n">solution_1</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataY</span><span class="o">=</span><span class="n">new_y</span><span class="p">,</span> <span class="n">DataX</span><span class="o">=</span><span class="n">xRange</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
 
-<span class="sd">&#39;&#39;&#39; ----------- Part One Solution  using nested loop and implementing an inbuild max function ----------- &#39;&#39;&#39;</span>
+<span class="sd">''' ----------- Part One Solution  using nested loop and implementing an inbuild max function ----------- '''</span>
 <span class="n">new_y</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -595,7 +595,7 @@
 
 <span class="n">solution_2</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataY</span><span class="o">=</span><span class="n">new_y</span><span class="p">,</span> <span class="n">DataX</span><span class="o">=</span><span class="n">xRange</span><span class="p">,</span> <span class="n">NSpec</span><span class="o">=</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">())</span>
 
-<span class="sd">&#39;&#39;&#39; ----------- Part One Solution  using single loop and numpy max function ----------- &#39;&#39;&#39;</span>
+<span class="sd">''' ----------- Part One Solution  using single loop and numpy max function ----------- '''</span>
 <span class="n">new_y</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -608,7 +608,7 @@
 </section>
 <section id="b-create-a-tableworkspace">
 <h3>B - Create a TableWorkspace<a class="headerlink" href="#b-create-a-tableworkspace" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">&quot;HRP39182.RAW&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="s2">"HRP39182.RAW"</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">Rebin</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="mf">1e4</span><span class="p">)</span>
 <span class="n">nbins</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">blocksize</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">nbins</span><span class="p">)</span>
@@ -618,9 +618,9 @@
 <span class="n">xRange</span> <span class="o">=</span> <span class="p">[</span><span class="n">xMin</span><span class="p">,</span> <span class="n">xMax</span><span class="p">]</span>
 
 <span class="n">table</span> <span class="o">=</span> <span class="n">CreateEmptyTableWorkspace</span><span class="p">()</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;Spectrum Number&#39;</span><span class="p">)</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="s1">&#39;Max&#39;</span><span class="p">)</span>
-<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">,</span> <span class="s1">&#39;Min&#39;</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'int'</span><span class="p">,</span> <span class="s1">'Spectrum Number'</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'double'</span><span class="p">,</span> <span class="s1">'Max'</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">addColumn</span><span class="p">(</span><span class="s1">'double'</span><span class="p">,</span> <span class="s1">'Min'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">maxY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>

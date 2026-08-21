@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PoldiIndexKnownCompounds v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>PoldiIndexKnownCompounds v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1511,32 +1511,32 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p>The following example extracts peaks from the correlation spectrum of a Silicon standard measurement and indexes the observed peaks with Silicon reflections. One peak can not be indexed, but closer inspection of the correlation spectrum reveals that there is indeed no peak at this position (<span class="math notranslate nohighlight">\(Q \approx 1.54\)</span>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data file and instrument, perform correlation analysis</span>
-<span class="n">raw_6904</span> <span class="o">=</span> <span class="n">LoadSINQFile</span><span class="p">(</span><span class="n">Filename</span> <span class="o">=</span> <span class="s2">&quot;poldi2013n006904.hdf&quot;</span><span class="p">,</span> <span class="n">Instrument</span> <span class="o">=</span> <span class="s2">&quot;POLDI&quot;</span><span class="p">)</span>
-<span class="n">LoadInstrument</span><span class="p">(</span><span class="n">raw_6904</span><span class="p">,</span> <span class="n">InstrumentName</span> <span class="o">=</span> <span class="s2">&quot;POLDI&quot;</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_6904</span> <span class="o">=</span> <span class="n">LoadSINQFile</span><span class="p">(</span><span class="n">Filename</span> <span class="o">=</span> <span class="s2">"poldi2013n006904.hdf"</span><span class="p">,</span> <span class="n">Instrument</span> <span class="o">=</span> <span class="s2">"POLDI"</span><span class="p">)</span>
+<span class="n">LoadInstrument</span><span class="p">(</span><span class="n">raw_6904</span><span class="p">,</span> <span class="n">InstrumentName</span> <span class="o">=</span> <span class="s2">"POLDI"</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">correlated_6904</span> <span class="o">=</span> <span class="n">PoldiAutoCorrelation</span><span class="p">(</span><span class="n">raw_6904</span><span class="p">,</span> <span class="n">Version</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">peaks_6904</span> <span class="o">=</span> <span class="n">PoldiPeakSearch</span><span class="p">(</span><span class="n">correlated_6904</span><span class="p">)</span>
 
 <span class="n">PoldiFitPeaks1D</span><span class="p">(</span><span class="n">InputWorkspace</span> <span class="o">=</span> <span class="n">correlated_6904</span><span class="p">,</span> <span class="n">FwhmMultiples</span> <span class="o">=</span> <span class="mf">4.0</span><span class="p">,</span>
-                <span class="n">PeakFunction</span> <span class="o">=</span> <span class="s2">&quot;Gaussian&quot;</span><span class="p">,</span> <span class="n">PoldiPeakTable</span> <span class="o">=</span> <span class="n">peaks_6904</span><span class="p">,</span>
-                <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">&quot;peaks_refined_6904&quot;</span><span class="p">,</span>
-                <span class="n">FitPlotsWorkspace</span> <span class="o">=</span> <span class="s2">&quot;fit_plots_6904&quot;</span><span class="p">)</span>
+                <span class="n">PeakFunction</span> <span class="o">=</span> <span class="s2">"Gaussian"</span><span class="p">,</span> <span class="n">PoldiPeakTable</span> <span class="o">=</span> <span class="n">peaks_6904</span><span class="p">,</span>
+                <span class="n">OutputWorkspace</span> <span class="o">=</span> <span class="s2">"peaks_refined_6904"</span><span class="p">,</span>
+                <span class="n">FitPlotsWorkspace</span> <span class="o">=</span> <span class="s2">"fit_plots_6904"</span><span class="p">)</span>
 
 <span class="c1"># Create theoretical reflections for Silicon</span>
-<span class="n">Si</span> <span class="o">=</span> <span class="n">PoldiCreatePeaksFromCell</span><span class="p">(</span><span class="n">SpaceGroup</span><span class="o">=</span><span class="s2">&quot;F d -3 m&quot;</span><span class="p">,</span>
-                                <span class="n">Atoms</span><span class="o">=</span><span class="s2">&quot;Si 0.0 0.0 0.0 1.0 0.005&quot;</span><span class="p">,</span>
+<span class="n">Si</span> <span class="o">=</span> <span class="n">PoldiCreatePeaksFromCell</span><span class="p">(</span><span class="n">SpaceGroup</span><span class="o">=</span><span class="s2">"F d -3 m"</span><span class="p">,</span>
+                                <span class="n">Atoms</span><span class="o">=</span><span class="s2">"Si 0.0 0.0 0.0 1.0 0.005"</span><span class="p">,</span>
                                 <span class="n">a</span><span class="o">=</span><span class="mf">5.43071</span><span class="p">,</span>
                                 <span class="n">LatticeSpacingMin</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">LatticeSpacingMax</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
 
 <span class="c1"># Index reflections</span>
-<span class="n">PoldiIndexKnownCompounds</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">&quot;peaks_refined_6904&quot;</span><span class="p">,</span>
-                                <span class="n">CompoundWorkspaces</span><span class="o">=</span><span class="s2">&quot;Si&quot;</span><span class="p">,</span>
-                                <span class="n">Tolerances</span><span class="o">=</span><span class="s2">&quot;0.005&quot;</span><span class="p">,</span>
-                                <span class="n">ScatteringContributions</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
-                                <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">&quot;Indexed&quot;</span><span class="p">)</span>
+<span class="n">PoldiIndexKnownCompounds</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="s2">"peaks_refined_6904"</span><span class="p">,</span>
+                                <span class="n">CompoundWorkspaces</span><span class="o">=</span><span class="s2">"Si"</span><span class="p">,</span>
+                                <span class="n">Tolerances</span><span class="o">=</span><span class="s2">"0.005"</span><span class="p">,</span>
+                                <span class="n">ScatteringContributions</span><span class="o">=</span><span class="s2">"1.0"</span><span class="p">,</span>
+                                <span class="n">OutputWorkspace</span><span class="o">=</span><span class="s2">"Indexed"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Indexed_Si contains </span><span class="si">{}</span><span class="s2"> indexed peaks.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;peaks_refined_6904_indexed_Si&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of unindexed peaks: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">&#39;peaks_refined_6904_unindexed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Indexed_Si contains </span><span class="si">{}</span><span class="s2"> indexed peaks."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'peaks_refined_6904_indexed_Si'</span><span class="p">]</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of unindexed peaks: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mtd</span><span class="p">[</span><span class="s1">'peaks_refined_6904_unindexed'</span><span class="p">]</span><span class="o">.</span><span class="n">rowCount</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1548,8 +1548,8 @@ Number of unindexed peaks: 0
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/SINQ/inc/MantidSINQ/PoldiIndexKnownCompounds.h">PoldiIndexKnownCompounds.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/SINQ/src/PoldiIndexKnownCompounds.cpp">PoldiIndexKnownCompounds.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/SINQ/inc/MantidSINQ/PoldiIndexKnownCompounds.h">PoldiIndexKnownCompounds.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/SINQ/src/PoldiIndexKnownCompounds.cpp">PoldiIndexKnownCompounds.cpp</a></p>
 </section>
 </section>
 

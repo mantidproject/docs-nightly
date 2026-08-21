@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometryMomentumTransfer v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>ReflectometryMomentumTransfer v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1580,22 +1580,22 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </div>
 <p><strong>Example - ReflectometryMomentumTransfer</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data.</span>
-<span class="n">reflectedWS</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span><span class="s1">&#39;ILL/D17/317370.nxs&#39;</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;TimeOfFlight&#39;</span><span class="p">)</span>
+<span class="n">reflectedWS</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span><span class="s1">'ILL/D17/317370.nxs'</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">'TimeOfFlight'</span><span class="p">)</span>
 <span class="n">ConvertToDistribution</span><span class="p">(</span><span class="n">reflectedWS</span><span class="p">)</span>
-<span class="n">directWS</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span><span class="s1">&#39;ILL/D17/317369.nxs&#39;</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">&#39;TimeOfFlight&#39;</span><span class="p">)</span>
+<span class="n">directWS</span> <span class="o">=</span> <span class="n">LoadILLReflectometry</span><span class="p">(</span><span class="s1">'ILL/D17/317369.nxs'</span><span class="p">,</span> <span class="n">XUnit</span><span class="o">=</span><span class="s1">'TimeOfFlight'</span><span class="p">)</span>
 <span class="n">ConvertToDistribution</span><span class="p">(</span><span class="n">directWS</span><span class="p">)</span>
 
 <span class="c1"># Extract some instrument parameters.</span>
-<span class="n">chopperPairDistance</span> <span class="o">=</span> <span class="mf">1e-2</span> <span class="o">*</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;Distance.ChopperGap&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
-<span class="n">chopperSpeed</span> <span class="o">=</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;VirtualChopper.chopper1_speed_average&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
-<span class="n">chopper1Phase</span> <span class="o">=</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;VirtualChopper.chopper1_phase_average&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
-<span class="n">chopper2Phase</span> <span class="o">=</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;VirtualChopper.chopper2_phase_average&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
-<span class="n">openoffset</span> <span class="o">=</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;VirtualChopper.open_offset&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">chopperPairDistance</span> <span class="o">=</span> <span class="mf">1e-2</span> <span class="o">*</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'Distance.ChopperGap'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">chopperSpeed</span> <span class="o">=</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'VirtualChopper.chopper1_speed_average'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">chopper1Phase</span> <span class="o">=</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'VirtualChopper.chopper1_phase_average'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">chopper2Phase</span> <span class="o">=</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'VirtualChopper.chopper2_phase_average'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">openoffset</span> <span class="o">=</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'VirtualChopper.open_offset'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 
 <span class="c1"># Normalize to time.</span>
-<span class="n">duration</span> <span class="o">=</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;duration&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'duration'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 <span class="n">reflectedWS</span> <span class="o">/=</span> <span class="n">duration</span>
-<span class="n">duration</span> <span class="o">=</span> <span class="n">directWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;duration&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="n">directWS</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">'duration'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 <span class="n">directWS</span> <span class="o">/=</span> <span class="n">duration</span>
 
 <span class="c1"># Write statistics to sample logs.</span>
@@ -1606,10 +1606,10 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
     <span class="n">DirectForeground</span><span class="o">=</span><span class="p">[</span><span class="mi">190</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">210</span><span class="p">],</span>
     <span class="n">PixelSize</span><span class="o">=</span><span class="mf">0.001195</span><span class="p">,</span>
     <span class="n">DetectorResolution</span><span class="o">=</span><span class="mf">0.0022</span><span class="p">,</span>
-    <span class="n">FirstSlitName</span><span class="o">=</span><span class="s1">&#39;slit2&#39;</span><span class="p">,</span>
-    <span class="n">FirstSlitSizeSampleLog</span><span class="o">=</span><span class="s1">&#39;VirtualSlitAxis.s2w_actual_width&#39;</span><span class="p">,</span>
-    <span class="n">SecondSlitName</span><span class="o">=</span><span class="s1">&#39;slit3&#39;</span><span class="p">,</span>
-    <span class="n">SecondSlitSizeSampleLog</span><span class="o">=</span><span class="s1">&#39;VirtualSlitAxis.s3w_actual_width&#39;</span><span class="p">,</span>
+    <span class="n">FirstSlitName</span><span class="o">=</span><span class="s1">'slit2'</span><span class="p">,</span>
+    <span class="n">FirstSlitSizeSampleLog</span><span class="o">=</span><span class="s1">'VirtualSlitAxis.s2w_actual_width'</span><span class="p">,</span>
+    <span class="n">SecondSlitName</span><span class="o">=</span><span class="s1">'slit3'</span><span class="p">,</span>
+    <span class="n">SecondSlitSizeSampleLog</span><span class="o">=</span><span class="s1">'VirtualSlitAxis.s3w_actual_width'</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1"># Calculate reflectivity.</span>
@@ -1619,35 +1619,35 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 <span class="n">R</span> <span class="o">=</span> <span class="n">refForeground</span> <span class="o">/</span> <span class="n">dirForeground</span>
 
 <span class="c1"># Convert TOF to wavelength, crop.</span>
-<span class="n">R</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="s1">&#39;Wavelength&#39;</span><span class="p">)</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="s1">'Wavelength'</span><span class="p">)</span>
 <span class="n">R</span> <span class="o">=</span> <span class="n">CropWorkspace</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="mf">4.3</span><span class="p">,</span> <span class="n">XMax</span><span class="o">=</span><span class="mf">14.0</span><span class="p">,</span> <span class="n">StoreInADS</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">n</span> <span class="o">=</span> <span class="n">reflectedWS</span><span class="o">.</span><span class="n">getNumberHistograms</span><span class="p">()</span>
-<span class="n">reflectedWS</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">reflectedWS</span><span class="p">,</span> <span class="s1">&#39;Wavelength&#39;</span><span class="p">)</span>
+<span class="n">reflectedWS</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">reflectedWS</span><span class="p">,</span> <span class="s1">'Wavelength'</span><span class="p">)</span>
 <span class="n">reflectedWS</span> <span class="o">=</span> <span class="n">CropWorkspaceRagged</span><span class="p">(</span><span class="n">reflectedWS</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="n">n</span><span class="o">*</span><span class="p">[</span><span class="mf">4.3</span><span class="p">],</span> <span class="n">XMax</span><span class="o">=</span><span class="n">n</span><span class="o">*</span><span class="p">[</span><span class="mf">14.0</span><span class="p">],</span> <span class="n">StoreInADS</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">directWS</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">directWS</span><span class="p">,</span> <span class="s1">&#39;Wavelength&#39;</span><span class="p">)</span>
+<span class="n">directWS</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">directWS</span><span class="p">,</span> <span class="s1">'Wavelength'</span><span class="p">)</span>
 <span class="n">directWS</span> <span class="o">=</span> <span class="n">CropWorkspaceRagged</span><span class="p">(</span><span class="n">directWS</span><span class="p">,</span> <span class="n">XMin</span><span class="o">=</span><span class="n">n</span><span class="o">*</span><span class="p">[</span><span class="mf">4.3</span><span class="p">],</span> <span class="n">XMax</span><span class="o">=</span><span class="n">n</span><span class="o">*</span><span class="p">[</span><span class="mf">14.0</span><span class="p">])</span>
 
 <span class="n">outws</span> <span class="o">=</span> <span class="n">ReflectometryMomentumTransfer</span><span class="p">(</span>
     <span class="n">R</span><span class="p">,</span>
     <span class="n">ReflectedForeground</span><span class="o">=</span><span class="p">[</span><span class="mi">198</span><span class="p">,</span> <span class="mi">209</span><span class="p">],</span>
-    <span class="n">SummationType</span><span class="o">=</span><span class="s1">&#39;SumInLambda&#39;</span><span class="p">,</span>
+    <span class="n">SummationType</span><span class="o">=</span><span class="s1">'SumInLambda'</span><span class="p">,</span>
     <span class="n">PixelSize</span><span class="o">=</span><span class="mf">0.001195</span><span class="p">,</span>
     <span class="n">DetectorResolution</span><span class="o">=</span><span class="mf">0.0022</span><span class="p">,</span>
     <span class="n">ChopperRadius</span><span class="o">=</span><span class="mf">0.36</span><span class="p">,</span>
     <span class="n">ChopperSpeed</span><span class="o">=</span><span class="n">chopperSpeed</span><span class="p">,</span>
     <span class="n">ChopperOpening</span><span class="o">=</span><span class="mf">45.</span> <span class="o">-</span> <span class="p">(</span><span class="n">chopper2Phase</span> <span class="o">-</span> <span class="n">chopper1Phase</span><span class="p">)</span> <span class="o">-</span> <span class="n">openoffset</span><span class="p">,</span>
     <span class="n">ChopperPairDistance</span><span class="o">=</span><span class="n">chopperPairDistance</span><span class="p">,</span>
-    <span class="n">FirstSlitName</span><span class="o">=</span><span class="s1">&#39;slit2&#39;</span><span class="p">,</span>
-    <span class="n">FirstSlitSizeSampleLog</span><span class="o">=</span><span class="s1">&#39;VirtualSlitAxis.s2w_actual_width&#39;</span><span class="p">,</span>
-    <span class="n">SecondSlitName</span><span class="o">=</span><span class="s1">&#39;slit3&#39;</span><span class="p">,</span>
-    <span class="n">SecondSlitSizeSampleLog</span><span class="o">=</span><span class="s1">&#39;VirtualSlitAxis.s3w_actual_width&#39;</span><span class="p">,</span>
+    <span class="n">FirstSlitName</span><span class="o">=</span><span class="s1">'slit2'</span><span class="p">,</span>
+    <span class="n">FirstSlitSizeSampleLog</span><span class="o">=</span><span class="s1">'VirtualSlitAxis.s2w_actual_width'</span><span class="p">,</span>
+    <span class="n">SecondSlitName</span><span class="o">=</span><span class="s1">'slit3'</span><span class="p">,</span>
+    <span class="n">SecondSlitSizeSampleLog</span><span class="o">=</span><span class="s1">'VirtualSlitAxis.s3w_actual_width'</span><span class="p">,</span>
     <span class="n">TOFChannelWidth</span><span class="o">=</span><span class="mf">57.</span>
 <span class="p">)</span>
 
 <span class="n">qs</span> <span class="o">=</span> <span class="n">outws</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">dqs</span> <span class="o">=</span> <span class="n">outws</span><span class="o">.</span><span class="n">dx</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;First reflectivity point Qz = </span><span class="si">{:.4f}</span><span class="s1"> +- </span><span class="si">{:.4f}</span><span class="s1"> A-1&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">qs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dqs</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;and last Qz = </span><span class="si">{:.4f}</span><span class="s1"> +- </span><span class="si">{:.4f}</span><span class="s1"> A-1&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">qs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dqs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'First reflectivity point Qz = </span><span class="si">{:.4f}</span><span class="s1"> +- </span><span class="si">{:.4f}</span><span class="s1"> A-1'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">qs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dqs</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'and last Qz = </span><span class="si">{:.4f}</span><span class="s1"> +- </span><span class="si">{:.4f}</span><span class="s1"> A-1'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">qs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dqs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -1669,8 +1669,8 @@ and last Qz = 0.0018 +- 0.0003 A-1
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Reflectometry/inc/MantidReflectometry/ReflectometryMomentumTransfer.h">ReflectometryMomentumTransfer.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Reflectometry/src/ReflectometryMomentumTransfer.cpp">ReflectometryMomentumTransfer.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Reflectometry/inc/MantidReflectometry/ReflectometryMomentumTransfer.h">ReflectometryMomentumTransfer.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Reflectometry/src/ReflectometryMomentumTransfer.cpp">ReflectometryMomentumTransfer.cpp</a></p>
 </section>
 </section>
 

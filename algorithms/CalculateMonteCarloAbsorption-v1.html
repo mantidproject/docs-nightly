@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CalculateMonteCarloAbsorption v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CalculateMonteCarloAbsorption v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/CalculateMonteCarloAbsorption-v1';</script>
@@ -1700,8 +1700,8 @@ Cylinder parameters: <em>SampleRadius</em> for the sample, <em>ContainerInnerRad
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
 <p><strong>Example - CalculateMonteCarloAbsorption</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s2">&quot;Quasielastic&quot;</span><span class="p">,</span>
-                                  <span class="n">XUnit</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s2">"Quasielastic"</span><span class="p">,</span>
+                                  <span class="n">XUnit</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">,</span>
                                   <span class="n">XMin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span>
                                   <span class="n">XMax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                                   <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
@@ -1709,29 +1709,29 @@ Cylinder parameters: <em>SampleRadius</em> for the sample, <em>ContainerInnerRad
 <span class="c1"># Fake it here</span>
 <span class="n">inst_name</span> <span class="o">=</span> <span class="n">sample_ws</span><span class="o">.</span><span class="n">getInstrumentName</span><span class="p">()</span>
 <span class="n">SetInstrumentParameter</span><span class="p">(</span><span class="n">sample_ws</span><span class="p">,</span> <span class="n">ComponentName</span><span class="o">=</span><span class="n">inst_name</span><span class="p">,</span>
-    <span class="n">ParameterName</span><span class="o">=</span><span class="s1">&#39;Efixed&#39;</span><span class="p">,</span> <span class="n">ParameterType</span><span class="o">=</span><span class="s1">&#39;Number&#39;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="s1">&#39;4.1&#39;</span><span class="p">)</span>
+    <span class="n">ParameterName</span><span class="o">=</span><span class="s1">'Efixed'</span><span class="p">,</span> <span class="n">ParameterType</span><span class="o">=</span><span class="s1">'Number'</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="s1">'4.1'</span><span class="p">)</span>
 
-<span class="n">container_ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s2">&quot;Quasielastic&quot;</span><span class="p">,</span>
-                                     <span class="n">XUnit</span><span class="o">=</span><span class="s2">&quot;Wavelength&quot;</span><span class="p">,</span>
+<span class="n">container_ws</span> <span class="o">=</span> <span class="n">CreateSampleWorkspace</span><span class="p">(</span><span class="n">Function</span><span class="o">=</span><span class="s2">"Quasielastic"</span><span class="p">,</span>
+                                     <span class="n">XUnit</span><span class="o">=</span><span class="s2">"Wavelength"</span><span class="p">,</span>
                                      <span class="n">XMin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span>
                                      <span class="n">XMax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                                      <span class="n">BinWidth</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="n">SetInstrumentParameter</span><span class="p">(</span><span class="n">container_ws</span><span class="p">,</span> <span class="n">ComponentName</span><span class="o">=</span><span class="n">inst_name</span><span class="p">,</span>
-    <span class="n">ParameterName</span><span class="o">=</span><span class="s1">&#39;Efixed&#39;</span><span class="p">,</span> <span class="n">ParameterType</span><span class="o">=</span><span class="s1">&#39;Number&#39;</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="s1">&#39;4.1&#39;</span><span class="p">)</span>
+    <span class="n">ParameterName</span><span class="o">=</span><span class="s1">'Efixed'</span><span class="p">,</span> <span class="n">ParameterType</span><span class="o">=</span><span class="s1">'Number'</span><span class="p">,</span> <span class="n">Value</span><span class="o">=</span><span class="s1">'4.1'</span><span class="p">)</span>
 
 <span class="n">corrections</span> <span class="o">=</span> <span class="n">CalculateMonteCarloAbsorption</span><span class="p">(</span><span class="n">SampleWorkspace</span> <span class="o">=</span> <span class="n">sample_ws</span><span class="p">,</span>
-                                            <span class="n">SampleChemicalFormula</span> <span class="o">=</span> <span class="s1">&#39;H2-O&#39;</span><span class="p">,</span>
-                                            <span class="n">SampleDensityType</span> <span class="o">=</span> <span class="s1">&#39;Mass Density&#39;</span><span class="p">,</span>
+                                            <span class="n">SampleChemicalFormula</span> <span class="o">=</span> <span class="s1">'H2-O'</span><span class="p">,</span>
+                                            <span class="n">SampleDensityType</span> <span class="o">=</span> <span class="s1">'Mass Density'</span><span class="p">,</span>
                                             <span class="n">SampleDensity</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
                                             <span class="n">ContainerWorkspace</span> <span class="o">=</span> <span class="n">container_ws</span><span class="p">,</span>
-                                            <span class="n">ContainerChemicalFormula</span> <span class="o">=</span> <span class="s1">&#39;Al&#39;</span><span class="p">,</span>
-                                            <span class="n">ContainerDensityType</span> <span class="o">=</span> <span class="s1">&#39;Mass Density&#39;</span><span class="p">,</span>
+                                            <span class="n">ContainerChemicalFormula</span> <span class="o">=</span> <span class="s1">'Al'</span><span class="p">,</span>
+                                            <span class="n">ContainerDensityType</span> <span class="o">=</span> <span class="s1">'Mass Density'</span><span class="p">,</span>
                                             <span class="n">ContainerDensity</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
                                             <span class="n">EventsPerPoint</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
                                             <span class="n">BeamHeight</span> <span class="o">=</span> <span class="mf">3.5</span><span class="p">,</span>
                                             <span class="n">BeamWidth</span> <span class="o">=</span> <span class="mf">4.0</span><span class="p">,</span>
                                             <span class="n">Height</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
-                                            <span class="n">Shape</span> <span class="o">=</span> <span class="s1">&#39;FlatPlate&#39;</span><span class="p">,</span>
+                                            <span class="n">Shape</span> <span class="o">=</span> <span class="s1">'FlatPlate'</span><span class="p">,</span>
                                             <span class="n">SampleWidth</span> <span class="o">=</span> <span class="mf">1.4</span><span class="p">,</span>
                                             <span class="n">SampleThickness</span> <span class="o">=</span> <span class="mf">2.1</span><span class="p">,</span>
                                             <span class="n">ContainerFrontThickness</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">,</span>
@@ -1740,9 +1740,9 @@ Cylinder parameters: <em>SampleRadius</em> for the sample, <em>ContainerInnerRad
 <span class="n">ass_ws</span> <span class="o">=</span> <span class="n">corrections</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">acc_ws</span> <span class="o">=</span> <span class="n">corrections</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workspaces: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ass_ws</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">acc_ws</span><span class="o">.</span><span class="n">getName</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Y-Unit Label of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ass_ws</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ass_ws</span><span class="o">.</span><span class="n">YUnitLabel</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Y-Unit Label of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">acc_ws</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">acc_ws</span><span class="o">.</span><span class="n">YUnitLabel</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Workspaces: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ass_ws</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span> <span class="o">+</span> <span class="s2">", "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">acc_ws</span><span class="o">.</span><span class="n">getName</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Y-Unit Label of "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ass_ws</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ass_ws</span><span class="o">.</span><span class="n">YUnitLabel</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Y-Unit Label of "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">acc_ws</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">acc_ws</span><span class="o">.</span><span class="n">YUnitLabel</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
@@ -1755,7 +1755,7 @@ Y-Unit Label of corrections_acc: Attenuation factor
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/CalculateMonteCarloAbsorption.py">CalculateMonteCarloAbsorption.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/CalculateMonteCarloAbsorption.py">CalculateMonteCarloAbsorption.py</a></p>
 </section>
 </section>
 

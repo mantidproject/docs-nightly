@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Running Algorithms With Python &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>Running Algorithms With Python &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../../../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../../../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/python_in_mantid/algorithms_and_workspaces/01_running_algorithms';</script>
@@ -563,14 +563,14 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mantid.simpleapi</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="c1"># This example just has .RAW extension but it is able to load all</span>
 <span class="c1"># file types that Mantid is aware of.</span>
-<span class="c1"># run = Load(&#39;filename.nxs&#39;)</span>
-<span class="n">run</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">&#39;HRP39182.RAW&#39;</span><span class="p">)</span>
+<span class="c1"># run = Load('filename.nxs')</span>
+<span class="n">run</span> <span class="o">=</span> <span class="n">Load</span><span class="p">(</span><span class="s1">'HRP39182.RAW'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The workspace that was the result of the load is returned and assigned to the <cite>run</cite> variable. The function is defined such that the created workspace will have the name <cite>run</cite>, which will appear in the workspace list.
 This feature is common to all of the single-shot functions: “The output workspace name is picked up from the variable that the function return is assigned to.”</p>
 <p>This workspace can then be carried into another algorithm, <a class="reference internal" href="../../../algorithms/ConvertUnits-v1.html#algm-convertunits"><span class="std std-ref">ConvertUnits v1</span></a> for example. Running</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">run</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">&#39;dSpacing&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">run</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">'dSpacing'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>will execute the <a class="reference internal" href="../../../algorithms/ConvertUnits-v1.html#algm-convertunits"><span class="std std-ref">ConvertUnits v1</span></a> algorithm with the input workspace set as <cite>run</cite> and the target unit set to <cite>dSpacing</cite>. As the function is assigned to the run variable, the output replaces the input workspace. If a different variable were used then the output would have ended up in workspace name that matches that variable name.</p>
@@ -579,12 +579,12 @@ This feature is common to all of the single-shot functions: “The output worksp
 <h2>Keywords<a class="headerlink" href="#keywords" title="Link to this heading">#</a></h2>
 <p>All algorithms can be called using the arguments just given by position, i.e.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All arguments provided as pure positional arguments:</span>
-<span class="n">run</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">run</span><span class="p">,</span> <span class="s1">&#39;dSpacing&#39;</span><span class="p">,</span> <span class="s1">&#39;Direct&#39;</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">run</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">run</span><span class="p">,</span> <span class="s1">'dSpacing'</span><span class="p">,</span> <span class="s1">'Direct'</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>It is however advisable when writing scripts to use the keyword syntax that Python offers, i.e.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All arguments provided with keywords:</span>
-<span class="n">run</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">run</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">&#39;dSpacing&#39;</span><span class="p">,</span> <span class="n">EMode</span><span class="o">=</span><span class="s1">&#39;Direct&#39;</span><span class="p">,</span> <span class="n">EFixed</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span> <span class="n">AlignBins</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">run</span> <span class="o">=</span> <span class="n">ConvertUnits</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">run</span><span class="p">,</span> <span class="n">Target</span><span class="o">=</span><span class="s1">'dSpacing'</span><span class="p">,</span> <span class="n">EMode</span><span class="o">=</span><span class="s1">'Direct'</span><span class="p">,</span> <span class="n">EFixed</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span> <span class="n">AlignBins</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This style is preferred as the author or another person attempts to read the script at a later date it is much easier to decipher the intent of the second style versus the first, especially with the last <cite>True/False</cite> parameter.</p>
@@ -597,23 +597,23 @@ This feature is common to all of the single-shot functions: “The output worksp
 <span class="c1"># The result variable will contain a tuple: (OutputWorkspace, JoinWavelength)</span>
 <span class="n">outWS</span><span class="p">,</span> <span class="n">wavelength</span> <span class="o">=</span> <span class="n">UnwrapMonitor</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span><span class="n">LRef</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OutputWorkspace is a: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"OutputWorkspace is a: "</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">outWS</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;JoinWavelength is a: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"JoinWavelength is a: "</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">wavelength</span><span class="p">))</span>
 
 <span class="c1"># Alternatively we can unpack the tuple later</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">UnwrapMonitor</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span><span class="n">LRef</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OutputWorkspace is a: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"OutputWorkspace is a: "</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;JoinWavelength is a: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"JoinWavelength is a: "</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
 <span class="c1"># From Mantid 3.10 named tuples can be used</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OutputWorkspace is a: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"OutputWorkspace is a: "</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">OutputWorkspace</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;JoinWavelength is a: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"JoinWavelength is a: "</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">JoinWavelength</span><span class="p">))</span>
 </pre></div>
 </div>

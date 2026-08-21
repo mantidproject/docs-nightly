@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CreateMonteCarloWorkspace v1 &#8212; MantidProject 6.16.20260813.2148+uncommitted documentation</title>
+    <title>CreateMonteCarloWorkspace v1 &#8212; MantidProject 6.16.20260820.1557+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=f2b79d3a"></script>
+    <script src="../_static/documentation_options.js?v=9437e83d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/CreateMonteCarloWorkspace-v1';</script>
@@ -1496,18 +1496,18 @@ distribution of input data, useful for testing of fitting functions and modeling
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mantid.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunctionFactory</span>
 
-<span class="n">func</span> <span class="o">=</span> <span class="n">FunctionWrapper</span><span class="p">(</span><span class="n">FunctionFactory</span><span class="o">.</span><span class="n">createInitialized</span><span class="p">(</span><span class="s2">&quot;name=BackToBackExponential,I=25000,A=0.06,B=0.015,X0=30000,S=30;name=FlatBackground,A0=50&quot;</span><span class="p">))</span>
+<span class="n">func</span> <span class="o">=</span> <span class="n">FunctionWrapper</span><span class="p">(</span><span class="n">FunctionFactory</span><span class="o">.</span><span class="n">createInitialized</span><span class="p">(</span><span class="s2">"name=BackToBackExponential,I=25000,A=0.06,B=0.015,X0=30000,S=30;name=FlatBackground,A0=50"</span><span class="p">))</span>
 <span class="c1"># create input workspace</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">29650.0</span><span class="p">,</span> <span class="mf">30500.0</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">DataY</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">DataE</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">UnitX</span><span class="o">=</span><span class="s2">&quot;TOF&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">CreateWorkspace</span><span class="p">(</span><span class="n">DataX</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">DataY</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">DataE</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">UnitX</span><span class="o">=</span><span class="s2">"TOF"</span><span class="p">)</span>
 <span class="c1"># call algorithm</span>
 <span class="n">ws_mc</span> <span class="o">=</span> <span class="n">CreateMonteCarloWorkspace</span><span class="p">(</span><span class="n">InputWorkspace</span><span class="o">=</span><span class="n">ws</span><span class="p">,</span> <span class="n">Seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="s1">&#39;mantid&#39;</span><span class="p">})</span>
-<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ws_mc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CreateMonteCarloWorkspace output&#39;</span><span class="p">,</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'projection'</span><span class="p">:</span> <span class="s1">'mantid'</span><span class="p">})</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'input'</span><span class="p">,</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ws_mc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'CreateMonteCarloWorkspace output'</span><span class="p">,</span> <span class="n">wkspIndex</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
 <span class="n">legend</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mf">8.0</span><span class="p">)</span><span class="o">.</span><span class="n">set_draggable</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">legend</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1518,8 +1518,8 @@ distribution of input data, useful for testing of fitting functions and modeling
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/inc/MantidAlgorithms/CreateMonteCarloWorkspace.h">CreateMonteCarloWorkspace.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/b0460639ee081adb83b400d663b83a05a62a2db1/Framework/Algorithms/src/CreateMonteCarloWorkspace.cpp">CreateMonteCarloWorkspace.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/inc/MantidAlgorithms/CreateMonteCarloWorkspace.h">CreateMonteCarloWorkspace.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/e0f3effbb95a3edff2ded9cce1d3122509072ef9/Framework/Algorithms/src/CreateMonteCarloWorkspace.cpp">CreateMonteCarloWorkspace.cpp</a></p>
 </section>
 </section>
 

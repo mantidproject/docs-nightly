@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>HFIRPowderReduction v1 &#8212; MantidProject 6.16.20260824.1423+uncommitted documentation</title>
+    <title>HFIRPowderReduction v1 &#8212; MantidProject 6.16.20260825.1548+uncommitted documentation</title>
   
   
   
@@ -27,22 +27,24 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=562d7d41" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=961c2017"></script>
+    <script src="../_static/documentation_options.js?v=7f76de65"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/HFIRPowderReduction-v1';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -1650,7 +1652,7 @@
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>1</p></td>
-<td><p>The background will be scaled by this number before being subtracted.</p></td>
+<td><p>Overall scale factor (s) applied to the output. Use SampleBackgroundScaleFactor to scale the background.</p></td>
 </tr>
 <tr class="row-odd"><td><p>NormaliseBy</p></td>
 <td><p>Input</p></td>
@@ -1707,11 +1709,127 @@ Reducing WAND^2 data with HFIRPowderReduction is very similar to using <a class=
 and reduction steps are slightly modified.</p>
 <p>By default the instrument geometry is determined by the sample file. An instrument definition file (IDF) can
 optionally be supplied through the <code class="docutils literal notranslate"><span class="pre">IDFFilename</span></code> property to override the geometry used by the sample file.</p>
+</section>
+<section id="reduction-formula">
+<h2>Reduction formula<a class="headerlink" href="#reduction-formula" title="Link to this heading">#</a></h2>
+<p>Four inputs take part in the reduction: the sample <span class="math notranslate nohighlight">\(S\)</span>, the sample background
+<span class="math notranslate nohighlight">\(S_B\)</span>, the vanadium <span class="math notranslate nohighlight">\(V\)</span> and the vanadium background <span class="math notranslate nohighlight">\(V_B\)</span>. Each one is
+normalised by its <strong>own</strong> monitor count or counting time, so that all four are on a
+common per-unit-exposure scale before anything is subtracted or divided.</p>
+<section id="normalisation">
+<h3>Normalisation<a class="headerlink" href="#normalisation" title="Link to this heading">#</a></h3>
+<p>For a workspace <span class="math notranslate nohighlight">\(X\)</span> the normalisation scale <span class="math notranslate nohighlight">\(c_X\)</span> is chosen by <code class="docutils literal notranslate"><span class="pre">NormaliseBy</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}c_X = \begin{cases}
+1                          &amp; \texttt{None} \\
+\texttt{gd\_prtn\_chrg}    &amp; \texttt{Monitor} \quad \text{(the integrated monitor count)} \\
+\texttt{duration}          &amp; \texttt{Time}
+\end{cases}\end{split}\]</div>
+<p>Throughout this section a hat denotes the normalised workspace,
+<span class="math notranslate nohighlight">\(\hat{X} = X / c_X\)</span>. <code class="docutils literal notranslate"><span class="pre">NormaliseBy</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">Monitor</span></code> for WAND² and to
+<code class="docutils literal notranslate"><span class="pre">Time</span></code> for MIDAS; with <code class="docutils literal notranslate"><span class="pre">None</span></code> every scale is 1 and the expressions below reduce to
+raw counts.</p>
+</section>
+<section id="vanadium-calibration">
+<h3>Vanadium calibration<a class="headerlink" href="#vanadium-calibration" title="Link to this heading">#</a></h3>
+<p>The vanadium background is subtracted from the vanadium, and the result is corrected for
+absorption and multiple scattering:</p>
+<div class="math notranslate nohighlight">
+\[\hat{V}_\mathrm{corr} = \left( \hat{V} - \hat{V}_B \right) \frac{1 - \Delta_V}{A_V}\]</div>
+</section>
+<section id="sample">
+<h3>Sample<a class="headerlink" href="#sample" title="Link to this heading">#</a></h3>
+<p>The sample background is scaled by <code class="docutils literal notranslate"><span class="pre">SampleBackgroundScaleFactor</span></code> (<span class="math notranslate nohighlight">\(f_B\)</span>) and
+subtracted, and the result is corrected for absorption and multiple scattering:</p>
+<div class="math notranslate nohighlight">
+\[\hat{S}_\mathrm{corr} = \left( \hat{S} - f_B \hat{S}_B \right) \frac{1 - \Delta_S}{A_S}\]</div>
+<p>Because both terms are normalised first, the subtraction is independent of the relative
+exposure of the sample and background runs.</p>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[S_\mathrm{out} = s \, f_\mathrm{norm} \, \frac{\hat{S}_\mathrm{corr}}{\hat{V}_\mathrm{corr}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(s\)</span> is the <code class="docutils literal notranslate"><span class="pre">Scale</span></code> property (default 1) and <span class="math notranslate nohighlight">\(f_\mathrm{norm}\)</span> is the
+absolute-intensity factor described below (<span class="math notranslate nohighlight">\(f_\mathrm{norm} = 1\)</span> unless
+<code class="docutils literal notranslate"><span class="pre">AbsoluteIntensityUnits</span></code> is set).</p>
+<p>Any input that is not supplied simply drops out of the expression: with no vanadium the
+division by <span class="math notranslate nohighlight">\(\hat{V}_\mathrm{corr}\)</span> is skipped, and with no background the
+corresponding subtraction is skipped.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 12.0%" />
+<col style="width: 88.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Property</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(S\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SampleFilename</span></code>, or <code class="docutils literal notranslate"><span class="pre">SampleIPTS</span></code> and <code class="docutils literal notranslate"><span class="pre">SampleRunNumbers</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(S_B\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SampleBackgroundFilename</span></code>, or <code class="docutils literal notranslate"><span class="pre">SampleBackgroundIPTS</span></code> and <code class="docutils literal notranslate"><span class="pre">SampleBackgroundRunNumbers</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(V\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VanadiumFilename</span></code>, or <code class="docutils literal notranslate"><span class="pre">VanadiumIPTS</span></code> and <code class="docutils literal notranslate"><span class="pre">VanadiumRunNumbers</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(V_B\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VanadiumBackgroundFilename</span></code>, or <code class="docutils literal notranslate"><span class="pre">VanadiumBackgroundIPTS</span></code> and <code class="docutils literal notranslate"><span class="pre">VanadiumBackgroundRunNumbers</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(c_X\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">NormaliseBy</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(f_B\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SampleBackgroundScaleFactor</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(s\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Scale</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="absorption-and-multiple-scattering">
+<h3>Absorption and multiple scattering<a class="headerlink" href="#absorption-and-multiple-scattering" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(A\)</span> (absorption) and <span class="math notranslate nohighlight">\(\Delta\)</span> (multiple scattering factor) are computed with
+<a class="reference internal" href="CylinderAbsorptionCW-v1.html#algm-cylinderabsorptioncw"><span class="std std-ref">CylinderAbsorptionCW v1</span></a> using the <code class="docutils literal notranslate"><span class="pre">Sabine</span></code> method, at the wavelength given by
+<code class="docutils literal notranslate"><span class="pre">Wavelength</span></code>.</p>
+<p>For the vanadium, the correction is applied only when <code class="docutils literal notranslate"><span class="pre">VanadiumDiameter</span></code> is greater than
+zero; otherwise <span class="math notranslate nohighlight">\(A_V = 1\)</span> and <span class="math notranslate nohighlight">\(\Delta_V = 0\)</span>, so
+<span class="math notranslate nohighlight">\(\hat{V}_\mathrm{corr} = \hat{V} - \hat{V}_B\)</span>. The rod is modelled as vanadium metal
+at 6.1172 g/cm³ with radius <code class="docutils literal notranslate"><span class="pre">VanadiumDiameter</span></code> / 2 and height <code class="docutils literal notranslate"><span class="pre">VanadiumHeight</span></code>.</p>
+<p>For the sample, the correction is applied only when <code class="docutils literal notranslate"><span class="pre">DoAttenuationCorrection</span></code> is set;
+otherwise <span class="math notranslate nohighlight">\(A_S = 1\)</span> and <span class="math notranslate nohighlight">\(\Delta_S = 0\)</span>. The sample is modelled with
+<code class="docutils literal notranslate"><span class="pre">SampleChemicalFormula</span></code> at a mass density of
+<code class="docutils literal notranslate"><span class="pre">SampleCrystalDensity</span></code> × <code class="docutils literal notranslate"><span class="pre">SamplePackingFraction</span></code>, with radius <code class="docutils literal notranslate"><span class="pre">SampleDiameter</span></code> / 2 and
+height <code class="docutils literal notranslate"><span class="pre">SampleHeight</span></code>. Multiple scattering is included only when
+<code class="docutils literal notranslate"><span class="pre">DoMultipleScatteringCorrection</span></code> is also set; when it is not, <span class="math notranslate nohighlight">\(\Delta_S = 0\)</span> while
+the absorption correction <span class="math notranslate nohighlight">\(A_S\)</span> still applies.</p>
+</section>
+<section id="absolute-intensity-units">
+<h3>Absolute intensity units<a class="headerlink" href="#absolute-intensity-units" title="Link to this heading">#</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">AbsoluteIntensityUnits</span></code> is set the output is put on an absolute scale of
+mb/sr/formula unit by comparing the scattering power of the sample cylinder with that of
+the vanadium cylinder:</p>
+<div class="math notranslate nohighlight">
+\[f_\mathrm{norm} = \frac{1000}{4\pi} \,
+\frac{M_S \, \sigma_V \, \rho_V \, h_V \, r_V^2}
+     {M_V \, f_S \, \rho_S \, h_S \, r_S^2}\]</div>
+<p>with <span class="math notranslate nohighlight">\(\sigma_V = 5.08\)</span> barn (total scattering cross-section of vanadium),
+<span class="math notranslate nohighlight">\(\rho_V = 6.1172\)</span> g/cm³ and <span class="math notranslate nohighlight">\(M_V = 50.94\)</span> g/mol. <span class="math notranslate nohighlight">\(M_S\)</span> is the relative
+molecular mass of <code class="docutils literal notranslate"><span class="pre">SampleChemicalFormula</span></code>, <span class="math notranslate nohighlight">\(\rho_S\)</span> is <code class="docutils literal notranslate"><span class="pre">SampleCrystalDensity</span></code>,
+<span class="math notranslate nohighlight">\(f_S\)</span> is <code class="docutils literal notranslate"><span class="pre">SamplePackingFraction</span></code>, and <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(r\)</span> are the heights and
+radii of the vanadium and sample cylinders as above. This requires
+<code class="docutils literal notranslate"><span class="pre">VanadiumDiameter</span></code>, <code class="docutils literal notranslate"><span class="pre">VanadiumHeight</span></code> and <code class="docutils literal notranslate"><span class="pre">SampleHeight</span></code> to all be greater than zero.</p>
 <p><strong>Categories</strong>: <a class="reference external" href="categories/AlgorithmIndex.html">AlgorithmIndex</a> | <a class="reference external" href="categories/DataHandling/Nexus.html">DataHandling\Nexus</a></p>
+</section>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/dbf65bc002db8130d821d93f4a4cc27fe8bebc9c/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/HFIRPowderReduction.py">HFIRPowderReduction.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/8abb85845b272a6276cfbd295c78420da1185e20/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/HFIRPowderReduction.py">HFIRPowderReduction.py</a></p>
 </section>
 </section>
 
@@ -1765,6 +1883,15 @@ optionally be supplied through the <code class="docutils literal notranslate"><s
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduction-formula">Reduction formula</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisation">Normalisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vanadium-calibration">Vanadium calibration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sample">Sample</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#absorption-and-multiple-scattering">Absorption and multiple scattering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#absolute-intensity-units">Absolute intensity units</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#source">Source</a></li>
 </ul>
   </nav></div>
@@ -1791,8 +1918,8 @@ optionally be supplied through the <code class="docutils literal notranslate"><s
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1826,7 +1953,7 @@ optionally be supplied through the <code class="docutils literal notranslate"><s
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>

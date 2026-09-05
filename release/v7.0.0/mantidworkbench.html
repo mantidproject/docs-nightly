@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Mantid Workbench Changes &#8212; MantidProject 6.16.20260831.1516 documentation</title>
+    <title>Mantid Workbench Changes &#8212; MantidProject 6.16.20260904.1606 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=280b3c0d"></script>
+    <script src="../../_static/documentation_options.js?v=1d631d4e"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/mantidworkbench';</script>
@@ -750,6 +750,7 @@ disabled, or when the submitted contact information is unchanged.</p></li>
 <li><p>In the ALF View interface, fixed an error on opening the interface.</p></li>
 <li><p>The <span class="menuselection">File ‣ Save Project as…</span> dialog now correctly skips an unmodified <a class="reference internal" href="../../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects.EventWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventWorkspace</span></code></a> when monitors are loaded and <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Altered</span> <span class="pre">Workspaces</span> <span class="pre">Only</span></code> is selected without resulting in mantid crashing.</p></li>
 <li><p><a class="reference internal" href="../../tutorials/python_in_mantid/plotting/02_scripting_plots.html#generate-plot-script"><span class="std std-ref">Script generation</span></a> of a mantid plot now considers the device pixel ratio and figure layout to generate the script.</p></li>
+<li><p>On Linux systems with an NFS-backed configuration directory, Workbench now stages its QSettings files in the local cache. This avoids lock-file failures when running multiple Workbench instances and preserves conflicting settings for recovery. Existing settings for the Mantid Reduction interface must be migrated once to the staged INI file.</p></li>
 </ul>
 </section>
 <section id="instrumentviewer">
@@ -760,9 +761,11 @@ disabled, or when the submitted contact information is unchanged.</p></li>
 <li><p>In the new Instrument View, added an option to draw the sample position, and labelled the <code class="docutils literal notranslate"><span class="pre">Monitors</span></code> and <code class="docutils literal notranslate"><span class="pre">Sample</span></code> checkboxes with a coloured circle to indicate the colour of the drawn items.</p></li>
 <li><p>New Instrument View now allows for both rectangle zoom and scroll wheel zoom.</p></li>
 <li><p>New Instrument View now allows for zooming and panning in lineplot when adding/removing peaks.</p></li>
+<li><p>In the new Instrument View, picked detectors are now marked in magenta: shapes are given an outline and points a surrounding halo. These markers are drawn at a fixed size on screen, so a selection stays easy to spot even when zoomed out on a large instrument.</p></li>
 <li><p>In the new Instrument View, the line plot now updates to show the spectra covered by an overlaid ROI or mask shape, and follows the shape as it is dragged, resized, rotated or as the projection is zoomed.</p></li>
 <li><p>New instrument view now allows picking in rectangle zoom by pressing the <cite>Ctrl</cite> or <cite>Shift</cite> keys.</p></li>
 <li><p>New instrument view now allows picking the closest detector with peaks to the mouse position.</p></li>
+<li><p>In the new Instrument View, the <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> and <code class="docutils literal notranslate"><span class="pre">Masking</span></code> tabs now have a <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">From</span> <span class="pre">Current</span> <span class="pre">Selection</span></code> button, which creates an ROI or mask from the detectors currently selected in the projection. For example, detectors can be picked with the <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Bank/Tube</span></code> option and then masked, without having to draw a shape around them.</p></li>
 <li><p>Sped up new Instrument View by creating the component tree lazily, i.e. only when a component in the tree is expanded. This will give a speed-up of a few seconds for large instruments.</p></li>
 <li><p>In the new Instrument View, when drawing the sample position, if there is a sample shape defined, then that shape will be drawn instead of a simple point.</p></li>
 </ul>

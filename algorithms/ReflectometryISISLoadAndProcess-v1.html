@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometryISISLoadAndProcess v1 &#8212; MantidProject 6.16.20260831.1516 documentation</title>
+    <title>ReflectometryISISLoadAndProcess v1 &#8212; MantidProject 6.16.20260904.1606 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=280b3c0d"></script>
+    <script src="../_static/documentation_options.js?v=1d631d4e"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ReflectometryISISLoadAndProcess-v1';</script>
@@ -1855,7 +1855,8 @@
 <li><p>Clean up the TOF workspaces into a group.</p></li>
 </ul>
 <p>Input runs and transmission runs are loaded if required, or existing workspaces are used if they are already loaded. When runs are loaded, they are named based on the run number with a <code class="docutils literal notranslate"><span class="pre">TOF_</span></code> or <code class="docutils literal notranslate"><span class="pre">TRANS_</span></code> prefix. To determine whether workspaces are already loaded, workspace names are matched based on the run number with or without this prefix. Other naming formats are not considered to match.</p>
-<p>If a value is provided for the <code class="docutils literal notranslate"><span class="pre">CalibrationFile</span></code> property then calibration will be applied for input runs that are loaded (but not where existing workspaces are being used). The calibration will be performed using <a class="reference internal" href="ReflectometryISISCalibration-v1.html#algm-reflectometryisiscalibration"><span class="std std-ref">ReflectometryISISCalibration v1</span></a>. See the documentation for the required calibration file format.</p>
+<p>If a value is provided for the <code class="docutils literal notranslate"><span class="pre">CalibrationFile</span></code> property then calibration will be applied for input runs that are loaded (but not where existing workspaces are being used). The calibration will be performed using <a class="reference internal" href="ReflectometryISISCalibration-v1.html#algm-reflectometryisiscalibration"><span class="std std-ref">ReflectometryISISCalibration v1</span></a>. See the documentation for the required calibration file format. When using the POLREF calibration workflow, the experiment angle is taken from <code class="docutils literal notranslate"><span class="pre">ThetaIn</span></code> or, when <code class="docutils literal notranslate"><span class="pre">ThetaIn</span></code> is not supplied, from the run log selected by <code class="docutils literal notranslate"><span class="pre">ThetaLogName</span></code>.</p>
+<p>If a loaded file already contains a <code class="docutils literal notranslate"><span class="pre">reflectometry_calibration_file</span></code> run log, the algorithm warns that the data have previously been calibrated. The calibration selected in <code class="docutils literal notranslate"><span class="pre">CalibrationFile</span></code> is still applied, but applying a calibration more than once may produce erroneous results.</p>
 <p>If time slicing is enabled, the input run must be an event workspace and have monitors loaded; otherwise, it must be a histogram workspace. If the workspace already exists but is the incorrect type or is missing monitors, it will be reloaded.</p>
 <p>Input runs can be combined before reduction by supplying a comma-separated list of run numbers. They will be summed using the <a class="reference internal" href="Plus-v1.html#algm-plus"><span class="std std-ref">Plus v1</span></a> algorithm. Similarly, multiple input workspaces for the first and/or second transmission inputs can be summed prior to reduction.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">SubtractBackground</span></code> is true, then background subtraction will be performed using the <a class="reference internal" href="ReflectometryBackgroundSubtraction-v1.html#algm-reflectometrybackgroundsubtraction"><span class="std std-ref">ReflectometryBackgroundSubtraction v1</span></a> algorithm. There are various options for specifying how the subtraction should be done.</p>
@@ -1939,7 +1940,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/96cd2d3bb37385e40be085632f920053536e53fe/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryISISLoadAndProcess.py">ReflectometryISISLoadAndProcess.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6eb0be04665946b64185c67da728bf61aacecc97/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryISISLoadAndProcess.py">ReflectometryISISLoadAndProcess.py</a></p>
 </section>
 </section>
 

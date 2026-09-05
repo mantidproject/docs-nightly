@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>HFIRGoniometerIndependentBackground v1 &#8212; MantidProject 6.16.20260831.1516 documentation</title>
+    <title>HFIRGoniometerIndependentBackground v1 &#8212; MantidProject 6.16.20260904.1606 documentation</title>
   
   
   
@@ -40,9 +40,11 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=280b3c0d"></script>
+    <script src="../_static/documentation_options.js?v=1d631d4e"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/HFIRGoniometerIndependentBackground-v1';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -1465,19 +1467,31 @@
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p>50</p></td>
-<td><p>Backgound level defines percentile range, (default 50, median filter)</p></td>
+<td><p>Percentile in the range 0 to 100 defining the background level (default 50, median filter)</p></td>
 </tr>
 <tr class="row-even"><td><p>BackgroundWindowSize</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
-<td><p>Background Window Size, only applies to the rotation axis, assumes the detectors are already               grouped. Integer value or -1 for All values</p></td>
+<td><p>Background window size, only applies to the rotation axis, assumes the detectors are already               grouped. Leave unset to use every value along the rotation axis</p></td>
 </tr>
 <tr class="row-odd"><td><p>FilterMode</p></td>
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>nearest</p></td>
 <td><p>Mode should be ‘nearest’ if the rotation is incomplete or ‘wrap’ if complete within a reasonable tolerance. Allowed values: [‘nearest’, ‘wrap’]</p></td>
+</tr>
+<tr class="row-even"><td><p>NormalizeBy</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td><p>None</p></td>
+<td><p>Normalize the input by per-rotation duration or monitor count before calculating the background. Allowed values: [‘None’, ‘Time’, ‘Monitor’]</p></td>
+</tr>
+<tr class="row-odd"><td><p>NormalizeOutput</p></td>
+<td><p>Input</p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td><p>Keep the output normalized when True; otherwise multiply the calculated normalized background by the duration or monitor count of each rotation</p></td>
 </tr>
 <tr class="row-even"><td><p>OutputWorkspace</p></td>
 <td><p>Output</p></td>
@@ -1491,11 +1505,53 @@
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
-<p>This algorithm is used to generate a background for HFIR monochromatic diffraction data. This algorithm wraps
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.percentile_filter.html">Scipy.ndimage.percentile_filter</a>
-to generate the background for the input workspace. In the case that BackgroundWindowSize is -1,
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.percentile.html">Numpy.percentile</a> is used to generate the background as
-it is much faster.</p>
+<p>This algorithm is used to generate a background for HFIR monochromatic diffraction data. For every
+detector pixel it takes a percentile of the intensities recorded along the rotation axis. Bragg
+scattering illuminates a pixel for only part of the scan while the background persists, so a
+percentile rejects the peaks and retains the goniometer-independent level.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">BackgroundWindowSize</span></code> is set, the percentile is taken over a sliding window of that many
+rotation steps, allowing the background to vary slowly with rotation angle. It selects a ranked value
+in the same way as
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.percentile_filter.html">Scipy.ndimage.percentile_filter</a>.
+When the property is left unset, the percentile is taken over the whole rotation axis and the
+background is constant in rotation for each pixel; the value is interpolated linearly between
+order statistics, as
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.percentile.html">Numpy.percentile</a> does.</p>
+<p><code class="docutils literal notranslate"><span class="pre">BackgroundLevel</span></code> is a percentile and must lie between 0 and 100. It defaults to 50, which
+takes the median along the rotation axis.</p>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">NormalizeBy</span></code> property can be set to <code class="docutils literal notranslate"><span class="pre">Time</span></code> or <code class="docutils literal notranslate"><span class="pre">Monitor</span></code> to divide each rotation
+by its duration or monitor count before calculating the percentile. <code class="docutils literal notranslate"><span class="pre">None</span></code> does no normalization.
+<code class="docutils literal notranslate"><span class="pre">NormalizeOutput</span></code> controls the units of the result. When it is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the output background
+remains normalized when the user chooses <code class="docutils literal notranslate"><span class="pre">Time</span></code> or <code class="docutils literal notranslate"><span class="pre">Monitor</span></code>.
+When it is <code class="docutils literal notranslate"><span class="pre">False</span></code> (the default), the result is multiplied by time duration or monitor count of each rotation.
+The corresponding error variances are scaled consistently.</p>
+<p>For WAND (HB2C), the <code class="docutils literal notranslate"><span class="pre">duration</span></code> and <code class="docutils literal notranslate"><span class="pre">monitor_count</span></code> sample logs are used. For DEMAND (HB3A),
+the corresponding logs are named <code class="docutils literal notranslate"><span class="pre">time</span></code> and <code class="docutils literal notranslate"><span class="pre">monitor</span></code>. Normalization is not supported for
+other instruments.</p>
+</section>
+<section id="uncertainties">
+<h2>Uncertainties<a class="headerlink" href="#uncertainties" title="Link to this heading">#</a></h2>
+<p>The percentile is an estimator built from the rotation steps that contribute to it, not a single
+measurement, so it is more precise than the value it selects. For <span class="math notranslate nohighlight">\(n\)</span> contributing rotations
+whose values have standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>, the output variance is</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{Var}(\hat{q}_p) = \frac{p(1-p)}{\phi(z_p)^2} \frac{\sigma^2}{n}\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> is <code class="docutils literal notranslate"><span class="pre">BackgroundLevel</span></code> expressed as a fraction, <span class="math notranslate nohighlight">\(z_p\)</span> is the standard normal
+quantile at <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> its density. The leading factor is <span class="math notranslate nohighlight">\(\pi/2\)</span> for the
+median, giving the familiar <span class="math notranslate nohighlight">\(1.2533\,\sigma/\sqrt{n}\)</span>. Here <span class="math notranslate nohighlight">\(n\)</span> is the length of the
+rotation axis when <code class="docutils literal notranslate"><span class="pre">BackgroundWindowSize</span></code> is unset, and <code class="docutils literal notranslate"><span class="pre">BackgroundWindowSize</span></code> otherwise, while
+<span class="math notranslate nohighlight">\(\sigma^2\)</span> is the input variance of the value the percentile selected. Taking <span class="math notranslate nohighlight">\(\sigma\)</span>
+at the percentile rather than across all contributing rotations keeps the estimate free of the Bragg
+peaks that the percentile is chosen to reject.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">BackgroundLevel</span></code> of 0 or 100 selects the smallest or largest value, for which this limit does not
+apply; those cases keep the variance of the selected value, which is a conservative upper bound.</p>
+<p>Two limitations are worth noting. Where the sliding window is padded at the ends of an incomplete
+rotation, it repeats values, so fewer than <code class="docutils literal notranslate"><span class="pre">BackgroundWindowSize</span></code> independent rotations contribute
+and the variance is slightly underestimated. More importantly, the output uncertainties are strongly
+correlated - completely so across the rotation axis when <code class="docutils literal notranslate"><span class="pre">BackgroundWindowSize</span></code> is unset, and
+between neighbouring rotations otherwise, since their windows overlap. A <code class="docutils literal notranslate"><span class="pre">MDHistoWorkspace</span></code> cannot
+represent that correlation, so any subsequent operation that combines these values along the rotation
+axis will underestimate the resulting uncertainty.</p>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
@@ -1528,7 +1584,7 @@ it is much faster.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/96cd2d3bb37385e40be085632f920053536e53fe/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/HFIRGoniometerIndependentBackground.py">HFIRGoniometerIndependentBackground.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6eb0be04665946b64185c67da728bf61aacecc97/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/HFIRGoniometerIndependentBackground.py">HFIRGoniometerIndependentBackground.py</a></p>
 </section>
 </section>
 
@@ -1582,6 +1638,7 @@ it is much faster.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainties">Uncertainties</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#source">Source</a></li>
 </ul>

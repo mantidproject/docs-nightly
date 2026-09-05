@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.16.20260831.1516 documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.16.20260904.1606 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=280b3c0d"></script>
+    <script src="../../_static/documentation_options.js?v=1d631d4e"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/framework';</script>
@@ -733,6 +733,13 @@
 <h3>New features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>A new algorithm <a class="reference internal" href="../../algorithms/SaveMDToAscii-v1.html#algm-savemdtoascii"><span class="std std-ref">SaveMDToAscii v1</span></a> has been added to save an <a class="reference internal" href="../../api/python/mantid/dataobjects/MDHistoWorkspace.html#mantid.dataobjects.MDHistoWorkspace" title="mantid.dataobjects.MDHistoWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDHistoWorkspace</span></code></a> to a plain ASCII file, with configurable exclusion of integrated dimensions, normalization, column separator and numeric precision.</p></li>
+<li><p>Added optional duration- and monitor-count normalization to
+<a class="reference internal" href="../../algorithms/HFIRGoniometerIndependentBackground-v1.html#algm-hfirgoniometerindependentbackground"><span class="std std-ref">HFIRGoniometerIndependentBackground v1</span></a>. Backgrounds can now be calculated from
+exposure-normalized rotations and either retained in normalized units or restored to the
+per-rotation exposure scale. WAND (HB2C) and DEMAND (HB3A) sample-log naming conventions
+are supported.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/HFIRGoniometerIndependentBackground-v1.html#algm-hfirgoniometerindependentbackground"><span class="std std-ref">HFIRGoniometerIndependentBackground v1</span></a> no longer accepts a negative <code class="docutils literal notranslate"><span class="pre">BackgroundLevel</span></code>.
+The property is a percentile and must be between 0 and 100.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction v1</span></a> now attempts to autopopulate the sample absorption parameters if correct data is found in sample run files</p></li>
 <li><p><a class="reference internal" href="../../algorithms/SumSpectra-v1.html#algm-sumspectra"><span class="std std-ref">SumSpectra v1</span></a> algorithm has been optimized for better performance.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/RenameWorkspace-v1.html#algm-renameworkspace"><span class="std std-ref">RenameWorkspace</span></a> can now assign a name to a workspace object that is not already in the
@@ -766,8 +773,10 @@ Analysis Data Service (ADS). In this case, the workspace will be added to the AD
 <li><p>In <a class="reference internal" href="../../algorithms/EstimateScatteringVolumeCentreOfMass-v1.html#algm-estimatescatteringvolumecentreofmass"><span class="std std-ref">EstimateScatteringVolumeCentreOfMass</span></a> the shape object now accounts for the goniometer set on the workspace. Previously this was not the case which gave erroneous values in non-rotationally symmetric situations.</p></li>
 <li><p><a class="reference internal" href="../../api/python/mantid/api/FileFinderImpl.html#mantid-api-filefinderimpl"><span class="std std-ref">FileFinder</span></a> now recognises compound file extensions (e.g. <code class="docutils literal notranslate"><span class="pre">.nxs.h5</span></code>) listed in <code class="docutils literal notranslate"><span class="pre">Facilities.xml</span></code> when expanding multi-run hints, so ranges such as <code class="docutils literal notranslate"><span class="pre">CNCS100:105.nxs.h5</span></code> resolve correctly instead of being misinterpreted as a stem ending in <code class="docutils literal notranslate"><span class="pre">.nxs</span></code> plus an <code class="docutils literal notranslate"><span class="pre">.h5</span></code> extension. As a consequence, a hint that explicitly specifies one extension (e.g. <code class="docutils literal notranslate"><span class="pre">BSS_24234_event.nxs</span></code> or <code class="docutils literal notranslate"><span class="pre">SXD30904.raw.md5</span></code>) no longer silently resolves to a file with a different extension; specify the run number without an extension to let the facility’s preferred extensions apply.</p></li>
 <li><p>In <a class="reference internal" href="../../algorithms/FitPeaks-v1.html#algm-fitpeaks"><span class="std std-ref">FitPeaks v1</span></a>, the <code class="docutils literal notranslate"><span class="pre">PeakParameterValueTable</span></code> input option now reads and applies row-per-spectra parameter starting values. Previously this functionality was declared but was not applied.</p></li>
+<li><p>In <a class="reference internal" href="../../algorithms/HFIRPowderReduction-v1.html#algm-hfirpowderreduction"><span class="std std-ref">HFIRPowderReduction v1</span></a>, the <code class="docutils literal notranslate"><span class="pre">OutputWorskspace</span></code> field now has a default based on the IPTS and run number. <code class="docutils literal notranslate"><span class="pre">OutputDirectory</span></code> now browses to a directory and user can manually set the file name by typing it in the box.</p></li>
 <li><p><cite>:ref: CreateDetectorTable &lt;algm-CreateDetectorTable&gt;</cite> has received some performance improvements that should speed up the algorithm significantly for large workspaces with many spectra. This algorithm is used in the new Instrument View when opening, so this should improve the performance of that interface as well.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/ExtractSpectra-v1.html#algm-extractspectra"><span class="std std-ref">ExtractSpectra</span></a> no longer gives an error when the argument <code class="docutils literal notranslate"><span class="pre">DetectorList</span></code> is used on focused workspaces where a workspace index maps to several detector IDs.</p></li>
+<li><p>Removed <code class="docutils literal notranslate"><span class="pre">MultipleScattering</span></code> checkbox from <a class="reference internal" href="../../algorithms/CylinderAbsorptionCW-v1.html#algm-cylinderabsorptioncw"><span class="std std-ref">CylinderAbsorptionCW v1</span></a>, and renamed <code class="docutils literal notranslate"><span class="pre">AttenuationXSection</span></code> to <code class="docutils literal notranslate"><span class="pre">AbsorptionXSection</span></code></p></li>
 </ul>
 </section>
 <section id="deprecated">

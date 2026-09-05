@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Reflectometry Changes &#8212; MantidProject 6.16.20260831.1516 documentation</title>
+    <title>Reflectometry Changes &#8212; MantidProject 6.16.20260904.1606 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=280b3c0d"></script>
+    <script src="../../_static/documentation_options.js?v=1d631d4e"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/reflectometry';</script>
@@ -730,10 +730,12 @@
 <section id="new-features">
 <h2>New Features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h2>
 <ul class="simple">
+<li><p>A new plotting tab has been added to the <a class="reference internal" href="../../interfaces/reflectometry/ISIS%20Reflectometry.html#interface-isis-refl"><span class="std std-ref">ISIS Reflectometry Interface</span></a>. It lists successful reduction outputs by group and run, identifies each item and output type, supports plotting selected workspaces individually, overlaid, or tiled, and shows output workspace groups with their member workspaces as selectable child entries. It also includes reflectivity, detector map, spin asymmetry, and alignment plot output presets.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/ReflectometryISISCalibration-v1.html#algm-reflectometryisiscalibration"><span class="std std-ref">ReflectometryISISCalibration</span></a> now has an <code class="docutils literal notranslate"><span class="pre">InstrumentWorkflow</span></code> option. The <code class="docutils literal notranslate"><span class="pre">POLREF</span></code> workflow supports spectrum-number-indexed absolute theta calibration files, using the supplied experiment theta and <code class="docutils literal notranslate"><span class="pre">SpecularPixelSpectrumNo</span></code> to align the detector geometry, including the inverted POLREF calibration-map angle convention.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ReflectometryISISSumBanks</span></code>, <a class="reference internal" href="../../algorithms/ReflectometryReductionOneAuto-v3.html#algm-reflectometryreductiononeauto"><span class="std std-ref">ReflectometryReductionOneAuto</span></a>,
 and <a class="reference internal" href="../../algorithms/ReflectometryISISLoadAndProcess-v1.html#algm-reflectometryisisloadandprocess"><span class="std std-ref">ReflectometryISISLoadAndProcess</span></a> can now apply <code class="docutils literal notranslate"><span class="pre">ROIDetectorIDs</span></code> bank summing to workspace groups.</p></li>
 <li><p>The <a class="reference external" href="https://www.reflectometry.org/orsopy/history.html">orsopy</a> library dependency has been updated from version <code class="docutils literal notranslate"><span class="pre">1.2.1</span></code> to <code class="docutils literal notranslate"><span class="pre">1.2.3</span></code>.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/ReflectometryISISLoadAndProcess-v1.html#algm-reflectometryisisloadandprocess"><span class="std std-ref">ReflectometryISISLoadAndProcess</span></a> now utilises the POLREF calibration workflow as part of <a class="reference internal" href="../../algorithms/ReflectometryISISCalibration-v1.html#algm-reflectometryisiscalibration"><span class="std std-ref">ReflectometryISISCalibration</span></a> through <code class="docutils literal notranslate"><span class="pre">ReflectometryISISPreprocess</span></code>. A warning is emitted if a loaded file has already been calibrated before the selected calibration is applied again.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/SaveISISReflectometryORSO-v1.html#algm-saveisisreflectometryorso"><span class="std std-ref">SaveISISReflectometryORSO v1</span></a> can now save ORSO files using metadata from workspace history, manual inputs, or history with manual overrides. The default metadata source remains workspace history, preserving the previous behaviour for existing scripts.</p></li>
 <li><p>The <cite>IncludeAdditionalColumns</cite> property of <a class="reference internal" href="../../algorithms/SaveISISReflectometryORSO-v1.html#algm-saveisisreflectometryorso"><span class="std std-ref">SaveISISReflectometryORSO v1</span></a> no longer controls writing the Q resolution column; use <cite>WriteResolution</cite> to include Q resolution and <cite>IncludeAdditionalColumns</cite> for wavelength and incident angle columns. The ISIS Reflectometry GUI keeps both options selected by default, preserving the previous default output.</p></li>
 </ul>
@@ -746,6 +748,7 @@ and <a class="reference internal" href="../../algorithms/ReflectometryISISLoadAn
 <li><p>The <code class="docutils literal notranslate"><span class="pre">MantidORSODataset</span></code> has been updated to make <strong>model</strong> and <strong>validate</strong> optional arguments.</p></li>
 <li><p>Fixed a bug in the DataHandling library that caused files to become very large and extremely slow to load. This particulary effected the loading of processed FIGARO data.</p></li>
 <li><p>ISIS Reflectometry GUI stitching now uses the updated stitch algorithms so invalid values do not overwrite valid data from other workspaces in stitched overlap regions.</p></li>
+<li><p>Fixed ISIS Reflectometry reductions reusing uncalibrated data from the ADS after a calibration file was selected. The requested calibration is now applied on the first reduction.</p></li>
 <li><p>Modifications made to <a class="reference internal" href="../../algorithms/ReflectometryReductionOneAuto-v3.html#algm-reflectometryreductiononeauto"><span class="std std-ref">ReflectometryReductionOneAuto v3</span></a> and <a class="reference internal" href="../../algorithms/Stitch1DMany-v1.html#algm-stitch1dmany"><span class="std std-ref">Stitch1DMany v1</span></a> so that all workspaces output from ISIS polarized Reflectometry reductions use consistent spin-state suffixes.</p></li>
 </ul>
 <p><a class="reference internal" href="index.html#v7-0-0"><span class="std std-ref">Release 7.0.0</span></a></p>

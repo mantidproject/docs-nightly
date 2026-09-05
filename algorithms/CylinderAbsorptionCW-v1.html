@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CylinderAbsorptionCW v1 &#8212; MantidProject 6.16.20260831.1516 documentation</title>
+    <title>CylinderAbsorptionCW v1 &#8212; MantidProject 6.16.20260904.1606 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=280b3c0d"></script>
+    <script src="../_static/documentation_options.js?v=1d631d4e"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1485,11 +1485,11 @@
 <td><p><em>Optional</em></p></td>
 <td><p>Height of the cylinder in cm. Only used for multiple scattering calculation. If not provided, it will be inferred from the workspace sample shape if it is a cylinder.</p></td>
 </tr>
-<tr class="row-even"><td><p>AttenuationXSection</p></td>
+<tr class="row-even"><td><p>AbsorptionXSection</p></td>
 <td><p>Input</p></td>
 <td><p>number</p></td>
 <td><p><em>Optional</em></p></td>
-<td><p>Attenuation cross-section in barn at 1.7982 Å. If not provided, it will be inferred from the workspace sample material.</p></td>
+<td><p>Absorption cross-section in barn at 1.7982 Å. If not provided, it will be inferred from the workspace sample material.</p></td>
 </tr>
 <tr class="row-odd"><td><p>ScatteringXSection</p></td>
 <td><p>Input</p></td>
@@ -1509,19 +1509,13 @@
 <td><p>Sears</p></td>
 <td><p>Method to calculate absorption correction. Allowed values: [‘Sears’, ‘Sabine’]</p></td>
 </tr>
-<tr class="row-even"><td><p>MultipleScattering</p></td>
-<td><p>Input</p></td>
-<td><p>boolean</p></td>
-<td><p>True</p></td>
-<td><p>Calculate multiple scattering in addition to absorption correction.</p></td>
-</tr>
-<tr class="row-odd"><td><p>AbsorptionWorkspace</p></td>
+<tr class="row-even"><td><p>AbsorptionWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
 <td><p>Absorption correction output workspace name</p></td>
 </tr>
-<tr class="row-even"><td><p>MultipleScatteringWorkspace</p></td>
+<tr class="row-odd"><td><p>MultipleScatteringWorkspace</p></td>
 <td><p>Output</p></td>
 <td><p><a class="reference internal" href="../api/python/mantid/api/Workspace.html#mantid.api.Workspace" title="mantid.api.Workspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Workspace</span></code></a></p></td>
 <td><p><em>Mandatory</em></p></td>
@@ -1538,8 +1532,8 @@ The absorption and multiple scattering are calculated assuming a cylindrical sam
 <p>Two methods are available for calculating the absorption correction: Using Equation 26 and Table 3 from Sears <a class="footnote-reference brackets" href="#id4" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> and using Equations 1-6 from Sabine <a class="footnote-reference brackets" href="#id5" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
 <p>Multiple scattering is calculated using Equation 16 and Table 1 from Blech and Averbach <a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>, using a bilinear interpolation of the tabulated values. Equation 16 gives <span class="math notranslate nohighlight">\(\sigma_m\)</span> but the output from this algorithm is the multiple scattering factor, <span class="math notranslate nohighlight">\(\delta\)</span> = <span class="math notranslate nohighlight">\(\sigma_m/(\sigma_s + \sigma_m)\)</span>.</p>
 <p>The cross-sections and number density are either taken from the sample material of the input workspace, as set by
-<a class="reference internal" href="SetSample-v1.html#algm-setsample"><span class="std std-ref">SetSample v1</span></a> or <a class="reference internal" href="SetSampleMaterial-v1.html#algm-setsamplematerial"><span class="std std-ref">SetSampleMaterial v1</span></a>, or provided directly through the <code class="docutils literal notranslate"><span class="pre">AttenuationXSection</span></code>,
-<code class="docutils literal notranslate"><span class="pre">ScatteringXSection</span></code> and <code class="docutils literal notranslate"><span class="pre">SampleNumberDensity</span></code> properties. As with the sample material, <code class="docutils literal notranslate"><span class="pre">AttenuationXSection</span></code> is
+<a class="reference internal" href="SetSample-v1.html#algm-setsample"><span class="std std-ref">SetSample v1</span></a> or <a class="reference internal" href="SetSampleMaterial-v1.html#algm-setsamplematerial"><span class="std std-ref">SetSampleMaterial v1</span></a>, or provided directly through the <code class="docutils literal notranslate"><span class="pre">AbsorptionXSection</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ScatteringXSection</span></code> and <code class="docutils literal notranslate"><span class="pre">SampleNumberDensity</span></code> properties. As with the sample material, <code class="docutils literal notranslate"><span class="pre">AbsorptionXSection</span></code> is
 the value tabulated at the reference wavelength of 1.7982 Å and is scaled linearly to <code class="docutils literal notranslate"><span class="pre">Wavelength</span></code>,
 <span class="math notranslate nohighlight">\(\sigma_a(\lambda) = \sigma_a(1.7982\,\text{Å}) \times \lambda / 1.7982\,\text{Å}\)</span>.</p>
 </section>
@@ -1553,7 +1547,7 @@ the value tabulated at the reference wavelength of 1.7982 Å and is scaled linea
          <span class="n">Radius</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>  <span class="c1"># cm</span>
          <span class="n">Height</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span>  <span class="c1"># cm</span>
          <span class="n">Wavelength</span><span class="o">=</span><span class="mf">1.7982</span><span class="p">,</span>
-         <span class="n">AttenuationXSection</span><span class="o">=</span><span class="mf">5.08</span><span class="p">,</span>  <span class="c1"># barn at 1.798 Å</span>
+         <span class="n">AbsorptionXSection</span><span class="o">=</span><span class="mf">5.08</span><span class="p">,</span>  <span class="c1"># barn at 1.798 Å</span>
          <span class="n">ScatteringXSection</span><span class="o">=</span><span class="mf">5.1</span><span class="p">,</span>  <span class="c1"># barn</span>
          <span class="n">SampleNumberDensity</span><span class="o">=</span><span class="mf">0.0723</span><span class="p">,</span>  <span class="c1"># atoms/Å^3</span>
          <span class="n">AbsorptionWorkspace</span><span class="o">=</span><span class="s2">"Absorption"</span><span class="p">,</span>
@@ -1591,7 +1585,7 @@ the value tabulated at the reference wavelength of 1.7982 Å and is scaled linea
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/96cd2d3bb37385e40be085632f920053536e53fe/Framework/PythonInterface/plugins/algorithms/CylinderAbsorptionCW.py">CylinderAbsorptionCW.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6eb0be04665946b64185c67da728bf61aacecc97/Framework/PythonInterface/plugins/algorithms/CylinderAbsorptionCW.py">CylinderAbsorptionCW.py</a></p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>

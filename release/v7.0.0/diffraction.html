@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Diffraction Changes &#8212; MantidProject 6.16.20260904.1606 documentation</title>
+    <title>Diffraction Changes &#8212; MantidProject 6.16.20260915.1730 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=1d631d4e"></script>
+    <script src="../../_static/documentation_options.js?v=21109f5b"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/diffraction';</script>
@@ -762,10 +762,20 @@
 <li><p>In <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> the settings now supports saving experiment specific settings, based on RB Number. Previous behaviour was that every time a setting was changed it would overwrite the previous saved version of the setting, where as now, it will overwrite the previous version saved for that RB Number. This allows users to return to experiments and find have specific settings have been remembered.</p></li>
 <li><p>In <code class="docutils literal notranslate"><span class="pre">Engineering.EnggUtils</span></code>, focusing using the <code class="docutils literal notranslate"><span class="pre">focus_run</span></code> method will now adjust the calibration DIFCs per detector pixel to account for an offset in the scattering volume centre-of-mass (due to sample partially illuminated within the gauge volume). This is only done when both a Sample Shape and Gauge Volume are present on the Workspace.</p></li>
 <li><p>In <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#engineering-diffraction-ref"><span class="std std-ref">Engineering Diffraction interface</span></a> the <a class="reference internal" href="../../interfaces/diffraction/Engineering%20Diffraction.html#ui-engineering-gsas"><span class="std std-ref">GSASII tab</span></a> now supports CIF file selection from a list of defaults distributed with Mantid.</p></li>
+<li><p>Pawley refinement classes in <code class="docutils literal notranslate"><span class="pre">Engineering.pawley_utils</span></code> can now output the fitted peak parameters (intensity, centre and FWHM, with errors where available) as a table workspace per phase.</p></li>
+<li><p>Pawley refinement classes in <code class="docutils literal notranslate"><span class="pre">Engineering.pawley_utils</span></code> can now have bounds set on their fit parameters, as a fraction of the current value, as a multiplicative factor, or as explicit limits (e.g. to force non-negative peak intensities).</p></li>
+<li><p>The 2D Pawley refinement in <code class="docutils literal notranslate"><span class="pre">Engineering.pawley_utils</span></code> now offers an alternating fit strategy (selected with <code class="docutils literal notranslate"><span class="pre">PawleyFitStrategy</span></code>), which re-estimates the per-spectrum scale factors and backgrounds between successive refinements rather than applying a single overall scale.</p></li>
+<li><p>The 2D Pawley refinement in <code class="docutils literal notranslate"><span class="pre">Engineering.pawley_utils</span></code> can now optionally apply a Lorentz correction to the simulated pattern.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Phase</span></code> class in <code class="docutils literal notranslate"><span class="pre">Engineering.pawley_utils</span></code> can now crop its hkl list to the reflections accessible in a given workspace (from the two-theta coverage of that workspace and the wavelength limits), for use when several virtual detectors each cover a subset of the pixels.</p></li>
+<li><p>POLDI 2D data simulated with <code class="docutils literal notranslate"><span class="pre">poldi_utils.simulate_2d_data</span></code> now accounts for the wavelength dependence of the incident flux.</p></li>
+<li><p>The <a class="reference internal" href="../../interfaces/diffraction/Texture%20Planner.html#texture-planner-ref"><span class="std std-ref">Texture Planning User Interface</span></a> now has a guided tutorial. It appears the first time the interface is opened and can be re-run at any time from the mortarboard button on the bottom toolbar. The tutorial drives a separate, temporary copy of the interface, so it never affects the session you are working in.</p></li>
 </ul>
 </section>
 <section id="id2">
 <h3>Bugfixes<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The POLDI instrument definition has been corrected so that all detector pixels face the sample position — previously half of each detector block was rotated about the wrong axis and the other half was not rotated at all. The IDF schema now also allows a rotation axis to be given on a <code class="docutils literal notranslate"><span class="pre">&lt;locations&gt;</span></code> element.</p></li>
+</ul>
 </section>
 </section>
 <section id="single-crystal-diffraction">
@@ -776,6 +786,7 @@
 <li><p><a class="reference internal" href="../../algorithms/HB3AAdjustSampleNorm-v1.html#algm-hb3aadjustsamplenorm"><span class="std std-ref">HB3AAdjustSampleNorm v1</span></a> can now output an unnormalized Q-sample event workspace and a separate normalization workspace for use with <a class="reference internal" href="../../algorithms/MDNorm-v1.html#algm-mdnorm"><span class="std std-ref">MDNorm v1</span></a>.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/SCDCalibratePanels-v2.html#algm-scdcalibratepanels-v2"><span class="std std-ref">SCDCalibratePanels</span></a> has a new <code class="docutils literal notranslate"><span class="pre">WavelengthFromUB</span></code> option to derive each peak’s wavelength from Bragg’s law using the UB matrix and its integer HKL instead of from the measured TOF. This is intended for quasi-Laue workflows, where a peak’s TOF-derived wavelength can be unreliable, but it also works for standard time-of-flight Laue data.</p></li>
 <li><p>On WISH the <a class="reference internal" href="../../fitting/fitfunctions/BackToBackExponential.html#func-backtobackexponential"><span class="std std-ref">Back2BackExponential</span></a> starting parameter values have been updated post upgrade, late 2025</p></li>
+<li><p>New algorithm <a class="reference internal" href="../../algorithms/IntegratePeaksShapeMD-v1.html#algm-integratepeaksshapemd"><span class="std std-ref">IntegratePeaksShapeMD v1</span></a> integrates single crystal Bragg peaks by reusing the ellipsoidal peak shape already stored on each peak (e.g. derived from a model of the instrument’s resolution), instead of fitting a new shape from the events around each peak.</p></li>
 <li><p>Added the <a class="reference internal" href="../../algorithms/FindUBFromConventionalCell-v1.html#algm-findubfromconventionalcell"><span class="std std-ref">FindUBFromConventionalCell</span></a> algorithm, which determines a UB matrix (crystal orientation) from unindexed peaks and the known conventional-cell lattice parameters and centering.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/MDNorm-v1.html#algm-mdnorm"><span class="std std-ref">MDNorm</span></a> can now normalize monochromatic single crystal diffraction data (e.g. WAND, DEMAND) using a pre-computed normalization workspace, via the new <code class="docutils literal notranslate"><span class="pre">MonoSCDNormalizationWorkspace</span></code> property.</p></li>
 </ul>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ISIS Reflectometry Interface &#8212; MantidProject 6.16.20260904.1606 documentation</title>
+    <title>ISIS Reflectometry Interface &#8212; MantidProject 6.16.20260915.1730 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=1d631d4e"></script>
+    <script src="../../_static/documentation_options.js?v=21109f5b"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1286,6 +1286,8 @@ see the effect of those selections on the reduced reflectivity curve.</p>
 <li><p>Enter a <strong>run</strong> number and <strong>angle</strong>.</p>
 <ul>
 <li><p>The run is loaded, and a plot of the workspace is displayed, with pre-processing (e.g. calibration) applied.</p></li>
+<li><p>If the run contains a workspace group, use <strong>Group Member</strong> to choose which member is displayed in the detector
+image and TOF plot.</p></li>
 <li><p>For <strong>2D detectors</strong>, a <strong>detector image</strong> is displayed</p></li>
 <li><p>For <strong>linear</strong> detectors, a <strong>Spectrum vs TOF</strong> plot is displayed</p></li>
 </ul>
@@ -1300,7 +1302,14 @@ see the effect of those selections on the reduced reflectivity curve.</p>
 <li><p>A full <strong>reduction</strong> is run using the selected regions, and a plot of the final <strong>reflectivity curve</strong> is displayed.</p></li>
 </ul>
 </li>
-<li><p><strong>Adjust</strong> the regions of interest until you are happy with the reflectivity curve.</p></li>
+<li><p><strong>Adjust</strong> the regions of interest until you are happy with the reflectivity curve.</p>
+<ul>
+<li><p>When previewing a workspace group, detector and TOF region bounds are retained when changing group member.
+Masks drawn on the TOF plot are retained separately for each member.</p></li>
+<li><p>Select <strong>Plot reduction preview for all group members</strong> to compare the reduced reflectivity curves on the same
+plot.</p></li>
+</ul>
+</li>
 <li><p>Click the <strong>Apply</strong> button to save the regions of interest into the batch settings.</p>
 <ul>
 <li><p>This will overwrite the settings on the lookup table in the Experiment Settings tab so that they can be applied to

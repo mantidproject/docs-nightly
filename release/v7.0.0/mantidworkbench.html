@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Mantid Workbench Changes &#8212; MantidProject 6.16.20260904.1606 documentation</title>
+    <title>Mantid Workbench Changes &#8212; MantidProject 6.16.20260915.1730 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=1d631d4e"></script>
+    <script src="../../_static/documentation_options.js?v=21109f5b"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/mantidworkbench';</script>
@@ -733,7 +733,12 @@
 <li><p>new command line argument <code class="docutils literal notranslate"><span class="pre">--qt-rm-lockfiles</span></code> forcibly removes lockfiles created by QSettings. This is not available on Windows.</p></li>
 <li><p>Mantid on Linux has moved from Qt5 to Qt6.</p></li>
 <li><p>The sample logs viewer allows copying the selected variable name to clipboard</p></li>
+<li><p>A new property <cite>CheckMantidVersion.NotifyUpdateOnStartup</cite> has been added to the Mantid.properties file which is enabled by default.</p></li>
+<li><p>The same property can be updated via the check box in General Settings as “Prompt to update Mantid Workbench on startup” in the mantid workbench.</p></li>
+<li><p>This introduces a more persuasive prompt on the startup to update mantid workbench and can be disabled by setting with <cite>0</cite> in your Mantid.properties file.</p></li>
+<li><p>The user can also disable the prompt by unchecking the check box in General Settings or by clicking on the “Don’t show this again” button in the update notification dialog.</p></li>
 <li><p>The <a class="reference internal" href="../../workbench/scriptrepository.html#workbenchscriptrepository"><span class="std std-ref">Script Repository</span></a> is now read-only. Scripts can still be downloaded and kept up to date, but they can no longer be uploaded to, or deleted from, the central repository through Mantid. To contribute or remove scripts, use the <a class="reference external" href="https://github.com/mantidproject/scriptrepository">script repository on GitHub</a> directly. The <code class="docutils literal notranslate"><span class="pre">Delete</span></code> column has been removed from the interface, and the <code class="docutils literal notranslate"><span class="pre">UploaderWebServer</span></code> property has been removed from the properties file.</p></li>
+<li><p>The default font size for the plot title, axis labels, and tick labels on plots can now be set on the <a class="reference internal" href="../../workbench/settings.html#plotsettings"><span class="std std-ref">Plots tab of the Settings</span></a>. The values are saved to the user properties as <code class="docutils literal notranslate"><span class="pre">plots.titleFontSize</span></code>, <code class="docutils literal notranslate"><span class="pre">plots.axesLabelFontSize</span></code> and <code class="docutils literal notranslate"><span class="pre">plots.ticks.labelSize</span></code>.</p></li>
 </ul>
 </section>
 <section id="bugfixes">
@@ -759,10 +764,13 @@ disabled, or when the submitted contact information is unchanged.</p></li>
 <h3>New features<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>In the new Instrument View, added an option to draw the sample position, and labelled the <code class="docutils literal notranslate"><span class="pre">Monitors</span></code> and <code class="docutils literal notranslate"><span class="pre">Sample</span></code> checkboxes with a coloured circle to indicate the colour of the drawn items.</p></li>
+<li><p>The new Instrument View is now the default. Right-clicking a workspace and selecting <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Instrument</span></code> opens the new Instrument View, and it is no longer labelled as experimental. The previous Instrument View is still available from the same menu as <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Instrument</span> <span class="pre">(Legacy)</span></code>.</p></li>
+<li><p>The setting controlling which Instrument View the ALFView and ISIS Reflectometry interfaces use has been replaced by <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">legacy</span> <span class="pre">Instrument</span> <span class="pre">View</span> <span class="pre">in</span> <span class="pre">interfaces</span></code>, found under <code class="docutils literal notranslate"><span class="pre">File</span></code> → <code class="docutils literal notranslate"><span class="pre">Settings</span></code> → <code class="docutils literal notranslate"><span class="pre">General</span></code>. These interfaces now use the new Instrument View unless this option is ticked.</p></li>
 <li><p>New Instrument View now allows for both rectangle zoom and scroll wheel zoom.</p></li>
 <li><p>New Instrument View now allows for zooming and panning in lineplot when adding/removing peaks.</p></li>
 <li><p>In the new Instrument View, picked detectors are now marked in magenta: shapes are given an outline and points a surrounding halo. These markers are drawn at a fixed size on screen, so a selection stays easy to spot even when zoomed out on a large instrument.</p></li>
 <li><p>In the new Instrument View, the line plot now updates to show the spectra covered by an overlaid ROI or mask shape, and follows the shape as it is dragged, resized, rotated or as the projection is zoomed.</p></li>
+<li><p>The new Instrument View is now documented. See <a class="reference internal" href="../../workbench/instrumentviewer.html#instrumentviewer"><span class="std std-ref">Instrument View</span></a> for the user documentation. The documentation for the previous instrument view has moved to <a class="reference internal" href="../../workbench/legacyinstrumentviewer.html#legacyinstrumentviewer"><span class="std std-ref">Legacy Instrument Viewer Widget</span></a>.</p></li>
 <li><p>New instrument view now allows picking in rectangle zoom by pressing the <cite>Ctrl</cite> or <cite>Shift</cite> keys.</p></li>
 <li><p>New instrument view now allows picking the closest detector with peaks to the mouse position.</p></li>
 <li><p>In the new Instrument View, the <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> and <code class="docutils literal notranslate"><span class="pre">Masking</span></code> tabs now have a <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">From</span> <span class="pre">Current</span> <span class="pre">Selection</span></code> button, which creates an ROI or mask from the detectors currently selected in the projection. For example, detectors can be picked with the <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Bank/Tube</span></code> option and then masked, without having to draw a shape around them.</p></li>
@@ -773,10 +781,13 @@ disabled, or when the submitted contact information is unchanged.</p></li>
 <section id="id2">
 <h3>Bugfixes<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>In the new Instrument View, fixed a bug where the rubber band zoom box was not visible while dragging, following an update to a third-party rendering dependency. The zoom itself was unaffected.</p></li>
 <li><p>In the new Instrument View, fixed a bug where certain detector shapes were not drawing correctly, and sped up the drawing of these shapes.</p></li>
 <li><p>In the new Instrument View, fixed a bug when overlaying a peaks workspace with more peaks than the number of detectors in the instrument. This could happen if viewing e.g. the result of <code class="docutils literal notranslate"><span class="pre">ExtractSpectra</span></code>.</p></li>
 <li><p>In the new Instrument View, fixed a bug with drawing workspaces where some detectors are not assigned to any spectra.</p></li>
 <li><p>In new Instrument View, sped up initial opening and building of the detector mesh</p></li>
+<li><p>In the new Instrument View, the tooltip for the render mode now matches the options shown in the drop-down list.</p></li>
+<li><p>Fixed an error when picking detectors in the new Instrument View from a Jupyter notebook.</p></li>
 <li><p>New Instrument View now has correct peak lines in lineplot when the units are changed and/or the spectra in the lineplot are summed.</p></li>
 </ul>
 </section>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ISISIndirectEnergyTransfer v1 &#8212; MantidProject 6.16.20260904.1606 documentation</title>
+    <title>ISISIndirectEnergyTransfer v1 &#8212; MantidProject 6.16.20260915.1730 documentation</title>
   
   
   
@@ -40,9 +40,11 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=1d631d4e"></script>
+    <script src="../_static/documentation_options.js?v=21109f5b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ISISIndirectEnergyTransfer-v1';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -655,6 +657,7 @@
 <li class="toctree-l1"><a class="reference internal" href="FindPeaksConvolve-v1.html">FindPeaksConvolve v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FindPeaksMD-v1.html">FindPeaksMD v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FindReflectometryLines-v2.html">FindReflectometryLines v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FindReflectometryLines-v3.html">FindReflectometryLines v3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FindSXPeaks-v1.html">FindSXPeaks v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FindSXPeaksConvolve-v1.html">FindSXPeaksConvolve v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FindSatellitePeaks-v1.html">FindSatellitePeaks v1</a></li>
@@ -774,6 +777,7 @@
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksMD-v2.html">IntegratePeaksMD v2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksMDHKL-v1.html">IntegratePeaksMDHKL v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksProfileFitting-v1.html">IntegratePeaksProfileFitting v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntegratePeaksShapeMD-v1.html">IntegratePeaksShapeMD v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksShoeboxTOF-v1.html">IntegratePeaksShoeboxTOF v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksSkew-v1.html">IntegratePeaksSkew v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksUsingClusters-v1.html">IntegratePeaksUsingClusters v1</a></li>
@@ -1124,6 +1128,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ReflectometryReductionOneAuto-v3.html">ReflectometryReductionOneAuto v3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReflectometryReductionOneLiveData-v1.html">ReflectometryReductionOneLiveData v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReflectometrySliceEventWorkspace-v1.html">ReflectometrySliceEventWorkspace v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReflectometrySliceEventWorkspace-v2.html">ReflectometrySliceEventWorkspace v2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReflectometrySumInQ-v1.html">ReflectometrySumInQ v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Regroup-v1.html">Regroup v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="RemoveBackground-v1.html">RemoveBackground v1</a></li>
@@ -1547,7 +1552,7 @@
 <td><p>Input</p></td>
 <td><p>string</p></td>
 <td><p>IPF</p></td>
-<td><p>The method used to group detectors. Allowed values: [‘Individual’, ‘All’, ‘File’, ‘Workspace’, ‘IPF’, ‘Custom’, ‘Groups’]</p></td>
+<td><p>The method used to group detectors. Allowed values: [‘Individual’, ‘All’, ‘File’, ‘Workspace’, ‘IPF’, ‘Custom’, ‘Groups’, ‘Detectors’, ‘ThetaGroups’]</p></td>
 </tr>
 <tr class="row-odd"><td><p>GroupingWorkspace</p></td>
 <td><p>Input</p></td>
@@ -1605,6 +1610,16 @@
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
 <p>Performs a reduction from raw time of flight to energy transfer for an inelastic
 indirect geometry instrument at ISIS.</p>
+<p>OSIRIS silicon analyser data are supported for the <code class="docutils literal notranslate"><span class="pre">111</span></code> and <code class="docutils literal notranslate"><span class="pre">333</span></code> reflections. The default spectrum range and
+rebinning are obtained from the selected instrument parameter file. For silicon reductions, unreliable edge pixels
+are excluded before calibration and reduction. When a calibration workspace is supplied, spectra removed from that
+workspace are also excluded from the sample reduction.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Detectors</span></code> grouping method groups the remaining silicon pixels tube by tube using the supplied OSIRIS grouping
+file. <code class="docutils literal notranslate"><span class="pre">ThetaGroups</span></code> divides the fixed <span class="math notranslate nohighlight">\(2\theta\)</span> range defined by the instrument parameter file’s <code class="docutils literal notranslate"><span class="pre">theta-min</span></code>
+and <code class="docutils literal notranslate"><span class="pre">theta-max</span></code> parameters (in degrees) into <code class="docutils literal notranslate"><span class="pre">NGroups</span></code> equal-width angular bins. Both OSIRIS silicon reflections
+use limits of 8 and 163 degrees. Masking, removing edge pixels or selecting a narrower <code class="docutils literal notranslate"><span class="pre">SpectraRange</span></code> does not
+change these boundaries. Spectra outside the angular limits are excluded, and empty bins are omitted from the output.
+Both outer limits are included; a spectrum exactly on an internal boundary belongs to the lower-angle bin.</p>
 </section>
 <section id="workflow">
 <h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h2>
@@ -1641,7 +1656,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6eb0be04665946b64185c67da728bf61aacecc97/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ISISIndirectEnergyTransfer.py">ISISIndirectEnergyTransfer.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/cbbcb703caea79622cc21eeb7f41770670d44032/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ISISIndirectEnergyTransfer.py">ISISIndirectEnergyTransfer.py</a></p>
 </section>
 </section>
 

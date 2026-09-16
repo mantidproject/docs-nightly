@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Scripting SANS Reductions &#8212; MantidProject 6.16.20260904.1606 documentation</title>
+    <title>Scripting SANS Reductions &#8212; MantidProject 6.16.20260915.1730 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=1d631d4e"></script>
+    <script src="../_static/documentation_options.js?v=21109f5b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -535,7 +535,7 @@ Setting <code class="docutils literal notranslate"><span class="pre">use_mirror<
 <span id="sansscriptingwavrangereduction"></span><h3>WavRangeReduction<a class="headerlink" href="#wavrangereduction" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">WavRangeReduction</span><span class="p">(</span><span class="n">wav_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wav_end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full_trans_wav</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name_suffix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                   <span class="n">combineDet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saveAlgs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_as_zero_error_free</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">output_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                  <span class="n">output_mode</span><span class="o">=</span><span class="n">OutputMode</span><span class="o">.</span><span class="n">PUBLISH_TO_ADS</span><span class="p">,</span> <span class="n">use_reduction_mode_as_suffix</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                  <span class="n">output_mode</span><span class="o">=</span><span class="n">OutputMode</span><span class="o">.</span><span class="n">PUBLISH_TO_ADS</span><span class="p">,</span> <span class="n">use_reduction_mode_as_suffix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">output_diagnostic_names</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Assuming the mask file contains the correct analysis details one can proceed to calculate <span class="math notranslate nohighlight">\(I(Q)\)</span> using the
@@ -567,13 +567,15 @@ in <code class="docutils literal notranslate"><span class="pre">saveAlgs</span><
 with <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">sans.common.enums</span> <span class="pre">import</span> <span class="pre">OutputMode</span></code>.
 If this parameter is omitted, the default behaviour will be to publish the output to the ADS and save it in a file if there is a <code class="docutils literal notranslate"><span class="pre">saveAlgs</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">use_reduction_mode_as_suffix</span></code>: If <code class="docutils literal notranslate"><span class="pre">True</span></code>, appends second suffix to output name based on reduction mode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output_diagnostic_names</span></code>: If <code class="docutils literal notranslate"><span class="pre">True</span></code>, this command will make the reduction output a second parameter containing a list of non-reduced workspace names in the ADS. Mainly to be used as part of <a class="reference internal" href="#sansscriptingbatchreduce"><span class="std std-ref">BatchReduce</span></a> to delete
+unneeded or unwanted workspaces at the end of a batch reduction.</p></li>
 </ul>
 </section>
 <section id="batchreduce">
-<h3>BatchReduce<a class="headerlink" href="#batchreduce" title="Link to this heading">#</a></h3>
+<span id="sansscriptingbatchreduce"></span><h3>BatchReduce<a class="headerlink" href="#batchreduce" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BatchReduce</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">plotresults</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">saveAlgs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">centreit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">combineDet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_as_zero_error_Free</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">output_mode</span><span class="o">=</span><span class="n">OutputMode</span><span class="o">.</span><span class="n">PUBLISH_TO_ADS</span><span class="p">)</span>
+            <span class="n">output_mode</span><span class="o">=</span><span class="n">OutputMode</span><span class="o">.</span><span class="n">PUBLISH_TO_ADS</span><span class="p">,</span> <span class="n">clean_up_ads</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This parses a list of files to analyse from a batch file, then it calls <a class="reference internal" href="#sansscriptingwavrangereduction"><span class="std std-ref">WavRangeReduction</span></a> to perform each reduction.
@@ -591,7 +593,8 @@ The filename is a mandatory parameter:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">centreit</span></code>: Do centre finding (False by default).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">combineDet</span></code>: Same as <a class="reference internal" href="#sansscriptingwavrangereduction"><span class="std std-ref">WavRangeReduction</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">save_as_zero_error_free</span></code>: Same as <a class="reference internal" href="#sansscriptingwavrangereduction"><span class="std std-ref">WavRangeReduction</span></a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">output_mode</span></code>: Same as <a class="reference internal" href="#sansscriptingwavrangereduction"><span class="std std-ref">WavRangeReduction</span></a>..</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output_mode</span></code>: Same as <a class="reference internal" href="#sansscriptingwavrangereduction"><span class="std std-ref">WavRangeReduction</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clean_up_ads</span></code>: At the end of a batch processing, removes all non-reduced (optimization, raw and transmission) workspaces from the ADS.</p></li>
 </ul>
 </div></blockquote>
 <p>Function returns a dictionary with some values from the reduction (scale and shift as of now).</p>

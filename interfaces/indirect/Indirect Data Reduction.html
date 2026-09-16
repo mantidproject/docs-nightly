@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Indirect Data Reduction &#8212; MantidProject 6.16.20260904.1606 documentation</title>
+    <title>Indirect Data Reduction &#8212; MantidProject 6.16.20260915.1730 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=1d631d4e"></script>
+    <script src="../../_static/documentation_options.js?v=21109f5b"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -491,6 +491,9 @@ can be found below.</p>
 <span id="isisenergytransfer"></span><h3>ISIS Energy Transfer<a class="headerlink" href="#isis-energy-transfer" title="Link to this heading">#</a></h3>
 <p>This tab provides you with the functionality to convert the raw data from the experiment run into
 units of <span class="math notranslate nohighlight">\(\Delta E\)</span>. See the algorithm <a class="reference internal" href="../../algorithms/ISISIndirectEnergyTransfer-v1.html#algm-isisindirectenergytransfer"><span class="std std-ref">ISISIndirectEnergyTransfer</span></a>.</p>
+<p>OSIRIS silicon analyser data can be reduced by selecting the <code class="docutils literal notranslate"><span class="pre">silicon</span></code> analyser with either the
+<code class="docutils literal notranslate"><span class="pre">111</span></code> or <code class="docutils literal notranslate"><span class="pre">333</span></code> reflection. The tab supplies the appropriate detector range and energy settings
+for the selected reflection.</p>
 <figure class="align-default">
 <a class="screenshot reference internal image-reference" href="../../_images/Data_Reduction_tabISISEnergyTransfer_widget.png"><img alt="../../_images/Data_Reduction_tabISISEnergyTransfer_widget.png" class="screenshot" src="../../_images/Data_Reduction_tabISISEnergyTransfer_widget.png" style="width: 500px;" />
 </a>
@@ -517,8 +520,8 @@ offset peak caused by the sample being slightly out of centre.</p>
 <dt>Spectra Min/Spectra Max</dt><dd><p>Used to specify a range of spectra.</p>
 </dd>
 <dt>Detector Grouping</dt><dd><p>Used to specify a method for grouping detectors. Possible grouping options include ‘Individual’, ‘All’, ‘IPF’,
-‘File’, ‘Groups’ and ‘Custom’. The TOSCA instrument will default to grouping using ‘IPF’, and the other instruments
-will default to ‘Individual’ grouping.</p>
+‘File’, ‘Groups’ and ‘Custom’. OSIRIS silicon reductions also provide ‘Detectors’ and ‘ThetaGroups’. The TOSCA
+instrument will default to grouping using ‘IPF’, and the other instruments will default to ‘Individual’ grouping.</p>
 </dd>
 <dt>Background Removal</dt><dd><p>Allows removal of a background given a time-of-flight range.</p>
 </dd>
@@ -557,7 +560,8 @@ left as is with the frame number given at the end of the workspace name.</p>
 (<span class="math notranslate nohighlight">\(cm^{-1}\)</span>).</p>
 </dd>
 <dt>Select Save Formats</dt><dd><p>Allows you to select multiple output save formats to save the reduced data as,
-in all cases the file will be saved in the default save directory.</p>
+in all cases the file will be saved in the default save directory. <code class="docutils literal notranslate"><span class="pre">NXSPE</span></code> is available for exporting data for
+visualisation in <span class="math notranslate nohighlight">\(\vec{Q}\)</span> space.</p>
 </dd>
 </dl>
 </section>
@@ -599,6 +603,14 @@ left over will be added as an additional group.</p>
 </dd>
 <dt>File</dt><dd><p>Gives the option of supplying a grouping file to be used with the
 <a class="reference internal" href="../../algorithms/GroupDetectors-v2.html#algm-groupdetectors"><span class="std std-ref">GroupDetectors</span></a> algorithm.</p>
+</dd>
+<dt>Detectors</dt><dd><p>Available for the OSIRIS silicon analyser. Groups the working pixels of each detector tube using the supplied
+OSIRIS silicon grouping file. Unreliable edge pixels are excluded.</p>
+</dd>
+<dt>ThetaGroups</dt><dd><p>Available for the OSIRIS silicon analyser. Divides the fixed <span class="math notranslate nohighlight">\(2\theta\)</span> range from 8 to 163 degrees into the
+requested number of equal-width angular groups and averages the spectra in each group. The limits come from
+<code class="docutils literal notranslate"><span class="pre">theta-min</span></code> and <code class="docutils literal notranslate"><span class="pre">theta-max</span></code> in the instrument parameter file. Removing or masking pixels or changing the spectrum
+range does not change the group boundaries. Spectra outside the angular limits are excluded, and empty groups are omitted.</p>
 </dd>
 <dt>Default</dt><dd><p>This grouping option is only available for TOSCA. It uses the spectra grouping specified in the IPF.</p>
 </dd>

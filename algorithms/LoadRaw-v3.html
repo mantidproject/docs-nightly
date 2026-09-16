@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadRaw v3 &#8212; MantidProject 6.16.20260904.1606 documentation</title>
+    <title>LoadRaw v3 &#8212; MantidProject 6.16.20260915.1730 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=1d631d4e"></script>
+    <script src="../_static/documentation_options.js?v=21109f5b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/LoadRaw-v3';</script>
@@ -655,6 +655,7 @@
 <li class="toctree-l1"><a class="reference internal" href="FindPeaksConvolve-v1.html">FindPeaksConvolve v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FindPeaksMD-v1.html">FindPeaksMD v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FindReflectometryLines-v2.html">FindReflectometryLines v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FindReflectometryLines-v3.html">FindReflectometryLines v3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FindSXPeaks-v1.html">FindSXPeaks v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FindSXPeaksConvolve-v1.html">FindSXPeaksConvolve v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FindSatellitePeaks-v1.html">FindSatellitePeaks v1</a></li>
@@ -774,6 +775,7 @@
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksMD-v2.html">IntegratePeaksMD v2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksMDHKL-v1.html">IntegratePeaksMDHKL v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksProfileFitting-v1.html">IntegratePeaksProfileFitting v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntegratePeaksShapeMD-v1.html">IntegratePeaksShapeMD v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksShoeboxTOF-v1.html">IntegratePeaksShoeboxTOF v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksSkew-v1.html">IntegratePeaksSkew v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IntegratePeaksUsingClusters-v1.html">IntegratePeaksUsingClusters v1</a></li>
@@ -1124,6 +1126,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ReflectometryReductionOneAuto-v3.html">ReflectometryReductionOneAuto v3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReflectometryReductionOneLiveData-v1.html">ReflectometryReductionOneLiveData v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReflectometrySliceEventWorkspace-v1.html">ReflectometrySliceEventWorkspace v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReflectometrySliceEventWorkspace-v2.html">ReflectometrySliceEventWorkspace v2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ReflectometrySumInQ-v1.html">ReflectometrySumInQ v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Regroup-v1.html">Regroup v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="RemoveBackground-v1.html">RemoveBackground v1</a></li>
@@ -1591,6 +1594,31 @@ The following shows an example of the content found in the <code class="docutils
 If the RAW file is copied to a filesystem that does not support the alternate stream then
 the stream is dropped.</p>
 </section>
+<section id="correcting-the-spectrum-detector-table">
+<span id="raw-spectra-map-source"></span><h3>Correcting the spectrum-detector table<a class="headerlink" href="#correcting-the-spectrum-detector-table" title="Link to this heading">#</a></h3>
+<p>The spectrum-detector table is used exactly as the file records it, unless the instrument definition asks
+otherwise. Some data acquisition electronics address a bank at a finer granularity than the instrument definition
+describes, summing several hardware elements into one spectrum but still recording each element’s own number in
+the file’s table. Those numbers are drawn from a numbering space the instrument definition does not use, so
+applied as they are the spectra end up with no detector, and therefore no position, no scattering angle and no
+<code class="docutils literal notranslate"><span class="pre">Efixed</span></code>.</p>
+<p>An instrument enables the correction by setting <code class="docutils literal notranslate"><span class="pre">spectra-map-source</span></code> to <code class="docutils literal notranslate"><span class="pre">instrument</span></code> in its
+<a class="reference internal" href="../concepts/InstrumentParameterFile.html#instrumentparameterfile"><span class="std std-ref">parameter file</span></a>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">"spectra-map-source"</span><span class="w"> </span><span class="na">type=</span><span class="s">"string"</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">val=</span><span class="s">"instrument"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/parameter&gt;</span>
+</pre></div>
+</div>
+<p>Where it is set, any spectrum whose file detectors are not all defined by the instrument is mapped instead to the
+detector whose ID equals its spectrum number, and a spectrum with no such detector keeps its histogram and is left
+without detectors. Spectra whose file detectors are all known are not touched, so a mapping the file got right
+survives even where it is not one-to-one. Nothing is changed at all unless the file’s table really does reference
+unknown detectors, so a run recorded before the electronics were subdivided, and any run recorded once they agree
+with the instrument definition again, are left exactly as the file describes them.</p>
+<p>The OSIRIS silicon analyser is the case this was added for. Its 1560 pixels are each read out as eight hardware
+elements, which the electronics sum into one spectrum, and the OSIRIS mask and detector grouping files are written
+in the instrument definition’s detector IDs. <a class="reference internal" href="LoadISISNexus-v2.html#algm-loadisisnexus-v2"><span class="std std-ref">LoadISISNexus</span></a> applies the same correction.</p>
+</section>
 </section>
 <section id="previous-versions">
 <h2>Previous Versions<a class="headerlink" href="#previous-versions" title="Link to this heading">#</a></h2>
@@ -1697,8 +1725,8 @@ Is detector 1002 a monitor? True
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6eb0be04665946b64185c67da728bf61aacecc97/Framework/DataHandling/inc/MantidDataHandling/LoadRaw3.h">LoadRaw3.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/6eb0be04665946b64185c67da728bf61aacecc97/Framework/DataHandling/src/LoadRaw3.cpp">LoadRaw3.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/cbbcb703caea79622cc21eeb7f41770670d44032/Framework/DataHandling/inc/MantidDataHandling/LoadRaw3.h">LoadRaw3.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/cbbcb703caea79622cc21eeb7f41770670d44032/Framework/DataHandling/src/LoadRaw3.cpp">LoadRaw3.cpp</a></p>
 </section>
 </section>
 
@@ -1759,6 +1787,7 @@ Is detector 1002 a monitor? True
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiperiod-data">Multiperiod data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subalgorithms-used">Subalgorithms used</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternate-data-stream">Alternate Data Stream</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correcting-the-spectrum-detector-table">Correcting the spectrum-detector table</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#previous-versions">Previous Versions</a></li>

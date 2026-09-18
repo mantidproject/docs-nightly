@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.16.20260916.2313 documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.16.20260917.1557 documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../../_static/documentation_options.js?v=8eaf655d"></script>
+    <script src="../../_static/documentation_options.js?v=6d165388"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/framework';</script>
@@ -770,6 +770,7 @@ Analysis Data Service (ADS). In this case, the workspace will be added to the AD
 <li><p><a class="reference internal" href="../../algorithms/SaveDaveGrp-v1.html#algm-savedavegrp"><span class="std std-ref">SaveDaveGrp v1</span></a> algorithm now optionally converts the spectrum numbers into <code class="docutils literal notranslate"><span class="pre">Q</span></code> values using <a class="reference internal" href="../../algorithms/GetQsInQENSData-v1.html#algm-getqsinqensdata"><span class="std std-ref">GetQsInQENSData v1</span></a> when creating the <code class="docutils literal notranslate"><span class="pre">.grp</span></code> file.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/SavePlot1D-v1.html#algm-saveplot1d"><span class="std std-ref">SavePlot1D v1</span></a> no longer fails when run with plotly 7.0 or later. The <code class="docutils literal notranslate"><span class="pre">plotly</span></code> and <code class="docutils literal notranslate"><span class="pre">plotly-full</span></code> output types used plotly interfaces that were deprecated and then removed.</p></li>
 <li><p><a class="reference internal" href="../../algorithms/CopySample-v1.html#algm-copysample"><span class="std std-ref">CopySample v1</span></a> no longer causes a crash when called with <code class="docutils literal notranslate"><span class="pre">CopyShape</span> <span class="pre">=</span> <span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">CopyMaterial</span> <span class="pre">=</span> <span class="pre">True</span></code> and an input workspace that is subsequently overwritten.</p></li>
+<li><p><a class="reference internal" href="../../algorithms/BinaryOperateMasks-v1.html#algm-binaryoperatemasks"><span class="std std-ref">BinaryOperateMasks v1</span></a> no longer throws a spurious validation error when acting upon input workspaces with non-default detector mapping.</p></li>
 <li><p>Algorithm <cite>SaveYDA</cite> now correctly distinguishes between spectra and bin center axes when saving data.</p></li>
 <li><p>In <code class="docutils literal notranslate"><span class="pre">BeamProfileFactory</span></code> the auto-generated beam profile dimensions are now correct when the sample bounding box is offset from the origin. The beam half-extent is now taken from the furthest sample face on either side, so the beam remains valid for samples that are translated or rotated into a negative half-space.</p></li>
 <li><p>In <a class="reference internal" href="../../algorithms/EstimateScatteringVolumeCentreOfMass-v1.html#algm-estimatescatteringvolumecentreofmass"><span class="std std-ref">EstimateScatteringVolumeCentreOfMass</span></a> the shape object now accounts for the goniometer set on the workspace. Previously this was not the case which gave erroneous values in non-rotationally symmetric situations.</p></li>
@@ -799,6 +800,9 @@ Analysis Data Service (ADS). In this case, the workspace will be added to the AD
 <h2>Fit Functions<a class="headerlink" href="#fit-functions" title="Link to this heading">#</a></h2>
 <section id="id1">
 <h3>New features<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Poisson deviance is now a cost function for the Levenberg-Marquardt minimizer in fitting.</p></li>
+</ul>
 </section>
 <section id="id2">
 <h3>Bugfixes<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
@@ -877,6 +881,7 @@ HKL and general frames; an HKL dimension accepts <code class="docutils literal n
 <code class="docutils literal notranslate"><span class="pre">in</span> <span class="pre">2.5</span> <span class="pre">A^-1</span></code>. This is useful for relabelling the dimensions produced by <code class="docutils literal notranslate"><span class="pre">MDNorm</span></code> for unusual projections.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">MeshObject</span></code> now has <code class="docutils literal notranslate"><span class="pre">getBoundingBox</span></code> exposed to python.</p></li>
 <li><p>Grid spacing, pixel counts and detector-ID numbering for rectangular/grid arrays can now be accessed from <a class="reference internal" href="../../api/python/mantid/geometry/ComponentInfo.html#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a>, using the <code class="docutils literal notranslate"><span class="pre">pixelGrid*</span></code> methods such as <code class="docutils literal notranslate"><span class="pre">pixelGridNX</span></code> and <code class="docutils literal notranslate"><span class="pre">pixelGridXStep</span></code>. Whether a component has such a grid can be tested with <code class="docutils literal notranslate"><span class="pre">isGridDetector</span></code>.</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">mantid.api.MinimizerStatus</span></code>, exposing the status strings a function minimizer reports through a fit’s <code class="docutils literal notranslate"><span class="pre">OutputStatus</span></code> and an <code class="docutils literal notranslate"><span class="pre">isConverged</span></code> test for them, so Python callers no longer have to hard code the wording. By default the tolerance-limited stopping conditions count as converged alongside <code class="docutils literal notranslate"><span class="pre">success</span></code>; pass <code class="docutils literal notranslate"><span class="pre">strict=True</span></code> for an exact match.</p></li>
 <li><p><a class="reference internal" href="../../api/python/mantid/dataobjects/MDHistoWorkspace.html#mantid.dataobjects.MDHistoWorkspace" title="mantid.dataobjects.MDHistoWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDHistoWorkspace</span></code></a> now provides <code class="docutils literal notranslate"><span class="pre">setNumEventsArray</span></code> to overwrite the number-of-events array from a numpy array, mirroring the existing <code class="docutils literal notranslate"><span class="pre">setSignalArray</span></code> and <code class="docutils literal notranslate"><span class="pre">setErrorSquaredArray</span></code> methods. Manual updates through these array setters clear any link to the original <code class="docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code> so downstream rebinning or slicing cannot bypass the manually-set values.</p></li>
 </ul>
 </section>

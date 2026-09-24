@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Instrument Access via SpectrumInfo, DetectorInfo, ComponentInfo &#8212; MantidProject 6.16.20260918.1225 documentation</title>
+    <title>Instrument Access via SpectrumInfo, DetectorInfo, ComponentInfo &#8212; MantidProject 6.16.20260923.0852+uncommitted documentation</title>
   
   
   
@@ -40,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
-    <script src="../_static/documentation_options.js?v=decec9ba"></script>
+    <script src="../_static/documentation_options.js?v=ebfc58c8"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/InstrumentAccessLayers';</script>
@@ -471,6 +471,31 @@
 <p>The python interface to <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code> has matured, and now provides equal, if not better support than the <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> API for navigating the high-level instrument. Iterator support has also been provided for <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code>.</p>
 <p>See <a class="reference internal" href="../api/python/mantid/geometry/ComponentInfo.html#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> for more information.</p>
 </section>
+<section id="parameterinfo">
+<h4>ParameterInfo<a class="headerlink" href="#parameterinfo" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">ParameterInfo</span></code> is the Instrument 2.0 home for an instrument’s <strong>named parameters</strong>, supplied by an IDF.
+These are used by calibration algorithms, such as <code class="docutils literal notranslate"><span class="pre">&quot;x-pixel-size&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;TubePressure&quot;</span></code>,
+and include fitting parameters like <code class="docutils literal notranslate"><span class="pre">IkedaCarpenterPV:Alpha0</span></code>.
+It is the replacement for the storage inside the legacy <code class="docutils literal notranslate"><span class="pre">ParameterMap</span></code>.</p>
+<p>While  <code class="docutils literal notranslate"><span class="pre">ParameterMap</span></code> is keyed by <code class="docutils literal notranslate"><span class="pre">ComponentID</span></code> (a pointer into the legacy instrument tree),
+the <code class="docutils literal notranslate"><span class="pre">ParameterInfo</span></code> is keyed by the same <strong>component index</strong> that <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code> uses,
+and its recursive lookups walk <code class="docutils literal notranslate"><span class="pre">ComponentInfo::parent()</span></code> instead.
+The legacy tree is no longer needed to find a parameter.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ParameterInfo</span></code> is owned by <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code>, and in normal use you do not handle it directly.
+Parameter accessors on <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code> are the public face of it.
+<code class="docutils literal notranslate"><span class="pre">ParameterMap</span></code> now delegates to <code class="docutils literal notranslate"><span class="pre">ParameterInfo</span></code> rather than keeping its own store..</p>
+<p>Two behaviours are worth knowing because they are inherited from the legacy semantics:</p>
+<ul class="simple">
+<li><p>Parameter names are matched <strong>case-insensitively</strong></p></li>
+<li><p>A component may hold more than one parameter of the same short name, provided they belong to different fitting functions</p></li>
+</ul>
+<p>Fitting parameters are deduplicated by (name, function),
+so <code class="docutils literal notranslate"><span class="pre">IkedaCarpenterPV:Alpha0</span></code> and <code class="docutils literal notranslate"><span class="pre">IkedaCarpenterMD:Alpha0</span></code> coexist on one component.
+Ordinary parameters are deduplicated by name alone,
+and adding one replaces any existing parameter of that name.</p>
+<p>Named parameters are not currently exposed to Python through <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code>;
+Python code still reaches them through the legacy component API.</p>
+</section>
 </section>
 </section>
 <section id="changes-for-rollout">
@@ -579,6 +604,57 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">setRotation(const</span> <span class="pre">size_t</span> <span class="pre">index,</span> <span class="pre">const</span> <span class="pre">Kernel::Quat</span> <span class="pre">&amp;rotation);</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">setScaleFactor(const</span> <span class="pre">size_t</span> <span class="pre">index,</span> <span class="pre">const</span> <span class="pre">Kernel::V3D</span> <span class="pre">&amp;scaleFactor);</span></code></p></li>
 </ul>
+</section>
+<section id="named-parameters">
+<h4>Named parameters<a class="headerlink" href="#named-parameters" title="Link to this heading">#</a></h4>
+<p>Named parameters are reached through <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code>, by component index,
+rather than through a component pointer and a <code class="docutils literal notranslate"><span class="pre">ParameterMap</span></code>.
+The read accessors match the legacy <code class="docutils literal notranslate"><span class="pre">IComponent</span></code> ones exactly,
+including the “empty vector if absent” convention and the <code class="docutils literal notranslate"><span class="pre">recursive</span></code> flag that defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>,
+so migrating a call site is close to a rename once the index is in hand.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hasParameter(componentIndex,</span> <span class="pre">name,</span> <span class="pre">recursive)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getParameterNames(componentIndex,</span> <span class="pre">recursive)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getNumberParameter(componentIndex,</span> <span class="pre">name,</span> <span class="pre">recursive)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getIntParameter(componentIndex,</span> <span class="pre">name,</span> <span class="pre">recursive)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getBoolParameter(componentIndex,</span> <span class="pre">name,</span> <span class="pre">recursive)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getStringParameter(componentIndex,</span> <span class="pre">name,</span> <span class="pre">recursive)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getFittingParameter(componentIndex,</span> <span class="pre">name,</span> <span class="pre">xvalue)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parameters(componentIndex)</span></code> - every parameter on one component, non-recursive, ordered by name</p></li>
+</ul>
+<p><strong>Before refactoring</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">instrument</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ws</span><span class="o">-&gt;</span><span class="n">getInstrument</span><span class="p">();</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">bank</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instrument</span><span class="o">-&gt;</span><span class="n">getComponentByName</span><span class="p">(</span><span class="s">"bank1"</span><span class="p">);</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">pixelSizes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bank</span><span class="o">-&gt;</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="s">"x-pixel-size"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>After</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"MantidGeometry/Instrument/ComponentInfo.h"</span>
+
+<span class="p">...</span>
+
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">componentInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ws</span><span class="o">-&gt;</span><span class="n">componentInfo</span><span class="p">();</span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">bankIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">componentInfo</span><span class="p">.</span><span class="n">indexOfAny</span><span class="p">(</span><span class="s">"bank1"</span><span class="p">);</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">pixelSizes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">componentInfo</span><span class="p">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="n">bankIndex</span><span class="p">,</span><span class="w"> </span><span class="s">"x-pixel-size"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Writing a parameter needs a non-const <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code> from <code class="docutils literal notranslate"><span class="pre">ExperimentInfo::mutableComponentInfo()</span></code>,
+and replaces the corresponding <code class="docutils literal notranslate"><span class="pre">ParameterMap::addDouble()</span></code> and friends.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">addDouble(componentIndex,</span> <span class="pre">name,</span> <span class="pre">value)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addInt(componentIndex,</span> <span class="pre">name,</span> <span class="pre">value)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addBool(componentIndex,</span> <span class="pre">name,</span> <span class="pre">value)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addString(componentIndex,</span> <span class="pre">name,</span> <span class="pre">value)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addV3D(componentIndex,</span> <span class="pre">name,</span> <span class="pre">value)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addQuat(componentIndex,</span> <span class="pre">name,</span> <span class="pre">value)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addParameter(componentIndex,</span> <span class="pre">type,</span> <span class="pre">name,</span> <span class="pre">value)</span></code> - when the type is only known as a string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addFittingParameter(componentIndex,</span> <span class="pre">name,</span> <span class="pre">fittingFunction,</span> <span class="pre">value)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clearParameter(componentIndex,</span> <span class="pre">name)</span></code></p></li>
+</ul>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">componentInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ws</span><span class="o">-&gt;</span><span class="n">mutableComponentInfo</span><span class="p">();</span>
+<span class="n">componentInfo</span><span class="p">.</span><span class="n">addDouble</span><span class="p">(</span><span class="n">bankIndex</span><span class="p">,</span><span class="w"> </span><span class="s">"x-pixel-size"</span><span class="p">,</span><span class="w"> </span><span class="mf">0.005</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
 <section id="useful-tips">
 <h4>Useful Tips<a class="headerlink" href="#useful-tips" title="Link to this heading">#</a></h4>
@@ -716,6 +792,7 @@ so a single index moves freely between <code class="docutils literal notranslate
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spectruminfo">SpectrumInfo</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#detectorinfo">DetectorInfo</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#componentinfo">ComponentInfo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterinfo">ParameterInfo</a></li>
 </ul>
 </li>
 </ul>
@@ -726,6 +803,7 @@ so a single index moves freely between <code class="docutils literal notranslate
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#access-to-components-and-working-with-detectors">Access to Components and working with Detectors</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mutable-componentinfo">Mutable ComponentInfo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#named-parameters">Named parameters</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-tips">Useful Tips</a></li>
 </ul>
 </li>

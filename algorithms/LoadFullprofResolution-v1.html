@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadFullprofResolution v1 &#8212; MantidProject 6.16.20260925.1520 documentation</title>
+    <title>LoadFullprofResolution v1 &#8212; MantidProject 6.16.20260928.1648 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=64cc4de3f052d77215f0" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=64cc4de3f052d77215f0" />
 
-    <script src="../_static/documentation_options.js?v=96ba92ff"></script>
+    <script src="../_static/documentation_options.js?v=086ee5a5"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/LoadFullprofResolution-v1';</script>
@@ -1542,19 +1542,18 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
    <span class="n">row</span> <span class="o">=</span> <span class="n">tws</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
    <span class="nb">print</span><span class="p">(</span><span class="s2">"{{'Name': '</span><span class="si">{}</span><span class="s2">', 'Value_3': </span><span class="si">{:.2f}</span><span class="s2">, 'Value_5': </span><span class="si">{:.2f}</span><span class="s2">}}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Value_3"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Value_5"</span><span class="p">]))</span>
 
-<span class="c1"># Get the instrument with the parameters</span>
-<span class="n">inst</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span>
+<span class="c1"># Get the component info with the parameters</span>
+<span class="n">compInfo</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">componentInfo</span><span class="p">()</span>
 
 <span class="c1"># demonstrate that the type of parameters saved are fitting parameters</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Type of 3 parameters got from instrument in workspace"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Alpha0 type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">'Alpha0'</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Beta0 type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">'Beta0'</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"SigmaSquared type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">'SigmaSquared'</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Alpha0 type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">compInfo</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">'Alpha0'</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Beta0 type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">compInfo</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">'Beta0'</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"SigmaSquared type = </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">compInfo</span><span class="o">.</span><span class="n">getParameterType</span><span class="p">(</span><span class="s1">'SigmaSquared'</span><span class="p">)))</span>
 
-<span class="c1"># As of the time of writing,</span>
-<span class="c1"># fitting instrument parameters cannot be</span>
-<span class="c1"># accessed through the python API.</span>
-<span class="c1"># They can be accessed via the file in the lext line, if uncommented:</span>
+<span class="c1"># Fitting parameters are evaluated from python with getFittingParameter, e.g.</span>
+<span class="c1">#   compInfo.getFittingParameter('Alpha0', 0.0)</span>
+<span class="c1"># They can also be written out to a file, if the next line is uncommented:</span>
 <span class="c1">#SaveParameterFile(ws[0][0], "instParam.xml")</span>
 
 <span class="c1">#This file should contain the lines shown next and similar for other parameters:</span>
@@ -1579,8 +1578,8 @@ SigmaSquared type = fitting
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/f3066ef8bf15f39ffe1baacf7c37cc4f7114a9e0/Framework/DataHandling/inc/MantidDataHandling/LoadFullprofResolution.h">LoadFullprofResolution.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/f3066ef8bf15f39ffe1baacf7c37cc4f7114a9e0/Framework/DataHandling/src/LoadFullprofResolution.cpp">LoadFullprofResolution.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4c3e25d3b6a9dea7a9162dd0b5f32d70c0a8d3ad/Framework/DataHandling/inc/MantidDataHandling/LoadFullprofResolution.h">LoadFullprofResolution.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4c3e25d3b6a9dea7a9162dd0b5f32d70c0a8d3ad/Framework/DataHandling/src/LoadFullprofResolution.cpp">LoadFullprofResolution.cpp</a></p>
 </section>
 </section>
 

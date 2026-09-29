@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LoadDetectorInfo v1 &#8212; MantidProject 6.16.20260925.1520 documentation</title>
+    <title>LoadDetectorInfo v1 &#8212; MantidProject 6.16.20260928.1648 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=64cc4de3f052d77215f0" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=64cc4de3f052d77215f0" />
 
-    <script src="../_static/documentation_options.js?v=96ba92ff"></script>
+    <script src="../_static/documentation_options.js?v=086ee5a5"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -1906,10 +1906,12 @@ that the first three detectors (monitors) were not touched and the next three we
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="c1"># printing procedure</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">write_detectors</span><span class="p">(</span><span class="n">instr_type</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">ndet</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">''' print first ndet detectors from given instrument '''</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_detectors</span><span class="p">(</span><span class="n">instr_type</span><span class="p">,</span><span class="n">ws</span><span class="p">,</span><span class="n">ndet</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">''' print first ndet detectors from the instrument attached to the given workspace '''</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> instrument"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">instr_type</span><span class="p">,</span> <span class="n">instr</span><span class="o">.</span><span class="n">getName</span><span class="p">()))</span>
+    <span class="n">compInfo</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">componentInfo</span><span class="p">()</span>
+    <span class="n">detInfo</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">detectorInfo</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> instrument"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">instr_type</span><span class="p">,</span> <span class="n">compInfo</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">compInfo</span><span class="o">.</span><span class="n">root</span><span class="p">())))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">'det ID | monitor? | polar angle| position X | position Y | position Z |  Pressure  | Wall thick |'</span><span class="p">)</span>
 
     <span class="c1"># get first nder detectors using detector ID</span>
@@ -1919,12 +1921,13 @@ that the first three detectors (monitors) were not touched and the next three we
       <span class="k">else</span><span class="p">:</span>
           <span class="n">detBase</span> <span class="o">=</span> <span class="mi">1101</span><span class="o">-</span><span class="mi">3</span>
       <span class="n">detID</span> <span class="o">=</span> <span class="n">detBase</span><span class="o">+</span><span class="n">i</span>
-      <span class="n">det1</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">getDetector</span><span class="p">(</span><span class="n">detID</span><span class="p">);</span>
-      <span class="n">pos</span> <span class="o">=</span> <span class="n">det1</span><span class="o">.</span><span class="n">getPos</span><span class="p">();</span>
-      <span class="n">pressure</span> <span class="o">=</span> <span class="n">det1</span><span class="o">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="s1">'TubePressure'</span><span class="p">);</span>
-      <span class="n">thickness</span> <span class="o">=</span> <span class="n">det1</span><span class="o">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="s1">'TubeThickness'</span><span class="p">);</span>
+      <span class="n">index</span> <span class="o">=</span> <span class="n">detInfo</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">detID</span><span class="p">);</span>
+      <span class="n">pos</span> <span class="o">=</span> <span class="n">detInfo</span><span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+      <span class="n">phi</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">Y</span><span class="p">(),</span><span class="n">pos</span><span class="o">.</span><span class="n">X</span><span class="p">());</span>
+      <span class="n">pressure</span> <span class="o">=</span> <span class="n">compInfo</span><span class="o">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="s1">'TubePressure'</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
+      <span class="n">thickness</span> <span class="o">=</span> <span class="n">compInfo</span><span class="o">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="s1">'TubeThickness'</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
       <span class="nb">print</span><span class="p">(</span><span class="s1">' </span><span class="si">{0:5}</span><span class="s1"> | </span><span class="si">{1:8}</span><span class="s1"> | </span><span class="si">{2:10.3f}</span><span class="s1"> | </span><span class="si">{3:&gt;10.3f}</span><span class="s1"> | </span><span class="si">{4:&gt;10.3f}</span><span class="s1"> | </span><span class="si">{5:&gt;10.3f}</span><span class="s1"> | </span><span class="si">{6:10}</span><span class="s1"> | </span><span class="si">{7:10}</span><span class="s1"> |'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
-             <span class="n">detID</span><span class="p">,</span><span class="n">det1</span><span class="o">.</span><span class="n">isMonitor</span><span class="p">(),(</span><span class="n">det1</span><span class="o">.</span><span class="n">getPhi</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mi">180</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)),</span><span class="n">pos</span><span class="o">.</span><span class="n">X</span><span class="p">(),</span><span class="n">pos</span><span class="o">.</span><span class="n">Y</span><span class="p">(),</span><span class="n">pos</span><span class="o">.</span><span class="n">Z</span><span class="p">(),</span><span class="n">pressure</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">thickness</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+             <span class="n">detID</span><span class="p">,</span><span class="n">detInfo</span><span class="o">.</span><span class="n">isMonitor</span><span class="p">(</span><span class="n">index</span><span class="p">),(</span><span class="n">phi</span><span class="o">*</span><span class="p">(</span><span class="mi">180</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)),</span><span class="n">pos</span><span class="o">.</span><span class="n">X</span><span class="p">(),</span><span class="n">pos</span><span class="o">.</span><span class="n">Y</span><span class="p">(),</span><span class="n">pos</span><span class="o">.</span><span class="n">Z</span><span class="p">(),</span><span class="n">pressure</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">thickness</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">'*********************************************************************************'</span><span class="p">)</span>
 <span class="c1">#</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">prepare_test_detector</span><span class="p">(</span><span class="n">ind</span><span class="p">):</span>
@@ -1961,10 +1964,9 @@ that the first three detectors (monitors) were not touched and the next three we
      <span class="k">return</span> <span class="p">(</span><span class="n">detBase</span><span class="p">,</span><span class="n">offset</span><span class="p">,</span><span class="n">l2</span><span class="p">,</span><span class="n">code</span><span class="p">,</span><span class="n">theta</span><span class="p">,</span><span class="n">phi</span><span class="p">,</span><span class="n">w_xyz</span><span class="p">,</span><span class="n">f_xyz</span><span class="p">,</span><span class="n">a_xyz</span><span class="p">,</span><span class="n">det1</span><span class="p">,</span><span class="n">det2</span><span class="p">,</span><span class="n">det2</span><span class="p">,</span><span class="n">det4</span><span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">write_test_cal_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">instrument</span><span class="p">,</span><span class="n">ndet</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_test_cal_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">ndet</span><span class="p">):</span>
 <span class="w">   </span><span class="sd">""" writes partial detector.dat file  modified for testing purposes</span>
 <span class="sd">         filename   -- the string, describing the name of the file to write:</span>
-<span class="sd">         instrument -- the pointer to instrument to modify</span>
 <span class="sd">         ndet       -- number of detectors to modify using this calibration file for testing purposes</span>
 <span class="sd">   """</span>
 
@@ -1989,20 +1991,18 @@ that the first three detectors (monitors) were not touched and the next three we
 <span class="c1">#--------------------------------------------------------------------------------------</span>
 <span class="c1"># load MARI</span>
 <span class="n">det</span><span class="o">=</span><span class="n">LoadInstrument</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">InstrumentName</span><span class="o">=</span><span class="s1">'MARI'</span><span class="p">,</span> <span class="n">RewriteSpectraMap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">inst1</span><span class="o">=</span><span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">();</span>
 <span class="c1">#</span>
-<span class="n">write_detectors</span><span class="p">(</span><span class="s1">'unCalibrated'</span><span class="p">,</span><span class="n">inst1</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">write_detectors</span><span class="p">(</span><span class="s1">'unCalibrated'</span><span class="p">,</span><span class="n">ws</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
 <span class="c1">#--------------------------------------------------------------------------------------</span>
 <span class="c1"># Prepare calibration file changing first 6 detectors &amp; monitors</span>
 <span class="n">file_name</span> <span class="o">=</span> <span class="s1">'mari_det.dat'</span>
-<span class="n">write_test_cal_file</span><span class="p">(</span><span class="n">file_name</span> <span class="p">,</span><span class="n">inst1</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">write_test_cal_file</span><span class="p">(</span><span class="n">file_name</span> <span class="p">,</span><span class="mi">6</span><span class="p">);</span>
 <span class="c1">#--------------------------------------------------------------------------------------</span>
 <span class="c1"># CALIBRATE mari using full det.dat calibration file</span>
 <span class="n">LoadDetectorInfo</span><span class="p">(</span><span class="n">ws</span><span class="p">,</span><span class="n">DataFilename</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span><span class="n">RelocateDets</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
-<span class="n">inst1</span><span class="o">=</span><span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">();</span>
 <span class="c1">#--------------------------------------------------------------------------------------</span>
 <span class="c1"># look at the result:</span>
-<span class="n">write_detectors</span><span class="p">(</span><span class="s1">'Calibrated'</span><span class="p">,</span><span class="n">inst1</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">write_detectors</span><span class="p">(</span><span class="s1">'Calibrated'</span><span class="p">,</span><span class="n">ws</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
@@ -2038,8 +2038,8 @@ det ID | monitor? | polar angle| position X | position Y | position Z |  Pressur
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/f3066ef8bf15f39ffe1baacf7c37cc4f7114a9e0/Framework/DataHandling/inc/MantidDataHandling/LoadDetectorInfo.h">LoadDetectorInfo.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/f3066ef8bf15f39ffe1baacf7c37cc4f7114a9e0/Framework/DataHandling/src/LoadDetectorInfo.cpp">LoadDetectorInfo.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4c3e25d3b6a9dea7a9162dd0b5f32d70c0a8d3ad/Framework/DataHandling/inc/MantidDataHandling/LoadDetectorInfo.h">LoadDetectorInfo.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/4c3e25d3b6a9dea7a9162dd0b5f32d70c0a8d3ad/Framework/DataHandling/src/LoadDetectorInfo.cpp">LoadDetectorInfo.cpp</a></p>
 </section>
 </section>
 

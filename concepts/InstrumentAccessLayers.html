@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Instrument Access via SpectrumInfo, DetectorInfo, ComponentInfo &#8212; MantidProject 6.16.20260925.1520 documentation</title>
+    <title>Instrument Access via SpectrumInfo, DetectorInfo, ComponentInfo &#8212; MantidProject 6.16.20260928.1648 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=64cc4de3f052d77215f0" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=64cc4de3f052d77215f0" />
 
-    <script src="../_static/documentation_options.js?v=96ba92ff"></script>
+    <script src="../_static/documentation_options.js?v=086ee5a5"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/InstrumentAccessLayers';</script>
@@ -492,8 +492,8 @@ Parameter accessors on <code class="docutils literal notranslate"><span class="p
 so <code class="docutils literal notranslate"><span class="pre">IkedaCarpenterPV:Alpha0</span></code> and <code class="docutils literal notranslate"><span class="pre">IkedaCarpenterMD:Alpha0</span></code> coexist on one component.
 Ordinary parameters are deduplicated by name alone,
 and adding one replaces any existing parameter of that name.</p>
-<p>Named parameters are not currently exposed to Python through <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code>;
-Python code still reaches them through the legacy component API.</p>
+<p>The parameter accessors on <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code> are available from Python as well as C++,
+so Python code reaches named parameters through the access layer rather than the legacy component API.</p>
 </section>
 </section>
 </section>
@@ -618,8 +618,9 @@ so migrating a call site is close to a rename once the index is in hand.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">getIntParameter(componentIndex,</span> <span class="pre">name,</span> <span class="pre">recursive)</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">getBoolParameter(componentIndex,</span> <span class="pre">name,</span> <span class="pre">recursive)</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">getStringParameter(componentIndex,</span> <span class="pre">name,</span> <span class="pre">recursive)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getParameterType(componentIndex,</span> <span class="pre">name,</span> <span class="pre">recursive)</span></code> - the stored type, or an empty string if unset</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">getFittingParameter(componentIndex,</span> <span class="pre">name,</span> <span class="pre">xvalue)</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">parameters(componentIndex)</span></code> - every parameter on one component, non-recursive, ordered by name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parameters(componentIndex)</span></code> - every parameter on one component, non-recursive, ordered by name (C++ only)</p></li>
 </ul>
 <p><strong>Before refactoring</strong></p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">instrument</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ws</span><span class="o">-&gt;</span><span class="n">getInstrument</span><span class="p">();</span>
@@ -652,6 +653,26 @@ and replaces the corresponding <code class="docutils literal notranslate"><span 
 </ul>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">componentInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ws</span><span class="o">-&gt;</span><span class="n">mutableComponentInfo</span><span class="p">();</span>
 <span class="n">componentInfo</span><span class="p">.</span><span class="n">addDouble</span><span class="p">(</span><span class="n">bankIndex</span><span class="p">,</span><span class="w"> </span><span class="s">"x-pixel-size"</span><span class="p">,</span><span class="w"> </span><span class="mf">0.005</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The same accessors are available from Python, with the same names and defaults, but with the
+component index moved after the required arguments, where it defaults to <code class="docutils literal notranslate"><span class="pre">root()</span></code>:
+<code class="docutils literal notranslate"><span class="pre">getNumberParameter(name,</span> <span class="pre">index=None,</span> <span class="pre">recursive=True)</span></code>, <code class="docutils literal notranslate"><span class="pre">addDouble(name,</span> <span class="pre">value,</span> <span class="pre">index=None)</span></code>,
+and so on. The root component is where the parameters that the legacy code read straight off
+<code class="docutils literal notranslate"><span class="pre">ws.getInstrument()</span></code> live, so those call sites drop the index entirely.
+<code class="docutils literal notranslate"><span class="pre">ComponentInfo.invalidIndex</span></code> is the sentinel returned by <code class="docutils literal notranslate"><span class="pre">indexOfFullName()</span></code> for an unknown name,
+and <code class="docutils literal notranslate"><span class="pre">indexOfAny()</span></code> raises a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> rather than returning <code class="docutils literal notranslate"><span class="pre">None</span></code> as
+<code class="docutils literal notranslate"><span class="pre">Instrument.getComponentByName()</span></code> did.</p>
+<p><strong>Before refactoring</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">instrument</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span>
+<span class="n">pixel_sizes</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">getComponentByName</span><span class="p">(</span><span class="s2">"bank1"</span><span class="p">)</span><span class="o">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="s2">"x-pixel-size"</span><span class="p">)</span>
+<span class="n">monitor_spectrum</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="s2">"default-incident-monitor-spectrum"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>After</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">component_info</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">componentInfo</span><span class="p">()</span>
+<span class="n">pixel_sizes</span> <span class="o">=</span> <span class="n">component_info</span><span class="o">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="s2">"x-pixel-size"</span><span class="p">,</span> <span class="n">component_info</span><span class="o">.</span><span class="n">indexOfAny</span><span class="p">(</span><span class="s2">"bank1"</span><span class="p">))</span>
+<span class="n">monitor_spectrum</span> <span class="o">=</span> <span class="n">component_info</span><span class="o">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="s2">"default-incident-monitor-spectrum"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </section>

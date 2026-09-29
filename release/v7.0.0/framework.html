@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Framework Changes &#8212; MantidProject 6.16.20260925.1520 documentation</title>
+    <title>Framework Changes &#8212; MantidProject 6.16.20260928.1648 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=64cc4de3f052d77215f0" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=64cc4de3f052d77215f0" />
 
-    <script src="../../_static/documentation_options.js?v=96ba92ff"></script>
+    <script src="../../_static/documentation_options.js?v=086ee5a5"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/framework';</script>
@@ -875,6 +875,7 @@ where the live-data system hung up in response to changes in the ADARA-server st
 <li><p>Output workspace properties of the generic type <code class="docutils literal notranslate"><span class="pre">Workspace</span></code> now return a <code class="docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code> object after an
 algorithm is automatically dispatched over an input workspace group. Previously, the value component of the
 property would be set to equal the <code class="docutils literal notranslate"><span class="pre">WorkspaceGroup</span></code> name but the workspace component would be null.</p></li>
+<li><p>Instrument parameters can now be read and written from <a class="reference internal" href="../../api/python/mantid/geometry/ComponentInfo.html#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> in Python, with <code class="docutils literal notranslate"><span class="pre">hasParameter</span></code>, <code class="docutils literal notranslate"><span class="pre">getNumberParameter</span></code>, <code class="docutils literal notranslate"><span class="pre">addDouble</span></code> and friends, replacing the equivalent methods on <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> and its components. The optional <code class="docutils literal notranslate"><span class="pre">index</span></code> argument defaults to the instrument itself, as in <code class="docutils literal notranslate"><span class="pre">component_info.getNumberParameter(&quot;x-pixel-size&quot;)</span></code>.</p></li>
 <li><p>The dimensions of an <a class="reference internal" href="../../api/python/mantid/api/IMDHistoWorkspace.html#mantid.api.IMDHistoWorkspace" title="mantid.api.IMDHistoWorkspace"><code class="xref py py-class docutils literal notranslate"><span class="pre">IMDHistoWorkspace</span></code></a> can now have their <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> edited from
 Python via <code class="docutils literal notranslate"><span class="pre">getDimension(i).setName(...)</span></code> and <code class="docutils literal notranslate"><span class="pre">getDimension(i).setUnits(...)</span></code>. Editing units is supported for
 HKL and general frames; an HKL dimension accepts <code class="docutils literal notranslate"><span class="pre">r.l.u.</span></code> or an inverse-Angstrom-style label such as

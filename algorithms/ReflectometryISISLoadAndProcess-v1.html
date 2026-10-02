@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ReflectometryISISLoadAndProcess v1 &#8212; MantidProject 6.16.20260930.1347 documentation</title>
+    <title>ReflectometryISISLoadAndProcess v1 &#8212; MantidProject 6.16.20261001.1149 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=64cc4de3f052d77215f0" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=64cc4de3f052d77215f0" />
 
-    <script src="../_static/documentation_options.js?v=bcf2aa83"></script>
+    <script src="../_static/documentation_options.js?v=ed87644c"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/ReflectometryISISLoadAndProcess-v1';</script>
@@ -1851,16 +1851,17 @@
 <li><p>Ensure workspaces are loaded and are of the correct type.</p></li>
 <li><p>Sum multiple input runs into a single workspace, if there is more than one.</p></li>
 <li><p>Sum multiple transmission runs into a single workspace, if there is more than one.</p></li>
+<li><p>Apply detector calibration to each summed workspace, if requested.</p></li>
 <li><p>Perform background subtraction, if requested.</p></li>
 <li><p>Perform time-slicing of the input run, if requested.</p></li>
 <li><p>Perform the reduction.</p></li>
 <li><p>Clean up the TOF workspaces into a group.</p></li>
 </ul>
 <p>Input runs and transmission runs are loaded if required, or existing workspaces are used if they are already loaded. When runs are loaded, they are named based on the run number with a <code class="docutils literal notranslate"><span class="pre">TOF_</span></code> or <code class="docutils literal notranslate"><span class="pre">TRANS_</span></code> prefix. To determine whether workspaces are already loaded, workspace names are matched based on the run number with or without this prefix. Other naming formats are not considered to match.</p>
-<p>If a value is provided for the <code class="docutils literal notranslate"><span class="pre">CalibrationFile</span></code> property then calibration will be applied for input runs that are loaded (but not where existing workspaces are being used). The calibration will be performed using <a class="reference internal" href="ReflectometryISISCalibration-v1.html#algm-reflectometryisiscalibration"><span class="std std-ref">ReflectometryISISCalibration v1</span></a>. See the documentation for the required calibration file format. When using the POLREF calibration workflow, the experiment angle is taken from <code class="docutils literal notranslate"><span class="pre">ThetaIn</span></code> or, when <code class="docutils literal notranslate"><span class="pre">ThetaIn</span></code> is not supplied, from the run log selected by <code class="docutils literal notranslate"><span class="pre">ThetaLogName</span></code>.</p>
-<p>If a loaded file already contains a <code class="docutils literal notranslate"><span class="pre">reflectometry_calibration_file</span></code> run log, the algorithm warns that the data have previously been calibrated. The calibration selected in <code class="docutils literal notranslate"><span class="pre">CalibrationFile</span></code> is still applied, but applying a calibration more than once may produce erroneous results.</p>
-<p>If time slicing is enabled, the input run must be an event workspace and have monitors loaded; otherwise, it must be a histogram workspace. If the workspace already exists but is the incorrect type or is missing monitors, it will be reloaded.</p>
-<p>Input runs can be combined before reduction by supplying a comma-separated list of run numbers. They will be summed using the <a class="reference internal" href="Plus-v1.html#algm-plus"><span class="std std-ref">Plus v1</span></a> algorithm. Similarly, multiple input workspaces for the first and/or second transmission inputs can be summed prior to reduction.</p>
+<p>If a value is provided for the <code class="docutils literal notranslate"><span class="pre">CalibrationFile</span></code> property, input runs are summed before the resulting workspace is calibrated using <a class="reference internal" href="ReflectometryISISCalibration-v1.html#algm-reflectometryisiscalibration"><span class="std std-ref">ReflectometryISISCalibration v1</span></a>. Existing workspaces carrying a matching <code class="docutils literal notranslate"><span class="pre">reflectometry_calibration_file</span></code> run log can be reused when their geometry has not already received angle correction. Workspaces carrying the <code class="docutils literal notranslate"><span class="pre">reflectometry_adjusted_theta</span></code> run log are reloaded before post-summation calibration because their geometry depends on an earlier experiment angle and fitted specular position.</p>
+<p>For the POLREF calibration workflow, the experiment angle is taken from <code class="docutils literal notranslate"><span class="pre">ThetaIn</span></code> or, when <code class="docutils literal notranslate"><span class="pre">ThetaIn</span></code> is not supplied, from the run log selected by <code class="docutils literal notranslate"><span class="pre">ThetaLogName</span></code>. The fractional specular pixel index is obtained through fitting the specular peak on the summed sample workspace. The experiment angle is then corrected by the difference between the angular positions of the nominal specular pixel and this fitted fractional specular pixel index. This adjusted angle is used both for detector calibration and reduction.
+If time slicing is enabled, the input run must be an event workspace and have monitors loaded; otherwise, it must be a histogram workspace. If the workspace already exists but is the incorrect type or is missing monitors, it will be reloaded.</p>
+<p>Input runs can be combined before reduction by supplying a comma-separated list of run numbers. They will be summed using the <a class="reference internal" href="MergeRuns-v1.html#algm-mergeruns"><span class="std std-ref">MergeRuns v1</span></a> algorithm. Similarly, multiple input workspaces for the first and/or second transmission inputs can be summed prior to reduction.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">SubtractBackground</span></code> is true, then background subtraction will be performed using the <a class="reference internal" href="ReflectometryBackgroundSubtraction-v1.html#algm-reflectometrybackgroundsubtraction"><span class="std std-ref">ReflectometryBackgroundSubtraction v1</span></a> algorithm. There are various options for specifying how the subtraction should be done.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">SliceWorkspace</span></code> is true, the time slicing will be performed using the <a class="reference internal" href="ReflectometrySliceEventWorkspace-v2.html#algm-reflectometrysliceeventworkspace"><span class="std std-ref">ReflectometrySliceEventWorkspace v2</span></a> algorithm. Various options are available for specifying the filter to use and slicing can be done by time or by log value.</p>
 <p>The reduction is performed using <a class="reference internal" href="ReflectometryReductionOneAuto-v3.html#algm-reflectometryreductiononeauto"><span class="std std-ref">ReflectometryReductionOneAuto v3</span></a>.</p>
@@ -1942,7 +1943,7 @@ In Mantid this is done using <a class="reference internal" href="../interfaces/f
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d95584505dc1050f054611501209302a8eb165d9/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryISISLoadAndProcess.py">ReflectometryISISLoadAndProcess.py</a></p>
+<p>Python: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/ba27abe079346ecea4049d6342fdd03e01a92895/Framework/PythonInterface/plugins/algorithms/WorkflowAlgorithms/ReflectometryISISLoadAndProcess.py">ReflectometryISISLoadAndProcess.py</a></p>
 </section>
 </section>
 

@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Mantid Workbench Changes &#8212; MantidProject 6.16.20261001.1149 documentation</title>
+    <title>Mantid Workbench Changes &#8212; MantidProject 6.16.20261002.2210 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=64cc4de3f052d77215f0" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=64cc4de3f052d77215f0" />
 
-    <script src="../../_static/documentation_options.js?v=ed87644c"></script>
+    <script src="../../_static/documentation_options.js?v=996e6565"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/mantidworkbench';</script>
@@ -743,6 +743,7 @@
 <section id="bugfixes">
 <h2>Bugfixes<a class="headerlink" href="#bugfixes" title="Link to this heading">#</a></h2>
 <ul class="simple">
+<li><p>Opening the About dialog on Windows no longer prints a warning about font size in the messages window.</p></li>
 <li><p>Opening interfaces or changing default directories no longer unnecessarily rewrites and locks the Mantid Workbench settings file.</p></li>
 <li><p>The <a class="reference internal" href="../../concepts/ProjectRecovery.html#project-recovery"><span class="std std-ref">Project Recovery</span></a> feature is now guarded against a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> emanating from the <code class="docutils literal notranslate"><span class="pre">listdir_fullpath</span></code> method.</p></li>
 <li><p>The Error Reporter Dialog now stores remembered contact information in its own settings file instead of the Workbench settings file. Previously saved Workbench contact information remains
@@ -784,6 +785,12 @@ if <code class="docutils literal notranslate"><span class="pre">Don't</span> <sp
 <ul class="simple">
 <li><p>In the new Instrument View, fixed a bug where the rubber band zoom box was not visible while dragging, following an update to a third-party rendering dependency. The zoom itself was unaffected.</p></li>
 <li><p>In the new Instrument View, fixed a bug where certain detector shapes were not drawing correctly, and sped up the drawing of these shapes.</p></li>
+<li><p>In the new Instrument View, workspaces whose x axis units cannot be converted no longer cause errors. This covers workspaces with no units at all, workspaces with a unit such as a label or degrees, and workspaces whose instrument has no sample or source position. Unit selection is disabled for these workspaces, which are shown in their own x values and labelled with their own unit, and everything else continues to work as normal.</p></li>
+<li><p>In the new Instrument View, peaks workspaces cannot be overlaid on a workspace in a unit peaks cannot be shown in, such as energy, and Adding/Deleting Peaks Mode is also disabled for workspaces whose units cannot be converted, since peaks there could not be seen or added.</p></li>
+<li><p>In the new Instrument View, the unit selectors now show the workspace’s own unit when it is not one of the listed units, such as energy, rather than time-of-flight.</p></li>
+<li><p>The new Instrument View no longer hangs Workbench when an algorithm, such as ConvertUnits, overwrites the workspace it is showing.</p></li>
+<li><p>In the new Instrument View, summing the selected spectra no longer fails for units in which the spectra cannot share a common binning, such as momentum transfer for a detector in the path of the beam. The spectra are plotted unsummed in this case.</p></li>
+<li><p>In the new Instrument View, the contour and integration range controls no longer disappear when every detector has the same counts or the range is empty. They are greyed out until there is a range to adjust.</p></li>
 <li><p>In the new Instrument View, fixed a bug when overlaying a peaks workspace with more peaks than the number of detectors in the instrument. This could happen if viewing e.g. the result of <code class="docutils literal notranslate"><span class="pre">ExtractSpectra</span></code>.</p></li>
 <li><p>In the new Instrument View, fixed a bug with drawing workspaces where some detectors are not assigned to any spectra.</p></li>
 <li><p>In new Instrument View, sped up initial opening and building of the detector mesh</p></li>

@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Mantid Workbench Changes &#8212; MantidProject 6.16.20261002.2210 documentation</title>
+    <title>Mantid Workbench Changes &#8212; MantidProject 6.16.20261005.1718 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=64cc4de3f052d77215f0" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=64cc4de3f052d77215f0" />
 
-    <script src="../../_static/documentation_options.js?v=996e6565"></script>
+    <script src="../../_static/documentation_options.js?v=8a69947c"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/mantidworkbench';</script>
@@ -753,6 +753,7 @@ if <code class="docutils literal notranslate"><span class="pre">Don't</span> <sp
 <li><p>In the ISIS Reflectometry interface, fixed a bug where the (new) Instrument View would not fill the available space in the dock when first opened. The view now correctly fills the dock area upon initial display.</p></li>
 <li><p>In the ALF View interface, fixed bug where the “Add ROI” button was not working. The button now correctly adds a new ROI to the view when clicked.</p></li>
 <li><p>In the ALF View interface, fixed an error on opening the interface.</p></li>
+<li><p>Fixed a bug in Workbench where the most recently opened window, such as a plot or the new Instrument View, could stay in memory after it was closed.</p></li>
 <li><p>The <span class="menuselection">File ‣ Save Project as…</span> dialog now correctly skips an unmodified <a class="reference internal" href="../../api/python/mantid/dataobjects/EventWorkspace.html#mantid.dataobjects.EventWorkspace" title="mantid.dataobjects.EventWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventWorkspace</span></code></a> when monitors are loaded and <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Altered</span> <span class="pre">Workspaces</span> <span class="pre">Only</span></code> is selected without resulting in mantid crashing.</p></li>
 <li><p><a class="reference internal" href="../../tutorials/python_in_mantid/plotting/02_scripting_plots.html#generate-plot-script"><span class="std std-ref">Script generation</span></a> of a mantid plot now considers the device pixel ratio and figure layout to generate the script.</p></li>
 <li><p>On Linux systems with an NFS-backed configuration directory, Workbench now stages its QSettings files in the local cache. This avoids lock-file failures when running multiple Workbench instances and preserves conflicting settings for recovery. Existing settings for the Mantid Reduction interface must be migrated once to the staged INI file.</p></li>
@@ -794,6 +795,7 @@ if <code class="docutils literal notranslate"><span class="pre">Don't</span> <sp
 <li><p>In the new Instrument View, fixed a bug when overlaying a peaks workspace with more peaks than the number of detectors in the instrument. This could happen if viewing e.g. the result of <code class="docutils literal notranslate"><span class="pre">ExtractSpectra</span></code>.</p></li>
 <li><p>In the new Instrument View, fixed a bug with drawing workspaces where some detectors are not assigned to any spectra.</p></li>
 <li><p>In new Instrument View, sped up initial opening and building of the detector mesh</p></li>
+<li><p>In the new Instrument View, memory is now freed more effectively when the interface is closed.</p></li>
 <li><p>In the new Instrument View, the tooltip for the render mode now matches the options shown in the drop-down list.</p></li>
 <li><p>Fixed an error when picking detectors in the new Instrument View from a Jupyter notebook.</p></li>
 <li><p>New Instrument View now has correct peak lines in lineplot when the units are changed and/or the spectra in the lineplot are summed.</p></li>

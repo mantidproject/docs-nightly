@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Muon Changes &#8212; MantidProject 6.16.20261019.1804 documentation</title>
+    <title>Muon Changes &#8212; MantidProject 6.16.20261021.1513 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../_static/documentation_options.js?v=a6b91327"></script>
+    <script src="../../_static/documentation_options.js?v=4dbb909c"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'release/v7.0.0/muon';</script>
@@ -726,49 +726,19 @@
                   
   <section id="muon-changes">
 <h1>Muon Changes<a class="headerlink" href="#muon-changes" title="Link to this heading">#</a></h1>
-<section id="frequency-domain-analysis">
-<h2>Frequency Domain Analysis<a class="headerlink" href="#frequency-domain-analysis" title="Link to this heading">#</a></h2>
+<section id="new-features">
+<h2>New features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41711">#41711</a>) The location of the <code class="docutils literal notranslate"><span class="pre">autosave.run</span></code> file, used to load the current run, can now be specified in the <a class="reference internal" href="../../interfaces/muon/Muon%20Analysis.html#muon-analysis-ref"><span class="std std-ref">Muon Analysis</span></a> and <a class="reference internal" href="../../interfaces/muon/Frequency%20Domain%20Analysis.html#frequency-domain-analysis-ref"><span class="std std-ref">Frequency Domain Analysis</span></a> interfaces. On Windows, the location is set automatically.</p></li>
+</ul>
+</section>
 <section id="bugfixes">
-<h3>Bugfixes<a class="headerlink" href="#bugfixes" title="Link to this heading">#</a></h3>
-</section>
-</section>
-<section id="muon-analysis">
-<h2>Muon Analysis<a class="headerlink" href="#muon-analysis" title="Link to this heading">#</a></h2>
-<section id="id1">
-<h3>Bugfixes<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<h2>Bugfixes<a class="headerlink" href="#bugfixes" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41711">#41711</a>) Added the ability to specify the location of the <code class="docutils literal notranslate"><span class="pre">autosave.run</span></code> (used for loading the current run) file in the Muon Analysis &lt;Muon_Analysis-ref&gt; and Frequency Domain Analysis &lt;Frequency_Domain_Analysis-ref&gt; interfaces. This allows users on platforms other than Windows to specify the location of the autosave file (location is automatically set on Windows).</p></li>
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/42166">#42166</a>) Fixed a bug in the <a class="reference internal" href="../../interfaces/muon/Muon%20Analysis.html#muon-analysis-ref"><span class="std std-ref">Muon Analysis</span></a> interface where rapidly clicking the increment or decrement run arrows could cause the interface to hang. The same run could be loaded more than once at the same time, and the resulting loads could block each other indefinitely.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/42166">#42166</a>) The <a class="reference internal" href="../../interfaces/muon/Muon%20Analysis.html#muon-analysis-ref"><span class="std std-ref">Muon Analysis</span></a> interface no longer hangs when the run increment or decrement arrows are clicked rapidly, which could trigger simultaneous loads of the same run that blocked each other indefinitely.</p></li>
+<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41902">#41902</a>) The plot range boxes in the <a class="reference internal" href="../../interfaces/muon/Muon%20Analysis.html#muon-analysis-ref"><span class="std std-ref">Muon Analysis</span></a> and <a class="reference internal" href="../../interfaces/muon/Frequency%20Domain%20Analysis.html#frequency-domain-analysis-ref"><span class="std std-ref">Frequency Domain Analysis</span></a> interfaces now reject minimum X or Y values greater than or equal to the corresponding maximum, reverting to the previous value instead of flipping the axis.</p></li>
 </ul>
-</section>
-</section>
-<section id="muon-analysis-and-frequency-domain-analysis">
-<h2>Muon Analysis and Frequency Domain Analysis<a class="headerlink" href="#muon-analysis-and-frequency-domain-analysis" title="Link to this heading">#</a></h2>
-<section id="id4">
-<h3>Bugfixes<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>(<a class="reference external" href="https://github.com/mantidproject/mantid/pull/41902">#41902</a>) Fixed a bug in the <a class="reference internal" href="../../interfaces/muon/Muon%20Analysis.html#muon-analysis-ref"><span class="std std-ref">Muon Analysis</span></a> and <a class="reference internal" href="../../interfaces/muon/Frequency%20Domain%20Analysis.html#frequency-domain-analysis-ref"><span class="std std-ref">Frequency Domain Analysis</span></a> interfaces where entering an X (or Y) minimum value greater than or equal to the maximum in the plot range boxes flipped the axis. The invalid value is now rejected and the range reverted to its previous value.</p></li>
-</ul>
-</section>
-</section>
-<section id="alc">
-<h2>ALC<a class="headerlink" href="#alc" title="Link to this heading">#</a></h2>
-<section id="id6">
-<h3>Bugfixes<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-</section>
-</section>
-<section id="elemental-analysis">
-<h2>Elemental Analysis<a class="headerlink" href="#elemental-analysis" title="Link to this heading">#</a></h2>
-<section id="id7">
-<h3>Bugfixes<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
-</section>
-</section>
-<section id="algorithms">
-<h2>Algorithms<a class="headerlink" href="#algorithms" title="Link to this heading">#</a></h2>
-<section id="id8">
-<h3>Bugfixes<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <p><a class="reference internal" href="index.html#v7-0-0"><span class="std std-ref">Release 7.0.0</span></a></p>
-</section>
 </section>
 </section>
 
@@ -819,30 +789,8 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-domain-analysis">Frequency Domain Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bugfixes">Bugfixes</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muon-analysis">Muon Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bugfixes</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muon-analysis-and-frequency-domain-analysis">Muon Analysis and Frequency Domain Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Bugfixes</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alc">ALC</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Bugfixes</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elemental-analysis">Elemental Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Bugfixes</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">Algorithms</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Bugfixes</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new-features">New features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bugfixes">Bugfixes</a></li>
 </ul>
   </nav></div>
 
@@ -889,7 +837,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.2.0.
   </p>
 </div>
       

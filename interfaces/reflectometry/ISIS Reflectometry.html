@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ISIS Reflectometry Interface &#8212; MantidProject 7.0.20261102.2127 documentation</title>
+    <title>ISIS Reflectometry Interface &#8212; MantidProject 7.0.20261106.1644 documentation</title>
   
   
   
@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=562d7d41" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=6544281e" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
@@ -39,7 +40,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../_static/documentation_options.js?v=1995caa2"></script>
+    <script src="../../_static/documentation_options.js?v=06344a5a"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -739,7 +740,14 @@ will calculate theta using
 <p>Example: <code class="docutils literal notranslate"><span class="pre">0.7</span></code></p>
 </td>
 </tr>
-<tr class="row-even"><td><p>1st Trans Run(s)</p>
+<tr class="row-even"><td><p>Adjusted Angle</p></td>
+<td><p>No</p></td>
+<td><p>Read-only adjusted angle in degrees from the input workspace’s
+<code class="docutils literal notranslate"><span class="pre">reflectometry_adjusted_theta</span></code> sample log. Visible only for POLREF.
+Refreshed after reduction; blank when the log or reduction output is absent.
+The input and output require non-empty <code class="docutils literal notranslate"><span class="pre">run_number</span></code> metadata.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1st Trans Run(s)</p>
 <p>2nd Trans Run(s)</p>
 </td>
 <td><p>No</p></td>
@@ -753,7 +761,7 @@ normalised by monitor only.</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">1234,1235</span></code></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>Q min</p></td>
+<tr class="row-even"><td><p>Q min</p></td>
 <td><p>No</p></td>
 <td><p>Contains the minimum value of Q to be used in
 Å<sup>−1</sup>. Data with a value of Q lower
@@ -763,7 +771,7 @@ is useful for discarding noisy data.</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">0.1</span></code></p>
 </td>
 </tr>
-<tr class="row-even"><td><p>Q max</p></td>
+<tr class="row-odd"><td><p>Q max</p></td>
 <td><p>No</p></td>
 <td><p>Contains the maximum value of Q to be used in
 Å<sup>−1</sup>. Data with a value of Q higher
@@ -773,7 +781,7 @@ is useful for discarding noisy data.</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">0.9</span></code></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>dQ/Q</p></td>
+<tr class="row-even"><td><p>dQ/Q</p></td>
 <td><p>No</p></td>
 <td><p>Contains the resolution used when rebinning
 output workspaces. If left blank, this is
@@ -787,7 +795,7 @@ and a linear binning will be applied.</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">0.9</span></code></p>
 </td>
 </tr>
-<tr class="row-even"><td><p>Scale</p></td>
+<tr class="row-odd"><td><p>Scale</p></td>
 <td><p>No</p></td>
 <td><p>Contains the factor used to scale output
 IvsQ workspaces. The IvsQ workspaces are
@@ -796,7 +804,7 @@ this column.</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">1.0</span></code></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>Options</p></td>
+<tr class="row-even"><td><p>Options</p></td>
 <td><p>No</p></td>
 <td><p>Contains options that allow you to override
 <a class="reference internal" href="../../algorithms/ReflectometryReductionOne-v3.html#algm-reflectometryreductionone"><span class="std std-ref">ReflectometryReductionOne’s</span></a> properties.
@@ -810,6 +818,25 @@ column will prevail over options specified
 in the <strong>Settings</strong> tab.</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">RegionOfDirectBeam=&quot;0,2&quot;,</span> <span class="pre">Params=&quot;1,2,3&quot;</span></code></p>
 </td>
+</tr>
+<tr class="row-odd"><td><p>Nominal Specular
+Pixel No.</p></td>
+<td><p>No</p></td>
+<td><p>Nominal specular pixel spectrum number for POLREF calibration. Visible only
+for POLREF. Accepts non-negative fractional values and sets
+<code class="docutils literal notranslate"><span class="pre">NominalSpecularPixelSpectrumNo</span></code>. If blank, uses the matching Experiment
+lookup value, then <strong>Default Nominal Specular Pixel</strong> on the Instrument tab.
+Example: <code class="docutils literal notranslate"><span class="pre">280.5</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Actual Specular
+Pixel No.</p></td>
+<td><p>No</p></td>
+<td><p>Actual specular pixel spectrum number for POLREF calibration. Visible only
+for POLREF. Accepts non-negative fractional values and sets
+<code class="docutils literal notranslate"><span class="pre">ActualSpecularPixelSpectrumNo</span></code>. If blank, uses the matching Experiment
+lookup value. If neither table supplies a value, the algorithm obtains one
+by means of fitting the specular peak during calibration.
+Example: <code class="docutils literal notranslate"><span class="pre">282.25</span></code></p></td>
 </tr>
 </tbody>
 </table>

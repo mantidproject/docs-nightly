@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Instrument Access via SpectrumInfo, DetectorInfo, ComponentInfo &#8212; MantidProject 7.0.20261102.2127 documentation</title>
+    <title>Instrument Access via SpectrumInfo, DetectorInfo, ComponentInfo &#8212; MantidProject 7.0.20261106.1644 documentation</title>
   
   
   
@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=562d7d41" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6544281e" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
@@ -39,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=1995caa2"></script>
+    <script src="../_static/documentation_options.js?v=06344a5a"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/InstrumentAccessLayers';</script>
@@ -445,6 +446,7 @@
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>There are three layers to access instrument information, <a class="reference internal" href="../api/python/mantid/api/SpectrumInfo.html#mantid.api.SpectrumInfo" title="mantid.api.SpectrumInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpectrumInfo</span></code></a>, <a class="reference internal" href="../api/python/mantid/geometry/DetectorInfo.html#mantid.geometry.DetectorInfo" title="mantid.geometry.DetectorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DetectorInfo</span></code></a>, and <a class="reference internal" href="../api/python/mantid/geometry/ComponentInfo.html#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a>, which are introduced to Mantid as part of Instrument 2.0. These classes  store all commonly accessed information about spectra and detectors, components, and the relationships between them. Masking, monitor flags, L1, L2, 2-theta and position are stored as part of <a class="reference internal" href="../api/python/mantid/geometry/DetectorInfo.html#mantid.geometry.DetectorInfo" title="mantid.geometry.DetectorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DetectorInfo</span></code></a>. In addition, <a class="reference internal" href="../api/python/mantid/geometry/ComponentInfo.html#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> provides the API to tree and shape related operations historically performed by <a class="reference internal" href="../api/python/mantid/geometry/Instrument.html#mantid.geometry.Instrument" title="mantid.geometry.Instrument"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Instrument</span></code></a> type.</p>
+<p>For how these layers are built and stored inside the framework, including how shapes are shared between components and how they relate to the legacy instrument tree, see <a class="reference external" href="https://developer.mantidproject.org/InstrumentGeometry.html">Instrument Geometry</a> in the developer documentation.</p>
 <p>A spectrum corresponds to (a group of) one or more detectors. Most algorithms work with spectra and thus <a class="reference internal" href="../api/python/mantid/api/SpectrumInfo.html#mantid.api.SpectrumInfo" title="mantid.api.SpectrumInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpectrumInfo</span></code></a> would be used. Some algorithms work on a lower level (with individual detectors) and thus <a class="reference internal" href="../api/python/mantid/geometry/DetectorInfo.html#mantid.geometry.DetectorInfo" title="mantid.geometry.DetectorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DetectorInfo</span></code></a> would be used.</p>
 <p>The legacy <a class="reference internal" href="../api/python/mantid/geometry/Instrument.html#mantid.geometry.Instrument" title="mantid.geometry.Instrument"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Instrument</span></code></a> largely consists of <code class="docutils literal notranslate"><span class="pre">Detectors</span></code> and <code class="docutils literal notranslate"><span class="pre">Components</span></code> - all detectors are also components. <a class="reference internal" href="../api/python/mantid/geometry/DetectorInfo.html#mantid.geometry.DetectorInfo" title="mantid.geometry.DetectorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DetectorInfo</span></code></a> and <a class="reference internal" href="../api/python/mantid/geometry/ComponentInfo.html#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> are the respective replacements for these. <a class="reference internal" href="../api/python/mantid/geometry/ComponentInfo.html#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> introduces a <strong>component index</strong> for access, and <a class="reference internal" href="../api/python/mantid/geometry/DetectorInfo.html#mantid.geometry.DetectorInfo" title="mantid.geometry.DetectorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DetectorInfo</span></code></a> introduces a <strong>detector index</strong>, these will be discussed further below. <a class="reference internal" href="../api/python/mantid/geometry/DetectorInfo.html#mantid.geometry.DetectorInfo" title="mantid.geometry.DetectorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DetectorInfo</span></code></a> and <a class="reference internal" href="../api/python/mantid/geometry/ComponentInfo.html#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> share in-memory data. The difference between the two is best thought about in terms of their interfaces. The interface for <a class="reference internal" href="../api/python/mantid/geometry/DetectorInfo.html#mantid.geometry.DetectorInfo" title="mantid.geometry.DetectorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DetectorInfo</span></code></a> is designed for working with detectors, and the interface for <a class="reference internal" href="../api/python/mantid/geometry/ComponentInfo.html#mantid.geometry.ComponentInfo" title="mantid.geometry.ComponentInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentInfo</span></code></a> is designed for working with generic components.</p>
 <p>In many cases direct access to legacy <a class="reference internal" href="../api/python/mantid/geometry/Instrument.html#mantid.geometry.Instrument" title="mantid.geometry.Instrument"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Instrument</span></code></a> can be removed by using these layers. This will also help in moving to using indexes for enumeration, and only working with IDs for user-facing input.</p>
@@ -494,6 +496,21 @@ Ordinary parameters are deduplicated by name alone,
 and adding one replaces any existing parameter of that name.</p>
 <p>The parameter accessors on <code class="docutils literal notranslate"><span class="pre">ComponentInfo</span></code> are available from Python as well as C++,
 so Python code reaches named parameters through the access layer rather than the legacy component API.</p>
+</section>
+<section id="instrumentmetadata">
+<h4>InstrumentMetadata<a class="headerlink" href="#instrumentmetadata" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">InstrumentMetadata</span></code> holds the information that describes the instrument as a whole rather than any one component:</p>
+<ul class="simple">
+<li><p>the dates the instrument definition is valid from and to,</p></li>
+<li><p>the name of the instrument definition file and its XML text,</p></li>
+<li><p>the default view and view axis for the <a class="reference internal" href="../workbench/instrumentviewer.html#instrumentviewer"><span class="std std-ref">instrument viewer</span></a>, and</p></li>
+<li><p>for indirect geometry instruments, the separate physical instrument, if the definition has one.</p></li>
+</ul>
+<p>It is created when the instrument is loaded and is shared by workspaces that share the instrument.
+In C++ it is obtained from <code class="docutils literal notranslate"><span class="pre">ExperimentInfo::instrumentMetadata()</span></code>, e.g.
+<code class="docutils literal notranslate"><span class="pre">ws-&gt;instrumentMetadata().validFromDate()</span></code> replaces <code class="docutils literal notranslate"><span class="pre">ws-&gt;getInstrument()-&gt;getValidFromDate()</span></code>.
+In Python the values are available directly on the workspace or <code class="docutils literal notranslate"><span class="pre">ExperimentInfo</span></code>, see the table in <a class="reference internal" href="#what-to-use-instead">What to use instead</a>.</p>
+<p>The physical instrument is still a legacy <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> object.</p>
 </section>
 </section>
 </section>
@@ -668,7 +685,9 @@ and so on. The root component is where the parameters that the legacy code read 
 <code class="docutils literal notranslate"><span class="pre">ws.getInstrument()</span></code> live, so those call sites drop the index entirely.
 <code class="docutils literal notranslate"><span class="pre">ComponentInfo.invalidIndex</span></code> is the sentinel returned by <code class="docutils literal notranslate"><span class="pre">indexOfFullName()</span></code> for an unknown name,
 and <code class="docutils literal notranslate"><span class="pre">indexOfAny()</span></code> raises a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> rather than returning <code class="docutils literal notranslate"><span class="pre">None</span></code> as
-<code class="docutils literal notranslate"><span class="pre">Instrument.getComponentByName()</span></code> did.</p>
+<code class="docutils literal notranslate"><span class="pre">Instrument.getComponentByName()</span></code> did. Where several components share a name, both return the
+same one: the component closest to the root, searching breadth-first. Unlike
+<code class="docutils literal notranslate"><span class="pre">getComponentByName()</span></code>, <code class="docutils literal notranslate"><span class="pre">indexOfAny()</span></code> does not treat <code class="docutils literal notranslate"><span class="pre">/</span></code> as a path separator.</p>
 <p><strong>Before refactoring</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">instrument</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">getInstrument</span><span class="p">()</span>
 <span class="n">pixel_sizes</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">getComponentByName</span><span class="p">(</span><span class="s2">"bank1"</span><span class="p">)</span><span class="o">.</span><span class="n">getNumberParameter</span><span class="p">(</span><span class="s2">"x-pixel-size"</span><span class="p">)</span>
@@ -767,6 +786,15 @@ observer and axis for the scattering angle from the sample w.r.t. the beam (rais
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Detector.isMasked()</span></code> / <code class="docutils literal notranslate"><span class="pre">isMonitor()</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">detectorInfo().isMasked(index)</span></code> / <code class="docutils literal notranslate"><span class="pre">isMonitor(index)</span></code> (already deprecated)</p></td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Instrument.getValidFromDate()</span></code> / <code class="docutils literal notranslate"><span class="pre">getValidToDate()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">instrumentValidFromDate()</span></code> / <code class="docutils literal notranslate"><span class="pre">instrumentValidToDate()</span></code> on the workspace</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Instrument.getFilename()</span></code> / <code class="docutils literal notranslate"><span class="pre">getXmlText()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">instrumentFilename()</span></code> / <code class="docutils literal notranslate"><span class="pre">instrumentXmlText()</span></code> on the workspace</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Instrument.getDefaultView()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">instrumentDefaultView()</span></code> on the workspace, and <code class="docutils literal notranslate"><span class="pre">instrumentDefaultAxis()</span></code> for the view axis</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -830,6 +858,7 @@ so a single index moves freely between <code class="docutils literal notranslate
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#detectorinfo">DetectorInfo</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#componentinfo">ComponentInfo</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parameterinfo">ParameterInfo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#instrumentmetadata">InstrumentMetadata</a></li>
 </ul>
 </li>
 </ul>

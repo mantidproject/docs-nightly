@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>MDNorm v1 &#8212; MantidProject 7.0.20261102.2127 documentation</title>
+    <title>MDNorm v1 &#8212; MantidProject 7.0.20261106.1644 documentation</title>
   
   
   
@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=562d7d41" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6544281e" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
@@ -39,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=1995caa2"></script>
+    <script src="../_static/documentation_options.js?v=06344a5a"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>window.MathJax = {"tex": {"macros": {"AA": "\\unicode{x212B}"}}, "startup": {"polyfillHasOwn": true}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -723,6 +724,7 @@
 <li class="toctree-l1"><a class="reference internal" href="HFIRSANS2Wavelength-v1.html">HFIRSANS2Wavelength v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HFIRSANSNormalise-v1.html">HFIRSANSNormalise v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HFIRSANSReduction-v1.html">HFIRSANSReduction v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HFIRSCDSubtractBackground-v1.html">HFIRSCDSubtractBackground v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HRPDSlabCanAbsorption-v1.html">HRPDSlabCanAbsorption v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HYSPECSuggestTIB-v1.html">HYSPECSuggestTIB v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HasUB-v1.html">HasUB v1</a></li>
@@ -1711,10 +1713,24 @@ trajectory to integrate, the normalization can instead be supplied directly as a
 both of which can produce a matching normalization workspace).</p>
 <p><cite>MonoSCDNormalizationWorkspace</cite> is binned with the exact same basis vectors, extents, and symmetry operations as
 <cite>InputWorkspace</cite>, so the two end up on identical grids before dividing. It cannot be used together with
-<cite>SolidAngleWorkspace</cite>/<cite>FluxWorkspace</cite> (the two normalization methods are mutually exclusive), or with
-<cite>BackgroundWorkspace</cite> (background subtraction is not yet supported for this mode). <cite>InputWorkspace</cite> must not have a
+<cite>SolidAngleWorkspace</cite>/<cite>FluxWorkspace</cite> (the two normalization methods are mutually exclusive). <cite>InputWorkspace</cite> must not have a
 <cite>DeltaE</cite> dimension (monochromatic single crystal diffraction is elastic only), and must carry a <cite>wavelength</cite> sample
 log – set automatically by <cite>ConvertHFIRSCDtoMDE</cite> – confirming it originates from a monochromatic instrument.</p>
+<p>MDNorm does not support a background for monochromatic single crystal diffraction: <cite>BackgroundWorkspace</cite> is rejected
+when <cite>MonoSCDNormalizationWorkspace</cite> is given, or when <cite>InputWorkspace</cite> comes from WAND (HB2C) or DEMAND (HB3A).
+Subtract the background in detector space instead, with
+<a class="reference internal" href="HFIRSCDSubtractBackground-v1.html#algm-hfirscdsubtractbackground"><span class="std std-ref">HFIRSCDSubtractBackground</span></a>, before converting the data to <cite>Q_sample</cite> with
+<a class="reference internal" href="ConvertHFIRSCDtoMDE-v1.html#algm-converthfirscdtomde"><span class="std std-ref">ConvertHFIRSCDtoMDE</span></a>:</p>
+<ol class="arabic simple">
+<li><p>Load the sample, unnormalized, with <a class="reference internal" href="LoadWANDSCD-v1.html#algm-loadwandscd"><span class="std std-ref">LoadWANDSCD</span></a> or
+<a class="reference internal" href="HB3AAdjustSampleNorm-v1.html#algm-hb3aadjustsamplenorm"><span class="std std-ref">HB3AAdjustSampleNorm</span></a> (<cite>OutputType=”Detector”</cite>), together with its
+normalization workspace.</p></li>
+<li><p>Load the background, measured at a single goniometer angle.</p></li>
+<li><p>Subtract the background with <a class="reference internal" href="HFIRSCDSubtractBackground-v1.html#algm-hfirscdsubtractbackground"><span class="std std-ref">HFIRSCDSubtractBackground</span></a>.</p></li>
+<li><p>Convert <cite>Sample - Background</cite> and the normalization workspace to <cite>Q_sample</cite> with
+<a class="reference internal" href="ConvertHFIRSCDtoMDE-v1.html#algm-converthfirscdtomde"><span class="std std-ref">ConvertHFIRSCDtoMDE</span></a>.</p></li>
+<li><p>Normalize with MDNorm, giving the converted normalization workspace as <cite>MonoSCDNormalizationWorkspace</cite>.</p></li>
+</ol>
 <p>Unlike the time-of-flight case, there is no <cite>MDNorm_low</cite>/<cite>MDNorm_high</cite> log requirement (those are set by
 <a class="reference internal" href="CropWorkspaceForMDNorm-v1.html#algm-cropworkspaceformdnorm"><span class="std std-ref">CropWorkspaceForMDNorm</span></a>, a time-of-flight-only step), since each event already
 corresponds to a single measured <cite>Q_sample</cite> point rather than a trajectory to integrate. If <cite>RLU</cite> is <cite>True</cite> and a Q
@@ -1779,6 +1795,8 @@ wavelength/time-of-flight window.</p>
 </section>
 <section id="using-background">
 <h2>Using Background<a class="headerlink" href="#using-background" title="Link to this heading">#</a></h2>
+<p>This section applies to time-of-flight data. For monochromatic single crystal diffraction, see
+<a class="reference internal" href="#monochromatic-single-crystal-diffraction">Monochromatic Single Crystal Diffraction</a>.</p>
 <p>Starting with Mantid 6.1, the algorithm allows efficient processing of the background. In previous versions one used to
 create a background <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a> by replicating data for each goniometer setting in the input workspace.
 The current implementation uses instead a <a class="reference internal" href="../api/python/mantid/api/IMDWorkspace.html#mantid.api.IMDWorkspace" title="mantid.api.IMDWorkspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MDEventWorkspace</span></code></a> in the sample frame of the laboratory, so no need
@@ -1983,8 +2001,8 @@ information from both chunks.</p>
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c4cf18fdc67c42a2e7d31a413d598e71e3b8cc10/Framework/MDAlgorithms/inc/MantidMDAlgorithms/MDNorm.h">MDNorm.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c4cf18fdc67c42a2e7d31a413d598e71e3b8cc10/Framework/MDAlgorithms/src/MDNorm.cpp">MDNorm.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d3b4dc7f1c1c20a192ee4811bf62180900d8521f/Framework/MDAlgorithms/inc/MantidMDAlgorithms/MDNorm.h">MDNorm.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d3b4dc7f1c1c20a192ee4811bf62180900d8521f/Framework/MDAlgorithms/src/MDNorm.cpp">MDNorm.cpp</a></p>
 </section>
 </section>
 

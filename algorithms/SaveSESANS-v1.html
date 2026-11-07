@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SaveSESANS v1 &#8212; MantidProject 7.0.20261102.2127 documentation</title>
+    <title>SaveSESANS v1 &#8212; MantidProject 7.0.20261106.1644 documentation</title>
   
   
   
@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=562d7d41" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6544281e" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
@@ -39,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=1995caa2"></script>
+    <script src="../_static/documentation_options.js?v=06344a5a"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms/SaveSESANS-v1';</script>
@@ -721,6 +722,7 @@
 <li class="toctree-l1"><a class="reference internal" href="HFIRSANS2Wavelength-v1.html">HFIRSANS2Wavelength v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HFIRSANSNormalise-v1.html">HFIRSANSNormalise v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HFIRSANSReduction-v1.html">HFIRSANSReduction v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HFIRSCDSubtractBackground-v1.html">HFIRSCDSubtractBackground v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HRPDSlabCanAbsorption-v1.html">HRPDSlabCanAbsorption v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HYSPECSuggestTIB-v1.html">HYSPECSuggestTIB v1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="HasUB-v1.html">HasUB v1</a></li>
@@ -1508,6 +1510,48 @@
 <td><p><em>Optional</em></p></td>
 <td><p>The sample thickness in mm. If set, this value will be used instead of the thickness from the input workspace sample</p></td>
 </tr>
+<tr class="row-even"><td><p>Facility</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>The facility where the data was measured. If not set, the facility is determined from the instrument</p></td>
+</tr>
+<tr class="row-odd"><td><p>Instrument</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>The instrument used to measure the data. If not set, the instrument name is taken from the input workspace</p></td>
+</tr>
+<tr class="row-even"><td><p>RunNumber</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>The run number of the sample measurement. If not set, the run_number log of the input workspace is used</p></td>
+</tr>
+<tr class="row-odd"><td><p>SamplePosition</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>The name of the sample changer position, e.g. AT or 1CT. If not set, the positions recorded in the SamplePos log of the input workspace during the selected time range are used</p></td>
+</tr>
+<tr class="row-even"><td><p>BlankRunNumber</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>The run number of the blank measurement. Optional.</p></td>
+</tr>
+<tr class="row-odd"><td><p>SampleTransmissionRunNumber</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>The run number of the sample transmission measurement. Optional.</p></td>
+</tr>
+<tr class="row-even"><td><p>BlankTransmissionRunNumber</p></td>
+<td><p>Input</p></td>
+<td><p>string</p></td>
+<td></td>
+<td><p>The run number of the blank transmission measurement. Optional.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1519,6 +1563,63 @@ SESANS data format. A workspace with a single spectrum is expected,
 where the X values are wavelength and the Y values are polarisation.</p>
 <p>The sample thickness from the run metadata is used to normalise the polarisation data.
 The <code class="docutils literal notranslate"><span class="pre">OverrideSampleThickness</span></code> parameter can be used to specify a different value for this if needed.</p>
+<section id="measurement-metadata">
+<h3>Measurement metadata<a class="headerlink" href="#measurement-metadata" title="Link to this heading">#</a></h3>
+<p>To help identify the measurement, the following entries are added to the file header after the
+mandatory SESANS headers:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Header</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Facility</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">Facility</span></code> property if set, otherwise the facility that the instrument
+belongs to, as defined in the Mantid facilities configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p>Instrument</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> property if set, otherwise the instrument name of the input
+workspace</p></td>
+</tr>
+<tr class="row-even"><td><p>Run_number</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">RunNumber</span></code> property if set, otherwise the <code class="docutils literal notranslate"><span class="pre">run_number</span></code> sample log
+of the input workspace</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sample_position</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">SamplePosition</span></code> property if set, otherwise the sample changer positions
+(e.g. <code class="docutils literal notranslate"><span class="pre">AT</span></code> or <code class="docutils literal notranslate"><span class="pre">1CT</span></code>) recorded in the <code class="docutils literal notranslate"><span class="pre">SamplePos</span></code> sample log
+during the selected time range, in order and separated by commas</p></td>
+</tr>
+<tr class="row-even"><td><p>Blank_run_number</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">BlankRunNumber</span></code> property</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sample_transmission_run_number</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">SampleTransmissionRunNumber</span></code> property</p></td>
+</tr>
+<tr class="row-even"><td><p>Blank_transmission_run_number</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">BlankTransmissionRunNumber</span></code> property</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reduction_software</p></td>
+<td><p>Always <code class="docutils literal notranslate"><span class="pre">Mantid</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Software_version</p></td>
+<td><p>The version of Mantid used to save the file</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reduction_date</p></td>
+<td><p>The date and time (UTC, ISO 8601) at which the file was saved</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Facility</span></code>, <code class="docutils literal notranslate"><span class="pre">Instrument</span></code>, <code class="docutils literal notranslate"><span class="pre">Run_number</span></code>, <code class="docutils literal notranslate"><span class="pre">Sample_position</span></code> and
+blank and transmission run number entries are omitted if no value can be determined.</p>
+<p>The time range used for <code class="docutils literal notranslate"><span class="pre">Sample_position</span></code> is from the start to the end of the run, unless the workspace has
+been filtered by time, for example using <a class="reference internal" href="FilterByTime-v1.html#algm-filterbytime"><span class="std std-ref">FilterByTime</span></a>. The position at the start of the time
+range is included, but positions logged earlier are not. Repeated positions are only listed once, so a sample that
+stayed in one position gives a single value. For older data, the <code class="docutils literal notranslate"><span class="pre">SamplePos</span></code> log may contain a number rather
+than the name of the position.</p>
+</section>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
@@ -1552,8 +1653,8 @@ The <code class="docutils literal notranslate"><span class="pre">OverrideSampleT
 </section>
 <section id="source">
 <h2>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h2>
-<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c4cf18fdc67c42a2e7d31a413d598e71e3b8cc10/Framework/DataHandling/inc/MantidDataHandling/SaveSESANS.h">SaveSESANS.h</a></p>
-<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/c4cf18fdc67c42a2e7d31a413d598e71e3b8cc10/Framework/DataHandling/src/SaveSESANS.cpp">SaveSESANS.cpp</a></p>
+<p>C++ header: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d3b4dc7f1c1c20a192ee4811bf62180900d8521f/Framework/DataHandling/inc/MantidDataHandling/SaveSESANS.h">SaveSESANS.h</a></p>
+<p>C++ source: <a class="reference external" href="https://github.com/mantidproject/mantid/blob/d3b4dc7f1c1c20a192ee4811bf62180900d8521f/Framework/DataHandling/src/SaveSESANS.cpp">SaveSESANS.cpp</a></p>
 </section>
 </section>
 
@@ -1609,7 +1710,10 @@ The <code class="docutils literal notranslate"><span class="pre">OverrideSampleT
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-metadata">Measurement metadata</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#source">Source</a></li>
 </ul>

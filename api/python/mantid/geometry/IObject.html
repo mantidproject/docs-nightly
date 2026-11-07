@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Object &#8212; MantidProject 7.0.20261102.2127 documentation</title>
+    <title>Object &#8212; MantidProject 7.0.20261106.1644 documentation</title>
   
   
   
@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/style.css?v=562d7d41" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=6544281e" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
@@ -39,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../../../_static/documentation_options.js?v=1995caa2"></script>
+    <script src="../../../../_static/documentation_options.js?v=06344a5a"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/geometry/IObject';</script>
@@ -646,7 +647,14 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="mantid.geometry.IObject">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">mantid.geometry.</span></span><span class="sig-name descname"><span class="pre">IObject</span></span><a class="headerlink" href="#mantid.geometry.IObject" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="mantid.geometry.IObject.getAppliedRotation">
+<span class="sig-name descname"><span class="pre">getAppliedRotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(IObject)self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.geometry.IObject.getAppliedRotation" title="Link to this definition">#</a></dt>
+<dd><p>Return the goniometer rotation baked into this shape.</p>
+<p>This reports which frame the shape is in, not every rotation it has ever had. Definition-frame rotations - the file-load orientation of <a class="reference internal" href="../../../../algorithms/LoadSampleShape-v1.html#algm-loadsampleshape"><span class="std std-ref">LoadSampleShape v1</span></a>, the sample environment spec, ‘rotate-all’ and per-primitive ‘rotate’ tags, and <a class="reference internal" href="../../../../algorithms/RotateSampleShape-v1.html#algm-rotatesampleshape"><span class="std std-ref">RotateSampleShape v1</span></a> - re-express the shape within its own frame and are excluded. The identity therefore means the shape is expressed in its own frame, however much its definition has been rotated within that frame.</p>
+</dd></dl>
+
+</dd></dl>
 
 </section>
 
@@ -697,7 +705,10 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.IObject"><code class="docutils literal notranslate"><span class="pre">IObject</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.IObject"><code class="docutils literal notranslate"><span class="pre">IObject</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.geometry.IObject.getAppliedRotation"><code class="docutils literal notranslate"><span class="pre">IObject.getAppliedRotation()</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

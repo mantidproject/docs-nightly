@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Instrument View &#8212; MantidProject 7.0.20261102.2127 documentation</title>
+    <title>Instrument View &#8212; MantidProject 7.0.20261106.1644 documentation</title>
   
   
   
@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=562d7d41" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6544281e" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
@@ -39,7 +40,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../_static/documentation_options.js?v=1995caa2"></script>
+    <script src="../_static/documentation_options.js?v=06344a5a"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'workbench/instrumentviewer';</script>
@@ -598,7 +599,10 @@ independently of the units used for the colour map.</p>
 curve per detector. Summing converts to d-spacing, sums, and converts back to the chosen unit, so
 that detectors at different scattering angles add up correctly.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Export</span> <span class="pre">Spectra</span> <span class="pre">to</span> <span class="pre">ADS</span></code> saves whatever is currently plotted into a workspace named
-<code class="docutils literal notranslate"><span class="pre">instrument_view_selected_spectra_&lt;workspace</span> <span class="pre">name&gt;</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">instrument_view_selected_spectra_&lt;workspace</span> <span class="pre">name&gt;</span></code>. The button is enabled only while detectors
+are selected, either by clicking or from a ticked <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> entry, and never while
+<code class="docutils literal notranslate"><span class="pre">Hover</span> <span class="pre">Pick</span></code> is on. A shape that has not been added to the <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> list does not count as a
+selection, so its preview cannot be exported on its own.</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../_images/LinePlot.png"><img alt="../_images/LinePlot.png" src="../_images/LinePlot.png" width="635" />
 </a>

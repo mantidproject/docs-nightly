@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PeaksWorkspace &#8212; MantidProject 7.0.20261102.2127 documentation</title>
+    <title>PeaksWorkspace &#8212; MantidProject 7.0.20261106.1644 documentation</title>
   
   
   
@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/style.css?v=562d7d41" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=6544281e" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
@@ -39,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../../../_static/documentation_options.js?v=1995caa2"></script>
+    <script src="../../../../_static/documentation_options.js?v=06344a5a"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/dataobjects/PeaksWorkspace';</script>
@@ -973,6 +974,13 @@ the Points to Bins. The Output Workspace will contains Bins.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="mantid.dataobjects.PeaksWorkspace.getLabFrameSampleShape">
+<span class="sig-name descname"><span class="pre">getLabFrameSampleShape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(ExperimentInfo)self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">mantid.geometry._geometry.IObject</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.PeaksWorkspace.getLabFrameSampleShape" title="Link to this definition">#</a></dt>
+<dd><p>Return the sample shape as it sits in the lab frame, rotated by whatever part of this workspace’s goniometer rotation the shape does not already carry.</p>
+<p>A shape may be stored in its own frame or already rotated into the lab frame - <a class="reference internal" href="../../../../algorithms/CopySample-v1.html#algm-copysample"><span class="std std-ref">CopySample v1</span></a> bakes the goniometer in, while <a class="reference internal" href="../../../../algorithms/SetGoniometer-v1.html#algm-setgoniometer"><span class="std std-ref">SetGoniometer v1</span></a> alone leaves the shape untouched - so rotating by the goniometer unconditionally would turn an already-rotated shape a second time. This applies only what is outstanding, and returns a new shape; the workspace’s own sample is unchanged.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="mantid.dataobjects.PeaksWorkspace.getLinkedYCol">
 <span class="sig-name descname"><span class="pre">getLinkedYCol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(ITableWorkspace)self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">(object)column</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.PeaksWorkspace.getLinkedYCol" title="Link to this definition">#</a></dt>
 <dd><p>Get the data column associated with a given error column.</p>
@@ -1387,6 +1395,7 @@ Possible type values: (0 = None, 1 = X, 2 = Y, 3 = Z, 4 = xErr, 5 = yErr, 6 = La
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.PeaksWorkspace.getInstrument"><code class="docutils literal notranslate"><span class="pre">PeaksWorkspace.getInstrument()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.PeaksWorkspace.getInstrumentFilename"><code class="docutils literal notranslate"><span class="pre">PeaksWorkspace.getInstrumentFilename()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.PeaksWorkspace.getInstrumentName"><code class="docutils literal notranslate"><span class="pre">PeaksWorkspace.getInstrumentName()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.PeaksWorkspace.getLabFrameSampleShape"><code class="docutils literal notranslate"><span class="pre">PeaksWorkspace.getLabFrameSampleShape()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.PeaksWorkspace.getLinkedYCol"><code class="docutils literal notranslate"><span class="pre">PeaksWorkspace.getLinkedYCol()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.PeaksWorkspace.getMemorySize"><code class="docutils literal notranslate"><span class="pre">PeaksWorkspace.getMemorySize()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.PeaksWorkspace.getName"><code class="docutils literal notranslate"><span class="pre">PeaksWorkspace.getName()</span></code></a></li>

@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mantid 2.3.2 Release Notes &#8212; MantidProject 7.0.20261106.1644 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=562d7d41" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=6544281e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../../_static/documentation_options.js?v=06344a5a"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'release/v2.3.2/index';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Mantid 2.4.0 Release Notes" href="../v2.4.0/index.html" />
+    <link rel="prev" title="Mantid 2.3.1 Release Notes" href="../v2.3.1/index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    <link rel="icon" sizes="32x32" href="../../_static/images/favicon.ico">
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  <img src="../../_static/images/mantid_logo_light.png" class="logo__image only-light" alt="Logo image">
+  <img src="../../_static/images/mantid_logo_dark.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page" aria-expanded="false" aria-controls="pst-secondary-sidebar-modal">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://download.mantidproject.org">Downloads</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/nightly/tutorials/">Tutorials</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org">User Docs</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://developer.mantidproject.org">Develop</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://docs.mantidproject.org/release/">Release notes</a>
+  </li>
+  <li class="nav-item">
+    <a class="reference internal nav-link" href="https://www.mantidproject.org/contact">Contact Us</a>
+  </li>
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+    <li class="nav-item">
+      <a class="nav-link" href="https://github.com/mantidproject/mantid" rel="noopener" target="_blank" title="GitHub">
+        <span><i class="fab fa-github-square"></i></span>
+        <label class="sr-only">GitHub</label>
+      </a>
+    </li>
+  </ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v2.0.0/index.html">Mantid 2.0.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v2.0.0/installer.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.0.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../v2.0.0/framework.html">Framework</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../v2.0.0/isis_event_files_randomization.html">ISIS event files randomization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.0.0/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.0.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.0.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.0.0/isis_sans.html">ISIS SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.0.0/ornl_sans.html">ORNL SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.0.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.0.0/vates.html">Vates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.0.0/full_list.html">Full list of changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0.2/index.html">Mantid 2.0.2 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v2.1.0/index.html">Mantid 2.1.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/installer.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/isis_sans.html">ISIS SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/ornl_sans.html">ORNL SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/reflectometry.html">Reflectometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/single_crystal_diffraction.html">Single Crystal Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/vates.html">Vates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.1.0/full_list.html">Full list of changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.1.1/index.html">Mantid 2.1.1 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v2.2.0/index.html">Mantid 2.2.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v2.2.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.2.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.2.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.2.0/isis_sans.html">ISIS SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.2.0/reflectometry.html">Reflectometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.2.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.2.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.2.0/vates.html">Vates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.2.0/full_list.html">Full list of changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v2.3.0/index.html">Mantid 2.3.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/ipython.html">IPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/scipy.html">scipy &amp; matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/nxs.html">nxs - NeXus file access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/isis_sans.html">ISIS SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/reflectometry.html">Reflectometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/tube_calibration.html">Tube Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/vates.html">Vates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.3.0/full_list.html">Full list of changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.3.1/index.html">Mantid 2.3.1 Release Notes</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#">Mantid 2.3.2 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v2.4.0/index.html">Mantid 2.4.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v2.4.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.4.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.4.0/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.4.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.4.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.4.0/sans.html">SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.4.0/reflectometry.html">Reflectometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.4.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.4.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.4.0/vates.html">Vates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.4.0/full_list.html">Full list of changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v2.5.0/index.html">Mantid 2.5.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v2.5.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.5.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.5.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.5.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.5.0/sans.html">SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.5.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.5.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.5.0/vates.html">Vates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.5.0/full_list.html">Full list of changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.5.3/index.html">Mantid 2.5.3 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v2.6.0/index.html">Mantid 2.6.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../v2.6.0/ui.html">User Interface &amp; Usability</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../v2.6.0/direct_inelastic.html">Direct Inelastic</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.6.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.6.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.6.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.6.0/sans.html">SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.6.0/reflectometry.html">Reflectometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.6.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v2.6.0/full_list.html">Full list of changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.6.1/index.html">Mantid 2.6.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.0.0/index.html">Mantid 3.0.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.1.0/index.html">Mantid 3.1.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.1.1/index.html">Mantid 3.1.1 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v3.10.0/index.html">Mantid 3.10.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v3.10.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.10.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.10.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.10.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.10.0/sans.html">SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.10.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.10.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.10.0/reflectometry.html">Reflectometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.10.0/imaging.html">Imaging</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.10.1/index.html">Mantid 3.10.1 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v3.11.0/index.html">Mantid 3.11.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v3.11.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.11.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.11.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.11.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.11.0/sans.html">SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.11.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.11.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.11.0/reflectometry.html">Reflectometry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v3.12.0/index.html">Mantid 3.12.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v3.12.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.12.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.12.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.12.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.12.0/reflectometry.html">Reflectometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.12.0/sans.html">SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.12.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.12.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.12.1/index.html">Mantid 3.12.1 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v3.13.0/index.html">Mantid 3.13.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v3.13.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.13.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.13.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.13.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.13.0/reflectometry.html">Reflectometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.13.0/sans.html">SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.13.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.13.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.2.0/index.html">Mantid 3.2.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.2.1/index.html">Mantid 3.2.1 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v3.3.0/index.html">Mantid 3.3.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v3.3.0/diffraction.html">Diffraction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.4.0/index.html">Mantid 3.4.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.4.1/index.html">Mantid 3.4.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.5.0/index.html">Mantid 3.5.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.5.1/index.html">Mantid 3.5.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.5.2/index.html">Mantid 3.5.2 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v3.6.0/index.html">Mantid 3.6.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v3.6.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.6.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.6.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.6.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.6.0/sans.html">SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.6.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.6.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.6.0/reflectometry.html">Reflectometry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.6.1/index.html">Mantid 3.6.1 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v3.7.1/index.html">Mantid 3.7.1 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v3.7.1/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.7.1/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.7.1/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.7.1/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.7.1/sans.html">SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.7.1/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.7.1/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.7.1/reflectometry.html">Reflectometry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v3.8.0/index.html">Mantid 3.8.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v3.8.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.8.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.8.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.8.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.8.0/sans.html">SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.8.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.8.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.8.0/reflectometry.html">Reflectometry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v3.9.0/index.html">Mantid 3.9.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v3.9.0/framework.html">Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.9.0/ui.html">User Interface &amp; Usability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.9.0/direct_inelastic.html">Direct Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.9.0/indirect_inelastic.html">Indirect Inelastic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.9.0/sans.html">SANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.9.0/diffraction.html">Diffraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.9.0/imaging.html">Imaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.9.0/muon.html">Muon Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v3.9.0/reflectometry.html">Reflectometry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.9.1/index.html">Mantid 3.9.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v3.9.2/index.html">Mantid 3.9.2 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v4.0.0/index.html">Mantid 4.0.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v4.0.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.0.0/direct_inelastic.html">Direct Inelastic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.0.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.0.0/indirect_inelastic.html">Indirect Inelastic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.0.0/kafka.html">Kafka Live Listeners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.0.0/mantidplot.html">MantidPlot Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.0.0/mantidworkbench.html">MantidWorkbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.0.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.0.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.0.0/sans.html">SANS Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.0.0/ui.html">UI &amp; Usability Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v4.1.0/index.html">Mantid 4.1.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v4.1.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.1.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.1.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.1.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.1.0/mantidplot.html">MantidPlot Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.1.0/mantidworkbench.html">MantidWorkbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.1.0/muon.html">MuSR Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.1.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.1.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v4.2.0/index.html">Mantid 4.2.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v4.2.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.2.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.2.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.2.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.2.0/mantidplot.html">MantidPlot Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.2.0/mantidworkbench.html">MantidWorkbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.2.0/muon.html">MuSR Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.2.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v4.2.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v5.0.0/index.html">Mantid 5.0.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v5.0.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.0.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.0.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.0.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.0.0/mantidplot.html">MantidPlot Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.0.0/mantidworkbench.html">MantidWorkbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.0.0/muon.html">MuSR Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.0.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.0.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v5.1.0/index.html">Mantid 5.1.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v5.1.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.1.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.1.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.1.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.1.0/mantidplot.html">The Final Release of MantidPlot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.1.0/mantidworkbench.html">Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.1.0/muon.html">MuSR Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.1.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.1.0/sans.html">SANS Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v5.1.0/sliceviewer.html">Sliceviewer Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v5.1.1/index.html">Mantid 5.1.1 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.0.0/index.html">Mantid 6.0.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.0.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.0.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.0.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.0.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.0.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.0.0/muon.html">MuSR Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.0.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.0.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.1.0/index.html">Mantid 6.1.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.1.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.1.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.1.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.1.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.1.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.1.0/muon.html">MuSR Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.1.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.1.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.10.0/index.html">Mantid 6.10.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.10.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.10.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.10.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.10.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.10.0/inelastic.html">Inelastic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.10.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.10.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.10.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.10.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.11.0/index.html">Mantid 6.11.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.11.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.11.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.11.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.11.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.11.0/inelastic.html">Inelastic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.11.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.11.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.11.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.11.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.12.0/index.html">Mantid 6.12.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.12.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.12.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.12.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.12.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.12.0/inelastic.html">Inelastic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.12.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.12.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.12.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.12.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.13.0/index.html">Mantid 6.13.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.13.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.13.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.13.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.13.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.13.0/inelastic.html">Inelastic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.13.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.13.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.13.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.13.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v6.13.1/index.html">Mantid 6.13.1 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.14.0/index.html">Mantid 6.14.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.14.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.14.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.14.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.14.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.14.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.14.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.14.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.15.0/index.html">Mantid 6.15.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.15.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.15.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.15.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.15.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.15.0/inelastic.html">Inelastic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.15.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.15.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.15.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.16.0/index.html">Mantid 6.16.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.16.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.16.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.16.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.16.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.16.0/inelastic.html">Inelastic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.16.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.16.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.16.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.16.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v6.16.1/index.html">Mantid 6.16.1 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.2.0/index.html">Mantid 6.2.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.2.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.2.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.2.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.2.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.2.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.2.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.2.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.2.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.3.0/index.html">Mantid 6.3.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.3.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.3.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.3.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.3.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.3.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.3.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.3.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.3.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.4.0/index.html">Mantid 6.4.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.4.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.4.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.4.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.4.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.4.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.4.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.4.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.4.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.5.0/index.html">Mantid 6.5.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.5.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.5.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.5.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.5.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.5.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.5.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.5.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.5.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.6.0/index.html">Mantid 6.6.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.6.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.6.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.6.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.6.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.6.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.6.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.6.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.6.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.7.0/index.html">Mantid 6.7.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.7.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.7.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.7.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.7.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.7.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.7.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.7.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.7.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.8.0/index.html">Mantid 6.8.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.8.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.8.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.8.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.8.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.8.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.8.0/mslice_direct_geometry.html">MSlice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.8.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.8.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.8.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v6.9.0/index.html">Mantid 6.9.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v6.9.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.9.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.9.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.9.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.9.0/inelastic.html">Inelastic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.9.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.9.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.9.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v6.9.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../v6.9.1/index.html">Mantid 6.9.1 Release Notes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v7.0.0/index.html">Mantid 7.0.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v7.0.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.0.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.0.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.0.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.0.0/inelastic.html">Inelastic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.0.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.0.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.0.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.0.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../v7.1.0/index.html">Mantid 7.1.0 Release Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../v7.1.0/diffraction.html">Diffraction Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.1.0/direct_geometry.html">Direct Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.1.0/framework.html">Framework Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.1.0/indirect_geometry.html">Indirect Geometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.1.0/inelastic.html">Inelastic Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.1.0/mantidworkbench.html">Mantid Workbench Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.1.0/muon.html">Muon Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.1.0/reflectometry.html">Reflectometry Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v7.1.0/sans.html">SANS Changes</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Release Notes</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Mantid 2.3.2 Release Notes</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mantid-2-3-2-release-notes">
+<span id="v2-3-2"></span><h1>Mantid 2.3.2 Release Notes<a class="headerlink" href="#mantid-2-3-2-release-notes" title="Link to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These release notes were migrated from the retired Mantid wiki (archive.mantidproject.org). Trac ticket numbers are given for reference alongside the GitHub issue the ticket was migrated to.</p>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Patch Release</p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Version</p></td>
+<td><p>2.3.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Requested by</p></td>
+<td><p>Peter Peterson</p></td>
+</tr>
+<tr class="row-even"><td><p>Approved by</p></td>
+<td><p>Nick Draper, Peter Peterson</p></td>
+</tr>
+<tr class="row-odd"><td><p>Authorised on</p></td>
+<td><p>07 Dec 2012</p></td>
+</tr>
+<tr class="row-even"><td><p>Code Reviewed by</p></td>
+<td><p>Michael Reuter, Stuart Campbell, Martyn Gigg, Owen Arnold, Peter Peterson</p></td>
+</tr>
+<tr class="row-odd"><td><p>Code Reviewed on</p></td>
+<td><p>10-13 Dec 2012</p></td>
+</tr>
+<tr class="row-even"><td><p>Review Recommendation</p></td>
+<td><p>Release</p></td>
+</tr>
+<tr class="row-odd"><td><p>Released on</p></td>
+<td><p>13 Dec 2012</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="key-features">
+<h2>Key Features<a class="headerlink" href="#key-features" title="Link to this heading">#</a></h2>
+<p>This is a patch release to correct some significant issues since the <a class="reference internal" href="../v2.3.1/index.html#v2-3-1"><span class="std std-ref">last stable patch release</span></a>. There are updates to address issues with ADARA related live data, new detectors at SNS, ISIS Indirect analysis, user convenience for Instrument View and segmentation faults/crashes. The full list of changes is below.</p>
+</section>
+<section id="changes-in-this-version">
+<h2>Changes in this version<a class="headerlink" href="#changes-in-this-version" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ticket</p></th>
+<th class="head"><p>Problem</p></th>
+<th class="head"><p>Impact</p></th>
+<th class="head"><p>Solution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/6969">#6969</a> (Trac 6123)</p></td>
+<td><p>Enable ICAT4 archive search</p></td>
+<td><p>New ADARA files are only cataloged in ICAT4</p></td>
+<td><p>Make old and new SNS and ISIS archive search classes handle new case</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/6984">#6984</a> (Trac 6138)</p></td>
+<td><p>Inst view: Allow default view to be specified in inst defn</p></td>
+<td><p>Users have to constantly switch to most used view</p></td>
+<td><p>Add default tag to IDF and have Instrument and InstrumentWindow handle it</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/6996">#6996</a> (Trac 6150)</p></td>
+<td><p>Create an algorithm for viewing rocking curves/alignment scans</p></td>
+<td><p>Getting total counts versus log value is currently a complicated exercise</p></td>
+<td><p>Create new algorithm to handle request</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7007">#7007</a> (Trac 6161)</p></td>
+<td><p>Disable OpenGL in mantid properties</p></td>
+<td><p>OpenGL is causing crashes or bad behavior when used via SSH</p></td>
+<td><p>Add option to switch off OpenGL for instrument view</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7080">#7080</a> (Trac 6234)</p></td>
+<td><p>Error in LoadNexusMonitors for events</p></td>
+<td><p>All events occur in a single TOF in a monitor</p></td>
+<td><p>Fix loop index error</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7081">#7081</a> (Trac 6235)</p></td>
+<td><p>Support Annotation Packets From Live Stream</p></td>
+<td><p>All live data to handle DAS states properly</p></td>
+<td><p>Update packet definition and parser</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7086">#7086</a> (Trac 6240)</p></td>
+<td><p>DGS Reduction doesn’t work with new SNS event nexus filenames</p></td>
+<td><p>New ADARA created NeXus files do not reduce</p></td>
+<td><p>Add new extension to file check</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7087">#7087</a> (Trac 6241)</p></td>
+<td><p>New POWGEN detector</p></td>
+<td><p>There is a new detector that isn’t in the geometry</p></td>
+<td><p>Add new detector to POWGEN IDF</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7088">#7088</a> (Trac 6242)</p></td>
+<td><p>Add default instrument view to HYSPEC instrument definitions</p></td>
+<td><p>Users have to switch manually to most used view</p></td>
+<td><p>Add default view to IDF</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7090">#7090</a> (Trac 6244)</p></td>
+<td><p>Error in GetDetOffsetsMultiPeaks</p></td>
+<td><p>There is a segfault that happens for some files</p></td>
+<td><p>Create function to better handle deleting peaks</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7105">#7105</a> (Trac 6259)</p></td>
+<td><p>Fix run_start value for live listener</p></td>
+<td><p>Reducing live data fails when run_start is not set</p></td>
+<td><p>Update live listener to set a fake start time until real one available</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7116">#7116</a> (Trac 6270)</p></td>
+<td><p>The run start time needs to have a precision of better than the nearest second</p></td>
+<td><p>Currently accurate time control is not possible</p></td>
+<td><p>Allow for finer grained control</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7119">#7119</a> (Trac 6273)</p></td>
+<td><p>IDF for MANDI</p></td>
+<td><p>A new instrument at SNS is coming online</p></td>
+<td><p>Add new IDF to Mantid</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7128">#7128</a> (Trac 6282)</p></td>
+<td><p>Add/replace ISIS Indirect fortran modules</p></td>
+<td><p>Current modules in use at ISIS are broken</p></td>
+<td><p>Replace module and fix IDA interface to work with new modules</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7135">#7135</a> (Trac 6289)</p></td>
+<td><p>Add default instrument view to ISIS instrument definitions</p></td>
+<td><p>Users have to constantly switch to most used view</p></td>
+<td><p>Add default view to several instruments</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7136">#7136</a> (Trac 6290)</p></td>
+<td><p>Add default instrument view to SNS instrument definitions</p></td>
+<td><p>Users have to constantly switch to most used view</p></td>
+<td><p>Add default view to several instruments</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7138">#7138</a> (Trac 6292)</p></td>
+<td><p>Solve huge memory usage of Instrument view for MAPS and other instruments</p></td>
+<td><p>Instruments with structured detector ids waste a large amount of memory</p></td>
+<td><p>Change the cache data type to a map rather than a vector</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7141">#7141</a> (Trac 6295)</p></td>
+<td><p>Update MANDI monitor distances</p></td>
+<td><p>Monitors are not at their current positions</p></td>
+<td><p>Update distances in the IDF to the correct values</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7142">#7142</a> (Trac 6296)</p></td>
+<td><p>SaveAsciiTest.h not in release-testing code</p></td>
+<td><p>Having missing file causes patch release code to not compile</p></td>
+<td><p>Remove entry from CMakeLists</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7167">#7167</a> (Trac 6321)</p></td>
+<td><p>FileFinder search at SNS defect</p></td>
+<td><p>SNSPowderReduction no longer finds files</p></td>
+<td><p>Add unit tests and make them work</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="code-review">
+<h2>Code Review<a class="headerlink" href="#code-review" title="Link to this heading">#</a></h2>
+<section id="review-of-specific-changes">
+<h3>Review of Specific Changes<a class="headerlink" href="#review-of-specific-changes" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ticket</p></th>
+<th class="head"><p>Problem</p></th>
+<th class="head"><p>Implementation Notes</p></th>
+<th class="head"><p>Probability of side effects</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/6969">#6969</a> (Trac 6123)</p></td>
+<td><p>Enable ICAT4 archive search</p></td>
+<td><p>Update ISIS and both SNS archive search classes for new search method</p></td>
+<td><p>medium</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/6984">#6984</a> (Trac 6138)</p></td>
+<td><p>Inst view: Allow default view to be specified in inst defn</p></td>
+<td><p>Changes to IDF, Instrument and InstrumentWindow</p></td>
+<td><p>medium</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/6996">#6996</a> (Trac 6150)</p></td>
+<td><p>Create an algorithm for viewing rocking curves/alignment scans</p></td>
+<td><p>New algorithm created, not in use in any core code</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7007">#7007</a> (Trac 6161)</p></td>
+<td><p>Disable OpenGL in mantid properties</p></td>
+<td><p>Change to Mantid properties, ConfigDialog, InstrumentWindow, InstrumentWindowRenderTab and ProjectionSurface to handle new option</p></td>
+<td><p>medium</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7080">#7080</a> (Trac 6234)</p></td>
+<td><p>Error in LoadNexusMonitors for events</p></td>
+<td><p>Single character change</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7081">#7081</a> (Trac 6235)</p></td>
+<td><p>Support Annotation Packets From Live Stream</p></td>
+<td><p>Changes to ADARAPackets, ADARAParser and SNSLiveDataEventListener to accomodate new annotations</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7086">#7086</a> (Trac 6240)</p></td>
+<td><p>DGS Reduction doesn’t work with new SNS event nexus filenames</p></td>
+<td><p>Change confined to DgsConvertToEnergyTransfer</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7087">#7087</a> (Trac 6241)</p></td>
+<td><p>New POWGEN detector</p></td>
+<td><p>Change isolated to POWGEN IDF</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7088">#7088</a> (Trac 6242)</p></td>
+<td><p>Add default instrument view to HYSPEC instrument definitions</p></td>
+<td><p>Change isolated to HYSPEC IDF</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7090">#7090</a> (Trac 6244)</p></td>
+<td><p>Error in GetDetOffsetsMultiPeaks</p></td>
+<td><p>Change isolated to GetDetOffsetsMultiPeaks</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7105">#7105</a> (Trac 6259)</p></td>
+<td><p>Fix run_start value for live listener</p></td>
+<td><p>Change isolated to SNSLiveEventDataListener</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7116">#7116</a> (Trac 6270)</p></td>
+<td><p>The run start time needs to have a precision of better than the nearest second</p></td>
+<td><p>Change confined to DateAndTime class, use boost function call</p></td>
+<td><p>medium</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7119">#7119</a> (Trac 6273)</p></td>
+<td><p>IDF for MANDI</p></td>
+<td><p>Create new IDF</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7128">#7128</a> (Trac 6282)</p></td>
+<td><p>Add/replace ISIS Indirect fortran modules</p></td>
+<td><p>Changes to 3 workflow algorithms and replaced 7 associated pyd file</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7135">#7135</a> (Trac 6289)</p></td>
+<td><p>Add default instrument view to ISIS instrument definitions</p></td>
+<td><p>Single line changes to the respective IDF files</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7136">#7136</a> (Trac 6290)</p></td>
+<td><p>Add default instrument view to SNS instrument definitions</p></td>
+<td><p>Changes to just ARCS IDF</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7138">#7138</a> (Trac 6292)</p></td>
+<td><p>Solve huge memory usage of Instrument view for MAPS and other instruments</p></td>
+<td><p>Changes isolated to InstrumentActor</p></td>
+<td><p>medium</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7141">#7141</a> (Trac 6295)</p></td>
+<td><p>Update MANDI monitor distances</p></td>
+<td><p>Changes confined to MANDI IDF</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7142">#7142</a> (Trac 6296)</p></td>
+<td><p>SaveAsciiTest.h not in release-testing code</p></td>
+<td><p>One line change to DataHandling’s CMakeLists.txt</p></td>
+<td><p>low</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mantidproject/mantid/issues/7167">#7167</a> (Trac 6321)</p></td>
+<td><p>FileFinder search at SNS defect</p></td>
+<td><p>Additional units tests and a code refactor</p></td>
+<td><p>medium</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="are-any-changes-included-in-the-release-that-are-not-accounted-for-above">
+<h3>Are any changes included in the release that are not accounted for above?<a class="headerlink" href="#are-any-changes-included-in-the-release-that-are-not-accounted-for-above" title="Link to this heading">#</a></h3>
+<p>No, only the changes from the above tickets have been merged to the release branch.</p>
+</section>
+<section id="is-the-collective-effect-of-the-changes-acceptably-low-risk">
+<h3>Is the collective effect of the changes acceptably low risk?<a class="headerlink" href="#is-the-collective-effect-of-the-changes-acceptably-low-risk" title="Link to this heading">#</a></h3>
+<p>Yes.</p>
+</section>
+<section id="code-reviewer-recommendation">
+<h3>Code Reviewer Recommendation<a class="headerlink" href="#code-reviewer-recommendation" title="Link to this heading">#</a></h3>
+<p>Release the code.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../v2.3.1/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mantid 2.3.1 Release Notes</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../v2.4.0/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Mantid 2.4.0 Release Notes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal" tabindex="-1"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changes-in-this-version">Changes in this version</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-review">Code Review</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#review-of-specific-changes">Review of Specific Changes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#are-any-changes-included-in-the-release-that-are-not-accounted-for-above">Are any changes included in the release that are not accounted for above?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-the-collective-effect-of-the-changes-acceptably-low-risk">Is the collective effect of the changes acceptably low risk?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-reviewer-recommendation">Code Reviewer Recommendation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/release/v2.3.2/index.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Mantid.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.2.0.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

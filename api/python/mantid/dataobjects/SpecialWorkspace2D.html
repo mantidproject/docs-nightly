@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SpecialWorkspace2D &#8212; MantidProject 7.0.20261102.2127 documentation</title>
+    <title>SpecialWorkspace2D &#8212; MantidProject 7.0.20261106.1644 documentation</title>
   
   
   
@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/style.css?v=562d7d41" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=6544281e" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
@@ -39,7 +40,7 @@
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
 
-    <script src="../../../../_static/documentation_options.js?v=1995caa2"></script>
+    <script src="../../../../_static/documentation_options.js?v=06344a5a"></script>
     <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/python/mantid/dataobjects/SpecialWorkspace2D';</script>
@@ -976,6 +977,13 @@ the Points to Bins. The Output Workspace will contains Bins.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="mantid.dataobjects.SpecialWorkspace2D.getLabFrameSampleShape">
+<span class="sig-name descname"><span class="pre">getLabFrameSampleShape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(ExperimentInfo)self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">mantid.geometry._geometry.IObject</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.SpecialWorkspace2D.getLabFrameSampleShape" title="Link to this definition">#</a></dt>
+<dd><p>Return the sample shape as it sits in the lab frame, rotated by whatever part of this workspace’s goniometer rotation the shape does not already carry.</p>
+<p>A shape may be stored in its own frame or already rotated into the lab frame - <a class="reference internal" href="../../../../algorithms/CopySample-v1.html#algm-copysample"><span class="std std-ref">CopySample v1</span></a> bakes the goniometer in, while <a class="reference internal" href="../../../../algorithms/SetGoniometer-v1.html#algm-setgoniometer"><span class="std std-ref">SetGoniometer v1</span></a> alone leaves the shape untouched - so rotating by the goniometer unconditionally would turn an already-rotated shape a second time. This applies only what is outstanding, and returns a new shape; the workspace’s own sample is unchanged.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="mantid.dataobjects.SpecialWorkspace2D.getMarkerSize">
 <span class="sig-name descname"><span class="pre">getMarkerSize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(MatrixWorkspace)self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.SpecialWorkspace2D.getMarkerSize" title="Link to this definition">#</a></dt>
 <dd><p>Returns the marker size for the workspace</p>
@@ -1166,6 +1174,12 @@ file will encapsulate this date (e.g ‘1900-01-31 23:59:00’)</p>
 <dt class="sig sig-object py" id="mantid.dataobjects.SpecialWorkspace2D.getXDimension">
 <span class="sig-name descname"><span class="pre">getXDimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(MDGeometry)self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">mantid.geometry._geometry.IMDDimension</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.SpecialWorkspace2D.getXDimension" title="Link to this definition">#</a></dt>
 <dd><p>Returns the <code class="xref py py-class docutils literal notranslate"><span class="pre">IMDDimension</span></code> description mapped to X</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mantid.dataobjects.SpecialWorkspace2D.getXMinMax">
+<span class="sig-name descname"><span class="pre">getXMinMax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">(MatrixWorkspace)self</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">(object)workspaceIndices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">(bool)includeNonFiniteSpectra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span> <span class="pre">:</span></span></span><a class="headerlink" href="#mantid.dataobjects.SpecialWorkspace2D.getXMinMax" title="Link to this definition">#</a></dt>
+<dd><p>Return a tuple of the lowest and highest X values of the given workspace indices, or of all spectra if workspaceIndices is None. A spectrum with a non-finite first or last value contributes its finite values if includeNonFiniteSpectra is True, and is skipped otherwise. The lowest value is greater than the highest if no spectrum contributes.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1699,6 +1713,7 @@ Default is number of histograms in target workspace if other masks are present o
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getInstrumentFilename"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getInstrumentFilename()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getInstrumentName"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getInstrumentName()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getIntegratedCountsForWorkspaceIndices"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getIntegratedCountsForWorkspaceIndices()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getLabFrameSampleShape"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getLabFrameSampleShape()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getMarkerSize"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getMarkerSize()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getMarkerStyle"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getMarkerStyle()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getMaxNumberBins"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getMaxNumberBins()</span></code></a></li>
@@ -1729,6 +1744,7 @@ Default is number of histograms in target workspace if other masks are present o
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getTitle"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getTitle()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getValue"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getValue()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getXDimension"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getXDimension()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getXMinMax"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getXMinMax()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getYDimension"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getYDimension()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.getZDimension"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.getZDimension()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mantid.dataobjects.SpecialWorkspace2D.hasAnyMaskedBins"><code class="docutils literal notranslate"><span class="pre">SpecialWorkspace2D.hasAnyMaskedBins()</span></code></a></li>
